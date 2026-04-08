@@ -5,8 +5,10 @@ import {
   MapPin, Truck, ChevronDown, CheckCircle2, 
   AlertTriangle, MoreHorizontal 
 } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 
 export default function DispatchJobs() {
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [filter, setFilter] = useState('All');
   const [search, setSearch] = useState('');
@@ -14,24 +16,28 @@ export default function DispatchJobs() {
   const [sortOrder, setSortOrder] = useState('desc');
   
   const rawJobs = [
-    { id: 'SHP-9042', customer: 'Acme Corp Logistics', origin: 'Sydney', dest: 'Melbourne', status: 'Active', driver: 'Jack Taylor', vehicle: 'XQG-984', priority: 'High', eta: '14:30' },
-    { id: 'SHP-9041', customer: 'Tech Solutions Ltd', origin: 'Port Botany', dest: 'Penrith', status: 'Delayed', driver: 'Sarah Mitchell', vehicle: 'BGT-221', priority: 'Medium', eta: '16:45' },
-    { id: 'SHP-9039', customer: 'Global Traders Australia', origin: 'Brisbane Port', dest: 'Gold Coast', status: 'Completed', driver: 'Liam Smith', vehicle: 'KLY-004', priority: 'Low', eta: 'Done' },
-    { id: 'SHP-9035', customer: 'Southport Logistics', origin: 'Adelaide', dest: 'Sydney Hub', status: 'Active', driver: 'Noah Williams', vehicle: 'V-102', priority: 'High', eta: '10:00' }
+    { id: 'SHP-9042', branchId: 'SYD-CENTRAL', customer: 'Acme Corp Logistics', origin: 'Sydney Hub', dest: 'Melbourne Hub', status: 'Active', driver: 'Jack Taylor', vehicle: 'XQG-984', priority: 'High', eta: '14:30' },
+    { id: 'SHP-9041', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', origin: 'Port Botany', dest: 'Penrith Hub', status: 'Delayed', driver: 'Sarah Mitchell', vehicle: 'BGT-221', priority: 'Medium', eta: '16:45' },
+    { id: 'SHP-9039', branchId: 'MEL-HUB',     customer: 'Global Traders Australia', origin: 'Brisbane Port', dest: 'Gold Coast', status: 'Completed', driver: 'Liam Smith', vehicle: 'KLY-004', priority: 'Low', eta: 'Done' },
+    { id: 'SHP-9035', branchId: 'SYD-CENTRAL', customer: 'Southport Logistics', origin: 'Adelaide Hub', dest: 'Sydney Hub', status: 'Active', driver: 'Noah Williams', vehicle: 'V-102', priority: 'High', eta: '10:00' },
+    { id: 'SHP-9050', branchId: 'BNE-PORT',    customer: 'Hunter Valley Wine', origin: 'Newcastle', dest: 'Sydney Hub', status: 'Active', driver: 'Ethan Hunt', vehicle: 'TRK-900', priority: 'Medium', eta: '12:00' }
   ];
 
   const filteredJobs = useMemo(() => {
     return rawJobs.filter(job => {
+      const isMyBranch = job.branchId === user.branchId;
       const matchesFilter = filter === 'All' || job.status === filter;
       const matchesSearch = `${job.id} ${job.customer} ${job.driver}`.toLowerCase().includes(search.toLowerCase());
-      return matchesFilter && matchesSearch;
+      
+      // logic: Dispatchers only see their own branch jobs
+      return isMyBranch && matchesFilter && matchesSearch;
     }).sort((a, b) => {
       const aVal = a[sortKey];
       const bVal = b[sortKey];
       if (sortOrder === 'asc') return aVal > bVal ? 1 : -1;
       return aVal < bVal ? 1 : -1;
     });
-  }, [filter, search, sortKey, sortOrder]);
+  }, [filter, search, sortKey, sortOrder, user.branchId]);
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto pb-12">

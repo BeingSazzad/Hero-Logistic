@@ -4,16 +4,21 @@ import {
   Satellite, Layers, Maximize2, Crosshair, Bell, Info,
   ChevronRight, Phone, MessageCircle, AlertTriangle
 } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 
 export default function DispatchTracking() {
+  const { user } = useAuth();
   const [selectedVehicle, setSelectedVehicle] = useState(null);
 
   const activeVehicles = [
-    { id: 'TRK-102', driver: 'Jack Taylor', status: 'Moving', speed: '45 km/h', loc: 'Hume Highway, Goulburn', eta: '45 mins', carga: 'Perishables', temp: '-2°C' },
-    { id: 'VAN-08', driver: 'Liam Smith', status: 'Stopped', speed: '0 km/h', loc: 'Albury Stopover',     eta: 'Delayed', carga: 'Electronics', temp: 'N/A' },
-    { id: 'TRK-05', driver: 'Noah Williams',  status: 'Moving', speed: '62 km/h', loc: 'Pacific Highway, NSW',   eta: '1h 15m', carga: 'Heavy Mach.', temp: 'N/A' },
-    { id: 'VAN-14', driver: 'Oliver Brown',   status: 'Loading', speed: '0 km/h', loc: 'Warehouse A, Sydney',          eta: 'Pending', carga: 'Textiles', temp: '22°C' },
+    { id: 'TRK-102', branchId: 'SYD-CENTRAL', driver: 'Jack Taylor', status: 'Moving', speed: '45 km/h', loc: 'Hume Highway, Goulburn', eta: '45 mins', carga: 'Perishables', temp: '-2°C' },
+    { id: 'VAN-08',  branchId: 'SYD-CENTRAL', driver: 'Liam Smith', status: 'Stopped', speed: '0 km/h', loc: 'Albury Stopover',     eta: 'Delayed', carga: 'Electronics', temp: 'N/A' },
+    { id: 'TRK-05',  branchId: 'MEL-HUB',     driver: 'Noah Williams',  status: 'Moving', speed: '62 km/h', loc: 'Pacific Highway, NSW',   eta: '1h 15m', carga: 'Heavy Mach.', temp: 'N/A' },
+    { id: 'VAN-14',  branchId: 'SYD-CENTRAL', driver: 'Oliver Brown',   status: 'Loading', speed: '0 km/h', loc: 'Warehouse A, Sydney',          eta: 'Pending', carga: 'Textiles', temp: '22°C' },
+    { id: 'TRK-900', branchId: 'BNE-PORT',    driver: 'Ethan Hunt',     status: 'Moving', speed: '88 km/h', loc: 'Gateway Bridge, BNE',    eta: '15 mins', carga: 'Vip Parcel', temp: 'N/A' },
   ];
+
+  const filteredVehicles = activeVehicles.filter(v => v.branchId === user.branchId);
 
   return (
     <div className="flex flex-col h-[calc(100vh-8rem)]">
@@ -62,7 +67,7 @@ export default function DispatchTracking() {
           </div>
           
           <div className="flex-1 overflow-y-auto custom-scrollbar bg-gray-50/20">
-            {activeVehicles.map(v => (
+            {filteredVehicles.map(v => (
               <div 
                 key={v.id} 
                 onClick={() => setSelectedVehicle(v)}
@@ -122,7 +127,7 @@ export default function DispatchTracking() {
                  <div className="flex items-center gap-4">
                     <div className="flex flex-col">
                        <span className="text-[9px] font-black text-[#FFCC00] uppercase tracking-widest mb-1">Active HUB</span>
-                       <span className="text-sm font-black text-white px-3 py-1 bg-[#FFCC00]/10 border border-[#FFCC00]/20 rounded-xl shadow-inner">SYDNEY_METRO_A</span>
+                       <span className="text-sm font-black text-white px-3 py-1 bg-[#FFCC00]/10 border border-[#FFCC00]/20 rounded-xl shadow-inner">{user.branchName}</span>
                     </div>
                     <div className="w-px h-10 bg-white/10"></div>
                     <div className="flex flex-col">

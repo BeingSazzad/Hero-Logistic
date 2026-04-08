@@ -5,35 +5,42 @@ import {
   UserCog, Plus, Users, ChevronDown
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 export default function DispatchDrivers() {
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('All');
   const [sortKey, setSortKey] = useState('name');
-  const [sortOrder, setSortOrder] = useState('asc');
-
+  const [sortOrder, setSortOrder] = useState('desc'); // Changed to desc for most recent first
+  
   const rawDrivers = [
-    { id: 'DRV-102', name: 'Jack Taylor',   phone: '+61 411 000 001', rank: 'Senior', status: 'On Duty', assigned: 'SHP-20481', rating: 4.8, shift: '06:00 - 18:00', compliance: 'Valid' },
-    { id: 'DRV-105', name: 'Liam Smith',   phone: '+61 412 000 002', rank: 'Regular',status: 'On Duty', assigned: 'SHP-20482', rating: 4.5, shift: '06:00 - 18:00', compliance: 'Valid' },
-    { id: 'DRV-118', name: 'Noah Williams',    phone: '+61 413 000 003', rank: 'Regular',status: 'Delay Alert', assigned: 'SHP-20483', rating: 4.2, shift: '08:00 - 20:00', compliance: 'Warning' },
-    { id: 'DRV-134', name: 'Oliver Brown', phone: '+61 414 000 004', rank: 'Junior', status: 'In Break',  assigned: '-', rating: 4.0, shift: '10:00 - 22:00', compliance: 'Valid' },
-    { id: 'DRV-145', name: 'Lucas Jones', phone: '+61 415 000 005', rank: 'Senior', status: 'Off Duty',  assigned: '-', rating: 4.9, shift: 'Night Shift', compliance: 'Valid' },
+    { id: 'DRV-102', branchId: 'SYD-CENTRAL', name: 'Jack Taylor',   phone: '+61 411 000 001', rank: 'Senior', status: 'On Duty', assigned: 'SHP-20481', rating: 4.8, shift: '06:00 - 18:00', compliance: 'Valid' },
+    { id: 'DRV-105', branchId: 'SYD-CENTRAL', name: 'Liam Smith',   phone: '+61 412 000 002', rank: 'Regular',status: 'On Duty', assigned: 'SHP-20482', rating: 4.5, shift: '06:00 - 18:00', compliance: 'Valid' },
+    { id: 'DRV-118', branchId: 'MEL-HUB',     name: 'Noah Williams', phone: '+61 413 000 003', rank: 'Regular',status: 'Delay Alert', assigned: 'SHP-20483', rating: 4.2, shift: '08:00 - 20:00', compliance: 'Warning' },
+    { id: 'DRV-134', branchId: 'SYD-CENTRAL', name: 'Oliver Brown', phone: '+61 414 000 004', rank: 'Junior', status: 'In Break',  assigned: '-', rating: 4.0, shift: '10:00 - 22:00', compliance: 'Valid' },
+    { id: 'DRV-145', branchId: 'SYD-CENTRAL', name: 'Lucas Jones',  phone: '+61 415 000 005', rank: 'Senior', status: 'Off Duty',  assigned: '-', rating: 4.9, shift: 'Night Shift', compliance: 'Valid' },
+    { id: 'DRV-156', branchId: 'BNE-PORT',    name: 'Ethan Hunt',   phone: '+61 416 000 006', rank: 'Senior', status: 'On Duty', assigned: 'SHP-9004', rating: 4.7, shift: '06:00 - 18:00', compliance: 'Valid' },
   ];
 
   const filteredDrivers = useMemo(() => {
     return rawDrivers.filter(drv => {
+      // Logic: Only show current branch UNLESS searching specifically for someone
+      const isMyBranch = drv.branchId === user.branchId;
       const matchesFilter = filter === 'All' || drv.status === filter;
       const searchStr = `${drv.id} ${drv.name} ${drv.phone}`.toLowerCase();
       const matchesSearch = searchStr.includes(search.toLowerCase());
-      return matchesFilter && matchesSearch;
+      
+      if (search) return matchesSearch; // If searching, show cross-branch (but mark them later)
+      return isMyBranch && matchesFilter;
     }).sort((a, b) => {
       const aVal = a[sortKey];
       const bVal = b[sortKey];
       if (sortOrder === 'asc') return aVal > bVal ? 1 : -1;
       return aVal < bVal ? 1 : -1;
     });
-  }, [filter, search, sortKey, sortOrder]);
+  }, [filter, search, sortKey, sortOrder, user.branchId]);
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto pb-12">
@@ -129,7 +136,9 @@ export default function DispatchDrivers() {
                          <div>
                             <div className="font-bold text-[#111] text-sm flex items-center gap-2">
                                {drv.name}
-                               <span className="text-[9px] uppercase font-bold tracking-widest text-[#111] border border-gray-200 bg-white px-1.5 py-0.5 rounded shadow-sm">{drv.rank}</span>
+                               <span className={`text-[9px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded shadow-sm border ${drv.branchId === user.branchId ? 'text-[#111] border-gray-200 bg-white' : 'text-blue-600 border-blue-100 bg-blue-50'}`}>
+                                 {drv.branchId === user.branchId ? drv.rank : `Other: ${drv.branchId}`}
+                               </span>
                             </div>
                             <div className="text-[10px] font-bold text-gray-400 tracking-widest uppercase mt-0.5">{drv.id} • {drv.phone}</div>
                          </div>
@@ -174,12 +183,20 @@ export default function DispatchDrivers() {
                    </td>
                    <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-2">
-                        <button className="text-[10px] font-bold text-gray-500 border border-gray-200 hover:bg-gray-50 hover:text-gray-900 px-3 py-2 rounded-lg transition-colors uppercase tracking-widest flex items-center gap-2 shadow-sm">
-                          <Phone size={14}/> Call
-                        </button>
-                        <button onClick={(e) => { e.stopPropagation(); navigate('/dispatch/messages'); }} className="text-[10px] font-bold text-black border border-[#E6B800] bg-[#FFCC00] hover:bg-[#E6B800] hover:border-[#CC9900] px-3 py-2 rounded-lg transition-colors uppercase tracking-widest flex items-center gap-2 shadow-sm">
-                          <MessageSquare size={14}/> Chat
-                        </button>
+                        {drv.branchId === user.branchId ? (
+                          <>
+                            <button className="text-[10px] font-bold text-gray-500 border border-gray-200 hover:bg-gray-50 hover:text-gray-900 px-3 py-2 rounded-lg transition-colors uppercase tracking-widest flex items-center gap-2 shadow-sm">
+                              <Phone size={14}/> Call
+                            </button>
+                            <button onClick={(e) => { e.stopPropagation(); navigate('/dispatch/messages'); }} className="text-[10px] font-bold text-black border border-[#E6B800] bg-[#FFCC00] hover:bg-[#E6B800] hover:border-[#CC9900] px-3 py-2 rounded-lg transition-colors uppercase tracking-widest flex items-center gap-2 shadow-sm">
+                              <MessageSquare size={14}/> Chat
+                            </button>
+                          </>
+                        ) : (
+                          <button onClick={(e) => { e.stopPropagation(); alert(`Requesting permission to pull ${drv.name} from ${drv.branchId}...`); }} className="text-[10px] font-bold text-blue-600 border border-blue-200 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-lg transition-all uppercase tracking-widest shadow-sm">
+                            Request Pull-in
+                          </button>
+                        )}
                       </div>
                    </td>
                  </tr>
