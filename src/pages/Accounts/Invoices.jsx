@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, Eye, Download, CheckCircle2, Clock, AlertCircle, ChevronRight } from 'lucide-react';
+import { Send, Eye, Download, CheckCircle2, Clock, AlertCircle, ChevronDown } from 'lucide-react';
 
 const invoices = [
   { id: 'INV-2026-1247', customer: 'Woolworths',  job: 'J-2026-1260', amount: '$2,037.20', due: '9 May 2026',  status: 'ready',   days: null },
@@ -10,10 +10,10 @@ const invoices = [
 ];
 
 const statusConfig = {
-  ready:   { label: 'Ready to Send', bg: 'bg-blue-100',   text: 'text-blue-700',   icon: Clock },
-  sent:    { label: 'Sent',          bg: 'bg-yellow-100', text: 'text-yellow-700', icon: Send },
-  overdue: { label: 'Overdue',       bg: 'bg-red-100',    text: 'text-red-700',    icon: AlertCircle },
-  paid:    { label: 'Paid',          bg: 'bg-green-100',  text: 'text-green-700',  icon: CheckCircle2 },
+  ready:   { label: 'Ready to Send', cls: 'bg-[#EFF6FF] text-[#2563EB] border-[#DBEAFE]',  icon: Clock },
+  sent:    { label: 'Sent',          cls: 'bg-yellow-50 text-yellow-700 border-yellow-200', icon: Send },
+  overdue: { label: 'Overdue',       cls: 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]',  icon: AlertCircle },
+  paid:    { label: 'Paid',          cls: 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]',  icon: CheckCircle2 },
 };
 
 const TABS = ['All', 'Ready to Send', 'Sent', 'Overdue', 'Paid'];
@@ -25,114 +25,130 @@ export default function Invoices() {
   const filtered = invoices.filter(inv => {
     if (tab === 'All') return true;
     if (tab === 'Ready to Send') return inv.status === 'ready';
-    if (tab === 'Sent')          return inv.status === 'sent';
+    if (tab === 'Sent')          return inv.status === 'sent' || sent.includes(inv.id);
     if (tab === 'Overdue')       return inv.status === 'overdue';
     if (tab === 'Paid')          return inv.status === 'paid';
     return true;
   });
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto">
-      <div className="flex justify-between items-end">
+    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto pb-12">
+
+      {/* Header */}
+      <div className="flex justify-between items-center mb-2 px-2">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Invoices</h1>
-          <p className="text-sm text-gray-500 mt-1">Manage and send customer invoices</p>
+          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Invoices</h1>
+          <p className="text-sm text-gray-500 mt-1">Manage and send customer invoices. Track payment status and follow up on overdue accounts.</p>
         </div>
-        <div className="flex gap-2">
-          <button className="btn bg-gray-100 text-gray-700 hover:bg-gray-200">
-            <Download size={15} /> Export CSV
+        <div className="flex gap-3">
+          <button className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-5 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+            <Download size={16} /> Export CSV
           </button>
-          <button className="btn btn-primary">
-            <Send size={15} /> Send All Ready ({invoices.filter(i => i.status === 'ready').length})
+          <button className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+            <Send size={16} /> Send All Ready ({invoices.filter(i => i.status === 'ready').length})
           </button>
         </div>
       </div>
 
+      <div className="w-full h-px bg-gray-200/60 mb-2"></div>
+
       {/* Summary Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-2 mb-2">
         {[
           { label: 'Total Outstanding', value: '$127,300', color: 'text-gray-900' },
-          { label: 'Overdue',           value: '$18,900',  color: 'text-red-600' },
+          { label: 'Overdue Balance',   value: '$18,900',  color: 'text-red-600' },
           { label: 'Paid This Month',   value: '$486,500', color: 'text-emerald-600' },
           { label: 'Avg Days to Pay',   value: '24 days',  color: 'text-blue-600' },
         ].map(s => (
-          <div key={s.label} className="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
-            <p className="text-xs text-gray-500 font-medium">{s.label}</p>
-            <p className={`text-xl font-bold mt-1 ${s.color}`}>{s.value}</p>
+          <div key={s.label} className="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+            <p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">{s.label}</p>
+            <p className={`text-2xl font-black mt-1 ${s.color}`}>{s.value}</p>
           </div>
         ))}
       </div>
 
-      {/* Tabs */}
-      <div className="flex gap-1 bg-gray-100 p-1 rounded-xl w-fit">
-        {TABS.map(t => (
-          <button key={t} onClick={() => setTab(t)}
-            className={`px-4 py-2 text-sm font-bold rounded-lg transition-all ${tab === t ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500 hover:text-gray-700'}`}>
-            {t}
+      {/* Main Table Card */}
+      <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+        
+        {/* Filter Bar */}
+        <div className="p-5 border-b border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex bg-gray-100 p-1 rounded-lg">
+            {TABS.map(t => (
+              <button key={t} onClick={() => setTab(t)}
+                className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all ${tab === t ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}>
+                {t}
+              </button>
+            ))}
+          </div>
+          <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50">
+            Sort By <ChevronDown size={16} className="text-gray-400" />
           </button>
-        ))}
-      </div>
+        </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
-        <table className="w-full text-left">
-          <thead className="bg-gray-50 border-b border-gray-100 text-gray-400 text-[11px] font-semibold uppercase tracking-wider">
-            <tr>
-              <th className="px-6 py-4">Invoice</th>
-              <th className="px-6 py-4">Customer</th>
-              <th className="px-6 py-4">Amount</th>
-              <th className="px-6 py-4">Due Date</th>
-              <th className="px-6 py-4">Status</th>
-              <th className="px-6 py-4">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-50">
-            {filtered.map(inv => {
-              const cfg = statusConfig[inv.status];
-              const isSent = sent.includes(inv.id);
-              return (
-                <tr key={inv.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <p className="font-bold text-gray-900 text-sm">{inv.id}</p>
-                    <p className="text-xs text-gray-400 mt-0.5">{inv.job}</p>
-                  </td>
-                  <td className="px-6 py-4 font-medium text-gray-700">{inv.customer}</td>
-                  <td className="px-6 py-4 font-bold text-gray-900">{inv.amount}</td>
-                  <td className="px-6 py-4">
-                    <span className={`text-sm font-medium ${inv.status === 'overdue' ? 'text-red-600 font-bold' : 'text-gray-700'}`}>
-                      {inv.due}
-                      {inv.days && <span className="ml-1 text-xs">({inv.days}d overdue)</span>}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold ${cfg.bg} ${cfg.text}`}>
-                      <cfg.icon size={11} />
-                      {isSent ? 'Sent' : cfg.label}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex gap-2">
-                      <button className="btn btn-dark text-xs py-1.5 px-3">
-                        <Eye size={12} /> Preview
-                      </button>
-                      {(inv.status === 'ready' && !isSent) && (
-                        <button onClick={() => setSent(s => [...s, inv.id])}
-                          className="btn btn-primary text-xs py-1.5 px-3">
-                          <Send size={12} /> Send
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead className="bg-[#FAFAFA] text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+              <tr>
+                <th className="px-6 py-4">Invoice Details</th>
+                <th className="px-6 py-4">Customer</th>
+                <th className="px-6 py-4">Amount</th>
+                <th className="px-6 py-4">Due Date</th>
+                <th className="px-6 py-4">Status</th>
+                <th className="px-6 py-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {filtered.map(inv => {
+                const cfg = statusConfig[inv.status];
+                const isSent = sent.includes(inv.id);
+                return (
+                  <tr key={inv.id} className="hover:bg-gray-50/50 transition-all group">
+                    <td className="px-6 py-5">
+                      <div className="font-bold text-[#111] text-[15px]">{inv.id}</div>
+                      <div className="text-[11px] text-gray-400 font-medium mt-0.5">{inv.job}</div>
+                    </td>
+                    <td className="px-6 py-5">
+                      <div className="font-bold text-[#111] text-sm">{inv.customer}</div>
+                    </td>
+                    <td className="px-6 py-5">
+                      <div className="font-black text-[#111]">{inv.amount}</div>
+                    </td>
+                    <td className="px-6 py-5">
+                      <div className={`text-sm font-bold ${inv.status === 'overdue' ? 'text-red-500' : 'text-gray-700'}`}>
+                        {inv.due}
+                        {inv.days && <span className="ml-1 text-[10px] font-bold text-red-400">({inv.days}d overdue)</span>}
+                      </div>
+                    </td>
+                    <td className="px-6 py-5">
+                      <span className={`text-[10px] font-bold px-3 py-1 rounded-md border inline-flex items-center gap-1.5 ${cfg.cls}`}>
+                        <cfg.icon size={10} />
+                        {isSent ? 'Sent' : cfg.label}
+                      </span>
+                    </td>
+                    <td className="px-6 py-5 text-right">
+                      <div className="flex gap-2 justify-end">
+                        <button className="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors uppercase tracking-widest">
+                          Preview
                         </button>
-                      )}
-                      {inv.status === 'overdue' && (
-                        <button className="btn text-xs py-1.5 px-3 bg-red-100 text-red-700 hover:bg-red-200">
-                          Follow Up
-                        </button>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                        {(inv.status === 'ready' && !isSent) && (
+                          <button onClick={() => setSent(s => [...s, inv.id])}
+                            className="text-xs font-bold text-emerald-600 hover:text-emerald-800 transition-colors uppercase tracking-widest ml-3">
+                            Send
+                          </button>
+                        )}
+                        {inv.status === 'overdue' && (
+                          <button className="text-xs font-bold text-red-600 hover:text-red-800 transition-colors uppercase tracking-widest ml-3">
+                            Follow Up
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

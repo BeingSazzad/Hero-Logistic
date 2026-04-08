@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { 
   Users, Search, Plus, UserPlus, Filter, 
   ArrowDownUp, CheckCircle, AlertTriangle, 
-  MapPin, Star, MoreHorizontal, Phone, Truck 
+  MapPin, Star, MoreHorizontal, Phone, Truck,
+  ChevronDown
 } from 'lucide-react';
 
 export default function AdminDriverManagement() {
@@ -31,96 +32,94 @@ export default function AdminDriverManagement() {
     });
   }, [search, sortKey, sortOrder]);
 
-  const toggleSort = (key) => {
-    if (sortKey === key) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortKey(key);
-      setSortOrder('asc');
-    }
-  };
-
   return (
-    <div className="flex flex-col gap-10 w-full max-w-7xl mx-auto pb-16">
-      <div className="flex justify-between items-end px-4">
+    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto pb-12">
+      
+      {/* Updated Header - Matching User's Clean Reference */}
+      <div className="flex justify-between items-center mb-2 px-2">
         <div>
-          <h1 className="text-4xl font-black text-gray-900 tracking-tighter">Human Resources Pool</h1>
-          <p className="text-sm font-bold text-gray-400 mt-1 uppercase tracking-[0.2em]">Validated Operator Matrix</p>
+          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Driver Management</h1>
+          <p className="text-sm text-gray-500 mt-1">Manage fleet vehicle operators, credentials, and deployment zones.</p>
         </div>
-        <button onClick={() => navigate('/admin/drivers/add')} className="bg-gray-900 text-[#FACC15] px-8 py-4 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-black transition-all shadow-xl shadow-yellow-400/10 flex items-center gap-3">
-           <UserPlus size={20}/> Onboard Driver
+        <button 
+          onClick={() => navigate('/admin/drivers/add')} 
+          className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
+        >
+          <Plus size={18} strokeWidth={3} /> New Driver
         </button>
       </div>
 
-      <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl overflow-hidden">
-        <div className="p-8 border-b border-gray-50 bg-gray-50/20 flex flex-col md:flex-row justify-between items-center gap-8">
-           <div className="relative w-full md:w-[450px]">
-             <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-             <input 
-               type="text" 
-               value={search}
-               onChange={e => setSearch(e.target.value)}
-               placeholder="Find operators by name, ID, or deployment region..." 
-               className="w-full bg-white border-2 border-gray-100 focus:border-yellow-400 outline-none rounded-3xl py-5 pl-14 pr-8 font-bold text-sm shadow-inner transition-all" 
-             />
+      <div className="w-full h-px bg-gray-200/60 mb-2"></div>
+
+      {/* Modern High-Density Table Card */}
+      <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+        
+        {/* Filter Bar */}
+        <div className="p-5 border-b border-gray-100 flex justify-between items-center">
+           <div className="relative w-[320px]">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+              <input 
+                type="text" 
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                placeholder="Search drivers or regions..." 
+                className="w-full bg-white border border-gray-200 rounded-lg py-2 pl-9 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400/20 focus:border-yellow-400 transition-all" 
+              />
            </div>
            
-           <div className="flex gap-4">
-             <button className="p-4 bg-white border-2 border-gray-100 rounded-2xl text-gray-400 hover:text-gray-900 hover:border-gray-900 transition-all shadow-sm"><Filter size={20}/></button>
-           </div>
+           <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors">
+              Sort By <ChevronDown size={16} className="text-gray-400" />
+           </button>
         </div>
 
         <div className="overflow-x-auto">
            <table className="w-full text-left">
-             <thead className="bg-white text-[11px] font-black text-gray-400 uppercase tracking-[0.2em] border-b border-gray-50">
+             <thead className="bg-[#FAFAFA] text-[11px] font-bold text-gray-400 uppercase tracking-wider">
                <tr>
-                 <th className="px-10 py-6 cursor-pointer hover:text-gray-900" onClick={() => toggleSort('name')}>Identity <ArrowDownUp size={12} className="inline ml-1"/></th>
-                 <th className="px-10 py-6 cursor-pointer hover:text-gray-900" onClick={() => toggleSort('license')}>Credentials <ArrowDownUp size={12} className="inline ml-1"/></th>
-                 <th className="px-10 py-6 cursor-pointer hover:text-gray-900" onClick={() => toggleSort('region')}>Primary Region <ArrowDownUp size={12} className="inline ml-1"/></th>
-                 <th className="px-10 py-6">Operational Status</th>
-                 <th className="px-10 py-6 text-right w-20"></th>
+                 <th className="px-6 py-4">Identity & ID</th>
+                 <th className="px-6 py-4">Credentials</th>
+                 <th className="px-6 py-4">Primary Region</th>
+                 <th className="px-6 py-4">Status</th>
+                 <th className="px-6 py-4">Actions</th>
                </tr>
              </thead>
-             <tbody className="divide-y divide-gray-50">
+             <tbody className="divide-y divide-gray-100">
                {filteredDrivers.map(d => (
-                 <tr className="hover:bg-yellow-50/30 transition-all group cursor-pointer" key={d.id} onClick={() => navigate(`/admin/drivers/${d.id}`)}>
-                   <td className="px-10 py-8">
-                     <div className="flex items-center gap-5">
-                       <div className="w-14 h-14 rounded-[1.25rem] bg-gray-900 flex items-center justify-center font-black text-lg text-[#FACC15] shadow-xl group-hover:rotate-6 transition-transform">
-                         {d.name.split(' ').map(n => n[0]).join('')}
+                 <tr className="hover:bg-gray-50/50 transition-all cursor-pointer group" key={d.id} onClick={() => navigate(`/admin/drivers/${d.id}`)}>
+                   <td className="px-6 py-5">
+                     <div className="flex items-center gap-3">
+                       <div className="w-10 h-10 rounded bg-gray-100 flex items-center justify-center border border-gray-200 shrink-0">
+                          <Users size={18} className="text-gray-400" />
                        </div>
                        <div>
-                         <div className="font-black text-gray-900 text-lg tracking-tight leading-none mb-2">{d.name}</div>
-                         <div className="flex items-center gap-3">
-                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{d.id}</span>
-                            <div className="flex items-center gap-1 text-[#FACC15]"><Star size={10} fill="#FACC15"/> <span className="text-[10px] font-black">{d.rating}</span></div>
-                         </div>
+                         <div className="font-bold text-[#111] text-[15px]">{d.name}</div>
+                         <div className="text-[11px] text-gray-400 font-medium tracking-tight mt-0.5">{d.id}</div>
                        </div>
                      </div>
                    </td>
-                   <td className="px-10 py-8">
-                      <div className="flex flex-col gap-1.5">
-                         <span className="text-[11px] font-black uppercase text-gray-700">{d.license}</span>
-                         <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1"><Truck size={12}/> {d.vehicle}</span>
+                   <td className="px-6 py-5">
+                      <div className="flex flex-col">
+                         <span className="text-sm font-bold text-[#111]">{d.license}</span>
+                         <span className="text-[11px] text-gray-400 mt-1 uppercase font-medium">{d.vehicle}</span>
                       </div>
                    </td>
-                   <td className="px-10 py-8">
-                     <div className="flex items-center gap-2 text-xs text-gray-500 font-bold uppercase tracking-tight">
-                        <MapPin size={14} className="text-gray-300"/> {d.region}
-                     </div>
+                   <td className="px-6 py-5">
+                      <div className="flex items-center gap-2 text-sm text-gray-500">
+                         <MapPin size={14} className="text-gray-300"/> {d.region}
+                      </div>
                    </td>
-                   <td className="px-10 py-8">
-                     <span className={`text-[10px] font-black uppercase px-4 py-1.5 rounded-full border shadow-sm ${
-                        d.status === 'Active' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 
-                        d.status === 'On Trip' ? 'bg-blue-50 text-blue-600 border-blue-100 animate-pulse' : 
-                        'bg-gray-50 text-gray-400 border-gray-100'
+                   <td className="px-6 py-5">
+                     <span className={`text-[10px] font-bold px-3 py-1 rounded-md border ${
+                        d.status === 'Active' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 
+                        d.status === 'On Trip' ? 'bg-[#EFF6FF] text-[#2563EB] border-[#DBEAFE]' : 
+                        'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]'
                      }`}>
-                        ● {d.status}
+                        {d.status}
                      </span>
                    </td>
-                   <td className="px-10 py-8 text-right">
-                      <button className="p-3 bg-white border border-gray-100 rounded-xl text-gray-300 hover:text-gray-900 shadow-sm transition-all group-hover:scale-110" onClick={(e) => { e.stopPropagation(); }}>
-                        <MoreHorizontal size={24} />
+                   <td className="px-6 py-5">
+                      <button className="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors uppercase tracking-widest" onClick={(e) => { e.stopPropagation(); navigate(`/admin/drivers/${d.id}`); }}>
+                        Edit Details
                       </button>
                    </td>
                  </tr>

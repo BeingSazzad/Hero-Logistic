@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Truck, Search, Plus, Filter, AlertTriangle, Droplet, Wrench, ArrowDownUp } from 'lucide-react';
+import { Truck, Search, Plus, Filter, AlertTriangle, Droplet, Wrench, ArrowDownUp, ChevronDown } from 'lucide-react';
 
 export default function AdminFleetManagement() {
   const navigate = useNavigate();
@@ -12,58 +12,66 @@ export default function AdminFleetManagement() {
   ];
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto">
-      <div className="flex justify-between items-end mb-2">
+    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto pb-12">
+      
+      {/* Updated Header - Matching Reference Style */}
+      <div className="flex justify-between items-center mb-2 px-2">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Fleet Management</h1>
+          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Fleet Management</h1>
           <p className="text-sm text-gray-500 mt-1">Manage vehicles, trailers, fuel logs, and maintenance schedules.</p>
         </div>
-        <button onClick={() => navigate('/admin/fleet/add')} className="btn btn-primary"><Plus size={16}/> Add Vehicle</button>
+        <button 
+          onClick={() => navigate('/admin/fleet/add')} 
+          className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
+        >
+          <Plus size={18} strokeWidth={3} /> Add Vehicle
+        </button>
       </div>
 
-      <div className="w-full h-px bg-gray-200 mb-2"></div>
+      <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
-      {/* Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="card p-4 flex items-center justify-between border-l-4 border-l-green-500 bg-white">
-          <div><p className="text-xs text-gray-500 uppercase font-bold">Active Fleet</p><p className="text-2xl font-bold">124</p></div>
-          <Truck className="text-gray-300" size={28}/>
+      {/* KPI Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-2 mb-2">
+        <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Active Fleet</p><p className="text-2xl font-black text-gray-900 mt-0.5">124</p></div>
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-50 text-gray-400"><Truck size={20}/></div>
         </div>
-        <div className="card p-4 flex items-center justify-between border-l-4 border-l-red-500 bg-white">
-          <div><p className="text-xs text-gray-500 uppercase font-bold">In Maintenance</p><p className="text-2xl font-bold text-red-600">8</p></div>
-          <Wrench className="text-gray-300" size={28}/>
+        <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">In Maintenance</p><p className="text-2xl font-black text-red-600 mt-0.5">8</p></div>
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-red-50 text-red-500"><Wrench size={20}/></div>
         </div>
-        <div className="card p-4 flex items-center justify-between border-l-4 border-l-yellow-400 bg-white">
-          <div><p className="text-xs text-gray-500 uppercase font-bold">Service Due</p><p className="text-2xl font-bold text-yellow-600">12</p></div>
-          <AlertTriangle className="text-gray-300" size={28}/>
+        <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Service Due</p><p className="text-2xl font-black text-yellow-600 mt-0.5">12</p></div>
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-yellow-50 text-yellow-600"><AlertTriangle size={20}/></div>
         </div>
-        <div className="card p-4 flex items-center justify-between border-l-4 border-l-blue-500 bg-white">
-          <div><p className="text-xs text-gray-500 uppercase font-bold">Fuel Efficiency</p><p className="text-xl font-bold text-blue-600">16.4L <span className="text-sm font-normal text-gray-500">avg</span></p></div>
-          <Droplet className="text-blue-200" size={28}/>
+        <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Fuel Efficiency</p><p className="text-2xl font-black text-blue-600 mt-0.5">16.4<span className="text-sm font-bold text-gray-400 tracking-tighter">L</span></p></div>
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-blue-50 text-blue-500"><Droplet size={20}/></div>
         </div>
       </div>
 
-      {/* Table */}
-      <div className="card bg-white mt-2">
-        <div className="p-4 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-gray-50/30">
-           <div className="relative w-full sm:w-80">
-             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
-             <input type="text" placeholder="Search by Reg, ID or Status..." className="input pl-9 w-full bg-white border-gray-200" />
+      {/* Modern High-Density Table Card */}
+      <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+        
+        {/* Filter Bar */}
+        <div className="p-5 border-b border-gray-100 flex justify-between items-center">
+           <div className="relative w-[320px]">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+              <input 
+                type="text" 
+                placeholder="Search by Reg, ID or Status..." 
+                className="w-full bg-white border border-gray-200 rounded-lg py-2 pl-9 pr-4 text-sm focus:outline-none transition-all" 
+              />
            </div>
-           <div className="flex gap-2 w-full sm:w-auto">
-             <button className="btn bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 flex items-center gap-2 flex-1 sm:flex-none">
-               <ArrowDownUp size={14}/> 
-               <span className="text-xs font-bold">Sort</span>
-             </button>
-             <button className="btn bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 flex items-center gap-2 flex-1 sm:flex-none">
-               <Filter size={14}/> 
-               <span className="text-xs font-bold">Filters <span className="bg-red-500 text-white text-[9px] px-1.5 py-0.5 rounded ml-1">1</span></span>
-             </button>
-           </div>
+           
+           <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50">
+              Sort By <ChevronDown size={16} className="text-gray-400" />
+           </button>
         </div>
+
         <div className="overflow-x-auto">
-           <table className="w-full text-left text-sm">
-             <thead className="bg-gray-50 text-[11px] font-semibold text-gray-500 uppercase tracking-widest">
+           <table className="w-full text-left">
+             <thead className="bg-[#FAFAFA] text-[11px] font-bold text-gray-400 uppercase tracking-wider">
                <tr>
                  <th className="px-6 py-4">Vehicle ID & Reg</th>
                  <th className="px-6 py-4">Type & Capacity</th>
@@ -73,26 +81,44 @@ export default function AdminFleetManagement() {
                  <th className="px-6 py-4 text-right">Actions</th>
                </tr>
              </thead>
-             <tbody className="divide-y divide-gray-50">
+             <tbody className="divide-y divide-gray-100">
                {fleet.map(v => (
-                 <tr className="hover:bg-gray-50 transition-colors" key={v.id}>
-                   <td className="px-6 py-4">
-                     <div className="font-bold text-gray-900">{v.id}</div>
-                     <div className="text-xs font-mono text-gray-500">{v.reg}</div>
+                 <tr className="hover:bg-gray-50/50 transition-all cursor-pointer group" key={v.id} onClick={() => navigate(`/admin/fleet/${v.id}`)}>
+                   <td className="px-6 py-5">
+                     <div className="flex items-center gap-3">
+                       <div className="w-10 h-10 rounded bg-gray-50 flex items-center justify-center border border-gray-200 shrink-0">
+                          <Truck size={18} className="text-gray-400" />
+                       </div>
+                       <div>
+                         <div className="font-bold text-[#111] text-[15px]">{v.id}</div>
+                         <div className="text-[11px] text-gray-400 font-mono tracking-tight mt-0.5">{v.reg}</div>
+                       </div>
+                     </div>
                    </td>
-                   <td className="px-6 py-4">
-                     <div className="font-medium text-gray-800">{v.type}</div>
-                     <div className="text-xs text-gray-500">Cap: {v.cap}</div>
+                   <td className="px-6 py-5">
+                      <div className="flex flex-col">
+                         <span className="text-sm font-bold text-[#111]">{v.type}</span>
+                         <span className="text-[11px] text-gray-400 mt-0.5">Cap: {v.cap}</span>
+                      </div>
                    </td>
-                   <td className="px-6 py-4">
-                     <span className={`badge ${v.status === 'Active' ? 'badge-green' : 'bg-red-100 text-red-700'}`}>{v.status}</span>
+                   <td className="px-6 py-5">
+                     <span className={`text-[10px] font-bold px-3 py-1 rounded-md border ${
+                        v.status === 'Active' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 
+                        'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]'
+                     }`}>
+                        {v.status}
+                     </span>
                    </td>
-                   <td className="px-6 py-4">
-                     <div className={`font-semibold ${v.service === 'Overdue' ? 'text-red-500' : 'text-gray-700'}`}>{v.service}</div>
+                   <td className="px-6 py-5">
+                      <div className={`text-sm font-bold ${v.service === 'Overdue' ? 'text-red-500' : 'text-[#111]'}`}>{v.service}</div>
                    </td>
-                   <td className="px-6 py-4 font-medium text-gray-600">{v.fuel}</td>
-                   <td className="px-6 py-4 text-right">
-                     <button onClick={() => navigate(`/admin/fleet/${v.id}`)} className="btn btn-dark text-xs py-1.5 px-3">Manage →</button>
+                   <td className="px-6 py-5">
+                      <div className="text-sm font-bold text-gray-700">{v.fuel}</div>
+                   </td>
+                   <td className="px-6 py-5 text-right">
+                      <button className="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors uppercase tracking-widest">
+                        Manage
+                      </button>
                    </td>
                  </tr>
                ))}

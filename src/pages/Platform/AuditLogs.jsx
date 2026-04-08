@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Download, Search, Filter } from 'lucide-react';
+import { Download, Search, Filter, ChevronDown, CheckCircle } from 'lucide-react';
 
 const logs = [
   { id: 'AL-1205', time: '2026-04-08 14:30:22', actor: 'System Admin (admin@hero.com.au)', action: 'Impersonate End', tenant: 'FastMove AU', details: 'Duration: 45 min, Ticket: SUP-12345' },
@@ -11,12 +11,12 @@ const logs = [
 ];
 
 const actionColors = {
-  'Create Tenant': 'bg-green-100 text-green-800',
-  'Suspend Tenant': 'bg-red-100 text-red-800',
-  'Activate Tenant': 'bg-emerald-100 text-emerald-800',
-  'Impersonate Start': 'bg-blue-100 text-blue-800',
-  'Impersonate End': 'bg-gray-100 text-gray-800',
-  'Login': 'bg-gray-100 text-gray-800',
+  'Create Tenant': 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]',
+  'Suspend Tenant': 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]',
+  'Activate Tenant': 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]',
+  'Impersonate Start': 'bg-[#EFF6FF] text-[#2563EB] border-[#DBEAFE]',
+  'Impersonate End': 'bg-gray-50 text-gray-700 border-gray-200',
+  'Login': 'bg-gray-50 text-gray-700 border-gray-200',
 };
 
 export default function AuditLogs() {
@@ -29,56 +29,86 @@ export default function AuditLogs() {
   );
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto">
-      <div className="flex items-end justify-between">
+    <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto pb-12">
+      
+      {/* Updated Header - Matching Reference Style */}
+      <div className="flex justify-between items-center mb-2 px-2">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Audit Logs</h1>
-          <p className="text-sm text-gray-500 mt-1">Compliance & security event tracking</p>
+          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Audit Logs</h1>
+          <p className="text-sm text-gray-500 mt-1">Compliance & security event tracking.</p>
         </div>
-        <button className="btn btn-dark"><Download size={15} /> Export CSV</button>
+        <button 
+          className="bg-gray-900 hover:bg-black text-[#FFCC00] px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
+        >
+          <Download size={18} strokeWidth={3} /> Export CSV
+        </button>
       </div>
 
-      <div className="flex gap-4">
-        <div className="relative flex-1 max-w-sm">
-          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-          <input className="input pl-9" placeholder="Search actor, action, tenant..." value={search} onChange={e => setSearch(e.target.value)} />
-        </div>
-        <button className="btn bg-white border border-gray-200 text-gray-700 shadow-sm"><Filter size={16} /> Filters</button>
-      </div>
+      <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
-      <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-        <table className="w-full text-left">
-          <thead className="bg-gray-50 border-b border-gray-200 text-gray-500 text-xs font-semibold uppercase tracking-wider">
-            <tr>
-              <th className="px-6 py-4">Timestamp</th>
-              <th className="px-6 py-4">Actor</th>
-              <th className="px-6 py-4">Action</th>
-              <th className="px-6 py-4">Tenant</th>
-              <th className="px-6 py-4">Details</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100 text-sm">
-            {filtered.map(log => (
-              <tr key={log.id} className="hover:bg-gray-50 transition-colors">
-                <td className="px-6 py-3.5 font-mono text-gray-600 text-xs whitespace-nowrap">{log.time}</td>
-                <td className="px-6 py-3.5 font-medium text-gray-900">{log.actor}</td>
-                <td className="px-6 py-3.5">
-                  <span className={`inline-block px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider ${actionColors[log.action] || 'bg-gray-100 text-gray-800'}`}>
-                    {log.action}
-                  </span>
-                </td>
-                <td className="px-6 py-3.5 text-gray-700 font-semibold">{log.tenant}</td>
-                <td className="px-6 py-3.5 text-gray-500 text-xs max-w-sm truncate" title={log.details}>{log.details}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {filtered.length === 0 && (
-          <div className="p-12 text-center">
-            <p className="text-gray-500 font-medium">No activity found. Try adjusting your filters.</p>
-            <button onClick={() => setSearch('')} className="text-blue-600 font-bold mt-2 hover:underline">Clear Filters</button>
-          </div>
-        )}
+      {/* Modern High-Density Table Card */}
+      <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+        
+        {/* Filter Bar */}
+        <div className="p-5 border-b border-gray-100 flex justify-between items-center">
+           <div className="relative w-[320px]">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+              <input 
+                type="text" 
+                placeholder="Search actor, action, tenant..." 
+                value={search} onChange={e => setSearch(e.target.value)}
+                className="w-full bg-white border border-gray-200 rounded-lg py-2 pl-9 pr-4 text-sm focus:outline-none transition-all" 
+              />
+           </div>
+           
+           <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50">
+              Sort By <ChevronDown size={16} className="text-gray-400" />
+           </button>
+        </div>
+
+        <div className="overflow-x-auto">
+           <table className="w-full text-left">
+             <thead className="bg-[#FAFAFA] text-[11px] font-bold text-gray-400 uppercase tracking-wider">
+               <tr>
+                 <th className="px-6 py-4">Timestamp</th>
+                 <th className="px-6 py-4">Actor</th>
+                 <th className="px-6 py-4">Event Action</th>
+                 <th className="px-6 py-4">Target Tenant</th>
+                 <th className="px-6 py-4">Event Details</th>
+               </tr>
+             </thead>
+             <tbody className="divide-y divide-gray-100">
+               {filtered.map(log => (
+                 <tr className="hover:bg-gray-50/50 transition-all group" key={log.id}>
+                   <td className="px-6 py-5">
+                      <div className="font-mono text-gray-500 font-bold tracking-tight text-xs">{log.time}</div>
+                   </td>
+                   <td className="px-6 py-5">
+                      <div className="font-bold text-[#111] text-sm">{log.actor}</div>
+                   </td>
+                   <td className="px-6 py-5">
+                      <span className={`text-[10px] font-bold px-3 py-1 rounded-md border inline-flex items-center gap-1.5 ${actionColors[log.action]}`}>
+                        <CheckCircle size={10} /> {log.action}
+                      </span>
+                   </td>
+                   <td className="px-6 py-5">
+                      <span className="text-sm font-bold text-[#111]">{log.tenant}</span>
+                   </td>
+                   <td className="px-6 py-5">
+                      <span className="text-sm font-medium text-gray-600 block max-w-[200px] truncate" title={log.details}>{log.details}</span>
+                   </td>
+                 </tr>
+               ))}
+               {filtered.length === 0 && (
+                 <tr>
+                    <td colSpan="5" className="px-6 py-12 text-center text-sm font-medium text-gray-500">
+                       No audit logs match your search.
+                    </td>
+                 </tr>
+               )}
+             </tbody>
+           </table>
+        </div>
       </div>
     </div>
   );

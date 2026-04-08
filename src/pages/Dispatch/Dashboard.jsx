@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Filter, Plus, Package, Truck, DollarSign, AlertCircle,
   Clock, TrendingUp, MapPin, Search, MoreVertical, 
-  ArrowUpRight, Navigation, Zap, ShieldAlert, CheckCircle2
+  ArrowUpRight, Navigation, Zap, ShieldAlert, CheckCircle2, ChevronDown
 } from 'lucide-react';
 
 const jobs = [
@@ -15,12 +15,12 @@ const jobs = [
 
 function StatusBadge({ status }) {
   const map = {
-    'In Transit': 'bg-blue-50 text-blue-600 border-blue-100',
-    'At Pickup':  'bg-emerald-50 text-emerald-600 border-emerald-100',
-    'Delayed':    'bg-red-50 text-red-600 border-red-100 shadow-[0_0_10px_rgba(239,68,68,0.1)]',
-    'Pending':    'bg-gray-50 text-gray-500 border-gray-100',
+    'In Transit': 'bg-[#EFF6FF] text-[#2563EB] border-[#DBEAFE]',
+    'At Pickup':  'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]',
+    'Delayed':    'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]',
+    'Pending':    'bg-gray-50 text-gray-500 border-gray-200',
   };
-  return <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded border ${map[status] ?? 'bg-gray-50'}`}>{status}</span>;
+  return <span className={`text-[10px] font-bold px-3 py-1 rounded-md border inline-block w-max ${map[status] ?? 'bg-gray-50'}`}>{status}</span>;
 }
 
 export default function DispatchDashboard() {
@@ -30,106 +30,108 @@ export default function DispatchDashboard() {
   return (
     <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto pb-12">
       
-      {/* ── 1. Dispatcher Action Header ── */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      {/* ── Updated Header ── */}
+      <div className="flex justify-between items-center mb-2 px-2">
         <div>
-          <h1 className="text-2xl font-black text-gray-900 tracking-tight flex items-center gap-2">
-            <Navigation className="text-yellow-500 fill-yellow-500" size={24}/> Operation Control
-          </h1>
-          <p className="text-sm font-bold text-gray-400 mt-1 uppercase tracking-widest">Live Fleet Activity • Shift: <span className="text-gray-900">06:00 - 18:00</span></p>
+          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Operation Control</h1>
+          <p className="text-sm text-gray-500 mt-1 flex items-center gap-2">Live Fleet Activity • Shift: <span className="font-bold text-gray-900">06:00 - 18:00</span></p>
         </div>
-        <div className="flex gap-2">
-           <button className="btn bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 shadow-sm font-bold flex items-center gap-2">
-              <Zap size={14}/> Auto-Assign
+        <div className="flex gap-3">
+           <button className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+              <Zap size={16}/> Auto-Assign
            </button>
-           <button onClick={() => navigate('/dispatch/jobs/create')} className="btn btn-primary shadow-lg font-bold flex items-center gap-2 px-6">
-              <Plus size={16}/> Create Shipment
-           </button>
+           <button 
+             onClick={() => navigate('/dispatch/jobs/create')} 
+             className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
+           >
+             <Plus size={18} strokeWidth={3} /> Create Shipment
+          </button>
         </div>
       </div>
 
-      {/* ── 2. Live Intelligence Row ── */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        {[
-          { label: 'Active Shipments', val: '42', sub: '12 Need Attention', color: 'blue', icon: Package, alert: true },
-          { label: 'Drivers On Duty', val: '18 / 24', sub: '75% Utilization', color: 'emerald', icon: Truck, alert: false },
-          { label: 'Avg ETA Variance', val: '+4m', sub: 'Above target (2m)', color: 'amber', icon: Clock, alert: false },
-          { label: 'POD Completed', val: '92%', sub: 'Target: 98%', color: 'violet', icon: CheckCircle2, alert: false },
-        ].map((k, i) => (
-          <div key={i} className="card bg-white p-5 border border-gray-100 shadow-sm relative overflow-hidden group hover:border-yellow-400 transition-all">
-             <div className="flex flex-col h-full justify-between">
-                <div>
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">{k.label}</p>
-                  <h3 className="text-2xl font-black text-gray-900 mt-2">{k.val}</h3>
-                </div>
-                <p className={`text-[10px] font-bold mt-4 ${k.alert ? 'text-red-500' : 'text-gray-500 italic'}`}>{k.sub}</p>
-             </div>
-             <k.icon size={40} className={`absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition-opacity text-${k.color}-500`}/>
-          </div>
-        ))}
+      <div className="w-full h-px bg-gray-200/60 mb-2"></div>
+
+      {/* ── KPI Cards ── */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-2 mb-2">
+        <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Active Shipments</p><p className="text-2xl font-black text-gray-900 mt-0.5">42</p></div>
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-blue-50 text-blue-500"><Package size={20}/></div>
+        </div>
+        <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Drivers On Duty</p><p className="text-2xl font-black text-gray-900 mt-0.5">18 <span className="text-sm text-gray-400 tracking-tighter">/24</span></p></div>
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-emerald-50 text-emerald-500"><Truck size={20}/></div>
+        </div>
+        <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Avg ETA Variance</p><p className="text-2xl font-black text-amber-500 mt-0.5">+4<span className="text-sm font-bold text-gray-400 tracking-tighter">m</span></p></div>
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-amber-50 text-amber-500"><Clock size={20}/></div>
+        </div>
+        <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">POD Completed</p><p className="text-2xl font-black text-gray-900 mt-0.5">92%</p></div>
+          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-violet-50 text-violet-500"><CheckCircle2 size={20}/></div>
+        </div>
       </div>
 
       {/* ── 3. The "War Room" View ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
         
         {/* Live List (High Density) */}
         <div className="lg:col-span-2 flex flex-col gap-4">
-           <div className="bg-white rounded-2xl border border-gray-100 shadow-xl overflow-hidden flex flex-col">
-              <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/30 flex justify-between items-center">
-                 <h3 className="font-black text-gray-900 text-xs tracking-[0.15em] uppercase flex items-center gap-2">
-                   <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div> Monitoring Grid
-                 </h3>
-                 <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={14} />
+           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden flex flex-col h-full">
+              
+              <div className="p-5 border-b border-gray-100 flex justify-between items-center">
+                 <div className="relative w-[320px]">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
                     <input 
                       type="text" 
                       placeholder="Filter by Driver, ID or Area..." 
-                      className="input py-1.5 pl-9 text-xs w-64 bg-white border-gray-200" 
+                      className="w-full bg-white border border-gray-200 rounded-lg py-2 pl-9 pr-4 text-sm focus:outline-none transition-all" 
                     />
                  </div>
+                 
+                 <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                    Sort By <ChevronDown size={16} className="text-gray-400" />
+                 </button>
               </div>
-              <div className="overflow-x-auto">
+
+              <div className="overflow-x-auto flex-1">
                  <table className="w-full text-left">
-                    <thead className="bg-white border-b border-gray-50 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                    <thead className="bg-[#FAFAFA] text-[11px] font-bold text-gray-400 uppercase tracking-wider">
                        <tr>
-                          <th className="px-6 py-3">Shipment</th>
-                          <th className="px-6 py-3">Logistics Flow</th>
-                          <th className="px-6 py-3">Resource</th>
-                          <th className="px-6 py-3 text-right">Progress</th>
+                          <th className="px-6 py-4">Shipment</th>
+                          <th className="px-6 py-4">Logistics Flow</th>
+                          <th className="px-6 py-4">Resource</th>
+                          <th className="px-6 py-4 text-right">Actions</th>
                        </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-50">
+                    <tbody className="divide-y divide-gray-100">
                        {jobs.map(job => (
-                          <tr key={job.id} className="hover:bg-gray-50 transition-colors group cursor-pointer">
-                             <td className="px-6 py-4">
-                                <div className="font-black text-gray-900 text-sm">{job.id}</div>
-                                <div className="text-[10px] font-bold text-gray-400 mt-0.5">{job.customer}</div>
+                          <tr key={job.id} className="hover:bg-gray-50/50 transition-colors group cursor-pointer" onClick={() => navigate(`/dispatch/jobs/${job.id}`)}>
+                             <td className="px-6 py-5">
+                                <div className="font-bold text-[#111] text-[15px]">{job.id}</div>
+                                <div className="text-[11px] text-gray-400 font-medium tracking-tight mt-0.5 truncate max-w-[150px]">{job.customer}</div>
                              </td>
-                             <td className="px-6 py-4">
-                                <p className="text-xs font-bold text-gray-700">{job.route}</p>
-                                <div className="mt-1.5 flex items-center gap-2">
+                             <td className="px-6 py-5">
+                                <p className="text-sm font-bold text-gray-700 mb-2">{job.route}</p>
+                                <div className="flex items-center gap-3">
                                    <StatusBadge status={job.status} />
-                                   <span className="text-[10px] font-bold text-gray-400 uppercase">ETA: {job.eta}</span>
+                                   <span className="text-[10px] font-bold text-gray-400 uppercase flex items-center gap-1"><Clock size={10}/> {job.eta}</span>
                                 </div>
                              </td>
-                             <td className="px-6 py-4">
-                                <div className="flex items-center gap-2">
-                                   <div className="w-7 h-7 bg-gray-900 rounded-md flex items-center justify-center text-[10px] font-black text-[#FACC15]">
-                                      {job.driver[0]}
+                             <td className="px-6 py-5">
+                                <div className="flex items-center gap-3">
+                                   <div className="w-9 h-9 bg-gray-50 border border-gray-200 rounded flex items-center justify-center font-bold text-gray-400 text-xs shrink-0">
+                                      {job.driver === 'Unassigned' ? '?' : job.driver[0]}
                                    </div>
                                    <div>
-                                      <div className="text-xs font-bold text-gray-900">{job.driver}</div>
-                                      <div className="text-[10px] font-black text-gray-400 uppercase tracking-tighter">{job.vehicle}</div>
+                                      <div className={`text-sm font-bold ${job.driver === 'Unassigned' ? 'text-red-500' : 'text-[#111]'}`}>{job.driver}</div>
+                                      <div className={`text-[10px] uppercase font-medium mt-0.5 ${job.vehicle === '-' ? 'text-gray-300' : 'text-gray-400'}`}>{job.vehicle}</div>
                                    </div>
                                 </div>
                              </td>
-                             <td className="px-6 py-4 text-right">
-                                <div className="flex flex-col items-end gap-1.5">
-                                   <span className="text-[10px] font-black text-gray-700">{job.progress}%</span>
-                                   <div className="w-24 h-1 bg-gray-100 rounded-full overflow-hidden">
-                                      <div className={`h-full ${job.status === 'Delayed' ? 'bg-red-500' : 'bg-[#FACC15]'}`} style={{ width: `${job.progress}%` }}></div>
-                                   </div>
-                                </div>
+                             <td className="px-6 py-5 text-right">
+                                <button className="text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors uppercase tracking-widest" onClick={(e)=>{e.stopPropagation(); navigate(`/dispatch/jobs/${job.id}`);}}>
+                                   Manage details
+                                </button>
                              </td>
                           </tr>
                        ))}
@@ -142,43 +144,42 @@ export default function DispatchDashboard() {
         {/* Dispatch Alerts & Quick Board */}
         <div className="flex flex-col gap-6">
            
-           {/* Map Preview Placeholder (The "War Room" feel) */}
-           <div className="bg-[#1a1c1e] rounded-2xl p-6 h-64 shadow-xl border border-white/5 relative overflow-hidden group cursor-pointer" onClick={() => navigate('/dispatch/tracking')}>
+           {/* Map Preview Placeholder */}
+           <div className="bg-[#111] rounded-xl p-6 h-64 shadow-sm border border-gray-800 relative overflow-hidden group cursor-pointer" onClick={() => navigate('/dispatch/tracking')}>
               <div className="absolute inset-0 opacity-20 pointer-events-none">
-                 {/* Mock map lines */}
-                 <div className="absolute top-1/2 left-0 w-full h-px bg-yellow-400/20 rotate-12"></div>
-                 <div className="absolute top-0 left-1/2 w-px h-full bg-yellow-400/20 -rotate-45"></div>
-                 <div className="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-yellow-400 shadow-[0_0_10px_#FACC15]"></div>
-                 <div className="absolute bottom-1/3 right-1/4 w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_10px_#3B82F6]"></div>
+                 <div className="absolute top-1/2 left-0 w-full h-px bg-[#FFCC00]/50 rotate-12"></div>
+                 <div className="absolute top-0 left-1/2 w-px h-full bg-[#FFCC00]/50 -rotate-45"></div>
+                 <div className="absolute top-1/4 left-1/4 w-3 h-3 rounded-full bg-[#FFCC00] shadow-[0_0_15px_#FFCC00]"></div>
+                 <div className="absolute bottom-1/3 right-1/4 w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_15px_#3B82F6]"></div>
               </div>
               <div className="relative z-10 flex flex-col justify-between h-full">
                  <div className="flex justify-between items-start">
-                    <h4 className="text-xs font-black uppercase text-white tracking-[0.2em] flex items-center gap-2">
-                       <MapPin size={12} className="text-yellow-400"/> Network View
+                    <h4 className="text-xs font-bold uppercase text-white tracking-widest flex items-center gap-2">
+                       <MapPin size={14} className="text-[#FFCC00]"/> Network Map
                     </h4>
-                    <span className="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/20">Live</span>
+                    <span className="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/20 uppercase tracking-widest">Live Connect</span>
                  </div>
                  <div className="text-center">
-                    <button className="bg-white/10 hover:bg-white/20 text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-xl transition-all backdrop-blur-sm border border-white/10">Open Interactive HUD</button>
+                    <button className="bg-white/10 hover:bg-white/20 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-2.5 rounded-lg transition-all backdrop-blur-sm border border-white/10">Open Dashboard</button>
                  </div>
               </div>
            </div>
 
            {/* Urgent Alerts */}
-           <div className="bg-white rounded-2xl border border-red-100 shadow-sm p-5 flex flex-col gap-4">
-              <h4 className="text-[11px] font-black text-red-500 uppercase tracking-widest flex items-center gap-2">
-                 <ShieldAlert size={14}/> Urgent Exception Board
+           <div className="bg-white rounded-xl border border-red-100 shadow-sm p-6 flex flex-col gap-4">
+              <h4 className="text-xs font-bold text-red-500 uppercase tracking-widest flex items-center gap-2 mb-2">
+                 <ShieldAlert size={16}/> Exception Board
               </h4>
               <div className="space-y-4">
                  {[
                    { msg: 'SHP-20483 geofence breach in Perth SE.', time: '4m ago', level: 'Critical' },
                    { msg: 'Unassigned load SHP-20484 near timeout.', time: '12m ago', level: 'Warning' }
                  ].map((a, i) => (
-                   <div key={i} className="flex gap-3 items-start p-3 bg-red-50/50 rounded-xl border border-red-50">
-                      <div className={`mt-1 w-1.5 h-1.5 shrink-0 rounded-full ${a.level === 'Critical' ? 'bg-red-500' : 'bg-amber-500'}`}></div>
+                   <div key={i} className="flex gap-3 items-start p-3 bg-red-50/30 rounded-lg border border-red-50">
+                      <div className={`mt-1.5 w-2 h-2 shrink-0 rounded-full ${a.level === 'Critical' ? 'bg-red-500' : 'bg-amber-500'}`}></div>
                       <div>
-                         <p className="text-[11px] font-bold text-gray-800 leading-tight">{a.msg}</p>
-                         <p className="text-[9px] font-black text-gray-400 mt-1 uppercase">{a.time} • {a.level}</p>
+                         <p className="text-xs font-bold text-[#111] leading-snug">{a.msg}</p>
+                         <p className="text-[10px] font-bold text-gray-400 mt-1 uppercase tracking-widest">{a.time} • {a.level}</p>
                       </div>
                    </div>
                  ))}
