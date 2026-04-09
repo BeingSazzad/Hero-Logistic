@@ -50,9 +50,9 @@ export default function AdminDriverDetail() {
           >
             <ArrowLeft size={20} />
           </button>
-          <div className="flex items-center gap-4">
-             <div className="w-12 h-12 rounded-xl bg-[#111] flex items-center justify-center text-[#FFCC00] font-black text-xl shadow-sm border border-gray-800 shrink-0">
-               {driver.avatar}
+          <div className="flex items-center gap-6">
+             <div className="w-24 h-24 rounded-2xl bg-[#111] overflow-hidden shadow-md border-2 border-gray-100 shrink-0">
+               <img src="/assets/driver_profile.png" alt="Driver" className="w-full h-full object-cover" />
              </div>
              <div>
                <div className="flex items-center gap-3">
@@ -61,9 +61,15 @@ export default function AdminDriverDetail() {
                     {driver.status}
                   </span>
                </div>
-               <p className="text-[11px] text-gray-500 mt-1 uppercase tracking-widest font-medium">
-                  {driver.id} • {driver.vehicle.type}
+               <p className="text-[11px] text-gray-500 mt-1 uppercase tracking-widest font-bold">
+                  {driver.id} • {driver.vehicle.type} • {driver.depot}
                </p>
+               <div className="flex items-center gap-1 mt-2">
+                 {[1,2,3,4,5].map(i => (
+                   <Star key={i} size={12} className={i <= 4 ? "text-[#FFCC00] fill-[#FFCC00]" : "text-gray-200 fill-gray-200"} />
+                 ))}
+                 <span className="text-[10px] font-bold text-gray-400 ml-1">4.8 Rating</span>
+               </div>
              </div>
           </div>
         </div>
@@ -174,7 +180,15 @@ export default function AdminDriverDetail() {
                      <span className="text-sm font-bold text-white">{driver.vehicle.id}</span>
                      <span className="text-[10px] text-gray-400 uppercase tracking-widest">{driver.vehicle.reg}</span>
                   </div>
-                  <button className="text-[10px] text-[#FFCC00] font-bold uppercase tracking-widest hover:underline">View</button>
+                  <button 
+                    onClick={() => {
+                      const base = location.pathname.includes('/dispatch') ? '/dispatch/vehicles' : '/admin/fleet';
+                      navigate(`${base}/${driver.vehicle.id}`);
+                    }}
+                    className="text-[10px] text-[#FFCC00] font-bold uppercase tracking-widest hover:underline"
+                  >
+                    View
+                  </button>
                 </div>
               </div>
             </div>
@@ -298,7 +312,12 @@ export default function AdminDriverDetail() {
           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
             <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
               <h3 className="text-sm font-bold text-gray-900 flex items-center gap-2 uppercase tracking-wide"><TrendingUp size={16} className="text-gray-400"/> Job History</h3>
-              <button className="text-[10px] font-bold text-blue-600 hover:text-blue-800 hover:underline uppercase tracking-widest">View All</button>
+              <button 
+                onClick={() => navigate('/admin/shipments')}
+                className="text-[10px] font-bold text-blue-600 hover:text-blue-800 hover:underline uppercase tracking-widest"
+              >
+                View All
+              </button>
             </div>
             <div className="divide-y divide-gray-100">
               {driver.recentShipments.map(job => (

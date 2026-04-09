@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { 
   Search, MapPin, Phone, Star, AlertCircle, Filter, 
   ArrowDownUp, MessageSquare, Clock, ShieldCheck, 
-  UserCog, Plus, Users, ChevronDown
+  UserCog, Plus, Users, ChevronDown, X
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -60,9 +60,9 @@ export default function DispatchDrivers() {
           <button className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-6 py-2.5 rounded-lg font-bold transition-all shadow-sm">
              Export CSV
           </button>
-          <button className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
-             <Plus size={18} strokeWidth={3} /> Add Driver
-          </button>
+          <button onClick={() => navigate('/dispatch/drivers/add')} className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+           <Plus size={18} strokeWidth={3} /> Add Driver
+        </button>
         </div>
       </div>
 

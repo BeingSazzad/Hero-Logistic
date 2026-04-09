@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Truck, Search, Plus, Filter, AlertTriangle, Droplet, Wrench, ArrowDownUp, ChevronDown } from 'lucide-react';
 
 export default function AdminFleetManagement() {
   const navigate = useNavigate();
+  const [search, setSearch] = useState('');
+  const [showSort, setShowSort] = useState(false);
   const fleet = [
     { id: 'TRK-102', reg: 'XQG-984', type: 'Heavy Truck', cap: '20t', status: 'Active', service: 'In 4,500 km', fuel: '18L/100km' },
     { id: 'VAN-08',  reg: 'BZX-441', type: 'Delivery Van', cap: '2.5t', status: 'Maintenance', service: 'Overdue', fuel: '12L/100km' },
@@ -64,14 +66,37 @@ export default function AdminFleetManagement() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16} />
               <input 
                 type="text" 
+                value={search}
+                onChange={e => setSearch(e.target.value)}
                 placeholder="Search by Reg, ID or Status..." 
                 className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm" 
               />
            </div>
            
-           <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 shadow-sm rounded-lg text-xs font-bold uppercase tracking-widest text-gray-600 hover:bg-gray-50 transition-colors">
-              Sort By <ChevronDown size={14} className="text-gray-400" />
-           </button>
+           <div className="relative">
+             <button 
+               onClick={() => setShowSort(!showSort)}
+               className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 shadow-sm rounded-lg text-xs font-bold uppercase tracking-widest text-gray-600 hover:bg-gray-50 transition-colors"
+             >
+                Sort By <ChevronDown size={14} className={`text-gray-400 transition-transform ${showSort ? 'rotate-180' : ''}`} />
+             </button>
+
+             {showSort && (
+               <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                 <div className="py-1">
+                   {['Vehicle ID', 'Registration', 'Type', 'Status'].map((opt) => (
+                     <button
+                       key={opt}
+                       onClick={() => setShowSort(false)}
+                       className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50 hover:text-yellow-700 transition-colors font-medium border-b border-gray-50 last:border-0"
+                     >
+                       {opt}
+                     </button>
+                   ))}
+                 </div>
+               </div>
+             )}
+           </div>
         </div>
 
         <div className="overflow-x-auto">

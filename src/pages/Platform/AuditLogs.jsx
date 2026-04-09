@@ -4,16 +4,16 @@ import { Download, Search, Filter, ChevronDown, CheckCircle } from 'lucide-react
 const logs = [
   { id: 'AL-1205', time: '2026-04-08 14:30:22', actor: 'System Admin (admin@hero.com.au)', action: 'Impersonate End', tenant: 'FastMove AU', details: 'Duration: 45 min, Ticket: SUP-12345' },
   { id: 'AL-1204', time: '2026-04-08 13:45:00', actor: 'System Admin (admin@hero.com.au)', action: 'Impersonate Start', tenant: 'FastMove AU', details: 'Reason: Login issue, Ticket: SUP-12345' },
-  { id: 'AL-1203', time: '2026-04-08 12:15:00', actor: 'John Doe (john@hero.com.au)',     action: 'Suspend Tenant', tenant: 'QuickShip Pty Ltd', details: 'Reason: Non-payment' },
-  { id: 'AL-1202', time: '2026-04-07 09:10:00', actor: 'System Admin (admin@hero.com.au)', action: 'Activate Tenant', tenant: 'OzFreight Co', details: 'Reason: Payment cleared' },
-  { id: 'AL-1201', time: '2026-04-06 16:22:15', actor: 'John Doe (john@hero.com.au)',     action: 'Create Tenant', tenant: 'SunState Transport', details: 'Plan: Pro' },
+  { id: 'AL-1203', time: '2026-04-08 12:15:00', actor: 'John Doe (john@hero.com.au)',     action: 'Suspend Company', tenant: 'QuickShip Pty Ltd', details: 'Reason: Non-payment' },
+  { id: 'AL-1202', time: '2026-04-07 09:10:00', actor: 'System Admin (admin@hero.com.au)', action: 'Activate Company', tenant: 'OzFreight Co', details: 'Reason: Payment cleared' },
+  { id: 'AL-1201', time: '2026-04-06 16:22:15', actor: 'John Doe (john@hero.com.au)',     action: 'Create Company', tenant: 'SunState Transport', details: 'Plan: Pro' },
   { id: 'AL-1200', time: '2026-04-05 10:05:00', actor: 'System Admin (admin@hero.com.au)', action: 'Login', tenant: '—', details: 'IP: 121.200.12.5' },
 ];
 
 const actionColors = {
-  'Create Tenant': 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]',
-  'Suspend Tenant': 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]',
-  'Activate Tenant': 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]',
+  'Create Company': 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]',
+  'Suspend Company': 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]',
+  'Activate Company': 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]',
   'Impersonate Start': 'bg-[#EFF6FF] text-[#2563EB] border-[#DBEAFE]',
   'Impersonate End': 'bg-gray-50 text-gray-700 border-gray-200',
   'Login': 'bg-gray-50 text-gray-700 border-gray-200',
@@ -21,6 +21,7 @@ const actionColors = {
 
 export default function AuditLogs() {
   const [search, setSearch] = useState('');
+  const [showSort, setShowSort] = useState(false);
   
   const filtered = logs.filter(l => 
     l.actor.toLowerCase().includes(search.toLowerCase()) || 
@@ -55,15 +56,36 @@ export default function AuditLogs() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
               <input 
                 type="text" 
-                placeholder="Search actor, action, tenant..." 
+                placeholder="Search actor, action, company..." 
                 value={search} onChange={e => setSearch(e.target.value)}
                 className="w-full bg-white border border-gray-200 rounded-lg py-2 pl-9 pr-4 text-sm focus:outline-none transition-all" 
               />
            </div>
            
-           <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50">
-              Sort By <ChevronDown size={16} className="text-gray-400" />
-           </button>
+           <div className="relative">
+             <button 
+               onClick={() => setShowSort(!showSort)}
+               className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-all"
+             >
+                Sort By <ChevronDown size={16} className={`text-gray-400 transition-transform ${showSort ? 'rotate-180' : ''}`} />
+             </button>
+
+             {showSort && (
+               <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                 <div className="py-1">
+                   {['Timestamp (Newest)', 'Timestamp (Oldest)', 'Actor Name', 'Event Action'].map((opt) => (
+                     <button
+                       key={opt}
+                       onClick={() => setShowSort(false)}
+                       className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50 hover:text-yellow-700 transition-colors font-medium"
+                     >
+                       {opt}
+                     </button>
+                   ))}
+                 </div>
+               </div>
+             )}
+           </div>
         </div>
 
         <div className="overflow-x-auto">
@@ -73,7 +95,7 @@ export default function AuditLogs() {
                  <th className="px-6 py-4">Timestamp</th>
                  <th className="px-6 py-4">Actor</th>
                  <th className="px-6 py-4">Event Action</th>
-                 <th className="px-6 py-4">Target Tenant</th>
+                 <th className="px-6 py-4">Target Company</th>
                  <th className="px-6 py-4">Event Details</th>
                </tr>
              </thead>

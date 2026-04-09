@@ -167,7 +167,7 @@ export default function AdminLayout() {
         {/* Topbar */}
         <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-8 shrink-0 relative z-40">
           <div>
-            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Enterprise Operation Control</p>
+            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Enterprise Fleet Operations</p>
           </div>
           <div className="flex items-center gap-4">
             <div ref={notifRef} className="relative">

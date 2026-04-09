@@ -1,29 +1,55 @@
 import React, { useState } from 'react';
 import { Search, Send, MoreVertical, Phone, MessageSquare } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function DispatchMessages() {
-  const [messages, setMessages] = useState([
-    { id: 1, text: "Hi Dispatch. Encountering severe traffic on the Pacific Highway bypass.", time: "10:30 AM", sender: "driver" },
-    { id: 2, text: "Noted Noah. ETA updated to 1h 15m in the system. Let me know if you need a reroute.", time: "10:35 AM", sender: "dispatch" },
-    { id: 3, text: "Traffic is fully stopped now. There's an accident ahead. Trying to find an alternate local road.", time: "10:42 AM", sender: "driver" }
+  const navigate = useNavigate();
+  const [threads, setThreads] = useState([
+    { id: 1, name: 'Noah Williams',  role: 'Driver (TRK-05)', msg: 'Traffic is fully stopped now...', time: '10:42 AM', unread: 2 },
+    { id: 2, name: 'Jack Taylor',    role: 'Driver (TRK-12)', msg: 'ETA is looking good. Reaching in 45m.', time: '09:15 AM', unread: 0 },
+    { id: 3, name: 'Warehouse A',    role: 'Inbound Team',    msg: 'Manifest LOD-044 is ready for assignment.', time: 'Yesterday', unread: 0 },
   ]);
+
+  const [activeThreadId, setActiveThreadId] = useState(1);
+  const [messageStore, setMessageStore] = useState({
+    1: [
+      { id: 1, text: "Hi Dispatch. Encountering severe traffic on the Pacific Highway bypass.", time: "10:30 AM", sender: "driver" },
+      { id: 2, text: "Noted Noah. ETA updated to 1h 15m in the system. Let me know if you need a reroute.", time: "10:35 AM", sender: "dispatch" },
+      { id: 3, text: "Traffic is fully stopped now. There's an accident ahead. Trying to find an alternate local road.", time: "10:42 AM", sender: "driver" }
+    ],
+    2: [
+      { id: 1, text: "ETA is looking good. Reaching in 45m.", time: "09:15 AM", sender: "driver" }
+    ],
+    3: [
+      { id: 1, text: "Manifest LOD-044 is ready for assignment.", time: "Yesterday", sender: "driver" }
+    ]
+  });
+
   const [inputValue, setInputValue] = useState("");
 
-  const threads = [
-    { id: 1, name: 'Noah Williams',  role: 'Driver (TRK-05)', msg: 'Traffic is fully stopped now...', time: '10:42 AM', unread: 2 },
-    { id: 2, name: 'Jack Taylor', role: 'Driver (TRK-12)', msg: 'ETA is looking good. Reaching in 45m.', time: '09:15 AM', unread: 0 },
-    { id: 3, name: 'Warehouse A', role: 'Inbound Team',    msg: 'Manifest LOD-044 is ready for assignment.', time: 'Yesterday', unread: 0 },
-  ];
+  const activeThread = threads.find(t => t.id === activeThreadId);
+  const activeMessages = messageStore[activeThreadId] || [];
+
+  const handleSelectThread = (id) => {
+    setActiveThreadId(id);
+    setThreads(threads.map(t => t.id === id ? { ...t, unread: 0 } : t));
+  };
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
     
-    setMessages([...messages, {
+    const newMsg = {
       id: Date.now(),
       text: inputValue,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       sender: 'dispatch'
-    }]);
+    };
+
+    setMessageStore(prev => ({
+      ...prev,
+      [activeThreadId]: [...(prev[activeThreadId] || []), newMsg]
+    }));
+    
     setInputValue("");
   };
 
@@ -55,18 +81,29 @@ export default function DispatchMessages() {
       <div className="flex bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden h-[calc(100vh-14rem)] min-h-[600px]">
         {/* ── Chat List ── */}
         <div className="w-80 border-r border-gray-100 flex flex-col bg-[#FAFAFA] shrink-0">
-          <div className="p-5 border-b border-gray-100 bg-white">
+          <div className="p-5 border-b border-gray-100 bg-white space-y-4">
+            <div className="flex justify-between items-center">
+              <h3 className="font-bold text-gray-900 tracking-tight">Messages</h3>
+            </div>
             <div className="relative group">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16} />
-              <input type="text" placeholder="Search chats..." className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm" />
+              <input type="text" placeholder="Search chats..." className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all" />
             </div>
           </div>
           
           <div className="flex-1 overflow-y-auto">
             {threads.map(t => (
-              <div key={t.id} className={`p-5 border-b border-gray-100 cursor-pointer transition-all ${t.unread ? 'bg-white shadow-sm border-l-4 border-l-[#FFCC00]' : 'hover:bg-white/60 border-l-4 border-l-transparent'}`}>
+              <div 
+                key={t.id} 
+                onClick={() => handleSelectThread(t.id)}
+                className={`p-5 border-b border-gray-100 cursor-pointer transition-all ${
+                  activeThreadId === t.id 
+                    ? 'bg-blue-50 border-l-4 border-l-[#FFCC00] shadow-sm' 
+                    : t.unread ? 'bg-white shadow-sm border-l-4 border-l-[#FFCC00]' : 'hover:bg-gray-50 border-l-4 border-l-transparent'
+                }`}
+              >
                 <div className="flex justify-between items-start mb-1.5">
-                  <span className={`font-bold text-[13px] tracking-tight ${t.unread ? 'text-gray-900' : 'text-gray-700'}`}>{t.name}</span>
+                  <span className={`font-bold text-[13px] tracking-tight ${t.unread || activeThreadId === t.id ? 'text-gray-900' : 'text-gray-700'}`}>{t.name}</span>
                   <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{t.time}</span>
                 </div>
                 <div className="text-[10px] text-gray-500 font-bold tracking-widest uppercase mb-2">{t.role}</div>
@@ -84,10 +121,15 @@ export default function DispatchMessages() {
         {/* ── Active Chat Window ── */}
         <div className="flex-1 flex flex-col bg-white min-w-0">
           <div className="p-5 border-b border-gray-100 flex items-center justify-between shrink-0 bg-white z-10 shadow-sm">
-            <div className="flex items-center gap-3">
-               <div className="w-11 h-11 rounded border-2 border-transparent bg-[#111] flex items-center justify-center font-black text-[#FFCC00] text-sm">NW</div>
+            <div 
+              onClick={() => navigate('/dispatch/drivers/DRV-102')}
+              className="flex items-center gap-3 cursor-pointer group hover:bg-gray-50 p-2 -ml-2 rounded-xl transition-all"
+            >
+               <div className="w-11 h-11 rounded border-2 border-transparent bg-[#111] flex items-center justify-center font-black text-[#FFCC00] text-sm group-hover:scale-105 transition-transform">
+                 {activeThread.name.split(' ').map(n=>n[0]).join('')}
+               </div>
                <div>
-                 <h3 className="font-bold text-gray-900 text-sm tracking-tight">Noah Williams</h3>
+                 <h3 className="font-bold text-gray-900 text-sm tracking-tight group-hover:underline">{activeThread.name}</h3>
                  <div className="flex items-center gap-1.5 mt-0.5">
                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Active Status</p>
@@ -95,7 +137,6 @@ export default function DispatchMessages() {
                </div>
             </div>
             <div className="flex gap-2">
-              <button className="p-2.5 text-gray-400 border border-transparent hover:border-gray-200 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"><Phone size={18}/></button>
               <button className="p-2.5 text-gray-400 border border-transparent hover:border-gray-200 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"><MoreVertical size={18}/></button>
             </div>
           </div>
@@ -105,7 +146,7 @@ export default function DispatchMessages() {
               <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest bg-gray-100 border border-gray-200/60 px-3 py-1 rounded-md">Today, 10:30 AM</span>
             </div>
             
-            {messages.map((m) => (
+            {activeMessages.map((m) => (
                <div key={m.id} className={`flex flex-col gap-1.5 max-w-[70%] ${m.sender === 'dispatch' ? 'self-end' : ''}`}>
                   <div className={`p-4 rounded-xl shadow-sm text-[13px] font-medium leading-relaxed ${m.sender === 'dispatch' ? 'bg-[#FFCC00] text-black rounded-tr-sm' : 'bg-white border border-gray-200 text-gray-800 rounded-tl-sm'}`}>
                     {m.text}
@@ -121,7 +162,7 @@ export default function DispatchMessages() {
                  value={inputValue}
                  onChange={(e) => setInputValue(e.target.value)}
                  onKeyDown={handleKeyDown}
-                 placeholder="Broadcast command to Noah..." 
+                 placeholder={`Message ${activeThread.name.split(' ')[0]}...`} 
                  className="w-full border border-gray-200 bg-white rounded-xl px-4 py-3.5 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all h-[52px] min-h-[52px] font-medium shadow-sm"
                />
                <button onClick={handleSendMessage} className="bg-[#111] hover:bg-black text-[#FFCC00] w-14 rounded-xl transition-all shadow-sm h-[52px] flex items-center justify-center shrink-0">

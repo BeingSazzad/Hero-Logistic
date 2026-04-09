@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   User, Mail, Building2, Lock, Save, Camera, 
   Bell, Globe, Shield, LogOut, ChevronRight,
-  Settings, UserCircle, Key
+  Settings, UserCircle, Key, AlertTriangle
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -30,9 +30,6 @@ export default function DispatchSettings() {
             <p className="text-sm text-gray-500 mt-1">Configure your operator profile and terminal preferences</p>
           </div>
         </div>
-        <button className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm active:scale-95 group">
-          <Save size={18} strokeWidth={2.5} className="group-hover:rotate-12 transition-transform" /> Save All Changes
-        </button>
       </div>
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
@@ -60,16 +57,6 @@ export default function DispatchSettings() {
               </div>
             </button>
           ))}
-          
-          <div className="mt-6 p-5 bg-red-50/50 rounded-2xl border border-red-100 group cursor-pointer hover:bg-red-50 transition-all flex items-center gap-4">
-            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-red-500 shadow-sm border border-red-50">
-               <LogOut size={18} />
-            </div>
-            <div>
-               <p className="text-[12px] font-bold text-red-600">Secure Logout</p>
-               <p className="text-[10px] text-red-400 font-medium">End active session</p>
-            </div>
-          </div>
         </div>
 
         {/* ── 3. Optimized Content Area ── */}
@@ -80,66 +67,70 @@ export default function DispatchSettings() {
             <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-2 duration-400">
               
               {/* Profile Card */}
-              <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
-                <div className="p-5 border-b border-gray-100 bg-[#FAFAFA]">
-                  <h3 className="font-bold text-gray-900 text-[11px] uppercase tracking-[0.2em]">Operator Identity</h3>
+              <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                <div className="p-6 border-b border-gray-50 bg-[#FAFAFA]">
+                  <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Operator Identity</h3>
                 </div>
                 <div className="p-8 flex flex-col md:flex-row items-center gap-8 bg-gradient-to-br from-white to-gray-50/30">
                   <div className="relative group cursor-pointer">
-                    <div className="w-24 h-24 rounded-2xl bg-[#111] flex items-center justify-center text-[#FFCC00] text-3xl font-black shadow-2xl skew-x-1 hover:skew-x-0 transition-transform duration-500">
+                    <div className="w-24 h-24 rounded-2xl bg-[#111] flex items-center justify-center text-[#FFCC00] text-3xl font-bold transition-transform duration-500">
                       {user.name.split(' ').map(n=>n[0]).join('')}
                     </div>
-                    <div className="absolute -bottom-2 -right-2 bg-white p-2 rounded-lg shadow-xl border border-gray-100 text-gray-900">
+                    <div className="absolute -bottom-2 -right-2 bg-white p-2 rounded-lg shadow-sm border border-gray-100 text-gray-900">
                       <Camera size={14} />
                     </div>
                   </div>
                   <div className="flex-1 text-center md:text-left">
-                    <h3 className="text-2xl font-black text-gray-900 tracking-tighter">{user.name}</h3>
+                    <h3 className="text-2xl font-bold text-gray-900 tracking-tight">{user.name}</h3>
                     <div className="flex items-center justify-center md:justify-start gap-2 mt-2">
-                       <span className="text-[10px] font-black text-gray-400 bg-gray-100 px-3 py-1 rounded-md uppercase tracking-widest border border-gray-200/50">{user.role}</span>
-                       <span className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-3 py-1 rounded-md uppercase tracking-widest border border-emerald-100">Live Status</span>
+                       <span className="text-[10px] font-bold text-gray-400 bg-gray-100 px-3 py-1 rounded-md uppercase tracking-widest border border-gray-200/50">{user.role}</span>
+                       <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-md uppercase tracking-widest border border-emerald-100">Live Status</span>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Data Grid */}
-              <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
-                <div className="p-5 border-b border-gray-100 bg-[#FAFAFA]">
-                  <h3 className="font-bold text-gray-900 text-[11px] uppercase tracking-[0.2em]">Credential & Access</h3>
+              <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                <div className="p-6 border-b border-gray-50 bg-[#FAFAFA]">
+                  <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Credential & Access</h3>
                 </div>
                 <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block ml-1">Login Handle</label>
+                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">Login Handle</label>
                     <div className="relative">
-                      <input type="text" defaultValue={user.name} className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-bold focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] outline-none transition-all shadow-sm pl-11" />
+                      <input type="text" defaultValue={user.name} className="w-full bg-white border border-gray-200 rounded-xl py-3 px-5 text-sm font-bold focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] outline-none transition-all shadow-sm pl-11" />
                       <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={16} />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block ml-1">Primary Email</label>
+                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">Primary Email</label>
                     <div className="relative">
-                      <input type="email" defaultValue={user.email} readOnly className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-sm font-bold text-gray-400 cursor-not-allowed outline-none pl-11 shadow-inner" />
+                      <input type="email" defaultValue={user.email} readOnly className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-5 text-sm font-bold text-gray-400 cursor-not-allowed outline-none pl-11 shadow-inner" />
                       <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={16} />
                     </div>
                   </div>
                   <div className="md:col-span-2 pt-4 border-t border-gray-100 mt-2">
-                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-4 ml-1">Assigned Operational Hub</label>
+                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-4 px-1">Assigned Operational Hub</label>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                       <div className="bg-[#111] p-5 rounded-2xl border border-gray-800 flex items-center gap-5 relative overflow-hidden group shadow-xl">
-                          <div className="absolute right-0 top-0 w-24 h-24 bg-[#FFCC00]/5 rounded-bl-full pointer-events-none group-hover:bg-[#FFCC00]/10 transition-colors"></div>
-                          <div className="w-12 h-12 bg-[#FFCC00] rounded-xl flex items-center justify-center text-black shrink-0 shadow-[0_0_20px_rgba(255,204,0,0.3)]">
+                       <div className="bg-gray-50 p-5 rounded-2xl border border-gray-200 flex items-center gap-5 relative overflow-hidden group">
+                          <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-gray-900 shrink-0 border border-gray-200 shadow-sm">
                              <Building2 size={24} />
                           </div>
                           <div className="min-w-0">
-                             <p className="text-white text-base font-black tracking-tight leading-none mb-1">{user.branchName}</p>
-                             <p className="text-gray-500 text-[10px] font-black uppercase tracking-widest">{user.branchId} • Main Depot</p>
+                             <p className="text-gray-900 text-sm font-bold tracking-tight leading-none mb-1">{user.branchName}</p>
+                             <p className="text-gray-500 text-[10px] font-bold uppercase tracking-widest">{user.branchId} • Main Depot</p>
                           </div>
                        </div>
-                       <div className="bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl p-5 flex flex-col justify-center">
-                          <p className="text-[11px] text-gray-400 font-medium leading-relaxed italic">"Branch location is locked to your dispatcher license. For inter-hub duty, please submit a transfer request."</p>
+                       <div className="bg-white border text-center border-gray-200 rounded-2xl p-5 flex flex-col justify-center">
+                          <p className="text-xs text-gray-500 font-medium leading-relaxed">Branch location is locked to your dispatcher license. For inter-hub duty, please submit a transfer request.</p>
                        </div>
                     </div>
+                  </div>
+                  <div className="md:col-span-2 pt-6 border-t border-gray-100 flex justify-end">
+                     <button className="bg-black hover:bg-gray-800 text-white px-6 py-2.5 rounded-lg font-bold text-sm transition-all shadow-sm flex items-center gap-2">
+                        <Save size={16} /> Save Profile Changes
+                     </button>
                   </div>
                 </div>
               </div>
@@ -149,27 +140,27 @@ export default function DispatchSettings() {
           {/* Tab: Security */}
           {activeTab === 'security' && (
             <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-2 duration-400">
-               <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
-                <div className="p-5 border-b border-gray-100 bg-[#FAFAFA]">
-                   <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2 px-1">Credential Rotation</h4>
+               <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                <div className="p-6 border-b border-gray-50 bg-[#FAFAFA]">
+                   <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Change Password</h3>
                 </div>
                 <div className="p-8 space-y-6 max-w-lg">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block px-1">Active Password</label>
-                    <input type="password" placeholder="••••••••" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-bold focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] outline-none transition-all" />
+                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block px-1">Current Password</label>
+                    <input type="password" placeholder="••••••••" className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-5 text-sm font-bold text-gray-900 focus:bg-white focus:border-[#FFCC00] outline-none transition-all" />
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block px-1">New Terminal Key</label>
-                      <input type="password" placeholder="Min. 8 chars" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-bold focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] outline-none transition-all" />
+                       <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block px-1">New Password</label>
+                       <input type="password" placeholder="Min. 8 chars" className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-5 text-sm font-bold text-gray-900 focus:bg-white focus:border-[#FFCC00] outline-none transition-all" />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block px-1">Confirm Key</label>
-                      <input type="password" placeholder="Confirm" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-bold focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] outline-none transition-all" />
+                       <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block px-1">Confirm Password</label>
+                       <input type="password" placeholder="Confirm" className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-5 text-sm font-bold text-gray-900 focus:bg-white focus:border-[#FFCC00] outline-none transition-all" />
                     </div>
                   </div>
-                  <button className="bg-[#111] hover:bg-black text-[#FFCC00] px-8 py-3.5 rounded-xl font-black uppercase text-xs tracking-widest transition-all shadow-xl active:scale-95 flex items-center gap-2">
-                    <Shield size={16} /> Update Security Profile
+                  <button className="bg-[#111] hover:bg-black text-[#FFCC00] px-8 py-3.5 rounded-xl font-bold uppercase text-xs tracking-widest transition-all shadow-sm active:scale-95 flex items-center gap-2">
+                    <Shield size={16} /> Save New Password
                   </button>
                 </div>
               </div>
@@ -181,11 +172,11 @@ export default function DispatchSettings() {
                        <Key size={32} strokeWidth={1.5} />
                     </div>
                     <div className="flex-1">
-                       <h5 className="text-lg font-black tracking-tight mb-1">Two-Factor Authentication</h5>
-                       <p className="text-gray-400 text-sm font-medium">Add a secondary verification layer for high-priority terminal actions.</p>
+                       <h5 className="text-lg font-bold tracking-tight mb-1">Two-Factor Authentication</h5>
+                       <p className="text-gray-400 text-sm font-medium">Add an extra layer of security to your account.</p>
                        <div className="flex gap-4 mt-6">
-                          <button className="bg-[#FFCC00] text-black px-6 py-2 rounded-lg font-black text-[10px] uppercase tracking-widest shadow-lg hover:bg-yellow-500 transition-all">Enable 2FA</button>
-                          <button className="bg-white/5 text-white border border-white/10 px-6 py-2 rounded-lg font-black text-[10px] uppercase tracking-widest hover:bg-white/10 transition-all">Learn More</button>
+                          <button className="bg-[#FFCC00] text-black px-6 py-2 rounded-lg font-bold text-[10px] uppercase tracking-widest shadow-lg hover:bg-yellow-500 transition-all">Enable 2FA</button>
+                          <button className="bg-white/5 text-white border border-white/10 px-6 py-2 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-white/10 transition-all">Learn More</button>
                        </div>
                     </div>
                  </div>
@@ -196,17 +187,17 @@ export default function DispatchSettings() {
           {/* Tab: Preferences */}
           {activeTab === 'preferences' && (
              <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-2 duration-400">
-                <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden font-bold">
-                   <div className="p-5 border-b border-gray-100 bg-[#FAFAFA]">
-                      <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2 px-1">Terminal Alerting</h4>
+                 <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                   <div className="p-6 border-b border-gray-50 bg-[#FAFAFA]">
+                      <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">Notifications</h3>
                    </div>
                    <div className="p-4 space-y-2">
                       {[
-                        { label: 'Real-time GPS movement sound alerts', val: true, icon: Bell },
-                        { label: 'Critical breakdown / Delay SMS alerts', val: true, icon: AlertTriangle },
-                        { label: 'Driver "New Message" desktop notifications', val: true, icon: Mail },
-                        { label: 'High-density table layout mode', val: true, icon: Globe },
-                        { label: 'Daily operational summary PDF to email', val: false, icon: Save }
+                        { label: 'GPS location sound alerts', val: true, icon: Bell },
+                        { label: 'Delay & issue SMS alerts', val: true, icon: AlertTriangle },
+                        { label: 'New message desktop notifications', val: true, icon: Mail },
+                        { label: 'Compact table layout', val: true, icon: Globe },
+                        { label: 'Daily summary PDF to email', val: false, icon: Save }
                       ].map((s, i) => (
                         <div key={i} className="flex items-center justify-between p-4 border border-gray-50 rounded-xl hover:bg-gray-50/50 transition-all border-l-4 border-l-transparent hover:border-l-[#FFCC00]">
                            <div className="flex items-center gap-4">

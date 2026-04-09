@@ -50,7 +50,7 @@ export default function WarehouseDashboard() {
           </div>
           <div>
             <h3 className="font-black text-black uppercase text-sm tracking-widest">Receive Load</h3>
-            <p className="text-[10px] font-bold text-black/60 uppercase mt-0.5">Inbound Manifesting</p>
+            <p className="text-[10px] font-bold text-black/60 uppercase mt-0.5">Incoming Handover Scan</p>
           </div>
         </button>
 
@@ -109,7 +109,7 @@ export default function WarehouseDashboard() {
                     <tr key={task.id} className="hover:bg-gray-50/50 transition-colors group cursor-pointer">
                       <td className="px-6 py-5">
                         <div className="font-bold text-[#111] text-[15px]">{task.id}</div>
-                        <div className="text-[11px] text-gray-400 font-medium mt-0.5">{task.items} Manifested Units</div>
+                        <div className="text-[11px] text-gray-400 font-medium mt-0.5">{task.items} Listed Items</div>
                       </td>
                       <td className="px-6 py-5">
                         <div className="flex items-center gap-2 mb-2">

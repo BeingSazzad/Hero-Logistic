@@ -53,7 +53,7 @@ export default function PlatformSupportDetail() {
           </button>
           <div>
             <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-bold text-gray-900 tracking-tight">{id}</h1>
+              <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{id}</h1>
               <span className={`text-[10px] font-black uppercase px-2 py-1 rounded ${pCfg.bg} ${pCfg.text}`}>{ticket.priority} Priority</span>
               {isResolved && <span className="text-[10px] font-black uppercase px-2 py-1 rounded bg-gray-200 text-gray-600">Resolved</span>}
             </div>
@@ -117,7 +117,7 @@ export default function PlatformSupportDetail() {
               <textarea 
                 value={replyText}
                 onChange={(e) => setReplyText(e.target.value)}
-                placeholder="Type your response to the tenant here..."
+                placeholder="Type your response here..."
                 className="input w-full min-h-[100px] resize-y pb-12 text-sm focus:bg-white"
               />
               <div className="absolute bottom-3 right-3 flex gap-2">

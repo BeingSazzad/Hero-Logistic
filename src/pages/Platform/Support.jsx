@@ -26,6 +26,7 @@ export default function PlatformSupport() {
   const [tickets, setTickets] = useState(initialTickets);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('open');
+  const [showFilter, setShowFilter] = useState(false);
 
   const resolveFast = (id) => {
     setTickets(tickets.map(t => t.id === id ? { ...t, status: 'resolved' } : t));
@@ -44,9 +45,11 @@ export default function PlatformSupport() {
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto pb-12">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Support Tickets</h1>
-        <p className="text-sm text-gray-500 mt-1">{openTickets} open · {resolvedTickets} resolved</p>
+      <div className="flex justify-between items-center mb-2 px-2">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Support Tickets</h1>
+          <p className="text-sm text-gray-500 mt-1">{openTickets} open · {resolvedTickets} resolved</p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -69,7 +72,7 @@ export default function PlatformSupport() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="input w-full pl-9" 
-            placeholder="Search by Tenant Name, Issue, or TKT ID..." 
+            placeholder="Search by Company Name, Issue, or TKT ID..." 
           />
         </div>
         <div className="flex items-center gap-2 w-full sm:w-auto">

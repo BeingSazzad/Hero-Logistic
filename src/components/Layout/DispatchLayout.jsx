@@ -11,7 +11,8 @@ import {
   UserCircle,
   LogOut,
   Building2,
-  ChevronDown
+  ChevronDown,
+  Truck
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -19,8 +20,10 @@ const navItems = [
   { to: '/dispatch',          label: 'Dashboard', icon: LayoutDashboard, end: true },
   { to: '/dispatch/jobs',     label: 'Jobs',      icon: Package },
   { to: '/dispatch/tracking', label: 'Tracking',  icon: MapPin },
+  { to: '/dispatch/fleet',    label: 'Fleet',     icon: Truck },
   { to: '/dispatch/drivers',  label: 'Drivers',   icon: Users },
   { to: '/dispatch/messages', label: 'Messages',  icon: MessageSquare },
+  { to: '/dispatch/settings', label: 'Settings',  icon: Settings },
 ];
 
 function SideNavItem({ to, label, Icon, end }) {
@@ -72,8 +75,6 @@ export default function DispatchLayout() {
 
         {/* Settings + Profile */}
         <div className="px-3 pb-5 border-t border-white/5 pt-3">
-          <SideNavItem to="/dispatch/settings" label="Settings" Icon={Settings} />
-          
           <button 
             onClick={() => window.location.href = '/login'}
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-400 hover:text-white hover:bg-red-500/10 transition-all mt-1"

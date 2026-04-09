@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Map, Zap, Search, Truck, MapPin, Navigation, Clock, 
   Satellite, Layers, Maximize2, Crosshair, Bell, Info,
-  ChevronRight, Phone, MessageCircle, AlertTriangle
+  ChevronRight, Phone, MessageCircle, AlertTriangle, Package
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 

@@ -5,8 +5,9 @@ import {
   Package, DollarSign,
   Navigation, Scale, Box, User, Phone,
   Layers, Fingerprint, Shield, Search,
-  CheckCircle2, X, ChevronDown, Mail
+  CheckCircle2, X, ChevronDown, Mail, CreditCard, Activity
 } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 
 // Mock registered user/customer DB
 const REGISTERED_USERS = [
@@ -18,8 +19,11 @@ const REGISTERED_USERS = [
 ];
 
 export default function DispatchCreateJob() {
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [priority, setPriority] = useState('Normal');
+  const [paymentBy, setPaymentBy] = useState('Sender');
+  const [directDropoff, setDirectDropoff] = useState(true);
 
   // Sender mode: 'guest' | 'registered'
   const [senderMode, setSenderMode] = useState('guest');
@@ -76,6 +80,15 @@ export default function DispatchCreateJob() {
         </div>
       </div>
 
+      {/* Creator Accountability Banner */}
+      <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 flex justify-between items-center px-4 mb-2">
+         <div className="flex items-center gap-2">
+            <Activity size={16} className="text-blue-500" />
+            <span className="text-xs font-bold text-blue-700 uppercase tracking-widest">Audit Trail: Data Entry Logging Active</span>
+         </div>
+         <span className="text-xs font-bold text-gray-500">Creating as: <span className="text-[#111]">{user?.name || 'Dispatcher'} ({user?.role || 'Dispatch'})</span></span>
+      </div>
+
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 px-2">
@@ -126,11 +139,25 @@ export default function DispatchCreateJob() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Pickup Address *</label>
-                    <div className="relative group">
-                      <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16}/>
-                      <input type="text" placeholder="Full address" className="w-full bg-white border border-gray-200 focus:border-[#FFCC00] rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20" />
+                    <div className="flex justify-between items-center mb-1.5 ml-1">
+                      <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest">Pickup Address</label>
+                      <button 
+                        onClick={() => setDirectDropoff(!directDropoff)}
+                        className={`text-[9px] font-black uppercase tracking-tight px-2 py-0.5 rounded transition-all border ${!directDropoff ? 'bg-black text-[#FFCC00] border-black' : 'bg-white text-gray-400 border-gray-200'}`}
+                      >
+                        {!directDropoff ? '✓ Pickup Service' : '+ Add Pickup Address'}
+                      </button>
                     </div>
+                    {!directDropoff ? (
+                      <div className="relative group animate-in slide-in-from-top-1 duration-200">
+                        <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16}/>
+                        <input type="text" placeholder="Full address" className="w-full bg-white border border-gray-200 focus:border-[#FFCC00] rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20" />
+                      </div>
+                    ) : (
+                      <div className="p-3 bg-gray-50 border border-gray-200 border-dashed rounded-lg text-center">
+                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest italic">Customer is bringing parcel to branch</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               ) : (
@@ -307,7 +334,23 @@ export default function DispatchCreateJob() {
                   ))}
                 </div>
               </div>
-              <div className="space-y-3 pt-2">
+              
+              <div className="pt-2">
+                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widests mb-2 flex items-center gap-1.5"><CreditCard size={12}/> Payment Responsibility</label>
+                <div className="flex bg-white/5 p-1 rounded-lg border border-white/10">
+                  {['Sender', 'Receiver'].map(t => (
+                    <button 
+                      key={t}
+                      onClick={() => setPaymentBy(t)}
+                      className={`flex-1 py-2 rounded-md text-[10px] font-black uppercase tracking-widest transition-all ${paymentBy === t ? 'bg-[#FFCC00] text-black shadow-sm' : 'text-gray-400 hover:text-white'}`}
+                    >
+                      {t} Pays
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3 pt-2 border-t border-white/10 mt-6">
                 <div className="flex justify-between items-end border-b border-white/10 pb-3">
                   <span className="text-[10px] font-black uppercase text-gray-400 tracking-widests">Base Price</span>
                   <span className="text-lg font-black text-white">$1,420.00</span>

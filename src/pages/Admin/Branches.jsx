@@ -17,7 +17,7 @@ export default function AdminBranches() {
           <h1 className="text-2xl font-bold text-gray-900 tracking-tight text-yellow-500 flex items-center gap-2"><Building2 className="text-black"/> Branch Network</h1>
           <p className="text-sm text-gray-500 mt-1">Manage Central Hubs and Local Stations hierarchy across the company.</p>
         </div>
-        <button className="btn btn-primary shadow-sm"><Plus size={16}/> Provision Branch</button>
+        <button className="btn btn-primary shadow-sm"><Plus size={16}/> Add New Branch</button>
       </div>
 
       <div className="w-full h-px bg-gray-200 mb-2"></div>
@@ -71,7 +71,7 @@ export default function AdminBranches() {
 
             <div className="border-t border-gray-50 p-4 bg-gray-50/50 flex justify-between items-center group-hover:bg-yellow-50/50 transition-colors">
                <span className="text-xs font-black tracking-widest text-gray-400 group-hover:text-yellow-600 transition-colors uppercase">{branch.id}</span>
-               <button className="text-xs font-bold text-gray-900 hover:underline flex items-center gap-1">Manage Node <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span></button>
+               <button className="text-xs font-bold text-gray-900 hover:underline flex items-center gap-1">Manage Branch <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span></button>
             </div>
           </div>
         ))}

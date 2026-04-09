@@ -7,18 +7,19 @@ import {
 } from 'lucide-react';
 
 const jobs = [
-  { id: 'SHP-20481', customer: 'Acme Corp',          route: 'Sydney → Melbourne',  driver: 'Jack Taylor',  vehicle: 'TRK-102', status: 'In Transit', progress: 65, eta: '2:45 PM' },
-  { id: 'SHP-20482', customer: 'Tech Solutions Ltd',  route: 'Brisbane → Sydney',      driver: 'Liam Smith',  vehicle: 'VAN-08',   status: 'At Pickup',  progress: 15, eta: '4:30 PM' },
-  { id: 'SHP-20483', customer: 'Global Traders',      route: 'Perth → Adelaide',   driver: 'Noah Williams',   vehicle: 'TRK-05',   status: 'Delayed',   progress: 80, eta: '5:00 PM' },
-  { id: 'SHP-20484', customer: 'Express Goods',       route: 'Sydney → Newcastle',  driver: 'Unassigned',   vehicle: '-',        status: 'Pending',   progress: 0, eta: '-' },
+  { id: 'SHP-20481', customer: 'Acme Corp',          route: 'Sydney Branch → Melbourne Branch',  driver: 'Jack Taylor',  vehicle: 'TRK-102', status: 'In Transit', progress: 65, eta: '2:45 PM' },
+  { id: 'SHP-20482', customer: 'Tech Solutions Ltd',  route: 'Brisbane Branch → Sydney Branch',      driver: 'Liam Smith',  vehicle: 'VAN-08',   status: 'Arrived at Branch',  progress: 85, eta: '4:30 PM' },
+  { id: 'SHP-20483', customer: 'Global Traders',      route: 'Perth Branch → Adelaide Branch',   driver: 'Noah Williams',   vehicle: 'TRK-05',   status: 'Received at Branch',   progress: 100, eta: 'Done' },
+  { id: 'SHP-20484', customer: 'Express Goods',       route: 'Sydney Branch → Newcastle Branch',  driver: 'Unassigned',   vehicle: '-',        status: 'Unassigned',   progress: 0, eta: '-' },
 ];
 
 function StatusBadge({ status }) {
   const map = {
     'In Transit': 'bg-[#EFF6FF] text-[#2563EB] border-[#DBEAFE]',
-    'At Pickup':  'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]',
+    'Arrived at Branch': 'bg-blue-50 text-blue-700 border-blue-200',
+    'Received at Branch': 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]',
     'Delayed':    'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]',
-    'Pending':    'bg-gray-100 text-gray-500 border-gray-200',
+    'Unassigned': 'bg-gray-100 text-gray-500 border-gray-200',
   };
   return <span className={`text-[10px] font-bold px-2.5 py-1 rounded border uppercase tracking-widest leading-none inline-block w-max ${map[status] ?? 'bg-gray-50'}`}>{status}</span>;
 }
@@ -37,7 +38,7 @@ export default function DispatchDashboard() {
             <Navigation size={20} />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Operation Control</h1>
+            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Fleet Operations</h1>
             <p className="text-sm text-gray-500 mt-1 flex items-center gap-2">Live Fleet Activity • Shift: <span className="font-bold text-gray-900">06:00 - 18:00</span></p>
           </div>
         </div>
@@ -67,11 +68,11 @@ export default function DispatchDashboard() {
           <div className="w-10 h-10 rounded border border-emerald-100 flex items-center justify-center bg-emerald-50 text-emerald-500"><Truck size={20}/></div>
         </div>
         <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] flex items-center justify-between">
-          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest leading-tight">Avg ETA Variance</p><p className="text-2xl font-black text-amber-500 mt-1.5 leading-none">+4<span className="text-sm font-bold text-gray-400 tracking-tighter">m</span></p></div>
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest leading-tight">Average Delay</p><p className="text-2xl font-black text-amber-500 mt-1.5 leading-none">+4<span className="text-sm font-bold text-gray-400 tracking-tighter">m</span></p></div>
           <div className="w-10 h-10 rounded border border-amber-100 flex items-center justify-center bg-amber-50 text-amber-500"><Clock size={20}/></div>
         </div>
         <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] flex items-center justify-between">
-          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest leading-tight">POD Completed</p><p className="text-2xl font-black text-gray-900 mt-1.5 leading-none">92%</p></div>
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest leading-tight">Deliveries Completed</p><p className="text-2xl font-black text-gray-900 mt-1.5 leading-none">92%</p></div>
           <div className="w-10 h-10 rounded border border-violet-100 flex items-center justify-center bg-violet-50 text-violet-500"><CheckCircle2 size={20}/></div>
         </div>
       </div>
@@ -88,6 +89,8 @@ export default function DispatchDashboard() {
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16} />
                     <input 
                       type="text" 
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
                       placeholder="Filter by Driver, ID or Area..." 
                       className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm" 
                     />
@@ -175,7 +178,7 @@ export default function DispatchDashboard() {
            {/* Urgent Alerts */}
            <div className="bg-white rounded-xl border border-red-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] p-6 flex flex-col gap-4">
               <h4 className="text-xs font-bold text-red-500 uppercase tracking-widest flex items-center gap-2 mb-2">
-                 <ShieldAlert size={16}/> Exception Board
+                 <ShieldAlert size={16}/> Alerts & Issues
               </h4>
               <div className="space-y-4">
                  {[

@@ -9,26 +9,28 @@ const maxMrr = 1300;
 export default function PlatformAnalytics() {
   return (
     <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Platform Analytics</h1>
-        <p className="text-sm text-gray-500 mt-1">Growth metrics across all tenants</p>
+      <div className="flex justify-between items-center mb-2 px-2">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Platform Analytics</h1>
+          <p className="text-sm text-gray-500 mt-1">Growth metrics across all companies</p>
+        </div>
       </div>
 
       {/* KPIs */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 px-2 mb-2">
         {[
-          { label: 'MRR',          value: '$1,166',  delta: '+14.7% MoM', up: true,  icon: TrendingUp },
-          { label: 'ARR',          value: '$13,992', delta: 'Projected',  up: true,  icon: Globe },
+          { label: 'Monthly Revenue (MRR)',  value: '$1,166',  delta: '+14.7% MoM', up: true,  icon: TrendingUp },
+          { label: 'Yearly Revenue (ARR)',   value: '$13,992', delta: 'Projected',  up: true,  icon: Globe },
           { label: 'Active Users', value: '89',      delta: '+6 this month', up: true, icon: Users },
-          { label: 'Shipments/mo', value: '1,827',   delta: 'All tenants',up: true,  icon: Package },
+          { label: 'Shipments / Month', value: '1,827',   delta: 'All companies',up: true,  icon: Package },
         ].map(s => (
-          <div key={s.label} className="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
-            <div className="flex justify-between mb-3">
-              <span className="text-xs text-gray-500 font-medium">{s.label}</span>
-              <s.icon size={16} className="text-yellow-500" />
+          <div key={s.label} className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 flex items-center justify-between group">
+            <div>
+               <p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">{s.label}</p>
+               <p className="text-2xl font-black text-gray-900 mt-0.5">{s.value}</p>
+               <p className={`text-[10px] font-bold mt-1 ${s.up ? 'text-emerald-500' : 'text-red-500'}`}>{s.delta}</p>
             </div>
-            <p className="text-2xl font-bold text-gray-900">{s.value}</p>
-            <p className={`text-xs font-bold mt-1 ${s.up ? 'text-emerald-600' : 'text-red-500'}`}>{s.delta}</p>
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-50 text-gray-400"><s.icon size={20} /></div>
           </div>
         ))}
       </div>
@@ -39,7 +41,7 @@ export default function PlatformAnalytics() {
           <h3 className="font-bold text-gray-900">MRR Growth</h3>
           <div className="flex gap-3 text-xs font-semibold">
             <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-yellow-500 inline-block" /> MRR</span>
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-blue-300 inline-block" /> Tenants</span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-blue-300 inline-block" /> Companies</span>
           </div>
         </div>
         <div className="flex items-end gap-4 h-40">
@@ -58,7 +60,7 @@ export default function PlatformAnalytics() {
       {/* Churn / Retention */}
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
-          <h3 className="font-bold text-gray-900 mb-4">Tenant Retention</h3>
+          <h3 className="font-bold text-gray-900 mb-4">Company Retention</h3>
           <div className="space-y-3">
             {[
               { label: 'Retention Rate',  value: '100%', color: 'text-emerald-600' },

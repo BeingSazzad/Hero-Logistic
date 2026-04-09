@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
   ArrowLeft, Truck, MapPin, CheckCircle2, AlertTriangle,
   Fuel, Calendar, Wrench, Shield, Clock, Activity,
-  FileText, ChevronRight, Star, User, Phone
+  FileText, ChevronRight, Star, User, Phone, Plus, Camera, Gauge, TrendingUp, Route
 } from 'lucide-react';
 
 const VEHICLE_DB = {
@@ -24,8 +24,9 @@ export default function DispatchVehicleDetail() {
   const navigate = useNavigate();
   const { vehicleId } = useParams();
   const v = VEHICLE_DB[vehicleId] || VEHICLE_DB['TRK-102'];
+  const [photo, setPhoto] = useState(null);
 
-  const fuelColor = Number(v.fuel) > 50 ? 'bg-emerald-500' : Number(v.fuel) > 25 ? 'bg-amber-400' : 'bg-red-500';
+  const fuelColor = parseInt(v.fuel) > 50 ? 'bg-emerald-500' : parseInt(v.fuel) > 25 ? 'bg-amber-400' : 'bg-red-500';
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto pb-12">
@@ -61,12 +62,64 @@ export default function DispatchVehicleDetail() {
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
+      {/* ── Asset Gallery & Identity ── */}
+      <div className="flex flex-col lg:flex-row gap-8 px-2 mb-4">
+        <div className="flex-1 flex flex-col gap-3">
+          <div className="relative aspect-[16/9] w-full rounded-2xl bg-[#111] overflow-hidden shadow-xl border-4 border-white group">
+            <img 
+              src={photo || "/assets/truck_front.png"} 
+              alt="Fleet Asset" 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+            />
+            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+               <div className="bg-black/50 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
+                 <p className="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest">VIN / Chassis</p>
+                 <p className="text-sm font-bold text-white uppercase font-mono">{v.id}-2026-XQG</p>
+               </div>
+            </div>
+          </div>
+          <div className="flex gap-3">
+            {[
+              { src: "/assets/truck_front.png", label: 'Front' },
+              { src: "/assets/truck_side.png", label: 'Side' },
+              { src: "/assets/truck_cabin.png", label: 'Cabin' }
+            ].map((img, i) => (
+              <button 
+                key={i} 
+                onClick={() => setPhoto(img.src)}
+                className={`w-24 h-16 rounded-xl border-2 overflow-hidden transition-all shadow-sm ${photo === img.src ? 'border-[#FFCC00] scale-105 shadow-md' : 'border-white hover:border-gray-200'}`}
+              >
+                <img src={img.src} alt={img.label} className="w-full h-full object-cover" />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="lg:w-1/3 flex flex-col justify-center">
+          <div className="flex items-center gap-3 mb-2">
+            <span className={`text-[10px] font-black px-2.5 py-1 rounded border uppercase tracking-widest ${statusStyle(v.status)}`}>
+              <div className={`w-1.5 h-1.5 rounded-full bg-current ${v.status === 'Active' ? 'animate-pulse' : ''}`}></div> {v.status}
+            </span>
+            <span className="text-[10px] font-bold px-2.5 py-1 rounded-md border border-gray-200 text-gray-500 uppercase tracking-widest">{v.type}</span>
+          </div>
+          <h2 className="text-4xl font-black text-gray-900 tracking-tighter leading-none mb-2">{v.id}</h2>
+          <h3 className="text-xl font-bold text-gray-500 tracking-tight mb-4">{v.make}</h3>
+          
+          <div className="grid grid-cols-2 gap-4 mt-2">
+            <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+               <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1 flex items-center gap-1.5"><Activity size={12}/> Odometer</p>
+               <p className="text-lg font-black text-gray-900 leading-none">{v.mileage}</p>
+            </div>
+            <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+               <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1 flex items-center gap-1.5"><Fuel size={12} className="text-blue-500"/> Fuel</p>
+               <p className="text-lg font-black text-gray-900 leading-none">{v.fuel}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
-
-        {/* ── LEFT: Details ── */}
         <div className="lg:col-span-2 space-y-6">
-
-          {/* Stats Strip */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { label: 'Total Trips', val: v.trips, icon: Activity, color: 'text-blue-500' },
@@ -84,14 +137,12 @@ export default function DispatchVehicleDetail() {
             ))}
           </div>
 
-          {/* Fuel & Compliance */}
           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
             <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center gap-3">
               <Fuel size={18} className="text-gray-400" />
               <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide">Operational Status</h3>
             </div>
             <div className="p-6 space-y-6">
-              {/* Fuel */}
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Fuel Level</p>
@@ -102,7 +153,6 @@ export default function DispatchVehicleDetail() {
                 </div>
               </div>
 
-              {/* Service info grid */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {[
                   { label: 'Last Service', val: v.lastService, icon: Wrench, color: 'text-gray-400' },
@@ -121,7 +171,6 @@ export default function DispatchVehicleDetail() {
             </div>
           </div>
 
-          {/* GPS Location */}
           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
             <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center gap-3">
               <MapPin size={18} className="text-gray-400" />
@@ -142,10 +191,7 @@ export default function DispatchVehicleDetail() {
           </div>
         </div>
 
-        {/* ── RIGHT: Driver & Actions ── */}
         <div className="lg:col-span-1 space-y-6">
-
-          {/* Vehicle Identity */}
           <div className="bg-[#111] rounded-xl p-6 text-white shadow-xl border border-gray-800 relative overflow-hidden group">
             <div className="absolute -right-6 -top-6 w-32 h-32 bg-gray-800/50 rounded-full blur-3xl"></div>
             <h3 className="text-xs font-black uppercase tracking-widest mb-6 text-gray-300 flex items-center gap-2 relative z-10">
@@ -167,7 +213,6 @@ export default function DispatchVehicleDetail() {
             </div>
           </div>
 
-          {/* Assigned Driver */}
           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
             <div className="p-5 border-b border-gray-100 bg-[#FAFAFA]">
               <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2"><User size={12}/> Assigned Operator</h3>
@@ -191,7 +236,6 @@ export default function DispatchVehicleDetail() {
             </div>
           </div>
 
-          {/* Quick Actions */}
           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
             <div className="p-4 border-b border-gray-100 bg-[#FAFAFA]">
               <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Asset Actions</h3>

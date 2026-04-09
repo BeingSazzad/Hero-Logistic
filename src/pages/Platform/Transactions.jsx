@@ -11,6 +11,7 @@ const transactions = [
 
 export default function PlatformTransactions() {
   const [search, setSearch] = useState('');
+  const [showSort, setShowSort] = useState(false);
 
   const filtered = transactions.filter(t =>
     t.tenant.toLowerCase().includes(search.toLowerCase()) ||
@@ -26,7 +27,7 @@ export default function PlatformTransactions() {
       <div className="flex justify-between items-center mb-2 px-2">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Transactions</h1>
-          <p className="text-sm text-gray-500 mt-1">Tenant subscription billing and payment history.</p>
+          <p className="text-sm text-gray-500 mt-1">Company subscription billing and payment history.</p>
         </div>
         <button className="bg-gray-900 hover:bg-black text-[#FFCC00] px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
           <Download size={16}/> Export CSV
@@ -57,11 +58,32 @@ export default function PlatformTransactions() {
           <div className="relative w-[320px]">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
             <input className="w-full bg-white border border-gray-200 rounded-lg py-2 pl-9 pr-4 text-sm focus:outline-none transition-all"
-              placeholder="Search by Tenant or TXN ID..." value={search} onChange={e => setSearch(e.target.value)} />
+              placeholder="Search by Company or TXN ID..." value={search} onChange={e => setSearch(e.target.value)} />
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50">
-            Sort By <ChevronDown size={16} className="text-gray-400" />
-          </button>
+          <div className="relative">
+            <button 
+              onClick={() => setShowSort(!showSort)}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-all"
+            >
+              Sort By <ChevronDown size={16} className={`text-gray-400 transition-transform ${showSort ? 'rotate-180' : ''}`} />
+            </button>
+
+            {showSort && (
+              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                <div className="py-1">
+                  {['Date (Newest)', 'Date (Oldest)', 'Company Name', 'Highest Amount', 'Lowest Amount'].map((opt) => (
+                    <button
+                      key={opt}
+                      onClick={() => setShowSort(false)}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50 hover:text-yellow-700 transition-colors font-medium"
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="overflow-x-auto">
@@ -70,7 +92,7 @@ export default function PlatformTransactions() {
               <tr>
                 <th className="px-6 py-4">Transaction ID</th>
                 <th className="px-6 py-4">Date & Time</th>
-                <th className="px-6 py-4">Tenant</th>
+                <th className="px-6 py-4">Company</th>
                 <th className="px-6 py-4">Plan Billed</th>
                 <th className="px-6 py-4">Amount</th>
                 <th className="px-6 py-4">Status</th>

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   ArrowLeft, Edit3, Save, X, Truck, Gauge, Wrench,
   Droplet, MapPin, User, AlertTriangle, CheckCircle2,
-  Clock, Route, TrendingUp, Package, Settings, Camera, Upload, AlignLeft
+  Clock, Route, TrendingUp, Package, Settings, Camera, Upload, AlignLeft, Plus
 } from 'lucide-react';
 
 const vehicle = {
@@ -91,30 +91,74 @@ export default function AdminVehicleDetail() {
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
-      {/* Hero Header */}
-      <div className="flex items-center gap-5 px-2 mb-4">
-        <div className="relative w-24 h-24 rounded-2xl bg-[#111] flex items-center justify-center shadow-md overflow-hidden group border border-gray-800">
-          {photo ? (
-            <img src={photo} alt="Vehicle" className="w-full h-full object-cover" />
-          ) : (
-            <Truck size={40} className="text-[#FFCC00] opacity-90"/>
-          )}
-          {editing && (
-            <label className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
-              <Camera size={16} className="text-white mb-1" />
-              <span className="text-[9px] font-bold text-white uppercase">Upload</span>
-              <input type="file" className="hidden" accept="image/*" onChange={handlePhotoUpload} />
-            </label>
-          )}
-        </div>
-        <div>
-          <div className="flex items-center gap-3">
-            <h2 className="text-2xl font-black text-gray-900 tracking-tight">{vehicle.id} — {vehicle.make}</h2>
-            <span className={`text-[10px] font-bold px-2.5 py-1 rounded-md border text-center flex items-center gap-1.5 ${editedStatus === 'Active' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]'}`}>
-              <span className="w-1.5 h-1.5 rounded-full bg-current"></span> {editedStatus}
-            </span>
+      {/* ── Asset Gallery & Identity ── */}
+      <div className="flex flex-col lg:flex-row gap-8 px-2 mb-4">
+        {/* Gallery Selector */}
+        <div className="flex-1 flex flex-col gap-3">
+          <div className="relative aspect-[16/9] w-full rounded-2xl bg-[#111] overflow-hidden shadow-xl border-4 border-white group">
+            <img 
+              src={photo || "/assets/truck_front.png"} 
+              alt="Fleet Asset" 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+            />
+            {editing && (
+              <label className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
+                <Camera size={32} className="text-white mb-2" />
+                <span className="text-xs font-bold text-white uppercase tracking-widest">Update Primary Photo</span>
+                <input type="file" className="hidden" accept="image/*" onChange={handlePhotoUpload} />
+              </label>
+            )}
+            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+               <div className="bg-black/50 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
+                 <p className="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest">Asset Serial</p>
+                 <p className="text-sm font-bold text-white uppercase font-mono">{vehicle.vin}</p>
+               </div>
+            </div>
           </div>
-          <p className="text-sm text-gray-500 mt-1 flex items-center gap-2 font-mono">{vehicle.reg} · {vehicle.type} · {vehicle.cap} cap · {vehicle.year}</p>
+          
+          {/* Thumbnails */}
+          <div className="flex gap-3">
+            {[
+              { src: "/assets/truck_front.png", label: 'Front' },
+              { src: "/assets/truck_side.png", label: 'Side' },
+              { src: "/assets/truck_cabin.png", label: 'Cabin' }
+            ].map((img, i) => (
+              <button 
+                key={i} 
+                onClick={() => setPhoto(img.src)}
+                className={`w-24 h-16 rounded-lg border-2 overflow-hidden transition-all shadow-sm ${photo === img.src ? 'border-[#FFCC00] scale-105 shadow-md' : 'border-white hover:border-gray-200'}`}
+              >
+                <img src={img.src} alt={img.label} className="w-full h-full object-cover" />
+              </button>
+            ))}
+            <button className="w-24 h-16 rounded-lg border-2 border-dashed border-gray-200 flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-[#111] hover:border-[#111] transition-all bg-gray-50/50">
+              <Plus size={16}/>
+              <span className="text-[8px] font-black uppercase tracking-tight">Add View</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Identity Details */}
+        <div className="lg:w-1/3 flex flex-col justify-center">
+          <div className="flex items-center gap-3 mb-2">
+            <span className={`text-[10px] font-bold px-2.5 py-1 rounded-md border text-center flex items-center gap-1.5 ${editedStatus === 'Active' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]'}`}>
+              <div className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></div> {editedStatus}
+            </span>
+            <span className="text-[10px] font-bold px-2.5 py-1 rounded-md border border-gray-200 text-gray-500 uppercase tracking-widest">{vehicle.type}</span>
+          </div>
+          <h2 className="text-4xl font-black text-gray-900 tracking-tighter leading-none mb-2">{vehicle.id}</h2>
+          <h3 className="text-xl font-bold text-gray-500 tracking-tight mb-4">{vehicle.make}</h3>
+          
+          <div className="grid grid-cols-2 gap-4 mt-2">
+            <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+               <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1 flex items-center gap-1.5"><Gauge size={12}/> Odometer</p>
+               <p className="text-lg font-black text-gray-900 leading-none">{vehicle.odometer}</p>
+            </div>
+            <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+               <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1 flex items-center gap-1.5"><TrendingUp size={12} className="text-emerald-500"/> Efficiency</p>
+               <p className="text-lg font-black text-gray-900 leading-none">18.4<span className="text-xs text-gray-400">L</span></p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -172,14 +216,23 @@ export default function AdminVehicleDetail() {
               </div>
               <div>
                 <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center gap-1.5"><User size={12}/> Assigned Driver</label>
-                <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-white/10 cursor-pointer hover:bg-white/10 transition-colors" onClick={() => navigate('/admin/drivers/DRV-102')}>
+                <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-white/10 relative overflow-hidden group">
                   <div className="w-8 h-8 rounded shrink-0 bg-[#FFCC00] flex items-center justify-center text-black text-[10px] font-black">
                     {vehicle.assignedDriver.name.split(' ').map(n=>n[0]).join('')}
                   </div>
-                  <div>
-                    <p className="text-sm font-bold text-white">{vehicle.assignedDriver.name}</p>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold text-white truncate">{vehicle.assignedDriver.name}</p>
                     <p className="text-[10px] text-gray-400 font-medium uppercase tracking-widest">{vehicle.assignedDriver.id}</p>
                   </div>
+                  {editing ? (
+                    <button className="text-[10px] font-black text-[#FFCC00] border border-[#FFCC00]/40 px-2.5 py-1.5 rounded bg-[#FFCC00]/10 hover:bg-[#FFCC00] hover:text-black transition-all uppercase tracking-tighter">
+                      Change Operator
+                    </button>
+                  ) : (
+                    <button onClick={() => navigate(`/admin/drivers/${vehicle.assignedDriver.id}`)} className="text-[10px] font-bold text-white/40 hover:text-white transition-colors">
+                      View Profile →
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

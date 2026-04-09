@@ -24,17 +24,17 @@ export default function TenantDetail() {
   return (
     <div className="flex flex-col gap-6 w-full max-w-7xl mx-auto">
       <div>
-        <button onClick={() => navigate('/platform/tenants')} className="text-sm font-medium text-blue-600 hover:underline mb-4 flex items-center gap-1">← Back to Tenants</button>
+        <button onClick={() => navigate('/platform/tenants')} className="text-sm font-medium text-blue-600 hover:underline mb-4 flex items-center gap-1">← Back to Companies</button>
         <div className="flex items-center gap-4">
           <div className="w-16 h-16 bg-gray-100 rounded-xl border border-gray-200 flex items-center justify-center shrink-0">
              <Building2 size={32} className="text-gray-400" />
           </div>
           <div>
             <div className="flex items-center gap-3">
-              <h1 className="text-3xl font-black text-gray-900 tracking-tight">{company.name}</h1>
+              <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{company.name}</h1>
               <span className={`px-3 py-1 text-xs font-black uppercase tracking-wider rounded-full ${status === 'Active' ? 'bg-green-100 text-green-800 border border-green-300' : 'bg-yellow-100 text-yellow-800 border border-yellow-300'}`}>{status}</span>
             </div>
-            <p className="text-sm text-gray-500 mt-1">Tenant ID: {id || 'T-001'} · Joined {company.joined}</p>
+            <p className="text-sm text-gray-500 mt-1">Account ID: {id || 'T-001'} · Joined {company.joined}</p>
           </div>
         </div>
       </div>
@@ -117,13 +117,13 @@ export default function TenantDetail() {
 
         <div className="flex flex-col gap-3">
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5">
-            <p className="text-xs text-gray-500 font-bold uppercase tracking-wider mb-4">Tenant Actions</p>
+            <p className="text-xs text-gray-500 font-bold uppercase tracking-wider mb-4">Account Actions</p>
             <div className="space-y-2.5">
               <button onClick={() => setModal('impersonate')} className="w-full btn bg-gray-100 hover:bg-gray-200 border border-gray-200 text-gray-800 justify-start h-11"><Shield size={18} className="mr-2" /> Impersonate for Support</button>
               {status === 'Active' ? (
-                <button onClick={() => setModal('suspend')} className="w-full btn bg-orange-50 hover:bg-orange-100 border border-orange-200 text-orange-800 justify-start h-11"><AlertTriangle size={18} className="mr-2" /> Suspend Tenant</button>
+                <button onClick={() => setModal('suspend')} className="w-full btn bg-orange-50 hover:bg-orange-100 border border-orange-200 text-orange-800 justify-start h-11"><AlertTriangle size={18} className="mr-2" /> Suspend Company</button>
               ) : (
-                <button onClick={() => setModal('activate')} className="w-full btn bg-green-500 hover:bg-green-600 text-gray-900 justify-start h-11"><CheckCircle2 size={18} className="mr-2 text-gray-900" /> Activate Tenant</button>
+                <button onClick={() => setModal('activate')} className="w-full btn bg-green-500 hover:bg-green-600 text-gray-900 justify-start h-11"><CheckCircle2 size={18} className="mr-2 text-gray-900" /> Activate Company</button>
               )}
               <button onClick={() => navigate('/platform/settings/audit')} className="w-full btn bg-gray-50 hover:bg-gray-100 border border-gray-200 text-gray-700 justify-start h-11">View Audit Logs</button>
             </div>

@@ -69,6 +69,7 @@ export default function DispatchJobDetail() {
   const [assigned, setAssigned] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [smsNote, setSmsNote] = useState('');
+  const [activeModal, setActiveModal] = useState(null);
 
   const handleAssign = () => {
     if (!selectedDriver) return;
@@ -126,14 +127,27 @@ export default function DispatchJobDetail() {
           </div>
         </div>
         <div className="flex gap-3">
-          <button className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-5 py-2.5 rounded-lg font-bold transition-all shadow-sm flex items-center gap-2">
-            <Printer size={16}/> Print POD
+          <button className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-4 py-2.5 rounded-lg font-bold transition-all shadow-sm flex items-center gap-2">
+            <Printer size={16}/> Print
+          </button>
+          <button 
+            onClick={() => navigate(`/dispatch/jobs/edit/${job.id}`)}
+            className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-4 py-2.5 rounded-lg font-bold transition-all shadow-sm flex items-center gap-2"
+          >
+             Edit
           </button>
           {!isUnassigned || assigned ? (
             <button className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
-              <Share2 size={16} strokeWidth={2.5}/> Track Live
+              <Share2 size={16} strokeWidth={2.5}/> Live
             </button>
-          ) : null}
+          ) : (
+            <button 
+              onClick={() => { if(window.confirm('Are you sure you want to cancel this shipment? This cannot be undone.')) navigate('/dispatch/jobs') }}
+              className="bg-red-50 border border-red-100 text-red-600 hover:bg-red-100 px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
+            >
+              Cancel 
+            </button>
+          )}
         </div>
       </div>
 
@@ -187,7 +201,7 @@ export default function DispatchJobDetail() {
           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
             <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center gap-3">
               <Box className="text-gray-400" size={18} />
-              <h2 className="text-sm font-bold text-[#111] uppercase tracking-wide">Freight Declaration</h2>
+              <h2 className="text-sm font-bold text-[#111] uppercase tracking-wide">Package Details</h2>
             </div>
             <div className="p-6">
               <p className="text-base font-black text-gray-900 mb-6">{job.cargo.description}</p>
@@ -372,6 +386,10 @@ export default function DispatchJobDetail() {
                   <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Delivery Window</span>
                   <span className="text-[9px] font-black text-white bg-blue-600 px-2 py-1 rounded uppercase tracking-widest">{job.window}</span>
                 </div>
+                <div className="flex justify-between items-center pt-2 border-t border-white/5">
+                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Payment Responsibility</span>
+                  <span className="text-[10px] font-black text-black bg-[#FFCC00] px-2 py-0.5 rounded uppercase tracking-widest">Sender Pays</span>
+                </div>
               </div>
             </div>
           </div>
@@ -384,19 +402,185 @@ export default function DispatchJobDetail() {
               </h2>
             </div>
             <div className="p-5 flex flex-col gap-3">
-              <button className="w-full py-3 bg-white border border-gray-200 rounded-lg text-[10px] font-black uppercase tracking-widest text-gray-600 hover:bg-gray-50 transition-all flex items-center justify-center gap-2 shadow-sm">
-                <ClipboardList size={14}/> Load Manifest
+              <button onClick={() => setActiveModal('packing')} className="w-full py-3 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600 hover:bg-gray-50 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <ClipboardList size={14}/> Packing List
               </button>
-              <button className="w-full py-3 bg-white border border-gray-200 rounded-lg text-[10px] font-black uppercase tracking-widest text-gray-600 hover:bg-gray-50 transition-all flex items-center justify-center gap-2 shadow-sm">
-                <FileCheck size={14}/> Pre-Departure Signoff
+              <button onClick={() => setActiveModal('checklist')} className="w-full py-3 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600 hover:bg-gray-50 transition-all flex items-center justify-center gap-2 shadow-sm">
+                <FileCheck size={14}/> Driver Checklist
               </button>
-              <button className="w-full py-3 bg-red-50 border border-red-100 rounded-lg text-[10px] font-black uppercase tracking-widest text-red-500 hover:bg-red-500 hover:text-white transition-all flex items-center justify-center gap-2 mt-2">
+              <button onClick={() => setActiveModal('exception')} className="w-full py-3 bg-red-50 border border-red-100 rounded-lg text-xs font-bold text-red-500 hover:bg-red-500 hover:text-white transition-all flex items-center justify-center gap-2 mt-2">
                 <AlertTriangle size={14}/> Report Exception
               </button>
             </div>
           </div>
+
+          {/* Audit Trail Card */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col gap-4">
+             <div className="flex items-center gap-2 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                <ClipboardList size={12}/> Systematic Audit Trail
+             </div>
+             <div className="space-y-4">
+                <div className="flex gap-3">
+                   <div className="w-1.5 h-full bg-emerald-500 rounded-full"></div>
+                   <div>
+                      <p className="text-xs font-bold text-gray-900 leading-none">Shipment Booked</p>
+                      <p className="text-[10px] text-gray-500 mt-1 uppercase tracking-widest">By: {user?.name || 'Jackson Storm'} · 09:30 AM</p>
+                   </div>
+                </div>
+                <div className="flex gap-3">
+                   <div className="w-1.5 h-full bg-gray-200 rounded-full"></div>
+                   <div>
+                      <p className="text-xs font-bold text-gray-400 leading-none">Awaiting Dispatch</p>
+                      <p className="text-[10px] text-gray-400 mt-1 uppercase tracking-widest">System generated pending status</p>
+                   </div>
+                </div>
+             </div>
+             <div className="pt-4 border-t border-gray-50 text-center">
+                <p className="text-[9px] font-medium text-gray-400 italic">"Full visibility on data entry accountability"</p>
+             </div>
+          </div>
         </div>
       </div>
+
+      {/* ── Modals ── */}
+      {activeModal === 'packing' && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200" onClick={() => setActiveModal(null)}>
+          <div className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col max-h-[85vh]" onClick={e => e.stopPropagation()}>
+            <div className="p-6 border-b border-gray-100 flex justify-between items-center shrink-0">
+               <div>
+                  <h3 className="text-xl font-bold text-gray-900 tracking-tight">Packing List</h3>
+                  <p className="text-xs text-gray-500 mt-1 uppercase tracking-widest">{job.id}</p>
+               </div>
+               <button onClick={() => setActiveModal(null)} className="p-2 hover:bg-gray-100 rounded-full text-gray-400 transition-colors"><X size={20}/></button>
+            </div>
+            <div className="p-6 overflow-y-auto flex-1">
+               <div className="space-y-4">
+                  <div className="flex justify-between items-center p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <div className="flex gap-4 items-center">
+                       <span className="text-sm font-bold text-gray-900">1x Pallet 1 (Temperature Controlled)</span>
+                    </div>
+                    <span className="text-xs font-bold text-gray-500">1,500 KG</span>
+                  </div>
+                  <div className="flex justify-between items-center p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <div className="flex gap-4 items-center">
+                       <span className="text-sm font-bold text-gray-900">1x Pallet 2 (Temperature Controlled)</span>
+                    </div>
+                    <span className="text-xs font-bold text-gray-500">1,500 KG</span>
+                  </div>
+                  <div className="flex justify-between items-center p-4 border border-gray-200 rounded-lg bg-gray-50">
+                    <div className="flex gap-4 items-center">
+                       <span className="text-sm font-bold text-gray-900">1x Crate 1 (Fragile)</span>
+                    </div>
+                    <span className="text-xs font-bold text-gray-500">300 KG</span>
+                  </div>
+               </div>
+            </div>
+            <div className="p-6 border-t border-gray-100 shrink-0 flex justify-end gap-3 bg-gray-50 rounded-b-2xl">
+               <button onClick={() => setActiveModal(null)} className="px-5 py-2.5 text-sm font-bold text-gray-500 hover:text-gray-900">Close</button>
+               <button className="px-5 py-2.5 bg-[#FFCC00] hover:bg-[#E6B800] text-black font-bold rounded-lg shadow-sm flex items-center gap-2"><Printer size={16}/> Print List</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeModal === 'checklist' && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200" onClick={() => setActiveModal(null)}>
+          <div className="bg-white w-full max-w-lg rounded-2xl shadow-2xl flex flex-col max-h-[85vh]" onClick={e => e.stopPropagation()}>
+            <div className="p-6 border-b border-gray-100 flex justify-between items-center shrink-0">
+               <div>
+                  <h3 className="text-xl font-bold text-gray-900 tracking-tight">Driver Pre-Departure Checklist</h3>
+                  <p className="text-xs text-gray-500 mt-1 uppercase tracking-widest">Submitted by {job.fleet ? job.fleet.driver : 'Driver'}</p>
+               </div>
+               <button onClick={() => setActiveModal(null)} className="p-2 hover:bg-gray-100 rounded-full text-gray-400 transition-colors"><X size={20}/></button>
+            </div>
+            
+            {!assigned && isUnassigned ? (
+               <div className="p-12 text-center flex-1">
+                 <div className="w-16 h-16 bg-gray-50 text-gray-400 rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-100">
+                    <FileCheck size={24} />
+                 </div>
+                 <h4 className="text-sm font-bold text-gray-900 mb-1">No Driver Assigned</h4>
+                 <p className="text-xs text-gray-500 font-medium">Assign a driver to generate their safety checklist.</p>
+               </div>
+            ) : (
+              <div className="p-6 overflow-y-auto flex-1">
+                 <div className="bg-blue-50 border border-blue-100 text-blue-800 text-xs font-bold px-4 py-3 rounded-xl mb-6 flex items-start gap-3">
+                    <Clock size={16} className="shrink-0 mt-0.5 text-blue-500" />
+                    <p>This is a live read-only feed of the driver's mobile workflow. Once they sign off, the vehicle is cleared for transit.</p>
+                 </div>
+                 <div className="space-y-4">
+                    {[
+                      { item: "Confirm vehicle meets temperature requirements", done: true },
+                      { item: "Load safely secured with straps/chains", done: true },
+                      { item: "Tire pressure and oil levels checked", done: false },
+                      { item: "Customer documents signed and loaded", done: false }
+                    ].map((task, idx) => (
+                      <div key={idx} className={`flex items-center justify-between p-4 border rounded-xl transition-all ${task.done ? 'border-emerald-200 bg-emerald-50/50' : 'border-gray-200 bg-gray-50'}`}>
+                         <div className="flex items-center gap-4">
+                           {task.done ? (
+                             <CheckCircle2 size={20} className="text-emerald-500 shrink-0" />
+                           ) : (
+                             <Circle size={20} className="text-gray-300 shrink-0" />
+                           )}
+                           <span className={`text-sm font-bold ${task.done ? 'text-gray-900' : 'text-gray-500'}`}>{task.item}</span>
+                         </div>
+                         <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded ${task.done ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-200 text-gray-500'}`}>
+                           {task.done ? 'Passed' : 'Pending'}
+                         </span>
+                      </div>
+                    ))}
+                 </div>
+              </div>
+            )}
+            
+            <div className="p-6 border-t border-gray-100 shrink-0 flex justify-between items-center bg-gray-50 rounded-b-2xl">
+               <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                  Status: {isUnassigned && !assigned ? 'Awaiting Assignment' : 'In Progress (50%)'}
+               </span>
+               <div className="flex gap-3">
+                 <button onClick={() => setActiveModal(null)} className="px-5 py-2.5 text-sm font-bold text-gray-500 hover:text-gray-900">Close</button>
+                 {(!isUnassigned || assigned) && (
+                   <button onClick={() => setActiveModal(null)} className="px-5 py-2.5 bg-black hover:bg-gray-800 text-white font-bold rounded-lg shadow-sm">Ping for Update</button>
+                 )}
+               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeModal === 'exception' && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200" onClick={() => setActiveModal(null)}>
+          <div className="bg-white w-full max-w-lg rounded-2xl shadow-2xl flex flex-col max-h-[85vh]" onClick={e => e.stopPropagation()}>
+            <div className="p-6 border-b border-gray-100 flex justify-between items-center shrink-0">
+               <div>
+                  <h3 className="text-xl font-bold text-red-600 tracking-tight flex items-center gap-2"><AlertTriangle size={20}/> Report Exception</h3>
+                  <p className="text-xs text-gray-500 mt-1 uppercase tracking-widest">{job.id}</p>
+               </div>
+               <button onClick={() => setActiveModal(null)} className="p-2 hover:bg-gray-100 rounded-full text-gray-400 transition-colors"><X size={20}/></button>
+            </div>
+            <div className="p-6 overflow-y-auto flex-1 space-y-6">
+               <div>
+                 <label className="text-[10px] font-bold uppercase text-gray-400 tracking-widest block mb-2 px-1">Issue Category</label>
+                 <select className="w-full bg-gray-50 border border-gray-200 py-3 px-4 rounded-xl text-sm font-bold text-gray-900 outline-none focus:border-red-500">
+                   <option>Vehicle Delay / Breakdown</option>
+                   <option>Weather Delay</option>
+                   <option>Cargo Damage</option>
+                   <option>Customer Rejection</option>
+                 </select>
+               </div>
+               <div>
+                 <label className="text-[10px] font-bold uppercase text-gray-400 tracking-widest block mb-2 px-1">Detailed Description</label>
+                 <textarea className="w-full bg-gray-50 border border-gray-200 py-3 px-4 rounded-xl text-sm font-medium text-gray-900 outline-none focus:border-red-500 resize-none h-32" placeholder="Describe the exception in detail. This will be sent immediately to dispatch and the client."></textarea>
+               </div>
+            </div>
+            <div className="p-6 border-t border-gray-100 shrink-0 flex justify-end gap-3 bg-red-50 rounded-b-2xl">
+               <button onClick={() => setActiveModal(null)} className="px-5 py-2.5 text-sm font-bold text-gray-500 hover:text-gray-900">Cancel</button>
+               <button onClick={() => setActiveModal(null)} className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg shadow-sm flex items-center gap-2"><Send size={16}/> Submit Report</button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

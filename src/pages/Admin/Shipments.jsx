@@ -10,10 +10,10 @@ export default function AdminShipments() {
   const [sortOrder, setSortOrder] = useState('desc');
   
   const rawShipments = [
-    { id: 'SHP-9042', origin: 'Sydney Central Hub', dest: 'Melbourne North Hub', customer: 'Acme Corp Logistics', status: 'In Transit', progress: 45, type: 'FTL', driver: 'Jack Taylor', est: 'Today 4:00 PM' },
-    { id: 'SHP-9041', origin: 'Port Botany', dest: 'Penrith Drop', customer: 'Tech Solutions Ltd', status: 'At Pickup', progress: 15, type: 'LTL', driver: 'Sarah Mitchell', est: 'Today 6:30 PM' },
-    { id: 'SHP-9039', origin: 'Brisbane Port Facility', dest: 'Gold Coast DC', customer: 'Global Traders Australia', status: 'Exception', progress: 60, type: 'Express', driver: 'Liam Smith', est: 'Delayed' },
-    { id: 'SHP-9035', origin: 'Adelaide Depot', dest: 'Sydney Central Hub', customer: 'Acme Corp Logistics', status: 'Delivered', progress: 100, type: 'FTL', driver: 'Noah Williams', est: 'Completed' }
+    { id: 'SHP-9042', origin: 'Sydney Depot', dest: 'Melbourne Branch', customer: 'Acme Corp Logistics', status: 'In Transit', progress: 45, type: 'Heavy Load', driver: 'Jack Taylor', est: 'Today 4:00 PM' },
+    { id: 'SHP-9041', origin: 'Sydney Depot', dest: 'Penrith Branch', customer: 'Tech Solutions Ltd', status: 'Arrived at Branch', progress: 85, type: 'Parcel', driver: 'Sarah Mitchell', est: 'Awaiting Handover' },
+    { id: 'SHP-9039', origin: 'Brisbane Port', dest: 'Gold Coast Branch', customer: 'Global Traders Australia', status: 'Exception', progress: 60, type: 'Express', driver: 'Liam Smith', est: 'Delayed' },
+    { id: 'SHP-9035', origin: 'Adelaide Depot', dest: 'Sydney Depot', customer: 'Acme Corp Logistics', status: 'Received at Branch', progress: 100, type: 'Heavy Load', driver: 'Noah Williams', est: 'Completed' }
   ];
 
   const filteredShipments = useMemo(() => {
@@ -93,7 +93,7 @@ export default function AdminShipments() {
         {/* Filter Bar */}
         <div className="p-5 border-b border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 bg-[#FAFAFA]">
            <div className="flex bg-gray-100 p-1 rounded-lg border border-gray-200/60 w-full md:w-auto shadow-sm">
-             {['All', 'In Transit', 'At Pickup', 'Delivered', 'Exception'].map((tab) => (
+             {['All', 'In Transit', 'Arrived at Branch', 'Received at Branch', 'Exception', 'Delivered'].map((tab) => (
                <button 
                  key={tab}
                  onClick={() => setFilter(tab)}
@@ -122,7 +122,7 @@ export default function AdminShipments() {
                   onChange={(e) => setSortKey(e.target.value)}
                   className="appearance-none bg-white border border-gray-200 text-gray-700 text-xs font-bold rounded-lg pl-9 pr-10 py-2.5 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 transition-all cursor-pointer shadow-sm uppercase tracking-widest"
                 >
-                  <option value="id">Sort: Manifest ID</option>
+                  <option value="id">Sort: Handover ID</option>
                   <option value="customer">Sort: Customer Info</option>
                   <option value="progress">Sort: Delivery Progress</option>
                   <option value="origin">Sort: Origin Location</option>
@@ -164,9 +164,10 @@ export default function AdminShipments() {
                    </td>
                    <td className="px-6 py-5">
                       <div className="flex flex-col gap-1.5">
-                        <span className={`text-[10px] font-bold px-2.5 py-1 rounded-md border w-fit ${
-                           shp.status === 'Delivered' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 
+                        <span className={`text-[10px] font-bold px-2.5 py-1 rounded-md border w-fit uppercase tracking-widest ${
+                           shp.status === 'Delivered' || shp.status === 'Received at Branch' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 
                            shp.status === 'Exception' ? 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]' : 
+                           shp.status === 'Arrived at Branch' ? 'bg-blue-50 text-blue-700 border-blue-200' :
                            'bg-[#EFF6FF] text-[#2563EB] border-[#DBEAFE]'
                         }`}>
                            {shp.status}

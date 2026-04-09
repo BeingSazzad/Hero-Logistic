@@ -14,24 +14,16 @@ export default function Tenants() {
   const location = useLocation();
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
-  const [showWizard, setShowWizard] = useState(location.pathname.endsWith('/new'));
+  const [showSort, setShowSort] = useState(false);
+  const showWizard = location.pathname.endsWith('/new');
   const [wizardStep, setWizardStep] = useState(1);
-
-  useEffect(() => {
-    if (location.pathname.endsWith('/new')) {
-      setShowWizard(true);
-      setWizardStep(1);
-    } else {
-      setShowWizard(false);
-    }
-  }, [location.pathname]);
 
   const filtered = tenants.filter(t => t.name.toLowerCase().includes(search.toLowerCase()));
 
   if (showWizard) {
     return (
       <div className="max-w-lg mx-auto pb-12">
-        <button onClick={() => { setShowWizard(false); setWizardStep(1); navigate('/platform/tenants'); }} className="text-sm font-bold text-gray-500 hover:text-gray-900 mb-6 flex items-center gap-2 transition-colors border px-3 py-1.5 rounded-lg border-gray-200">← Back</button>
+        <button onClick={() => { setWizardStep(1); navigate('/platform/tenants'); }} className="text-sm font-bold text-gray-500 hover:text-gray-900 mb-6 flex items-center gap-2 transition-colors border px-3 py-1.5 rounded-lg border-gray-200">← Back</button>
         <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
           <div className="flex gap-1 mb-8">
             {[1,2,3,4].map(s => <div key={s} className={`flex-1 h-1.5 rounded-full ${s <= wizardStep ? 'bg-[#FFCC00]' : 'bg-gray-100'}`} />)}
@@ -90,7 +82,7 @@ export default function Tenants() {
               ))}
             </div>
             <div className="mt-4 p-3 bg-blue-50 border border-blue-100 rounded-lg text-xs text-blue-700 font-bold flex items-center gap-2">
-              <span className="text-lg">📧</span> Invitation will be sent after tenant is created.
+              <span className="text-lg">📧</span> Invitation will be sent after company account is created.
             </div>
           </>}
 
@@ -108,9 +100,9 @@ export default function Tenants() {
 
           <div className="flex gap-3 mt-8">
             {wizardStep > 1 && <button onClick={() => setWizardStep(s => s-1)} className="px-6 py-3 font-bold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg flex-1 transition-colors">By-pass ←</button>}
-            <button onClick={() => { if(wizardStep < 4) setWizardStep(s=>s+1); else setShowWizard(false); }}
+            <button onClick={() => { if(wizardStep < 4) setWizardStep(s=>s+1); else navigate('/platform/tenants'); }}
               className={`px-6 py-3 font-bold rounded-lg flex-1 transition-all ${wizardStep < 4 ? 'bg-[#111] hover:bg-black text-white' : 'bg-[#FFCC00] hover:bg-[#E6B800] text-black shadow-sm'}`}>
-              {wizardStep < 4 ? 'Next Step →' : '✓ Create Tenant'}
+              {wizardStep < 4 ? 'Next Step →' : '✓ Create Account'}
             </button>
           </div>
         </div>
@@ -124,14 +116,14 @@ export default function Tenants() {
       {/* Updated Header - Matching Reference Style */}
       <div className="flex justify-between items-center mb-2 px-2">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Tenant Networks</h1>
-          <p className="text-sm text-gray-500 mt-1">Manage platform clients, their active plans, and billing overviews.</p>
+          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Client Companies</h1>
+          <p className="text-sm text-gray-500 mt-1">Manage all companies using the platform and their accounts.</p>
         </div>
         <button 
-          onClick={() => setShowWizard(true)} 
+          onClick={() => navigate('/platform/tenants/new')} 
           className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
         >
-          <Plus size={18} strokeWidth={3} /> New Tenant
+          <Plus size={18} strokeWidth={3} /> Add Company
         </button>
       </div>
 
@@ -146,15 +138,36 @@ export default function Tenants() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
               <input 
                 type="text" 
-                placeholder="Search tenant networks..." 
+                placeholder="Search companies..." 
                 value={search} onChange={e => setSearch(e.target.value)}
                 className="w-full bg-white border border-gray-200 rounded-lg py-2 pl-9 pr-4 text-sm focus:outline-none transition-all" 
               />
            </div>
            
-           <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50">
-              Sort By <ChevronDown size={16} className="text-gray-400" />
-           </button>
+           <div className="relative">
+             <button 
+               onClick={() => setShowSort(!showSort)}
+               className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-all"
+             >
+                Sort By <ChevronDown size={16} className={`text-gray-400 transition-transform ${showSort ? 'rotate-180' : ''}`} />
+             </button>
+
+             {showSort && (
+               <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                 <div className="py-1">
+                   {['Company Name', 'Status', 'Subscription Plan', 'Monthly Revenue'].map((opt) => (
+                     <button
+                       key={opt}
+                       onClick={() => setShowSort(false)}
+                       className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50 hover:text-yellow-700 transition-colors font-medium"
+                     >
+                       {opt}
+                     </button>
+                   ))}
+                 </div>
+               </div>
+             )}
+           </div>
         </div>
 
         <div className="overflow-x-auto">

@@ -2,15 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, Building2, Receipt, BarChart3,
-  HeadphonesIcon, Settings, LogOut, Bell, Globe
+  Headphones, Settings, LogOut, Bell, Globe, CreditCard
 } from 'lucide-react';
 
 const navItems = [
   { to: '/platform',               label: 'Dashboard',      icon: LayoutDashboard, end: true },
-  { to: '/platform/tenants',       label: 'Tenants',        icon: Building2 },
+  { to: '/platform/tenants',       label: 'Companies',      icon: Building2 },
   { to: '/platform/transactions',  label: 'Transactions',   icon: Receipt },
   { to: '/platform/subscriptions', label: 'Subscriptions',  icon: CreditCard },
-  { to: '/platform/support',       label: 'Support',        icon: HeadphonesIcon },
+  { to: '/platform/support',       label: 'Support',        icon: Headphones },
   { to: '/platform/analytics',     label: 'Analytics',      icon: BarChart3 },
   { to: '/platform/settings',      label: 'Settings',       icon: Settings },
 ];

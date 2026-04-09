@@ -27,8 +27,8 @@ export default function AdminDashboard() {
             <Blocks size={20} />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Super Admin Hub</h1>
-            <p className="text-sm text-gray-500 mt-1">Company-wide overview of operations, network topology, and financial growth.</p>
+            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Super Admin Dashboard</h1>
+            <p className="text-sm text-gray-500 mt-1">Company-wide overview of operations, branch network, and overall growth.</p>
           </div>
         </div>
         <div className="flex gap-3">
@@ -49,7 +49,7 @@ export default function AdminDashboard() {
           { label: 'Active Shipments', value: '42', icon: Package, color: 'text-blue-600', bg: 'bg-blue-50', border: 'border-blue-100' },
           { label: 'Total Drivers', value: '142', icon: Users, color: 'text-indigo-600', bg: 'bg-indigo-50', border: 'border-indigo-100' },
           { label: 'Active Alerts', value: '3', icon: AlertTriangle, color: 'text-red-600', bg: 'bg-red-50', border: 'border-red-100' },
-          { label: 'Network Nodes', value: '3', icon: Building2, color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-100' },
+          { label: 'Active Branches', value: '3', icon: Building2, color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-100' },
         ].map((kpi, i) => (
           <div key={i} className="bg-white p-5 rounded-xl border border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] flex items-center justify-between">
             <div>

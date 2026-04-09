@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, Save, Upload, Image as ImageIcon, User, Mail, Phone, MapPin, 
   FileText, Briefcase, Award, Calendar, Shield, Heart, CreditCard, 
-  AlertTriangle, Hash, Building, Clock, UserCheck
+  AlertTriangle, Hash, Building, Clock, UserCheck, Zap
 } from 'lucide-react';
 
 export default function AdminAddDriver() {
@@ -299,6 +299,36 @@ export default function AdminAddDriver() {
                  <div>
                     <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Start Date</label>
                     <input type="date" className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white focus:outline-none focus:border-[#FFCC00]/50" />
+                 </div>
+              </div>
+           </div>
+
+           {/* PWA App Access & Registration */}
+           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+              <div className="p-4 border-b border-gray-100 bg-[#FAFAFA] flex items-center justify-between">
+                 <h2 className="text-xs font-bold text-[#111] uppercase tracking-wide flex items-center gap-2"><Zap size={14} className="text-[#FFCC00]"/> Driver App Access</h2>
+                 <span className="text-[9px] font-black bg-blue-50 text-blue-600 px-2 py-0.5 rounded border border-blue-100 uppercase tracking-tighter">PWA Secured</span>
+              </div>
+              <div className="p-5">
+                 <p className="text-[11px] text-gray-500 leading-relaxed mb-4">
+                    The driver will receive a secure **Self-Activation Link**. Upon clicking, they can install the HERO PWA and set their secure Access PIN.
+                 </p>
+                 
+                 <div className="space-y-3">
+                   <div className="p-3 bg-gray-50 rounded-lg border border-gray-100">
+                      <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-2">Invitation Method</p>
+                      <div className="flex gap-2">
+                         <button className="flex-1 py-1.5 bg-[#FFCC00] text-black font-bold text-[10px] rounded border border-[#FFCC00] transition-all">SMS Invite</button>
+                         <button className="flex-1 py-1.5 bg-white text-gray-600 font-bold text-[10px] rounded border border-gray-200 hover:bg-gray-50">Email Invite</button>
+                      </div>
+                   </div>
+                   
+                   <div className="p-3 bg-gray-900 rounded-lg border border-gray-800">
+                      <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Simulation: Activation Link</p>
+                      <div className="font-mono text-[10px] text-[#FFCC00] break-all opacity-80">
+                         hero.app/join/t62x-9Lp2-v8k1
+                      </div>
+                   </div>
                  </div>
               </div>
            </div>

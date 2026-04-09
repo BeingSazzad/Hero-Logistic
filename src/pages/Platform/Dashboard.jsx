@@ -40,17 +40,17 @@ export default function PlatformDashboard() {
       {/* Updated Header - Matching Reference Style */}
       <div className="flex justify-between items-center mb-2 px-2">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Platform Architecture</h1>
-          <p className="text-sm text-gray-500 mt-1 flex items-center gap-2">Global Hub • <span className="text-emerald-500 font-bold flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Systems Nominal</span></p>
+          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Platform Overview</h1>
+          <p className="text-sm text-gray-500 mt-1 flex items-center gap-2">System Center • <span className="text-emerald-500 font-bold flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> All Systems Online</span></p>
         </div>
         <div className="flex items-center gap-4 bg-white px-5 py-2.5 rounded-lg border border-gray-200 shadow-sm">
            <div className="flex flex-col items-center">
-              <span className="text-[10px] font-bold uppercase text-gray-500 flex items-center gap-1"><Server size={10}/> API Check</span>
+              <span className="text-[10px] font-bold uppercase text-gray-500 flex items-center gap-1"><Server size={10}/> API Status</span>
               <span className="text-xs font-black text-[#111]">99.9%</span>
            </div>
            <div className="w-px h-6 bg-gray-200"></div>
            <div className="flex flex-col items-center">
-              <span className="text-[10px] font-bold uppercase text-gray-500 flex items-center gap-1"><Database size={10}/> Data Node</span>
+              <span className="text-[10px] font-bold uppercase text-gray-500 flex items-center gap-1"><Database size={10}/> Load Speed</span>
               <span className="text-xs font-black text-[#111]">14ms</span>
            </div>
         </div>
@@ -61,19 +61,19 @@ export default function PlatformDashboard() {
       {/* KPI Cards - Clean Style */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-2 mb-2">
         <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between group">
-          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Active Ecosystems</p><p className="text-2xl font-black text-gray-900 mt-0.5 group-hover:text-[#FFCC00] transition-colors">124</p></div>
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Registered Companies</p><p className="text-2xl font-black text-gray-900 mt-0.5 group-hover:text-[#FFCC00] transition-colors">124</p></div>
           <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-50 text-gray-400"><Building2 size={20}/></div>
         </div>
         <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between group">
-          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Global MRI (MRR)</p><p className="text-2xl font-black text-gray-900 mt-0.5 group-hover:text-emerald-500 transition-colors">$84.2K</p></div>
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Monthly Revenue (MRR)</p><p className="text-2xl font-black text-gray-900 mt-0.5 group-hover:text-emerald-500 transition-colors">$84.2K</p></div>
           <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-50 text-gray-400"><TrendingUp size={20}/></div>
         </div>
         <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between group">
-          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Global Fleet Ops</p><p className="text-2xl font-black text-gray-900 mt-0.5 group-hover:text-violet-500 transition-colors">4,120</p></div>
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Total Deliveries</p><p className="text-2xl font-black text-gray-900 mt-0.5 group-hover:text-violet-500 transition-colors">4,120</p></div>
           <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-50 text-gray-400"><Users size={20}/></div>
         </div>
         <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between group">
-          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Live Sessions</p><p className="text-2xl font-black text-gray-900 mt-0.5 group-hover:text-blue-500 transition-colors">942</p></div>
+          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Live Users</p><p className="text-2xl font-black text-gray-900 mt-0.5 group-hover:text-blue-500 transition-colors">942</p></div>
           <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-50 text-gray-400"><Zap size={20}/></div>
         </div>
       </div>
@@ -84,7 +84,7 @@ export default function PlatformDashboard() {
          <div className="lg:col-span-2 bg-white rounded-xl border border-gray-100 shadow-sm flex flex-col">
             <div className="px-6 py-5 border-b border-gray-100 bg-[#FAFAFA] flex justify-between items-center">
                <div>
-                  <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Global Velocity Matrix</h3>
+                  <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Revenue & Growth Overview</h3>
                </div>
                <button onClick={() => setYear(year === 2026 ? 2025 : 2026)} className="flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-600 shadow-sm hover:bg-gray-50">
                   FY-{year} <ChevronDown size={14} />
@@ -112,7 +112,7 @@ export default function PlatformDashboard() {
          <div className="flex flex-col gap-6">
             <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden flex flex-col items-stretch h-full">
                <div className="px-6 py-5 border-b border-gray-100 bg-[#FAFAFA] flex justify-between items-center">
-                  <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Active Core Nodes</h3>
+                  <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Recent Client Activity</h3>
                </div>
                <div className="divide-y divide-gray-50 flex-1">
                   {tenants.map(t => (
@@ -135,7 +135,7 @@ export default function PlatformDashboard() {
                     </div>
                   ))}
                </div>
-               <button onClick={() => navigate('/platform/tenants')} className="w-full py-3 bg-[#FAFAFA] text-blue-600 font-bold uppercase text-[10px] tracking-widest hover:bg-gray-50 transition-all border-t border-gray-100">See All Directories →</button>
+               <button onClick={() => navigate('/platform/tenants')} className="w-full py-3 bg-[#FAFAFA] text-blue-600 font-bold uppercase text-[10px] tracking-widest hover:bg-gray-50 transition-all border-t border-gray-100">View All Companies →</button>
             </div>
          </div>
 

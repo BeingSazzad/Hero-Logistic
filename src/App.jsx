@@ -54,6 +54,7 @@ import DispatchDrivers   from './pages/Dispatch/Drivers';
 import DispatchMessages  from './pages/Dispatch/Messages';
 import DispatchSettings  from './pages/Dispatch/Settings';
 import DispatchVehicleDetail from './pages/Dispatch/VehicleDetail';
+import DispatchFleet from './pages/Dispatch/Fleet';
 
 // ── Driver ───────────────────────────────────────────────────────
 import DriverHome        from './pages/Driver/Home';
@@ -149,9 +150,11 @@ function App() {
           <Route path="jobs/create" element={<DispatchCreateJob />} />
           <Route path="tracking"     element={<DispatchTracking />} />
           <Route path="drivers"      element={<DispatchDrivers />} />
+          <Route path="drivers/add"  element={<AdminAddDriver />} />
           <Route path="drivers/:driverId" element={<AdminDriverDetail />} />
           <Route path="messages"     element={<DispatchMessages />} />
           <Route path="settings"     element={<DispatchSettings />} />
+          <Route path="fleet"        element={<DispatchFleet />} />
           <Route path="vehicles/:vehicleId" element={<DispatchVehicleDetail />} />
         </Route>
 
