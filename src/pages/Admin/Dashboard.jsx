@@ -4,7 +4,8 @@ import {
   Users, Truck, Package, MapPin, TrendingUp, ArrowUpRight, 
   Building2, UserCog, Briefcase, AlertTriangle, Blocks,
   Plus, ChevronDown, Activity, Globe, ShieldAlert, Zap,
-  Navigation, CheckCircle, Smartphone, ExternalLink, Filter
+  Navigation, CheckCircle, Smartphone, ExternalLink, Filter,
+  Clock, ShieldCheck
 } from 'lucide-react';
 
 export default function AdminDashboard() {
@@ -73,39 +74,70 @@ export default function AdminDashboard() {
         <div className="lg:col-span-2 space-y-6">
 
 
-           {/* Revenue Pulse */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm overflow-hidden relative">
-               <div className="flex justify-between items-center mb-6">
-                  <div>
-                    <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Revenue Growth</h3>
-                    <p className="hero-metadata text-hero-neutral mt-1">Global income trends across the logistics network</p>
-                  </div>
-               </div>
+           {/* Revenue & Metrics Overview */}
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Revenue Pulse (Now more compact) */}
+              <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm overflow-hidden relative flex flex-col justify-between">
+                 <div className="flex justify-between items-center mb-4">
+                    <div>
+                      <h3 className="text-[10px] font-black text-gray-900 uppercase tracking-widest">Revenue Growth</h3>
+                      <p className="text-[9px] text-gray-400 font-bold uppercase tracking-tight mt-1">Global Network Trends</p>
+                    </div>
+                    <TrendingUp size={14} className="text-hero-success"/>
+                 </div>
 
-               <div className="w-full">
-                  <div className="flex items-end gap-1 h-48 w-full mb-4 px-2">
-                     {[40, 65, 45, 80, 55, 90, 70, 100, 85, 120, 95, 140, 110, 150, 130, 180, 155, 200, 175, 220].map((h, i) => (
-                       <div key={i} className="flex-1 bg-blue-50 rounded-t-sm relative group cursor-pointer hover:bg-brand transition-colors" style={{ height: `${(h/220)*100}%` }}>
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-black text-white text-[9px] font-black px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap transition-all z-20">
-                            ${h}k
-                          </div>
-                       </div>
-                     ))}
-                  </div>
-               </div>
-              <div className="flex justify-between items-center pt-4 border-t border-gray-50">
-                <div className="flex items-center gap-6">
-                   <div>
-                       <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Total Income</p>
-                      <p className="text-lg font-black text-emerald-600 leading-none">$2.42M</p>
+                 <div className="w-full">
+                    <div className="flex items-end gap-1 h-24 w-full mb-4 px-1">
+                       {[40, 65, 45, 80, 55, 90, 70, 100, 85, 120, 95, 140, 110, 150].map((h, i) => (
+                         <div key={i} className="flex-1 bg-blue-50/50 rounded-t-sm relative group cursor-pointer hover:bg-brand transition-colors" style={{ height: `${(h/220)*100}%` }}>
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-black text-white text-[9px] font-black px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap transition-all z-20">
+                              ${h}k
+                            </div>
+                         </div>
+                       ))}
+                    </div>
+                 </div>
+                 
+                 <div className="pt-3 border-t border-gray-50 flex justify-between items-center">
+                    <span className="text-lg font-black text-hero-dark">$2.42M</span>
+                    <span className="text-[9px] font-black text-hero-success uppercase">+18.4%</span>
+                 </div>
+              </div>
+
+              {/* Performance Health (Fill the grid) */}
+              <div className="grid grid-cols-2 gap-4">
+                 {[
+                   { label: 'Avg Delivery Time', val: '42m', icon: Clock, color: 'text-blue-500', bg: 'bg-blue-50' },
+                   { label: 'Fleet Reliability', val: '98%', icon: ShieldCheck, color: 'text-emerald-500', bg: 'bg-emerald-50' },
+                   { label: 'Customer Rating',  val: '4.9',  icon: Zap,        color: 'text-amber-500', bg: 'bg-amber-50' },
+                   { label: 'Return Rate',      val: '0.4%', icon: ArrowUpRight, color: 'text-hero-neutral', bg: 'bg-gray-50' },
+                 ].map((stat, i) => (
+                   <div key={i} className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm flex flex-col justify-between group hover:border-brand/40 transition-all">
+                      <div className={`w-8 h-8 rounded-lg ${stat.bg} ${stat.color} flex items-center justify-center mb-2`}>
+                         <stat.icon size={14}/>
+                      </div>
+                      <div>
+                         <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{stat.label}</p>
+                         <p className="text-lg font-black text-hero-dark mt-0.5">{stat.val}</p>
+                      </div>
                    </div>
-                   <div className="w-px h-8 bg-gray-100"></div>
-                   <div>
-                       <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Monthly Growth</p>
-                      <p className="text-lg font-black text-blue-600 leading-none">+18.4%</p>
-                   </div>
-                </div>
-                 <button className="text-[10px] font-black text-gray-500 hover:text-black uppercase tracking-widest border border-gray-200 px-4 py-2 rounded-xl transition-all">View All Reports</button>
+                 ))}
+              </div>
+           </div>
+
+           {/* Shipment Velocity (Full width card under the top 2) */}
+           <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
+              <div className="flex justify-between items-center mb-6">
+                 <div>
+                    <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Network Shipment Velocity</h3>
+                    <p className="hero-metadata text-hero-neutral mt-1">Real-time throughput across all active transit nodes</p>
+                 </div>
+                 <button className="text-[9px] font-black text-gray-500 hover:text-black uppercase tracking-widest border border-gray-200 px-3 py-1.5 rounded-xl">Generate PDF Report</button>
+              </div>
+              <div className="flex items-end gap-1.5 h-32 w-full">
+                 {[120, 150, 130, 220, 175, 200, 180, 240, 210, 230, 250, 220, 190, 260, 240, 280, 265, 300, 280, 320, 290, 310, 330, 310, 340].map((h, i) => (
+                   <div key={i} className="flex-1 bg-gray-50 rounded-t-sm relative group cursor-pointer hover:bg-emerald-500 transition-colors" style={{ height: `${(h/340)*100}%` }}></div>
+                 ))}
               </div>
            </div>
         </div>
