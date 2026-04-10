@@ -20,9 +20,9 @@ export default function WarehouseDashboard() {
       {/* Header */}
       <div className="flex justify-between items-center mb-2 px-2">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Floor Command</h1>
-          <p className="text-sm text-gray-500 mt-1">
-            Zone: <span className="font-bold text-gray-900">SYD-CENTRAL-A14</span> &nbsp;·&nbsp; Station: <span className="font-bold text-gray-900">WH-SCAN-01</span>
+          <h1 className="hero-h1">Overview</h1>
+          <p className="hero-body text-hero-neutral mt-1">
+            Zone: <span className="font-bold text-hero-dark">SYD-CENTRAL-A14</span> &nbsp;·&nbsp; Station: <span className="font-bold text-hero-dark">WH-SCAN-01</span>
           </p>
         </div>
         <div className="flex items-center gap-4 bg-white px-5 py-2.5 rounded-lg border border-gray-200 shadow-sm">
@@ -51,7 +51,7 @@ export default function WarehouseDashboard() {
             <ArrowDownToLine size={26} strokeWidth={2.5} className="text-black" />
           </div>
           <div>
-            <h3 className="font-black text-black uppercase text-sm tracking-widest">Receive Load</h3>
+            <h3 className="font-black text-black uppercase text-sm tracking-widest">Receive Shipment</h3>
             <p className="text-[10px] font-bold text-black/60 uppercase mt-0.5">Incoming Handover Scan</p>
           </div>
         </button>
@@ -73,7 +73,7 @@ export default function WarehouseDashboard() {
             <ArrowUpFromLine size={26} strokeWidth={2.5} />
           </div>
           <div>
-            <h3 className="font-black text-white uppercase text-sm tracking-widest">Dispatch Load</h3>
+            <h3 className="font-black text-white uppercase text-sm tracking-widest">Dispatch Shipment</h3>
             <p className="text-[10px] font-bold text-gray-500 uppercase mt-0.5">Outbound Verification</p>
           </div>
         </button>

@@ -169,8 +169,8 @@ export default function WarehouseInbound() {
       {/* Header */}
       <div className="flex justify-between items-center mb-2 px-2">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Incoming Handovers</h1>
-          <p className="text-sm text-gray-500 mt-1">Verify and formally receive inter-branch transfers into inventory.</p>
+          <h1 className="hero-h1">Inbound Sorting</h1>
+          <p className="hero-body text-hero-neutral mt-1">Verify and formally receive inter-branch transfers into inventory.</p>
         </div>
       </div>
 

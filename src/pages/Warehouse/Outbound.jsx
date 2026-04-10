@@ -19,10 +19,15 @@ export default function WarehouseOutbound() {
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto">
-      <div className="flex justify-between items-end">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Outbound Loading</h1>
-          <p className="text-sm text-gray-500 mt-1">{outbound.filter(o => o.status !== 'Dispatched').length} trucks to load today</p>
+      <div className="flex justify-between items-center mb-6 px-2">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-100 rounded-hero-sm text-hero-dark shadow-sm">
+            <ArrowUpFromLine size={20} />
+          </div>
+          <div>
+            <h1 className="hero-h1">Outbound Staging</h1>
+            <p className="hero-body text-hero-neutral mt-1">{outbound.filter(o => o.status !== 'Dispatched').length} shipments ready for vehicle loading</p>
+          </div>
         </div>
       </div>
 

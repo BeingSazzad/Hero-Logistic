@@ -6,8 +6,8 @@ export default function AdminJobsConfig() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto">
       <div className="flex justify-between items-end mb-2">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Job & Process Configuration</h1>
-          <p className="text-sm text-gray-500 mt-1">Define how jobs behave, status flows, and Proof of Delivery (POD) requirements.</p>
+          <h1 className="hero-h1">Global Shipment Monitor</h1>
+          <p className="hero-body text-hero-neutral mt-1">Define how shipments behave, status flows, and Proof of Delivery (POD) requirements.</p>
         </div>
         <button className="btn btn-primary">Save Configurations</button>
       </div>
@@ -19,7 +19,7 @@ export default function AdminJobsConfig() {
         {/* Job Types */}
         <div className="card bg-white shadow-sm p-6">
           <div className="flex justify-between items-center mb-4 pb-2 border-b border-gray-100">
-             <h3 className="font-bold text-gray-900 flex items-center gap-2"><Settings2 size={16}/> Supported Job Types</h3>
+             <h3 className="font-bold text-gray-900 flex items-center gap-2"><Settings2 size={16}/> Supported Shipment Types</h3>
              <button className="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center gap-1"><Plus size={14}/> Add Type</button>
           </div>
           <div className="flex flex-col gap-3">

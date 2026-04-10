@@ -47,7 +47,7 @@ export default function AdminJobsMonitor() {
             <BarChart size={20} />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Global Jobs Monitor</h1>
+            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Global Shipment Monitor</h1>
             <p className="text-sm text-gray-500 mt-1">Cross-tenant oversight of all live logistics operations.</p>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function AdminJobsMonitor() {
           <table className="w-full text-left">
             <thead className="bg-[#FAFAFA] text-[10px] font-bold text-gray-500 uppercase tracking-widest border-b border-gray-100">
               <tr>
-                <th className="px-6 py-4">Job ID</th>
+                <th className="px-6 py-4">Shipment ID</th>
                 <th className="px-6 py-4">Tenant / Hub</th>
                 <th className="px-6 py-4">Driver</th>
                 <th className="px-6 py-4">Status</th>

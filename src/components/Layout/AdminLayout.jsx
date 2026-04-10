@@ -14,7 +14,7 @@ const navConfig = [
       { to: '/admin/shipments',   label: 'Shipments' },
       { to: '/admin/exceptions',  label: 'Delivery Issues' },
       { to: '/admin/customers',   label: 'Customers' },
-      { to: '/admin/jobs-config', label: 'Global Jobs Monitor' },
+      { to: '/admin/jobs-config', label: 'Global Shipment Monitor' },
     ]
   },
   { type: 'link', label: 'Financial Control', icon: DollarSign, to: '/admin/finance' },
