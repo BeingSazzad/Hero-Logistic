@@ -226,22 +226,23 @@ export default function DriverJobDetail() {
         {job.status === 'In Progress' ? (
            <button 
              onClick={() => navigate('/driver/active')}
-             className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-black py-4 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-lg shadow-yellow-100"
+             className="btn-cta bg-yellow-400 hover:bg-yellow-500 text-black shadow-lg shadow-yellow-100"
            >
-              <Navigation size={18} /> CONTINUE TRIP
+              <Navigation size={18} /> Continue Trip
            </button>
         ) : job.status === 'Completed' ? (
            <button 
-             className="w-full bg-gray-100 text-gray-400 font-black py-4 rounded-2xl flex items-center justify-center gap-3 cursor-not-allowed uppercase tracking-widest text-xs"
+             className="btn-cta bg-gray-100 text-gray-400 cursor-not-allowed"
+             disabled
            >
               <ShieldCheck size={18} /> Proof of Delivery Uploaded
            </button>
         ) : (
           <button 
             onClick={() => navigate('/driver/active')}
-            className="w-full bg-gray-900 hover:bg-black text-yellow-400 font-black py-4 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-lg shadow-gray-200"
+            className="btn-cta bg-gray-900 hover:bg-black text-yellow-400 shadow-lg shadow-gray-200"
           >
-             <CheckCircle2 size={18} /> START THIS TRIP
+             <CheckCircle2 size={18} /> Start Trip
           </button>
         )}
 

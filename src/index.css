@@ -15,6 +15,23 @@
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: #111827;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ── Global Input Reset ── */
+  input, textarea, select {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400 !important;   /* Always regular — never bold */
+    font-size: 0.9375rem;          /* 15px — comfortable reading size */
+    line-height: 1.5;
+    color: #111827;
+  }
+
+  input::placeholder, textarea::placeholder {
+    font-weight: 400;
+    color: #9CA3AF;  /* gray-400 — subtle, not distracting */
   }
 }
 
@@ -36,11 +53,6 @@
     font-weight: 600 !important; /* Soften the bold everywhere */
   }
   
-  /* Remove harsh uppercase globally where it's currently hardcoded */
-  .uppercase {
-    text-transform: none !important;
-  }
-
   /* Remove excessive letter spacing */
   .tracking-widest, .tracking-wider, .tracking-wide {
     letter-spacing: normal !important;
@@ -101,7 +113,14 @@
 
   /* ── Buttons ── */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer select-none active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 px-5 rounded-xl text-base font-semibold transition-all cursor-pointer select-none active:scale-95;
+    height: 48px; /* Standard 48px touch target */
+  }
+
+  /* Large CTA buttons used in Driver module (full-width action cards) */
+  .btn-cta {
+    @apply w-full inline-flex items-center justify-center gap-2.5 rounded-2xl text-base font-semibold transition-all active:scale-[0.98] cursor-pointer select-none;
+    height: 48px;
   }
 
   .btn-primary {
@@ -124,7 +143,9 @@
 
   /* ── Input ── */
   .input {
-    @apply w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm font-medium outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition bg-white;
+    @apply w-full px-4 border border-gray-200 rounded-xl text-[15px] font-normal text-gray-900 outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition bg-white placeholder:text-gray-400 placeholder:font-normal;
+    height: 48px;  /* consistent with button height */
+    font-weight: 400 !important;
   }
 
   /* ── Table Layout ── */

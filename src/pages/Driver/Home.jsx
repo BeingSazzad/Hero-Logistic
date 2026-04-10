@@ -148,9 +148,8 @@ export default function DriverHome() {
             </div>
             <button className="text-[10px] font-bold text-orange-700 bg-orange-50 hover:bg-orange-100 px-3 py-1.5 rounded-lg border border-orange-200 transition-all uppercase tracking-widest shadow-sm">Sync Now</button>
          </div>
-      </div>
 
-      {/* ── 4. Tactical: Up Next ── */}
+      {/* ── 5. Tactical: Up Next ── */}
       <div className="space-y-3">
         <h3 className="text-sm font-bold text-gray-800 ml-1">Upcoming Jobs</h3>
         <div className="flex flex-col gap-3">
@@ -175,7 +174,7 @@ export default function DriverHome() {
         </div>
       </div>
 
-      {/* ── 5. Alert Board ── */}
+      {/* ── 6. Alert Board ── */}
       <div className="bg-red-50 p-4 rounded-2xl border border-red-100 flex items-center gap-4 mt-2">
          <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center shrink-0">
             <AlertTriangle size={18} className="text-red-600" />
@@ -184,6 +183,8 @@ export default function DriverHome() {
             <p className="text-xs font-bold text-red-900 leading-tight">Sydney Heavy Rain</p>
             <p className="text-xs text-red-700 mt-0.5 font-medium">Expect +15m delay in CBD route.</p>
          </div>
+      </div>
+
       </div>
 
     </div>
