@@ -74,72 +74,91 @@ export default function AdminDashboard() {
         <div className="lg:col-span-2 space-y-6">
 
 
-           {/* Revenue & Metrics Overview */}
+           {/* Top Growth Charts Grid */}
            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Revenue Pulse (Now more compact) */}
-              <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm overflow-hidden relative flex flex-col justify-between">
-                 <div className="flex justify-between items-center mb-4">
+              {/* Shipment Growth Chart */}
+              <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm overflow-hidden flex flex-col">
+                 <div className="flex justify-between items-center mb-6">
                     <div>
-                      <h3 className="text-[10px] font-black text-gray-900 uppercase tracking-widest">Revenue Growth</h3>
-                      <p className="text-[9px] text-gray-400 font-bold uppercase tracking-tight mt-1">Global Network Trends</p>
+                       <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Shipment Volume</h3>
+                       <p className="hero-metadata text-hero-neutral mt-1">12-Month Performance Trend</p>
                     </div>
-                    <TrendingUp size={14} className="text-hero-success"/>
+                    <div className="relative">
+                       <select 
+                         value={shipmentYear} 
+                         onChange={(e) => setShipmentYear(e.target.value)}
+                         className="appearance-none bg-gray-50 border border-gray-200 rounded-lg pl-3 pr-8 py-1.5 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer hover:bg-white transition-all"
+                       >
+                          <option value="2026">2026 FY</option>
+                          <option value="2025">2025 FY</option>
+                       </select>
+                       <ChevronDown size={12} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"/>
+                    </div>
                  </div>
-
-                 <div className="w-full">
-                    <div className="flex items-end gap-1 h-24 w-full mb-4 px-1">
-                       {[40, 65, 45, 80, 55, 90, 70, 100, 85, 120, 95, 140, 110, 150].map((h, i) => (
-                         <div key={i} className="flex-1 bg-blue-50/50 rounded-t-sm relative group cursor-pointer hover:bg-brand transition-colors" style={{ height: `${(h/220)*100}%` }}>
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-black text-white text-[9px] font-black px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap transition-all z-20">
-                              ${h}k
+                 <div className="flex-1 flex items-end gap-1.5 h-32 w-full mb-6 px-1">
+                    {[12, 18, 15, 22, 28, 25, 32, 38, 45, 42, 48, 55].map((v, i) => (
+                      <div key={i} className="flex-1 flex flex-col justify-end gap-1.5 group cursor-pointer">
+                         <div className="w-full bg-blue-50 rounded-t-sm group-hover:bg-brand transition-all relative" style={{ height: `${(v/60)*100}%` }}>
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-black text-white text-[8px] font-black px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap z-20">
+                               {v}k
                             </div>
                          </div>
-                       ))}
+                         <span className="text-[7px] font-bold text-gray-400 text-center uppercase">
+                           {['J','F','M','A','M','J','J','A','S','O','N','D'][i]}
+                         </span>
+                      </div>
+                    ))}
+                 </div>
+                 <div className="pt-4 border-t border-gray-50 flex justify-between items-center">
+                    <div>
+                       <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Yearly Total</p>
+                       <p className="text-md font-black text-hero-dark">342.5k <span className="text-[9px] text-hero-success">↑ 12%</span></p>
                     </div>
                  </div>
-                 
-                 <div className="pt-3 border-t border-gray-50 flex justify-between items-center">
-                    <span className="text-lg font-black text-hero-dark">$2.42M</span>
-                    <span className="text-[9px] font-black text-hero-success uppercase">+18.4%</span>
-                 </div>
               </div>
 
-              {/* Performance Health (Fill the grid) */}
-              <div className="grid grid-cols-2 gap-4">
-                 {[
-                   { label: 'Avg Delivery Time', val: '42m', icon: Clock, color: 'text-blue-500', bg: 'bg-blue-50' },
-                   { label: 'Fleet Reliability', val: '98%', icon: ShieldCheck, color: 'text-emerald-500', bg: 'bg-emerald-50' },
-                   { label: 'Customer Rating',  val: '4.9',  icon: Zap,        color: 'text-amber-500', bg: 'bg-amber-50' },
-                   { label: 'Return Rate',      val: '0.4%', icon: ArrowUpRight, color: 'text-hero-neutral', bg: 'bg-gray-50' },
-                 ].map((stat, i) => (
-                   <div key={i} className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm flex flex-col justify-between group hover:border-brand/40 transition-all">
-                      <div className={`w-8 h-8 rounded-lg ${stat.bg} ${stat.color} flex items-center justify-center mb-2`}>
-                         <stat.icon size={14}/>
+              {/* Financial Revenue Chart */}
+              <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm overflow-hidden flex flex-col">
+                 <div className="flex justify-between items-center mb-6">
+                    <div>
+                       <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Financial Revenue</h3>
+                       <p className="hero-metadata text-hero-neutral mt-1">12-Month Revenue Pulse</p>
+                    </div>
+                    <div className="relative">
+                       <select 
+                         value={revenueYear} 
+                         onChange={(e) => setRevenueYear(e.target.value)}
+                         className="appearance-none bg-emerald-50/50 border border-emerald-100 rounded-lg pl-3 pr-8 py-1.5 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer hover:bg-white transition-all"
+                       >
+                          <option value="2026">2026 FY</option>
+                          <option value="2025">2025 FY</option>
+                       </select>
+                       <ChevronDown size={12} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-emerald-400 pointer-events-none"/>
+                    </div>
+                 </div>
+                 <div className="flex-1 flex items-end gap-1.5 h-32 w-full mb-6 px-1">
+                    {[140, 165, 155, 180, 210, 195, 230, 250, 280, 265, 305, 342].map((v, i) => (
+                      <div key={i} className="flex-1 flex flex-col justify-end gap-1.5 group cursor-pointer">
+                         <div className="w-full bg-emerald-50 rounded-t-sm group-hover:bg-emerald-500 transition-all relative" style={{ height: `${(v/380)*100}%` }}>
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-black text-white text-[8px] font-black px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap z-20">
+                               ${v}k
+                            </div>
+                         </div>
+                         <span className="text-[7px] font-bold text-gray-400 text-center uppercase">
+                           {['J','F','M','A','M','J','J','A','S','O','N','D'][i]}
+                         </span>
                       </div>
-                      <div>
-                         <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{stat.label}</p>
-                         <p className="text-lg font-black text-hero-dark mt-0.5">{stat.val}</p>
-                      </div>
-                   </div>
-                 ))}
+                    ))}
+                 </div>
+                 <div className="pt-4 border-t border-gray-50 flex justify-between items-center">
+                    <div>
+                       <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Net Earnings</p>
+                       <p className="text-md font-black text-emerald-600">$2.84M <span className="text-[9px] text-emerald-500">↑ 18%</span></p>
+                    </div>
+                 </div>
               </div>
            </div>
 
-           {/* Shipment Velocity (Full width card under the top 2) */}
-           <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm">
-              <div className="flex justify-between items-center mb-6">
-                 <div>
-                    <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Network Shipment Velocity</h3>
-                    <p className="hero-metadata text-hero-neutral mt-1">Real-time throughput across all active transit nodes</p>
-                 </div>
-                 <button className="text-[9px] font-black text-gray-500 hover:text-black uppercase tracking-widest border border-gray-200 px-3 py-1.5 rounded-xl">Generate PDF Report</button>
-              </div>
-              <div className="flex items-end gap-1.5 h-32 w-full">
-                 {[120, 150, 130, 220, 175, 200, 180, 240, 210, 230, 250, 220, 190, 260, 240, 280, 265, 300, 280, 320, 290, 310, 330, 310, 340].map((h, i) => (
-                   <div key={i} className="flex-1 bg-gray-50 rounded-t-sm relative group cursor-pointer hover:bg-emerald-500 transition-colors" style={{ height: `${(h/340)*100}%` }}></div>
-                 ))}
-              </div>
-           </div>
         </div>
 
         {/* Operational Status & Shortcuts (Pro Sidebar) */}
