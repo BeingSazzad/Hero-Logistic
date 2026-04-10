@@ -89,9 +89,8 @@ export default function DriverJobs() {
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${
-              tab === t.key ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500'
-            }`}
+            className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${tab === t.key ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500'
+              }`}
           >
             {t.label}
           </button>
@@ -126,7 +125,7 @@ export default function DriverJobs() {
 
             <div className="mt-3 pt-3 border-t border-gray-50 flex justify-between items-center">
               <span className="text-sm font-black text-gray-900">{job.earnings}</span>
-              <button 
+              <button
                 onClick={() => navigate(`/driver/shipments/${job.id}`)}
                 className="flex items-center gap-1 text-xs font-bold text-yellow-600 hover:text-yellow-700 active:scale-95 transition-all"
               >

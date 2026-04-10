@@ -16,9 +16,34 @@ export default function Subscriptions() {
   ];
 
   const plans = [
-    { id: 'str', name: 'Starter', price: '$0', users: '3 Users', fleet: '5 Assets', color: 'bg-gray-400', tenants: 12 },
-    { id: 'pro', name: 'Professional', price: '$149', users: 'Unlimited', fleet: '50 Assets', color: 'bg-[#FFCC00]', tenants: 89, recommended: true },
-    { id: 'ent', name: 'Enterprise', price: 'Custom', users: 'Unlimited', fleet: 'Unlimited', color: 'bg-black', tenants: 53 },
+    { 
+      id: 'str', name: 'Starter', price: '$0', billing: 'Free forever', users: '3 Users', fleet: '5 Vehicles', support: 'Email only',
+      features: [true, false, false, false, false], color: 'bg-gray-300', tenants: 12,
+      desc: 'For small operators just getting started.'
+    },
+    { 
+      id: 'pro', name: 'Professional', price: '$149', billing: 'per month', users: '15 Users', fleet: '50 Vehicles', support: 'Priority Email',
+      features: [true, true, true, false, false], color: 'bg-[#FFCC00]', tenants: 89, recommended: true,
+      desc: 'Best for growing logistics businesses.'
+    },
+    { 
+      id: 'biz', name: 'Business', price: '$349', billing: 'per month', users: '50 Users', fleet: '200 Vehicles', support: '24/7 Phone + Chat',
+      features: [true, true, true, true, false], color: 'bg-blue-500', tenants: 53,
+      desc: 'For multi-branch operations and large fleets.'
+    },
+    { 
+      id: 'ent', name: 'Enterprise', price: 'Custom', billing: 'Annual contract', users: 'Unlimited', fleet: 'Unlimited', support: 'Dedicated Manager',
+      features: [true, true, true, true, true], color: 'bg-black', tenants: 18,
+      desc: 'Full-scale white-label deployments.'
+    },
+  ];
+
+  const featureRows = [
+    'Shipment Management',
+    'Multi-Branch Support',
+    'API & Integrations',
+    'Custom Branding / White Label',
+    'Dedicated Account Manager',
   ];
 
   return (
@@ -70,26 +95,27 @@ export default function Subscriptions() {
             </button>
          </div>
          
-         <div className="p-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+         <div className="p-8 grid grid-cols-1 md:grid-cols-4 gap-6">
             {plans.map((p, i) => (
-              <div key={i} className="flex flex-col border border-gray-100 rounded-xl overflow-hidden hover:border-[#FFCC00] hover:shadow-2xl transition-all group relative">
+              <div key={i} className="flex flex-col border border-gray-100 rounded-xl overflow-hidden hover:border-[#FFCC00] hover:shadow-xl transition-all group relative">
                  {p.recommended && (
                     <div className="absolute top-4 right-4 bg-[#FFCC00] text-orange-900 text-[10px] font-bold px-2.5 py-0.5 rounded shadow-sm">Popular</div>
                  )}
                  <div className={`h-1.5 w-full ${p.color}`}></div>
-                 <div className="p-6 flex-1 flex flex-col">
-                    <p className="hero-metadata mb-1.5">{p.tenants} Active Companies</p>
-                    <h4 className="text-2xl font-bold text-gray-900 mb-1">{p.name}</h4>
-                    <div className="flex items-baseline gap-1 mt-4 mb-6 text-2xl font-bold text-gray-900">
+                 <div className="p-5 flex-1 flex flex-col">
+                    <p className="hero-metadata mb-1.5">{p.tenants} Companies</p>
+                    <h4 className="text-xl font-bold text-gray-900 mb-0.5">{p.name}</h4>
+                    <p className="text-xs text-gray-400 font-medium mb-4 leading-relaxed">{p.desc}</p>
+                    <div className="flex items-baseline gap-1 mb-1 text-2xl font-bold text-gray-900">
                        {p.price}
                        {p.price !== 'Custom' && <span className="text-xs text-gray-500 font-medium">/mo</span>}
                     </div>
-                    <div className="space-y-3 mb-8">
-                       <div className="flex items-center gap-2 text-sm font-medium text-gray-700"><CheckCircle2 size={16} className="text-emerald-500"/> {p.users}</div>
-                       <div className="flex items-center gap-2 text-sm font-medium text-gray-700"><CheckCircle2 size={16} className="text-emerald-500"/> {p.fleet}</div>
-                       <div className="flex items-center gap-2 text-sm font-medium text-gray-700"><CheckCircle2 size={16} className="text-emerald-500"/> Priority Support</div>
+                    <p className="text-[10px] text-gray-400 font-medium mb-5">{p.billing}</p>
+                    <div className="space-y-2 mb-6">
+                       <div className="flex items-center gap-2 text-xs font-medium text-gray-700"><CheckCircle2 size={14} className="text-emerald-500 shrink-0"/> {p.users}</div>
+                       <div className="flex items-center gap-2 text-xs font-medium text-gray-700"><CheckCircle2 size={14} className="text-emerald-500 shrink-0"/> {p.fleet}</div>
+                       <div className="flex items-center gap-2 text-xs font-medium text-gray-700"><CheckCircle2 size={14} className="text-emerald-500 shrink-0"/> {p.support}</div>
                     </div>
-                    
                     <div className="mt-auto flex items-center gap-2 pt-4 border-t border-gray-50">
                        <button onClick={() => { setEditingPlan(p); setPlanModal(true); }} className="flex-1 py-2 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg text-xs font-semibold text-gray-700 transition-colors flex items-center justify-center gap-2">
                          <Edit2 size={14}/> Edit
@@ -101,6 +127,42 @@ export default function Subscriptions() {
                  </div>
               </div>
             ))}
+         </div>
+      </div>
+
+      {/* ── Feature Comparison Table ── */}
+      <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden mb-6">
+         <div className="p-6 border-b border-gray-50 bg-[#FAFAFA]">
+            <h3 className="text-sm font-semibold text-gray-800">Feature Comparison</h3>
+            <p className="text-xs text-gray-500 font-medium mt-0.5">See exactly what's included in each plan</p>
+         </div>
+         <div className="overflow-x-auto">
+            <table className="w-full">
+               <thead>
+                  <tr className="border-b border-gray-50">
+                     <th className="text-left p-4 text-xs font-semibold text-gray-500 w-1/3">Feature</th>
+                     {plans.map(p => (
+                        <th key={p.id} className="p-4 text-center">
+                           <span className={`text-xs font-bold px-3 py-1 rounded-full ${p.recommended ? 'bg-[#FFCC00] text-black' : 'bg-gray-100 text-gray-700'}`}>{p.name}</span>
+                        </th>
+                     ))}
+                  </tr>
+               </thead>
+               <tbody>
+                  {featureRows.map((feat, fi) => (
+                     <tr key={fi} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/50">
+                        <td className="p-4 text-sm font-medium text-gray-700">{feat}</td>
+                        {plans.map(p => (
+                           <td key={p.id} className="p-4 text-center">
+                              {p.features[fi]
+                                 ? <CheckCircle2 size={18} className="text-emerald-500 mx-auto" />
+                                 : <X size={18} className="text-gray-200 mx-auto" />}
+                           </td>
+                        ))}
+                     </tr>
+                  ))}
+               </tbody>
+            </table>
          </div>
       </div>
       

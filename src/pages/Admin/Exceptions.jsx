@@ -47,8 +47,8 @@ export default function AdminExceptions() {
             <AlertCircle size={20}/>
           </div>
           <div>
-            <h1 className="hero-h1">Exceptions Tracker</h1>
-            <p className="hero-body text-hero-neutral mt-1">{issues.length} Operational anomalies requiring intervention across the network</p>
+            <h1 className="hero-h1">Delivery Issues</h1>
+            <p className="hero-body text-hero-neutral mt-1">{issues.length} delivery problems requiring attention across the network</p>
           </div>
         </div>
         
@@ -69,7 +69,7 @@ export default function AdminExceptions() {
            <div className="w-16 h-16 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mb-4">
               <CheckCircle size={32} />
            </div>
-           <h2 className="text-xl font-black text-gray-900 mb-1">Excellent! No active issues</h2>
+           <h2 className="text-xl font-black text-gray-900 mb-1">All clear! No delivery issues</h2>
            <p className="text-sm text-gray-500 font-medium">All deliveries are moving smoothly across the network.</p>
         </div>
       ) : (

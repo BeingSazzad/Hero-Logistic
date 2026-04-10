@@ -6,10 +6,13 @@ import { useAuth } from '../../context/AuthContext';
 export default function DriverProfile() {
   const navigate = useNavigate();
   const docs = [
-    { name: 'Heavy Vehicle License',  expiry: '14 Jun 2027', ok: true },
-    { name: 'Medical Certificate',    expiry: '1 Feb 2027',  ok: true },
-    { name: 'Police Check',           expiry: '8 Apr 2025',  ok: false },
-    { name: 'Forklift License',       expiry: '30 Sep 2026', ok: true },
+    { name: 'Heavy Vehicle License (HC)',  expiry: '14 Jun 2027', ok: true,  type: 'License' },
+    { name: 'MSIC Card',                  expiry: '22 Mar 2026', ok: true,  type: 'Security' },
+    { name: 'Dangerous Goods Certificate',expiry: '8 Apr 2025',  ok: false, type: 'Certification' },
+    { name: 'White Card (Construction)',  expiry: '30 Sep 2026', ok: true,  type: 'Safety' },
+    { name: 'Medical Certificate',        expiry: '1 Feb 2027',  ok: true,  type: 'Medical' },
+    { name: 'Police Check',               expiry: '8 Apr 2025',  ok: false, type: 'Background' },
+    { name: 'Forklift License',           expiry: '30 Sep 2026', ok: true,  type: 'License' },
   ];
 
   const { user } = useAuth();
@@ -124,20 +127,24 @@ export default function DriverProfile() {
           </div>
           <div className="p-4 mt-2 space-y-3">
              {docs.map(doc => (
-               <div key={doc.name} className={`flex items-center justify-between p-4 rounded-2xl shadow-sm border ${doc.ok ? 'bg-white border-gray-100' : 'bg-red-50 border-red-100'}`}>
-                 <div className="flex items-center gap-3">
-                   {doc.ok
-                     ? <CheckCircle2 size={20} className="text-green-500 shrink-0" />
-                     : <AlertCircle size={20} className="text-red-500 shrink-0" />}
-                   <div>
-                     <p className="text-sm font-bold text-gray-900">{doc.name}</p>
-                     <p className={`text-[11px] uppercase tracking-widest font-black mt-1 ${doc.ok ? 'text-gray-400' : 'text-red-600'}`}>
-                       {doc.ok ? `Expires ${doc.expiry}` : `EXPIRED ${doc.expiry}`}
-                     </p>
-                   </div>
-                 </div>
-               </div>
-             ))}
+                <div key={doc.name} className={`flex items-center justify-between p-4 rounded-2xl shadow-sm border ${doc.ok ? 'bg-white border-gray-100' : 'bg-red-50 border-red-100'}`}>
+                  <div className="flex items-center gap-3">
+                    {doc.ok
+                      ? <CheckCircle2 size={20} className="text-green-500 shrink-0" />
+                      : <AlertCircle size={20} className="text-red-500 shrink-0" />}
+                    <div>
+                      <p className="text-sm font-bold text-gray-900">{doc.name}</p>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider bg-gray-100 px-1.5 py-0.5 rounded">{doc.type}</span>
+                        <p className={`text-[10px] font-bold ${doc.ok ? 'text-gray-400' : 'text-red-600'}`}>
+                          {doc.ok ? `Expires ${doc.expiry}` : `EXPIRED ${doc.expiry}`}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  {!doc.ok && <span className="text-[9px] font-black text-red-600 bg-red-100 px-2 py-1 rounded-md border border-red-200 uppercase tracking-wider">Renew</span>}
+                </div>
+              ))}
              <button className="w-full mt-4 bg-gray-900 hover:bg-black text-white font-bold py-4 rounded-xl text-sm transition-all shadow-sm">Upload New Document</button>
           </div>
         </div>
