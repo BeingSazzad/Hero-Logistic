@@ -69,118 +69,28 @@ export default function AdminDashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
         
-        {/* Network Health Board (Pro Solution) */}
+        {/* Dashboard Intelligence (Pro Solution) */}
         <div className="lg:col-span-2 space-y-6">
-           {/* Section Header */}
-           <div className="flex justify-between items-center px-1 mb-4">
-              <h2 className="hero-h2 flex items-center gap-2">
-                 <Activity size={14} className="text-brand"/> Branch Performance
-              </h2>
-              <button className="hero-metadata text-hero-neutral hover:text-hero-dark transition-colors flex items-center gap-1">
-                 View All Branches <ExternalLink size={10}/>
-              </button>
-           </div>
 
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {[
-                { name: 'SYDNEY CENTRAL', manager: 'Sarah Mitchell', performance: 94, status: 'Optimal', parcels: 156, alerts: 0, color: 'hero-success' },
-                { name: 'MELBOURNE HUB', manager: 'Jack Taylor', performance: 78, status: 'Attention', parcels: 92, alerts: 2, color: 'brand' },
-                { name: 'BRISBANE DEPOT', manager: 'Oliver Brown', performance: 91, status: 'Optimal', parcels: 114, alerts: 0, color: 'hero-success' },
-              ].map((br, i) => (
-                <div key={i} className="card p-5 group hover:border-brand/40">
-                   <div className="flex justify-between items-start mb-4">
-                      <div>
-                         <h4 className="hero-card-title">{br.name}</h4>
-                         <p className="hero-metadata text-hero-neutral">Manager: {br.manager}</p>
-                      </div>
-                      <span className={`badge ${br.status === 'Optimal' ? 'badge-green' : 'badge-red animate-pulse'}`}>
-                         {br.status}
-                      </span>
-                   </div>
-                   <div className="space-y-3">
-                      <div className="flex justify-between items-end">
-                         <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Delivery Success</span>
-                         <span className="text-xs font-black text-gray-900">{br.performance}%</span>
-                      </div>
-                      <div className="w-full h-1.5 bg-gray-50 rounded-full overflow-hidden border border-gray-100">
-                         <div className="h-full transition-all duration-1000" style={{ width: `${br.performance}%`, backgroundColor: br.performance > 80 ? '#10B981' : '#EF4444' }}></div>
-                      </div>
-                      <div className="flex justify-between items-center pt-2">
-                         <div className="flex items-center gap-4">
-                            <div>
-                               <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest leading-none">Fleet Cap.</p>
-                               <p className="text-xs font-black text-gray-900 mt-1">{br.parcels} <span className="text-[9px] text-gray-400 font-medium">/ 200</span></p>
-                            </div>
-                            <div className="w-px h-6 bg-gray-100"></div>
-                            <div>
-                               <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest leading-none">Fleet Utilization</p>
-                               <p className={`text-xs font-black mt-1 ${br.alerts > 0 ? 'text-red-500' : 'text-emerald-600'}`}>
-                                 {br.alerts > 0 ? '72%' : '91%'}
-                               </p>
-                            </div>
-                         </div>
-                         <button className="text-[9px] font-black text-white bg-black px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all uppercase tracking-widest">View Details</button>
-                      </div>
-                   </div>
-                </div>
-              ))}
-              {/* Add Branch Placeholder */}
-              <button className="border-2 border-dashed border-gray-200 rounded-2xl flex flex-col items-center justify-center p-5 text-gray-400 hover:border-[#FFCC00] hover:text-[#FFCC00] transition-all group">
-                 <Plus size={24} className="mb-2 group-hover:scale-125 transition-transform"/>
-                  <span className="text-[10px] font-black uppercase tracking-widest">Add New Branch</span>
-              </button>
-           </div>
 
            {/* Revenue Pulse */}
             <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm overflow-hidden relative">
                <div className="flex justify-between items-center mb-6">
                   <div>
-                    <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Revenue Flow & Distribution</h3>
-                    <p className="hero-metadata text-hero-neutral mt-1">Network-wide income trends vs Branch contribution</p>
-                  </div>
-                  <div className="flex gap-2">
-                    <select className="text-[10px] font-bold border border-gray-200 rounded px-2 py-1 bg-white outline-none">
-                      <option>All Branches</option>
-                      <option>SYDNEY CENTRAL</option>
-                      <option>MELBOURNE HUB</option>
-                    </select>
+                    <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Revenue Growth</h3>
+                    <p className="hero-metadata text-hero-neutral mt-1">Global income trends across the logistics network</p>
                   </div>
                </div>
 
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {/* Left: Bar Growth */}
-                  <div className="md:col-span-2">
-                    <div className="flex items-end gap-1 h-32 w-full mb-4">
-                       {[40, 65, 45, 80, 55, 90, 70, 100, 85, 120, 95, 140, 110, 150, 130, 180, 155, 200, 175, 220].map((h, i) => (
-                         <div key={i} className="flex-1 bg-blue-50 rounded-t-sm relative group cursor-pointer hover:bg-brand transition-colors" style={{ height: `${(h/220)*100}%` }}>
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-black text-white text-[9px] font-black px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap transition-all z-20">
-                              ${h}k
-                            </div>
-                         </div>
-                       ))}
-                    </div>
-                  </div>
-
-                  {/* Right: Branch Contribution Ring */}
-                  <div className="flex flex-col justify-center border-l border-gray-50 pl-4">
-                     <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-4">Market Share</p>
-                     <div className="space-y-3">
-                        {[
-                          { b: 'SYD', pct: 45, color: 'bg-emerald-500' },
-                          { b: 'MEL', pct: 32, color: 'bg-brand' },
-                          { b: 'BNE', pct: 23, color: 'bg-blue-500' },
-                        ].map(m => (
-                          <div key={m.b} className="space-y-1">
-                             <div className="flex justify-between text-[10px] font-bold">
-                                <span>{m.b}</span>
-                                <span>{m.pct}%</span>
-                             </div>
-                             <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
-                                <div className={`h-full ${m.color}`} style={{ width: `${m.pct}%` }}></div>
-                             </div>
+               <div className="w-full">
+                  <div className="flex items-end gap-1 h-48 w-full mb-4 px-2">
+                     {[40, 65, 45, 80, 55, 90, 70, 100, 85, 120, 95, 140, 110, 150, 130, 180, 155, 200, 175, 220].map((h, i) => (
+                       <div key={i} className="flex-1 bg-blue-50 rounded-t-sm relative group cursor-pointer hover:bg-brand transition-colors" style={{ height: `${(h/220)*100}%` }}>
+                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-black text-white text-[9px] font-black px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap transition-all z-20">
+                            ${h}k
                           </div>
-                        ))}
-                     </div>
+                       </div>
+                     ))}
                   </div>
                </div>
               <div className="flex justify-between items-center pt-4 border-t border-gray-50">
