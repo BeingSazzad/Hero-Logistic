@@ -12,7 +12,7 @@ const navConfig = [
     type: 'group', label: 'Operations', icon: Package,
     items: [
       { to: '/admin/shipments',   label: 'Shipments' },
-      { to: '/admin/exceptions',  label: 'Delivery Issues' },
+      { to: '/admin/exceptions',  label: 'Exceptions' },
       { to: '/admin/customers',   label: 'Customers' },
       { to: '/admin/jobs-config', label: 'Global Shipment Monitor' },
     ]

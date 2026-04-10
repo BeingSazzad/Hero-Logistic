@@ -47,7 +47,7 @@ export default function AdminExceptions() {
             <AlertCircle size={20} />
           </div>
           <div>
-            <h1 className="text-xl font-black text-gray-900 leading-none">Delivery Issues</h1>
+            <h1 className="hero-h1">Exceptions</h1>
             <p className="text-[11px] text-gray-400 font-bold mt-1 uppercase tracking-widest">{issues.length} Items Pending Action</p>
           </div>
         </div>
