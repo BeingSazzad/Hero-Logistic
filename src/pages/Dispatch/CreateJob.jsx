@@ -276,9 +276,9 @@ export default function DispatchCreateJob() {
                          className="w-full bg-white border border-gray-200 focus:border-blue-400 rounded-lg py-2.5 pl-11 pr-4 text-sm font-black text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/20 appearance-none cursor-pointer"
                        >
                          <option value="">Select Destination Branch...</option>
-                         <option value="HUB-SYD">Sydney Central Hub (HUB-SYD)</option>
-                         <option value="STA-MEL">Melbourne North Station (STA-MEL)</option>
-                         <option value="STA-BRI">Brisbane Port Station (STA-BRI)</option>
+                         <option value="SYD-CENTRAL">Sydney Central Hub (SYD)</option>
+                         <option value="MEL-HUB">Melbourne Hub (MEL)</option>
+                         <option value="BNE-PORT">Brisbane Port Branch (BNE)</option>
                        </select>
                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={16} />
                     </div>
@@ -427,3 +427,4 @@ export default function DispatchCreateJob() {
     </div>
   );
 }
+

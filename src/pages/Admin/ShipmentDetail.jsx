@@ -5,7 +5,7 @@ import { ArrowLeft, MapPin, CheckCircle2, Circle, AlertTriangle, ShieldAlert, Fi
 // Dynamic Network Stages for sequential custody transfer
 const NETWORK_STAGES = [
   { id: 1, type: 'Pickup', label: 'First Mile Pickup', location: 'Customer Site (Bondi)', actor: 'Local Courier', status: 'Completed', icon: PackageCheck },
-  { id: 2, type: 'Sorting', label: 'Inbound Sorting', location: 'Sydney Central Depot', actor: 'Depot Manager', status: 'Completed', icon: MapPin },
+  { id: 2, type: 'Sorting', label: 'Inbound Sorting', location: 'Sydney Central Hub', actor: 'Depot Manager', status: 'Completed', icon: MapPin },
   { id: 3, type: 'Inter-Hub', label: 'Hub Transfer (Trunk)', location: 'Sydney Hub → Melbourne Hub', actor: 'Line-haul Truck', status: 'Active', icon: Truck },
   { id: 4, type: 'Sorting', label: 'Outbound Sorting', location: 'Melbourne Terminal', actor: 'Hub Supervisor', status: 'Pending', icon: Circle },
   { id: 5, type: 'Delivery', label: 'Last Mile Delivery', location: 'Melbourne CBD', actor: 'Local Courier', status: 'Pending', icon: FileSignature },
@@ -37,7 +37,7 @@ export default function AdminShipmentDetail() {
             </span>
           </div>
           <p className="text-sm font-bold text-gray-500 mt-2 flex items-center gap-2">
-            Acme Corp Logistics <span className="text-gray-300">•</span> Sydney Central Hub → Melbourne North Hub
+            Acme Corp Logistics <span className="text-gray-300">•</span> Sydney Central Hub → Melbourne Hub
           </p>
         </div>
         <div className="flex gap-3">

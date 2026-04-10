@@ -5,9 +5,9 @@ import { Building2, Plus, Users, Truck, Package, Settings, MapPin, UserCog, Glob
 export default function AdminBranches() {
   const navigate = useNavigate();
   const branches = [
-    { id: 'HUB-SYD', name: 'Sydney Central Hub', type: 'Primary Hub', location: 'Strathfield, NSW', manager: 'Michael Adams', staff: 42, activeDocs: 18, capacity: '92%', status: 'Online', performance: 98 },
-    { id: 'STA-MEL', name: 'Melbourne North Station', type: 'Local Station', location: 'Tullamarine, VIC', manager: 'Sarah Mitchell', staff: 14, activeDocs: 6, capacity: '45%', status: 'Online', performance: 84 },
-    { id: 'STA-BRI', name: 'Brisbane Port Station', type: 'Local Station', location: 'Lytton, QLD', manager: 'Liam Smith', staff: 28, activeDocs: 12, capacity: '78%', status: 'Maintenance', performance: 72 }
+    { id: 'SYD-CENTRAL', name: 'Sydney Central Hub',   type: 'Primary Hub',   location: 'Strathfield, NSW', manager: 'Michael Adams',  staff: 42, activeDocs: 18, capacity: '92%', status: 'Online',      performance: 98 },
+    { id: 'MEL-HUB',     name: 'Melbourne Hub',         type: 'Primary Hub',   location: 'Tullamarine, VIC', manager: 'Sarah Mitchell', staff: 14, activeDocs: 6,  capacity: '45%', status: 'Online',      performance: 84 },
+    { id: 'BNE-PORT',    name: 'Brisbane Port Branch',  type: 'Local Branch',  location: 'Lytton, QLD',      manager: 'Liam Smith',     staff: 28, activeDocs: 12, capacity: '78%', status: 'Maintenance', performance: 72 },
   ];
 
   return (

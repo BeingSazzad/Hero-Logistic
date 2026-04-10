@@ -14,7 +14,7 @@ const driver = {
   email: 'jack.taylor@hero.com',
   address: '14 Parramatta Rd, Strathfield NSW 2135',
   status: 'On Trip',
-  depot: 'Sydney Central Depot',
+  depot: 'Sydney Central Hub',
   shiftType: 'Full-time Permanent',
   license: { type: 'NSW HC (Heavy Combination)', number: 'HR-4412', expiry: '12 Sep 2026', status: 'Valid' },
   medical: { expiry: '15 Oct 2026', status: 'Valid' },
@@ -153,9 +153,9 @@ export default function AdminDriverDetail() {
                 <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Assigned Depot</label>
                 {editing ? (
                   <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none focus:outline-none focus:border-[#FFCC00]/50" value={editedDepot} onChange={e => setEditedDepot(e.target.value)}>
-                     <option className="text-black">Sydney Central Depot</option>
-                     <option className="text-black">Melbourne North Hub</option>
-                     <option className="text-black">Brisbane Port Facility</option>
+                     <option className="text-black">Sydney Central Hub</option>
+                     <option className="text-black">Melbourne Hub</option>
+                     <option className="text-black">Brisbane Port Branch</option>
                   </select>
                 ) : (
                   <p className="text-sm font-bold text-white">{editedDepot}</p>

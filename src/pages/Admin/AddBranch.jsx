@@ -10,7 +10,7 @@ export default function AdminAddBranch() {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
-    type: 'Local Station',
+    type: 'Local Branch',
     location: '',
     manager: '',
     phone: '',
@@ -74,7 +74,7 @@ export default function AdminAddBranch() {
                  >
                     <option>Primary Hub</option>
                     <option>Secondary Hub</option>
-                    <option>Local Station</option>
+                    <option>Local Branch</option>
                     <option>Distribution Center</option>
                  </select>
               </div>

@@ -16,7 +16,7 @@ const vehicle = {
   cap: '20t',
   fuelType: 'Diesel',
   status: 'Active',
-  depot: 'Sydney Central Depot',
+  depot: 'Sydney Central Hub',
   assignedDriver: { id: 'DRV-102', name: 'Jack Taylor' },
   currentShipment: { id: 'SHP-20481', route: 'Sydney Port → Blacktown DC', progress: 65 },
   odometer: '184,220 km',
@@ -210,7 +210,7 @@ export default function AdminVehicleDetail() {
               <div>
                 <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Home Depot</label>
                 {editing
-                  ? <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none cursor-pointer focus:outline-none focus:border-white/40 leading-tight" value={editedDepot} onChange={e => setEditedDepot(e.target.value)}><option className="text-black">Sydney Central Depot</option><option className="text-black">Melbourne North Hub</option><option className="text-black">Brisbane Port Facility</option></select>
+                  ? <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none cursor-pointer focus:outline-none focus:border-white/40 leading-tight" value={editedDepot} onChange={e => setEditedDepot(e.target.value)}><option className="text-black">Sydney Central Hub</option><option className="text-black">Melbourne Hub</option><option className="text-black">Brisbane Port Branch</option></select>
                   : <p className="text-sm font-bold text-white">{editedDepot}</p>
                 }
               </div>

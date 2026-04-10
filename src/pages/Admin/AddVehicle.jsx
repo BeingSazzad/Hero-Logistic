@@ -181,8 +181,8 @@ export default function AdminAddVehicle() {
                  <div>
                     <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center gap-2"><MapPin size={10}/> Default Depot</label>
                     <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none cursor-pointer focus:outline-none focus:border-white/40 leading-tight">
-                      <option className="text-black">Sydney Central Depot</option>
-                      <option className="text-black">Melbourne North Hub</option>
+                      <option className="text-black">Sydney Central Hub</option>
+                      <option className="text-black">Melbourne Hub</option>
                       <option className="text-black">Brisbane Port</option>
                     </select>
                  </div>
