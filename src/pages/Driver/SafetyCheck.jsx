@@ -1,142 +1,109 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Camera, Check, AlertTriangle, ArrowRight, ArrowLeft } from 'lucide-react';
+import { 
+  ShieldCheck, CheckCircle2, AlertTriangle, 
+  ChevronRight, Camera, ArrowLeft, 
+  Truck, Thermometer, Droplets, Zap
+} from 'lucide-react';
 
 export default function SafetyCheck() {
   const navigate = useNavigate();
-  const [step, setStep] = useState(1);
   const [checks, setChecks] = useState({
     tires: false,
     lights: false,
     brakes: false,
-    mirrors: false,
-    fluids: false,
+    fuel: false,
+    cabin: false,
     cargo: false,
-    straps: false,
-    safety: false,
-    documents: false,
   });
 
-  const allChecked = Object.values(checks).every(Boolean);
+  const items = [
+    { id: 'tires',   label: 'Tires & Wheels', icon: Truck,       desc: 'Pressure & tread depth OK' },
+    { id: 'lights',  label: 'Lights & Signals', icon: Zap,         desc: 'Headlights, brake & indicators' },
+    { id: 'brakes',  label: 'Braking System',  icon: ShieldCheck, desc: 'Fluid levels & pad response' },
+    { id: 'fuel',    label: 'Fluid Levels',    icon: Droplets,    desc: 'Oil, Coolant & Diesel OK' },
+    { id: 'cabin',   label: 'Cabin Safety',    icon: Thermometer, desc: 'Dash alerts & mirrors clear' },
+    { id: 'cargo',   label: 'Load Security',   icon: CheckCircle2, desc: 'Straps & locks engaged' },
+  ];
+
+  const allDone = Object.values(checks).every(v => v);
+
+  const toggleCheck = (id) => {
+    setChecks(prev => ({ ...prev, [id]: !prev[id] }));
+  };
 
   return (
-    <div className="p-4 flex flex-col min-h-full pb-20">
-      <div className="flex items-center gap-3 mb-6">
-        <button onClick={() => navigate(-1)} className="p-2 -ml-2 rounded-full hover:bg-gray-100">
-          <ArrowLeft size={20} />
+    <div className="flex flex-col bg-gray-50 min-h-screen pb-24">
+      {/* ── Header ── */}
+      <div className="bg-[#111] px-5 py-4 sticky top-0 z-10 flex items-center gap-3 shadow-md">
+        <button onClick={() => navigate('/driver')} className="text-white hover:text-yellow-400 p-1 -ml-2 transition-colors">
+           <ArrowLeft size={24} />
         </button>
-        <div>
-          <h2 className="text-xl font-bold">Safety Check</h2>
-          <p className="text-sm text-gray-500">Step {step} of 3</p>
-        </div>
+        <h1 className="text-white font-bold text-lg tracking-wide">Pre-Trip Safety</h1>
       </div>
 
-      <div className="flex gap-1 mb-6">
-        <div className={`h-1.5 flex-1 rounded-full ${step >= 1 ? 'bg-yellow-400' : 'bg-gray-200'}`} />
-        <div className={`h-1.5 flex-1 rounded-full ${step >= 2 ? 'bg-yellow-400' : 'bg-gray-200'}`} />
-        <div className={`h-1.5 flex-1 rounded-full ${step >= 3 ? 'bg-yellow-400' : 'bg-gray-200'}`} />
-      </div>
-
-      {step === 1 && (
-        <div className="flex flex-col gap-4 flex-1">
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
-            <h3 className="font-bold text-gray-900 mb-1">Vehicle Inspection</h3>
-            <p className="text-sm text-gray-500 mb-5">Vehicle: NSW-456-XYZ (Volvo FH16)</p>
-            
-            <div className="flex flex-col gap-3">
-              {Object.keys(checks).map((key) => (
-                <label key={key} className="flex items-center gap-3 p-3 rounded-xl border border-gray-100 hover:bg-gray-50 transition cursor-pointer">
-                  <div className={`w-6 h-6 rounded border flex items-center justify-center shrink-0 ${checks[key] ? 'bg-yellow-400 border-yellow-400 text-black' : 'border-gray-300 text-transparent'}`}>
-                    <Check size={14} strokeWidth={3} />
-                  </div>
-                  <span className="text-sm font-medium text-gray-700 capitalize">
-                    {key} {key === 'tires' && '(pressure, tread, damage)'}
-                    {key === 'lights' && '(headlights, brake, signals)'}
-                    {key === 'brakes' && '(test before moving)'}
-                  </span>
-                </label>
-              ))}
-            </div>
-
-            <div className="mt-6 flex items-start gap-3 p-3 bg-red-50 rounded-xl">
-              <AlertTriangle size={18} className="text-red-500 shrink-0 mt-0.5" />
+      <div className="p-5 flex flex-col gap-6">
+        
+        {/* ── Vehicle Info ── */}
+        <div className="bg-white rounded-3xl p-5 border border-gray-100 shadow-sm flex items-center justify-between">
+           <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center text-yellow-400 shrink-0 shadow-inner">
+                 <Truck size={24} />
+              </div>
               <div>
-                <p className="text-sm font-bold text-red-800">Found an issue?</p>
-                <button className="text-sm text-red-600 font-medium underline mt-1">Report Vehicle Fault</button>
+                 <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Active Vehicle</p>
+                 <h2 className="text-lg font-bold text-gray-900 leading-tight">SYD-TRK-102</h2>
               </div>
-            </div>
-          </div>
-
-          <button 
-            disabled={!allChecked}
-            onClick={() => setStep(2)}
-            className={`mt-auto py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all ${
-              allChecked ? 'bg-black text-white active:scale-95' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
-            }`}
-          >
-            Next: Driver Check <ArrowRight size={18} />
-          </button>
+           </div>
+           <button className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 border border-gray-100">
+              <Camera size={18} />
+           </button>
         </div>
-      )}
 
-      {step === 2 && (
-        <div className="flex flex-col gap-4 flex-1">
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
-            <h3 className="font-bold text-gray-900 mb-1">Driver Fitness</h3>
-            <p className="text-sm text-gray-500 mb-5">Confirm you are fit to drive</p>
-            
-            <div className="bg-gray-50 p-4 rounded-xl mb-6">
-              <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Hours of Service</p>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between"><span className="text-gray-500">Last shift ended</span><span className="font-medium">7 Apr, 18:30</span></div>
-                <div className="flex justify-between"><span className="text-gray-500">Rest period</span><span className="font-medium text-green-600">10h 30m ✓</span></div>
-                <div className="flex justify-between"><span className="text-gray-500">Available driving</span><span className="font-medium">12h 0m</span></div>
-              </div>
-            </div>
-
-            <button onClick={() => setStep(3)} className="w-full bg-black text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-all">
-              I am fit to drive <ArrowRight size={18} />
-            </button>
-            <button className="w-full mt-3 py-4 rounded-xl font-bold text-gray-600 bg-gray-100 flex items-center justify-center">
-              Report Unavailable
-            </button>
-          </div>
-        </div>
-      )}
-
-      {step === 3 && (
-        <div className="flex flex-col gap-4 flex-1">
-          <div className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
-            <h3 className="font-bold text-gray-900 mb-1">Photo Evidence</h3>
-            <p className="text-sm text-gray-500 mb-5">Required for compliance</p>
-            
-            <div className="space-y-4">
-              <div className="border border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center text-center gap-2 hover:bg-gray-50 transition cursor-pointer">
-                <div className="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mb-2">
-                  <Camera size={24} />
+        {/* ── Checklist Items ── */}
+        <div className="flex flex-col gap-3">
+           <h3 className="text-sm font-bold text-gray-900 ml-1 mb-1">Standard Checklist</h3>
+           {items.map((item) => (
+             <button 
+               key={item.id}
+               onClick={() => toggleCheck(item.id)}
+               className={`flex items-center justify-between p-4 rounded-2xl border transition-all active:scale-[0.98] ${checks[item.id] ? 'bg-emerald-50 border-emerald-100' : 'bg-white border-gray-100 shadow-sm'}`}
+             >
+                <div className="flex items-center gap-4">
+                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${checks[item.id] ? 'bg-emerald-500 text-white' : 'bg-gray-50 text-gray-400'}`}>
+                      <item.icon size={20} />
+                   </div>
+                   <div className="text-left">
+                      <p className={`text-sm font-bold ${checks[item.id] ? 'text-emerald-900' : 'text-gray-900'}`}>{item.label}</p>
+                      <p className="text-[10px] font-medium text-gray-400 mt-0.5">{item.desc}</p>
+                   </div>
                 </div>
-                <p className="font-bold text-gray-800">Vehicle Exterior</p>
-                <p className="text-xs text-gray-500">Front view showing plate</p>
-              </div>
-
-              <div className="border border-dashed border-gray-300 rounded-xl p-6 flex flex-col items-center justify-center text-center gap-2 hover:bg-gray-50 transition cursor-pointer">
-                <div className="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mb-2">
-                  <Camera size={24} />
+                <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${checks[item.id] ? 'bg-emerald-500 border-emerald-500' : 'border-gray-200'}`}>
+                   {checks[item.id] && <CheckCircle2 size={14} className="text-white" />}
                 </div>
-                <p className="font-bold text-gray-800">Odometer Reading</p>
-                <p className="text-xs text-gray-500">Clear view of dashboard</p>
-              </div>
-            </div>
-          </div>
-
-          <button 
-            onClick={() => navigate('/driver/active')}
-            className={`mt-auto py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all bg-yellow-400 text-black hover:bg-yellow-500 active:scale-95`}
-          >
-            <Check size={18} /> Complete Check
-          </button>
+             </button>
+           ))}
         </div>
-      )}
+
+        {/* ── Submit Button ── */}
+        <div className="mt-4">
+           {!allDone && (
+             <div className="bg-amber-50 rounded-2xl p-4 border border-amber-100 flex items-center gap-3 mb-4 animate-in fade-in slide-in-from-bottom-2">
+                <AlertTriangle size={18} className="text-amber-600 shrink-0" />
+                <p className="text-xs font-bold text-amber-700 leading-tight">Please complete all 6 safety checks before proceeding to navigation.</p>
+             </div>
+           )}
+           <button 
+             disabled={!allDone}
+             onClick={() => navigate('/driver')}
+             className={`w-full py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-lg ${allDone ? 'bg-gray-900 text-yellow-400 active:scale-95' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+           >
+              <ShieldCheck size={20} />
+              Confirm Vehicle Status
+           </button>
+        </div>
+
+      </div>
     </div>
   );
 }

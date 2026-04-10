@@ -354,6 +354,35 @@ export default function DispatchJobDetail() {
                 <p className="text-[9px] font-medium text-gray-400 italic">"Full visibility on data entry accountability"</p>
              </div>
           </div>
+
+          {/* ─────── Driver Field Evidence Block ─────── */}
+          <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+            <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex justify-between items-center">
+              <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide flex items-center gap-2">
+                <FileCheck size={14} className="text-[#FFCC00]" /> Driver POD Evidence
+              </h3>
+              <span className="text-[10px] font-bold text-orange-600 bg-orange-50 border border-orange-200 px-2.5 py-1 rounded uppercase tracking-widest flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse"></span> 3 Queued
+              </span>
+            </div>
+            <div className="p-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-4 bg-gray-50 rounded-lg border border-gray-100 flex flex-col gap-2">
+                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Condition Note</p>
+                <p className="text-sm font-bold text-gray-900">Minor scratch on back-left corner. Packaging intact.</p>
+                <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Logged by Jack Taylor · 10:42 AM</span>
+              </div>
+              <div className="p-4 bg-red-50 rounded-lg border border-red-100 flex flex-col gap-2">
+                <p className="text-[10px] font-black text-red-500 uppercase tracking-widest">Damage Tag</p>
+                <p className="text-sm font-bold text-gray-900">Pallet 3 — Fragile sticker damaged</p>
+                <span className="text-[9px] font-bold text-red-400 uppercase tracking-widest">Queued — Awaiting Sync</span>
+              </div>
+              <div className="p-4 bg-blue-50 rounded-lg border border-blue-100 flex flex-col gap-2">
+                <p className="text-[10px] font-black text-blue-500 uppercase tracking-widest">Odometer Reading</p>
+                <p className="text-sm font-bold text-gray-900">142,541 KM — After Fuel Stop (Goulburn BP)</p>
+                <span className="text-[9px] font-bold text-blue-400 uppercase tracking-widest">Fuel Expense · Pending Approval</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

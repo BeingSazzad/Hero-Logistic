@@ -10,6 +10,7 @@
     margin: 0;
     padding: 0;
   }
+
   body {
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -17,20 +18,54 @@
   }
 }
 
+@layer utilities {
+  /* ── Global Typography Normalization ── */
+  
+  /* Fix extremely small unreadable sizes */
+  .text-\[9px\], .text-\[10px\], .text-xs {
+    font-size: 0.75rem !important; /* 12px min for readability */
+    line-height: 1rem !important;
+  }
+
+  .text-\[11px\] {
+    font-size: 0.8125rem !important; /* 13px */
+  }
+
+  /* Replaces excessive bold weights with standard bold */
+  .font-black, .font-extrabold {
+    font-weight: 600 !important; /* Soften the bold everywhere */
+  }
+  
+  /* Remove harsh uppercase globally where it's currently hardcoded */
+  .uppercase {
+    text-transform: none !important;
+  }
+
+  /* Remove excessive letter spacing */
+  .tracking-widest, .tracking-wider, .tracking-wide {
+    letter-spacing: normal !important;
+  }
+}
+
 @layer components {
+
   /* ── Typography System ── */
   .hero-h1 {
     @apply text-3xl font-black tracking-tight text-hero-dark;
   }
+
   .hero-h2 {
     @apply text-lg font-semibold text-hero-dark;
   }
+
   .hero-card-title {
     @apply text-base font-semibold text-hero-dark;
   }
+
   .hero-body {
     @apply text-sm text-gray-600;
   }
+
   .hero-metadata {
     @apply text-xs font-medium text-gray-500;
   }
@@ -39,21 +74,27 @@
   .badge {
     @apply inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium border transition-all;
   }
+
   .badge-yellow {
     @apply bg-brand/10 text-brand-hover border-brand/20;
   }
+
   .badge-blue {
     @apply bg-blue-50 text-blue-600 border-blue-200;
   }
+
   .badge-orange {
     @apply bg-orange-50 text-orange-600 border-orange-200;
   }
+
   .badge-green {
     @apply bg-hero-success/10 text-hero-success border-hero-success/20;
   }
+
   .badge-red {
     @apply bg-hero-danger/10 text-hero-danger border-hero-danger/20;
   }
+
   .badge-gray {
     @apply bg-gray-100 text-hero-neutral border-gray-200;
   }
@@ -62,19 +103,23 @@
   .btn {
     @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer select-none active:scale-95;
   }
+
   .btn-primary {
     @apply bg-brand text-hero-dark hover:bg-brand-hover shadow-sm;
   }
+
   .btn-dark {
     @apply bg-hero-dark text-white hover:bg-black shadow-sm;
   }
+
   .btn-outline {
     @apply bg-white border border-gray-200 text-hero-neutral hover:bg-gray-50 hover:text-hero-dark shadow-sm;
   }
 
   /* ── Card ── */
   .card {
-    @apply bg-white rounded-hero-md border border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all;
+    @apply bg-white rounded-hero-md border border-gray-100 overflow-hidden transition-all;
+    box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
   }
 
   /* ── Input ── */
@@ -86,6 +131,7 @@
   .hero-table-header {
     @apply bg-gray-50/50 text-sm font-medium text-gray-500 border-b border-gray-100;
   }
+
   .hero-table-row {
     @apply hover:bg-gray-50/50 transition-all cursor-pointer border-b border-gray-50 last:border-0;
   }
@@ -94,13 +140,16 @@
   .toggle {
     @apply w-11 h-6 appearance-none bg-gray-200 rounded-full cursor-pointer relative transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-brand/50 flex-shrink-0;
   }
+
   .toggle::after {
     content: '';
     @apply absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-300 shadow-sm;
   }
+
   .toggle:checked {
     @apply bg-brand;
   }
+
   .toggle:checked::after {
     @apply translate-x-5;
   }
@@ -111,6 +160,7 @@
   width: 0;
   display: none;
 }
+
 .hidden-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;

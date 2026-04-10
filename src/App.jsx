@@ -36,9 +36,10 @@ import AdminInviteUser      from './pages/Admin/AddUser';
 import AdminDriverDetail    from './pages/Admin/DriverDetail';
 import AdminVehicleDetail   from './pages/Admin/VehicleDetail';
 import AdminSettings        from './pages/Admin/Settings';
-import AdminShipments       from './pages/Admin/Shipments';
-import AdminShipmentDetail  from './pages/Admin/ShipmentDetail';
-import AdminExceptions      from './pages/Admin/Exceptions';
+import AdminShipments         from './pages/Admin/Shipments';
+import AdminCreateShipment   from './pages/Admin/CreateShipment';
+import AdminShipmentDetail   from './pages/Admin/ShipmentDetail';
+import AdminExceptions       from './pages/Admin/Exceptions';
 import AdminBranches        from './pages/Admin/Branches';
 import AdminAddBranch       from './pages/Admin/AddBranch';
 import AdminBranchDetail    from './pages/Admin/BranchDetail';
@@ -127,9 +128,10 @@ function App() {
           <Route path="users"           element={<AdminUsers />} />
           <Route path="users/invite"    element={<AdminInviteUser />} />
           <Route path="users/:id"       element={<AdminUserDetail />} />
-          <Route path="shipments"       element={<AdminShipments />} />
-          <Route path="shipments/:id"   element={<AdminShipmentDetail />} />
-          <Route path="exceptions"      element={<AdminExceptions />} />
+          <Route path="shipments"         element={<AdminShipments />} />
+          <Route path="shipments/create"  element={<AdminCreateShipment />} />
+          <Route path="shipments/:id"     element={<AdminShipmentDetail />} />
+          <Route path="exceptions"        element={<AdminExceptions />} />
           <Route path="jobs-config"     element={<AdminJobsConfig />} />
           <Route path="branches"        element={<AdminBranches />} />
           <Route path="branches/add"    element={<AdminAddBranch />} />
@@ -150,10 +152,10 @@ function App() {
         {/* ── DISPATCH ── */}
         <Route path="/dispatch" element={<DispatchLayout />}>
           <Route index element={<DispatchDashboard />} />
-          <Route path="shipments" element={<DispatchJobs />} />
-          <Route path="shipments/:id" element={<DispatchJobDetail />} />
-          <Route path="shipments/create" element={<DispatchCreateJob />} />
-          <Route path="tracking"     element={<DispatchTracking />} />
+          <Route path="shipments"         element={<DispatchJobs />} />
+          <Route path="shipments/create"  element={<DispatchCreateJob />} />
+          <Route path="shipments/:id"     element={<DispatchJobDetail />} />
+          <Route path="tracking"          element={<DispatchTracking />} />
           <Route path="drivers"      element={<DispatchDrivers />} />
           <Route path="drivers/add"  element={<AdminAddDriver />} />
           <Route path="drivers/:driverId" element={<AdminDriverDetail />} />

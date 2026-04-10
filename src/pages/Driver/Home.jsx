@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   MapPin, Navigation, Phone, Clock, Package, Search,
-  CheckCircle2, Bell, User, Zap, AlertTriangle, ShieldCheck, ChevronRight
+  CheckCircle2, Bell, User, Zap, AlertTriangle, ShieldCheck, ChevronRight, RefreshCw
 } from 'lucide-react';
 
 export default function DriverHome() {
@@ -60,83 +60,93 @@ export default function DriverHome() {
          </button>
       </div>
 
-      {/* ── 2. The Hero: Active Manifest ── */}
-      <div className="bg-[#111] rounded-3xl overflow-hidden shadow-xl relative border border-gray-800">
-        <div className="absolute -right-8 -top-8 w-40 h-40 bg-[#FACC15] opacity-5 rounded-full blur-3xl pointer-events-none"></div>
+      {/* ── 2. NEW: The Live Map Preview Card ── */}
+      <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 flex flex-col group cursor-pointer" onClick={() => navigate('/driver/active')}>
+         <div className="h-44 relative">
+            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('/map.png')` }}></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+               <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-[#FACC15] flex items-center justify-center text-black shadow-lg">
+                     <Navigation size={14} className="animate-pulse" />
+                  </div>
+                  <div>
+                     <p className="text-[10px] font-black text-white uppercase tracking-widest leading-none">Next Station</p>
+                     <p className="text-sm font-bold text-white mt-1">14 George Street, Sydney</p>
+                  </div>
+               </div>
+               <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-3 py-1.5 rounded-full border border-white/20 uppercase tracking-widest">Live Map</span>
+            </div>
+         </div>
+         <div className="p-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+               <div className="w-9 h-9 bg-gray-50 rounded-xl flex items-center justify-center border border-gray-100">
+                  <Clock size={16} className="text-gray-400" />
+               </div>
+               <div>
+                  <p className="text-xs font-bold text-gray-900 leading-none">ETA: 10:30 AM</p>
+                  <p className="text-[10px] font-medium text-gray-400 mt-1">Distance: 2.4 KM</p>
+               </div>
+            </div>
+            <button className="bg-gray-900 text-[#FACC15] px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest shadow-sm active:scale-95 transition-all">Start Navigation</button>
+         </div>
+      </div>
 
+      {/* ── 3. The Hero: Active Manifest (Refined) ── */}
+      <div className="bg-[#111] rounded-3xl overflow-hidden shadow-xl relative border border-gray-800">
         <div className="p-6 relative z-10">
-           <div className="flex justify-between items-start mb-6">
+           <div className="flex justify-between items-start mb-4">
               <div className="flex flex-col gap-1">
-                 <div className="flex items-center gap-2 mb-1">
-                    <span className="w-2 h-2 rounded-full bg-[#FACC15] animate-pulse"></span>
-                    <span className="text-[#FACC15] text-[10px] font-bold uppercase tracking-wider">Active Route</span>
-                 </div>
                  <h2 className="text-xl font-bold text-white tracking-tight">Acme Distribution</h2>
                  <p className="text-gray-400 text-xs font-medium">SHP-20481 • SYDNEY_B2B</p>
               </div>
-              <div className="bg-white/10 px-3 py-2 rounded-xl text-center">
-                 <span className="text-gray-400 text-[9px] font-bold uppercase tracking-wider block mb-0.5">ETA</span>
-                 <span className="text-lg font-bold text-white leading-none">10:30</span>
-                 <span className="text-[9px] font-bold text-gray-400 uppercase block mt-0.5">AM</span>
+              <div className="bg-emerald-500/10 text-emerald-500 px-3 py-1 rounded-full border border-emerald-500/20">
+                 <span className="text-[9px] font-bold uppercase tracking-widest">In Transit</span>
               </div>
            </div>
 
-           <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                 <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-                    <MapPin size={16} className="text-gray-400" />
-                 </div>
-                 <div>
-                    <p className="text-white text-sm font-semibold leading-tight">14 George Street, Level 4</p>
-                    <p className="text-gray-400 text-xs font-medium mt-1">Sydney CBD • 2.4 KM</p>
-                 </div>
-              </div>
-
-              <div className="flex p-3 bg-white/5 rounded-xl border border-white/5 items-center gap-3">
-                 <Package size={18} className="text-[#FACC15]" />
-                 <div className="flex-1">
-                    <span className="text-white text-xs font-semibold block">4 Manifested Units</span>
-                    <span className="text-[10px] font-medium text-gray-400 mt-0.5 block">Fragile/Heavy Load</span>
-                 </div>
-              </div>
-
-              <div className="flex gap-3 pt-2">
-                 <button 
-                   onClick={() => navigate('/driver/active')}
-                   className="flex-[3] w-full bg-[#FACC15] hover:bg-yellow-500 text-black font-bold text-sm py-3 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-95 shadow-sm"
-                 >
-                    <Navigation size={16} /> Start Navigation
-                 </button>
-                 <button className="flex-1 bg-white/10 hover:bg-white/20 text-white rounded-xl flex items-center justify-center transition-all active:scale-95">
-                    <Phone size={18} />
-                 </button>
+           <div className="flex p-3 bg-white/5 rounded-xl border border-white/5 items-center gap-3">
+              <Package size={18} className="text-[#FACC15]" />
+              <div className="flex-1">
+                 <span className="text-white text-xs font-semibold block">4 Manifested Units</span>
+                 <span className="text-[10px] font-medium text-gray-400 mt-0.5 block">Fragile/Heavy Load</span>
               </div>
            </div>
         </div>
       </div>
 
-      {/* ── 3. Quick Stats Cards ── */}
-      <div className="grid grid-cols-1 gap-4">
-         {/* Hidden: Drivers are on fixed salary, uncomment if piece-rate/commission is enabled later
-         <div className="bg-white p-5 rounded-[2rem] shadow-sm border border-gray-100 relative overflow-hidden group">
-            <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest block mb-1">Today's Pay</span>
-            <span className="text-2xl font-black text-gray-900">$242.00</span>
-            <div className="mt-2 w-full h-1 bg-gray-50 rounded-full overflow-hidden">
-               <div className="h-full bg-emerald-500" style={{ width: '65%' }}></div>
-            </div>
-         </div>
-         */}
-         <div className="bg-white p-5 rounded-3xl shadow-sm border border-gray-100 flex items-center justify-between group cursor-pointer hover:bg-gray-50 transition-colors" onClick={() => navigate('/driver/safety-check')}>
+      {/* ── 4. MANDATORY: Safety & Sync ── */}
+      <div className="flex flex-col gap-3">
+         <div className="bg-white p-5 rounded-3xl shadow-sm border border-orange-100 flex items-center justify-between group cursor-pointer hover:bg-orange-50 transition-colors" onClick={() => navigate('/driver/safety-check')}>
             <div className="flex items-center gap-4">
-               <div className="w-10 h-10 bg-emerald-50 rounded-full flex items-center justify-center">
-                  <ShieldCheck size={20} className="text-emerald-500" />
+               <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center relative">
+                  <ShieldCheck size={24} className="text-orange-500" />
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white flex items-center justify-center">
+                     <span className="text-[8px] font-black text-white">!</span>
+                  </span>
                </div>
                <div className="text-left">
-                  <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">Vehicle Status</span>
-                  <span className="text-sm font-bold text-gray-900 leading-tight block mt-0.5">Safety Checked</span>
+                  <span className="text-[10px] font-bold text-orange-600 uppercase tracking-widest block">Safety Checklist</span>
+                  <span className="text-sm font-bold text-gray-900 leading-tight block mt-0.5">Pre-Trip Inspection</span>
+                  <p className="text-[10px] font-medium text-orange-400 mt-1 uppercase tracking-widest font-black">Action Required</p>
                </div>
             </div>
-            <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">TRK-102 • OK</span>
+            <button className="bg-orange-500 text-white px-4 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-sm">Start Check</button>
+         </div>
+      </div>
+         
+         <div className="bg-white p-5 rounded-3xl shadow-[0_0_15px_-3px_rgba(249,115,22,0.15)] border border-orange-100 flex items-center justify-between group cursor-pointer hover:bg-orange-50/50 transition-colors">
+            <div className="flex items-center gap-4">
+               <div className="w-10 h-10 bg-orange-50 rounded-full flex items-center justify-center relative">
+                  <RefreshCw size={18} className="text-orange-500" />
+                  <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full border-2 border-white animate-pulse"></span>
+               </div>
+               <div className="text-left">
+                  <span className="text-[10px] font-bold text-orange-600 uppercase tracking-wider block">Sync Queue</span>
+                  <span className="text-sm font-bold text-gray-900 leading-tight block mt-0.5">3 Items Pending</span>
+               </div>
+            </div>
+            <button className="text-[10px] font-bold text-orange-700 bg-orange-50 hover:bg-orange-100 px-3 py-1.5 rounded-lg border border-orange-200 transition-all uppercase tracking-widest shadow-sm">Sync Now</button>
          </div>
       </div>
 

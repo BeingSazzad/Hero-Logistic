@@ -38,29 +38,31 @@ export default function AdminExceptions() {
   };
 
   return (
-    <div className="flex flex-col gap-4 w-full max-w-5xl mx-auto pb-12 px-2">
+    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12 px-2">
       
-      {/* Header */}
-      <div className="flex justify-between items-center bg-white p-4 rounded-2xl border border-gray-100 shadow-sm relative z-20">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 flex items-center justify-center bg-red-500 rounded-xl text-white shadow-sm">
-            <AlertCircle size={20} />
+      {/* ── Header ── */}
+      <div className="flex justify-between items-center mb-2 px-2">
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-100 rounded-hero-sm text-hero-dark shadow-sm">
+            <AlertCircle size={20}/>
           </div>
           <div>
-            <h1 className="hero-h1">Exceptions</h1>
-            <p className="text-[11px] text-gray-400 font-bold mt-1 uppercase tracking-widest">{issues.length} Items Pending Action</p>
+            <h1 className="hero-h1">Exceptions Tracker</h1>
+            <p className="hero-body text-hero-neutral mt-1">{issues.length} Operational anomalies requiring intervention across the network</p>
           </div>
         </div>
         
         {resolvedCount > 0 && (
            <button 
              onClick={clearResolved}
-             className="bg-red-50 text-red-600 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest border border-red-100 hover:bg-red-600 hover:text-white transition-all flex items-center gap-2 shadow-inner"
+             className="bg-hero-dark hover:bg-black text-brand px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all shadow-sm flex items-center gap-2"
            >
-              <Trash2 size={14}/> Clear {resolvedCount} Resolved
+              <Trash2 size={14}/> Archive {resolvedCount} Resolved
            </button>
         )}
       </div>
+
+      <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {issues.length === 0 ? (
         <div className="bg-white p-12 rounded-3xl border border-dashed border-gray-200 flex flex-col items-center justify-center text-center">

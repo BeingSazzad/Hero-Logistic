@@ -5,11 +5,11 @@ import { House, Map, FileText, User, Bell, Zap, Receipt } from 'lucide-react';
 // Driver layout keeps the mobile phone frame — it is intentionally different
 // as it simulates a native phone app, not a desktop portal.
 const bottomNav = [
-  { to: '/driver',          label: 'Overview',     icon: House,    end: true },
-  { to: '/driver/shipments', label: 'Shipments',     icon: Map },
-  // { to: '/driver/pay',      label: 'Pay',      icon: FileText }, 
-  { to: '/driver/expenses', label: 'Expenses', icon: Receipt },
-  { to: '/driver/profile',  label: 'My Profile',  icon: User },
+  { to: '/driver',           label: 'Home',     icon: House,    end: true },
+  { to: '/driver/shipments', label: 'Jobs',     icon: FileText },
+  { to: '/driver/active',    label: 'Live Map', icon: Map },
+  { to: '/driver/expenses',  label: 'Expenses', icon: Receipt },
+  { to: '/driver/profile',   label: 'Profile',  icon: User },
 ];
 
 export default function DriverLayout() {
@@ -67,7 +67,7 @@ export default function DriverLayout() {
                     color={isActive ? '#111' : '#9CA3AF'}
                     strokeWidth={isActive ? 2.5 : 1.8}
                   />
-                  <span className={`text-[10px] font-black uppercase tracking-widest ${isActive ? 'text-[#111]' : 'text-gray-400'}`}>
+                  <span className={`text-[10px] font-bold ${isActive ? 'text-[#111]' : 'text-gray-400'}`}>
                     {label}
                   </span>
                 </div>

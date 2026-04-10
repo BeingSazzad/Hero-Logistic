@@ -76,9 +76,9 @@ export default function DispatchDashboard() {
               <Zap size={14}/> Auto-Assign
            </button>
            <button 
-             onClick={() => navigate('/dispatch/jobs/create')} 
-             className="btn btn-primary"
-           >
+             onClick={() => navigate('/dispatch/shipments/create')} 
+             className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
+          >
              <Plus size={16} strokeWidth={3} /> Create Shipment
           </button>
         </div>

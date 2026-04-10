@@ -93,7 +93,7 @@ export default function DispatchJobs() {
           </div>
         </div>
         <button
-          onClick={() => navigate('/dispatch/jobs/create')}
+          onClick={() => navigate('/dispatch/shipments/create')}
           className="btn btn-primary"
         >
           <Plus size={18} strokeWidth={3} /> Create Shipment

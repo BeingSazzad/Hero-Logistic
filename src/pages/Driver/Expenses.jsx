@@ -26,6 +26,12 @@ export default function DriverExpenses() {
               <label className="text-sm font-semibold text-gray-700 block mb-1.5">Description</label>
               <input className="input" placeholder={form === 'Toll' ? 'e.g. M1 Motorway' : form === 'Fuel' ? 'e.g. Goulburn BP' : 'e.g. Replaced flat tire'} />
             </div>
+            {form !== 'Toll' && (
+              <div>
+                <label className="text-sm font-semibold text-gray-700 block mb-1.5">Current Odometer (KM)</label>
+                <input type="number" className="input" placeholder="e.g. 142500" />
+              </div>
+            )}
             <div>
               <label className="text-sm font-semibold text-gray-700 block mb-1.5">Link to Job</label>
               <select className="input">

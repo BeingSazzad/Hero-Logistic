@@ -49,28 +49,25 @@ export default function AdminFinance() {
       {/* Standardized Header */}
       <div className="flex justify-between items-center mb-2 px-2">
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-[#111] shadow-sm">
+          <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-hero-sm text-hero-dark shadow-sm">
             <DollarSign size={20} />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Financial Controls</h1>
-            <p className="text-sm text-gray-500 mt-1">Revenue overview, outstanding payments, and GST/Tax management.</p>
+            <h1 className="hero-h1">Financial Controls</h1>
+            <p className="hero-body text-hero-neutral mt-1">Revenue overview, outstanding payments, and GST/Tax management</p>
           </div>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-4">
           <div className="relative">
-            <select className="appearance-none bg-white border border-gray-200 text-gray-700 text-sm font-bold rounded-lg pl-4 pr-10 py-2.5 focus:outline-none focus:border-[#FFCC00] focus:ring-1 focus:ring-[#FFCC00] transition-all shadow-sm cursor-pointer">
+            <select className="appearance-none bg-white border border-gray-200 text-[10px] font-black uppercase tracking-widest rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand shadow-sm cursor-pointer">
               <option>FY 2026-2027</option>
               <option>FY 2025-2026</option>
               <option>This Quarter</option>
             </select>
             <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
           </div>
-          <button className="bg-gray-900 hover:bg-black text-[#FFCC00] px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+          <button className="bg-hero-dark hover:bg-black text-brand px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center gap-2 transition-all shadow-sm">
             <Receipt size={16}/> Create Invoice
-          </button>
-          <button className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
-            <DollarSign size={16}/> Payouts
           </button>
         </div>
       </div>
@@ -85,9 +82,14 @@ export default function AdminFinance() {
           { label: 'Profit Margin', val: '32.4%', icon: TrendingUp, color: 'text-blue-500', bg: 'bg-blue-50', border: 'border-blue-100' },
           { label: 'Tax (GST) Q2', val: '$412K', icon: DollarSign, color: 'text-amber-500', bg: 'bg-amber-50', border: 'border-amber-100' },
         ].map((k, i) => (
-          <div key={i} className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
-            <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest leading-tight">{k.label}</p><p className="text-2xl font-black text-gray-900 mt-1.5 leading-none">{k.val}</p></div>
-            <div className={`w-10 h-10 rounded border ${k.border} flex items-center justify-center ${k.bg} ${k.color}`}><k.icon size={20}/></div>
+          <div key={i} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex items-center justify-between group hover:border-brand/40 transition-all">
+            <div>
+               <p className="text-[10px] text-gray-400 uppercase font-black tracking-widest leading-tight">{k.label}</p>
+               <p className="text-2xl font-black text-hero-dark mt-2 leading-none">{k.val}</p>
+            </div>
+            <div className={`w-12 h-12 rounded-2xl border ${k.border} flex items-center justify-center ${k.bg} ${k.color} group-hover:scale-110 transition-transform`}>
+               <k.icon size={22}/>
+            </div>
           </div>
         ))}
       </div>

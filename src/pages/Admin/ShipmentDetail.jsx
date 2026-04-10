@@ -160,6 +160,26 @@ export default function AdminShipmentDetail() {
 
         {/* RIGHT COMPONENTS: Maps, Details, Actors */}
         <div className="lg:col-span-2 flex flex-col gap-6">
+
+          {/* Consignor and Consignee */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="card bg-white p-5 shadow-sm border border-gray-100 flex flex-col gap-3">
+              <h3 className="text-xs font-black uppercase tracking-widest text-gray-400">Consignor (Sender)</h3>
+              <div>
+                <p className="text-sm font-bold text-gray-900">Acme Corp Logistics</p>
+                <p className="text-[11px] text-gray-500 font-medium mt-1">Warehouse 4, 12 Botany Rd, Alexandria NSW 2015</p>
+                <p className="text-[11px] text-gray-500 font-medium mt-0.5 pt-2 border-t border-gray-50">Contact: James Hargrove <br/><span className="font-bold text-hero-dark">+61 2 9283 1122</span></p>
+              </div>
+            </div>
+            <div className="card bg-white p-5 shadow-sm border border-gray-100 flex flex-col gap-3">
+              <h3 className="text-xs font-black uppercase tracking-widest text-gray-400">Consignee (Receiver)</h3>
+              <div>
+                <p className="text-sm font-bold text-gray-900">Tech Solutions Ltd</p>
+                <p className="text-[11px] text-gray-500 font-medium mt-1">1 Innovation Dr, Port Botany NSW 2036</p>
+                <p className="text-[11px] text-gray-500 font-medium mt-0.5 pt-2 border-t border-gray-50">Contact: Tom Carey <br/><span className="font-bold text-hero-dark">+61 2 9666 0011</span></p>
+              </div>
+            </div>
+          </div>
           
           {/* Tracking */}
           <div className="card bg-[#0f172a] p-0 overflow-hidden relative shadow-lg min-h-[300px] flex items-center justify-center border border-gray-800">
@@ -217,6 +237,35 @@ export default function AdminShipmentDetail() {
                </div>
             </div>
 
+          </div>
+        </div>
+
+        {/* Driver POD Evidence */}
+        <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden mt-6">
+          <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex justify-between items-center">
+            <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide flex items-center gap-2">
+              <PackageCheck size={14} className="text-[#FFCC00]" /> Driver POD Evidence
+            </h3>
+            <span className="text-[10px] font-bold text-orange-600 bg-orange-50 border border-orange-200 px-2.5 py-1 rounded uppercase tracking-widest flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse"></span> 3 Items Queued
+            </span>
+          </div>
+          <div className="p-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="p-4 bg-gray-50 rounded-lg border border-gray-100 flex flex-col gap-2">
+              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Condition Note</p>
+              <p className="text-sm font-bold text-gray-900">Minor scratch on back-left corner. Packaging intact.</p>
+              <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Logged by Jack Taylor · 10:42 AM</span>
+            </div>
+            <div className="p-4 bg-red-50 rounded-lg border border-red-100 flex flex-col gap-2">
+              <p className="text-[10px] font-black text-red-500 uppercase tracking-widest">Damage Tag</p>
+              <p className="text-sm font-bold text-gray-900">Pallet 3 — Fragile sticker damaged</p>
+              <span className="text-[9px] font-bold text-red-400 uppercase tracking-widest">Awaiting Sync · Admin Review Required</span>
+            </div>
+            <div className="p-4 bg-blue-50 rounded-lg border border-blue-100 flex flex-col gap-2">
+              <p className="text-[10px] font-black text-blue-500 uppercase tracking-widest">Odometer Reading</p>
+              <p className="text-sm font-bold text-gray-900">142,541 KM — Fuel Stop (Goulburn BP)</p>
+              <span className="text-[9px] font-bold text-blue-400 uppercase tracking-widest">Fuel Expense $180.50 · Pending Approval</span>
+            </div>
           </div>
         </div>
 

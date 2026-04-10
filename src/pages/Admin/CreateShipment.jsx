@@ -18,7 +18,7 @@ const REGISTERED_USERS = [
   { id: 'CUS-005', name: 'Michael Chen', contact: 'Michael Chen', email: 'm.chen@gmail.com', phone: '+61 412 345 678', address: '22 Bondi Rd, Bondi NSW 2026', type: 'Individual' },
 ];
 
-export default function DispatchCreateJob() {
+export default function AdminCreateShipment() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [priority, setPriority] = useState('Normal');
@@ -59,7 +59,7 @@ export default function DispatchCreateJob() {
       <div className="flex justify-between items-center mb-2 px-2">
         <div className="flex items-center gap-4">
           <button 
-            onClick={() => navigate('/dispatch/shipments')}
+            onClick={() => navigate('/admin/shipments')}
             className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-all shadow-sm"
           >
             <ArrowLeft size={20} />
@@ -73,7 +73,7 @@ export default function DispatchCreateJob() {
           </div>
         </div>
         <div className="flex gap-3">
-          <button onClick={() => navigate('/dispatch/shipments')} className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-6 py-2.5 rounded-lg font-bold transition-all shadow-sm">
+          <button onClick={() => navigate('/admin/shipments')} className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-6 py-2.5 rounded-lg font-bold transition-all shadow-sm">
             Cancel
           </button>
           <button className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
@@ -95,7 +95,7 @@ export default function DispatchCreateJob() {
               </button>
             ))}
          </div>
-         <span className="text-xs font-bold text-gray-500">Creating as: <span className="text-[#FFCC00]">{user?.name || 'Dispatcher'} ({user?.role || 'Dispatch'})</span></span>
+         <span className="text-xs font-bold text-gray-500">Creating as: <span className="text-[#FFCC00]">{user?.name || 'Admin'} ({user?.role || 'Admin'})</span></span>
       </div>
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>

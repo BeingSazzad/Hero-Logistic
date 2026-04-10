@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  Users, Truck, Package, MapPin, TrendingUp, ArrowUpRight, 
-  Building2, UserCog, Briefcase, AlertTriangle, Blocks,
-  Plus, ChevronDown, Activity, Globe, ShieldAlert, Zap,
-  Navigation, CheckCircle, Smartphone, ExternalLink, Filter,
-  Clock, ShieldCheck
+  Users, Truck, Package, TrendingUp, ArrowUpRight, 
+  AlertTriangle, Blocks, Plus, Activity, Globe, 
+  Zap, Navigation, CheckCircle, ShieldCheck, DollarSign, ChevronRight
 } from 'lucide-react';
 
 export default function AdminDashboard() {
@@ -14,237 +12,274 @@ export default function AdminDashboard() {
   const [revenueYear, setRevenueYear] = useState('2026');
 
   const recentActivities = [
-    { id: 'SHP-9042', action: 'Delivery Completed', user: 'Jack Taylor', time: '12 mins ago', status: 'Success' },
-    { id: 'SHP-9041', action: 'Route Optimized', user: 'Sarah Mitchell', time: '1 hr ago', status: 'System' },
-    { id: 'SHP-9039', action: 'Override Executed', user: 'Liam Smith', time: '2 hrs ago', status: 'Warning' },
+    { id: 'SHP-9042', action: 'Delivery Completed', user: 'Jack Taylor', time: '12m ago', status: 'Success' },
+    { id: 'SHP-9041', action: 'Route Optimized', user: 'Sarah Mitchell', time: '1h ago', status: 'System' },
+    { id: 'SHP-9039', action: 'Handover Initiated', user: 'Liam Smith', time: '2h ago', status: 'Warning' },
+    { id: 'SHP-9032', action: 'Cross-dock Sorting', user: 'Maria Garcia', time: '5h ago', status: 'Success' },
   ];
 
+  const shipmentData = [32, 45, 38, 52, 65, 58, 72, 85, 92, 88, 105, 120];
+  const revenueData  = [140, 165, 155, 180, 210, 195, 230, 250, 280, 265, 305, 342];
+  const months = ['J','F','M','A','M','J','J','A','S','O','N','D'];
+
   return (
-    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
+    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12 animate-in fade-in duration-700">
       
-      {/* Standardized Header */}
-      <div className="flex justify-between items-center mb-6 px-2">
+      {/* ── Standardized Header ── */}
+      <div className="flex justify-between items-center px-2 mb-6 mt-2">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-hero-sm text-hero-dark shadow-sm">
             <Blocks size={20} />
           </div>
           <div>
             <h1 className="hero-h1">Main Dashboard</h1>
-            <p className="hero-body mt-1">Overview of your branch performance and delivery activity.</p>
+            <p className="hero-body mt-1 flex items-center gap-2">Global network visibility and financial performance.</p>
           </div>
         </div>
         <div className="flex gap-3">
-          <button 
-            onClick={() => navigate('/admin/shipments')} 
-            className="btn btn-primary"
-          >
-            <Plus size={16} strokeWidth={3} /> Shipments Queue
+          <button onClick={() => navigate('/admin/shipments')} className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+            <Plus size={16} strokeWidth={3} /> New Dispatch
           </button>
         </div>
       </div>
 
-      <div className="w-full h-px bg-gray-100 mb-6"></div>
+      <div className="w-full h-px bg-gray-100 mb-6 px-2"></div>
 
-      {/* ── KPI HUD ── */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-2">
-        {[
-          { label: 'Active Shipments', value: '428', trend: '+12%', icon: Package, color: 'text-blue-600', bg: 'bg-blue-50' },
-          { label: 'Network Drivers', value: '142', trend: 'Live', icon: Users, color: 'text-indigo-600', bg: 'bg-indigo-50' },
-          { label: 'Operational Alerts', value: '03', trend: 'Critical', icon: ShieldAlert, color: 'text-hero-danger', bg: 'bg-hero-danger/10' },
-          { label: 'Active Branches', value: '03', trend: 'Global', icon: Globe, color: 'text-hero-success', bg: 'bg-hero-success/10' },
-        ].map((kpi, i) => (
-          <div key={i} className="card p-5 flex items-center justify-between group hover:border-brand/40">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <p className="hero-metadata leading-none text-hero-neutral">{kpi.label}</p>
-                <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-hero-sm uppercase tracking-widest ${kpi.bg} ${kpi.color}`}>{kpi.trend}</span>
-              </div>
-              <p className="text-3xl font-black text-hero-dark leading-none">{kpi.value}</p>
-            </div>
-            <div className={`w-12 h-12 rounded-hero-sm flex items-center justify-center ${kpi.bg} ${kpi.color} group-hover:scale-110 transition-transform`}>
-              <kpi.icon size={22} />
-            </div>
+      {/* ── KPI Cards ── */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-2 mb-6">
+        <div className="card p-5 flex items-center justify-between">
+          <div>
+            <p className="hero-metadata leading-tight text-hero-neutral">Total Order <span className="text-emerald-500 font-bold ml-1">+1.29%</span></p>
+            <p className="text-2xl font-black text-hero-dark mt-1.5 leading-none">$238.00</p>
           </div>
-        ))}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 px-2">
+          <div className="w-10 h-10 rounded-hero-sm border border-blue-100 flex items-center justify-center bg-blue-50 text-blue-500">
+            <Package size={20}/>
+          </div>
+        </div>
         
-        {/* Left Column: Analytics (8 Units Wide) */}
-        <div className="lg:col-span-8 space-y-8">
-          
-          {/* 12-Month Growth Stats */}
+        <div className="card p-5 flex items-center justify-between">
+          <div>
+            <p className="hero-metadata leading-tight text-hero-neutral">Total Delivered <span className="text-emerald-500 font-bold ml-1">+1.29%</span></p>
+            <p className="text-2xl font-black text-hero-dark mt-1.5 leading-none">35,874</p>
+          </div>
+          <div className="w-10 h-10 rounded-hero-sm border border-emerald-100 flex items-center justify-center bg-emerald-50 text-emerald-500">
+            <Truck size={20}/>
+          </div>
+        </div>
+        
+        <div className="card p-5 flex items-center justify-between">
+          <div>
+            <p className="hero-metadata leading-tight text-hero-neutral">Return Pending <span className="text-emerald-500 font-bold ml-1">+1.29%</span></p>
+            <p className="text-2xl font-black text-hero-dark mt-1.5 leading-none">64%</p>
+          </div>
+          <div className="w-10 h-10 rounded-hero-sm border border-amber-200 flex items-center justify-center bg-amber-50 text-amber-500">
+            <AlertTriangle size={20}/>
+          </div>
+        </div>
+        
+        <div className="card p-5 flex items-center justify-between">
+          <div>
+            <p className="hero-metadata leading-tight text-hero-neutral">Total Revenue <span className="text-emerald-500 font-bold ml-1">+4.5%</span></p>
+            <p className="text-2xl font-black text-hero-dark mt-1.5 leading-none">$1.2M</p>
+          </div>
+          <div className="w-10 h-10 rounded-hero-sm border border-indigo-100 flex items-center justify-center bg-indigo-50 text-indigo-500">
+            <DollarSign size={20}/>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 px-2">
+        
+        {/* Left: Analytics (8 cols) */}
+        <div className="lg:col-span-8 flex flex-col gap-6">
+
+          {/* Dual Charts */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            {/* Shipment Analysis Card */}
-            <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden flex flex-col min-h-[400px] group hover:border-brand/40 transition-all">
-              <div className="p-6 border-b border-gray-50 flex justify-between items-center bg-gray-50/30">
+
+            {/* Shipment Volume */}
+            <div className="card overflow-hidden flex flex-col min-h-[340px]">
+              <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
                 <div>
-                  <h3 className="text-xs font-black text-hero-dark uppercase tracking-widest">Shipment Throughput</h3>
-                  <p className="text-[10px] text-gray-400 font-bold uppercase mt-1">Network Capacity Monitor</p>
+                  <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide">Shipment Volume</h3>
+                  <p className="text-[10px] text-gray-400 font-medium uppercase mt-0.5">FY {shipmentYear} Throughput</p>
                 </div>
                 <select 
                   value={shipmentYear} 
-                  onChange={(e) => setShipmentYear(e.target.value)}
-                  className="bg-white border border-gray-200 rounded-xl px-3 py-1.5 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer shadow-sm"
+                  onChange={e => setShipmentYear(e.target.value)}
+                  className="bg-white border border-gray-200 rounded-md px-3 py-1.5 text-xs font-bold outline-none cursor-pointer focus:ring-2 focus:ring-brand/20 focus:border-brand"
                 >
-                  <option value="2026">FY 2026</option>
-                  <option value="2025">FY 2025</option>
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
                 </select>
               </div>
-
-              <div className="flex-1 p-8 flex items-end gap-2.5">
-                {[24, 38, 32, 45, 58, 52, 65, 78, 85, 82, 98, 115].map((v, i) => (
-                  <div key={i} className="flex-1 flex flex-col items-center gap-3 group/bar h-full justify-end">
-                     <div className="w-full bg-gray-100 rounded-lg group-hover/bar:bg-brand transition-all relative cursor-pointer" style={{ height: `${(v/120)*100}%` }}>
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-black text-white text-[10px] font-black px-2 py-1 rounded-hero-sm opacity-0 group-hover/bar:opacity-100 whitespace-nowrap z-30 shadow-xl pointer-events-none transition-all">
-                           {v}k Units
-                        </div>
-                     </div>
-                     <span className="text-[9px] font-black text-gray-400 uppercase tracking-tighter">
-                       {['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i]}
-                     </span>
+              <div className="flex-1 flex items-end gap-1.5 px-5 pt-8 pb-4">
+                {shipmentData.map((v, i) => (
+                  <div key={i} className="flex-1 flex flex-col justify-end gap-2 group/bar">
+                    <div 
+                      className="w-full bg-blue-50 hover:bg-brand transition-all relative cursor-pointer rounded-t-sm" 
+                      style={{ height: `${(v/130)*100}%` }}
+                    >
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[#111] text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover/bar:opacity-100 shadow-lg z-20 whitespace-nowrap transition-opacity">
+                        {v}k
+                      </div>
+                    </div>
+                    <span className="text-[9px] font-bold text-gray-400 text-center uppercase tracking-widest">{months[i]}</span>
                   </div>
                 ))}
               </div>
-
-              <div className="p-6 bg-gray-50/50 flex justify-between items-center border-t border-gray-100">
+              <div className="p-5 border-t border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
                 <div>
-                  <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Annual Volume</p>
-                  <p className="text-xl font-black text-hero-dark mt-1">728.4k <span className="text-xs text-hero-success ml-2">↑ 14.2%</span></p>
+                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Avg Growth</p>
+                  <p className="text-lg font-black text-hero-dark tracking-tight mt-0.5">+14.2% YoY</p>
                 </div>
-                <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-brand hover:border-brand transition-all">
-                  <ExternalLink size={14}/>
-                </button>
+                <TrendingUp size={20} className="text-gray-400" />
               </div>
             </div>
 
-            {/* Financial Revenue Card */}
-            <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden flex flex-col min-h-[400px] group hover:border-hero-success/40 transition-all">
-              <div className="p-6 border-b border-gray-50 flex justify-between items-center bg-gray-50/30">
+            {/* Financial Yield */}
+            <div className="card overflow-hidden flex flex-col min-h-[340px]">
+              <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
                 <div>
-                  <h3 className="text-xs font-black text-hero-dark uppercase tracking-widest">Revenue Growth</h3>
-                  <p className="text-[10px] text-gray-400 font-bold uppercase mt-1">Earnings Pulse Radar</p>
+                  <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide">Market Yield</h3>
+                  <p className="text-[10px] text-gray-400 font-medium uppercase mt-0.5">FY {revenueYear} Revenue</p>
                 </div>
                 <select 
                   value={revenueYear} 
-                  onChange={(e) => setRevenueYear(e.target.value)}
-                  className="bg-white border border-gray-200 rounded-xl px-3 py-1.5 text-[10px] font-black uppercase tracking-widest outline-none cursor-pointer shadow-sm"
+                  onChange={e => setRevenueYear(e.target.value)}
+                  className="bg-white border border-gray-200 rounded-md px-3 py-1.5 text-xs font-bold outline-none cursor-pointer focus:ring-2 focus:ring-brand/20 focus:border-brand"
                 >
-                  <option value="2026">FY 2026</option>
-                  <option value="2025">FY 2025</option>
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
                 </select>
               </div>
-
-              <div className="flex-1 p-8 flex items-end gap-2.5">
-                {[140, 165, 155, 180, 210, 195, 230, 250, 280, 265, 305, 342].map((v, i) => (
-                  <div key={i} className="flex-1 flex flex-col items-center gap-3 group/bar h-full justify-end">
-                     <div className="w-full bg-gray-50 rounded-lg group-hover/bar:bg-hero-success transition-all relative cursor-pointer" style={{ height: `${(v/380)*100}%` }}>
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-black text-white text-[10px] font-black px-2 py-1 rounded-hero-sm opacity-0 group-hover/bar:opacity-100 whitespace-nowrap z-30 shadow-xl pointer-events-none transition-all">
-                           ${v}k
-                        </div>
-                     </div>
-                     <span className="text-[9px] font-black text-gray-400 uppercase tracking-tighter">
-                       {['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][i]}
-                     </span>
+              <div className="flex-1 flex items-end gap-1.5 px-5 pt-8 pb-4">
+                {revenueData.map((v, i) => (
+                  <div key={i} className="flex-1 flex flex-col justify-end gap-2 group/bar">
+                    <div 
+                      className="w-full bg-emerald-50 hover:bg-emerald-500 transition-all relative cursor-pointer rounded-t-sm" 
+                      style={{ height: `${(v/380)*100}%` }}
+                    >
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[#111] text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover/bar:opacity-100 shadow-lg z-20 whitespace-nowrap transition-opacity">
+                        ${v}k
+                      </div>
+                    </div>
+                    <span className="text-[9px] font-bold text-gray-400 text-center uppercase tracking-widest">{months[i]}</span>
                   </div>
                 ))}
               </div>
-
-              <div className="p-6 bg-gray-50/50 flex justify-between items-center border-t border-gray-100">
+              <div className="p-5 border-t border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
                 <div>
-                  <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Total Earnings</p>
-                  <p className="text-xl font-black text-hero-dark mt-1">$2.84M <span className="text-xs text-hero-success ml-2">↑ 18.1%</span></p>
+                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Total Yield</p>
+                  <p className="text-lg font-black text-emerald-600 tracking-tight mt-0.5">$2.84M USD</p>
                 </div>
-                <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-hero-success hover:border-hero-success transition-all">
-                  <TrendingUp size={14}/>
-                </button>
+                <ArrowUpRight size={20} className="text-emerald-400" />
               </div>
             </div>
 
           </div>
 
-          {/* Quick Stats Grid Under Charts */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-             {[
-               { label: 'Avg Transit', val: '1.4 Days', icon: Navigation, color: 'text-blue-500', bg: 'bg-blue-50' },
-               { label: 'Issue Resolved', val: '94.2%', icon: CheckCircle, color: 'text-hero-success', bg: 'bg-hero-success/10' },
-               { label: 'Fleet Health', val: 'Optimal', icon: Truck, color: 'text-brand', bg: 'bg-brand/10' },
-               { label: 'Active Users',  val: '2,840', icon: Users, color: 'text-indigo-500', bg: 'bg-indigo-50' },
-             ].map((stat, i) => (
-               <div key={i} className="bg-white border border-gray-100 rounded-3xl p-5 shadow-sm hover:shadow-md transition-all group">
-                  <div className={`w-10 h-10 rounded-2xl ${stat.bg} ${stat.color} flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform`}>
-                     <stat.icon size={18}/>
-                  </div>
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{stat.label}</p>
-                  <p className="text-lg font-black text-hero-dark mt-1">{stat.val}</p>
-               </div>
-             ))}
+          {/* Bottom mini-metrics */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="card p-5 flex items-center gap-4">
+              <div className="w-10 h-10 rounded-hero-sm bg-blue-50 flex items-center justify-center text-blue-500 shrink-0"><Navigation size={18}/></div>
+              <div>
+                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Transit Time</p>
+                <p className="text-lg font-black text-hero-dark leading-none mt-1">1.4 Days</p>
+              </div>
+            </div>
+            <div className="card p-5 flex items-center gap-4">
+              <div className="w-10 h-10 rounded-hero-sm bg-emerald-50 flex items-center justify-center text-emerald-500 shrink-0"><CheckCircle size={18}/></div>
+              <div>
+                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Resolution</p>
+                <p className="text-lg font-black text-hero-dark leading-none mt-1">94.2%</p>
+              </div>
+            </div>
+            <div className="card p-5 flex items-center gap-4">
+              <div className="w-10 h-10 rounded-hero-sm bg-brand/10 flex items-center justify-center text-brand-hover shrink-0"><ShieldCheck size={18}/></div>
+              <div>
+                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Fleet Status</p>
+                <p className="text-lg font-black text-hero-dark leading-none mt-1">Optimal</p>
+              </div>
+            </div>
           </div>
+
         </div>
 
-        {/* Right Column: Shortcuts & Feed (4 Units Wide) */}
-        <div className="lg:col-span-4 space-y-8">
+        {/* Right Sidebar (4 cols) */}
+        <div className="lg:col-span-4 flex flex-col gap-6">
           
-          {/* Shortcuts Board */}
-          <div className="bg-hero-dark rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden group">
-             <div className="absolute top-0 right-0 w-48 h-48 bg-brand/10 rounded-full blur-[80px] -mr-24 -mt-24 group-hover:bg-brand/20 transition-all"></div>
-             <h3 className="text-xs font-black uppercase tracking-[0.2em] mb-8 text-brand flex items-center gap-3">
-                <Zap size={16} fill="#FFCC00"/> Control Hub
-             </h3>
-             <div className="grid grid-cols-1 gap-4 relative z-10">
-                {[
-                  { label: 'Shipment Queue', path: '/admin/shipments', icon: Package },
-                  { label: 'Fleet Control', path: '/admin/fleet', icon: Truck },
-                  { label: 'Staff Roster', path: '/admin/users', icon: UserCog },
-                  { label: 'System Settings', path: '/admin/settings', icon: Globe },
-                ].map((btn, i) => (
-                  <button 
-                    key={i}
-                    onClick={() => navigate(btn.path)}
-                    className="w-full flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-brand hover:text-hero-dark transition-all group/btn"
-                  >
-                    <div className="flex items-center gap-4">
-                       <btn.icon size={18} className="text-brand group-hover/btn:text-hero-dark"/>
-                       <span className="text-xs font-black uppercase tracking-widest">{btn.label}</span>
-                    </div>
-                    <ArrowUpRight size={16} className="opacity-40 group-hover/btn:opacity-100 transition-all"/>
-                  </button>
-                ))}
-             </div>
+          {/* Black Control Terminal */}
+          <div className="bg-[#111] rounded-xl shadow-xl overflow-hidden border border-gray-800">
+            <div className="p-5 border-b border-gray-800">
+              <h3 className="text-[11px] font-black uppercase tracking-widest text-brand flex items-center gap-2.5">
+                <Zap size={14} /> Control Terminal
+              </h3>
+            </div>
+            <div className="p-3">
+              {[
+                { label: 'Shipment Queue', path: '/admin/shipments', icon: Package },
+                { label: 'Fleet Control', path: '/admin/vehicles', icon: Truck },
+                { label: 'Staff Roster', path: '/admin/users', icon: Users },
+                { label: 'Global Settings', path: '/admin/settings', icon: Globe },
+              ].map((item, i) => (
+                <button 
+                  key={i} 
+                  onClick={() => navigate(item.path)}
+                  className="w-full flex items-center justify-between p-4 mb-2 last:mb-0 rounded-lg hover:bg-white/5 transition-colors group cursor-pointer text-left border border-transparent hover:border-gray-800"
+                >
+                  <div className="flex items-center gap-3">
+                    <item.icon size={16} className="text-brand group-hover:scale-110 transition-transform" />
+                    <span className="text-xs font-bold text-white uppercase tracking-widest">{item.label}</span>
+                  </div>
+                  <ChevronRight size={14} className="text-gray-600 group-hover:text-brand transition-colors" />
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Live Feed Card */}
-          <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden flex flex-col min-h-[420px]">
-             <div className="p-6 border-b border-gray-50 flex justify-between items-center bg-gray-50/50">
-                <h3 className="text-xs font-black text-hero-dark uppercase tracking-widest flex items-center gap-3">
-                   <Activity size={16} className="text-blue-500 animate-pulse"/> Tracking Portal
-                </h3>
-                <span className="text-[9px] font-black text-emerald-500 bg-emerald-50 px-2 py-1 rounded-full uppercase">Live Feed</span>
-             </div>
-             <div className="flex-1 p-3 overflow-y-auto space-y-1">
+          {/* Activity Feed */}
+          <div className="card flex-1 flex flex-col h-full min-h-[400px]">
+            <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
+              <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
+                Network Monitor
+              </h3>
+              <span className="badge badge-gray text-[9px] uppercase">Live</span>
+            </div>
+            <div className="p-5 flex-1 overflow-y-auto hidden-scrollbar">
+              <div className="space-y-6">
                 {recentActivities.map((act, i) => (
-                  <div key={i} className="p-5 rounded-2xl hover:bg-gray-50 transition-all group border border-transparent hover:border-gray-100">
-                     <div className="flex justify-between items-start mb-3">
-                        <span className="text-[10px] font-black text-brand bg-hero-dark px-2.5 py-1 rounded-hero-sm uppercase tracking-widest shadow-sm">{act.id}</span>
-                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">{act.time}</span>
-                     </div>
-                     <p className="text-xs font-black text-hero-dark leading-snug mb-4 group-hover:text-blue-600 transition-colors uppercase tracking-tight">{act.action}</p>
-                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-xl bg-gray-100 flex items-center justify-center font-black text-[10px] text-gray-500 border border-gray-200">
-                           {act.user.split(' ').map(n=>n[0]).join('')}
+                  <div key={i} className="flex gap-4">
+                    <div className="flex flex-col items-center">
+                      <div className={`w-2 h-2 rounded-full mt-1.5 ${act.status === 'Success' ? 'bg-emerald-500' : act.status === 'Warning' ? 'bg-amber-500' : 'bg-blue-500'}`}></div>
+                      {i !== recentActivities.length - 1 && <div className="w-px h-full bg-gray-100 my-1"></div>}
+                    </div>
+                    <div className="flex-1 pb-2">
+                      <div className="flex justify-between items-start mb-1">
+                        <span className="text-[10px] font-black text-white bg-[#111] px-2 py-0.5 rounded uppercase tracking-widest">{act.id}</span>
+                        <span className="text-[10px] font-bold text-gray-400">{act.time}</span>
+                      </div>
+                      <p className="text-xs font-black text-hero-dark uppercase tracking-wide my-1">{act.action}</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <div className="w-5 h-5 rounded bg-gray-100 flex items-center justify-center text-[8px] font-black text-gray-500">
+                          {act.user.split(' ').map(n=>n[0]).join('')}
                         </div>
-                        <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{act.user}</span>
-                     </div>
+                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">{act.user}</span>
+                      </div>
+                    </div>
                   </div>
                 ))}
-             </div>
-             <div className="p-6 border-t border-gray-50 text-center">
-                <button onClick={()=>navigate('/admin/audit')} className="text-[10px] font-black text-gray-400 hover:text-hero-dark uppercase tracking-widest transition-all">Deep Audit Log View →</button>
-             </div>
+              </div>
+            </div>
+            <div className="p-4 border-t border-gray-100 text-center bg-[#FAFAFA]">
+              <button onClick={() => navigate('/admin/audit')} className="text-[10px] font-black text-gray-400 hover:text-hero-dark uppercase tracking-widest transition-all">
+                View Global Logs
+              </button>
+            </div>
           </div>
 
         </div>
-
-      </div>>
       </div>
     </div>
   );
