@@ -37,18 +37,29 @@ export default function PlatformTransactions() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-3 gap-4 px-2 mb-2">
-        <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
-          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Total Collected</p><p className="text-2xl font-black text-emerald-600 mt-0.5">${totalPaid.toFixed(2)}</p></div>
-          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-emerald-50 text-emerald-500"><DollarSign size={20}/></div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-2 mb-6">
+        <div className="card p-5 flex flex-col justify-between">
+          <div><p className="hero-metadata">Total Collected</p><p className="text-2xl font-semibold text-emerald-600 mt-1">${totalPaid.toFixed(2)}</p></div>
+          <div className="flex items-center justify-between mt-4">
+             <span className="text-sm font-medium text-gray-500">All Time</span>
+             <DollarSign size={20} className="text-emerald-500"/>
+          </div>
         </div>
-        <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
-          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Paid</p><p className="text-2xl font-black text-gray-900 mt-0.5">{transactions.filter(t => t.status === 'Paid').length}</p></div>
-          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-50 text-gray-400"><CheckCircle2 size={20}/></div>
+        
+        <div className="card p-5 flex flex-col justify-between">
+          <div><p className="hero-metadata">Paid</p><p className="text-2xl font-semibold text-gray-900 mt-1">{transactions.filter(t => t.status === 'Paid').length}</p></div>
+          <div className="flex items-center justify-between mt-4">
+             <span className="text-sm font-medium text-gray-500">Transactions</span>
+             <CheckCircle2 size={20} className="text-gray-400"/>
+          </div>
         </div>
-        <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
-          <div><p className="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Pending</p><p className="text-2xl font-black text-yellow-600 mt-0.5">{transactions.filter(t => t.status === 'Pending').length}</p></div>
-          <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-yellow-50 text-yellow-500"><Clock size={20}/></div>
+        
+        <div className="card p-5 flex flex-col justify-between">
+          <div><p className="hero-metadata">Pending</p><p className="text-2xl font-semibold text-yellow-600 mt-1">{transactions.filter(t => t.status === 'Pending').length}</p></div>
+          <div className="flex items-center justify-between mt-4">
+             <span className="text-sm font-medium text-gray-500">Transactions</span>
+             <Clock size={20} className="text-yellow-500"/>
+          </div>
         </div>
       </div>
 

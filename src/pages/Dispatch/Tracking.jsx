@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { 
   Map, Zap, Search, Truck, MapPin, Navigation, Clock, 
@@ -6,26 +7,26 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
+const activeVehicles = [
+  { id: 'TRK-102', branchId: 'SYD-CENTRAL', driver: 'Jack Taylor', status: 'Moving', speed: '45 km/h', loc: 'Hume Highway, Goulburn', eta: '45 mins', carga: 'Perishables', temp: '-2°C' },
+  { id: 'VAN-08',  branchId: 'SYD-CENTRAL', driver: 'Liam Smith', status: 'Stopped', speed: '0 km/h', loc: 'Albury Stopover',     eta: 'Delayed', carga: 'Electronics', temp: 'N/A' },
+  { id: 'TRK-05',  branchId: 'MEL-HUB',     driver: 'Noah Williams',  status: 'Moving', speed: '62 km/h', loc: 'Pacific Highway, NSW',   eta: '1h 15m', carga: 'Heavy Mach.', temp: 'N/A' },
+  { id: 'VAN-14',  branchId: 'SYD-CENTRAL', driver: 'Oliver Brown',   status: 'Loading', speed: '0 km/h', loc: 'Warehouse A, Sydney',          eta: 'Pending', carga: 'Textiles', temp: '22°C' },
+  { id: 'TRK-900', branchId: 'BNE-PORT',    driver: 'Ethan Hunt',     status: 'Moving', speed: '88 km/h', loc: 'Gateway Bridge, BNE',    eta: '15 mins', carga: 'Vip Parcel', temp: 'N/A' },
+];
+
 export default function DispatchTracking() {
   const { user } = useAuth();
   const [searchParams] = useSearchParams();
   const vid = searchParams.get('id');
   const [selectedVehicle, setSelectedVehicle] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (vid) {
       const found = activeVehicles.find(v => v.id === vid);
       if (found) setSelectedVehicle(found);
     }
   }, [vid]);
-
-  const activeVehicles = [
-    { id: 'TRK-102', branchId: 'SYD-CENTRAL', driver: 'Jack Taylor', status: 'Moving', speed: '45 km/h', loc: 'Hume Highway, Goulburn', eta: '45 mins', carga: 'Perishables', temp: '-2°C' },
-    { id: 'VAN-08',  branchId: 'SYD-CENTRAL', driver: 'Liam Smith', status: 'Stopped', speed: '0 km/h', loc: 'Albury Stopover',     eta: 'Delayed', carga: 'Electronics', temp: 'N/A' },
-    { id: 'TRK-05',  branchId: 'MEL-HUB',     driver: 'Noah Williams',  status: 'Moving', speed: '62 km/h', loc: 'Pacific Highway, NSW',   eta: '1h 15m', carga: 'Heavy Mach.', temp: 'N/A' },
-    { id: 'VAN-14',  branchId: 'SYD-CENTRAL', driver: 'Oliver Brown',   status: 'Loading', speed: '0 km/h', loc: 'Warehouse A, Sydney',          eta: 'Pending', carga: 'Textiles', temp: '22°C' },
-    { id: 'TRK-900', branchId: 'BNE-PORT',    driver: 'Ethan Hunt',     status: 'Moving', speed: '88 km/h', loc: 'Gateway Bridge, BNE',    eta: '15 mins', carga: 'Vip Parcel', temp: 'N/A' },
-  ];
 
   const filteredVehicles = activeVehicles.filter(v => v.branchId === user.branchId);
 

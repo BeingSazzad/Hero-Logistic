@@ -104,9 +104,8 @@ export default function DispatchJobs() {
             <button
               key={q.id}
               onClick={() => setQueue(q.id)}
-              className={`flex flex-col items-start p-5 rounded-xl border-2 transition-all text-left ${
-            <button key={q.id} onClick={() => setQueue(q.id)}
-              className={`card p-5 text-left flex flex-col gap-2 transition-all group overflow-hidden ${isActive ? 'ring-2 ring-brand border-brand shadow-lg ' + q.bg : 'hover:border-brand/40'}`}>
+              className={`card p-5 text-left flex flex-col gap-2 transition-all group overflow-hidden ${isActive ? 'ring-2 ring-brand border-brand shadow-lg ' + q.bg : 'hover:border-brand/40'}`}
+            >
               <div className="flex justify-between items-center relative z-10">
                 <q.icon size={20} className={isActive ? q.color : 'text-hero-neutral'} />
                 <span className={`text-xl font-black ${isActive ? 'text-hero-dark' : 'text-hero-neutral'}`}>{counts[q.id]}</span>
@@ -142,10 +141,7 @@ export default function DispatchJobs() {
               />
             </div>
 
-            <div className="relative">
-              <button 
-                onClick={() => setShowFilter(!showFilter)}
-                className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 shadow-sm rounded-lg text-xs font-bold uppercase tracking-widest text-gray-600 hover:bg-gr          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3">
             <div className="relative">
               <button 
                 onClick={() => setShowFilter(!showFilter)}
@@ -182,12 +178,10 @@ export default function DispatchJobs() {
               )}
             </div>
           </div>
-        </div>   </div>
-          </div>
+        </div>
         </div>
 
         <div className="overflow-x-auto relative">
-          {/* Floating Batch Action Bar */}
           {/* Floating Batch Action Bar */}
           {selectedIds.length > 0 && (
              <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-hero-dark text-white px-6 py-4 rounded-hero-lg shadow-2xl flex items-center gap-6 animate-in slide-in-from-top-4 duration-300 border border-white/10">
