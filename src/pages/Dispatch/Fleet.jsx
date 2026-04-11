@@ -72,7 +72,7 @@ export default function DispatchFleet() {
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 placeholder="Search by ID or Reg..." 
-                className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm" 
+                className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm" 
               />
            </div>
            
@@ -82,7 +82,7 @@ export default function DispatchFleet() {
                   <button 
                     key={t} 
                     onClick={() => setFilter(t)}
-                    className={`px-3 py-1.5 text-[10px] font-black uppercase tracking-widest rounded ${filter === t ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-400 hover:text-gray-600'}`}
+                    className={`px-4 py-2 text-sm font-semibold rounded ${filter === t ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
                   >
                     {t}
                   </button>

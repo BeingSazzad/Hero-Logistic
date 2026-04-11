@@ -1,10 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Save, Upload, Image as ImageIcon, Truck, FileText, Settings, Key, MapPin, Gauge } from 'lucide-react';
+import { ArrowLeft, Save, Upload, Image as ImageIcon, Truck, FileText, Settings, Key, MapPin, Gauge, AlertTriangle, ShieldAlert } from 'lucide-react';
+
+const CURRENT_VEHICLE_COUNT = 10;
+const PLAN_LIMIT = 10;
+const PLAN_NAME = 'Starter Fleet';
 
 export default function AdminAddVehicle() {
   const navigate = useNavigate();
   const [photo, setPhoto] = useState(null);
+
+  const handleSave = () => {
+    if (CURRENT_VEHICLE_COUNT >= PLAN_LIMIT) {
+      alert(`Plan Exceeded: Your ${PLAN_NAME} plan allows a maximum of ${PLAN_LIMIT} vehicles. Please upgrade your subscription to add more assets.`);
+      navigate('/admin/billing/plans');
+    } else {
+      navigate('/admin/fleet');
+    }
+  };
 
   const handlePhotoUpload = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -38,13 +51,30 @@ export default function AdminAddVehicle() {
           >
             Cancel
           </button>
-          <button className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm group">
+          <button onClick={handleSave} className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm group">
             <Save size={18} strokeWidth={2.5}/> Save Vehicle
           </button>
         </div>
       </div>
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
+
+      {CURRENT_VEHICLE_COUNT >= PLAN_LIMIT && (
+        <div className="px-2 mb-2">
+          <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center gap-4">
+             <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center shrink-0">
+               <ShieldAlert size={20} className="text-red-600" />
+             </div>
+             <div className="flex-1">
+               <h3 className="text-sm font-black text-red-900 tracking-tight">Plan Limit Reached ({CURRENT_VEHICLE_COUNT}/{PLAN_LIMIT})</h3>
+               <p className="text-xs font-bold text-red-700 mt-0.5">Your '{PLAN_NAME}' plan does not allow more vehicles. Additional assets will not be saved.</p>
+             </div>
+             <button onClick={() => navigate('/admin/billing/plans')} className="shrink-0 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all">
+               Upgrade Plan
+             </button>
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-2">
 

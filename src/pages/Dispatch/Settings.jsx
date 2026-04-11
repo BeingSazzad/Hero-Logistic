@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   User, Mail, Building2, Lock, Save, Camera, 
   Bell, Globe, Shield, LogOut, ChevronRight,
-  Settings, UserCircle, Key, AlertTriangle
+  Settings, UserCircle, Key, AlertTriangle, LifeBuoy, Send
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -10,6 +10,7 @@ const tabs = [
   { id: 'profile', label: 'My Account', icon: UserCircle, desc: 'Personal details and hub info' },
   { id: 'security', label: 'Security', icon: Lock, desc: 'Passwords and 2FA' },
   { id: 'preferences', label: 'Preferences', icon: Settings, desc: 'Theme and terminal alerts' },
+  { id: 'support', label: 'Help & Support', icon: LifeBuoy, desc: 'Contact Admin Support' },
 ];
 
 export default function DispatchSettings() {
@@ -210,9 +211,43 @@ export default function DispatchSettings() {
                         </div>
                       ))}
                    </div>
+                 </div>
+              </div>
+           )}
+
+           {/* Tab: Support */}
+           {activeTab === 'support' && (
+              <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-2 duration-400">
+                <div className="bg-[#111] rounded-2xl p-8 text-white shadow-xl relative overflow-hidden">
+                   <div className="absolute right-0 top-0 w-64 h-64 bg-gray-800/50 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/4"></div>
+                   <div className="flex items-center gap-6 relative z-10">
+                      <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-[#111] shadow-lg">
+                         <LifeBuoy size={32} />
+                      </div>
+                      <div>
+                        <h3 className="font-black text-white text-2xl tracking-tight leading-none">Contact Super Admin</h3>
+                        <p className="text-[11px] font-medium text-gray-400 uppercase tracking-widest mt-2">Internal Team Support Ticket</p>
+                      </div>
+                   </div>
                 </div>
-             </div>
-          )}
+                
+                <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] space-y-6">
+                  <div>
+                     <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2 px-1">Subject</label>
+                     <input type="text" placeholder="e.g. Rate Config Error, New Branch Req..." className="w-full bg-gray-50 border border-gray-100 focus:border-[#FFCC00] focus:bg-white rounded-xl py-4 px-5 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
+                  </div>
+                  <div>
+                     <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2 px-1">Describe Issue</label>
+                     <textarea placeholder="Provide detailed operational issue..." className="w-full min-h-[160px] resize-none bg-gray-50 border border-gray-100 focus:border-[#FFCC00] focus:bg-white rounded-xl py-4 px-5 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
+                  </div>
+                  <div className="pt-2">
+                     <button onClick={() => { alert('Ticket sent to Admin Command Center.'); setActiveTab('profile'); }} className="bg-[#FFCC00] hover:bg-[#E6B800] text-black font-black uppercase tracking-widest px-8 py-4 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 w-fit active:scale-95">
+                       <Send size={18}/> Submit Ticket
+                     </button>
+                  </div>
+                </div>
+              </div>
+           )}
 
         </div>
       </div>

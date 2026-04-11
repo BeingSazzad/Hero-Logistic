@@ -143,8 +143,8 @@ export default function DispatchJobs() {
                 type="text"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                placeholder="Search..."
-                className="w-full md:w-64 bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm"
+                placeholder="Search by ID or Name..."
+                className="w-full md:w-64 bg-white border border-gray-200 hover:border-gray-300 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm"
               />
             </div>
 
@@ -152,9 +152,9 @@ export default function DispatchJobs() {
             <div className="relative">
               <button 
                 onClick={() => setShowFilter(!showFilter)}
-                className="btn btn-outline py-2.5 px-4"
+                className="btn btn-outline py-2.5 px-4 font-semibold text-sm"
               >
-                <Filter size={14} /> Filter <ChevronDown size={14} className={`transition-transform ${showFilter ? 'rotate-180' : ''}`} />
+                <Filter size={14} /> Filter Priorities <ChevronDown size={14} className={`transition-transform ${showFilter ? 'rotate-180' : ''}`} />
               </button>
               {showFilter && (
                 <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-hero-md shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
@@ -170,9 +170,9 @@ export default function DispatchJobs() {
             <div className="relative">
               <button 
                 onClick={() => setShowSort(!showSort)}
-                className="btn btn-outline py-2.5 px-4"
+                className="btn btn-outline py-2.5 px-4 font-semibold text-sm"
               >
-                <ChevronDown size={14} className={`mr-2 transition-transform ${showSort ? 'rotate-180' : ''}`} /> Sort
+                <ChevronDown size={14} className={`mr-2 transition-transform ${showSort ? 'rotate-180' : ''}`} /> Sort Drivers
               </button>
               {showSort && (
                 <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-hero-md shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">

@@ -135,40 +135,40 @@ export default function AdminShipments() {
                 type="text"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                placeholder="Search sequence..."
-                className="w-full md:w-64 bg-white border border-gray-200 rounded-xl py-2 pl-10 pr-4 text-[11px] font-black uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-brand/20 shadow-sm transition-all"
+                placeholder="Search by Shipment ID..."
+                className="w-full md:w-64 bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand shadow-sm transition-all"
               />
             </div>
             <div className="relative">
-              <button onClick={() => { setShowFilter(!showFilter); setShowSort(false); }} className="bg-white border border-gray-200 px-4 py-2 rounded-xl text-[10px] font-black uppercase flex items-center gap-2 hover:bg-gray-50 shadow-sm transition-all">
-                <Filter size={14} /> Filter
+              <button onClick={() => { setShowFilter(!showFilter); setShowSort(false); }} className="bg-white border border-gray-200 px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-700 flex items-center gap-2 hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-all">
+                <Filter size={16} /> Filter by Parameters
               </button>
               {showFilter && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-100 shadow-xl rounded-xl p-3 z-20 animate-in fade-in slide-in-from-top-2">
-                  <div className="mb-3">
-                    <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest block mb-1">Branch</label>
-                    <select value={filterBranch} onChange={e => setFilterBranch(e.target.value)} className="w-full text-xs font-bold bg-gray-50 border border-gray-200 rounded p-1.5 focus:outline-none">
+                <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-100 shadow-xl rounded-xl p-4 z-20 animate-in fade-in slide-in-from-top-2">
+                  <div className="mb-4">
+                    <label className="text-xs font-medium text-gray-700 block mb-1">Select Branch</label>
+                    <select value={filterBranch} onChange={e => setFilterBranch(e.target.value)} className="w-full text-sm font-normal bg-white border border-gray-200 rounded-lg py-2.5 px-3 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 appearance-none cursor-pointer">
                       <option value="All">All Branches</option>
                       <option value="SYD-CENTRAL">Sydney Central</option>
                       <option value="MEL-HUB">Melbourne Hub</option>
                     </select>
                   </div>
                   <div>
-                    <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest block mb-1">Date</label>
-                    <input type="date" value={filterDate} onChange={e => setFilterDate(e.target.value)} className="w-full text-xs font-bold bg-gray-50 border border-gray-200 rounded p-1.5 focus:outline-none" />
+                    <label className="text-xs font-medium text-gray-700 block mb-1">Filter by Date</label>
+                    <input type="date" value={filterDate} onChange={e => setFilterDate(e.target.value)} className="w-full text-sm font-normal bg-white border border-gray-200 rounded-lg py-2.5 px-3 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 cursor-pointer" />
                   </div>
                 </div>
               )}
             </div>
 
             <div className="relative">
-              <button onClick={() => { setShowSort(!showSort); setShowFilter(false); }} className="bg-white border border-gray-200 px-4 py-2 rounded-xl text-[10px] font-black uppercase flex items-center gap-2 hover:bg-gray-50 shadow-sm transition-all">
-                Sort: {sortOption} <ChevronDown size={12}/>
+              <button onClick={() => { setShowSort(!showSort); setShowFilter(false); }} className="bg-white border border-gray-200 px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-700 flex items-center gap-2 hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-all">
+                Sort by Date: {sortOption} <ChevronDown size={14}/>
               </button>
               {showSort && (
-                <div className="absolute right-0 mt-2 w-32 bg-white border border-gray-100 shadow-xl rounded-xl py-1 z-20 animate-in fade-in slide-in-from-top-2">
+                <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-100 shadow-xl rounded-xl py-2 z-20 animate-in fade-in slide-in-from-top-2">
                   {['Latest', 'Oldest', 'Priority'].map(opt => (
-                    <button key={opt} onClick={() => { setSortOption(opt); setShowSort(false); }} className={`w-full text-left px-4 py-2 text-xs font-bold hover:bg-gray-50 ${sortOption === opt ? 'text-brand' : 'text-gray-700'}`}>{opt}</button>
+                    <button key={opt} onClick={() => { setSortOption(opt); setShowSort(false); }} className={`w-full text-left px-5 py-2.5 text-sm font-medium hover:bg-gray-50 ${sortOption === opt ? 'text-brand bg-brand/5' : 'text-gray-700'}`}>{opt}</button>
                   ))}
                 </div>
               )}

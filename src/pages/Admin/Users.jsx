@@ -67,7 +67,7 @@ export default function AdminUsers() {
           <div className="flex bg-gray-100 p-1 rounded-hero-sm border border-gray-200/60 w-full xl:w-auto shadow-inner">
             {ROLE_TABS.map(tab => (
               <button key={tab} onClick={() => setRoleFilter(tab)}
-                className={`px-4 py-2 hero-metadata rounded transition-all whitespace-nowrap ${roleFilter === tab ? 'bg-white text-hero-dark shadow-sm ring-1 ring-gray-200' : 'text-hero-neutral hover:text-hero-dark'}`}>
+                className={`px-4 py-2 text-sm font-semibold rounded transition-all whitespace-nowrap ${roleFilter === tab ? 'bg-white text-gray-900 shadow-sm border border-gray-200/50' : 'text-gray-500 hover:text-gray-700'}`}>
                 {tab}
               </button>
             ))}
@@ -76,7 +76,7 @@ export default function AdminUsers() {
             <div className="relative flex-1 xl:w-72 group">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-hero-neutral group-focus-within:text-brand transition-colors" size={15} />
               <input type="text" value={search} onChange={e => setSearch(e.target.value)}
-                placeholder="Search name, email, branch..." className="input pl-10 w-full" />
+                placeholder="Search by Operator or Branch..." className="input pl-10 w-full" />
             </div>
           </div>
         </div>

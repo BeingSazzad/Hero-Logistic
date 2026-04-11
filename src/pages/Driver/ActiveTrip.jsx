@@ -17,6 +17,8 @@ const PRE_TRIP_CHECKLIST = [
   { id: 6, label: 'Vehicle exterior photo (front & rear)', type: 'photo', required: false, done: false },
 ];
 
+const GLOBAL_CHECKLIST_MODE = 'Flexible'; // Admin configuration ('Strict' | 'Flexible')
+
 export default function ActiveTrip() {
   const navigate = useNavigate();
 
@@ -57,7 +59,15 @@ export default function ActiveTrip() {
   const progressPct = Math.round((completedCount / checklist.length) * 100);
 
   const handleStartTrip = () => {
-    if (!allRequiredDone) return;
+    if (!allRequiredDone) {
+      if (GLOBAL_CHECKLIST_MODE === 'Strict') {
+        alert('Admin Strict Mode is ON. You cannot start the trip until the Checklist is complete.');
+        return;
+      } else {
+        const proceed = window.confirm('Checklist is incomplete, but Admin Flexible mode is ON. Proceed anyway?');
+        if (!proceed) return;
+      }
+    }
     setChecklistSubmitting(true);
     setTimeout(() => {
       setChecklistDone(true);
@@ -95,20 +105,27 @@ export default function ActiveTrip() {
         <div className="p-4 flex flex-col gap-4">
 
           {/* Blocked Banner */}
-          {!checklistDone && (
+          {!checklistDone && (GLOBAL_CHECKLIST_MODE === 'Strict' ? (
             <div className="bg-red-50 border border-red-200 rounded-2xl p-4 flex items-center gap-3">
               <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center shrink-0">
-                <Lock size={18} className="text-red-600" />
+                <Lock size={18} className="text-red-500" />
               </div>
               <div>
-                <p className="text-sm font-black text-red-700">Trip Blocked</p>
-                <p className="text-xs font-medium text-red-500 mt-0.5 leading-relaxed">
-                  Complete all required ({requiredItems.length}) safety checks before departing.
-                  {' '}This is enforced by your company policy.
-                </p>
+                <h3 className="text-sm font-black text-red-900 tracking-tight">System Lock Active (Strict Mode)</h3>
+                <p className="text-xs font-bold text-red-600 mt-0.5">You must complete all required checklist items.</p>
               </div>
             </div>
-          )}
+          ) : (
+            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center gap-3">
+              <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center shrink-0">
+                <AlertTriangle size={18} className="text-amber-600" />
+              </div>
+              <div>
+                <h3 className="text-sm font-black text-amber-900 tracking-tight">Flexible Mode Active</h3>
+                <p className="text-xs font-bold text-amber-700 mt-0.5">You can bypass the checklist, but compliance is recommended.</p>
+              </div>
+            </div>
+          ))}
 
           {/* Checklist Items */}
           {!checklistDone && (
@@ -204,20 +221,26 @@ export default function ActiveTrip() {
               <p className="text-xs text-gray-400 font-medium">Starting trip...</p>
             </div>
           ) : (
-            <button
-              onClick={handleStartTrip}
-              disabled={!allRequiredDone || checklistSubmitting}
-              className={`w-full py-5 rounded-2xl font-black text-sm uppercase tracking-widest flex items-center justify-center gap-3 transition-all active:scale-95 shadow-sm ${
-                allRequiredDone
-                  ? 'bg-gray-900 hover:bg-black text-[#FFCC00] shadow-black/20'
-                  : 'bg-gray-100 text-gray-300 cursor-not-allowed'
-              }`}
-            >
-              {allRequiredDone
-                ? <><ShieldCheck size={18} /> Start Trip — Clear for Departure</>
-                : <><Lock size={16} /> Complete Required Checks to Unlock</>
-              }
-            </button>
+             <button
+               onClick={handleStartTrip}
+               className={`w-full py-5 rounded-2xl font-black text-sm uppercase tracking-widest flex items-center justify-center gap-3 transition-all active:scale-95 shadow-sm ${
+                 checklistSubmitting
+                   ? 'bg-[#111] text-[#FFCC00]'
+                   : allRequiredDone
+                     ? 'bg-[#111] hover:bg-black text-[#FFCC00] shadow-black/20'
+                     : GLOBAL_CHECKLIST_MODE === 'Flexible'
+                       ? 'bg-amber-50 text-amber-600 border border-amber-200'
+                       : 'bg-gray-100 text-gray-300 cursor-not-allowed'
+               }`}
+             >
+               {checklistSubmitting ? (
+                  <>Transmitting...</>
+               ) : (
+                  <>
+                     {allRequiredDone ? <><ShieldCheck size={18} /> Start Trip — Clear for Departure</> : (GLOBAL_CHECKLIST_MODE === 'Flexible' ? <><AlertTriangle size={18} /> Bypass Check & Start</> : <><Lock size={16} /> Complete Required Checks to Unlock</>)}
+                  </>
+               )}
+             </button>
           )}
         </div>
       </div>

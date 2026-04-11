@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Phone, Mail, Shield, CheckCircle2, AlertCircle, LogOut, ChevronRight, Lock, Bell, FileText, Activity, Info, Link as LinkIcon, Smartphone, Mailbox } from 'lucide-react';
+import { User, Phone, Mail, Shield, CheckCircle2, AlertCircle, LogOut, ChevronRight, Lock, Bell, FileText, Activity, Info, Link as LinkIcon, Smartphone, Mailbox, Camera, LifeBuoy, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
@@ -17,6 +17,7 @@ export default function DriverProfile() {
 
   const { user } = useAuth();
   const [activeView, setActiveView] = useState('main'); // 'main', 'edit', 'password'
+  const [profilePhoto, setProfilePhoto] = useState(null);
 
   if (activeView === 'edit') {
      return (
@@ -28,6 +29,21 @@ export default function DriverProfile() {
              <h1 className="text-white font-bold text-lg tracking-wide">Personal Information</h1>
           </div>
           <div className="p-5 flex flex-col gap-5 mt-2">
+             <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center">
+                <div className="relative group cursor-pointer" onClick={() => setProfilePhoto('/assets/sample_driver.png')}>
+                   <div className="w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden bg-[#FFCC00] flex items-center justify-center font-black text-3xl text-black">
+                      {profilePhoto ? <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover"/> : (user?.name?.split(' ').map(n=>n[0]).join('') || 'JM')}
+                   </div>
+                   <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Camera size={24} className="text-white" />
+                   </div>
+                   <button className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-white text-gray-900 shadow-md border border-gray-100 flex items-center justify-center hover:bg-gray-50 transition-colors pointer-events-none">
+                      <Camera size={14} />
+                   </button>
+                </div>
+                <p className="text-[10px] uppercase font-black text-gray-400 tracking-widest mt-4">Tap to update avatar</p>
+             </div>
+             
              <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-4">
                <div>
                   <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2 px-1">Full Name</label>
@@ -224,6 +240,47 @@ export default function DriverProfile() {
      );
   }
 
+  if (activeView === 'support') {
+     return (
+        <div className="flex flex-col bg-gray-50 min-h-screen pb-24 animate-in slide-in-from-right-4 duration-300">
+          <div className="bg-[#111] px-5 py-4 sticky top-0 z-10 flex items-center shadow-md gap-3">
+             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FFCC00] transition-colors p-1 -ml-2 rounded-lg">
+                <ChevronRight size={24} className="rotate-180" />
+             </button>
+             <h1 className="text-white font-bold text-lg tracking-wide">Help & Support</h1>
+          </div>
+          <div className="p-5 flex flex-col gap-5 mt-2">
+             <div className="bg-[#111] rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
+                <div className="absolute -right-6 -top-6 w-32 h-32 bg-gray-800/50 rounded-full blur-3xl"></div>
+                <div className="flex items-center gap-4 relative z-10">
+                   <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-[#111] shadow-lg">
+                      <LifeBuoy size={24} />
+                   </div>
+                   <div>
+                     <h3 className="font-black text-white text-lg">Contact Dispatch</h3>
+                     <p className="text-[10px] font-medium text-gray-400 uppercase tracking-widest mt-0.5">Internal Team Support Ticket</p>
+                   </div>
+                </div>
+             </div>
+             
+             <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-5">
+               <div>
+                  <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2 px-1">Subject</label>
+                  <input type="text" placeholder="e.g. Schedule Error, App Glitch..." className="w-full bg-gray-50 border border-gray-100 focus:border-[#FFCC00] focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
+               </div>
+               <div>
+                  <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2 px-1">Description</label>
+                  <textarea placeholder="Describe the issue you're facing..." className="w-full min-h-[140px] resize-none bg-gray-50 border border-gray-100 focus:border-[#FFCC00] focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
+               </div>
+               <button onClick={() => { alert('Support ticket sent to Admin.'); setActiveView('main'); }} className="w-full py-4 bg-[#FFCC00] hover:bg-[#E6B800] text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 mt-4 active:scale-95">
+                 <Send size={16}/> Submit Ticket
+               </button>
+             </div>
+          </div>
+        </div>
+     );
+  }
+
   return (
     <div className="flex flex-col bg-gray-50 min-h-screen pb-24">
       {/* ── 1. Top Navigation Bar ── */}
@@ -234,8 +291,8 @@ export default function DriverProfile() {
       <div className="p-4 flex flex-col gap-5">
         {/* ── 2. Profile Summary Card ── */}
         <div className="bg-[#111] text-white rounded-2xl p-5 flex items-center gap-4 shadow-lg border border-gray-800">
-          <div className="w-16 h-16 rounded-full bg-[#FFCC00] flex items-center justify-center font-black text-[#111] text-2xl shrink-0 shadow-inner">
-            {user?.name?.split(' ').map(n=>n[0]).join('') || 'JM'}
+          <div className="w-16 h-16 rounded-full bg-[#FFCC00] border-2 border-white flex items-center justify-center font-black text-[#111] text-2xl shrink-0 shadow-inner overflow-hidden">
+            {profilePhoto ? <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover"/> : (user?.name?.split(' ').map(n=>n[0]).join('') || 'JM')}
           </div>
           <div>
             <h2 className="text-xl font-bold">{user?.name || 'James Mitchell'}</h2>
@@ -329,6 +386,19 @@ export default function DriverProfile() {
                 <div className="text-left">
                    <p className="text-sm font-bold text-gray-900">About App</p>
                    <p className="text-xs text-gray-400">App info & version</p>
+                </div>
+             </div>
+             <ChevronRight size={18} className="text-gray-300" />
+          </button>
+
+          <button onClick={() => setActiveView('support')} className="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 active:bg-gray-100 transition-colors group">
+             <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0 border border-blue-100">
+                   <LifeBuoy size={18} className="text-blue-500" />
+                </div>
+                <div className="text-left">
+                   <p className="text-sm font-bold text-gray-900">Help & Support</p>
+                   <p className="text-xs text-gray-400">Report issue to Dispatch</p>
                 </div>
              </div>
              <ChevronRight size={18} className="text-gray-300" />

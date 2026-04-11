@@ -7,10 +7,10 @@ import {
 } from 'lucide-react';
 
 const VEHICLE_DB = {
-  'TRK-102': { id: 'TRK-102', make: 'Freightliner Cascadia', type: 'Semi Truck', plate: 'XQG-984', year: '2021', status: 'Active', fuel: '72%', mileage: '128,440 km', nextService: 'April 22, 2026', lastService: 'Jan 15, 2026', compliance: 'Valid', driver: 'Jack Taylor', driverInitials: 'JT', driverId: 'DRV-102', capacity: '28t', location: 'Hume Highway, Goulburn NSW', trips: 412, rating: 4.8 },
-  'VAN-14':  { id: 'VAN-14',  make: 'Mercedes Sprinter 519', type: 'Cargo Van',  plate: 'VAN-14-SYD', year: '2022', status: 'Loading', fuel: '55%', mileage: '44,200 km', nextService: 'May 10, 2026', lastService: 'Feb 02, 2026', compliance: 'Valid', driver: 'Oliver Brown', driverInitials: 'OB', driverId: 'DRV-134', capacity: '3.5t', location: 'Warehouse A, Sydney NSW', trips: 198, rating: 4.5 },
-  'BGT-221': { id: 'BGT-221', make: 'Isuzu FTR 900', type: 'Medium Truck', plate: 'BGT-221', year: '2020', status: 'Delay Alert', fuel: '31%', mileage: '89,100 km', nextService: 'April 15, 2026', lastService: 'Dec 12, 2025', compliance: 'Warning', driver: 'Liam Smith', driverInitials: 'LS', driverId: 'DRV-105', capacity: '9t', location: 'Pacific Highway, NSW', trips: 301, rating: 4.2 },
-  'TRK-05':  { id: 'TRK-05',  make: 'Kenworth T610', type: 'Road Train', plate: 'TRK-05-MEL', year: '2019', status: 'Active', fuel: '88%', mileage: '204,000 km', nextService: 'June 01, 2026', lastService: 'Mar 01, 2026', compliance: 'Valid', driver: 'Noah Williams', driverInitials: 'NW', driverId: 'DRV-118', capacity: '42t', location: 'Pacific Highway, NSW', trips: 680, rating: 4.6 },
+  'TRK-102': { id: 'TRK-102', make: 'Freightliner Cascadia', type: 'Semi Truck', plate: 'XQG-984', year: '2021', status: 'Active', fuel: '72%', mileage: '128,440 km', nextService: 'April 22, 2026', lastService: 'Jan 15, 2026', compliance: 'Valid', capacity: '28t', location: 'Hume Highway, Goulburn NSW', trips: 412, rating: 4.8, shifts: [{ id: 'DRV-102', name: 'Jack Taylor', shift: 'Day Shift (06:00 - 18:00)', initials: 'JT' }, { id: 'DRV-134', name: 'Oliver Brown', shift: 'Night Shift (18:00 - 06:00)', initials: 'OB' }] },
+  'VAN-14':  { id: 'VAN-14',  make: 'Mercedes Sprinter 519', type: 'Cargo Van',  plate: 'VAN-14-SYD', year: '2022', status: 'Loading', fuel: '55%', mileage: '44,200 km', nextService: 'May 10, 2026', lastService: 'Feb 02, 2026', compliance: 'Valid', capacity: '3.5t', location: 'Warehouse A, Sydney NSW', trips: 198, rating: 4.5, shifts: [{ id: 'DRV-134', name: 'Oliver Brown', shift: 'Day Shift (06:00 - 18:00)', initials: 'OB' }] },
+  'BGT-221': { id: 'BGT-221', make: 'Isuzu FTR 900', type: 'Medium Truck', plate: 'BGT-221', year: '2020', status: 'Delay Alert', fuel: '31%', mileage: '89,100 km', nextService: 'April 15, 2026', lastService: 'Dec 12, 2025', compliance: 'Warning', capacity: '9t', location: 'Pacific Highway, NSW', trips: 301, rating: 4.2, shifts: [{ id: 'DRV-105', name: 'Liam Smith', shift: 'Day Shift (08:00 - 20:00)', initials: 'LS' }] },
+  'TRK-05':  { id: 'TRK-05',  make: 'Kenworth T610', type: 'Road Train', plate: 'TRK-05-MEL', year: '2019', status: 'Active', fuel: '88%', mileage: '204,000 km', nextService: 'June 01, 2026', lastService: 'Mar 01, 2026', compliance: 'Valid', capacity: '42t', location: 'Pacific Highway, NSW', trips: 680, rating: 4.6, shifts: [] },
 };
 
 const statusStyle = (s) => {
@@ -217,25 +217,39 @@ export default function DispatchVehicleDetail() {
           </div>
 
           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
-            <div className="p-5 border-b border-gray-100 bg-[#FAFAFA]">
-              <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2"><User size={12}/> Assigned Operator</h3>
+            <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center justify-between">
+              <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2"><User size={12}/> Shift Roster</h3>
+              <span className="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-[9px] font-black">{v.shifts?.length || 0} Drivers</span>
             </div>
-            <div className="p-5">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#111] flex items-center justify-center text-[#FFCC00] font-black text-sm shadow-lg">
-                  {v.driverInitials}
+            <div className="p-5 flex flex-col gap-4 max-h-[300px] overflow-y-auto">
+              {!v.shifts || v.shifts.length === 0 ? (
+                 <div className="text-center py-6">
+                    <p className="text-sm font-bold text-gray-400">No active shifts scheduled.</p>
+                 </div>
+              ) : v.shifts.map((shift, idx) => (
+                <div key={idx} className="flex items-center gap-4 bg-gray-50/50 p-3 rounded-xl border border-gray-100">
+                  <div className="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-[#FFCC00] font-black text-xs shadow-lg shrink-0">
+                    {shift.initials}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-black text-gray-900 truncate">{shift.name}</p>
+                    <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold mt-0.5">{shift.id}</p>
+                  </div>
+                  <div className="text-right shrink-0">
+                     <p className="text-[10px] font-black text-blue-600 bg-blue-50 border border-blue-100 px-2 py-1 rounded truncate max-w-[120px]">{shift.shift}</p>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <p className="font-black text-gray-900">{v.driver}</p>
-                  <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold mt-0.5">{v.driverId}</p>
-                </div>
+              ))}
+              <div className="flex gap-2 mt-2">
+                 <button className="flex-1 py-3 bg-white hover:bg-gray-50 border border-dashed border-gray-300 rounded-xl text-[10px] font-black uppercase tracking-widest text-[#111] transition-all flex items-center justify-center gap-2">
+                   <Plus size={13}/> Assign Driver
+                 </button>
+                 {v.shifts?.length > 0 && (
+                   <button onClick={() => navigate('/dispatch/drivers')} className="flex-1 py-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-xl text-[10px] font-black uppercase tracking-widest text-gray-600 transition-all flex items-center justify-center gap-2">
+                     Manage List
+                   </button>
+                 )}
               </div>
-              <button
-                onClick={() => navigate(`/dispatch/drivers/${v.driverId}`)}
-                className="mt-4 w-full py-2.5 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-xl text-[10px] font-black uppercase tracking-widest text-gray-600 transition-all flex items-center justify-center gap-2"
-              >
-                <User size={13}/> View Driver Profile <ChevronRight size={13}/>
-              </button>
             </div>
           </div>
 

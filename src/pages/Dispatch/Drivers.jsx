@@ -16,12 +16,11 @@ export default function DispatchDrivers() {
   const [sortOrder, setSortOrder] = useState('desc'); // Changed to desc for most recent first
   
   const rawDrivers = [
-    { id: 'DRV-102', branchId: 'SYD-CENTRAL', name: 'Jack Taylor',   phone: '+61 411 000 001', rank: 'Senior', status: 'On Duty', assigned: 'SHP-20481', rating: 4.8, shift: '06:00 - 18:00', compliance: 'Valid' },
-    { id: 'DRV-105', branchId: 'SYD-CENTRAL', name: 'Liam Smith',   phone: '+61 412 000 002', rank: 'Regular',status: 'On Duty', assigned: 'SHP-20482', rating: 4.5, shift: '06:00 - 18:00', compliance: 'Valid' },
-    { id: 'DRV-118', branchId: 'MEL-HUB',     name: 'Noah Williams', phone: '+61 413 000 003', rank: 'Regular',status: 'Delay Alert', assigned: 'SHP-20483', rating: 4.2, shift: '08:00 - 20:00', compliance: 'Warning' },
-    { id: 'DRV-134', branchId: 'SYD-CENTRAL', name: 'Oliver Brown', phone: '+61 414 000 004', rank: 'Junior', status: 'In Break',  assigned: '-', rating: 4.0, shift: '10:00 - 22:00', compliance: 'Valid' },
-    { id: 'DRV-145', branchId: 'SYD-CENTRAL', name: 'Lucas Jones',  phone: '+61 415 000 005', rank: 'Senior', status: 'Off Duty',  assigned: '-', rating: 4.9, shift: 'Night Shift', compliance: 'Valid' },
-    { id: 'DRV-156', branchId: 'BNE-PORT',    name: 'Ethan Hunt',   phone: '+61 416 000 006', rank: 'Senior', status: 'On Duty', assigned: 'SHP-9004', rating: 4.7, shift: '06:00 - 18:00', compliance: 'Valid' },
+    { id: 'DRV-102', branchId: 'SYD-CENTRAL', name: 'Jack Taylor',   phone: '+61 411 000 001', rank: 'Senior', status: 'On Duty', assigned: 'SHP-20481', rating: 4.8, shift: 'Day Shift (06:00 - 18:00)', compliance: 'Valid', certs: ['DG', 'MSIC', 'White Card'] },
+    { id: 'DRV-105', branchId: 'SYD-CENTRAL', name: 'Liam Smith',   phone: '+61 412 000 002', rank: 'Regular',status: 'On Duty', assigned: 'SHP-20482', rating: 4.5, shift: 'Night Shift (18:00 - 06:00)', compliance: 'Valid', certs: ['White Card'] },
+    { id: 'DRV-118', branchId: 'MEL-HUB',     name: 'Noah Williams', phone: '+61 413 000 003', rank: 'Regular',status: 'Delay Alert', assigned: 'SHP-20483', rating: 4.2, shift: 'Day Shift (08:00 - 20:00)', compliance: 'Warning', certs: ['MSIC'] },
+    { id: 'DRV-134', branchId: 'SYD-CENTRAL', name: 'Oliver Brown', phone: '+61 414 000 004', rank: 'Junior', status: 'In Break',  assigned: '-', rating: 4.0, shift: 'Night Shift (22:00 - 10:00)', compliance: 'Valid', certs: [] },
+    { id: 'DRV-145', branchId: 'SYD-CENTRAL', name: 'Lucas Jones',  phone: '+61 415 000 005', rank: 'Senior', status: 'Off Duty',  assigned: '-', rating: 4.9, shift: 'Day Shift', compliance: 'Valid', certs: ['DG'] },
   ];
 
   const filteredDrivers = useMemo(() => {
@@ -78,7 +77,7 @@ export default function DispatchDrivers() {
                <button 
                  key={tab}
                  onClick={() => setFilter(tab)}
-                 className={`px-4 py-2 text-[11px] font-bold uppercase tracking-widest rounded transition-all whitespace-nowrap ${filter === tab ? 'bg-white text-gray-900 shadow-sm border border-gray-200/50' : 'text-gray-500 hover:text-gray-700 border border-transparent'}`}
+                 className={`px-4 py-2 text-sm font-semibold rounded transition-all whitespace-nowrap ${filter === tab ? 'bg-white text-gray-900 shadow-sm border border-gray-200/50' : 'text-gray-500 hover:text-gray-700 border border-transparent'}`}
                >
                  {tab}
                </button>
@@ -92,8 +91,8 @@ export default function DispatchDrivers() {
                   type="text" 
                   value={search}
                   onChange={e => setSearch(e.target.value)}
-                  placeholder="Find ID, name or phone..." 
-                  className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm" 
+                  placeholder="Search by ID or Name..." 
+                  className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm" 
                 />
              </div>
              
@@ -101,12 +100,12 @@ export default function DispatchDrivers() {
                 <select 
                   value={sortKey} 
                   onChange={(e) => setSortKey(e.target.value)}
-                  className="w-full md:w-auto appearance-none bg-white border border-gray-200 text-gray-700 text-sm font-bold rounded-lg pl-10 pr-12 py-2.5 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 transition-all cursor-pointer shadow-sm"
+                  className="w-full md:w-auto appearance-none bg-white border border-gray-200 text-gray-900 text-sm font-normal rounded-lg pl-10 pr-12 py-2.5 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 transition-all cursor-pointer shadow-sm"
                 >
-                  <option value="name">Sort: Driver Name</option>
-                  <option value="id">Sort: Driver ID</option>
-                  <option value="rating">Sort: By Rating</option>
-                  <option value="rank">Sort: By Rank</option>
+                  <option value="name">Sort by Name</option>
+                  <option value="id">Sort by ID</option>
+                  <option value="rating">Sort by Rating</option>
+                  <option value="rank">Sort by Rank</option>
                 </select>
                 <ArrowDownUp size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                 <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
@@ -169,15 +168,26 @@ export default function DispatchDrivers() {
                       </div>
                    </td>
                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-2">
-                         {drv.compliance === 'Valid' ? (
-                           <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-600 bg-[#F0FDF4] border border-[#DCFCE7] uppercase tracking-widest px-2.5 py-1 rounded-md">
-                             <ShieldCheck size={12}/> Valid
-                           </span>
-                         ) : (
-                           <span className="flex items-center gap-1.5 text-[10px] font-bold text-red-600 bg-[#FEF2F2] border border-[#FEE2E2] uppercase tracking-widest px-2.5 py-1 rounded-md">
-                             <AlertCircle size={12}/> Needs Renewal
-                           </span>
+                      <div className="flex flex-col gap-2">
+                         <div className="flex items-center gap-2">
+                            {drv.compliance === 'Valid' ? (
+                              <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-600 bg-[#F0FDF4] border border-[#DCFCE7] uppercase tracking-widest px-2.5 py-1 rounded-md w-fit">
+                                <ShieldCheck size={12}/> Valid
+                              </span>
+                            ) : (
+                              <span className="flex items-center gap-1.5 text-[10px] font-bold text-red-600 bg-[#FEF2F2] border border-[#FEE2E2] uppercase tracking-widest px-2.5 py-1 rounded-md w-fit">
+                                <AlertCircle size={12}/> Renew
+                              </span>
+                            )}
+                         </div>
+                         {drv.certs?.length > 0 && (
+                           <div className="flex flex-wrap gap-1">
+                             {drv.certs.map(c => (
+                               <span key={c} className="text-[9px] font-black uppercase tracking-widest bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded border border-gray-200">
+                                 {c}
+                               </span>
+                             ))}
+                           </div>
                          )}
                       </div>
                    </td>
