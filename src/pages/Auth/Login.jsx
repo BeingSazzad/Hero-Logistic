@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Zap, Eye, EyeOff } from 'lucide-react';
+import { useAuthStore } from '../../store/authStore';
 
 const roles = [
   { value: 'platform',  label: 'Platform Owner — SaaS Management Console' },
@@ -17,8 +18,31 @@ export default function Login() {
   const [role, setRole] = useState('dispatch');
   const [showPass, setShowPass] = useState(false);
 
+  const setUser = useAuthStore(state => state.setUser);
+
   const handleLogin = (e) => {
     e.preventDefault();
+    
+    // Map internal role values to display roles used in state logic
+    const roleMap = {
+      'platform': 'Platform Admin',
+      'admin': 'Super Admin',
+      'dispatch': 'Dispatcher',
+      'accounts': 'Accounts',
+      'warehouse': 'Warehouse',
+      'driver': 'Driver',
+      'customer': 'Customer'
+    };
+
+    const userData = {
+      name: 'Sarah Mitchell',
+      role: roleMap[role] || role,
+      branchId: 'SYD-CENTRAL',
+      branchName: 'Sydney Central Hub',
+      email: 'sarah.m@herologistics.com'
+    };
+
+    setUser(userData);
     navigate('/' + role);
   };
 

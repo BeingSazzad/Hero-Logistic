@@ -3,7 +3,7 @@ import { DollarSign, TrendingUp, Clock, ChevronRight, ChevronDown } from 'lucide
 
 const weeks = [
   { label: 'This Week', trips: 2, km: 320, base: 272.00, toll: 45.00, bonus: 0, total: 317.00, status: 'pending' },
-  { label: 'Last Week',  trips: 5, km: 884, base: 751.40, toll: 45.00, bonus: 50.00, total: 846.40, status: 'paid', date: '11 Apr' },
+  { label: 'Last Week', trips: 5, km: 884, base: 751.40, toll: 45.00, bonus: 50.00, total: 846.40, status: 'paid', date: '11 Apr' },
   { label: 'Week of 31 Mar', trips: 4, km: 612, base: 520.20, toll: 28.00, bonus: 50.00, total: 598.20, status: 'paid', date: '4 Apr' },
 ];
 
@@ -39,45 +39,17 @@ export default function DriverPay() {
         </div>
       </div>
 
-      {/* Controls */}
-      <div className="flex gap-2 mb-1">
-        <div className="flex-1 bg-white rounded-xl border border-gray-100 p-1 flex shadow-sm">
-          {['all', 'paid', 'pending'].map(f => (
-            <button 
-              key={f}
-              onClick={() => setFilter(f)}
-              className={`flex-1 text-xs font-bold capitalize py-1.5 rounded-lg transition-all ${filter === f ? 'bg-gray-900 text-white shadow' : 'text-gray-500 hover:text-gray-700'}`}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
-        <div className="relative">
-          <select 
-            value={sortBy} 
-            onChange={e => setSortBy(e.target.value)}
-            className="h-full bg-white border border-gray-100 rounded-xl text-xs font-bold text-gray-700 pl-3 pr-8 shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-gray-200 cursor-pointer"
-          >
-            <option value="recent">Recent</option>
-            <option value="highest">Highest Pay</option>
-            <option value="lowest">Lowest Pay</option>
-          </select>
-          <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-        </div>
-      </div>
-
       {/* Weekly breakdown */}
       <div className="flex flex-col gap-3">
-        {processedWeeks.map((w, i) => (
+        {weeks.map((w, i) => (
           <div key={i} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
             <div className="flex justify-between items-start mb-3">
               <div>
                 <p className="font-bold text-gray-900 text-sm">{w.label}</p>
                 <p className="text-xs text-gray-500 mt-0.5">{w.trips} trips · {w.km} km</p>
               </div>
-              <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full ${
-                w.status === 'paid' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
-              }`}>
+              <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full ${w.status === 'paid' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
+                }`}>
                 {w.status === 'paid' ? `Paid ${w.date}` : 'Pending'}
               </span>
             </div>

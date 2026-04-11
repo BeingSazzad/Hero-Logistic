@@ -29,19 +29,23 @@ export default function AdminUsers() {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [roleFilter, setRoleFilter] = useState('All');
+  const [branchFilter, setBranchFilter] = useState('All');
   const [sortKey, setSortKey] = useState('name');
   const [sortOrder, setSortOrder] = useState('asc');
+
+  const branches = ['All', 'Sydney Central Hub', 'Melbourne Hub', 'Brisbane Port', 'All Branches'];
 
   const filtered = useMemo(() => {
     return RAW_USERS.filter(u => {
       const matchRole   = roleFilter === 'All' || u.role === roleFilter;
+      const matchBranch = branchFilter === 'All' || u.branch === branchFilter;
       const matchSearch = `${u.name} ${u.email} ${u.role} ${u.branch}`.toLowerCase().includes(search.toLowerCase());
-      return matchRole && matchSearch;
+      return matchRole && matchBranch && matchSearch;
     }).sort((a, b) => {
       const av = a[sortKey]; const bv = b[sortKey];
       return sortOrder === 'asc' ? (av > bv ? 1 : -1) : (av < bv ? 1 : -1);
     });
-  }, [search, roleFilter, sortKey, sortOrder]);
+  }, [search, roleFilter, branchFilter, sortKey, sortOrder]);
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
@@ -73,6 +77,16 @@ export default function AdminUsers() {
             ))}
           </div>
           <div className="flex gap-3 w-full xl:w-auto">
+            <div className="relative w-full xl:w-56 group">
+              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-hero-neutral pointer-events-none" size={15} />
+              <select 
+                value={branchFilter} 
+                onChange={e => setBranchFilter(e.target.value)}
+                className="input pr-10 w-full appearance-none cursor-pointer"
+              >
+                {branches.map(b => <option key={b} value={b}>{b}</option>)}
+              </select>
+            </div>
             <div className="relative flex-1 xl:w-72 group">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-hero-neutral group-focus-within:text-brand transition-colors" size={15} />
               <input type="text" value={search} onChange={e => setSearch(e.target.value)}

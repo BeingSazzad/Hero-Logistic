@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { LogOut, Bell, ChevronDown, ChevronRight, Zap } from 'lucide-react';
+import { useAuthStore } from '../../store/authStore';
 
 // ─── Shared Nav Item (flat link) ─────────────────────────────────────────────
 export function SideNavItem({ to, label, Icon, end, badge }) {
@@ -211,7 +212,10 @@ export default function SidebarLayout({
         {/* Profile Footer */}
         <div className="px-3 pb-5 border-t border-white/5 pt-3 shrink-0">
           <button
-            onClick={() => navigate('/login')}
+            onClick={() => {
+              useAuthStore.getState().logout();
+              navigate('/login');
+            }}
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-400 hover:text-white hover:bg-red-500/10 transition-all mb-3"
           >
             <LogOut size={15} />

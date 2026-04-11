@@ -511,63 +511,63 @@ export default function AdminCreateShipment() {
             </div>
 
             {/* Totals */}
-            <div className="space-y-4 border-t border-white/10 pt-4">
+            {/* Totals Section */}
+            <div className="space-y-5 border-t border-white/10 pt-5">
+              
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-white/5 rounded-xl p-3 text-center border border-white/5">
-                  <p className="text-[9px] text-gray-500 uppercase tracking-widests font-bold mb-1">Total Items</p>
+                  <p className="text-[9px] text-gray-500 uppercase tracking-widest font-bold mb-1">Total Items</p>
                   <p className="text-xl font-black text-white">{totalQty}</p>
                 </div>
                 <div className="bg-white/5 rounded-xl p-3 text-center border border-white/5">
-                  <p className="text-[9px] text-gray-500 uppercase tracking-widests font-bold mb-1">Total Weight</p>
+                  <p className="text-[9px] text-gray-500 uppercase tracking-widest font-bold mb-1">Total Weight</p>
                   <p className="text-xl font-black text-white">{totalWeight > 0 ? `${totalWeight} KG` : '—'}</p>
                 </div>
               </div>
 
+              {/* Service Level Selection */}
+              {/* CONSOLIDATED SERVICE SELECTOR (LESS IS MORE) */}
               <div>
-                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widests mb-2">Delivery Priority</label>
-                <div className="grid grid-cols-2 gap-2">
-                  {['Low', 'Normal', 'High', 'Urgent'].map(l => (
+                <label className="block text-[9px] font-black text-gray-400 uppercase tracking-widest mb-2.5 ml-1">Service Level</label>
+                <div className="flex bg-white/5 p-1 rounded-xl border border-white/5 gap-1.5">
+                  {['Normal', 'Express', 'Direct'].map(l => (
                     <button
                       key={l}
                       onClick={() => setPriority(l)}
-                      className={`py-2 rounded-lg text-[10px] font-black uppercase tracking-widests border transition-all ${priority === l ? 'bg-[#FFCC00] text-black border-transparent shadow-sm' : 'bg-white/5 text-gray-300 border-white/10 hover:bg-white/10'}`}
+                      className={`flex-1 py-3 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${priority === l ? 'bg-[#FFCC00] text-black shadow-lg' : 'text-gray-500 hover:text-white'}`}
                     >
                       {l}
                     </button>
                   ))}
                 </div>
+                <div className="flex justify-between mt-2.5 px-1">
+                   <span className="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest">{priority} handling</span>
+                   <span className="text-[9px] font-bold text-gray-500 italic uppercase">Est. {priority === 'Direct' ? 'Immediate' : (priority === 'Express' ? '24 Hours' : 'Standard')}</span>
+                </div>
               </div>
 
-              <div>
-                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widests mb-2 flex items-center gap-1.5"><CreditCard size={12} /> Payment</label>
-                <div className="flex bg-white/5 p-1 rounded-lg border border-white/10">
+              {/* Payment Method */}
+              <div className="flex items-center justify-between bg-white/5 p-3 rounded-xl border border-white/5">
+                <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Billing</span>
+                <div className="flex gap-2">
                   {['Sender', 'Receiver'].map(t => (
                     <button
                       key={t}
                       onClick={() => setPaymentBy(t)}
-                      className={`flex-1 py-2 rounded-md text-[10px] font-black uppercase tracking-widests transition-all ${paymentBy === t ? 'bg-[#FFCC00] text-black shadow-sm' : 'text-gray-400 hover:text-white'}`}
+                      className={`px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${paymentBy === t ? 'bg-[#FFCC00] text-black' : 'text-gray-500 hover:text-white'}`}
                     >
-                      {t} Pays
+                      {t}
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div className="space-y-2 pt-2 border-t border-white/10">
-                <div className="flex justify-between items-end pb-2 border-b border-white/5">
-                  <span className="text-[10px] font-black uppercase text-gray-400 tracking-widests">Base ({items.length} stops)</span>
-                  <span className="text-lg font-black text-white">${(items.length * 420).toLocaleString()}.00</span>
-                </div>
-                <div className="flex justify-between items-end pb-2 border-b border-white/5">
-                  <span className="text-[10px] font-black uppercase text-gray-400 tracking-widests">Priority Fee</span>
-                  <span className={`text-sm font-black ${['High', 'Urgent'].includes(priority) ? 'text-[#FFCC00]' : 'text-gray-500'}`}>
-                    {['High', 'Urgent'].includes(priority) ? '+$250.00' : '$0.00'}
-                  </span>
-                </div>
-                <div className="flex justify-between items-end pt-1">
-                  <span className="text-xs font-black uppercase text-[#FFCC00] tracking-widests">Total</span>
+              {/* Final Cost Calculation */}
+              <div className="space-y-2 pt-1 border-t border-white/10">
+                <div className="flex justify-between items-center px-1">
+                  <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Calculated Total</span>
                   <span className="text-2xl font-black text-white">
-                    ${(items.length * 420 + (['High', 'Urgent'].includes(priority) ? 250 : 0)).toLocaleString()}.00
+                     ${(items.length * 420 + (priority === 'Direct' ? 450 : (priority === 'Express' ? 120 : 0))).toLocaleString()}.00
                   </span>
                 </div>
               </div>

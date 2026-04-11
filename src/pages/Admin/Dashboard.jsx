@@ -13,6 +13,8 @@ export default function AdminDashboard() {
     revenueYear,
     setRevenueYear,
     shipmentData, 
+    incomeData,
+    metrics,
     distData, 
     recentActivities 
   } = useShipmentStore();
@@ -27,6 +29,8 @@ export default function AdminDashboard() {
       revenueYear={revenueYear}
       setRevenueYear={setRevenueYear}
       shipmentData={shipmentData}
+      incomeData={incomeData}
+      metrics={metrics}
       distData={distData}
       recentActivities={recentActivities}
       months={months}

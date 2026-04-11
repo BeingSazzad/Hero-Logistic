@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  ArrowLeft, Edit3, Save, X, Truck, Gauge, Wrench,
-  Droplet, MapPin, User, AlertTriangle, CheckCircle2,
-  Clock, Route, TrendingUp, Package, Settings, Camera, Upload, AlignLeft, Plus
+  ArrowLeft, Edit3, Save, Gauge, Wrench, Droplet, MapPin, User,
+  CheckCircle2, Clock, Route, TrendingUp, Settings, Camera, AlignLeft, Plus, X
 } from 'lucide-react';
 
 const vehicle = {
@@ -22,7 +21,7 @@ const vehicle = {
   odometer: '184,220 km',
   fuelLog: [
     { date: 'Today 09:14', litres: '120L', cost: '$228.00', station: 'Caltex Chullora' },
-    { date: '06 Apr 07:30', litres: '95L',  cost: '$180.50', station: 'BP Matraville' },
+    { date: '06 Apr 07:30', litres: '95L', cost: '$180.50', station: 'BP Matraville' },
     { date: '04 Apr 14:00', litres: '108L', cost: '$205.20', station: 'Shell Penrith' },
   ],
   notes: 'Vehicle primarily used for long-haul routes. No smoking in cabin.',
@@ -38,13 +37,26 @@ const vehicle = {
   }
 };
 
+const availableDrivers = [
+  { id: 'DRV-102', name: 'Jack Taylor',  status: 'Available', depot: 'Sydney Central Hub' },
+  { id: 'DRV-087', name: 'Maria Santos', status: 'Available', depot: 'Sydney Central Hub' },
+  { id: 'DRV-091', name: 'Chris Nguyen', status: 'On Leave',  depot: 'Melbourne Hub' },
+  { id: 'DRV-044', name: 'Devon Clarke', status: 'Available', depot: 'Sydney Central Hub' },
+  { id: 'DRV-058', name: 'Priya Mehta',  status: 'On Shift',  depot: 'Brisbane Port' },
+];
+
+// Utility: generate initials from full name
+const initials = name => name.split(' ').map(n => n[0]).join('');
+
 export default function AdminVehicleDetail() {
   const navigate = useNavigate();
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing]           = useState(false);
   const [editedStatus, setEditedStatus] = useState(vehicle.status);
-  const [editedDepot, setEditedDepot] = useState(vehicle.depot);
-  const [photo, setPhoto] = useState(null);
-  const [notes, setNotes] = useState(vehicle.notes);
+  const [photo, setPhoto]               = useState(null);
+  const [notes, setNotes]               = useState(vehicle.notes);
+  const [activeTab, setActiveTab]       = useState('Overview');
+  const [selectedDriver, setSelectedDriver] = useState(vehicle.assignedDriver);
+  const [showDriverPicker, setShowDriverPicker] = useState(false);
 
   const handlePhotoUpload = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -54,311 +66,469 @@ export default function AdminVehicleDetail() {
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
-      
-      {/* Back Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+
+      {/* ── PAGE HEADER ── */}
+      <div className="flex justify-between items-center px-2">
         <div className="flex items-center gap-4">
-          <button 
+          <button
             onClick={() => navigate('/admin/fleet')}
-            className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-all shadow-sm"
+            className="w-9 h-9 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-all"
           >
-            <ArrowLeft size={20} />
+            <ArrowLeft size={18} />
           </button>
           <div>
-            <div className="flex items-center gap-3">
-               <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Fleet Asset Details</h1>
-            </div>
-            <p className="text-sm text-gray-500 mt-1">Manage specifications, status, and maintenance for {vehicle.reg}</p>
+            <p className="text-xs font-medium text-gray-400 mb-0.5">Fleet Asset / {vehicle.id}</p>
+            <h1 className="text-xl font-bold text-gray-900 leading-tight">{vehicle.make}</h1>
+            <p className="text-sm text-gray-400">{vehicle.reg} · {vehicle.year}</p>
           </div>
         </div>
-        <div className="flex gap-3">
+        <div className="flex items-center gap-3">
+          {/* Status badge */}
+          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold border
+            ${editedStatus === 'Active'
+              ? 'bg-emerald-50 text-emerald-700 border-emerald-100'
+              : 'bg-red-50 text-red-600 border-red-100'}`}>
+            <div className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></div>
+            {editedStatus}
+          </div>
+          {/* Edit / Save */}
           {editing ? (
             <>
-              <button onClick={() => setEditing(false)} className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-6 py-2.5 rounded-lg font-bold transition-all shadow-sm">
+              <button
+                onClick={() => setEditing(false)}
+                className="h-9 px-4 bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 rounded-lg font-semibold transition-all text-sm"
+              >
                 Cancel
               </button>
-              <button onClick={() => setEditing(false)} className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
-                <Save size={18} strokeWidth={2.5}/> Save Changes
+              <button
+                onClick={() => setEditing(false)}
+                className="h-9 px-4 bg-[#FFCC00] hover:bg-[#E6B800] text-black rounded-lg font-semibold flex items-center gap-2 transition-all text-sm"
+              >
+                <Save size={15} /> Save
               </button>
             </>
           ) : (
-            <button onClick={() => setEditing(true)} className="bg-gray-900 hover:bg-black text-white px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
-              <Edit3 size={18} /> Edit Vehicle
+            <button
+              onClick={() => setEditing(true)}
+              className="h-9 px-4 bg-gray-900 hover:bg-black text-white rounded-lg font-semibold flex items-center gap-2 transition-all text-sm"
+            >
+              <Edit3 size={15} /> Edit
             </button>
           )}
         </div>
       </div>
 
-      <div className="w-full h-px bg-gray-200/60 mb-2"></div>
+      <div className="w-full h-px bg-gray-100"></div>
 
-      {/* ── Asset Gallery & Identity ── */}
-      <div className="flex flex-col lg:flex-row gap-8 px-2 mb-4">
-        {/* Gallery Selector */}
-        <div className="flex-1 flex flex-col gap-3">
-          <div className="relative aspect-[16/9] w-full rounded-2xl bg-[#111] overflow-hidden shadow-xl border-4 border-white group">
-            <img 
-              src={photo || "/assets/truck_front.png"} 
-              alt="Fleet Asset" 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+      {/* ── GALLERY + KPI PANEL ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 px-2">
+
+        {/* Left: Vehicle Image */}
+        <div className="lg:col-span-7 flex flex-col gap-3">
+          <div className="relative aspect-[16/10] w-full rounded-2xl bg-[#0a0a0a] overflow-hidden shadow-lg group">
+            <img
+              src={photo || '/assets/truck_front.png'}
+              alt={vehicle.make}
+              className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all"
             />
+            {/* Edit mode: photo upload overlay */}
             {editing && (
-              <label className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
-                <Camera size={32} className="text-white mb-2" />
-                <span className="text-xs font-bold text-white uppercase tracking-widest">Update Primary Photo</span>
+              <label className="absolute inset-0 bg-black/50 backdrop-blur-[2px] flex flex-col items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition-all">
+                <div className="w-12 h-12 rounded-full bg-[#FFCC00] text-black flex items-center justify-center mb-2 shadow-xl">
+                  <Camera size={20} />
+                </div>
+                <span className="text-xs font-semibold text-white">Update Photo</span>
                 <input type="file" className="hidden" accept="image/*" onChange={handlePhotoUpload} />
               </label>
             )}
-            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
-               <div className="bg-black/50 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
-                 <p className="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest">Asset Serial</p>
-                 <p className="text-sm font-bold text-white uppercase font-mono">{vehicle.vin}</p>
-               </div>
+            {/* VIN chip — always visible */}
+            <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10">
+              <p className="text-[9px] font-semibold text-[#FFCC00] uppercase tracking-widest mb-0.5">VIN</p>
+              <p className="text-xs font-bold text-white font-mono tracking-tight">{vehicle.vin}</p>
             </div>
           </div>
-          
-          {/* Thumbnails */}
-          <div className="flex gap-3">
-            {[
-              { src: "/assets/truck_front.png", label: 'Front' },
-              { src: "/assets/truck_side.png", label: 'Side' },
-              { src: "/assets/truck_cabin.png", label: 'Cabin' }
-            ].map((img, i) => (
-              <button 
-                key={i} 
-                onClick={() => setPhoto(img.src)}
-                className={`w-24 h-16 rounded-lg border-2 overflow-hidden transition-all shadow-sm ${photo === img.src ? 'border-[#FFCC00] scale-105 shadow-md' : 'border-white hover:border-gray-200'}`}
+          {/* Thumbnail strip */}
+          <div className="flex gap-2">
+            {['/assets/truck_front.png', '/assets/truck_side.png', '/assets/truck_cabin.png'].map((img, i) => (
+              <button
+                key={i}
+                onClick={() => setPhoto(img)}
+                className={`w-16 h-12 rounded-lg overflow-hidden border-2 transition-all
+                  ${photo === img ? 'border-[#FFCC00]' : 'border-transparent opacity-50 hover:opacity-80'}`}
               >
-                <img src={img.src} alt={img.label} className="w-full h-full object-cover" />
+                <img src={img} className="w-full h-full object-cover" alt="" />
               </button>
             ))}
-            <button className="w-24 h-16 rounded-lg border-2 border-dashed border-gray-200 flex flex-col items-center justify-center gap-1 text-gray-400 hover:text-[#111] hover:border-[#111] transition-all bg-gray-50/50">
-              <Plus size={16}/>
-              <span className="text-[8px] font-black uppercase tracking-tight">Add View</span>
+            <button className="w-16 h-12 rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center text-gray-300 hover:text-gray-500 hover:border-gray-300 transition-all">
+              <Plus size={16} />
             </button>
           </div>
         </div>
 
-        {/* Identity Details */}
-        <div className="lg:w-1/3 flex flex-col justify-center">
-          <div className="flex items-center gap-3 mb-2">
-            <span className={`text-[10px] font-bold px-2.5 py-1 rounded-md border text-center flex items-center gap-1.5 ${editedStatus === 'Active' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]'}`}>
-              <div className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></div> {editedStatus}
+        {/* Right: KPI + Driver */}
+        <div className="lg:col-span-5 flex flex-col gap-3">
+
+          {/* Current Driver — dark card */}
+          <div className="bg-[#111] rounded-2xl p-4 relative overflow-hidden">
+            <div className="absolute right-0 top-0 w-16 h-16 bg-white/5 rounded-bl-full pointer-events-none"></div>
+            <div className="flex justify-between items-center mb-3 relative z-10">
+              <span className="text-xs font-medium text-gray-400">Current Driver</span>
+              <button
+                onClick={() => setShowDriverPicker(true)}
+                className="text-[10px] font-bold text-black bg-[#FFCC00] hover:bg-[#E6B800] transition-colors px-2.5 py-1.5 rounded-lg"
+              >
+                Change Driver
+              </button>
+            </div>
+            <div className="flex items-center gap-3 relative z-10">
+              <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-white font-bold text-xs shrink-0">
+                {initials(selectedDriver.name)}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-white leading-tight truncate">{selectedDriver.name}</p>
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <p className="text-xs text-gray-400">{selectedDriver.id} · On Shift</p>
+                </div>
+              </div>
+              <button
+                onClick={() => navigate(`/admin/drivers/${selectedDriver.id}`)}
+                className="text-xs font-medium text-white/50 hover:text-white transition-colors shrink-0"
+              >
+                View →
+              </button>
+            </div>
+          </div>
+
+          {/* KPI Grid */}
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { icon: <Gauge size={14} />,       label: 'Odometer',      value: '184,220', unit: 'km' },
+              { icon: <TrendingUp size={14} />,   label: 'Avg Efficiency', value: '18.4',   unit: 'L/100km' },
+              { icon: <Droplet size={14} />,      label: 'Fuel Level',    value: '68',      unit: '%' },
+              { icon: <Clock size={14} />,        label: 'Engine Hours',  value: '4,120',   unit: 'hrs' },
+            ].map(kpi => (
+              <div key={kpi.label} className="group bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:border-[#FFCC00] hover:shadow-md transition-all cursor-default">
+                <div className="flex items-center gap-2 mb-2 text-gray-400 group-hover:text-[#FFCC00] transition-colors">
+                  {kpi.icon}
+                  <p className="text-[10px] font-semibold uppercase tracking-wider">{kpi.label}</p>
+                </div>
+                <p className="text-xl font-bold text-gray-900">{kpi.value} <span className="text-xs text-gray-400 font-medium">{kpi.unit}</span></p>
+              </div>
+            ))}
+          </div>
+
+          {/* Home Depot */}
+          <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center text-gray-400 shrink-0">
+              <MapPin size={16} />
+            </div>
+            <div className="min-w-0">
+              <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Home Depot</p>
+              <p className="text-sm font-semibold text-gray-900 truncate">{vehicle.depot}</p>
+            </div>
+          </div>
+
+          {/* Next Service */}
+          <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center text-gray-400 shrink-0">
+                <Clock size={16} />
+              </div>
+              <div>
+                <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider">Next Service</p>
+                <p className="text-sm font-semibold text-gray-900">{vehicle.service.nextService}</p>
+              </div>
+            </div>
+            <span className={`text-[10px] font-semibold px-2.5 py-1 rounded-lg
+              ${vehicle.service.nextServiceStatus === 'OK'
+                ? 'bg-emerald-50 text-emerald-700'
+                : 'bg-red-50 text-red-600'}`}>
+              {vehicle.service.nextServiceStatus === 'OK' ? 'On Track' : 'Urgent'}
             </span>
-            <span className="text-[10px] font-bold px-2.5 py-1 rounded-md border border-gray-200 text-gray-500 uppercase tracking-widest">{vehicle.type}</span>
-          </div>
-          <h2 className="text-4xl font-black text-gray-900 tracking-tighter leading-none mb-2">{vehicle.id}</h2>
-          <h3 className="text-xl font-bold text-gray-500 tracking-tight mb-4">{vehicle.make}</h3>
-          
-          <div className="grid grid-cols-2 gap-4 mt-2">
-            <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
-               <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1 flex items-center gap-1.5"><Gauge size={12}/> Odometer</p>
-               <p className="text-lg font-black text-gray-900 leading-none">{vehicle.odometer}</p>
-            </div>
-            <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
-               <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1 flex items-center gap-1.5"><TrendingUp size={12} className="text-emerald-500"/> Efficiency</p>
-               <p className="text-lg font-black text-gray-900 leading-none">18.4<span className="text-xs text-gray-400">L</span></p>
-            </div>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
-
-        {/* LEFT COLUMN */}
-        <div className="flex flex-col gap-6">
-
-          {/* Vehicle Specs */}
-          <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
-            <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center gap-3">
-               <Settings className="text-gray-500" size={16} />
-               <h3 className="text-xs font-bold text-[#111] uppercase tracking-wide">Vehicle Specs</h3>
-            </div>
-            <div className="p-5 flex flex-col gap-3">
-              {[
-                { label: 'Registration', value: vehicle.reg },
-                { label: 'Make & Model', value: vehicle.make },
-                { label: 'Year', value: vehicle.year },
-                { label: 'Category', value: vehicle.type },
-                { label: 'VIN / Chassis', value: vehicle.vin, mono: true },
-                { label: 'Fuel Type', value: vehicle.fuelType },
-                { label: 'Payload Cap.', value: vehicle.cap },
-                { label: 'Odometer', value: vehicle.odometer },
-              ].map(item => (
-                <div key={item.label} className="bg-gray-50 p-2.5 rounded-lg border border-gray-100/50">
-                  <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">{item.label}</p>
-                  <p className={`text-sm font-bold text-gray-900 mt-0.5 ${item.mono ? 'font-mono text-xs' : ''}`}>{item.value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Operational Config */}
-          <div className="bg-[#111] rounded-xl p-6 text-white shadow-sm border border-gray-800 relative overflow-hidden group">
-            <div className="absolute -right-6 -top-6 w-32 h-32 bg-gray-800/50 rounded-full blur-3xl group-hover:bg-gray-700/50 transition-all"></div>
-            <h3 className="text-xs font-bold uppercase tracking-widest mb-6 text-gray-300 flex items-center gap-2 relative z-10">
-               <MapPin size={16}/> Operational Config
-            </h3>
-            
-            <div className="space-y-5 relative z-10">
-              <div>
-                <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Status</label>
-                {editing
-                  ? <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none cursor-pointer focus:outline-none focus:border-white/40 leading-tight" value={editedStatus} onChange={e => setEditedStatus(e.target.value)}><option className="text-black">Active</option><option className="text-black">Maintenance</option><option className="text-black">Out of Service</option></select>
-                  : <span className="text-sm font-bold text-green-400 flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-400"></div> {editedStatus}</span>
-                }
-              </div>
-              <div>
-                <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Home Depot</label>
-                {editing
-                  ? <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none cursor-pointer focus:outline-none focus:border-white/40 leading-tight" value={editedDepot} onChange={e => setEditedDepot(e.target.value)}><option className="text-black">Sydney Central Hub</option><option className="text-black">Melbourne Hub</option><option className="text-black">Brisbane Port Branch</option></select>
-                  : <p className="text-sm font-bold text-white">{editedDepot}</p>
-                }
-              </div>
-              <div>
-                <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center gap-1.5"><User size={12}/> Assigned Driver</label>
-                <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg border border-white/10 relative overflow-hidden group">
-                  <div className="w-8 h-8 rounded shrink-0 bg-[#FFCC00] flex items-center justify-center text-black text-[10px] font-black">
-                    {vehicle.assignedDriver.name.split(' ').map(n=>n[0]).join('')}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold text-white truncate">{vehicle.assignedDriver.name}</p>
-                    <p className="text-[10px] text-gray-400 font-medium uppercase tracking-widest">{vehicle.assignedDriver.id}</p>
-                  </div>
-                  {editing ? (
-                    <button className="text-[10px] font-black text-[#FFCC00] border border-[#FFCC00]/40 px-2.5 py-1.5 rounded bg-[#FFCC00]/10 hover:bg-[#FFCC00] hover:text-black transition-all uppercase tracking-tighter">
-                      Change Operator
-                    </button>
-                  ) : (
-                    <button onClick={() => navigate(`/admin/drivers/${vehicle.assignedDriver.id}`)} className="text-[10px] font-bold text-white/40 hover:text-white transition-colors">
-                      View Profile →
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Other Info */}
-          <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
-            <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center gap-3">
-               <AlignLeft className="text-gray-500" size={16} />
-               <h3 className="text-xs font-bold text-[#111] uppercase tracking-wide">Additional Notes</h3>
-            </div>
-            <div className="p-5">
-              {editing ? (
-                <textarea
-                  className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm min-h-[100px] resize-y focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20"
-                  value={notes}
-                  onChange={e => setNotes(e.target.value)}
-                  placeholder="Additional notes about this vehicle..."
-                />
-              ) : (
-                <div className="p-4 bg-gray-50 rounded-lg border border-gray-100/50">
-                  <p className="text-sm text-gray-700 whitespace-pre-wrap">{notes || 'No additional notes provided.'}</p>
-                </div>
+      {/* ── TABBED SECTION ── */}
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm mx-2 overflow-hidden">
+        {/* Tab Bar */}
+        <div className="flex border-b border-gray-100 px-6">
+          {['Overview', 'Specs', 'Maintenance', 'Logs'].map(tab => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`py-4 px-1 mr-8 text-xs font-semibold uppercase tracking-wider transition-all relative
+                ${activeTab === tab ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600'}`}
+            >
+              {tab}
+              {activeTab === tab && (
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#FFCC00] rounded-full"></div>
               )}
-            </div>
-          </div>
+            </button>
+          ))}
         </div>
 
-        {/* RIGHT COLUMN */}
-        <div className="lg:col-span-2 flex flex-col gap-6">
+        <div className="p-6 lg:p-8">
 
-          {/* Current Job */}
-          <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden relative">
-            <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-green-500"></div>
-            <div className="p-5 border-b border-gray-100 flex justify-between items-center ml-1">
-              <h3 className="font-bold text-gray-900 flex items-center gap-2"><Route size={16}/> Current Assignment</h3>
-              <span className="text-[10px] font-bold px-2 py-1 rounded bg-[#F0FDF4] text-[#16A34A] border border-[#DCFCE7] uppercase tracking-widest">In Transit</span>
-            </div>
-            <div className="p-5 ml-1">
-              <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100 mb-4">
-                <MapPin size={18} className="text-[#FFCC00] shrink-0"/>
+          {/* ── OVERVIEW ── */}
+          {activeTab === 'Overview' && (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              <div className="lg:col-span-8 flex flex-col gap-6">
+
+                {/* Specs */}
                 <div>
-                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-0.5">Active Route</p>
-                  <p className="font-bold text-gray-900 text-[15px]">{vehicle.currentShipment.route}</p>
+                  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <Settings size={14} className="text-gray-300" /> Specifications
+                  </h3>
+                  <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                    {[
+                      { label: 'Make',         value: 'Kenworth' },
+                      { label: 'Model',        value: 'T610' },
+                      { label: 'Year',         value: vehicle.year },
+                      { label: 'Engine',       value: 'PACCAR MX-13' },
+                      { label: 'Transmission', value: 'Eaton Fuller' },
+                      { label: 'VIN',          value: vehicle.vin },
+                    ].map(spec => (
+                      <div key={spec.label} className="flex justify-between items-center border-b border-gray-50 pb-3">
+                        <span className="text-xs font-medium text-gray-400">{spec.label}</span>
+                        <span className="text-sm font-semibold text-gray-900">{spec.value}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div>
-                <div className="flex justify-between mb-1.5">
-                  <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Route Completion</span>
-                  <span className="text-xs font-black text-green-600">{vehicle.currentShipment.progress}%</span>
-                </div>
-                <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
-                  <div className="h-full bg-green-500 rounded-full" style={{ width: `${vehicle.currentShipment.progress}%` }}></div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          {/* Maintenance */}
-          <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
-            <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex justify-between items-center">
-              <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide flex items-center gap-2"><Wrench className="text-gray-400" size={16}/> Maintenance Schedule</h3>
-              <span className="text-[10px] font-bold text-green-600 flex items-center gap-1"><CheckCircle2 size={12}/> On Schedule</span>
-            </div>
-            <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-4 border-b border-gray-100">
-              <div className="bg-gray-50 p-4 rounded-xl border border-gray-100/50">
-                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1.5">Last Service</p>
-                <p className="font-bold text-gray-900 text-sm">{vehicle.service.lastService}</p>
+                {/* Current Shipment */}
+                <div className="rounded-xl border border-gray-100 overflow-hidden">
+                  <div className="px-4 py-3 border-b border-gray-50 flex justify-between items-center bg-gray-50/50">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-gray-900">
+                      <Route size={14} className="text-gray-400" /> Active Shipment
+                    </div>
+                    <span className="text-xs font-semibold px-2 py-1 rounded bg-emerald-50 text-emerald-700 border border-emerald-100">
+                      In Transit
+                    </span>
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-start gap-2 mb-4">
+                      <MapPin size={14} className="text-gray-400 mt-0.5 shrink-0" />
+                      <p className="text-sm font-semibold text-gray-900">{vehicle.currentShipment.route}</p>
+                    </div>
+                    <div className="flex justify-between mb-1.5">
+                      <span className="text-xs text-gray-400">Route progress</span>
+                      <span className="text-xs font-semibold text-emerald-600">{vehicle.currentShipment.progress}%</span>
+                    </div>
+                    <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="h-full bg-emerald-500 rounded-full transition-all" style={{ width: `${vehicle.currentShipment.progress}%` }}></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Notes */}
+                <div className="rounded-xl border border-gray-100 overflow-hidden">
+                  <div className="px-4 py-3 border-b border-gray-50 bg-gray-50/50 flex items-center gap-2">
+                    <AlignLeft size={13} className="text-gray-400" />
+                    <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Notes</span>
+                  </div>
+                  <div className="p-4">
+                    {editing
+                      ? <textarea
+                          className="w-full border border-gray-200 rounded-lg py-2.5 px-3 text-sm text-gray-900 min-h-[90px] resize-y focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/30"
+                          value={notes}
+                          onChange={e => setNotes(e.target.value)}
+                          placeholder="Add notes about this vehicle…"
+                        />
+                      : <p className="text-sm text-gray-600 leading-relaxed">{notes || '—'}</p>
+                    }
+                  </div>
+                </div>
               </div>
-              <div className="bg-yellow-50/50 p-4 rounded-xl border border-yellow-100">
-                <p className="text-[10px] text-yellow-600 font-bold uppercase tracking-widest mb-1.5">Next Service Due</p>
-                <p className="font-bold text-gray-900 text-sm">{vehicle.service.nextService}</p>
-              </div>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
-                <thead className="bg-[#FAFAFA] text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100">
-                  <tr>
-                    <th className="px-5 py-4">Date</th>
-                    <th className="px-5 py-4">Service Type</th>
-                    <th className="px-5 py-4">Odometer</th>
-                    <th className="px-5 py-4 text-right">Cost</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-50">
-                  {vehicle.service.history.map((s, i) => (
-                    <tr key={i} className="hover:bg-gray-50/50 transition-colors">
-                      <td className="px-5 py-3.5 font-medium text-gray-500">{s.date}</td>
-                      <td className="px-5 py-3.5 font-bold text-gray-900">{s.type}</td>
-                      <td className="px-5 py-3.5 text-gray-500 font-mono text-xs">{s.km}</td>
-                      <td className="px-5 py-3.5 font-bold text-gray-900 text-right">{s.cost}</td>
-                    </tr>
+
+              {/* Recent Activity */}
+              <div className="lg:col-span-4">
+                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">Recent Activity</h3>
+                <div className="relative pl-5 space-y-6 before:absolute before:left-0 before:top-1 before:bottom-1 before:w-px before:bg-gray-100">
+                  {[
+                    { label: 'Telematics Pulse', meta: 'Today 14:20 · Optimal',  dot: 'bg-emerald-500' },
+                    { label: 'Refueled',          meta: 'Yesterday · 240L Added', dot: 'bg-[#FFCC00]' },
+                    { label: 'Driver Swap',        meta: 'Oct 24 · Mitchell AM',  dot: 'bg-gray-400' },
+                  ].map((act, i) => (
+                    <div key={i} className="relative">
+                      <div className={`absolute -left-[22px] top-1 w-2.5 h-2.5 rounded-full border-2 border-white shadow ${act.dot}`}></div>
+                      <p className="text-sm font-semibold text-gray-900">{act.label}</p>
+                      <p className="text-xs text-gray-400 mt-0.5">{act.meta}</p>
+                    </div>
                   ))}
-                </tbody>
-              </table>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Fuel Log */}
-          <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
-            <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center justify-between">
-              <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide flex items-center gap-2"><Droplet className="text-blue-400" size={16}/> Recent Fuel Logs</h3>
-            </div>
-            <div className="divide-y divide-gray-50">
-              {vehicle.fuelLog.map((f, i) => (
-                <div key={i} className="flex items-center justify-between p-4 hover:bg-gray-50/50 transition-colors">
-                  <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded shrink-0 bg-blue-50 flex items-center justify-center text-blue-500">
-                      <Droplet size={18}/>
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold text-gray-900">{f.station}</p>
-                      <p className="text-[11px] text-gray-400 font-medium tracking-tight mt-0.5">{f.date}</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-black text-gray-900">{f.cost}</p>
-                    <p className="text-[11px] text-gray-400 font-bold tracking-tight uppercase tracking-widest mt-0.5">{f.litres}</p>
-                  </div>
+          {/* ── SPECS ── */}
+          {activeTab === 'Specs' && (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { label: 'Registration',  value: vehicle.reg },
+                { label: 'Make & Model',  value: vehicle.make },
+                { label: 'Year',          value: vehicle.year },
+                { label: 'Category',      value: vehicle.type },
+                { label: 'VIN',           value: vehicle.vin },
+                { label: 'Fuel Type',     value: vehicle.fuelType },
+                { label: 'Payload',       value: vehicle.cap },
+                { label: 'Odometer',      value: vehicle.odometer },
+              ].map(item => (
+                <div key={item.label} className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                  <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider mb-1.5">{item.label}</p>
+                  <p className="text-sm font-semibold text-gray-900">{item.value}</p>
                 </div>
               ))}
             </div>
-          </div>
+          )}
+
+          {/* ── MAINTENANCE ── */}
+          {activeTab === 'Maintenance' && (
+            <div className="flex flex-col gap-5">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                  <Wrench size={14} /> Service Schedule
+                </h3>
+                <span className="text-xs font-semibold text-emerald-600 flex items-center gap-1">
+                  <CheckCircle2 size={12} /> On Schedule
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                  <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider mb-1">Last Service</p>
+                  <p className="text-sm font-semibold text-gray-900">{vehicle.service.lastService}</p>
+                </div>
+                <div className="bg-amber-50 p-4 rounded-xl border border-amber-100">
+                  <p className="text-[10px] font-medium text-amber-600 uppercase tracking-wider mb-1">Next Due</p>
+                  <p className="text-sm font-semibold text-gray-900">{vehicle.service.nextService}</p>
+                </div>
+              </div>
+              <div className="overflow-x-auto rounded-xl border border-gray-100">
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-gray-50 text-xs font-semibold text-gray-400 uppercase tracking-wider border-b border-gray-100">
+                    <tr>
+                      <th className="px-5 py-3">Date</th>
+                      <th className="px-5 py-3">Type</th>
+                      <th className="px-5 py-3">Odometer</th>
+                      <th className="px-5 py-3 text-right">Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-50">
+                    {vehicle.service.history.map((s, i) => (
+                      <tr key={i} className="hover:bg-gray-50/60 transition-colors">
+                        <td className="px-5 py-3 text-gray-500 text-xs">{s.date}</td>
+                        <td className="px-5 py-3 font-medium text-gray-900">{s.type}</td>
+                        <td className="px-5 py-3 text-gray-500 font-mono text-xs">{s.km}</td>
+                        <td className="px-5 py-3 font-semibold text-gray-900 text-right">{s.cost}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* ── LOGS ── */}
+          {activeTab === 'Logs' && (
+            <div className="flex flex-col gap-4">
+              <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                <Droplet size={14} /> Fuel Logs
+              </h3>
+              <div className="divide-y divide-gray-50 rounded-xl border border-gray-100 overflow-hidden">
+                {vehicle.fuelLog.map((f, i) => (
+                  <div key={i} className="flex items-center justify-between px-4 py-3.5 hover:bg-gray-50/50 transition-colors">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-lg bg-blue-50 flex items-center justify-center text-blue-500 shrink-0">
+                        <Droplet size={16} />
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900">{f.station}</p>
+                        <p className="text-xs text-gray-400 mt-0.5">{f.date}</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-semibold text-gray-900">{f.cost}</p>
+                      <p className="text-xs text-gray-400 mt-0.5">{f.litres}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
         </div>
       </div>
+
+      {/* ── DRIVER PICKER MODAL ── */}
+      {showDriverPicker && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={() => setShowDriverPicker(false)}
+          />
+          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 overflow-hidden z-10">
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+              <div>
+                <h2 className="text-base font-bold text-gray-900">Change Driver</h2>
+                <p className="text-xs text-gray-400 mt-0.5">Select a driver to assign to this vehicle</p>
+              </div>
+              <button
+                onClick={() => setShowDriverPicker(false)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-700 transition-all"
+              >
+                <X size={16} />
+              </button>
+            </div>
+            {/* List */}
+            <div className="divide-y divide-gray-50 max-h-72 overflow-y-auto">
+              {availableDrivers.map(driver => {
+                const isSelected    = selectedDriver.id === driver.id;
+                const isUnavailable = driver.status === 'On Leave';
+                return (
+                  <button
+                    key={driver.id}
+                    disabled={isUnavailable}
+                    onClick={() => {
+                      setSelectedDriver({ id: driver.id, name: driver.name });
+                      setShowDriverPicker(false);
+                    }}
+                    className={`w-full flex items-center gap-3 px-6 py-3.5 text-left transition-all
+                      ${isUnavailable ? 'opacity-40 cursor-not-allowed' : 'hover:bg-gray-50 cursor-pointer'}
+                      ${isSelected ? 'bg-amber-50' : ''}`}
+                  >
+                    <div className="w-9 h-9 rounded-xl bg-gray-900 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                      {initials(driver.name)}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-gray-900">{driver.name}</p>
+                      <p className="text-xs text-gray-400">{driver.id} · {driver.depot}</p>
+                    </div>
+                    <span className={`text-[10px] font-semibold px-2 py-1 rounded-lg shrink-0
+                      ${driver.status === 'Available' ? 'bg-emerald-50 text-emerald-700' :
+                        driver.status === 'On Shift'  ? 'bg-blue-50 text-blue-600' :
+                                                        'bg-gray-100 text-gray-500'}`}>
+                      {driver.status}
+                    </span>
+                    {isSelected && <div className="w-2 h-2 rounded-full bg-[#FFCC00] shrink-0"></div>}
+                  </button>
+                );
+              })}
+            </div>
+            {/* Footer */}
+            <div className="px-6 py-3 bg-gray-50 border-t border-gray-100 flex justify-end">
+              <button
+                onClick={() => setShowDriverPicker(false)}
+                className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -362,6 +362,19 @@ export default function DriverProfile() {
              </div>
           </button>
 
+          <button onClick={() => navigate('/driver/pay')} className="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 active:bg-gray-100 transition-colors">
+             <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center shrink-0 border border-yellow-100">
+                   <DollarSign size={18} className="text-yellow-600" />
+                </div>
+                <div className="text-left">
+                   <p className="text-sm font-bold text-gray-900">Pay & Earnings</p>
+                   <p className="text-xs text-gray-400">Payout history & rate card</p>
+                </div>
+             </div>
+             <ChevronRight size={18} className="text-gray-300" />
+          </button>
+
           <button onClick={() => setActiveView('stats')} className="flex items-center justify-between p-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
              <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center shrink-0 border border-emerald-100">

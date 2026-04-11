@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
+import {
   Package, Search, Filter, Plus, Clock,
   MapPin, ChevronDown, AlertTriangle,
   CheckCircle2, UserCheck, Inbox, Zap,
@@ -9,10 +9,10 @@ import {
 import { useAuthStore } from '../../store/authStore';
 
 const QUEUES = [
-  { id: 'unassigned', label: 'Unassigned',     icon: Inbox,       color: 'text-amber-600',  bg: 'bg-amber-50',  border: 'border-amber-200', desc: 'Booked – awaiting driver assignment' },
-  { id: 'assigned',   label: 'In Transit',     icon: Zap,          color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-200', desc: 'Assigned & physically moving' },
-  { id: 'exception',  label: 'Issues',     icon: AlertCircle,  color: 'text-red-600',    bg: 'bg-red-50',    border: 'border-red-200',    desc: 'Delayed or delivery problems' },
-  { id: 'completed',  label: 'Received',       icon: CheckCircle2, color: 'text-gray-500',   bg: 'bg-gray-50',   border: 'border-gray-200',   desc: 'Handover complete / Delivered' },
+  { id: 'unassigned', label: 'Unassigned', icon: Inbox, color: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-200', desc: 'Booked – awaiting driver assignment' },
+  { id: 'assigned', label: 'In Transit', icon: Zap, color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-200', desc: 'Assigned & physically moving' },
+  { id: 'exception', label: 'Issues', icon: AlertCircle, color: 'text-red-600', bg: 'bg-red-50', border: 'border-red-200', desc: 'Delayed or delivery problems' },
+  { id: 'completed', label: 'Received', icon: CheckCircle2, color: 'text-gray-500', bg: 'bg-gray-50', border: 'border-gray-200', desc: 'Handover complete / Delivered' },
 ];
 
 export default function AdminShipments() {
@@ -44,62 +44,55 @@ export default function AdminShipments() {
   ];
 
   const branchJobs = useMemo(() => {
-    if (user.role === 'Super Admin' || user.role === 'Platform Admin') return rawJobs;
-    return rawJobs.filter(j => j.branchId === user.branchId);
-  }, [user.role, user.branchId]);
+    const r = user?.role?.toLowerCase();
+    if (r === 'super admin' || r === 'platform admin' || r === 'admin' || r === 'platform') return rawJobs;
+    return rawJobs.filter(j => j.branchId === user?.branchId);
+  }, [user?.role, user?.branchId]);
 
   const counts = useMemo(() => ({
     unassigned: branchJobs.filter(j => j.queue === 'unassigned').length,
-    assigned:   branchJobs.filter(j => j.queue === 'assigned').length,
-    exception:  branchJobs.filter(j => j.queue === 'exception').length,
-    completed:  branchJobs.filter(j => j.queue === 'completed').length,
+    assigned: branchJobs.filter(j => j.queue === 'assigned').length,
+    exception: branchJobs.filter(j => j.queue === 'exception').length,
+    completed: branchJobs.filter(j => j.queue === 'completed').length,
   }), [branchJobs]);
 
   const filtered = useMemo(() => {
-    let result = branchJobs.filter(j => {
-      const matchesQueue  = j.queue === queue;
+    return branchJobs.filter(j => {
+      const matchesQueue = j.queue === queue;
       const matchesSearch = !search || `${j.id} ${j.customer} ${j.driver || ''}`.toLowerCase().includes(search.toLowerCase());
       let matchesSub = true;
       if (queue === 'unassigned' && unassignedFilter !== 'All') {
         matchesSub = j.unassignedType === unassignedFilter;
       }
-      const matchesBranch = filterBranch === 'All' || j.branchId === filterBranch;
-      return matchesQueue && matchesSearch && matchesSub && matchesBranch;
+      return matchesQueue && matchesSearch && matchesSub;
     });
-
-    if (sortOption === 'Priority') {
-      const pLevel = { 'High': 3, 'Medium': 2, 'Low': 1 };
-      result.sort((a, b) => (pLevel[b.priority] || 0) - (pLevel[a.priority] || 0));
-    } else if (sortOption === 'Latest') {
-      // Mock Latest
-      result.sort((a, b) => b.id.localeCompare(a.id));
-    } else if (sortOption === 'Oldest') {
-      result.sort((a, b) => a.id.localeCompare(b.id));
-    }
-
-    return result;
-  }, [branchJobs, queue, search, unassignedFilter, sortOption, filterBranch]);
+  }, [branchJobs, queue, search, unassignedFilter]);
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
+      {/* ── Header ── */}
       <div className="flex justify-between items-center mb-2 px-2">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-100 rounded-hero-sm text-hero-dark shadow-sm">
             <Package size={20} />
           </div>
           <div>
-            <h1 className="hero-h1">Shipments</h1>
-            <p className="hero-body text-hero-neutral mt-1">{user.role === 'Super Admin' ? 'Global network' : user.branchName} · Operational Hub</p>
+            <h1 className="hero-h1">Shipment Queue</h1>
+            <p className="hero-body text-hero-neutral mt-1 leading-none">Consolidated enterprise logistics management system</p>
           </div>
         </div>
-        <button onClick={() => navigate('/admin/shipments/create')} className="btn btn-primary">
+        <button
+          onClick={() => navigate('/admin/shipments/create')}
+          className="btn btn-primary"
+        >
           <Plus size={18} strokeWidth={3} /> Create Shipment
         </button>
       </div>
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
+      {/* ── Queue Selector Cards ── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 px-2">
         {QUEUES.map(q => {
           const isActive = queue === q.id;
@@ -107,98 +100,85 @@ export default function AdminShipments() {
             <button
               key={q.id}
               onClick={() => setQueue(q.id)}
-              className={`card p-5 text-left flex flex-col gap-2 transition-all group ${isActive ? 'ring-2 ring-brand border-brand ' + q.bg : 'hover:border-brand/40'}`}
+              className={`card p-5 text-left flex flex-col gap-2 transition-all group overflow-hidden ${isActive ? 'ring-2 ring-brand border-brand shadow-lg ' + q.bg : 'hover:border-brand/40'}`}
             >
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center relative z-10">
                 <q.icon size={20} className={isActive ? q.color : 'text-hero-neutral'} />
                 <span className={`text-xl font-black ${isActive ? 'text-hero-dark' : 'text-hero-neutral'}`}>{counts[q.id]}</span>
               </div>
-              <div className="mt-1">
+              <div className="relative z-10 mt-1">
                 <p className={`hero-card-title ${isActive ? 'text-hero-dark' : 'text-hero-neutral'}`}>{q.label}</p>
-                <p className="hero-metadata leading-tight text-hero-neutral">{q.desc}</p>
+                <p className="hero-metadata leading-tight text-hero-neutral group-hover:text-hero-dark transition-colors">{q.desc}</p>
               </div>
             </button>
           );
         })}
       </div>
 
-      <div className="card mx-2 overflow-hidden shadow-sm">
+      {/* ── Table Card ── */}
+      <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden mx-2">
+
+        {/* Filter Bar */}
         <div className="p-5 border-b border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 bg-[#FAFAFA]">
           <div className="flex-1">
-            <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">{QUEUES.find(q=>q.id===queue)?.label} Queue</h3>
-            <p className="text-[10px] font-medium text-gray-400 mt-0.5">{filtered.length} units identified</p>
+            <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">{QUEUES.find(q => q.id === queue)?.label} Queue</h3>
+            <p className="text-[10px] font-medium text-gray-400 mt-0.5">{filtered.length} shipment{filtered.length !== 1 ? 's' : ''} identified</p>
           </div>
-          <div className="flex items-center gap-3 w-full md:w-auto">
-            <div className="relative flex-1">
+
+          <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <div className="relative flex-1 md:flex-initial">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={15} />
               <input
                 type="text"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                placeholder="Search by Shipment ID..."
-                className="w-full md:w-64 bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand shadow-sm transition-all"
+                placeholder="Search Reference..."
+                className="w-full md:w-64 bg-white border border-gray-200 hover:border-gray-300 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm"
               />
             </div>
-            <div className="relative">
-              <button onClick={() => { setShowFilter(!showFilter); setShowSort(false); }} className="bg-white border border-gray-200 px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-700 flex items-center gap-2 hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-all">
-                <Filter size={16} /> Filter by Parameters
-              </button>
-              {showFilter && (
-                <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-100 shadow-xl rounded-xl p-4 z-20 animate-in fade-in slide-in-from-top-2">
-                  <div className="mb-4">
-                    <label className="text-xs font-medium text-gray-700 block mb-1">Select Branch</label>
-                    <select value={filterBranch} onChange={e => setFilterBranch(e.target.value)} className="w-full text-sm font-normal bg-white border border-gray-200 rounded-lg py-2.5 px-3 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 appearance-none cursor-pointer">
-                      <option value="All">All Branches</option>
-                      <option value="SYD-CENTRAL">Sydney Central</option>
-                      <option value="MEL-HUB">Melbourne Hub</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="text-xs font-medium text-gray-700 block mb-1">Filter by Date</label>
-                    <input type="date" value={filterDate} onChange={e => setFilterDate(e.target.value)} className="w-full text-sm font-normal bg-white border border-gray-200 rounded-lg py-2.5 px-3 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 cursor-pointer" />
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="relative">
-              <button onClick={() => { setShowSort(!showSort); setShowFilter(false); }} className="bg-white border border-gray-200 px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-700 flex items-center gap-2 hover:bg-gray-50 hover:border-gray-300 shadow-sm transition-all">
-                Sort by Date: {sortOption} <ChevronDown size={14}/>
-              </button>
-              {showSort && (
-                <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-100 shadow-xl rounded-xl py-2 z-20 animate-in fade-in slide-in-from-top-2">
-                  {['Latest', 'Oldest', 'Priority'].map(opt => (
-                    <button key={opt} onClick={() => { setSortOption(opt); setShowSort(false); }} className={`w-full text-left px-5 py-2.5 text-sm font-medium hover:bg-gray-50 ${sortOption === opt ? 'text-brand bg-brand/5' : 'text-gray-700'}`}>{opt}</button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <button
+              onClick={() => setShowFilter(!showFilter)}
+              className="btn-hero-secondary !py-2.5 !px-4 flex items-center gap-2"
+            >
+              <Filter size={14} /> Parameters
+            </button>
           </div>
         </div>
 
+        {/* Dynamic Segmentation Panel for Unassigned Queue */}
         {queue === 'unassigned' && (
-           <div className="flex bg-gray-50 flex-wrap items-center gap-2 px-5 py-3 border-b border-gray-100">
-             <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest mr-2 flex items-center gap-1.5"><MapPin size={12}/> TASK SEGMENT</span>
-             {['All', 'Local Pickups', 'Branch Transfers', 'Local Deliveries'].map(type => (
-                <button 
-                  key={type}
-                  onClick={() => setUnassignedFilter(type)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
-                     unassignedFilter === type ? 'bg-hero-dark text-brand' : 'bg-white border border-gray-200 text-gray-500 hover:bg-gray-100'
+          <div className="flex bg-gray-50 flex-wrap items-center gap-2 px-5 py-3 border-b border-gray-100">
+            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest mr-2 flex items-center gap-1.5"><MapPin size={12} /> Global Task Segments</span>
+            {['All', 'Local Pickups', 'Branch Transfers', 'Local Deliveries'].map(type => (
+              <button
+                key={type}
+                onClick={() => setUnassignedFilter(type)}
+                className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${unassignedFilter === type ? 'bg-[#111] text-[#FFCC00] shadow-md' : 'bg-white border border-gray-200 text-gray-500 hover:bg-gray-100'
                   }`}
-                >
-                  {type}
-                </button>
-             ))}
-           </div>
+              >
+                {type}
+              </button>
+            ))}
+          </div>
         )}
 
-        <div className="overflow-x-auto relative min-h-[400px]">
+        <div className="overflow-x-auto relative">
+          {/* Floating Batch Action Bar */}
           {selectedIds.length > 0 && (
-             <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50 bg-hero-dark text-white px-8 py-4 rounded-full shadow-2xl flex items-center gap-8 border border-white/10">
-               <span className="text-xs font-black uppercase tracking-widest"><span className="text-brand">{selectedIds.length}</span> Selected Units</span>
-               <button className="bg-brand text-hero-dark px-6 py-2 rounded-full text-[10px] font-black uppercase">Assign Fleet</button>
-               <button onClick={() => setSelectedIds([])} className="text-gray-400 hover:text-white"><X size={18}/></button>
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-hero-dark text-white px-6 py-4 rounded-hero-lg shadow-2xl flex items-center gap-6 animate-in slide-in-from-top-4 duration-300 border border-white/10">
+              <div className="flex items-center gap-3 border-r border-white/20 pr-6">
+                <div className="w-8 h-8 rounded-hero-sm bg-brand text-hero-dark flex items-center justify-center font-black">{selectedIds.length}</div>
+                <div>
+                  <span className="hero-metadata text-brand uppercase text-[10px]">Admin Batch Mode</span>
+                  <p className="text-[9px] text-gray-400 font-bold uppercase">Multi-unit synchronization</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <button className="bg-brand text-hero-dark px-4 py-2 rounded-hero-sm text-[10px] font-black uppercase tracking-widest transition-all">
+                  Update Multi-Route
+                </button>
+              </div>
+              <button onClick={() => setSelectedIds([])} className="p-1 hover:bg-white/10 rounded-full transition-colors"><X size={16} /></button>
             </div>
           )}
 
@@ -206,62 +186,82 @@ export default function AdminShipments() {
             <thead className="hero-table-header">
               <tr>
                 <th className="px-6 py-4 w-4">
-                   <input 
-                      type="checkbox" 
-                      onChange={(e) => setSelectedIds(e.target.checked ? filtered.map(j => j.id) : [])}
-                      checked={selectedIds.length === filtered.length && filtered.length > 0}
-                      className="w-4 h-4 rounded-hero-sm border-gray-300 accent-brand cursor-pointer"
-                   />
+                  <input
+                    type="checkbox"
+                    onChange={(e) => setSelectedIds(e.target.checked ? filtered.map(j => j.id) : [])}
+                    checked={selectedIds.length === filtered.length && filtered.length > 0}
+                    className="w-4 h-4 rounded-hero-sm border-gray-300 accent-brand cursor-pointer"
+                  />
                 </th>
                 <th className="px-6 py-4">Reference</th>
-                <th className="px-6 py-4">Route Info</th>
+                <th className="px-6 py-4">Routing</th>
+                <th className="px-6 py-4">Priority</th>
                 <th className="px-6 py-4">Load</th>
                 <th className="px-6 py-4">Operator</th>
-                <th className="px-6 py-4 text-right">Action</th>
+                <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan="6" className="px-6 py-16 text-center text-gray-400 font-bold uppercase text-[10px] tracking-widest">No active shipments in this terminal</td>
+                  <td colSpan="7" className="px-6 py-16 text-center text-gray-400 font-bold uppercase text-[10px] tracking-widest">
+                    No active shipments in this terminal
+                  </td>
                 </tr>
               ) : filtered.map(job => (
                 <tr
                   key={job.id}
-                  className={`hover:bg-gray-50/50 transition-all cursor-pointer group ${selectedIds.includes(job.id) ? 'bg-brand/5' : ''}`}
+                  className={`hover:bg-gray-50/80 transition-all cursor-pointer group border-l-4 ${selectedIds.includes(job.id) ? 'border-l-[#FFCC00] bg-yellow-50/20' : 'border-l-transparent'}`}
                   onClick={() => navigate(`/admin/shipments/${job.id}`)}
                 >
                   <td className="px-6 py-4" onClick={e => e.stopPropagation()}>
-                    <input 
-                      type="checkbox" 
+                    <input
+                      type="checkbox"
                       checked={selectedIds.includes(job.id)}
                       onChange={() => toggleSelect(job.id)}
-                      className="w-4 h-4 rounded border-gray-300 accent-brand cursor-pointer"
+                      className="w-4 h-4 rounded border-gray-300 accent-yellow-400 cursor-pointer"
                     />
                   </td>
-                  <td className="px-6 py-4 font-black text-hero-dark text-sm tracking-tight">{job.id}</td>
+                  <td className="px-6 py-4 font-black text-[#111] text-sm tracking-tight">{job.id}</td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2 text-xs font-bold text-gray-700">
                       <span>{job.origin}</span>
-                      <ArrowRight size={10} className="text-gray-300"/>
+                      <ArrowRight size={12} className="text-gray-300 shrink-0" />
                       <span>{job.dest}</span>
                     </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className={`text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-md border shadow-sm transition-all ${
+                      job.priority === 'Direct'  ? 'bg-[#111] text-[#FFCC00] border-[#FFCC00]/30 shadow-[#FFCC00]/10 shadow-lg' :
+                      job.priority === 'Express' ? 'bg-[#FFCC00] text-black border-transparent shadow-sm' :
+                      'bg-gray-100 text-gray-500 border-gray-200'
+                    }`}>
+                      {job.priority}
+                    </span>
                   </td>
                   <td className="px-6 py-4 text-xs font-bold text-gray-700">{job.load}</td>
                   <td className="px-6 py-4">
                     {job.driver ? (
-                      <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded bg-hero-dark flex items-center justify-center font-black text-[9px] text-brand uppercase">
-                          {job.driver.split(' ').map(n=>n[0]).join('')}
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded bg-[#111] flex items-center justify-center font-black text-[10px] text-[#FFCC00] shrink-0">
+                          {job.driver.split(' ').map(n => n[0]).join('')}
                         </div>
-                        <span className="text-[11px] font-bold text-hero-dark">{job.driver}</span>
+                        <div>
+                          <div className="font-bold text-[#111] text-xs">{job.driver}</div>
+                          <div className="text-[9px] text-gray-400 uppercase font-bold tracking-widest">{job.vehicle}</div>
+                        </div>
                       </div>
                     ) : (
-                      <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest italic">Awaiting Assignment</span>
+                      <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Awaiting Assignment</span>
                     )}
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <button className="text-[10px] font-black border border-gray-200 px-4 py-1.5 rounded-lg transition-all uppercase tracking-widest hover:bg-gray-50 bg-white">Details</button>
+                    <button
+                      onClick={e => { e.stopPropagation(); navigate(`/admin/shipments/${job.id}`); }}
+                      className="text-[10px] font-black border border-gray-200 px-4 py-1.5 rounded-lg transition-all uppercase tracking-widest hover:bg-gray-50 bg-white"
+                    >
+                      Details
+                    </button>
                   </td>
                 </tr>
               ))}

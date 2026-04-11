@@ -5,6 +5,7 @@ import {
   BarChart2, MessageSquare, Settings, Shield, ShieldCheck, Briefcase
 } from 'lucide-react';
 import SidebarLayout from './SidebarLayout';
+import { useAuthStore } from '../../store/authStore';
 
 const navConfig = [
   { type: 'link', label: 'Dashboard', icon: LayoutDashboard, to: '/admin', end: true },
@@ -33,15 +34,21 @@ const navConfig = [
   }
 ];
 
-const user = { name: 'Michael Adams', role: 'Super Admin', initials: 'MA' };
-
 export default function AdminLayout() {
+  const authUser = useAuthStore(state => state.user);
+  const displayUser = {
+    name: authUser?.name || 'Michael Adams',
+    role: authUser?.role || 'Super Admin',
+    initials: authUser?.name ? authUser.name.split(' ').map(n => n[0]).join('') : 'MA',
+    branchName: authUser?.branchName,
+  };
+
   return (
     <SidebarLayout
       roleName="Admin Portal"
       roleIcon={<Shield size={9} />}
       navConfig={navConfig}
-      user={user}
+      user={displayUser}
       topbarTitle="Enterprise Fleet Operations"
     >
       <Outlet />

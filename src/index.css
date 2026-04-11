@@ -21,49 +21,66 @@
   }
 
   /* ── Global Input Reset ── */
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     font-family: 'Inter', sans-serif;
-    font-weight: 400 !important;   /* Always regular — never bold */
-    font-size: 0.9375rem;          /* 15px — comfortable reading size */
+    font-weight: 400 !important;
+    /* Always regular — never bold */
+    font-size: 0.9375rem;
+    /* 15px — comfortable reading size */
     line-height: 1.5;
     color: #111827;
   }
 
-  input::placeholder, textarea::placeholder {
+  input::placeholder,
+  textarea::placeholder {
     font-weight: 400;
-    color: #9CA3AF;  /* gray-400 — subtle, not distracting */
+    color: #9CA3AF;
+    /* gray-400 — subtle, not distracting */
   }
 
   /* ── Global UI Weight Reset ── */
-  button, .btn {
-    font-weight: 600 !important; /* Buttons -> Semibold */
+  button,
+  .btn {
+    font-weight: 600 !important;
+    /* Buttons -> Semibold */
   }
 
   label {
-    font-weight: 500 !important; /* Labels -> Medium weight */
+    font-weight: 500 !important;
+    /* Labels -> Medium weight */
   }
 }
 
 @layer utilities {
   /* ── Global Typography Normalization ── */
-  
+
   /* Fix extremely small unreadable sizes */
-  .text-\[9px\], .text-\[10px\], .text-xs {
-    font-size: 0.75rem !important; /* 12px min for readability */
+  .text-\[9px\],
+  .text-\[10px\],
+  .text-xs {
+    font-size: 0.75rem !important;
+    /* 12px min for readability */
     line-height: 1rem !important;
   }
 
   .text-\[11px\] {
-    font-size: 0.8125rem !important; /* 13px */
+    font-size: 0.8125rem !important;
+    /* 13px */
   }
 
   /* Replaces excessive bold weights with standard bold */
-  .font-black, .font-extrabold {
-    font-weight: 600 !important; /* Soften the bold everywhere */
+  .font-black,
+  .font-extrabold {
+    font-weight: 600 !important;
+    /* Soften the bold everywhere */
   }
-  
+
   /* Remove excessive letter spacing */
-  .tracking-widest, .tracking-wider, .tracking-wide {
+  .tracking-widest,
+  .tracking-wider,
+  .tracking-wide {
     letter-spacing: normal !important;
   }
 }
@@ -123,7 +140,8 @@
   /* ── Buttons ── */
   .btn {
     @apply inline-flex items-center justify-center gap-2 px-5 rounded-xl text-base font-semibold transition-all cursor-pointer select-none active:scale-95;
-    height: 48px; /* Standard 48px touch target */
+    height: 48px;
+    /* Standard 48px touch target */
   }
 
   /* Large CTA buttons used in Driver module (full-width action cards) */
@@ -153,7 +171,8 @@
   /* ── Input ── */
   .input {
     @apply w-full px-4 border border-gray-200 rounded-xl text-[15px] font-normal text-gray-900 outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition bg-white placeholder:text-gray-400 placeholder:font-normal;
-    height: 48px;  /* consistent with button height */
+    height: 48px;
+    /* consistent with button height */
     font-weight: 400 !important;
   }
 

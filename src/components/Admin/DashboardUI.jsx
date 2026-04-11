@@ -12,233 +12,217 @@ export default function DashboardUI({
   setRevenueYear, 
   recentActivities, 
   shipmentData, 
+  incomeData,
+  metrics,
   distData, 
-  months, 
   navigate 
 }) {
-  return (
-    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12 animate-in fade-in duration-700">
-      
-      {/* ── Standardized Header ── */}
-      <div className="flex justify-between items-center px-2 mb-6 mt-2">
-        <div className="flex items-center gap-4">
-          <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-hero-sm text-hero-dark shadow-sm">
-            <Blocks size={20} />
-          </div>
-          <div>
-            <h1 className="hero-h1">Main Dashboard</h1>
-            <p className="hero-body mt-1 flex items-center gap-2">Global network visibility and financial performance.</p>
-          </div>
-        </div>
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+  return (
+    <div className="flex flex-col gap-8 w-full max-w-[1600px] mx-auto pb-12">
+      {/* ── Header ── */}
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center px-2 gap-4">
+        <div>
+          <h1 className="hero-h1 mb-1">Overview</h1>
+          <p className="text-sm text-gray-400 font-medium">Operational HQ</p>
+        </div>
+        <div className="flex gap-3">
+          <button className="bg-brand text-black font-black text-[12px] uppercase tracking-widest px-8 py-3 rounded-hero-sm shadow-lg shadow-brand/20 hover:brightness-105 transition-all outline-none">
+            Export Data
+          </button>
+        </div>
       </div>
 
-      <div className="w-full h-px bg-gray-100 mb-6 px-2"></div>
+      <div className="w-full h-px bg-gray-100 mb-2 px-2"></div>
 
       {/* ── KPI Cards ── */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-2 mb-6">
-        <div className="card p-5 flex items-center justify-between border-transparent hover:border-gray-200 transition-colors">
-          <div>
-            <p className="hero-metadata leading-tight text-hero-neutral">Total Shipments <span className="text-emerald-500 font-bold ml-1">+14%</span></p>
-            <p className="text-2xl font-black text-hero-dark mt-1.5 leading-none">12,482</p>
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 px-2">
+        {[
+          { label: 'Shipments', period: 'Monthly MTD', val: metrics.totalShipments, trend: '+14%', color: 'blue', icon: Package },
+          { label: 'Vehicles', period: 'Active Fleet', val: metrics.activeVehicles, trend: '+2%', color: 'emerald', icon: Truck },
+          { label: 'Revenue', period: 'Monthly Gross', val: metrics.totalRevenue, trend: '+4.5%', color: 'indigo', icon: DollarSign },
+          { label: 'Branches', period: 'Total Hubs', val: metrics.totalBranches, trend: '+1', color: 'orange', icon: Globe },
+          { label: 'Drivers', period: 'Active Roster', val: metrics.totalDrivers, trend: '98%', color: 'violet', icon: Users },
+        ].map((m, i) => (
+          <div key={i} className="card p-5 border-transparent hover:border-gray-200 transition-all hover:shadow-md">
+            <div className="flex justify-between items-start mb-4">
+              <div className={`w-9 h-9 rounded-hero-sm flex items-center justify-center bg-${m.color}-50 text-${m.color}-500 border border-${m.color}-100`}>
+                <m.icon size={18}/>
+              </div>
+              <span className={`text-[9px] font-black uppercase text-${m.color}-600 bg-${m.color}-50/50 px-2 py-1 rounded-full`}>{m.trend}</span>
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5 mb-1">
+                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{m.label}</p>
+                 <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
+                 <p className="text-[9px] font-bold text-gray-400/80 uppercase tracking-tighter">{m.period}</p>
+              </div>
+              <p className="text-2xl font-black text-gray-900 leading-none">{m.val}</p>
+            </div>
           </div>
-          <div className="w-10 h-10 rounded-hero-sm border border-blue-100 flex items-center justify-center bg-blue-50 text-blue-500">
-            <Package size={20}/>
+        ))}
+      </div>
+
+      {/* ── Main Performance Stage (Side-by-Side Graphs) ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-2">
+        {/* Shipment Throughput */}
+        <div className="card overflow-hidden flex flex-col min-h-[440px] shadow-sm">
+          <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
+            <div>
+              <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Shipment Throughput</h3>
+              <p className="text-[10px] text-gray-400 font-bold uppercase mt-1">Monthly Analytics (Volume)</p>
+            </div>
+            <select value={shipmentYear} onChange={e => setShipmentYear(e.target.value)} className="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs font-black outline-none shadow-sm cursor-pointer hover:border-brand">
+              <option value="2026">2026</option><option value="2025">2025</option>
+            </select>
+          </div>
+          <div className="flex-1 flex items-end gap-3 px-8 pt-12 pb-8 bg-white overflow-hidden">
+            {shipmentData.map((v, i) => (
+              <div key={i} className="flex-1 flex flex-col justify-end gap-3 group/bar h-full">
+                <div className="relative flex-1 flex flex-col justify-end">
+                  <div 
+                    className="w-full bg-gradient-to-t from-brand to-yellow-300 transition-all relative cursor-pointer rounded-t-hero-sm shadow-[0_-4px_10px_-2px_rgba(250,204,21,0.3)]" 
+                    style={{ height: `${Math.max((v/140)*100, 5)}%` }}
+                  >
+                    <div className="absolute -top-7 left-1/2 -translate-x-1/2 bg-gray-900 text-brand text-[9px] font-black px-1.5 py-0.5 rounded opacity-0 group-hover/bar:opacity-100 shadow-xl z-20 transition-all">
+                      {v}k
+                    </div>
+                  </div>
+                </div>
+                <span className="text-[10px] font-black text-gray-400 text-center uppercase tracking-tighter">{months[i]}</span>
+              </div>
+            ))}
           </div>
         </div>
-        
-        <div className="card p-5 flex items-center justify-between border-transparent hover:border-gray-200 transition-colors">
-          <div>
-            <p className="hero-metadata leading-tight text-hero-neutral">Active Vehicles <span className="text-emerald-500 font-bold ml-1">+2%</span></p>
-            <p className="text-2xl font-black text-hero-dark mt-1.5 leading-none">415</p>
+
+        {/* Revenue Flow */}
+        <div className="card overflow-hidden flex flex-col min-h-[440px] shadow-sm">
+          <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
+            <div>
+              <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Financial Performance</h3>
+              <p className="text-[10px] text-gray-400 font-bold uppercase mt-1">Monthly Revenue Flow ($USD)</p>
+            </div>
+            <select value={revenueYear} onChange={e => setRevenueYear(e.target.value)} className="bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs font-black outline-none shadow-sm cursor-pointer hover:border-emerald-500">
+              <option value="2026">2026</option><option value="2025">2025</option>
+            </select>
           </div>
-          <div className="w-10 h-10 rounded-hero-sm border border-emerald-100 flex items-center justify-center bg-emerald-50 text-emerald-500">
-            <Truck size={20}/>
-          </div>
-        </div>
-        
-        <div className="card p-5 flex items-center justify-between border-transparent hover:border-gray-200 transition-colors">
-          <div>
-            <p className="hero-metadata leading-tight text-hero-neutral">Total Revenue <span className="text-emerald-500 font-bold ml-1">+4.5%</span></p>
-            <p className="text-2xl font-black text-hero-dark mt-1.5 leading-none">$1.2M</p>
-          </div>
-          <div className="w-10 h-10 rounded-hero-sm border border-indigo-100 flex items-center justify-center bg-indigo-50 text-indigo-500">
-            <DollarSign size={20}/>
-          </div>
-        </div>
-        
-        <div className="card p-5 flex items-center justify-between border border-red-100 bg-red-50/10">
-          <div>
-            <p className="hero-metadata leading-tight text-red-400">Pending Issues <span className="text-red-500 font-bold ml-1">+12</span></p>
-            <p className="text-2xl font-black text-red-600 mt-1.5 leading-none">84</p>
-          </div>
-          <div className="w-10 h-10 rounded-hero-sm border border-red-200 flex items-center justify-center bg-red-50 text-red-500">
-            <AlertTriangle size={20}/>
+          <div className="flex-1 flex items-end gap-3 px-8 pt-12 pb-8 bg-white overflow-hidden">
+            {incomeData.map((v, i) => (
+              <div key={i} className="flex-1 flex flex-col justify-end gap-3 group/bar h-full">
+                <div className="relative flex-1 flex flex-col justify-end">
+                  <div 
+                    className="w-full bg-gradient-to-t from-emerald-500 to-emerald-300 transition-all relative cursor-pointer rounded-t-hero-sm shadow-[0_-4px_10px_-2px_rgba(16,185,129,0.2)]" 
+                    style={{ height: `${Math.max((v/450)*100, 5)}%` }}
+                  >
+                    <div className="absolute -top-7 left-1/2 -translate-x-1/2 bg-gray-900 text-emerald-400 text-[9px] font-black px-1.5 py-0.5 rounded opacity-0 group-hover/bar:opacity-100 shadow-xl z-20 transition-all">
+                      ${v}k
+                    </div>
+                  </div>
+                </div>
+                <span className="text-[10px] font-black text-gray-400 text-center uppercase tracking-tighter">{months[i]}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 px-2">
+      {/* ── Operational Intelligence Hub ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 px-2">
         
-        {/* Left: Analytics (8 cols) */}
-        <div className="lg:col-span-8 flex flex-col gap-6">
-
-          {/* Dual Charts */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-            {/* Shipment Volume */}
-            <div className="card overflow-hidden flex flex-col min-h-[340px]">
-              <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
-                <div>
-                  <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide">Shipment Volume</h3>
-                  <p className="text-[10px] text-gray-400 font-medium uppercase mt-0.5">FY {shipmentYear} Throughput</p>
-                </div>
-                <select 
-                  value={shipmentYear} 
-                  onChange={e => setShipmentYear(e.target.value)}
-                  className="bg-white border border-gray-200 rounded-md px-3 py-1.5 text-xs font-bold outline-none cursor-pointer focus:ring-2 focus:ring-brand/20 focus:border-brand"
-                >
-                  <option value="2026">2026</option>
-                  <option value="2025">2025</option>
-                </select>
-              </div>
-              <div className="flex-1 flex items-end gap-1.5 px-5 pt-8 pb-4">
-                {shipmentData.map((v, i) => (
-                  <div key={i} className="flex-1 flex flex-col justify-end gap-2 group/bar">
-                    <div 
-                      className="w-full bg-blue-50 hover:bg-brand transition-all relative cursor-pointer rounded-t-sm" 
-                      style={{ height: `${(v/130)*100}%` }}
-                    >
-                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[#111] text-white text-[10px] font-bold px-2 py-1 rounded opacity-0 group-hover/bar:opacity-100 shadow-lg z-20 whitespace-nowrap transition-opacity">
-                        {v}k
-                      </div>
-                    </div>
-                    <span className="text-[9px] font-bold text-gray-400 text-center uppercase tracking-widest">{months[i]}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="p-5 border-t border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
-                <div>
-                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Avg Growth</p>
-                  <p className="text-lg font-black text-hero-dark tracking-tight mt-0.5">+14.2% YoY</p>
-                </div>
-                <TrendingUp size={20} className="text-gray-400" />
-              </div>
-            </div>
-
-            {/* Shipment Distribution */}
-            <div className="card overflow-hidden flex flex-col min-h-[340px]">
-              <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
-                <div>
-                  <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide">Shipment Distribution</h3>
-                  <p className="text-[10px] text-gray-400 font-medium uppercase mt-0.5">By Volume</p>
-                </div>
-              </div>
-              <div className="flex-1 flex flex-col justify-center px-8 py-5">
-                <div className="h-4 w-full flex rounded-full overflow-hidden mb-6 shadow-sm">
-                  {distData.map((d, i) => (
-                    <div key={i} style={{ width: `${d.val}%` }} className={`h-full ${d.color} hover:brightness-110 transition-all`} title={`${d.label} (${d.val}%)`}></div>
-                  ))}
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  {distData.map((d, i) => (
-                    <div key={i} className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className={`w-2.5 h-2.5 rounded-full ${d.color}`}></div>
-                        <span className="text-xs font-bold text-gray-700">{d.label}</span>
-                      </div>
-                      <span className="text-xs font-black text-gray-900">{d.val}%</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="p-5 border-t border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
-                <div>
-                  <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Largest Segment</p>
-                  <p className="text-lg font-black text-hero-dark tracking-tight mt-0.5">Standard</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        {/* Right Sidebar (4 cols) */}
+        {/* Command Center (Navigation) */}
         <div className="lg:col-span-4 flex flex-col gap-6">
-          
-          {/* Black Control Terminal */}
-          <div className="bg-[#111] rounded-xl shadow-xl overflow-hidden border border-gray-800">
-            <div className="p-5 border-b border-gray-800">
-              <h3 className="text-[11px] font-black uppercase tracking-widest text-brand flex items-center gap-2.5">
-                <Zap size={14} /> Control Terminal
-              </h3>
+          <div className="card h-full flex flex-col overflow-hidden bg-white border-2 border-brand/20 shadow-lg shadow-brand/5">
+            <div className="p-6 border-b border-brand/10 bg-brand/[0.03] flex justify-between items-center">
+              <div>
+                <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest flex items-center gap-2">
+                  <Zap size={16} className="text-brand fill-brand/20" strokeWidth={3}/> Quick Control
+                </h3>
+              </div>
+              <div className="w-2 h-2 rounded-full bg-brand animate-pulse"></div>
             </div>
-            <div className="p-3">
+            <div className="p-4 grid grid-cols-2 gap-3 flex-1">
               {[
-                { label: 'Shipment Queue', path: '/admin/shipments', icon: Package },
-                { label: 'Fleet Control', path: '/admin/vehicles', icon: Truck },
-                { label: 'Staff Roster', path: '/admin/users', icon: Users },
-                { label: 'Global Settings', path: '/admin/settings', icon: Globe },
+                { label: 'Shipments', path: '/admin/shipments', icon: Package, color: 'blue', desc: 'Monitor queue' },
+                { label: 'Fleet Control', path: '/admin/fleet', icon: Truck, color: 'emerald', desc: 'Vehicle logs' },
+                { label: 'Staff Roster', path: '/admin/users', icon: Users, color: 'violet', desc: 'Manage access' },
+                { label: 'Network', path: '/admin/settings', icon: Globe, color: 'orange', desc: 'Global config' },
               ].map((item, i) => (
                 <button 
                   key={i} 
                   onClick={() => navigate(item.path)}
-                  className="w-full flex items-center justify-between p-4 mb-2 last:mb-0 rounded-lg hover:bg-white/5 transition-colors group cursor-pointer text-left border border-transparent hover:border-gray-800"
+                  className="flex flex-col p-4 rounded-xl border border-gray-100 hover:border-brand/40 hover:bg-brand/[0.02] transition-all group text-left"
                 >
-                  <div className="flex items-center gap-3">
-                    <item.icon size={16} className="text-brand group-hover:scale-110 transition-transform" />
-                    <span className="text-xs font-bold text-white uppercase tracking-widest">{item.label}</span>
+                  <div className={`w-8 h-8 rounded-lg bg-${item.color}-50 text-${item.color}-500 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
+                    <item.icon size={16} />
                   </div>
-                  <ChevronRight size={14} className="text-gray-600 group-hover:text-brand transition-colors" />
+                  <span className="text-xs font-black text-gray-900 uppercase tracking-widest">{item.label}</span>
+                  <p className="text-[9px] text-gray-400 font-bold uppercase mt-1 opacity-0 group-hover:opacity-100 transition-opacity">{item.desc}</p>
                 </button>
               ))}
             </div>
-          </div>
-
-          {/* Activity Feed */}
-          <div className="card flex-1 flex flex-col h-full min-h-[400px]">
-            <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
-              <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
-                Network Monitor
-              </h3>
-              <span className="badge badge-gray text-[9px] uppercase">Live</span>
-            </div>
-            <div className="p-5 flex-1 overflow-y-auto hidden-scrollbar">
-              <div className="space-y-6">
-                {recentActivities.map((act, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="flex flex-col items-center">
-                      <div className={`w-2 h-2 rounded-full mt-1.5 ${act.status === 'Success' ? 'bg-emerald-500' : act.status === 'Warning' ? 'bg-amber-500' : 'bg-blue-500'}`}></div>
-                      {i !== recentActivities.length - 1 && <div className="w-px h-full bg-gray-100 my-1"></div>}
-                    </div>
-                    <div className="flex-1 pb-2">
-                      <div className="flex justify-between items-start mb-1">
-                        <span className="text-[10px] font-black text-white bg-[#111] px-2 py-0.5 rounded uppercase tracking-widest">{act.id}</span>
-                        <span className="text-[10px] font-bold text-gray-400">{act.time}</span>
-                      </div>
-                      <p className="text-xs font-black text-hero-dark uppercase tracking-wide my-1">{act.action}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <div className="w-5 h-5 rounded bg-gray-100 flex items-center justify-center text-[8px] font-black text-gray-500">
-                          {act.user.split(' ').map(n=>n[0]).join('')}
-                        </div>
-                        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">{act.user}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="p-4 border-t border-gray-100 text-center bg-[#FAFAFA]">
-              <button onClick={() => navigate('/admin/audit')} className="text-[10px] font-black text-gray-400 hover:text-hero-dark uppercase tracking-widest transition-all">
-                View Global Logs
-              </button>
+            <div className="p-4 bg-gray-50 border-t border-gray-100 flex items-center justify-center">
+               <button onClick={() => navigate('/admin/audit')} className="text-[10px] font-black text-gray-400 hover:text-brand uppercase tracking-widest transition-colors flex items-center gap-2">
+                  View Full Audit Terminal <ChevronRight size={10}/>
+               </button>
             </div>
           </div>
-
         </div>
+
+        {/* Network Distribution */}
+        <div className="lg:col-span-4 card p-8 flex flex-col justify-between shadow-sm">
+          <div>
+            <div className="flex justify-between items-center mb-8">
+               <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest">Network Distribution</h3>
+               <span className="text-[10px] font-black text-gray-400 uppercase tracking-tighter bg-gray-50 px-3 py-1 rounded">Daily Mix</span>
+            </div>
+            <div className="h-4 w-full flex rounded-full overflow-hidden mb-10 shadow-inner bg-gray-100">
+               {distData.map((d, i) => (
+                 <div key={i} style={{ width: `${d.val}%` }} className={`h-full ${d.color} hover:brightness-110 transition-all`} title={`${d.label} (${d.val}%)`}></div>
+               ))}
+            </div>
+            <div className="grid grid-cols-2 gap-8">
+               {distData.map((d, i) => (
+                 <div key={i} className="flex flex-col">
+                    <div className="flex items-center gap-2 mb-1.5">
+                       <div className={`w-2.5 h-2.5 rounded-full ${d.color} shadow-sm shadow-${d.color}/30`}></div>
+                       <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{d.label}</span>
+                    </div>
+                    <p className="text-2xl font-black text-gray-900">{d.val}%</p>
+                 </div>
+               ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Live Network Activity */}
+        <div className="lg:col-span-4 card flex flex-col shadow-sm max-h-[420px]">
+          <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
+             <h3 className="text-[10px] font-black text-gray-900 uppercase tracking-widest flex items-center gap-2">
+               <Activity size={12} className="text-blue-500 animate-pulse"/> Activity Monitor
+             </h3>
+             <div className="flex gap-1">
+                <span className="w-1 h-1 rounded-full bg-blue-300"></span><span className="w-1 h-1 rounded-full bg-blue-200"></span>
+             </div>
+          </div>
+          <div className="p-6 flex-1 overflow-y-auto hidden-scrollbar">
+             <div className="space-y-6">
+               {recentActivities.slice(0, 4).map((act, i) => (
+                 <div key={i} className="flex gap-4">
+                    <div className="flex flex-col items-center">
+                       <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 shadow-glow ${act.status === 'Success' ? 'bg-emerald-500' : 'bg-blue-500'}`}></div>
+                       {i < 3 && <div className="w-px h-full bg-gray-100 my-1"></div>}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                       <p className="text-[10px] font-black text-gray-900 truncate uppercase tracking-wide leading-none mb-1">{act.action}</p>
+                       <p className="text-[9px] text-gray-400 font-bold uppercase tracking-tight">{act.time} • Operator {act.user}</p>
+                    </div>
+                 </div>
+               ))}
+             </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );

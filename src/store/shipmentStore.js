@@ -4,12 +4,26 @@ import { create } from 'zustand';
 export const useShipmentStore = create((set) => ({
   shipmentYear: '2026',
   revenueYear: '2026',
+  
+  // Overview Metrics
+  metrics: {
+    totalShipments: '12,482',
+    activeVehicles: '415',
+    totalRevenue: '$1.2M',
+    pendingIssues: '84',
+    totalBranches: '12',
+    totalDrivers: '580',
+    totalCustomers: '2.4k'
+  },
+
+  // Monthly Data
   shipmentData: [32, 45, 38, 52, 65, 58, 72, 85, 92, 88, 105, 120],
+  incomeData: [120, 150, 180, 140, 210, 250, 230, 280, 310, 290, 340, 420], // in $k
+
   distData: [
-    { label: 'Standard', val: 56, color: 'bg-emerald-500' },
-    { label: 'Express',  val: 28, color: 'bg-[#FACC15]' },
-    { label: 'Priority', val: 12, color: 'bg-orange-500' },
-    { label: 'DG / Freight', val: 4, color: 'bg-red-500' }
+    { label: 'Standard', val: 55, color: 'bg-blue-500' },
+    { label: 'Express',  val: 30, color: 'bg-emerald-500' },
+    { label: 'Premium',  val: 15, color: 'bg-brand' },
   ],
   recentActivities: [
     { id: 'SHP-9042', action: 'Delivery Completed', user: 'Jack Taylor', time: '12m ago', status: 'Success' },
