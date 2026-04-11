@@ -127,7 +127,7 @@ export default function AdminBranchDetail() {
           </button>
           <div>
             <div className="flex items-center gap-3 flex-wrap">
-              <h1 className="text-3xl font-black text-gray-900 tracking-tight">{b.name}</h1>
+              <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{b.name}</h1>
               <span className={`text-[10px] font-black px-2.5 py-1 rounded border uppercase tracking-widest ${b.type === 'Primary Hub' ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-gray-100 text-gray-600 border-gray-200'}`}>{b.type}</span>
               <span className={`text-[10px] font-black px-2.5 py-1 rounded border uppercase tracking-widest flex items-center gap-1 ${b.status === 'Online' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]'}`}>
                 <span className={`w-1.5 h-1.5 rounded-full ${b.status === 'Online' ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`}></span>

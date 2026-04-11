@@ -36,7 +36,7 @@ export default function DispatchTracking() {
       {/* ── 1. Live HUD Header ── */}
       <div className="flex justify-between items-center mb-6 shrink-0">
         <div>
-          <h1 className="text-2xl font-black text-gray-900 tracking-tight flex items-center gap-3">
+          <h1 className="text-2xl font-bold text-gray-900 tracking-tight flex items-center gap-3">
              <Satellite className="text-blue-500" size={24}/> Fleet GPS Monitor
           </h1>
           <p className="text-sm font-bold text-gray-400 mt-1 uppercase tracking-widest flex items-center gap-2">

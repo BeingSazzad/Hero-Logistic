@@ -34,7 +34,7 @@ const NotFound = () => {
 
           {/* Heading */}
           <div className="relative">
-            <h1 className="text-[12rem] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent absolute inset-x-0 -top-20 pointer-events-none select-none">
+            <h1 className="text-[12rem] font-bold leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent absolute inset-x-0 -top-20 pointer-events-none select-none">
               404
             </h1>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Off the Grid</h2>

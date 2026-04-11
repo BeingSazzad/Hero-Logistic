@@ -25,7 +25,7 @@ export default function CustomerDashboard() {
          <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
             <div>
                <p className="text-brand hero-metadata tracking-[0.3em] mb-3">Certified Partner Dashboard</p>
-               <h1 className="text-4xl font-black tracking-tighter">Acme Distribution Group</h1>
+               <h1 className="text-4xl font-bold tracking-tighter">Acme Distribution Group</h1>
                <div className="flex items-center gap-4 mt-6">
                   <div className="flex -space-x-2">
                      {[1,2,3].map(i => <div key={i} className="w-8 h-8 rounded-full border-2 border-hero-dark bg-gray-800"></div>)}

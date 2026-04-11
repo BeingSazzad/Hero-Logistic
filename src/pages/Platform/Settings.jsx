@@ -37,13 +37,13 @@ export default function PlatformSettings() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-3 px-4 py-3.5 text-sm font-bold rounded-xl transition-all text-left ${
+              className={`flex items-center gap-3 px-4 py-3.5 text-sm font-semibold rounded-xl transition-all text-left ${
                 activeTab === tab.id
-                  ? 'bg-white text-gray-900 shadow-md border border-gray-100'
-                  : 'text-gray-400 hover:text-gray-600 hover:bg-gray-50'
+                  ? 'bg-white text-gray-900 shadow-sm border border-gray-200'
+                  : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
             >
-              <tab.icon size={18} className={activeTab === tab.id ? 'text-[#FFCC00]' : 'text-gray-300'} />
+              <tab.icon size={18} className={activeTab === tab.id ? 'text-[#FFCC00]' : 'text-gray-400'} />
               {tab.title}
             </button>
           ))}
@@ -57,8 +57,8 @@ export default function PlatformSettings() {
              <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden animate-in fade-in duration-300">
                 <div className="p-6 border-b border-gray-50 bg-[#FAFAFA] flex items-center justify-between">
                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">My Profile</h3>
-                   <button className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-5 py-2 rounded-lg font-bold text-xs flex items-center gap-2 transition-all shadow-sm">
-                      <Save size={14}/> Save Changes
+                   <button className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-5 py-2.5 rounded-lg font-semibold text-sm flex items-center gap-2 transition-all shadow-sm">
+                      <Save size={16}/> Save Changes
                    </button>
                 </div>
                 <div className="p-8 flex flex-col md:flex-row gap-10">
@@ -76,16 +76,16 @@ export default function PlatformSettings() {
                    </div>
                    <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">Full Name</label>
-                         <input type="text" defaultValue="Matthew Anderson" className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-5 text-sm font-bold text-gray-900 focus:bg-white focus:border-[#FFCC00] outline-none transition-all" />
+                         <label className="text-xs font-semibold text-gray-700 block mb-2 px-1">Full Name</label>
+                         <input type="text" defaultValue="Matthew Anderson" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm focus:border-[#FFCC00] focus:ring-2 focus:ring-[#FFCC00]/20 outline-none transition-all" />
                       </div>
                       <div>
-                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">Username</label>
-                         <input type="text" defaultValue="@matthew_admin" className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-5 text-sm font-bold text-gray-900 outline-none" />
+                         <label className="text-xs font-semibold text-gray-700 block mb-2 px-1">Username</label>
+                         <input type="text" defaultValue="@matthew_admin" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm focus:border-[#FFCC00] focus:ring-2 focus:ring-[#FFCC00]/20 outline-none transition-all" />
                       </div>
                       <div className="md:col-span-2">
-                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">Email Address</label>
-                         <input type="email" defaultValue="matthew@hero-logistics.app" className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-5 text-sm font-bold text-gray-900 outline-none" />
+                         <label className="text-xs font-semibold text-gray-700 block mb-2 px-1">Email Address</label>
+                         <input type="email" defaultValue="matthew@hero-logistics.app" className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-500 shadow-sm cursor-not-allowed outline-none transition-all" readOnly />
                       </div>
                    </div>
                 </div>
@@ -111,23 +111,23 @@ export default function PlatformSettings() {
                          </div>
                       </div>
                       <div className="flex-1 space-y-6">
-                         <div>
-                            <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">Platform Name</label>
-                            <input type="text" defaultValue="HERO TMS · Logistics Cloud" className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-5 text-sm font-black text-gray-900 outline-none" />
-                         </div>
-                         <div className="grid grid-cols-2 gap-4">
-                            <div>
-                               <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">Brand Color</label>
-                               <div className="flex items-center gap-3 bg-gray-50 border border-gray-100 rounded-xl px-4 py-2.5">
-                                  <div className="w-6 h-6 rounded-full bg-[#FFCC00]"></div>
-                                  <span className="text-xs font-black text-gray-900">#FFCC00</span>
-                               </div>
-                            </div>
-                            <div>
-                               <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">Support Phone</label>
-                               <input type="text" defaultValue="+61 1300 HERO" className="w-full bg-gray-50 border border-gray-100 rounded-xl py-2.5 px-4 text-xs font-bold text-gray-900 outline-none" />
-                            </div>
-                         </div>
+                          <div>
+                             <label className="text-xs font-semibold text-gray-700 block mb-2 px-1">Platform Name</label>
+                             <input type="text" defaultValue="HERO TMS · Logistics Cloud" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm focus:border-[#FFCC00] focus:ring-2 focus:ring-[#FFCC00]/20 outline-none transition-all" />
+                          </div>
+                          <div className="grid grid-cols-2 gap-4">
+                             <div>
+                                <label className="text-xs font-semibold text-gray-700 block mb-2 px-1">Brand Color</label>
+                                <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-4 py-2.5 shadow-sm">
+                                   <div className="w-5 h-5 rounded border border-gray-200 bg-[#FFCC00]"></div>
+                                   <span className="text-sm font-normal text-gray-900">#FFCC00</span>
+                                </div>
+                             </div>
+                             <div>
+                                <label className="text-xs font-semibold text-gray-700 block mb-2 px-1">Support Phone</label>
+                                <input type="text" defaultValue="+61 1300 HERO" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm focus:border-[#FFCC00] focus:ring-2 focus:ring-[#FFCC00]/20 outline-none transition-all" />
+                             </div>
+                          </div>
                       </div>
                    </div>
                 </div>
@@ -148,11 +148,11 @@ export default function PlatformSettings() {
                       <div className="space-y-6">
                          <div>
                             <p className="text-sm font-bold text-gray-900 mb-4">Change Password</p>
-                            <div className="space-y-4">
-                               <input type="password" placeholder="Current password" className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-5 text-sm font-bold outline-none" />
-                               <input type="password" placeholder="New password" className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-5 text-sm font-bold outline-none" />
-                               <button className="w-full py-3 bg-[#FFCC00] hover:bg-[#E6B800] text-black rounded-xl text-xs font-bold shadow-sm">Update Password</button>
-                            </div>
+                             <div className="space-y-4">
+                                <input type="password" placeholder="Current password" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm outline-none" />
+                                <input type="password" placeholder="New password" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm outline-none" />
+                                <button className="w-full py-2.5 bg-[#FFCC00] hover:bg-[#E6B800] text-black rounded-lg text-sm font-semibold shadow-sm transition-all border border-[#E6B800]">Update Password</button>
+                             </div>
                          </div>
                       </div>
                       <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100 flex flex-col items-center justify-center text-center gap-4">
@@ -196,23 +196,23 @@ export default function PlatformSettings() {
                    </div>
                    
                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="space-y-2">
-                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block px-1">Tax Rate (%)</label>
-                         <input type="number" defaultValue="10" className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-5 text-sm font-black text-gray-900 outline-none" />
-                      </div>
-                      <div className="space-y-2">
-                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block px-1">Payout Schedule</label>
-                         <select className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-5 text-sm font-black text-gray-900 outline-none appearance-none">
-                            <option>Daily (Automatic)</option>
-                            <option>Weekly</option>
-                            <option>Manual</option>
-                         </select>
-                      </div>
-                      <div className="space-y-2">
-                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block px-1">Currency</label>
-                         <input type="text" defaultValue="AUD (Australian Dollar)" readOnly className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-5 text-sm font-black text-gray-400 outline-none" />
-                      </div>
-                   </div>
+                       <div className="space-y-2">
+                          <label className="text-xs font-semibold text-gray-700 block px-1">Tax Rate (%)</label>
+                          <input type="number" defaultValue="10" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm outline-none" />
+                       </div>
+                       <div className="space-y-2">
+                          <label className="text-xs font-semibold text-gray-700 block px-1">Payout Schedule</label>
+                          <select className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm outline-none appearance-none cursor-pointer">
+                             <option>Daily (Automatic)</option>
+                             <option>Weekly</option>
+                             <option>Manual</option>
+                          </select>
+                       </div>
+                       <div className="space-y-2">
+                          <label className="text-xs font-semibold text-gray-700 block px-1">Currency</label>
+                          <input type="text" defaultValue="AUD (Australian Dollar)" readOnly className="w-full bg-gray-50 border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-400 shadow-sm cursor-not-allowed outline-none" />
+                       </div>
+                    </div>
                 </div>
              </div>
           )}

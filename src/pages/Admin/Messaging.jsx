@@ -37,7 +37,7 @@ export default function AdminMessaging() {
       {/* ── Header ── */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shrink-0">
         <div>
-           <h1 className="text-2xl font-black text-gray-900 tracking-tight">Company Help Desk</h1>
+           <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Company Help Desk</h1>
            <p className="text-sm text-gray-500 font-medium">Internal support management for drivers and dispatchers.</p>
         </div>
         <button className="btn btn-primary px-6 py-2.5 text-xs font-black uppercase tracking-widest shadow-lg flex items-center gap-2">
