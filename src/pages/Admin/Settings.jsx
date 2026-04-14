@@ -13,10 +13,10 @@ export default function AdminSettings() {
            <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-xl text-gray-900 shadow-sm">
              <User size={20} />
            </div>
-           <div>
-             <h1 className="text-3xl font-bold text-gray-900 tracking-tight">My Profile</h1>
-             <p className="text-sm font-medium text-gray-500 mt-0.5">Manage your personal information and security credentials</p>
-           </div>
+          <div>
+             <h1 className="hero-h1">My Profile</h1>
+             <p className="hero-body mt-1">Manage your personal information and security credentials</p>
+          </div>
         </div>
         <button className="btn btn-primary px-6 shadow-sm flex items-center gap-2">
           <Save size={16} strokeWidth={2.5} /> Save Profile
