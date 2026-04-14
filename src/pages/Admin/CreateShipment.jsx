@@ -38,7 +38,6 @@ export default function AdminCreateShipment() {
   const [priority, setPriority] = useState('Normal');
   const [paymentBy, setPaymentBy] = useState('Sender');
   const [transferType, setTransferType] = useState('Direct'); // 'Branch' | 'Direct'
-  const [targetBranch, setTargetBranch] = useState('');
 
   // Sender state
   const [senderMode, setSenderMode] = useState('registered');
@@ -130,11 +129,11 @@ export default function AdminCreateShipment() {
             <p className="text-sm text-gray-500 mt-1">Add multiple items — each with its own pickup and drop-off location.</p>
           </div>
         </div>
-        <div className="flex gap-3">
-          <button onClick={() => navigate('/admin/shipments')} className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-6 py-2.5 rounded-lg font-bold transition-all shadow-sm">
+        <div className="flex gap-4">
+          <button onClick={() => navigate('/admin/shipments')} className="btn btn-outline text-hero-neutral">
             Cancel
           </button>
-          <button className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+          <button className="btn btn-primary pl-6 pr-8">
             <Save size={18} strokeWidth={2.5} /> Create Shipment
           </button>
         </div>
@@ -197,21 +196,21 @@ export default function AdminCreateShipment() {
                     <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Sender Name *</label>
                     <div className="relative group">
                       <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16} />
-                      <input type="text" placeholder="Full name or company" className="w-full bg-white border border-gray-200 focus:border-[#FFCC00] rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20" />
+                      <input type="text" placeholder="Full name or company" className="input pl-11" />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widests mb-1.5 ml-1">Contact Phone</label>
+                    <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Contact Phone</label>
                     <div className="relative group">
                       <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16} />
-                      <input type="text" placeholder="Mobile or landline" className="w-full bg-white border border-gray-200 focus:border-[#FFCC00] rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20" />
+                      <input type="text" placeholder="Mobile or landline" className="input pl-11" />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widests mb-1.5 ml-1">Sender Address</label>
+                    <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Sender Address</label>
                     <div className="relative group">
                       <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16} />
-                      <input type="text" placeholder="Full address" className="w-full bg-white border border-gray-200 focus:border-[#FFCC00] rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20" />
+                      <input type="text" placeholder="Full address" className="input pl-11" />
                     </div>
                   </div>
                 </div>
@@ -227,7 +226,7 @@ export default function AdminCreateShipment() {
                         onChange={e => { setSenderSearch(e.target.value); setShowSenderDropdown(true); setSelectedSender(null); }}
                         onFocus={() => setShowSenderDropdown(true)}
                         placeholder="Search by name, phone, or email..."
-                        className="w-full bg-white border border-gray-200 focus:border-[#FFCC00] rounded-xl py-3 pl-11 pr-11 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20"
+                        className="input pl-11 pr-11"
                       />
                       {senderSearch && (
                         <button onClick={clearSender} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700">
@@ -352,7 +351,7 @@ export default function AdminCreateShipment() {
                           placeholder="e.g. Toyota Camry 2020, Electronics pallet, Furniture set"
                           value={item.description}
                           onChange={e => updateItem(item.id, 'description', e.target.value)}
-                          className="w-full bg-white border border-gray-200 focus:border-violet-400 rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-violet-500/20"
+                          className="input"
                         />
                       </div>
                       <div>
@@ -360,7 +359,7 @@ export default function AdminCreateShipment() {
                         <select
                           value={item.packaging}
                           onChange={e => updateItem(item.id, 'packaging', e.target.value)}
-                          className="w-full bg-white border border-gray-200 focus:border-violet-400 rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-violet-500/20 appearance-none cursor-pointer"
+                          className="input pr-10 appearance-none cursor-pointer"
                         >
                           {PACKAGING_TYPES.map(p => <option key={p}>{p}</option>)}
                         </select>
@@ -546,9 +545,8 @@ export default function AdminCreateShipment() {
                 </div>
               </div>
 
-              {/* Payment Method */}
-              <div className="flex items-center justify-between bg-white/5 p-3 rounded-xl border border-white/5">
-                <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Billing</span>
+              <div className="flex items-center justify-between bg-white/5 p-3 rounded-xl border border-white/5 mb-4">
+                <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Billing Method</span>
                 <div className="flex gap-2">
                   {['Sender', 'Receiver'].map(t => (
                     <button
@@ -562,12 +560,44 @@ export default function AdminCreateShipment() {
                 </div>
               </div>
 
-              {/* Final Cost Calculation */}
-              <div className="space-y-2 pt-1 border-t border-white/10">
-                <div className="flex justify-between items-center px-1">
-                  <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Calculated Total</span>
+              <div className="space-y-3 pt-4 border-t border-white/10 uppercase tracking-widest text-[9px] font-bold">
+                <div className="flex justify-between items-center text-gray-400">
+                  <span>Freight ({items.length} units)</span>
+                  <span className="text-white">${(items.length * 420 + totalWeight * 2.5).toLocaleString()}.00</span>
+                </div>
+                
+                <div className="flex justify-between items-center text-gray-400">
+                  <span>Handling Fee</span>
+                  <span className="text-white">$45.00</span>
+                </div>
+
+                {priority !== 'Normal' && (
+                  <div className="flex justify-between items-center text-amber-500">
+                    <span>Priority Fee</span>
+                    <span>+${(priority === 'Direct' ? 450 : 120).toLocaleString()}.00</span>
+                  </div>
+                )}
+
+                <div className="flex justify-between items-center text-gray-500 border-t border-white/5 pt-3">
+                  <span>Net Subtotal</span>
+                  <span className="text-white">
+                    ${(items.length * 420 + totalWeight * 2.5 + 45 + (priority === 'Direct' ? 450 : (priority === 'Express' ? 120 : 0))).toLocaleString()}.00
+                  </span>
+                </div>
+
+                <div className="flex justify-between items-center text-gray-500">
+                  <span>Tax Amount (10%)</span>
+                  <span className="text-white">
+                    ${((items.length * 420 + totalWeight * 2.5 + 45 + (priority === 'Direct' ? 450 : (priority === 'Express' ? 120 : 0))) * 0.1).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                  </span>
+                </div>
+
+                <div className="flex justify-between items-center pt-2 border-t border-white/10 mt-2">
+                  <span className="text-[#FFCC00] text-[10px] font-black">
+                    {paymentBy === 'Sender' ? 'Total Paid' : 'Total Due'}
+                  </span>
                   <span className="text-2xl font-black text-white">
-                     ${(items.length * 420 + (priority === 'Direct' ? 450 : (priority === 'Express' ? 120 : 0))).toLocaleString()}.00
+                    ${((items.length * 420 + totalWeight * 2.5 + 45 + (priority === 'Direct' ? 450 : (priority === 'Express' ? 120 : 0))) * 1.1).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}
                   </span>
                 </div>
               </div>

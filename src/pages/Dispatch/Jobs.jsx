@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
+import {
   Package, Search, Filter, Plus, Clock,
   MapPin, ChevronDown, AlertTriangle,
   CheckCircle2, UserCheck, Inbox, Zap,
@@ -9,10 +9,10 @@ import {
 import { useAuthStore } from '../../store/authStore';
 
 const QUEUES = [
-  { id: 'unassigned', label: 'Unassigned',     icon: Inbox,       color: 'text-amber-600',  bg: 'bg-amber-50',  border: 'border-amber-200', desc: 'Booked – awaiting driver assignment' },
-  { id: 'assigned',   label: 'In Transit',     icon: Zap,          color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-200', desc: 'Assigned & physically moving' },
-  { id: 'exception',  label: 'Issues',     icon: AlertCircle,  color: 'text-red-600',    bg: 'bg-red-50',    border: 'border-red-200',    desc: 'Delayed or delivery problems' },
-  { id: 'completed',  label: 'Received',       icon: CheckCircle2, color: 'text-gray-500',   bg: 'bg-gray-50',   border: 'border-gray-200',   desc: 'Handover complete / Delivered' },
+  { id: 'unassigned', label: 'Unassigned', icon: Inbox, color: 'text-amber-600', bg: 'bg-amber-50', border: 'border-amber-200', desc: 'Booked – awaiting driver assignment' },
+  { id: 'assigned', label: 'In Transit', icon: Zap, color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-200', desc: 'Assigned & physically moving' },
+  { id: 'exception', label: 'Issues', icon: AlertCircle, color: 'text-red-600', bg: 'bg-red-50', border: 'border-red-200', desc: 'Delayed or delivery problems' },
+  { id: 'completed', label: 'Received', icon: CheckCircle2, color: 'text-gray-500', bg: 'bg-gray-50', border: 'border-gray-200', desc: 'Handover complete / Delivered' },
 ];
 
 export default function DispatchJobs() {
@@ -22,6 +22,9 @@ export default function DispatchJobs() {
   const [search, setSearch] = useState('');
   const [showFilter, setShowFilter] = useState(false);
   const [showSort, setShowSort] = useState(false);
+  const [sortOption, setSortOption] = useState('Latest');
+  const [filterDate, setFilterDate] = useState('');
+  const [filterBranch, setFilterBranch] = useState('All');
   const [selectedIds, setSelectedIds] = useState([]);
   const [unassignedFilter, setUnassignedFilter] = useState('All');
 
@@ -30,40 +33,32 @@ export default function DispatchJobs() {
   };
 
   const rawJobs = [
-    // Unassigned (confirmed, no driver yet)
-    { id: 'SHP-9055', branchId: 'SYD-CENTRAL', customer: 'Acme Freight Co', origin: 'Sydney Depot', dest: 'Canberra Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'Direct', eta: '—', pickup: '11:00 AM', window: '12:00–14:00', load: '6.2t', notes: 'Temperature-controlled cargo' },
-    { id: 'SHP-9054', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'Express', eta: '—', pickup: '12:30 PM', window: '13:00–15:00', load: '2.1t', notes: '' },
-    { id: 'SHP-9060', branchId: 'SYD-CENTRAL', customer: 'Velocity Logistics', origin: 'Melbourne Hub', dest: 'Brisbane Hub', queue: 'unassigned', unassignedType: 'Branch Transfers', driver: null, vehicle: null, priority: 'Direct', eta: '—', pickup: 'Awaiting Transit', window: '—', load: '14.5t', notes: 'Hub cross-dock completed' },
-    { id: 'SHP-9061', branchId: 'SYD-CENTRAL', customer: 'Local Retailer', origin: 'Perth Depot', dest: 'Sydney Local', queue: 'unassigned', unassignedType: 'Local Deliveries', driver: null, vehicle: null, priority: 'Express', eta: '—', pickup: 'Arrived at Staging', window: 'Before 17:00', load: '2.4t', notes: 'Last mile priority' },
-
-    // Assigned (active trips)
-    { id: 'SHP-9042', branchId: 'SYD-CENTRAL', customer: 'Acme Corp Logistics', origin: 'Sydney Depot', dest: 'Melbourne Branch', queue: 'assigned', driver: 'Jack Taylor', vehicle: 'XQG-984', priority: 'Direct', eta: '14:30', pickup: '06:00 AM', window: 'Deliver by 16:00', load: '18.4t', notes: '' },
-    { id: 'SHP-9035', branchId: 'SYD-CENTRAL', customer: 'Southport Logistics', origin: 'Adelaide Depot', dest: 'Sydney Depot', queue: 'assigned', driver: 'Oliver Brown', vehicle: 'V-102', priority: 'Direct', eta: 'Arrived at Branch', pickup: '05:00 AM', window: 'Delivered by 11:00', load: '12.0t', notes: '' },
-
-    // Exception
-    { id: 'SHP-9041', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'exception', driver: 'Liam Smith', vehicle: 'BGT-221', priority: 'Express', eta: 'Delayed', pickup: '07:00 AM', window: 'Deliver by 14:00', load: '9.5t', notes: 'Driver reports heavy traffic — ETA +1h', exception: 'Delay' },
-    { id: 'SHP-9048', branchId: 'SYD-CENTRAL', customer: 'Blue River Exports', origin: 'Sydney Depot', dest: 'Sydney Depot', queue: 'exception', driver: 'Lucas Jones', vehicle: 'TRK-08', priority: 'Direct', eta: 'GPS Lost', pickup: '04:00 AM', window: 'Deliver by 09:00', load: '14.2t', notes: 'No GPS update for 18 minutes', exception: 'GPS Lost' },
-
-    // Completed
-    { id: 'SHP-9039', branchId: 'SYD-CENTRAL', customer: 'Global Traders AU', origin: 'Brisbane Depot', dest: 'Gold Coast Branch', queue: 'completed', driver: 'Liam Smith', vehicle: 'KLY-004', priority: 'Normal', eta: 'Received at Branch', pickup: '03:00 AM', window: 'Deliver by 08:00', load: '5.5t', notes: '' },
+    { id: 'SHP-9055', branchId: 'SYD-CENTRAL', customer: 'Acme Freight Co', origin: 'Sydney Depot', dest: 'Canberra Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'High', eta: '—', pickup: '11:00 AM', window: '12:00–14:00', load: '6.2t', notes: 'Temperature-controlled cargo' },
+    { id: 'SHP-9054', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'Medium', eta: '—', pickup: '12:30 PM', window: '13:00–15:00', load: '2.1t', notes: '' },
+    { id: 'SHP-9060', branchId: 'SYD-CENTRAL', customer: 'Velocity Logistics', origin: 'Melbourne Hub', dest: 'Brisbane Hub', queue: 'unassigned', unassignedType: 'Branch Transfers', driver: null, vehicle: null, priority: 'High', eta: '—', pickup: 'Awaiting Transit', window: '—', load: '14.5t', notes: 'Hub cross-dock completed' },
+    { id: 'SHP-9061', branchId: 'SYD-CENTRAL', customer: 'Local Retailer', origin: 'Perth Depot', dest: 'Sydney Local', queue: 'unassigned', unassignedType: 'Local Deliveries', driver: null, vehicle: null, priority: 'Medium', eta: '—', pickup: 'Arrived at Staging', window: 'Before 17:00', load: '2.4t', notes: '' },
+    { id: 'SHP-9042', branchId: 'SYD-CENTRAL', customer: 'Acme Corp Logistics', origin: 'Sydney Depot', dest: 'Melbourne Branch', queue: 'assigned', driver: 'Jack Taylor', vehicle: 'XQG-984', priority: 'High', eta: '14:30', pickup: '06:00 AM', window: 'Deliver by 16:00', load: '18.4t', notes: '' },
+    { id: 'SHP-9035', branchId: 'SYD-CENTRAL', customer: 'Southport Logistics', origin: 'Adelaide Depot', dest: 'Sydney Depot', queue: 'assigned', driver: 'Oliver Brown', vehicle: 'V-102', priority: 'High', eta: 'Arrived at Branch', pickup: '05:00 AM', window: 'Delivered by 11:00', load: '12.0t', notes: '' },
+    { id: 'SHP-9041', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'exception', driver: 'Liam Smith', vehicle: 'BGT-221', priority: 'Medium', eta: 'Delayed', pickup: '07:00 AM', window: 'Deliver by 14:00', load: '9.5t', notes: 'Driver reports heavy traffic', exception: 'Delay' },
+    { id: 'SHP-9039', branchId: 'SYD-CENTRAL', customer: 'Global Traders AU', origin: 'Brisbane Depot', dest: 'Gold Coast Branch', queue: 'completed', driver: 'Liam Smith', vehicle: 'KLY-004', priority: 'Low', eta: 'Received', pickup: '03:00 AM', window: 'Deliver by 08:00', load: '5.5t', notes: '' },
   ];
 
-  const branchJobs = useMemo(() =>
-    rawJobs.filter(j => j.branchId === user.branchId),
-  [user.branchId]);
+  const branchJobs = useMemo(() => {
+    // For dispatcher, we always filter by branch
+    return rawJobs.filter(j => j.branchId === user?.branchId);
+  }, [user?.branchId]);
 
   const counts = useMemo(() => ({
     unassigned: branchJobs.filter(j => j.queue === 'unassigned').length,
-    assigned:   branchJobs.filter(j => j.queue === 'assigned').length,
-    exception:  branchJobs.filter(j => j.queue === 'exception').length,
-    completed:  branchJobs.filter(j => j.queue === 'completed').length,
+    assigned: branchJobs.filter(j => j.queue === 'assigned').length,
+    exception: branchJobs.filter(j => j.queue === 'exception').length,
+    completed: branchJobs.filter(j => j.queue === 'completed').length,
   }), [branchJobs]);
 
   const filtered = useMemo(() => {
     return branchJobs.filter(j => {
-      const matchesQueue  = j.queue === queue;
+      const matchesQueue = j.queue === queue;
       const matchesSearch = !search || `${j.id} ${j.customer} ${j.driver || ''}`.toLowerCase().includes(search.toLowerCase());
-      
       let matchesSub = true;
       if (queue === 'unassigned' && unassignedFilter !== 'All') {
         matchesSub = j.unassignedType === unassignedFilter;
@@ -71,12 +66,6 @@ export default function DispatchJobs() {
       return matchesQueue && matchesSearch && matchesSub;
     });
   }, [branchJobs, queue, search, unassignedFilter]);
-
-  const priorityStyle = (p) => {
-    if (p === 'Direct')  return 'bg-red-50 text-red-600 border-red-100';
-    if (p === 'Express') return 'bg-amber-50 text-amber-600 border-amber-100';
-    return 'bg-gray-50 text-gray-500 border-gray-100';
-  };
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
@@ -89,7 +78,7 @@ export default function DispatchJobs() {
           </div>
           <div>
             <h1 className="hero-h1">Shipment Queue</h1>
-            <p className="hero-body text-hero-neutral mt-1">{user.branchName} · Live dispatch operations and exception management</p>
+            <p className="hero-body text-hero-neutral mt-1 leading-none">{user?.branchName} · Dispatch Operations Command</p>
           </div>
         </div>
         <button
@@ -103,10 +92,9 @@ export default function DispatchJobs() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* ── Queue Selector Cards ── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 px-2">
         {QUEUES.map(q => {
           const isActive = queue === q.id;
-          const count = counts[q.id];
           return (
             <button
               key={q.id}
@@ -127,15 +115,15 @@ export default function DispatchJobs() {
       </div>
 
       {/* ── Table Card ── */}
-      <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+      <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden mx-2">
 
         {/* Filter Bar */}
         <div className="p-5 border-b border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 bg-[#FAFAFA]">
           <div className="flex-1">
-            <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">{QUEUES.find(q=>q.id===queue)?.label}</h3>
-            <p className="text-[10px] font-medium text-gray-400 mt-0.5">{filtered.length} shipment{filtered.length !== 1 ? 's' : ''} found</p>
+            <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">{QUEUES.find(q => q.id === queue)?.label} Queue</h3>
+            <p className="text-[10px] font-medium text-gray-400 mt-0.5">{filtered.length} shipment{filtered.length !== 1 ? 's' : ''} identified</p>
           </div>
-          
+
           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
             <div className="relative flex-1 md:flex-initial">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={15} />
@@ -143,92 +131,53 @@ export default function DispatchJobs() {
                 type="text"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                placeholder="Search by ID or Name..."
+                placeholder="Search Reference..."
                 className="w-full md:w-64 bg-white border border-gray-200 hover:border-gray-300 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm"
               />
             </div>
-
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <button 
-                onClick={() => setShowFilter(!showFilter)}
-                className="btn btn-outline py-2.5 px-4 font-semibold text-sm"
-              >
-                <Filter size={14} /> Filter Priorities <ChevronDown size={14} className={`transition-transform ${showFilter ? 'rotate-180' : ''}`} />
-              </button>
-              {showFilter && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-hero-md shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-                  <div className="py-1">
-                    {['All Priorities', 'High Priority', 'Medium Priority', 'Critical Only'].map((opt) => (
-                      <button key={opt} onClick={() => setShowFilter(false)} className="w-full text-left px-4 py-2 text-sm text-hero-dark hover:bg-brand/5 hover:text-hero-dark transition-colors font-medium border-b border-gray-50 last:border-0">{opt}</button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="relative">
-              <button 
-                onClick={() => setShowSort(!showSort)}
-                className="btn btn-outline py-2.5 px-4 font-semibold text-sm"
-              >
-                <ChevronDown size={14} className={`mr-2 transition-transform ${showSort ? 'rotate-180' : ''}`} /> Sort Drivers
-              </button>
-              {showSort && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-hero-md shadow-xl z-50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-                  <div className="py-1">
-                    {['ID (Asc)', 'ID (Desc)', 'Customer Name', 'Earliest Pickup'].map((opt) => (
-                      <button key={opt} onClick={() => setShowSort(false)} className="w-full text-left px-4 py-2 text-sm text-hero-dark hover:bg-brand/5 hover:text-hero-dark transition-colors font-medium border-b border-gray-50 last:border-0">{opt}</button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+            <button
+              onClick={() => setShowFilter(!showFilter)}
+              className="btn-hero-secondary !py-2.5 !px-4 flex items-center gap-2"
+            >
+              <Filter size={14} /> Parameters
+            </button>
           </div>
-        </div>
         </div>
 
         {/* Dynamic Segmentation Panel for Unassigned Queue */}
         {queue === 'unassigned' && (
-           <div className="flex bg-gray-50 flex-wrap items-center gap-2 px-5 py-3 border-b border-gray-100">
-             <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest mr-2 flex items-center gap-1.5"><MapPin size={12}/> Task Type</span>
-             {['All', 'Local Pickups', 'Branch Transfers', 'Local Deliveries'].map(type => (
-                <button 
-                  key={type}
-                  onClick={() => setUnassignedFilter(type)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${
-                     unassignedFilter === type ? 'bg-[#111] text-[#FFCC00] shadow-md' : 'bg-white border border-gray-200 text-gray-500 hover:bg-gray-100'
+          <div className="flex bg-gray-50 flex-wrap items-center gap-2 px-5 py-3 border-b border-gray-100">
+            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest mr-2 flex items-center gap-1.5"><MapPin size={12} /> Global Task Segments</span>
+            {['All', 'Local Pickups', 'Branch Transfers', 'Local Deliveries'].map(type => (
+              <button
+                key={type}
+                onClick={() => setUnassignedFilter(type)}
+                className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${unassignedFilter === type ? 'bg-[#111] text-[#FFCC00] shadow-md' : 'bg-white border border-gray-200 text-gray-500 hover:bg-gray-100'
                   }`}
-                >
-                  {type === 'Local Pickups' && <Package size={12}/>}
-                  {type === 'Branch Transfers' && <ArrowRight size={12}/>}
-                  {type === 'Local Deliveries' && <MapPin size={12} />}
-                  {type}
-                </button>
-             ))}
-           </div>
+              >
+                {type}
+              </button>
+            ))}
+          </div>
         )}
 
         <div className="overflow-x-auto relative">
           {/* Floating Batch Action Bar */}
           {selectedIds.length > 0 && (
-             <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-hero-dark text-white px-6 py-4 rounded-hero-lg shadow-2xl flex items-center gap-6 animate-in slide-in-from-top-4 duration-300 border border-white/10">
-               <div className="flex items-center gap-3 border-r border-white/20 pr-6">
-                  <div className="w-8 h-8 rounded-hero-sm bg-brand text-hero-dark flex items-center justify-center font-black">{selectedIds.length}</div>
-                  <div>
-                    <span className="hero-metadata text-brand">Operations Ready</span>
-                    <p className="text-[9px] text-gray-400 font-bold uppercase">Ready for inter-branch transfer</p>
-                  </div>
-               </div>
-               <div className="flex gap-4">
-                  <button className="bg-white/10 hover:bg-brand hover:text-hero-dark text-white px-4 py-2 rounded-hero-sm text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2">
-                     <Lock size={12} className="inline"/> Dispatch &amp; Lock IDs
-                  </button>
-                  <button className="btn btn-primary py-2 px-4 !rounded-hero-sm text-[10px]">
-                     Generate Manifest
-                  </button>
-               </div>
-               <button onClick={() => setSelectedIds([])} className="p-1 hover:bg-white/10 rounded-full transition-colors"><X size={16}/></button>
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-hero-dark text-white px-6 py-4 rounded-hero-lg shadow-2xl flex items-center gap-6 animate-in slide-in-from-top-4 duration-300 border border-white/10">
+              <div className="flex items-center gap-3 border-r border-white/20 pr-6">
+                <div className="w-8 h-8 rounded-hero-sm bg-brand text-hero-dark flex items-center justify-center font-black">{selectedIds.length}</div>
+                <div>
+                  <span className="hero-metadata text-brand uppercase text-[10px]">Batch Operations</span>
+                  <p className="text-[9px] text-gray-400 font-bold uppercase">Multi-unit synchronization</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <button className="bg-brand text-hero-dark px-4 py-2 rounded-hero-sm text-[10px] font-black uppercase tracking-widest transition-all">
+                  Update Multi-Route
+                </button>
+              </div>
+              <button onClick={() => setSelectedIds([])} className="p-1 hover:bg-white/10 rounded-full transition-colors"><X size={16} /></button>
             </div>
           )}
 
@@ -236,29 +185,26 @@ export default function DispatchJobs() {
             <thead className="hero-table-header">
               <tr>
                 <th className="px-6 py-4 w-4">
-                   <input 
-                      type="checkbox" 
-                      onChange={(e) => setSelectedIds(e.target.checked ? filtered.map(j => j.id) : [])}
-                      checked={selectedIds.length === filtered.length && filtered.length > 0}
-                      className="w-4 h-4 rounded-hero-sm border-gray-300 accent-brand cursor-pointer"
-                   />
+                  <input
+                    type="checkbox"
+                    onChange={(e) => setSelectedIds(e.target.checked ? filtered.map(j => j.id) : [])}
+                    checked={selectedIds.length === filtered.length && filtered.length > 0}
+                    className="w-4 h-4 rounded-hero-sm border-gray-300 accent-brand cursor-pointer"
+                  />
                 </th>
-                <th className="px-6 py-4">Shipment Reference</th>
-                <th className="px-6 py-4">Route Info</th>
-                <th className="px-6 py-4">Weight/Load</th>
-                <th className="px-6 py-4">Assigned Driver</th>
+                <th className="px-6 py-4">Reference</th>
+                <th className="px-6 py-4">Routing</th>
+                <th className="px-6 py-4">Priority</th>
+                <th className="px-6 py-4">Load</th>
+                <th className="px-6 py-4">Operator</th>
                 <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan="6" className="px-6 py-16 text-center">
-                    <div className="flex flex-col items-center gap-3 text-gray-400">
-                      <Package size={36} strokeWidth={1} />
-                      <p className="text-sm font-bold">No shipments in this queue</p>
-                      <p className="text-[11px] font-medium">All clear for this terminal</p>
-                    </div>
+                  <td colSpan="7" className="px-6 py-16 text-center text-gray-400 font-bold uppercase text-[10px] tracking-widest">
+                    No active shipments in this terminal
                   </td>
                 </tr>
               ) : filtered.map(job => (
@@ -268,41 +214,36 @@ export default function DispatchJobs() {
                   onClick={() => navigate(`/dispatch/shipments/${job.id}`)}
                 >
                   <td className="px-6 py-4" onClick={e => e.stopPropagation()}>
-                    <input 
-                      type="checkbox" 
+                    <input
+                      type="checkbox"
                       checked={selectedIds.includes(job.id)}
                       onChange={() => toggleSelect(job.id)}
                       className="w-4 h-4 rounded border-gray-300 accent-yellow-400 cursor-pointer"
                     />
                   </td>
-                  <td className="px-6 py-4">
-                    <div className="font-black text-[#111] text-sm tracking-tight">{job.id}</div>
-                    <div className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-0.5 truncate max-w-[160px]">{job.customer}</div>
-                  </td>
+                  <td className="px-6 py-4 font-black text-[#111] text-sm tracking-tight">{job.id}</td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2 text-xs font-bold text-gray-700">
                       <span>{job.origin}</span>
-                      <ArrowRight size={12} className="text-gray-300 shrink-0"/>
+                      <ArrowRight size={12} className="text-gray-300 shrink-0" />
                       <span>{job.dest}</span>
                     </div>
-                    {job.queue === 'unassigned' && job.unassignedType && (
-                       <div className="mt-1">
-                          <span className={`text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded ${
-                             job.unassignedType === 'Local Pickups' ? 'bg-blue-50 text-blue-600' :
-                             job.unassignedType === 'Branch Transfers' ? 'bg-amber-50 text-amber-600' :
-                             'bg-emerald-50 text-emerald-600'
-                          }`}>{job.unassignedType}</span>
-                       </div>
-                    )}
                   </td>
                   <td className="px-6 py-4">
-                    <div className="text-xs font-bold text-gray-700">{job.load}</div>
+                    <span className={`text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-md border shadow-sm transition-all ${
+                      job.priority === 'High'  ? 'bg-[#111] text-[#FFCC00] border-[#FFCC00]/30 shadow-[#FFCC00]/10 shadow-lg' :
+                      job.priority === 'Medium' ? 'bg-[#FFCC00] text-black border-transparent shadow-sm' :
+                      'bg-gray-100 text-gray-500 border-gray-200'
+                    }`}>
+                      {job.priority}
+                    </span>
                   </td>
+                  <td className="px-6 py-4 text-xs font-bold text-gray-700">{job.load}</td>
                   <td className="px-6 py-4">
                     {job.driver ? (
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded bg-[#111] flex items-center justify-center font-black text-[10px] text-[#FFCC00] shrink-0 group-hover:border-[#FFCC00] border-2 border-transparent transition-colors">
-                          {job.driver.split(' ').map(n=>n[0]).join('')}
+                        <div className="w-8 h-8 rounded bg-[#111] flex items-center justify-center font-black text-[10px] text-[#FFCC00] shrink-0">
+                          {job.driver.split(' ').map(n => n[0]).join('')}
                         </div>
                         <div>
                           <div className="font-bold text-[#111] text-xs">{job.driver}</div>
@@ -310,23 +251,16 @@ export default function DispatchJobs() {
                         </div>
                       </div>
                     ) : (
-                      <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Waiting Assignment</span>
+                      <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Awaiting Assignment</span>
                     )}
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <div className="flex items-center justify-end gap-3">
-                      {job.queue !== 'unassigned' && (
-                         <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 shadow-inner" title="Locked for Transit">
-                            <Lock size={14} />
-                         </div>
-                      )}
-                      <button
-                        onClick={e => { e.stopPropagation(); navigate(`/dispatch/shipments/${job.id}`); }}
-                        className="text-[10px] font-black border border-gray-200 px-4 py-1.5 rounded-lg transition-all uppercase tracking-widest hover:bg-gray-50 bg-white"
-                      >
-                        Details
-                      </button>
-                    </div>
+                    <button
+                      onClick={e => { e.stopPropagation(); navigate(`/dispatch/shipments/${job.id}`); }}
+                      className="text-[10px] font-black border border-gray-200 px-4 py-1.5 rounded-lg transition-all uppercase tracking-widest hover:bg-gray-50 bg-white"
+                    >
+                      Details
+                    </button>
                   </td>
                 </tr>
               ))}

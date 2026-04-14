@@ -7,21 +7,21 @@ import {
   ChevronDown
 } from 'lucide-react';
 
+const RAW_DRIVERS = [
+  { id: 'DRV-101', name: 'Noah Williams', phone: '+61 412 888 123', status: 'Active', rating: 4.8, license: 'MC Class', vehicle: 'XQG-984', region: 'Sydney Metro' },
+  { id: 'DRV-102', name: 'Jack Taylor',   phone: '+61 412 888 456', status: 'On Trip', rating: 4.9, license: 'HC Class', vehicle: 'BGT-221', region: 'Melbourne SE' },
+  { id: 'DRV-103', name: 'Oliver Brown',  phone: '+61 412 888 789', status: 'Offline', rating: 4.5, license: 'HR Class', vehicle: 'None', region: 'Brisbane NW' },
+  { id: 'DRV-104', name: 'Liam Smith',    phone: '+61 412 888 000', status: 'Active', rating: 4.7, license: 'HC Class', vehicle: 'KLY-004', region: 'Adelaide Hub' },
+];
+
 export default function AdminDriverManagement() {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [sortKey, setSortKey] = useState('name');
   const [sortOrder, setSortOrder] = useState('asc');
 
-  const rawDrivers = [
-    { id: 'DRV-101', name: 'Noah Williams', phone: '+61 412 888 123', status: 'Active', rating: 4.8, license: 'MC Class', vehicle: 'XQG-984', region: 'Sydney Metro' },
-    { id: 'DRV-102', name: 'Jack Taylor',   phone: '+61 412 888 456', status: 'On Trip', rating: 4.9, license: 'HC Class', vehicle: 'BGT-221', region: 'Melbourne SE' },
-    { id: 'DRV-103', name: 'Oliver Brown',  phone: '+61 412 888 789', status: 'Offline', rating: 4.5, license: 'HR Class', vehicle: 'None', region: 'Brisbane NW' },
-    { id: 'DRV-104', name: 'Liam Smith',    phone: '+61 412 888 000', status: 'Active', rating: 4.7, license: 'HC Class', vehicle: 'KLY-004', region: 'Adelaide Hub' },
-  ];
-
   const filteredDrivers = useMemo(() => {
-    return rawDrivers.filter(d => {
+    return RAW_DRIVERS.filter(d => {
       const searchStr = `${d.name} ${d.id} ${d.region}`.toLowerCase();
       return searchStr.includes(search.toLowerCase());
     }).sort((a, b) => {
@@ -55,6 +55,26 @@ export default function AdminDriverManagement() {
       </div>
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
+      
+      {/* Driver Telemetry Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-2 mb-2">
+         {[
+           { label: 'On Duty Now', value: '18', icon: UserPlus, color: 'text-hero-success', bg: 'bg-emerald-50' },
+           { label: 'Active Trips', value: '12', icon: Truck, color: 'text-blue-600', bg: 'bg-blue-50' },
+           { label: 'Avg Rating', value: '4.85 ★', icon: Star, color: 'text-amber-600', bg: 'bg-amber-50' },
+           { label: 'Alerts', value: '02', icon: AlertTriangle, color: 'text-hero-danger', bg: 'bg-red-50' },
+         ].map((stat, i) => (
+           <div key={i} className="card p-5 flex items-center justify-between group hover:border-brand transition-colors">
+              <div>
+                 <p className="hero-metadata text-hero-neutral mb-2">{stat.label}</p>
+                 <p className="text-2xl font-black text-hero-dark leading-none">{stat.value}</p>
+              </div>
+              <div className={`w-11 h-11 rounded-hero-sm flex items-center justify-center ${stat.bg} ${stat.color} border border-gray-50`}>
+                 <stat.icon size={20}/>
+              </div>
+           </div>
+         ))}
+      </div>
 
       {/* Modern High-Density Table Card */}
       <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
@@ -68,7 +88,7 @@ export default function AdminDriverManagement() {
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 placeholder="Search drivers or regions..." 
-                className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm" 
+                className="input pl-10" 
               />
            </div>
            

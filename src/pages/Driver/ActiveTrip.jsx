@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {
-  MapPin, Phone,
+  MapPin, Phone, Map,
   Navigation, CheckCircle2,
   Camera, Clock, ShieldAlert, ShieldCheck,
-  AlertTriangle, X, ChevronRight, Lock, CheckSquare, Square
+  AlertTriangle, X, ChevronRight, Lock, CheckSquare, Square, CreditCard, Calendar
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -22,14 +22,15 @@ const GLOBAL_CHECKLIST_MODE = 'Flexible'; // Admin configuration ('Strict' | 'Fl
 export default function ActiveTrip() {
   const navigate = useNavigate();
 
-  // Gate: 'checklist' (pre-trip lock) → 'EnRoute' → 'Arrived' → 'Unloading' → 'Finalizing'
-  const [step, setStep] = useState('checklist');
+  // Gate: 'EnRoute' → 'Arrived' → 'Unloading' → 'Finalizing'
+  const [step, setStep] = useState('EnRoute');
   const [waitTime, setWaitTime] = useState(0);
 
-  // Checklist state
-  const [checklist, setChecklist] = useState(PRE_TRIP_CHECKLIST);
-  const [checklistSubmitting, setChecklistSubmitting] = useState(false);
-  const [checklistDone, setChecklistDone] = useState(false);
+  const formatTime = (s) => {
+    const mins = Math.floor(s / 60);
+    const secs = s % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
 
   useEffect(() => {
     let interval;
@@ -39,296 +40,140 @@ export default function ActiveTrip() {
     return () => clearInterval(interval);
   }, [step]);
 
-  const formatTime = (s) => {
-    const mins = Math.floor(s / 60);
-    const secs = s % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
-
-  const toggleCheck = (id) => {
-    setChecklist(prev => prev.map(i => i.id === id ? { ...i, done: !i.done } : i));
-  };
-  const updateValue = (id, val) => {
-    setChecklist(prev => prev.map(i => i.id === id ? { ...i, value: val, done: val.trim().length > 0 } : i));
-  };
-
-  const requiredItems = checklist.filter(i => i.required);
-  const completedRequired = requiredItems.filter(i => i.done);
-  const allRequiredDone = completedRequired.length === requiredItems.length;
-  const completedCount = checklist.filter(i => i.done).length;
-  const progressPct = Math.round((completedCount / checklist.length) * 100);
-
-  const handleStartTrip = () => {
-    if (!allRequiredDone) {
-      if (GLOBAL_CHECKLIST_MODE === 'Strict') {
-        alert('Admin Strict Mode is ON. You cannot start the trip until the Checklist is complete.');
-        return;
-      } else {
-        const proceed = window.confirm('Checklist is incomplete, but Admin Flexible mode is ON. Proceed anyway?');
-        if (!proceed) return;
-      }
-    }
-    setChecklistSubmitting(true);
-    setTimeout(() => {
-      setChecklistDone(true);
-      setTimeout(() => setStep('EnRoute'), 1200);
-    }, 800);
-  };
-
-  // ── PRE-TRIP GATE ─────────────────────────────────────────────
-  if (step === 'checklist') {
-    return (
-      <div className="flex flex-col bg-gray-50 min-h-screen pb-24 animate-in fade-in duration-300">
-
-        {/* Header */}
-        <div className="bg-[#111] px-5 py-4 sticky top-0 z-10 flex items-center justify-between shadow-md">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#FFCC00] flex items-center justify-center">
-              <ShieldCheck size={18} className="text-black" />
-            </div>
-            <div>
-              <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Pre-Trip Safety Gate</p>
-              <h1 className="text-base font-bold text-white tracking-tight leading-none">SHP-20481</h1>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest">{completedCount}/{checklist.length}</span>
-            <div className="w-20 h-2 bg-white/10 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-[#FFCC00] rounded-full transition-all duration-500"
-                style={{ width: `${progressPct}%` }}
-              ></div>
-            </div>
-          </div>
-        </div>
-
-        <div className="p-4 flex flex-col gap-4">
-
-          {/* Blocked Banner */}
-          {!checklistDone && (GLOBAL_CHECKLIST_MODE === 'Strict' ? (
-            <div className="bg-red-50 border border-red-200 rounded-2xl p-4 flex items-center gap-3">
-              <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center shrink-0">
-                <Lock size={18} className="text-red-500" />
-              </div>
-              <div>
-                <h3 className="text-sm font-black text-red-900 tracking-tight">System Lock Active (Strict Mode)</h3>
-                <p className="text-xs font-bold text-red-600 mt-0.5">You must complete all required checklist items.</p>
-              </div>
-            </div>
-          ) : (
-            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center gap-3">
-              <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center shrink-0">
-                <AlertTriangle size={18} className="text-amber-600" />
-              </div>
-              <div>
-                <h3 className="text-sm font-black text-amber-900 tracking-tight">Flexible Mode Active</h3>
-                <p className="text-xs font-bold text-amber-700 mt-0.5">You can bypass the checklist, but compliance is recommended.</p>
-              </div>
-            </div>
-          ))}
-
-          {/* Checklist Items */}
-          {!checklistDone && (
-            <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-              <div className="px-5 py-4 border-b border-gray-50">
-                <h2 className="text-sm font-black text-gray-900">Standard Pre-Trip Checklist</h2>
-                <p className="text-[10px] text-gray-400 font-medium mt-0.5 uppercase tracking-widest">Items marked * are required</p>
-              </div>
-              <div className="divide-y divide-gray-50">
-                {checklist.map((item) => (
-                  <div key={item.id} className={`px-5 py-4 transition-colors ${item.done ? 'bg-emerald-50/30' : ''}`}>
-                    {item.type === 'checkbox' && (
-                      <button
-                        onClick={() => toggleCheck(item.id)}
-                        className="flex items-start gap-3 w-full text-left active:scale-98 transition-transform"
-                      >
-                        <div className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 mt-0.5 transition-all ${item.done ? 'bg-emerald-500 border-emerald-500' : 'border-gray-300 bg-white'}`}>
-                          {item.done && <CheckSquare size={14} className="text-white" strokeWidth={3} />}
-                        </div>
-                        <div className="flex-1">
-                          <p className={`text-sm font-semibold leading-snug ${item.done ? 'text-gray-400 line-through' : 'text-gray-900'}`}>
-                            {item.label}
-                            {item.required && <span className="text-red-500 ml-1 no-underline">*</span>}
-                          </p>
-                        </div>
-                        {item.done && <CheckCircle2 size={18} className="text-emerald-500 shrink-0 mt-0.5" />}
-                      </button>
-                    )}
-
-                    {item.type === 'number' && (
-                      <div className="flex flex-col gap-2">
-                        <p className="text-sm font-semibold text-gray-900">
-                          {item.label}
-                          {item.required && <span className="text-red-500 ml-1">*</span>}
-                        </p>
-                        <input
-                          type="number"
-                          placeholder="Enter reading..."
-                          value={item.value || ''}
-                          onChange={e => updateValue(item.id, e.target.value)}
-                          className={`w-full border rounded-xl py-2.5 px-4 text-sm font-bold text-gray-900 focus:outline-none transition-all ${item.done ? 'border-emerald-300 bg-emerald-50 focus:border-emerald-400' : 'border-gray-200 bg-gray-50 focus:border-gray-400'}`}
-                        />
-                      </div>
-                    )}
-
-                    {item.type === 'photo' && (
-                      <div className="flex items-center gap-3">
-                        <button
-                          onClick={() => toggleCheck(item.id)}
-                          className={`flex-1 py-3 border-2 border-dashed rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all ${item.done ? 'border-emerald-300 bg-emerald-50 text-emerald-700' : 'border-gray-200 text-gray-400 hover:border-gray-300 hover:bg-gray-50'}`}
-                        >
-                          <Camera size={16} />
-                          {item.done ? '✓ Photo Captured' : 'Tap to Take Photo'}
-                          {item.required && !item.done && <span className="text-[9px] font-black text-gray-300 uppercase tracking-widest">(Optional)</span>}
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Progress Summary */}
-          {!checklistDone && (
-            <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex items-center justify-between">
-              <div>
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Required Complete</p>
-                <p className="text-lg font-black text-gray-900">{completedRequired.length} <span className="text-gray-300 font-medium">/ {requiredItems.length}</span></p>
-              </div>
-              {!allRequiredDone && (
-                <div className="flex items-center gap-1.5 text-amber-600">
-                  <AlertTriangle size={14} />
-                  <span className="text-[10px] font-black uppercase tracking-widest">{requiredItems.length - completedRequired.length} remaining</span>
-                </div>
-              )}
-              {allRequiredDone && (
-                <div className="flex items-center gap-1.5 text-emerald-600">
-                  <CheckCircle2 size={16} />
-                  <span className="text-[10px] font-black uppercase tracking-widest">Ready to go</span>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* START TRIP BUTTON */}
-          {checklistDone ? (
-            <div className="flex flex-col items-center gap-3 py-8 animate-in zoom-in-95 duration-300">
-              <div className="w-16 h-16 bg-emerald-100 text-emerald-500 rounded-full flex items-center justify-center">
-                <CheckCircle2 size={32} />
-              </div>
-              <p className="text-base font-black text-emerald-700">Safety Check Complete</p>
-              <p className="text-xs text-gray-400 font-medium">Starting trip...</p>
-            </div>
-          ) : (
-             <button
-               onClick={handleStartTrip}
-               className={`w-full py-5 rounded-2xl font-black text-sm uppercase tracking-widest flex items-center justify-center gap-3 transition-all active:scale-95 shadow-sm ${
-                 checklistSubmitting
-                   ? 'bg-[#111] text-[#FFCC00]'
-                   : allRequiredDone
-                     ? 'bg-[#111] hover:bg-black text-[#FFCC00] shadow-black/20'
-                     : GLOBAL_CHECKLIST_MODE === 'Flexible'
-                       ? 'bg-amber-50 text-amber-600 border border-amber-200'
-                       : 'bg-gray-100 text-gray-300 cursor-not-allowed'
-               }`}
-             >
-               {checklistSubmitting ? (
-                  <>Transmitting...</>
-               ) : (
-                  <>
-                     {allRequiredDone ? <><ShieldCheck size={18} /> Start Trip — Clear for Departure</> : (GLOBAL_CHECKLIST_MODE === 'Flexible' ? <><AlertTriangle size={18} /> Bypass Check & Start</> : <><Lock size={16} /> Complete Required Checks to Unlock</>)}
-                  </>
-               )}
-             </button>
-          )}
-        </div>
-      </div>
-    );
-  }
+  // Checklist state removed — now handled via Home screen or dedicated flow
+  const [checklistDone, setChecklistDone] = useState(true);
 
   // ── ACTIVE TRIP VIEW ──────────────────────────────────────────
   return (
-    <div className="flex flex-col bg-gray-50 pb-20">
+    <div className="flex flex-col bg-[#F8FAFC] min-h-screen w-full max-w-[480px] mx-auto relative">
 
-      {/* Header */}
-      <div className="bg-gray-900 px-5 py-4 flex items-center justify-between text-white sticky top-0 z-50 shadow-md">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center border border-white/10">
-            <Navigation size={18} className="text-yellow-400" />
-          </div>
-          <div>
-            <p className="text-[10px] font-medium text-gray-500 uppercase tracking-wider">Active Manifest</p>
-            <h1 className="text-base font-bold tracking-tight leading-none">SHP-20481</h1>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-lg flex items-center gap-1.5 border border-emerald-500/30">
-            <ShieldCheck size={12} />
-            <span className="text-[9px] font-black uppercase tracking-widest">Safe</span>
-          </div>
-          <button className="w-10 h-10 bg-red-500/10 text-red-400 rounded-xl flex items-center justify-center border border-red-500/20 active:scale-90 transition-transform">
-            <ShieldAlert size={20} className="animate-pulse" />
-          </button>
-        </div>
+      {/* ── Navigation HUD (Extreme Focus Mode) ── */}
+      <div className="h-[360px] bg-[#111] relative overflow-hidden shrink-0 pt-10">
+         {/* Floating Exit Button */}
+         <button 
+            onClick={() => navigate('/driver')}
+            className="absolute top-4 right-4 w-12 h-12 bg-black/40 backdrop-blur-md border border-white/20 rounded-2xl flex items-center justify-center text-white z-50 hover:bg-black/60 active:scale-95 transition-all shadow-2xl"
+         >
+            <X size={24} />
+         </button>
+         {/* Map Background Simulation */}
+         <div className="absolute inset-0 opacity-20 pointer-events-none" 
+              style={{ backgroundImage: 'linear-gradient(#222 1px, transparent 1px), linear-gradient(90deg, #222 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,#FFCC0022_0%,transparent_70%)] pointer-events-none"></div>
+         
+         {/* Instruction HUD */}
+         <div className="absolute inset-x-4 top-4 bg-white/10 backdrop-blur-xl border border-white/10 rounded-[2rem] p-4 shadow-2xl z-20">
+            <div className="flex items-center gap-4">
+               <div className="w-12 h-12 bg-[#FFCC00] rounded-2xl flex items-center justify-center shadow-lg shadow-[#FFCC00]/20 shrink-0">
+                  <Navigation size={28} className="text-[#111] -rotate-45" />
+               </div>
+               <div className="flex flex-col justify-center">
+                  <p className="text-[#FFCC00] text-[9px] font-bold uppercase tracking-[0.2em] leading-none mb-1">In 800 Meters</p>
+                  <h2 className="text-white text-base font-bold leading-none">Turn Right onto York Street</h2>
+               </div>
+            </div>
+         </div>
+
+         {/* Vehicle Marker */}
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="relative">
+               <div className="w-10 h-10 bg-[#FFCC00] rounded-full flex items-center justify-center shadow-[0_0_30px_#FFCC00] animate-pulse">
+                  <div className="w-4 h-4 bg-[#111] rounded-sm transform rotate-45"></div>
+               </div>
+               <div className="absolute -inset-10 border border-[#FFCC00]/10 rounded-full animate-ping"></div>
+            </div>
+         </div>
+
+         {/* Map Overlay Controls */}
+         <div className="absolute bottom-4 right-4 flex flex-col gap-2">
+            <button className="w-12 h-12 bg-[#111]/80 backdrop-blur-md border border-white/10 rounded-2xl flex items-center justify-center text-white text-lg font-bold shadow-xl">+</button>
+            <button className="w-12 h-12 bg-[#111]/80 backdrop-blur-md border border-white/10 rounded-2xl flex items-center justify-center text-white text-lg font-bold shadow-xl">-</button>
+         </div>
       </div>
 
-      <div className="p-4 space-y-4">
-
+      <div className="px-4 pb-20 space-y-4 -mt-10 relative z-30">
+        
         {/* Main action card */}
-        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex flex-col gap-5">
-          <div className="flex flex-col gap-1">
-            <span className="text-xs font-medium text-gray-400 uppercase tracking-wider">Drop-off Point</span>
-            <h2 className="text-lg font-bold text-gray-900 leading-tight">127 York St, Sydney CBD</h2>
-            <p className="text-xs font-medium text-gray-500 mt-0.5 flex items-center gap-1.5">
-              <MapPin size={12} className="text-blue-500" /> Level 4 · John Smith (Manager)
-            </p>
-          </div>
+        <div className="bg-white rounded-[2rem] p-6 pb-10 shadow-2xl border border-gray-100 flex flex-col items-center text-center">
+           <div className="space-y-4 w-full mb-6">
+              {/* Header Section */}
+              <div className="flex flex-col items-center">
+                 <div className="flex flex-col items-center leading-none">
+                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Next Milestone</p>
+                    <div className="flex items-center gap-1 mt-1">
+                       <div className="w-1.5 h-1.5 bg-orange-600 rounded-full animate-pulse"></div>
+                       <span className="text-[9px] font-black text-orange-600 uppercase tracking-widest">Priority Asset</span>
+                    </div>
+                 </div>
+                 <h2 className="text-xl font-black text-gray-900 leading-tight mt-2 uppercase tracking-tight">SYD CBD Terminal</h2>
+                 <p className="text-[10px] font-black text-gray-400 mt-1.5 flex items-center justify-center gap-1.5 uppercase tracking-widest">
+                    <MapPin size={12} className="text-red-500" /> 127 York St, Sydney NSW 2000
+                 </p>
+              </div>
 
-          <div className="grid grid-cols-3 gap-2">
-            <div className="bg-gray-50 rounded-xl p-3 text-center border border-gray-100">
-              <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider mb-1">Distance</p>
-              <p className="font-bold text-gray-900 text-base">2.4<span className="text-[10px] font-medium ml-0.5">km</span></p>
-            </div>
-            <div className="bg-amber-50 rounded-xl p-3 text-center border border-amber-100">
-              <p className="text-[10px] font-medium text-amber-600 uppercase tracking-wider mb-1">ETA</p>
-              <p className="font-bold text-amber-700 text-base">07:35</p>
-            </div>
-            <div className="bg-gray-50 rounded-xl p-3 text-center border border-gray-100">
-              <p className="text-[10px] font-medium text-gray-400 uppercase tracking-wider mb-1">Window</p>
-              <p className="font-bold text-gray-900 text-base">08:00</p>
-            </div>
-          </div>
+              {/* Telemetry Strip - Centered and Fixed Layout */}
+              <div className="bg-[#111] rounded-2xl p-4 flex items-center justify-between shadow-xl border border-white/5">
+                 <div className="flex flex-col items-center flex-1">
+                    <p className="text-[8px] font-black text-gray-400 uppercase mb-1">Distance</p>
+                    <div className="flex items-baseline gap-0.5">
+                       <span className="text-lg font-black text-white">1.2</span>
+                       <span className="text-[9px] font-black text-gray-500 uppercase">km</span>
+                    </div>
+                 </div>
+                 
+                 <div className="w-px h-6 bg-white/5 mx-1"></div>
+                 
+                 <div className="flex flex-col items-center flex-1">
+                    <p className="text-[8px] font-black text-gray-400 uppercase mb-1">EST. Time</p>
+                    <div className="flex items-baseline gap-0.5">
+                       <span className="text-lg font-black text-white">08</span>
+                       <span className="text-[9px] font-black text-gray-500 uppercase">min</span>
+                    </div>
+                 </div>
+                 
+                 <div className="w-px h-6 bg-white/5 mx-1"></div>
+                 
+                 <div className="flex flex-col items-center flex-1">
+                    <p className="text-[8px] font-black text-gray-400 uppercase mb-1">Schedule</p>
+                    <div className="flex items-baseline gap-0.5">
+                       <span className="text-lg font-black text-white">08:00</span>
+                       <span className="text-[9px] font-black text-gray-500 uppercase">am</span>
+                    </div>
+                 </div>
+              </div>
+           </div>
 
-          <div>
+           <div className="w-full space-y-4">
             {step === 'EnRoute' && (
-              <div className="flex gap-3">
+              <div className="flex flex-col gap-4">
                 <button
                   onClick={() => setStep('Arrived')}
-                  className="flex-[5] bg-gray-900 hover:bg-black text-[#FACC15] font-bold text-sm py-3.5 rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-all shadow-sm"
+                  className="w-full bg-[#161B22] hover:bg-black text-[#FFCC00] font-black uppercase text-sm py-5 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-xl"
                 >
-                  <CheckCircle2 size={16} /> Confirm Arrival
+                  <CheckCircle2 size={20} /> Confirm Arrival
                 </button>
-                <button className="flex-1 bg-white border border-gray-200 text-gray-400 rounded-2xl flex items-center justify-center active:scale-95 transition-all">
-                  <Phone size={18} />
-                </button>
+                <div className="flex gap-3">
+                   <button className="flex-1 items-center justify-center py-4 bg-white border border-gray-100 text-gray-600 font-bold text-xs rounded-2xl flex flex-col gap-1.5 shadow-sm active:scale-95 transition-all">
+                      <Phone size={18} className="text-gray-400"/> Call Site
+                   </button>
+                   <button className="flex-1 items-center justify-center py-4 bg-white border border-gray-100 text-[#FF6B00] font-bold text-xs rounded-2xl flex flex-col gap-1.5 shadow-sm active:scale-95 transition-all">
+                      <AlertTriangle size={18} className="text-[#FF6B00]/40"/> Delay
+                   </button>
+                </div>
               </div>
             )}
 
             {step === 'Arrived' && (
-              <div className="space-y-3">
-                <div className="bg-emerald-50 text-emerald-700 px-5 py-4 rounded-2xl border border-emerald-100 flex items-center justify-between">
-                  <div>
-                    <p className="text-[10px] font-medium text-emerald-600 uppercase tracking-wider mb-1">Wait Timer</p>
-                    <p className="text-xl font-bold">{formatTime(waitTime)}</p>
-                  </div>
-                  <CheckCircle2 size={28} className="opacity-30" />
+              <div className="space-y-4">
+                <div className="bg-emerald-50 text-emerald-900 p-8 rounded-3xl border border-emerald-100 flex flex-col items-center">
+                   <p className="text-[10px] font-black text-emerald-600 uppercase mb-2 font-mono">Gate Wait Timer</p>
+                   <p className="text-5xl font-black tracking-tighter tabular-nums">{formatTime(waitTime)}</p>
                 </div>
                 <button
                   onClick={() => setStep('Unloading')}
-                  className="w-full bg-[#FACC15] hover:bg-yellow-500 text-black font-bold text-sm py-3.5 rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-all shadow-sm"
+                  className="w-full bg-[#111] hover:bg-black text-[#FFCC00] font-black uppercase text-sm py-6 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-xl"
                 >
-                  Start Delivery Process
+                  <Navigation size={18} /> Start Unloading
                 </button>
               </div>
             )}
@@ -363,21 +208,29 @@ export default function ActiveTrip() {
                 <div className="w-16 h-16 bg-emerald-100 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle2 size={32} />
                 </div>
-                <h2 className="text-xl font-bold text-gray-900">Delivery Complete</h2>
-                <p className="text-xs font-medium text-gray-500 mt-2 mb-6 leading-relaxed">Photos and signatures synced to central hub.</p>
-                <button
-                  onClick={() => navigate('/driver')}
-                  className="w-full bg-gray-900 hover:bg-black text-white font-bold text-sm py-3.5 rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-all shadow-sm"
-                >
-                  Back to Dashboard
-                </button>
+                 <h2 className="text-xl font-bold text-gray-900">Delivery Complete</h2>
+                 <p className="text-xs font-semibold text-gray-500 mt-2 mb-6 leading-relaxed">Evidence and signatures successfully synced.</p>
+                 <div className="flex flex-col gap-3 w-full">
+                    <button
+                      onClick={() => navigate('/driver/pay')}
+                      className="w-full bg-orange-50 text-orange-600 font-bold text-sm py-4 rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-all shadow-sm border border-orange-100 whitespace-nowrap"
+                    >
+                      <CreditCard size={18} /> Log Trip Tolls / Expenses
+                    </button>
+                    <button
+                      onClick={() => navigate('/driver')}
+                      className="w-full bg-gray-900 hover:bg-black text-white font-bold text-sm py-4 rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-all shadow-sm whitespace-nowrap"
+                    >
+                      Back to Dashboard
+                    </button>
+                 </div>
               </div>
             )}
           </div>
         </div>
 
         {/* Shift Summary */}
-        <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-sm font-bold text-gray-800">Shift Summary</h3>
             <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">Online</span>
@@ -395,7 +248,7 @@ export default function ActiveTrip() {
         </div>
 
         {/* Route Stops */}
-        <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
+        <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
           <h3 className="text-sm font-bold text-gray-800 mb-5">Route Stops</h3>
           <div className="space-y-6 relative">
             <div className="absolute left-1 top-2 bottom-2 w-0.5 bg-gray-100"></div>

@@ -232,8 +232,8 @@ export default function AdminShipments() {
                   </td>
                   <td className="px-6 py-4">
                     <span className={`text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-md border shadow-sm transition-all ${
-                      job.priority === 'Direct'  ? 'bg-[#111] text-[#FFCC00] border-[#FFCC00]/30 shadow-[#FFCC00]/10 shadow-lg' :
-                      job.priority === 'Express' ? 'bg-[#FFCC00] text-black border-transparent shadow-sm' :
+                      job.priority === 'High'  ? 'bg-[#111] text-[#FFCC00] border-[#FFCC00]/30 shadow-[#FFCC00]/10 shadow-lg' :
+                      job.priority === 'Medium' ? 'bg-[#FFCC00] text-black border-transparent shadow-sm' :
                       'bg-gray-100 text-gray-500 border-gray-200'
                     }`}>
                       {job.priority}

@@ -209,40 +209,41 @@ export default function SidebarLayout({
           )}
         </nav>
 
-        {/* Profile Footer */}
+        {/* Profile Footer - Logout Only */}
         <div className="px-3 pb-5 border-t border-white/5 pt-3 shrink-0">
           <button
             onClick={() => {
               useAuthStore.getState().logout();
               navigate('/login');
             }}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-400 hover:text-white hover:bg-red-500/10 transition-all mb-3"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-500 hover:text-white hover:bg-red-500/10 transition-all"
           >
             <LogOut size={15} />
-            <span>Sign Out</span>
+            <span>Logout</span>
           </button>
-          <div className="flex items-center gap-3 px-2 p-2.5 bg-white/5 rounded-xl border border-white/5">
-            <div className="w-9 h-9 rounded-full bg-[#FFCC00] flex items-center justify-center shrink-0 font-black text-[#111] text-xs shadow-lg border-2 border-white/5">
-              {initials}
-            </div>
-            <div className="min-w-0">
-              <p className="text-white text-sm font-semibold truncate">{user.name || 'User'}</p>
-              <p className="text-gray-500 text-xs">{user.role || ''}</p>
-            </div>
-          </div>
         </div>
       </aside>
 
       {/* ── Main Content ── */}
       <main className="flex-1 flex flex-col h-full overflow-hidden">
         {/* Topbar */}
-        <header className="h-14 bg-white border-b border-gray-100 flex items-center justify-between px-8 shrink-0 shadow-sm z-40">
-          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{topbarTitle}</p>
-          <div className="flex items-center gap-4">
+        <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-8 shrink-0 shadow-sm z-40">
+          <div className="flex flex-col">
+             <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Navigation / {roleName}</p>
+             <p className="text-[11px] font-bold text-gray-900 uppercase tracking-wide">{topbarTitle}</p>
+          </div>
+          <div className="flex items-center gap-6">
             {topbarExtra}
             <NotificationBell notifications={notifications} />
-            <div className="w-8 h-8 rounded-full bg-[#FFCC00] flex items-center justify-center font-black text-[#111] text-xs shadow-md">
-              {initials}
+            <div className="h-10 w-px bg-gray-100 mx-1"></div>
+            <div className="flex items-center gap-3">
+              <div className="text-right hidden sm:block">
+                <p className="text-xs font-black text-[#111] leading-none mb-1 uppercase tracking-tight">{user.name || 'Dispatcher'}</p>
+                <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">{user.role || 'Admin'}</p>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-[#FFCC00] border-2 border-white flex items-center justify-center font-black text-[#111] text-xs shadow-lg">
+                {initials}
+              </div>
             </div>
           </div>
         </header>

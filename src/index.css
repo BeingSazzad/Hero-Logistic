@@ -12,10 +12,10 @@
   }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #111827;
+    color: #111;
     font-size: 14px;
     line-height: 1.5;
   }
@@ -54,34 +54,10 @@
 }
 
 @layer utilities {
-  /* ── Global Typography Normalization ── */
-
-  /* Fix extremely small unreadable sizes */
-  .text-\[9px\],
-  .text-\[10px\],
-  .text-xs {
-    font-size: 0.75rem !important;
-    /* 12px min for readability */
-    line-height: 1rem !important;
-  }
-
-  .text-\[11px\] {
-    font-size: 0.8125rem !important;
-    /* 13px */
-  }
-
-  /* Replaces excessive bold weights with standard bold */
-  .font-black,
-  .font-extrabold {
-    font-weight: 600 !important;
-    /* Soften the bold everywhere */
-  }
-
-  /* Remove excessive letter spacing */
-  .tracking-widest,
-  .tracking-wider,
-  .tracking-wide {
-    letter-spacing: normal !important;
+  /* Custom utility extensions if needed */
+  .hidden-scrollbar::-webkit-scrollbar {
+    width: 0;
+    display: none;
   }
 }
 

@@ -1,20 +1,20 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Filter, ShieldAlert, BarChart, ChevronDown, AlertTriangle } from 'lucide-react';
 
+const ALL_JOBS_RAW = [
+  { id: 'JOB-20481', tenant: 'Dispatch Sydney',   status: 'In Transit', driver: 'Jack Taylor',   flag: 'Clear' },
+  { id: 'JOB-20482', tenant: 'Dispatch Brisbane', status: 'Assigned',   driver: 'Liam Smith',    flag: 'Clear' },
+  { id: 'JOB-20483', tenant: 'Dispatch Perth',    status: 'Delayed',    driver: 'Noah Williams', flag: 'Warning' },
+  { id: 'JOB-20499', tenant: 'Dispatch Sydney',   status: 'Stalled',    driver: 'Unknown',       flag: 'Critical' },
+];
+
 export default function AdminJobsMonitor() {
   const [search, setSearch] = useState('');
   const [sortKey, setSortKey] = useState('id');
   const [sortOrder, setSortOrder] = useState('desc');
 
-  const allJobsRaw = [
-    { id: 'JOB-20481', tenant: 'Dispatch Sydney',   status: 'In Transit', driver: 'Jack Taylor',   flag: 'Clear' },
-    { id: 'JOB-20482', tenant: 'Dispatch Brisbane', status: 'Assigned',   driver: 'Liam Smith',    flag: 'Clear' },
-    { id: 'JOB-20483', tenant: 'Dispatch Perth',    status: 'Delayed',    driver: 'Noah Williams', flag: 'Warning' },
-    { id: 'JOB-20499', tenant: 'Dispatch Sydney',   status: 'Stalled',    driver: 'Unknown',       flag: 'Critical' },
-  ];
-
   const allJobs = useMemo(() => {
-    return allJobsRaw.filter(j => 
+    return ALL_JOBS_RAW.filter(j => 
        `${j.id} ${j.tenant} ${j.driver}`.toLowerCase().includes(search.toLowerCase())
     ).sort((a,b) => {
        const aVal = a[sortKey];
@@ -80,7 +80,7 @@ export default function AdminJobsMonitor() {
               type="text" 
               value={search} onChange={(e) => setSearch(e.target.value)}
               placeholder="Search cross-tenant Job ID..." 
-              className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm" 
+              className="input pl-10" 
             />
           </div>
           <div className="relative">

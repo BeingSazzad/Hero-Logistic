@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Phone, Mail, Shield, CheckCircle2, AlertCircle, LogOut, ChevronRight, Lock, Bell, FileText, Activity, Info, Link as LinkIcon, Smartphone, Mailbox, Camera, LifeBuoy, Send } from 'lucide-react';
+import { User, Phone, Mail, Shield, CheckCircle2, AlertCircle, LogOut, ChevronRight, Lock, Bell, FileText, Activity, Info, Link as LinkIcon, Smartphone, Mailbox, Camera, LifeBuoy, Send, DollarSign } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
 
@@ -143,25 +143,33 @@ export default function DriverProfile() {
           </div>
           <div className="p-4 mt-2 space-y-3">
              {docs.map(doc => (
-                <div key={doc.name} className={`flex items-center justify-between p-4 rounded-2xl shadow-sm border ${doc.ok ? 'bg-white border-gray-100' : 'bg-red-50 border-red-100'}`}>
-                  <div className="flex items-center gap-3">
-                    {doc.ok
-                      ? <CheckCircle2 size={20} className="text-green-500 shrink-0" />
-                      : <AlertCircle size={20} className="text-red-500 shrink-0" />}
-                    <div>
-                      <p className="text-sm font-bold text-gray-900">{doc.name}</p>
-                      <div className="flex items-center gap-2 mt-0.5">
-                        <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider bg-gray-100 px-1.5 py-0.5 rounded">{doc.type}</span>
-                        <p className={`text-[10px] font-bold ${doc.ok ? 'text-gray-400' : 'text-red-600'}`}>
-                          {doc.ok ? `Expires ${doc.expiry}` : `EXPIRED ${doc.expiry}`}
+                <div key={doc.name} className={`flex items-center justify-between p-5 rounded-2xl border transition-all ${doc.ok ? 'bg-white border-gray-100 shadow-sm' : 'bg-red-50 border-red-100 shadow-sm'}`}>
+                  <div className="flex items-center gap-4">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${doc.ok ? 'bg-emerald-50 text-emerald-500' : 'bg-red-100 text-red-500'}`}>
+                       {doc.ok ? <CheckCircle2 size={22} /> : <AlertCircle size={22} />}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-black text-gray-900 leading-none">{doc.name}</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest bg-gray-100 px-1.5 py-0.5 rounded leading-none">{doc.type}</span>
+                        <p className={`text-[10px] font-bold tracking-tight ${doc.ok ? 'text-gray-400' : 'text-red-700 font-black uppercase'}`}>
+                          {doc.ok ? `Expires ${doc.expiry}` : `Expired ${doc.expiry}`}
                         </p>
                       </div>
                     </div>
                   </div>
-                  {!doc.ok && <span className="text-[9px] font-black text-red-600 bg-red-100 px-2 py-1 rounded-md border border-red-200 uppercase tracking-wider">Renew</span>}
+                  {!doc.ok && (
+                    <button className="bg-red-600 hover:bg-red-700 text-white text-[10px] font-black uppercase px-3 py-2 rounded-lg shadow-lg active:scale-95 transition-all">
+                      Renew
+                    </button>
+                  )}
                 </div>
               ))}
-             <button className="w-full mt-4 bg-gray-900 hover:bg-black text-white font-bold py-4 rounded-xl text-sm transition-all shadow-sm">Upload New Document</button>
+             <div className="pt-4 px-2">
+                <button className="w-full bg-[#111] hover:bg-black text-white font-black uppercase text-xs py-5 rounded-2xl transition-all shadow-xl active:scale-[0.98]">
+                   Upload New Document
+                </button>
+             </div>
           </div>
         </div>
      );
@@ -243,11 +251,11 @@ export default function DriverProfile() {
   if (activeView === 'support') {
      return (
         <div className="flex flex-col bg-gray-50 min-h-screen pb-24 animate-in slide-in-from-right-4 duration-300">
-          <div className="bg-[#111] px-5 py-4 sticky top-0 z-10 flex items-center shadow-md gap-3">
+           <div className="bg-[#111] px-5 py-4 sticky top-0 z-10 flex items-center shadow-md gap-3">
              <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FFCC00] transition-colors p-1 -ml-2 rounded-lg">
-                <ChevronRight size={24} className="rotate-180" />
+                <ArrowLeft size={24} />
              </button>
-             <h1 className="text-white font-bold text-lg tracking-wide">Help & Support</h1>
+             <h1 className="text-white font-bold text-lg tracking-wide">Support Center</h1>
           </div>
           <div className="p-5 flex flex-col gap-5 mt-2">
              <div className="bg-[#111] rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
@@ -257,7 +265,7 @@ export default function DriverProfile() {
                       <LifeBuoy size={24} />
                    </div>
                    <div>
-                     <h3 className="font-black text-white text-lg">Contact Dispatch</h3>
+                     <h3 className="font-black text-white text-lg">GET HELP NOW</h3>
                      <p className="text-[10px] font-medium text-gray-400 uppercase tracking-widest mt-0.5">Internal Team Support Ticket</p>
                    </div>
                 </div>
@@ -295,8 +303,8 @@ export default function DriverProfile() {
             {profilePhoto ? <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover"/> : (user?.name?.split(' ').map(n=>n[0]).join('') || 'JM')}
           </div>
           <div>
-            <h2 className="text-xl font-bold">{user?.name || 'James Mitchell'}</h2>
-            <p className="text-gray-400 text-xs mt-0.5">{user?.role || 'Heavy Vehicle Driver'} · {user?.branchName || 'Sydney Branch'}</p>
+            <h2 className="text-xl font-black tracking-tight text-white mb-0.5">{user?.name || 'James Mitchell'}</h2>
+            <p className="text-[10px] font-black text-[#FFCC00] uppercase tracking-widest">{user?.role || 'Heavy Vehicle Driver'} · {user?.branchName || 'Sydney Area'}</p>
           </div>
         </div>
 
@@ -305,7 +313,7 @@ export default function DriverProfile() {
           
           <button onClick={() => setActiveView('edit')} className="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 active:bg-gray-100 transition-colors">
              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
+                <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
                    <User size={18} className="text-gray-600" />
                 </div>
                 <div className="text-left">
@@ -318,7 +326,7 @@ export default function DriverProfile() {
 
           <button onClick={() => setActiveView('password')} className="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 active:bg-gray-100 transition-colors">
              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
+                <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
                    <Lock size={18} className="text-gray-600" />
                 </div>
                 <div className="text-left">
@@ -331,7 +339,7 @@ export default function DriverProfile() {
 
           <button onClick={() => setActiveView('notifications')} className="flex items-center justify-between p-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
+                <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
                    <Bell size={18} className="text-gray-600" />
                 </div>
                 <div className="text-left">
@@ -348,7 +356,7 @@ export default function DriverProfile() {
           
           <button onClick={() => setActiveView('docs')} className="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 active:bg-gray-100 transition-colors">
              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0 border border-blue-100">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 border border-blue-100">
                    <FileText size={18} className="text-blue-600" />
                 </div>
                 <div className="text-left">
@@ -362,22 +370,9 @@ export default function DriverProfile() {
              </div>
           </button>
 
-          <button onClick={() => navigate('/driver/pay')} className="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 active:bg-gray-100 transition-colors">
-             <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-yellow-50 flex items-center justify-center shrink-0 border border-yellow-100">
-                   <DollarSign size={18} className="text-yellow-600" />
-                </div>
-                <div className="text-left">
-                   <p className="text-sm font-bold text-gray-900">Pay & Earnings</p>
-                   <p className="text-xs text-gray-400">Payout history & rate card</p>
-                </div>
-             </div>
-             <ChevronRight size={18} className="text-gray-300" />
-          </button>
-
           <button onClick={() => setActiveView('stats')} className="flex items-center justify-between p-4 hover:bg-gray-50 active:bg-gray-100 transition-colors">
              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center shrink-0 border border-emerald-100">
+                <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0 border border-emerald-100">
                    <Activity size={18} className="text-emerald-600" />
                 </div>
                 <div className="text-left">
@@ -391,27 +386,14 @@ export default function DriverProfile() {
 
         {/* ── 5. System Items ── */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col overflow-hidden">
-          <button onClick={() => setActiveView('about')} className="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 active:bg-gray-100 transition-colors">
-             <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center shrink-0 border border-gray-100">
-                   <Info size={18} className="text-gray-600" />
-                </div>
-                <div className="text-left">
-                   <p className="text-sm font-bold text-gray-900">About App</p>
-                   <p className="text-xs text-gray-400">App info & version</p>
-                </div>
-             </div>
-             <ChevronRight size={18} className="text-gray-300" />
-          </button>
-
           <button onClick={() => setActiveView('support')} className="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 active:bg-gray-100 transition-colors group">
              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0 border border-blue-100">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 border border-blue-100">
                    <LifeBuoy size={18} className="text-blue-500" />
                 </div>
                 <div className="text-left">
                    <p className="text-sm font-bold text-gray-900">Help & Support</p>
-                   <p className="text-xs text-gray-400">Report issue to Dispatch</p>
+                   <p className="text-xs text-gray-400">Submit support ticket</p>
                 </div>
              </div>
              <ChevronRight size={18} className="text-gray-300" />
@@ -419,7 +401,7 @@ export default function DriverProfile() {
 
           <button onClick={() => navigate('/login')} className="flex items-center justify-between p-4 hover:bg-gray-50 active:bg-gray-100 transition-colors group">
              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center shrink-0 border border-red-100 group-hover:bg-red-100 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center shrink-0 border border-red-100 group-hover:bg-red-100 transition-colors">
                    <LogOut size={18} className="text-red-500" />
                 </div>
                 <div className="text-left">

@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 import {
   LayoutDashboard, Package, DollarSign, Network,
   BarChart2, MessageSquare, Settings, Shield, ShieldCheck, Briefcase

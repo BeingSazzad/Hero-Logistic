@@ -67,8 +67,8 @@ import DriverHome        from './pages/Driver/Home';
 import DriverSafetyCheck from './pages/Driver/SafetyCheck';
 import DriverActiveTrip  from './pages/Driver/ActiveTrip';
 import DriverJobs        from './pages/Driver/Jobs';
-import DriverPay         from './pages/Driver/Pay';
 import DriverExpenses    from './pages/Driver/Expenses';
+import DriverIncident    from './pages/Driver/Incident';
 import DriverProfile     from './pages/Driver/Profile';
 import DriverMessages    from './pages/Driver/Messages';
 import DriverNotifications from './pages/Driver/Notifications';
@@ -181,8 +181,9 @@ function App() {
           <Route path="active"       element={<DriverActiveTrip />} />
           <Route path="shipments"     element={<DriverJobs />} />
           <Route path="shipments/:id" element={<DriverJobDetail />} />
-          <Route path="pay"          element={<DriverPay />} />
           <Route path="expenses"     element={<DriverExpenses />} />
+          <Route path="pay"          element={<DriverExpenses />} />
+          <Route path="incident"     element={<DriverIncident />} />
           <Route path="profile"      element={<DriverProfile />} />
           <Route path="messages"     element={<DriverMessages />} />
           <Route path="notifications" element={<DriverNotifications />} />

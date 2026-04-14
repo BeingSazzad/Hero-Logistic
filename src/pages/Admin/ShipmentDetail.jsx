@@ -15,7 +15,7 @@ export default function AdminShipmentDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [activeStage, setActiveStage] = useState(3);
-  const [exceptionActive, setExceptionActive] = useState(false);
+  const [exceptionActive] = useState(false);
   const [showPodModal, setShowPodModal] = useState(false);
   const [podStatus, setPodStatus] = useState('pending');
   const [overrideSuccess, setOverrideSuccess] = useState(false);
@@ -92,7 +92,7 @@ export default function AdminShipmentDetail() {
             
             <div className="space-y-0 relative">
                <div className="absolute top-4 bottom-8 left-[11px] w-0.5 bg-gray-50"></div>
-               {NETWORK_STAGES.map((stage, idx) => {
+               {NETWORK_STAGES.map((stage) => {
                  const isCompleted = stage.id < activeStage;
                  const isCurrent = stage.id === activeStage;
                  
@@ -325,7 +325,7 @@ export default function AdminShipmentDetail() {
                        </div>
                        <div className="space-y-1.5">
                          <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Authority Type</label>
-                         <select className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/50 transition-all">
+                         <select className="input appearance-none cursor-pointer pr-10">
                             <option>Direct Consignee</option>
                             <option>Authorized Representative</option>
                             <option>Company Staff</option>
@@ -333,11 +333,11 @@ export default function AdminShipmentDetail() {
                        </div>
                        <div className="space-y-1.5">
                          <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Full Name</label>
-                         <input type="text" placeholder="John Doe" className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/50 transition-all" />
+                         <input type="text" placeholder="John Doe" className="input" />
                        </div>
                        <div className="space-y-1.5">
                          <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Govt ID / Verification PIN</label>
-                         <input type="text" placeholder="e.g. NID, Passport, Booking PIN" className="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/50 transition-all" />
+                         <input type="text" placeholder="e.g. NID, Passport, Booking PIN" className="input" />
                        </div>
                     </div>
 

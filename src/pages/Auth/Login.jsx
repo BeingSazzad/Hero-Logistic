@@ -124,45 +124,66 @@ export default function Login() {
             <p className="text-gray-500 text-sm mt-1">Sign in to your workspace</p>
           </div>
 
-          <form onSubmit={handleLogin} className="flex flex-col gap-5">
+          <form onSubmit={handleLogin} className="flex flex-col gap-6">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">Email Address</label>
-              <input type="email" defaultValue="sarah@hero.com" required
-                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200 bg-white transition"
-                placeholder="you@company.com" />
+              <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Email Address</label>
+              <input 
+                type="email" 
+                defaultValue="sarah@hero.com" 
+                required
+                className="input"
+                placeholder="you@company.com" 
+              />
             </div>
 
             <div>
-              <div className="flex justify-between items-center mb-1.5">
-                <label className="text-sm font-semibold text-gray-700">Password</label>
-                <a href="#" className="text-xs text-yellow-600 font-semibold hover:underline">Forgot password?</a>
+              <div className="flex justify-between items-center mb-2 ml-1">
+                <label className="text-xs font-black text-gray-400 uppercase tracking-widest">Password</label>
+                <a href="#" className="text-xs text-yellow-600 font-bold hover:underline">Forgot password?</a>
               </div>
               <div className="relative">
-                <input type={showPass ? 'text' : 'password'} defaultValue="password123" required
-                  className="w-full border border-gray-200 rounded-lg px-4 py-3 pr-10 text-sm outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200 bg-white transition"
-                  placeholder="••••••••" />
-                <button type="button" onClick={() => setShowPass(!showPass)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                  {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
+                <input 
+                  type={showPass ? 'text' : 'password'} 
+                  defaultValue="password123" 
+                  required
+                  className="input pr-12"
+                  placeholder="••••••••" 
+                />
+                <button 
+                  type="button" 
+                  onClick={() => setShowPass(!showPass)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  {showPass ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">Select Your Role</label>
-              <select value={role} onChange={e => setRole(e.target.value)}
-                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-yellow-400 bg-white transition">
-                {roles.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
-              </select>
+              <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2 ml-1">Select Your Role</label>
+              <div className="relative">
+                <select 
+                  value={role} 
+                  onChange={e => setRole(e.target.value)}
+                  className="input appearance-none cursor-pointer pr-10"
+                >
+                  {roles.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
+                </select>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                  <Eye size={16} className="rotate-90" /> {/* Placeholder for a chevron if needed, or use a custom arrow */}
+                </div>
+              </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <input type="checkbox" id="remember" className="rounded" />
-              <label htmlFor="remember" className="text-sm text-gray-600">Keep me signed in</label>
+            <div className="flex items-center gap-3 ml-1">
+              <input type="checkbox" id="remember" className="w-4 h-4 rounded border-gray-300 accent-yellow-400 cursor-pointer" />
+              <label htmlFor="remember" className="text-sm text-gray-600 font-medium cursor-pointer">Keep me signed in</label>
             </div>
 
-            <button type="submit"
-              className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3.5 rounded-lg text-sm transition-all mt-2 shadow-sm hover:shadow-md">
+            <button 
+              type="submit"
+              className="btn bg-[#FFCC00] hover:bg-[#E6B800] text-black w-full shadow-lg shadow-yellow-400/10 mt-2"
+            >
               Sign in to Dashboard →
             </button>
           </form>

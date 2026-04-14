@@ -7,6 +7,14 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
 
+const RAW_DRIVERS = [
+  { id: 'DRV-102', branchId: 'SYD-CENTRAL', name: 'Jack Taylor',   phone: '+61 411 000 001', rank: 'Senior', status: 'On Duty', assigned: 'SHP-20481', rating: 4.8, shift: 'Day Shift (06:00 - 18:00)', compliance: 'Valid', certs: ['DG', 'MSIC', 'White Card'] },
+  { id: 'DRV-105', branchId: 'SYD-CENTRAL', name: 'Liam Smith',   phone: '+61 412 000 002', rank: 'Regular',status: 'On Duty', assigned: 'SHP-20482', rating: 4.5, shift: 'Night Shift (18:00 - 06:00)', compliance: 'Valid', certs: ['White Card'] },
+  { id: 'DRV-118', branchId: 'MEL-HUB',     name: 'Noah Williams', phone: '+61 413 000 003', rank: 'Regular',status: 'Delay Alert', assigned: 'SHP-20483', rating: 4.2, shift: 'Day Shift (08:00 - 20:00)', compliance: 'Warning', certs: ['MSIC'] },
+  { id: 'DRV-134', branchId: 'SYD-CENTRAL', name: 'Oliver Brown', phone: '+61 414 000 004', rank: 'Junior', status: 'In Break',  assigned: '-', rating: 4.0, shift: 'Night Shift (22:00 - 10:00)', compliance: 'Valid', certs: [] },
+  { id: 'DRV-145', branchId: 'SYD-CENTRAL', name: 'Lucas Jones',  phone: '+61 415 000 005', rank: 'Senior', status: 'Off Duty',  assigned: '-', rating: 4.9, shift: 'Day Shift', compliance: 'Valid', certs: ['DG'] },
+];
+
 export default function DispatchDrivers() {
   const user = useAuthStore(state => state.user);
   const navigate = useNavigate();
@@ -14,17 +22,9 @@ export default function DispatchDrivers() {
   const [filter, setFilter] = useState('All');
   const [sortKey, setSortKey] = useState('name');
   const [sortOrder, setSortOrder] = useState('desc'); // Changed to desc for most recent first
-  
-  const rawDrivers = [
-    { id: 'DRV-102', branchId: 'SYD-CENTRAL', name: 'Jack Taylor',   phone: '+61 411 000 001', rank: 'Senior', status: 'On Duty', assigned: 'SHP-20481', rating: 4.8, shift: 'Day Shift (06:00 - 18:00)', compliance: 'Valid', certs: ['DG', 'MSIC', 'White Card'] },
-    { id: 'DRV-105', branchId: 'SYD-CENTRAL', name: 'Liam Smith',   phone: '+61 412 000 002', rank: 'Regular',status: 'On Duty', assigned: 'SHP-20482', rating: 4.5, shift: 'Night Shift (18:00 - 06:00)', compliance: 'Valid', certs: ['White Card'] },
-    { id: 'DRV-118', branchId: 'MEL-HUB',     name: 'Noah Williams', phone: '+61 413 000 003', rank: 'Regular',status: 'Delay Alert', assigned: 'SHP-20483', rating: 4.2, shift: 'Day Shift (08:00 - 20:00)', compliance: 'Warning', certs: ['MSIC'] },
-    { id: 'DRV-134', branchId: 'SYD-CENTRAL', name: 'Oliver Brown', phone: '+61 414 000 004', rank: 'Junior', status: 'In Break',  assigned: '-', rating: 4.0, shift: 'Night Shift (22:00 - 10:00)', compliance: 'Valid', certs: [] },
-    { id: 'DRV-145', branchId: 'SYD-CENTRAL', name: 'Lucas Jones',  phone: '+61 415 000 005', rank: 'Senior', status: 'Off Duty',  assigned: '-', rating: 4.9, shift: 'Day Shift', compliance: 'Valid', certs: ['DG'] },
-  ];
 
   const filteredDrivers = useMemo(() => {
-    return rawDrivers.filter(drv => {
+    return RAW_DRIVERS.filter(drv => {
       // Logic: Only show current branch UNLESS searching specifically for someone
       const isMyBranch = drv.branchId === user.branchId;
       const matchesFilter = filter === 'All' || drv.status === filter;
@@ -93,7 +93,7 @@ export default function DispatchDrivers() {
                   value={search}
                   onChange={e => setSearch(e.target.value)}
                   placeholder="Search by ID or Name..." 
-                  className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm" 
+                  className="input pl-10" 
                 />
              </div>
              
@@ -101,7 +101,7 @@ export default function DispatchDrivers() {
                 <select 
                   value={sortKey} 
                   onChange={(e) => setSortKey(e.target.value)}
-                  className="w-full md:w-auto appearance-none bg-white border border-gray-200 text-gray-900 text-sm font-normal rounded-lg pl-10 pr-12 py-2.5 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 transition-all cursor-pointer shadow-sm"
+                className="input pl-10 pr-12 appearance-none cursor-pointer"
                 >
                   <option value="name">Sort by Name</option>
                   <option value="id">Sort by ID</option>

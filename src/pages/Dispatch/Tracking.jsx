@@ -19,14 +19,16 @@ export default function DispatchTracking() {
   const user = useAuthStore(state => state.user);
   const [searchParams] = useSearchParams();
   const vid = searchParams.get('id');
-  const [selectedVehicle, setSelectedVehicle] = useState(null);
+  const [selectedVehicle, setSelectedVehicle] = useState(() => {
+    return activeVehicles.find(v => v.id === vid) || null;
+  });
 
   useEffect(() => {
-    if (vid) {
+    if (vid && (!selectedVehicle || selectedVehicle.id !== vid)) {
       const found = activeVehicles.find(v => v.id === vid);
       if (found) setSelectedVehicle(found);
     }
-  }, [vid]);
+  }, [vid, selectedVehicle]);
 
   const filteredVehicles = activeVehicles.filter(v => v.branchId === user.branchId);
 

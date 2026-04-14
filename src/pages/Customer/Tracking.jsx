@@ -45,14 +45,16 @@ export default function CustomerTracking() {
   const [searchParams] = useSearchParams();
   const trackId = searchParams.get('id');
   
-  const [selected, setSelected] = useState(trips[0]);
+  const [selected, setSelected] = useState(() => {
+    return trips.find(t => t.id === trackId) || trips[0];
+  });
 
   useEffect(() => {
-    if (trackId) {
+    if (trackId && selected?.id !== trackId) {
       const found = trips.find(t => t.id === trackId);
       if (found) setSelected(found);
     }
-  }, [trackId]);
+  }, [trackId, selected]);
   return (
     <div className="flex flex-col gap-6">
       <div>

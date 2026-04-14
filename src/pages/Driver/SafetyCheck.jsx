@@ -35,11 +35,14 @@ export default function SafetyCheck() {
   return (
     <div className="flex flex-col bg-gray-50 min-h-screen pb-24">
       {/* ── Header ── */}
-      <div className="bg-[#111] px-5 py-4 sticky top-0 z-10 flex items-center gap-3 shadow-md">
-        <button onClick={() => navigate('/driver')} className="text-white hover:text-yellow-400 p-1 -ml-2 transition-colors">
+      <div className="bg-[#111] px-5 py-6 sticky top-0 z-10 flex items-center gap-4 shadow-xl">
+        <button onClick={() => navigate('/driver')} className="text-white hover:bg-white/10 p-2 -ml-2 transition-all rounded-xl">
            <ArrowLeft size={24} />
         </button>
-        <h1 className="text-white font-bold text-lg tracking-wide">Pre-Trip Safety</h1>
+        <div>
+           <h1 className="text-white font-black text-lg tracking-tight uppercase leading-none">Vehicle Compliance</h1>
+           <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest mt-1">Pre-Trip Safety Checklist</p>
+        </div>
       </div>
 
       <div className="p-5 flex flex-col gap-6">
