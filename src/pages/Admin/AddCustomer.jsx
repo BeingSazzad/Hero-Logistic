@@ -9,7 +9,7 @@ export default function AdminAddCustomer() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
       
       {/* Standardized Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <button 
             onClick={() => navigate('/admin/customers')}
@@ -39,7 +39,7 @@ export default function AdminAddCustomer() {
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
 
         {/* Company Identity (Col-span-2) */}
         <div className="md:col-span-2 flex flex-col gap-6">
@@ -128,5 +128,6 @@ export default function AdminAddCustomer() {
     </div>
   );
 }
+
 
 

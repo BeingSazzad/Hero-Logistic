@@ -61,14 +61,14 @@ export default function Reimbursements() {
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-gray-900 text-sm">{claim.driver}</span>
-                      <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded font-semibold">{claim.type}</span>
+                      <span className="text-xs bg-gray-100 text-gray-600  py-0.5 rounded font-semibold">{claim.type}</span>
                     </div>
                     <p className="text-xs text-gray-500 mt-0.5">{claim.job} · {claim.desc} · {claim.date}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="font-bold text-gray-900 text-lg">${claim.amount.toFixed(2)}</span>
-                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold ${cfg.bg} ${cfg.text}`}>
+                  <span className={`inline-flex items-center gap-1.5 .5 py-1 rounded-full text-xs font-bold ${cfg.bg} ${cfg.text}`}>
                     <cfg.icon size={11} /> {cfg.label}
                   </span>
                   {status === 'pending' && (
@@ -92,4 +92,5 @@ export default function Reimbursements() {
     </div>
   );
 }
+
 

@@ -11,7 +11,7 @@ export default function AdminBilling() {
     <div className="flex flex-col gap-6 w-full max-w-5xl mx-auto pb-12 animate-in fade-in duration-500">
       
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2 mt-2">
+      <div className="flex justify-between items-center mb-2  mt-2">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-xl text-gray-900 shadow-sm">
             <CreditCard size={20} />
@@ -25,7 +25,7 @@ export default function AdminBilling() {
 
       <div className="w-full h-px bg-gray-200 mb-2"></div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
         
         {/* Current Plan Details */}
         <div className="md:col-span-2 space-y-6">
@@ -126,7 +126,7 @@ export default function AdminBilling() {
                        <p className="text-sm font-bold text-gray-900">{inv.amt}</p>
                        <p className="text-xs font-medium text-gray-500">{inv.date}</p>
                      </div>
-                     <span className="text-xs font-semibold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md">
+                     <span className="text-xs font-semibold uppercase tracking-widest text-emerald-600 bg-emerald-50 .5 py-1 rounded-md">
                        {inv.stat}
                      </span>
                    </div>
@@ -139,6 +139,7 @@ export default function AdminBilling() {
     </div>
   );
 }
+
 
 
 

@@ -23,7 +23,7 @@ export default function PlatformTransactions() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Transactions</h1>
           <p className="text-sm text-gray-500 mt-1">Company subscription billing and payment history.</p>
@@ -97,7 +97,7 @@ export default function PlatformTransactions() {
                     <div className="font-bold text-[#111] text-[15px]">{txn.tenant}</div>
                   </td>
                   <td className="px-6 py-5">
-                    <div className="text-xs font-bold text-gray-600 bg-gray-100 w-max px-2.5 py-1 rounded-md border border-gray-200 uppercase">{txn.plan}</div>
+                    <div className="text-xs font-bold text-gray-600 bg-gray-100 w-max .5 py-1 rounded-md border border-gray-200 uppercase">{txn.plan}</div>
                   </td>
                   <td className="px-6 py-5">
                     <div className="font-semibold text-[#111]">{txn.amount}</div>
@@ -124,5 +124,6 @@ export default function PlatformTransactions() {
     </div>
   );
 }
+
 
 

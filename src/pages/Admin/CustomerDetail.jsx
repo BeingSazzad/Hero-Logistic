@@ -40,7 +40,7 @@ export default function AdminCustomerDetail() {
   return (
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <button onClick={() => navigate('/admin/customers')} className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-gray-500 hover:text-gray-900 transition-all shadow-sm">
             <ArrowLeft size={20} />
@@ -48,7 +48,7 @@ export default function AdminCustomerDetail() {
           <div>
             <div className="flex items-center gap-3">
               <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{c.name}</h1>
-              <span className={`text-xs font-semibold px-2.5 py-1 rounded border uppercase tracking-widest ${statusStyle(c.status)}`}>{c.status}</span>
+              <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest ${statusStyle(c.status)}`}>{c.status}</span>
             </div>
             <p className="text-xs text-gray-500 mt-1 uppercase tracking-widest font-medium">{c.id} · {c.industry} · Customer since {c.joined}</p>
           </div>
@@ -67,7 +67,7 @@ export default function AdminCustomerDetail() {
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
         {/* LEFT */}
         <div className="lg:col-span-2 space-y-6">
 
@@ -163,7 +163,7 @@ export default function AdminCustomerDetail() {
                   <div className="flex items-center gap-4">
                     <span className="text-xs font-bold text-gray-400 flex items-center gap-1"><Clock size={10}/>{s.date}</span>
                     <span className="text-xs font-semibold text-emerald-600">{s.value}</span>
-                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-md border uppercase tracking-widests ${statusStyle(s.status)}`}>{s.status}</span>
+                    <span className={`text-xs font-semibold .5 py-1 rounded-md border uppercase tracking-widests ${statusStyle(s.status)}`}>{s.status}</span>
                     <ChevronRight size={14} className="text-gray-300" />
                   </div>
                 </div>
@@ -231,5 +231,6 @@ export default function AdminCustomerDetail() {
     </div>
   );
 }
+
 
 

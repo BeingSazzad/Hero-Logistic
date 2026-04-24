@@ -74,7 +74,7 @@ export default function DispatchLoadInbox() {
   };
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-[1600px] mx-auto pb-10">
+    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-10">
 
       {/* ── Header ── */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
@@ -82,7 +82,7 @@ export default function DispatchLoadInbox() {
           <div className="flex items-center gap-4">
             <h1 className="hero-h1">Load Inbox</h1>
             {pendingCount > 0 && (
-              <span className="text-xs font-semibold bg-brand text-black px-2.5 py-1 rounded-full uppercase tracking-widest animate-pulse shadow-sm shadow-brand/30">
+              <span className="text-xs font-semibold bg-brand text-black .5 py-1 rounded-full uppercase tracking-widest animate-pulse shadow-sm shadow-brand/30">
                 {pendingCount} Pending
               </span>
             )}
@@ -173,7 +173,7 @@ export default function DispatchLoadInbox() {
                         <div className="flex items-center gap-3">
                           <h3 className="font-bold text-gray-900 text-lg tracking-tight leading-none">{draft.id}</h3>
                           {draft.urgency === 'High' && (
-                            <span className={`text-xs font-semibold uppercase tracking-[0.1em] px-2 py-0.5 rounded-sm border ${urgCfg.badge} flex items-center gap-1`}>
+                            <span className={`text-xs font-semibold uppercase tracking-[0.1em]  py-0.5 rounded-sm border ${urgCfg.badge} flex items-center gap-1`}>
                               <AlertCircle size={10} /> Urgent
                             </span>
                           )}
@@ -267,5 +267,7 @@ export default function DispatchLoadInbox() {
     </div>
   );
 }
+
+
 
 

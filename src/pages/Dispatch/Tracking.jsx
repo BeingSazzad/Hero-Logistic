@@ -33,7 +33,7 @@ export default function DispatchTracking() {
   const filteredVehicles = activeVehicles.filter(v => v.branchId === user.branchId);
 
   return (
-    <div className="flex flex-col h-[calc(100vh-8rem)] w-full max-w-[1600px] mx-auto pb-6">
+    <div className="flex flex-col h-[calc(100vh-8rem)] w-full max-w-[1440px] mx-auto pb-6">
       
       {/* ── Refined Header ── */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4 shrink-0">
@@ -99,7 +99,7 @@ export default function DispatchTracking() {
                      </div>
                   </div>
                   <div className="text-right">
-                     <span className={`text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full ${v.status === 'Moving' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-gray-500'}`}>{v.status}</span>
+                     <span className={`text-xs font-semibold uppercase tracking-widest  py-0.5 rounded-full ${v.status === 'Moving' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-gray-500'}`}>{v.status}</span>
                      <p className="text-xs font-medium text-gray-400 mt-1 truncate max-w-[120px]">{v.loc}</p>
                   </div>
                 </div>
@@ -159,7 +159,7 @@ export default function DispatchTracking() {
                    <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="text-sm font-semibold text-gray-900 truncate">{selectedVehicle.driver}</h4>
-                        <span className="text-xs font-semibold text-gray-500 px-2 py-0.5 bg-gray-100 rounded-full">{selectedVehicle.id}</span>
+                        <span className="text-xs font-semibold text-gray-500  py-0.5 bg-gray-100 rounded-full">{selectedVehicle.id}</span>
                       </div>
                       <p className="text-gray-400 text-xs font-medium mb-3 flex items-center gap-1.5 truncate">
                         <MapPin size={12} className="text-gray-300"/> {selectedVehicle.loc}
@@ -197,6 +197,8 @@ export default function DispatchTracking() {
     </div>
   );
 }
+
+
 
 
 

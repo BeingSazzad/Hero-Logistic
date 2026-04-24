@@ -59,7 +59,7 @@ export default function AdminUserDetail() {
       )}
 
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <button onClick={() => navigate('/admin/users')} className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-gray-500 hover:text-gray-900 transition-all shadow-sm">
             <ArrowLeft size={20} />
@@ -67,8 +67,8 @@ export default function AdminUserDetail() {
           <div>
             <div className="flex items-center gap-3">
               <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{u.name}</h1>
-              <span className={`text-xs font-semibold px-2.5 py-1 rounded border uppercase tracking-widest ${roleColor(u.role)}`}>{u.role}</span>
-              <span className={`text-xs font-semibold px-2.5 py-1 rounded border uppercase tracking-widest ${accountStatus === 'Active' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 'bg-red-50 text-red-600 border-red-200'}`}>{accountStatus}</span>
+              <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest ${roleColor(u.role)}`}>{u.role}</span>
+              <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest ${accountStatus === 'Active' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 'bg-red-50 text-red-600 border-red-200'}`}>{accountStatus}</span>
             </div>
             <p className="text-xs text-gray-500 mt-1 uppercase tracking-widest font-medium">{u.id} · {u.email} · Joined {u.joined}</p>
           </div>
@@ -91,7 +91,7 @@ export default function AdminUserDetail() {
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
         {/* LEFT */}
         <div className="lg:col-span-2 space-y-6">
           
@@ -113,7 +113,7 @@ export default function AdminUserDetail() {
           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
             <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center justify-between">
               <h3 className="hero-metadata flex items-center gap-2"><Shield size={12}/> Role & Access Configuration</h3>
-              {editing && <span className="text-xs font-semibold text-[#FFCC00] bg-[#111] px-2.5 py-1 rounded uppercase tracking-widest">Edit Mode</span>}
+              {editing && <span className="text-xs font-semibold text-[#FFCC00] bg-[#111] .5 py-1 rounded uppercase tracking-widest">Edit Mode</span>}
             </div>
             <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
@@ -211,5 +211,6 @@ export default function AdminUserDetail() {
     </div>
   );
 }
+
 
 

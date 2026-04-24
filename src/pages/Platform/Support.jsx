@@ -45,7 +45,7 @@ export default function PlatformSupport() {
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Support Tickets</h1>
           <p className="text-sm text-gray-500 mt-1">{openTickets} open · {resolvedTickets} resolved</p>
@@ -105,7 +105,7 @@ export default function PlatformSupport() {
                       <div className="flex items-center gap-2 mb-0.5">
                         <span className="font-mono text-xs text-gray-400">{t.id}</span>
                         <span className="font-bold text-sm text-gray-900">{t.tenant}</span>
-                        <span className={`text-xs font-semibold uppercase px-2 py-0.5 rounded ${pCfg.bg} ${pCfg.text}`}>{t.priority}</span>
+                        <span className={`text-xs font-semibold uppercase  py-0.5 rounded ${pCfg.bg} ${pCfg.text}`}>{t.priority}</span>
                       </div>
                       <p className="text-sm font-medium text-gray-700">{t.issue}</p>
                       <p className="text-xs text-gray-400 mt-0.5">{t.user} · {t.created}</p>
@@ -149,5 +149,6 @@ export default function PlatformSupport() {
     </div>
   );
 }
+
 
 

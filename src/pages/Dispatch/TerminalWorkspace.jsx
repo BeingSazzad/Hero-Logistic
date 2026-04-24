@@ -35,7 +35,7 @@ export default function TerminalWorkspace() {
     <div className="w-full max-w-[1440px] mx-auto pb-20 px-4">
       
       {/* Terminal Header */}
-      <div className="flex justify-between items-center mb-6 px-2">
+      <div className="flex justify-between items-center mb-6 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-hero-sm text-hero-dark shadow-sm">
             <Box size={20} />
@@ -66,7 +66,7 @@ export default function TerminalWorkspace() {
           <p className="text-xs font-medium leading-relaxed opacity-90">
             This module is used by Warehouse Staff when large line-haul trucks arrive at a Terminal. Workers scan every incoming box. The "Smart Sorter" instantly checks the <strong>Full Network Manifest</strong> (the master list of all cross-country jobs) to decide if the box should go out on a <strong>Local Delivery Van</strong> or be loaded onto another <strong>Line-haul Truck</strong> for the next Depot.
           </p>
-          <p className="text-xs font-bold mt-2 text-blue-700 bg-blue-100/50 inline-block px-2 py-1 rounded">
+          <p className="text-xs font-bold mt-2 text-blue-700 bg-blue-100/50 inline-block  py-1 rounded">
             💡 Try scanning: <span className="font-semibold">SHP-9041</span> or <span className="font-semibold">SHP-9042</span>
           </p>
         </div>
@@ -206,4 +206,5 @@ export default function TerminalWorkspace() {
     </div>
   );
 }
+
 

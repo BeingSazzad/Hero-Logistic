@@ -204,7 +204,7 @@ export default function WarehouseInbound() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="hero-h1">Inbound Check-In</h1>
           <p className="hero-body text-gray-600 mt-1">Verify and Slot Arriving Assets</p>
@@ -214,7 +214,7 @@ export default function WarehouseInbound() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-2 mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4  mb-2">
         <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex items-center justify-between group hover:shadow-xl transition-all">
           <div>
              <p className="hero-metadata">Inbound Transfers</p>
@@ -282,7 +282,7 @@ export default function WarehouseInbound() {
                     </td>
                     <td className="px-6 py-6">
                       <div className="font-semibold text-gray-900 text-sm leading-none">{r.eta}</div>
-                      <div className="text-xs font-semibold text-blue-600 uppercase tracking-widest mt-2 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-lg inline-block">{r.dock}</div>
+                      <div className="text-xs font-semibold text-blue-600 uppercase tracking-widest mt-2 bg-blue-50 border border-blue-100  py-0.5 rounded-lg inline-block">{r.dock}</div>
                     </td>
                     <td className="px-6 py-6">
                       <span className={`text-xs font-semibold px-3 py-2 rounded-xl border uppercase tracking-widest inline-flex items-center gap-2 shadow-sm ${cfg.cls}`}>
@@ -324,5 +324,6 @@ export default function WarehouseInbound() {
     </div>
   );
 }
+
 
 

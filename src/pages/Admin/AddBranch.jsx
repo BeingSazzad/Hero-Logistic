@@ -31,7 +31,7 @@ export default function AdminAddBranch() {
     <div className="flex flex-col gap-6 w-full max-w-4xl mx-auto pb-12">
       
       {/* Header */}
-      <div className="flex items-center gap-4 px-2">
+      <div className="flex items-center gap-4 ">
         <button onClick={() => navigate('/admin/branches')} className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-gray-500 hover:text-gray-900 transition-all shadow-sm">
           <ArrowLeft size={20} />
         </button>
@@ -43,7 +43,7 @@ export default function AdminAddBranch() {
 
       <div className="w-full h-px bg-gray-200/60 my-2"></div>
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
         
         {/* Basic Identification */}
         <div className="md:col-span-2 bg-white rounded-2xl border border-gray-100 p-8 shadow-sm">
@@ -162,7 +162,7 @@ export default function AdminAddBranch() {
         </div>
 
         {/* Submission */}
-        <div className="md:col-span-2 flex justify-end gap-3 pt-4 px-2">
+        <div className="md:col-span-2 flex justify-end gap-3 pt-4 ">
            <button 
              type="button"
              onClick={() => navigate('/admin/branches')}
@@ -185,5 +185,6 @@ export default function AdminAddBranch() {
     </div>
   );
 }
+
 
 

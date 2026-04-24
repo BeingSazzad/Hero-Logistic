@@ -72,7 +72,7 @@ export default function AdminLoads() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* ── Header ── */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-100 rounded-hero-sm text-hero-dark shadow-sm">
             <Package size={20} />
@@ -93,7 +93,7 @@ export default function AdminLoads() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* ── Queue Selector Cards ── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 px-2">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 ">
         {QUEUES.map(q => {
           const isActive = queue === q.id;
           return (
@@ -272,6 +272,7 @@ export default function AdminLoads() {
     </div>
   );
 }
+
 
 
 

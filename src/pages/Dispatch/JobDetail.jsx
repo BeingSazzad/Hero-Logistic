@@ -45,7 +45,7 @@ export default function DispatchJobDetail() {
   };
 
   return (
-    <div className="w-full max-w-[1600px] mx-auto pb-16">
+    <div className="w-full max-w-[1440px] mx-auto pb-16">
       <button onClick={() => navigate('/dispatch/loads')}
         className="flex items-center gap-2 text-xs font-semibold text-gray-500 hover:text-gray-900 mb-6 transition-colors">
         <ArrowLeft size={16} /> Back to Loads
@@ -72,10 +72,10 @@ export default function DispatchJobDetail() {
         <div>
           <div className="flex items-center gap-3 mb-1">
             <h1 className="hero-h1">{id || 'SHP-9055'}</h1>
-            <span className={`px-2 py-0.5 rounded-sm font-semibold uppercase tracking-widest text-xs shadow-sm border ${exceptionActive ? 'bg-red-50 text-red-600 border-red-100' : 'bg-blue-50 text-blue-600 border-blue-100'}`}>
+            <span className={` py-0.5 rounded-sm font-semibold uppercase tracking-widest text-xs shadow-sm border ${exceptionActive ? 'bg-red-50 text-red-600 border-red-100' : 'bg-blue-50 text-blue-600 border-blue-100'}`}>
               ● {assigned ? 'Assigned' : 'In Progress'}
             </span>
-            <span className={`px-2 py-0.5 rounded-sm font-semibold uppercase tracking-widest text-xs shadow-sm border ${deliveryMode === 'Depot' ? 'bg-indigo-50 text-indigo-700 border-indigo-100' : 'bg-emerald-50 text-emerald-700 border-emerald-100'}`}>
+            <span className={` py-0.5 rounded-sm font-semibold uppercase tracking-widest text-xs shadow-sm border ${deliveryMode === 'Depot' ? 'bg-indigo-50 text-indigo-700 border-indigo-100' : 'bg-emerald-50 text-emerald-700 border-emerald-100'}`}>
               {deliveryMode === 'Depot' ? '🏢 Depot-to-Depot' : '🚪 Door-to-Door'}
             </span>
           </div>
@@ -244,7 +244,7 @@ export default function DispatchJobDetail() {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="hero-metadata">Service</span>
-                  <span className="text-xs font-semibold text-black bg-brand px-2 py-0.5 rounded-sm uppercase tracking-widest shadow-sm">Normal</span>
+                  <span className="text-xs font-semibold text-black bg-brand  py-0.5 rounded-sm uppercase tracking-widest shadow-sm">Normal</span>
                 </div>
               </div>
             </div>
@@ -332,4 +332,6 @@ export default function DispatchJobDetail() {
     </div>
   );
 }
+
+
 

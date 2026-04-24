@@ -9,7 +9,7 @@ const maxMrr = 1300;
 export default function PlatformAnalytics() {
   return (
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto">
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Platform Analytics</h1>
           <p className="text-sm text-gray-500 mt-1">Growth metrics across all companies</p>
@@ -17,7 +17,7 @@ export default function PlatformAnalytics() {
       </div>
 
       {/* KPIs */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 px-2 mb-2">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4  mb-2">
         {[
           { label: 'Monthly Revenue (MRR)',  value: '$1,166',  delta: '+14.7% MoM', up: true,  icon: TrendingUp },
           { label: 'Yearly Revenue (ARR)',   value: '$13,992', delta: 'Projected',  up: true,  icon: Globe },
@@ -99,5 +99,6 @@ export default function PlatformAnalytics() {
     </div>
   );
 }
+
 
 

@@ -134,7 +134,7 @@ export default function TrackLoad() {
             <button
               key={id}
               onClick={() => { setQuery(id); }}
-              className="text-xs font-medium text-gray-500 hover:text-gray-900 border border-gray-200 px-2.5 py-1 rounded-lg hover:bg-white transition-all"
+              className="text-xs font-medium text-gray-500 hover:text-gray-900 border border-gray-200 .5 py-1 rounded-lg hover:bg-white transition-all"
             >
               {id}
             </button>
@@ -168,7 +168,7 @@ export default function TrackLoad() {
                     <p className="text-xs font-medium text-gray-500">Load ID</p>
                     <span className="text-xs font-bold text-gray-700 font-mono">{result.id}</span>
                   </div>
-                  <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold ${cfg.bg} ${cfg.color} ${cfg.border} border`}>
+                  <div className={`inline-flex items-center gap-1.5 .5 py-1 rounded-lg text-xs font-semibold ${cfg.bg} ${cfg.color} ${cfg.border} border`}>
                     {cfg.icon} {result.status}
                   </div>
                 </div>
@@ -195,7 +195,7 @@ export default function TrackLoad() {
                     <MapPin size={11} />
                     <span>{result.progress === 100 ? 'Delivered' : `${result.progress}% complete`}</span>
                   </div>
-                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-md
+                  <span className={`text-xs font-semibold  py-0.5 rounded-md
                     ${result.service === 'Direct' ? 'bg-red-50 text-red-600' :
                       result.service === 'Express' ? 'bg-amber-50 text-amber-600' :
                       'bg-gray-50 text-gray-500'}`}>
@@ -248,6 +248,7 @@ export default function TrackLoad() {
     </div>
   );
 }
+
 
 
 

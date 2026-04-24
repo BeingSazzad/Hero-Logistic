@@ -57,7 +57,7 @@ export default function PlatformDashboard() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
       
       {/* ── Header ── */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="hero-h1">Platform Overview</h1>
           <p className="hero-body text-gray-600 mt-1 flex items-center gap-2">System Center • <span className="text-hero-success font-medium flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-hero-success animate-pulse"></span> All Systems Online</span></p>
@@ -78,7 +78,7 @@ export default function PlatformDashboard() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* ── KPI Row (Summary Tiles) ── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-2 mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  mb-2">
         
         {/* Active Companies */}
         <div onClick={() => navigate('/platform/tenants')} className="card p-5 flex flex-col justify-between group cursor-pointer hover:border-[#FFCC00] hover:shadow-md transition-all">
@@ -159,7 +159,7 @@ export default function PlatformDashboard() {
       </div>
 
       {/* ── Visual Growth Charts ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 px-2 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6  mb-6">
          
          {/* Left Chart: Company Growth */}
          <div className="card flex flex-col">
@@ -232,7 +232,7 @@ export default function PlatformDashboard() {
                     return (
                       <div key={m} className="flex-1 flex flex-col items-center justify-end h-full gap-2 group relative">
                          {/* Tooltip */}
-                         <div className="opacity-0 group-hover:opacity-100 absolute -top-8 bg-gray-900 text-white text-xs px-2 py-1 rounded transition-all pointer-events-none whitespace-nowrap z-10 shadow-lg">
+                         <div className="opacity-0 group-hover:opacity-100 absolute -top-8 bg-gray-900 text-white text-xs  py-1 rounded transition-all pointer-events-none whitespace-nowrap z-10 shadow-lg">
                            ${data.income[i].toLocaleString()}
                          </div>
                          <div className="w-full bg-blue-100 group-hover:bg-blue-200 rounded-t-sm transition-all flex items-end justify-center relative" style={{ height: `${hInc}%` }}>
@@ -250,7 +250,7 @@ export default function PlatformDashboard() {
       </div>
 
       {/* ── Bottom Section ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
          
          {/* ── Recent Company List ── */}
          <div className="card flex flex-col lg:col-span-2">
@@ -324,5 +324,6 @@ export default function PlatformDashboard() {
     </div>
   );
 }
+
 
 

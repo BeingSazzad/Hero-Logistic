@@ -207,7 +207,7 @@ export default function VehicleRegistry() {
                       </div>
                     </td>
                     <td className="py-5 px-6">
-                      <div className="inline-block px-2 py-1 bg-gray-50 border border-gray-200 rounded font-mono text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
+                      <div className="inline-block  py-1 bg-gray-50 border border-gray-200 rounded font-mono text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">
                         {v.vin}
                       </div>
                       <p className="text-xs font-medium text-gray-500 ml-1">{v.plate}</p>
@@ -233,7 +233,7 @@ export default function VehicleRegistry() {
                     <td className="py-5 px-6 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <select 
-                          className="bg-gray-50 border border-gray-200 text-xs font-bold text-gray-700 rounded-xl px-2 py-2 cursor-pointer outline-none hover:bg-gray-100"
+                          className="bg-gray-50 border border-gray-200 text-xs font-bold text-gray-700 rounded-xl  py-2 cursor-pointer outline-none hover:bg-gray-100"
                           value={v.status}
                           onChange={(e) => updateVehicleStatus(v.id, e.target.value)}
                         >
@@ -492,5 +492,6 @@ export default function VehicleRegistry() {
     </div>
   );
 }
+
 
 

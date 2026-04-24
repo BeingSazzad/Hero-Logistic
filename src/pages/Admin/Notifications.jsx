@@ -44,7 +44,7 @@ export default function AdminNotifications() {
                <div className="flex-1 min-w-0 pr-4">
                  <div className="flex items-center gap-3 mb-1">
                    <h3 className="font-bold text-gray-900 text-sm">{alt.type}</h3>
-                   <span className={`text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded ${
+                   <span className={`text-xs font-semibold uppercase tracking-widest  py-0.5 rounded ${
                      alt.priority === 'Critical' ? 'bg-red-100 text-red-600' : 
                      alt.priority === 'High' ? 'bg-orange-100 text-orange-600' : 'bg-blue-100 text-blue-600'
                    }`}>
@@ -67,5 +67,6 @@ export default function AdminNotifications() {
     </div>
   );
 }
+
 
 

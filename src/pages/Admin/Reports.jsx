@@ -34,7 +34,7 @@ export default function AdminReports() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* Standardized Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-[#111] shadow-sm">
             <BarChart3 size={20} />
@@ -67,7 +67,7 @@ export default function AdminReports() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-2">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 ">
         {stats.map((k, i) => (
           <div key={i} className="bg-white p-5 rounded-xl border border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] flex items-center justify-between">
             <div>
@@ -87,7 +87,7 @@ export default function AdminReports() {
       </div>
 
       {/* Chart + Depot Sidebar */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
 
         {/* White Chart Card */}
         <div className="lg:col-span-2 bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 flex flex-col overflow-hidden">
@@ -130,7 +130,7 @@ export default function AdminReports() {
               {monthlyRevenue.map((d, i) => (
                 <div key={i} className="flex flex-col items-center gap-2 w-full group relative z-10">
                   {/* Tooltip */}
-                  <div className="absolute -top-8 opacity-0 group-hover:opacity-100 transition-all bg-[#111] text-white text-xs font-bold px-2 py-1 rounded z-30 pointer-events-none shadow-lg whitespace-nowrap">
+                  <div className="absolute -top-8 opacity-0 group-hover:opacity-100 transition-all bg-[#111] text-white text-xs font-bold  py-1 rounded z-30 pointer-events-none shadow-lg whitespace-nowrap">
                     ${(d.v * 0.032).toFixed(1)}M
                   </div>
                   {/* Bar */}
@@ -206,5 +206,6 @@ export default function AdminReports() {
     </div>
   );
 }
+
 
 

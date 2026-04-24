@@ -47,7 +47,7 @@ export default function Subscriptions() {
   ];
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12 px-2">
+    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12 ">
       
       {/* ── Page Header ── */}
       <div className="flex justify-between items-center mb-2">
@@ -60,7 +60,7 @@ export default function Subscriptions() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* ── KPI Matrix ── */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-2 mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4  mb-2">
          {stats.map((s, i) => (
           <div key={i} className="card p-5 flex flex-col justify-between group">
              <div>
@@ -99,7 +99,7 @@ export default function Subscriptions() {
             {plans.map((p, i) => (
               <div key={i} className="flex flex-col border border-gray-100 rounded-xl overflow-hidden hover:border-[#FFCC00] hover:shadow-xl transition-all group relative">
                  {p.recommended && (
-                    <div className="absolute top-4 right-4 bg-[#FFCC00] text-orange-900 text-xs font-bold px-2.5 py-0.5 rounded shadow-sm">Popular</div>
+                    <div className="absolute top-4 right-4 bg-[#FFCC00] text-orange-900 text-xs font-bold .5 py-0.5 rounded shadow-sm">Popular</div>
                  )}
                  <div className={`h-1.5 w-full ${p.color}`}></div>
                  <div className="p-5 flex-1 flex flex-col">
@@ -271,5 +271,6 @@ function PlanEditorModal({ onClose, editingPlan }) {
     </div>
   );
 }
+
 
 

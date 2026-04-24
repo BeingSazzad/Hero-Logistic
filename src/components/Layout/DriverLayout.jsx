@@ -69,7 +69,7 @@ export default function DriverLayout() {
 
         {/* Bottom nav — Hidden on Live Map for focused navigation */}
         {location.pathname !== '/driver/active' && (
-          <div className="absolute bottom-0 left-0 right-0 h-[72px] bg-white border-t border-gray-100 flex items-center justify-around px-2 shrink-0 z-50">
+          <div className="absolute bottom-0 left-0 right-0 h-[72px] bg-white border-t border-gray-100 flex items-center justify-around  shrink-0 z-50">
             {bottomNav.map(({ to, label, icon: Icon, end }) => (
               <NavLink key={to} to={to} end={end} className="flex-1">
                 {({ isActive }) => (
@@ -92,5 +92,6 @@ export default function DriverLayout() {
     </div>
   );
 }
+
 
 

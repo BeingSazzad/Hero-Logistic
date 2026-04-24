@@ -42,7 +42,7 @@ export default function AdminDriverDetail() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
       
       {/* ── 1. Standardized Header ── */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <button 
             onClick={() => navigate(location.pathname.includes('/dispatch') ? '/dispatch/drivers' : '/admin/drivers')}
@@ -57,7 +57,7 @@ export default function AdminDriverDetail() {
              <div>
                <div className="flex items-center gap-3">
                   <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{editedName}</h1>
-                  <span className={`text-xs font-bold px-2.5 py-1 rounded-md border uppercase tracking-widest leading-none ${driver.status === 'On Trip' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 'bg-gray-100 text-gray-600 border-gray-200'}`}>
+                  <span className={`text-xs font-bold .5 py-1 rounded-md border uppercase tracking-widest leading-none ${driver.status === 'On Trip' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 'bg-gray-100 text-gray-600 border-gray-200'}`}>
                     {driver.status}
                   </span>
                </div>
@@ -102,7 +102,7 @@ export default function AdminDriverDetail() {
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
 
         {/* ── LEFT: Profile & Configuration ── */}
         <div className="flex flex-col gap-6">
@@ -236,15 +236,15 @@ export default function AdminDriverDetail() {
                  <div className="flex flex-col gap-2">
                     <div className="flex items-center justify-between p-3 rounded-lg border border-gray-200 bg-gray-50">
                        <span className="text-xs font-bold text-gray-900">MSIC Access</span>
-                       <span className="text-xs font-semibold text-emerald-700 bg-emerald-100 uppercase tracking-widest px-2 py-0.5 rounded">Active</span>
+                       <span className="text-xs font-semibold text-emerald-700 bg-emerald-100 uppercase tracking-widest  py-0.5 rounded">Active</span>
                     </div>
                     <div className="flex items-center justify-between p-3 rounded-lg border border-gray-200 bg-gray-50">
                        <span className="text-xs font-bold text-gray-900">Dangerous Goods (DG)</span>
-                       <span className="text-xs font-semibold text-emerald-700 bg-emerald-100 uppercase tracking-widest px-2 py-0.5 rounded">Active</span>
+                       <span className="text-xs font-semibold text-emerald-700 bg-emerald-100 uppercase tracking-widest  py-0.5 rounded">Active</span>
                     </div>
                     <div className="flex items-center justify-between p-3 rounded-lg border border-gray-200 bg-gray-50">
                        <span className="text-xs font-bold text-gray-900">Construction White Card</span>
-                       <span className="text-xs font-semibold text-emerald-700 bg-emerald-100 uppercase tracking-widest px-2 py-0.5 rounded">Active</span>
+                       <span className="text-xs font-semibold text-emerald-700 bg-emerald-100 uppercase tracking-widest  py-0.5 rounded">Active</span>
                     </div>
                  </div>
               </div>
@@ -281,7 +281,7 @@ export default function AdminDriverDetail() {
             
             <div className="p-6 border-b border-gray-100 bg-[#FAFAFA] flex justify-between items-center pl-7">
               <h3 className="text-sm font-bold text-gray-900 flex items-center gap-2 uppercase tracking-wide"><Route size={16} className="text-emerald-500"/> Live Assignment</h3>
-              <span className="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-700 border border-emerald-200 uppercase tracking-widest flex items-center gap-1.5 shadow-sm">
+              <span className="text-xs font-bold  py-0.5 rounded bg-emerald-100 text-emerald-700 border border-emerald-200 uppercase tracking-widest flex items-center gap-1.5 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Active
               </span>
             </div>
@@ -349,7 +349,7 @@ export default function AdminDriverDetail() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className={`text-xs font-bold px-2 py-0.5 rounded border uppercase tracking-widest leading-none block w-max ml-auto ${
+                    <span className={`text-xs font-bold  py-0.5 rounded border uppercase tracking-widest leading-none block w-max ml-auto ${
                       job.status === 'In Transit' ? 'bg-amber-50 text-amber-700 border-amber-100' : 'bg-emerald-50 text-emerald-700 border-emerald-100'
                     }`}>
                        {job.status}
@@ -366,5 +366,6 @@ export default function AdminDriverDetail() {
     </div>
   );
 }
+
 
 

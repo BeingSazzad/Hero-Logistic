@@ -8,7 +8,7 @@ export default function AdminSettings() {
     <div className="flex flex-col gap-6 w-full max-w-[900px] mx-auto pb-12 animate-in fade-in duration-500">
       
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2 px-2 mt-2">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2  mt-2">
         <div className="flex items-center gap-4">
            <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-xl text-gray-900 shadow-sm">
              <User size={20} />
@@ -25,7 +25,7 @@ export default function AdminSettings() {
 
       <div className="w-full h-px bg-gray-200 mb-2"></div>
 
-      <div className="flex flex-col gap-8 px-2">
+      <div className="flex flex-col gap-8 ">
         
         {/* Profile Info */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
@@ -108,5 +108,6 @@ export default function AdminSettings() {
     </div>
   );
 }
+
 
 

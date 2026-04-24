@@ -94,7 +94,7 @@ export default function DriverHome() {
          <div className="space-y-4">
             <div className="flex items-center justify-between px-1">
                <h3 className="text-xs font-semibold text-gray-800">Operational Schedule</h3>
-               <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full uppercase tracking-widest">2 jobs today</span>
+               <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 .5 py-1 rounded-full uppercase tracking-widest">2 jobs today</span>
             </div>
             
             <div className="flex flex-col gap-3">
@@ -106,7 +106,7 @@ export default function DriverHome() {
                         </div>
                         <div className="min-w-0">
                            <div className="flex items-center gap-2 mb-1">
-                              <span className="text-xs font-semibold text-orange-600 bg-orange-50 px-2 py-0.5 rounded uppercase tracking-tighter">{job.priority}</span>
+                              <span className="text-xs font-semibold text-orange-600 bg-orange-50  py-0.5 rounded uppercase tracking-tighter">{job.priority}</span>
                               <span className="hero-metadata">{job.id}</span>
                            </div>
                            <p className="font-semibold text-gray-900 text-sm truncate leading-none">{job.area}</p>
@@ -137,6 +137,7 @@ export default function DriverHome() {
       </div>
    );
 }
+
 
 
 

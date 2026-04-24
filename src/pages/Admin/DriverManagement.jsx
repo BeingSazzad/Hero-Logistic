@@ -36,7 +36,7 @@ export default function AdminDriverManagement() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
       
       {/* Standardized Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-[#111] shadow-sm">
             <Users size={20} />
@@ -57,7 +57,7 @@ export default function AdminDriverManagement() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
       
       {/* Driver Telemetry Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-2 mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4  mb-2">
          {[
            { label: 'On Duty Now', value: '18', icon: UserPlus, color: 'text-hero-success', bg: 'bg-emerald-50' },
            { label: 'Active Trips', value: '12', icon: Truck, color: 'text-blue-600', bg: 'bg-blue-50' },
@@ -145,7 +145,7 @@ export default function AdminDriverManagement() {
                       </div>
                    </td>
                    <td className="px-6 py-4">
-                     <span className={`text-xs font-bold px-2.5 py-1 rounded-md border uppercase tracking-widest ${
+                     <span className={`text-xs font-bold .5 py-1 rounded-md border uppercase tracking-widest ${
                         d.status === 'Active' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 
                         d.status === 'On Trip' ? 'bg-[#EFF6FF] text-[#2563EB] border-[#DBEAFE]' : 
                         'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]'
@@ -167,6 +167,7 @@ export default function AdminDriverManagement() {
     </div>
   );
 }
+
 
 
 

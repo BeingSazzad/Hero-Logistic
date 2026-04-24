@@ -20,9 +20,9 @@ export default function DashboardUI({
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   return (
-    <div className="flex flex-col gap-8 w-full max-w-[1600px] mx-auto pb-12">
+    <div className="flex flex-col gap-8 w-full max-w-[1440px] mx-auto pb-12">
       {/* ── Header ── */}
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center px-2 gap-4">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center  gap-4">
         <div>
           <h1 className="hero-h1 mb-1">Command Center</h1>
           <p className="text-sm text-gray-400 font-medium">Operational HQ</p>
@@ -34,10 +34,10 @@ export default function DashboardUI({
         </div>
       </div>
 
-      <div className="w-full h-px bg-gray-100 mb-2 px-2"></div>
+      <div className="w-full h-px bg-gray-100 mb-2 "></div>
 
       {/* ── KPI Cards ── */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 px-2">
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 ">
         {[
           { label: 'Loads', period: 'Monthly MTD', val: metrics.totalLoads, trend: '+14%', color: 'blue', icon: Package },
           { label: 'Vehicles', period: 'Active Fleet', val: metrics.activeVehicles, trend: '+2%', color: 'emerald', icon: Truck },
@@ -50,7 +50,7 @@ export default function DashboardUI({
               <div className={`w-9 h-9 rounded-hero-sm flex items-center justify-center bg-${m.color}-50 text-${m.color}-500 border border-${m.color}-100`}>
                 <m.icon size={18} />
               </div>
-              <span className={`text-xs font-semibold uppercase text-${m.color}-600 bg-${m.color}-50/50 px-2 py-1 rounded-full`}>{m.trend}</span>
+              <span className={`text-xs font-semibold uppercase text-${m.color}-600 bg-${m.color}-50/50  py-1 rounded-full`}>{m.trend}</span>
             </div>
             <div>
               <div className="flex items-center gap-1.5 mb-1">
@@ -65,7 +65,7 @@ export default function DashboardUI({
       </div>
 
       {/* ── Main Performance Stage (Side-by-Side Graphs) ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 ">
         {/* Load Throughput */}
         <div className="card overflow-hidden flex flex-col min-h-[440px] shadow-sm">
           <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
@@ -128,7 +128,7 @@ export default function DashboardUI({
       </div>
 
       {/* ── Operational Intelligence Depot ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 px-2">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 ">
 
         {/* Command Center (Navigation) */}
         <div className="lg:col-span-4 flex flex-col gap-6">
@@ -227,5 +227,7 @@ export default function DashboardUI({
     </div>
   );
 }
+
+
 
 

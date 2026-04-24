@@ -250,7 +250,7 @@ export default function AdminLoadDetail() {
                  </div>
                  <div className="flex justify-between border-b border-gray-50 pb-2">
                    <span className="text-xs font-bold text-gray-500">Requirements</span>
-                   <span className="text-xs font-semibold text-white bg-blue-600 px-2 py-0.5 rounded uppercase tracking-widest">Fragile</span>
+                   <span className="text-xs font-semibold text-white bg-blue-600  py-0.5 rounded uppercase tracking-widest">Fragile</span>
                  </div>
                  <div className="flex justify-between">
                    <span className="text-xs font-bold text-gray-500">Revenue</span>
@@ -268,7 +268,7 @@ export default function AdminLoadDetail() {
             <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide flex items-center gap-2">
               <PackageCheck size={14} className="text-[#FFCC00]" /> Driver POD Evidence
             </h3>
-            <span className="text-xs font-bold text-orange-600 bg-orange-50 border border-orange-200 px-2.5 py-1 rounded uppercase tracking-widest flex items-center gap-1.5">
+            <span className="text-xs font-bold text-orange-600 bg-orange-50 border border-orange-200 .5 py-1 rounded uppercase tracking-widest flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse"></span> 3 Items Queued
             </span>
           </div>
@@ -419,7 +419,7 @@ export default function AdminLoadDetail() {
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">HERO LOGISTICS</p>
                     <p className="text-xs font-semibold text-gray-900 uppercase tracking-widest mt-0.5">Priority Freight</p>
                   </div>
-                  <span className="text-xs font-semibold bg-[#FFCC00] text-black px-2 py-0.5 rounded">EXPRESS</span>
+                  <span className="text-xs font-semibold bg-[#FFCC00] text-black  py-0.5 rounded">EXPRESS</span>
                 </div>
                 <div className="border-t border-dashed border-gray-300 pt-3">
                   <p className="text-xs text-gray-400 uppercase tracking-widest">FROM</p>
@@ -457,6 +457,7 @@ export default function AdminLoadDetail() {
     </div>
   );
 }
+
 
 
 

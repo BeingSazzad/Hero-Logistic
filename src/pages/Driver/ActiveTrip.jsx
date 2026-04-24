@@ -233,7 +233,7 @@ export default function ActiveTrip() {
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-sm font-bold text-gray-800">Shift Summary</h3>
-            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">Online</span>
+            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 .5 py-1 rounded-full border border-emerald-100">Online</span>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100">
@@ -282,6 +282,7 @@ export default function ActiveTrip() {
     </div>
   );
 }
+
 
 
 

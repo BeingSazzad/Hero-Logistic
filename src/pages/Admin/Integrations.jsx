@@ -30,7 +30,7 @@ export default function AdminIntegrations() {
     <div className="flex flex-col gap-8 w-full max-w-[1440px] mx-auto pb-12">
       
       {/* ── Header ── */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-100 rounded-hero-sm text-hero-dark shadow-sm">
             <Blocks size={20} />
@@ -71,7 +71,7 @@ export default function AdminIntegrations() {
                         <p className="text-xs font-bold text-gray-400 uppercase mt-2 leading-relaxed tracking-tight">{int.desc}</p>
                         
                         <div className="mt-6 flex items-center justify-between">
-                          <code className="text-xs font-semibold text-gray-400 bg-gray-50 px-2 py-1 rounded-lg border border-gray-100 uppercase tracking-widest">
+                          <code className="text-xs font-semibold text-gray-400 bg-gray-50  py-1 rounded-lg border border-gray-100 uppercase tracking-widest">
                             {int.id} • {int.version}
                           </code>
                           <button className={`flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.1em] px-4 py-2 rounded-xl border transition-all ${int.status ? 'text-red-500 border-red-100 hover:bg-red-50' : 'bg-hero-dark text-brand border-hero-dark shadow-md'}`}>
@@ -90,6 +90,7 @@ export default function AdminIntegrations() {
     </div>
   );
 }
+
 
 
 

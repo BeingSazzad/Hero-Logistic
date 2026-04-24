@@ -29,7 +29,7 @@ export default function WarehouseInventory() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Inventory</h1>
           <p className="text-sm text-gray-500 mt-1">{inventory.length} SKUs tracked &nbsp;·&nbsp; Zone A-14 &nbsp;·&nbsp; 78% capacity used</p>
@@ -42,7 +42,7 @@ export default function WarehouseInventory() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-3 gap-4 px-2 mb-2">
+      <div className="grid grid-cols-3 gap-4  mb-2">
         <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
           <div><p className="text-xs text-gray-400 uppercase font-bold tracking-widest">Total SKUs</p><p className="text-2xl font-semibold text-gray-900 mt-0.5">{inventory.length}</p></div>
           <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-50 text-gray-400"><Package size={20}/></div>
@@ -137,5 +137,6 @@ export default function WarehouseInventory() {
     </div>
   );
 }
+
 
 

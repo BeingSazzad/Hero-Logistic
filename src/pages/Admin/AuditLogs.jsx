@@ -13,7 +13,7 @@ export default function AdminAuditLogs() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="hero-h1">System Audit Logs</h1>
           <p className="hero-body text-gray-600 mt-1">Activity traceability including role changes, login history, and data mutations.</p>
@@ -80,6 +80,7 @@ export default function AdminAuditLogs() {
     </div>
   );
 }
+
 
 
 

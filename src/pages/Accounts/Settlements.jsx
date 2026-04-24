@@ -17,7 +17,7 @@ export default function Settlements() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* Standardized Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-[#111] shadow-sm">
             <Users size={20} />
@@ -44,7 +44,7 @@ export default function Settlements() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-3 gap-4 px-2 mb-2">
+      <div className="grid grid-cols-3 gap-4  mb-2">
         <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
           <div><p className="text-xs text-gray-400 uppercase font-bold tracking-widest">Total Payout</p><p className="text-2xl font-semibold text-emerald-600 mt-0.5">${total.toFixed(2)}</p></div>
           <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-emerald-50 text-emerald-500"><DollarSign size={20}/></div>
@@ -122,5 +122,6 @@ export default function Settlements() {
     </div>
   );
 }
+
 
 

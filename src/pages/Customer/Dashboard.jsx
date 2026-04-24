@@ -56,7 +56,7 @@ export default function CustomerDashboard() {
          
          {/* Live Load List */}
          <div className="lg:col-span-2 space-y-5">
-            <div className="flex justify-between items-end px-2">
+            <div className="flex justify-between items-end ">
                <div>
                   <h2 className="text-xl font-semibold text-gray-900 tracking-tight">Active Logistics Flow</h2>
                   <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">Real-time status updates from fleet</p>
@@ -163,5 +163,6 @@ export default function CustomerDashboard() {
     </div>
   );
 }
+
 
 

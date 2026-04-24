@@ -41,7 +41,7 @@ export default function AdminHelpline() {
     <div className="flex flex-col gap-6 w-full max-w-6xl mx-auto pb-12 animate-in fade-in duration-500">
       
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2 mt-2">
+      <div className="flex justify-between items-center mb-2  mt-2">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-xl text-gray-900 shadow-sm">
             <LifeBuoy size={20} />
@@ -56,7 +56,7 @@ export default function AdminHelpline() {
       <div className="w-full h-px bg-gray-200 mb-2"></div>
 
       {/* Tabs */}
-      <div className="px-2 border-b border-gray-200 mb-2">
+      <div className=" border-b border-gray-200 mb-2">
         <div className="flex gap-6">
           <button 
             onClick={() => { setActiveFlow('team'); setSelectedTicket(null); }}
@@ -73,7 +73,7 @@ export default function AdminHelpline() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 px-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 ">
         
         {/* Left: Contact Form / Ticket List / Chat */}
         <div className="lg:col-span-2 space-y-6">
@@ -164,7 +164,7 @@ export default function AdminHelpline() {
                         <div key={t.id} onClick={() => setSelectedTicket(t)} className="p-5 border border-gray-100 rounded-xl flex items-center justify-between hover:border-gray-900 transition-colors cursor-pointer group">
                           <div>
                             <div className="flex items-center gap-2 mb-1">
-                              <span className="text-xs font-semibold text-white bg-gray-900 px-2 py-0.5 rounded uppercase tracking-widest">{t.id}</span>
+                              <span className="text-xs font-semibold text-white bg-gray-900  py-0.5 rounded uppercase tracking-widest">{t.id}</span>
                               <span className="text-xs font-bold text-gray-400">{t.date}</span>
                             </div>
                             <p className="text-sm font-bold text-gray-900 group-hover:text-black">{t.title}</p>
@@ -226,7 +226,7 @@ export default function AdminHelpline() {
                          <span className="text-xs font-medium text-gray-500">{t.date}</span>
                       </div>
                       <p className="text-xs font-bold text-gray-800 group-hover:text-blue-600 transition-colors mb-2 leading-tight line-clamp-1">{t.title}</p>
-                      <span className={`text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded border ${
+                      <span className={`text-xs font-semibold uppercase tracking-widest  py-0.5 rounded border ${
                         t.status === 'Solved' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-gray-50 text-gray-600 border-gray-200'
                       }`}>
                          {t.status}
@@ -271,6 +271,7 @@ export default function AdminHelpline() {
     </div>
   );
 }
+
 
 
 

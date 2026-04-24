@@ -25,7 +25,7 @@ export default function AccountsDashboard() {
     <div className="flex flex-col gap-8 w-full max-w-[1440px] mx-auto">
       
       {/* Standardized Header */}
-      <div className="flex justify-between items-center mb-6 px-2">
+      <div className="flex justify-between items-center mb-6 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-hero-sm text-hero-dark shadow-sm">
             <DollarSign size={20} />
@@ -46,7 +46,7 @@ export default function AccountsDashboard() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 px-2 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6  mb-6">
         {financialSummary.map((k, i) => (
           <div key={i} className="card p-5 flex items-center justify-between group">
             <div>
@@ -158,6 +158,7 @@ export default function AccountsDashboard() {
     </div>
   );
 }
+
 
 
 

@@ -46,7 +46,7 @@ export default function DispatchDrivers() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* Standardized Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-[#111] shadow-sm">
             <Users size={20} />
@@ -155,7 +155,7 @@ export default function DispatchDrivers() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex flex-col gap-1.5">
-                      <span className={`text-xs font-bold px-2.5 py-1 rounded-md border w-fit uppercase tracking-widest ${drv.status === 'On Duty' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' :
+                      <span className={`text-xs font-bold .5 py-1 rounded-md border w-fit uppercase tracking-widest ${drv.status === 'On Duty' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' :
                           drv.status === 'Delay Alert' ? 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2] animate-pulse' :
                             drv.status === 'In Break' ? 'bg-amber-50 text-amber-600 border-amber-100' :
                               'bg-gray-100 text-gray-600 border-gray-200'
@@ -171,11 +171,11 @@ export default function DispatchDrivers() {
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-2">
                         {drv.compliance === 'Valid' ? (
-                          <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-[#F0FDF4] border border-[#DCFCE7] uppercase tracking-widest px-2.5 py-1 rounded-md w-fit">
+                          <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-[#F0FDF4] border border-[#DCFCE7] uppercase tracking-widest .5 py-1 rounded-md w-fit">
                             <ShieldCheck size={12} /> Valid
                           </span>
                         ) : (
-                          <span className="flex items-center gap-1.5 text-xs font-bold text-red-600 bg-[#FEF2F2] border border-[#FEE2E2] uppercase tracking-widest px-2.5 py-1 rounded-md w-fit">
+                          <span className="flex items-center gap-1.5 text-xs font-bold text-red-600 bg-[#FEF2F2] border border-[#FEE2E2] uppercase tracking-widest .5 py-1 rounded-md w-fit">
                             <AlertCircle size={12} /> Renew
                           </span>
                         )}
@@ -218,4 +218,5 @@ export default function DispatchDrivers() {
     </div>
   );
 }
+
 

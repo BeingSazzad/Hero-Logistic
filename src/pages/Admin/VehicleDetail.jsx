@@ -68,7 +68,7 @@ export default function AdminVehicleDetail() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* ── PAGE HEADER ── */}
-      <div className="flex justify-between items-center px-2">
+      <div className="flex justify-between items-center ">
         <div className="flex items-center gap-4">
           <button
             onClick={() => navigate('/admin/fleet')}
@@ -121,7 +121,7 @@ export default function AdminVehicleDetail() {
       <div className="w-full h-px bg-gray-100"></div>
 
       {/* ── GALLERY + KPI PANEL ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 px-2">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 ">
 
         {/* Left: Vehicle Image */}
         <div className="lg:col-span-7 flex flex-col gap-3">
@@ -175,7 +175,7 @@ export default function AdminVehicleDetail() {
               <span className="text-xs font-medium text-gray-500">Current Driver</span>
               <button
                 onClick={() => setShowDriverPicker(true)}
-                className="text-xs font-bold text-black bg-[#FFCC00] hover:bg-[#E6B800] transition-colors px-2.5 py-1.5 rounded-lg"
+                className="text-xs font-bold text-black bg-[#FFCC00] hover:bg-[#E6B800] transition-colors .5 py-1.5 rounded-lg"
               >
                 Change Driver
               </button>
@@ -240,7 +240,7 @@ export default function AdminVehicleDetail() {
                 <p className="text-sm font-semibold text-gray-900">{vehicle.service.nextService}</p>
               </div>
             </div>
-            <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg
+            <span className={`text-xs font-semibold .5 py-1 rounded-lg
               ${vehicle.service.nextServiceStatus === 'OK'
                 ? 'bg-emerald-50 text-emerald-700'
                 : 'bg-red-50 text-red-600'}`}>
@@ -304,7 +304,7 @@ export default function AdminVehicleDetail() {
                     <div className="flex items-center gap-2 text-sm font-semibold text-gray-900">
                       <Route size={14} className="text-gray-400" /> Active Load
                     </div>
-                    <span className="text-xs font-semibold px-2 py-1 rounded bg-emerald-50 text-emerald-700 border border-emerald-100">
+                    <span className="text-xs font-semibold  py-1 rounded bg-emerald-50 text-emerald-700 border border-emerald-100">
                       In Transit
                     </span>
                   </div>
@@ -506,7 +506,7 @@ export default function AdminVehicleDetail() {
                       <p className="text-sm font-semibold text-gray-900">{driver.name}</p>
                       <p className="text-xs text-gray-400">{driver.id} · {driver.depot}</p>
                     </div>
-                    <span className={`text-xs font-semibold px-2 py-1 rounded-lg shrink-0
+                    <span className={`text-xs font-semibold  py-1 rounded-lg shrink-0
                       ${driver.status === 'Available' ? 'bg-emerald-50 text-emerald-700' :
                         driver.status === 'On Shift'  ? 'bg-blue-50 text-blue-600' :
                                                         'bg-gray-100 text-gray-500'}`}>
@@ -532,6 +532,7 @@ export default function AdminVehicleDetail() {
     </div>
   );
 }
+
 
 
 

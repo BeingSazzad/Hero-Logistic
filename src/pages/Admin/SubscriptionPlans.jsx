@@ -66,7 +66,7 @@ export default function AdminSubscriptionPlans() {
     <div className="flex flex-col gap-6 w-full max-w-6xl mx-auto pb-12 animate-in fade-in duration-500">
       
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2 mt-2">
+      <div className="flex justify-between items-center mb-2  mt-2">
         <div className="flex items-center gap-4">
           <button 
             onClick={() => navigate('/admin/billing')}
@@ -97,13 +97,13 @@ export default function AdminSubscriptionPlans() {
             className={`px-8 py-2.5 rounded-lg text-sm font-bold transition-all relative z-10 flex items-center gap-2 ${billingCycle === 'yearly' ? 'text-gray-900 shadow-sm bg-white' : 'text-gray-500 hover:text-gray-700'}`}
           >
             Yearly Billing
-            <span className="text-xs font-semibold uppercase tracking-widest text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full">Save 20%</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-emerald-600 bg-emerald-100  py-0.5 rounded-full">Save 20%</span>
           </button>
         </div>
       </div>
 
       {/* Pricing Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-2 items-end">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8  items-end">
         {plans.map((plan, index) => (
           <div key={index} className={`relative rounded-3xl border transition-all ${plan.popular ? 'border-[#FFCC00] shadow-xl md:-translate-y-4 bg-white z-10' : 'border-gray-200 bg-white shadow-sm hover:shadow-md'}`}>
              
@@ -159,5 +159,6 @@ export default function AdminSubscriptionPlans() {
     </div>
   );
 }
+
 
 

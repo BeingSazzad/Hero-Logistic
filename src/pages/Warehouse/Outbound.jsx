@@ -39,7 +39,7 @@ export default function WarehouseOutbound() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* ── Header ── */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="hero-h1">Outbound Release</h1>
           <p className="hero-body text-gray-600 mt-1">
@@ -51,7 +51,7 @@ export default function WarehouseOutbound() {
       <div className="w-full h-px bg-gray-200/60 mb-2" />
 
       {/* ── KPI Cards ── */}
-      <div className="grid grid-cols-3 gap-4 px-2">
+      <div className="grid grid-cols-3 gap-4 ">
         {[
           { label: 'Loading Now',  value: loadNow,   color: 'text-amber-500',   bg: 'bg-amber-50',   icon: Clock },
           { label: 'Staging',      value: staging,    color: 'text-blue-600',    bg: 'bg-blue-50',    icon: ArrowUpFromLine },
@@ -70,7 +70,7 @@ export default function WarehouseOutbound() {
       </div>
 
       {/* ── Load Cards ── */}
-      <div className="flex flex-col gap-4 px-2">
+      <div className="flex flex-col gap-4 ">
         {MOCK_LOADS.map(load => {
           const status = getStatus(load);
           const cfg = STATUS_CFG[status] || STATUS_CFG.Staging;
@@ -96,7 +96,7 @@ export default function WarehouseOutbound() {
                     <div>
                       <div className="flex items-center gap-3 mb-1">
                         <span className="font-mono font-semibold text-gray-900 text-sm leading-none">{load.id}</span>
-                        <span className={`text-xs font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-xl border ${cfg.bg} ${cfg.text} ${cfg.border}`}>
+                        <span className={`text-xs font-semibold uppercase tracking-[0.15em] .5 py-1 rounded-xl border ${cfg.bg} ${cfg.text} ${cfg.border}`}>
                           {status}
                         </span>
                       </div>
@@ -172,5 +172,6 @@ export default function WarehouseOutbound() {
     </div>
   );
 }
+
 
 

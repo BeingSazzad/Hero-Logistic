@@ -33,7 +33,7 @@ export default function AuditLogs() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
       
       {/* Updated Header - Matching Reference Style */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Audit Logs</h1>
           <p className="text-sm text-gray-500 mt-1">Compliance & security event tracking.</p>
@@ -135,5 +135,6 @@ export default function AuditLogs() {
     </div>
   );
 }
+
 
 

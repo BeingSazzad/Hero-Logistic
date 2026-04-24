@@ -51,7 +51,7 @@ export default function DispatchJobs() {
   }, [queue, search, unassignedFilter]);
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-[1600px] mx-auto pb-10">
+    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-10">
 
       {/* ── Refined Header ── */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -153,7 +153,7 @@ export default function DispatchJobs() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`text-xs font-semibold uppercase tracking-widest px-2.5 py-1 rounded-hero-sm border shadow-sm ${
+                    <span className={`text-xs font-semibold uppercase tracking-widest .5 py-1 rounded-hero-sm border shadow-sm ${
                       job.priority === 'High' ? 'bg-red-50 text-red-600 border-red-100' :
                       job.priority === 'Medium' ? 'bg-brand/10 text-gray-900 border-brand/20' :
                       'bg-gray-50 text-gray-400 border-gray-200'
@@ -194,5 +194,7 @@ export default function DispatchJobs() {
     </div>
   );
 }
+
+
 
 

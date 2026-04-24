@@ -66,7 +66,7 @@ export default function AdminSafetyChecklists() {
   const previewChecklist = checklists.find(c => c.id === previewId);
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12 px-2">
+    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12 ">
 
       {/* Header */}
       <div className="flex justify-between items-center mb-2">
@@ -140,11 +140,11 @@ export default function AdminSafetyChecklists() {
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <h3 className="text-sm font-semibold text-gray-900">{cl.name}</h3>
-                    <span className="hero-metadata border border-gray-200 bg-gray-50 px-2 py-0.5 rounded">{cl.id}</span>
-                    <span className={`text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded ${cl.active ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-500'}`}>
+                    <span className="hero-metadata border border-gray-200 bg-gray-50  py-0.5 rounded">{cl.id}</span>
+                    <span className={`text-xs font-semibold uppercase tracking-widest  py-0.5 rounded ${cl.active ? 'bg-emerald-100 text-emerald-700' : 'bg-gray-100 text-gray-500'}`}>
                       {cl.active ? '● Active' : '○ Inactive'}
                     </span>
-                    <span className={`text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded ${cl.allowFlexible ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`}>
+                    <span className={`text-xs font-semibold uppercase tracking-widest  py-0.5 rounded ${cl.allowFlexible ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`}>
                       {cl.allowFlexible ? 'Flexible' : 'Strict Execution'}
                     </span>
                   </div>
@@ -411,7 +411,7 @@ function EditChecklistModal({ checklist, onClose, onSave }) {
                     onChange={e => updateItem(item.id, 'label', e.target.value)}
                     className="flex-1 bg-white border border-gray-200 rounded-lg py-2 px-3 text-xs font-medium text-gray-900 focus:outline-none focus:border-gray-400"
                   />
-                  <select value={item.type} onChange={e => updateItem(item.id, 'type', e.target.value)} className="bg-white border border-gray-200 rounded-lg py-2 px-2 text-xs font-bold text-gray-700 focus:outline-none w-32 shrink-0">
+                  <select value={item.type} onChange={e => updateItem(item.id, 'type', e.target.value)} className="bg-white border border-gray-200 rounded-lg py-2  text-xs font-bold text-gray-700 focus:outline-none w-32 shrink-0">
                     {FIELD_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
                   </select>
                   <label className="flex items-center gap-1 text-xs font-semibold text-gray-500 uppercase tracking-widest shrink-0 cursor-pointer">
@@ -434,6 +434,7 @@ function EditChecklistModal({ checklist, onClose, onSave }) {
     </div>
   );
 }
+
 
 
 

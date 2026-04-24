@@ -35,7 +35,7 @@ export default function AdminFleetManagement() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
       
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-100 rounded-hero-sm text-hero-dark shadow-sm">
             <Truck size={20} />
@@ -56,7 +56,7 @@ export default function AdminFleetManagement() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* Telemetry Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-2 mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4  mb-2">
          {[
            { label: 'Fleet Usage', value: '84%', icon: Activity, color: 'text-blue-600', bg: 'bg-blue-50' },
            { label: 'Needs Maintenance', value: '08 Trucks', icon: Wrench, color: 'text-hero-danger', bg: 'bg-red-50' },
@@ -180,7 +180,7 @@ export default function AdminFleetManagement() {
                        </div>
                     </td>
                     <td className="px-6 py-5">
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded-lg border uppercase tracking-widest ${
+                      <span className={`text-xs font-semibold .5 py-1 rounded-lg border uppercase tracking-widest ${
                          v.status === 'Active' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 
                          v.status === 'Maintenance' ? 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]' :
                          'bg-blue-50 text-blue-600 border-blue-100'
@@ -220,6 +220,7 @@ export default function AdminFleetManagement() {
     </div>
   );
 }
+
 
 
 

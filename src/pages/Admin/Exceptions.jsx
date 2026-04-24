@@ -38,10 +38,10 @@ export default function AdminExceptions() {
   };
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12 px-2">
+    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12 ">
       
       {/* ── Header ── */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-100 rounded-hero-sm text-hero-dark shadow-sm">
             <AlertCircle size={20}/>
@@ -109,7 +109,7 @@ export default function AdminExceptions() {
                             
                             {/* NEW: Status Badge in the middle */}
                             {isResolved && (
-                               <span className={`${config.badge} text-white px-2 py-0.5 rounded text-xs font-semibold uppercase tracking-widest flex items-center gap-1 shadow-sm`}>
+                               <span className={`${config.badge} text-white  py-0.5 rounded text-xs font-semibold uppercase tracking-widest flex items-center gap-1 shadow-sm`}>
                                   <StatusIcon size={10} strokeWidth={4}/> {item.status}
                                </span>
                             )}
@@ -178,6 +178,7 @@ export default function AdminExceptions() {
     </div>
   );
 }
+
 
 
 

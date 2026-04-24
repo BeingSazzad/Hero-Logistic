@@ -26,7 +26,7 @@ export default function DispatchFleet() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-[#111] shadow-sm">
             <Truck size={20} />
@@ -41,7 +41,7 @@ export default function DispatchFleet() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-2 mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4  mb-2">
         {[
           { label: 'Active Assets', val: '124', icon: Activity, color: 'text-emerald-600', bg: 'bg-emerald-50' },
           { label: 'Fuel Warning', val: '3', icon: Droplet, color: 'text-amber-600', bg: 'bg-amber-50' },
@@ -122,7 +122,7 @@ export default function DispatchFleet() {
                   </td>
                   <td className="px-6 py-5">
                     <div className="flex items-center gap-3">
-                      <span className={`text-xs font-semibold px-2 py-1 rounded shadow-sm border uppercase tracking-widest ${v.status === 'Active' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
+                      <span className={`text-xs font-semibold  py-1 rounded shadow-sm border uppercase tracking-widest ${v.status === 'Active' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
                           v.status === 'Maintenance' ? 'bg-red-50 text-red-600 border-red-100 animate-pulse' :
                             'bg-amber-50 text-amber-600 border-amber-100'
                         }`}>
@@ -153,5 +153,6 @@ export default function DispatchFleet() {
     </div>
   );
 }
+
 
 

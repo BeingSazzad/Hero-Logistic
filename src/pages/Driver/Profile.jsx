@@ -165,7 +165,7 @@ export default function DriverProfile() {
                   )}
                 </div>
               ))}
-             <div className="pt-4 px-2">
+             <div className="pt-4 ">
                 <button className="w-full bg-[#111] hover:bg-black text-white font-semibold uppercase text-xs py-5 rounded-2xl transition-all shadow-xl active:scale-[0.98]">
                    Upload New Document
                 </button>
@@ -415,6 +415,7 @@ export default function DriverProfile() {
     </div>
   );
 }
+
 
 
 

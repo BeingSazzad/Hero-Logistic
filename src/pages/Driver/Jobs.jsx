@@ -74,10 +74,10 @@ export default function DriverJobs() {
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="min-w-0 pr-2">
-                   <span className="text-xs font-semibold text-[#FFCC00] bg-black px-2 py-0.5 rounded uppercase tracking-widest">{job.id}</span>
+                   <span className="text-xs font-semibold text-[#FFCC00] bg-black  py-0.5 rounded uppercase tracking-widest">{job.id}</span>
                    <h3 className="font-semibold text-gray-900 text-lg tracking-tight mt-1 truncate">{job.customer}</h3>
                 </div>
-                <div className={`px-2.5 py-1 rounded-lg border text-xs font-semibold uppercase tracking-widest shrink-0 ${STATUS_VARIANTS[job.status]}`}>
+                <div className={`.5 py-1 rounded-lg border text-xs font-semibold uppercase tracking-widest shrink-0 ${STATUS_VARIANTS[job.status]}`}>
                    {job.status}
                 </div>
               </div>
@@ -125,5 +125,6 @@ export default function DriverJobs() {
     </div>
   );
 }
+
 
 

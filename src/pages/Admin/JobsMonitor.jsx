@@ -41,7 +41,7 @@ export default function AdminJobsMonitor() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* Standardized Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-[#111] shadow-sm">
             <BarChart size={20} />
@@ -56,7 +56,7 @@ export default function AdminJobsMonitor() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-2 mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4  mb-2">
         <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] flex items-center justify-between">
           <div><p className="text-xs text-gray-400 uppercase font-bold tracking-widest leading-tight">Global Active Jobs</p><p className="text-2xl font-semibold text-gray-900 mt-1.5 leading-none">482</p></div>
           <div className="w-10 h-10 rounded border border-gray-100 flex items-center justify-center bg-gray-50 text-gray-400"><BarChart size={20}/></div>
@@ -153,5 +153,6 @@ export default function AdminJobsMonitor() {
     </div>
   );
 }
+
 
 

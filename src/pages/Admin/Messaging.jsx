@@ -86,7 +86,7 @@ export default function AdminMessaging() {
                          <span className="text-xs font-bold text-gray-500">{t.user}</span>
                       </div>
                       <span className="w-1 h-1 bg-gray-200 rounded-full"></span>
-                      <span className={`text-xs font-semibold uppercase px-2 py-0.5 rounded-full ${t.priority === 'High' ? 'bg-red-50 text-red-600' : 'bg-gray-50 text-gray-600'}`}>{t.priority}</span>
+                      <span className={`text-xs font-semibold uppercase  py-0.5 rounded-full ${t.priority === 'High' ? 'bg-red-50 text-red-600' : 'bg-gray-50 text-gray-600'}`}>{t.priority}</span>
                    </div>
                 </div>
               ))}
@@ -119,14 +119,14 @@ export default function AdminMessaging() {
                  <div className="bg-gray-100 text-gray-800 p-5 rounded-3xl rounded-tl-none border border-gray-200 text-sm leading-relaxed font-medium">
                     {selectedTicket.issue}. This is preventing me from finishing the delivery sync for JOB-2048. Is there a known issue with the Sydney Metro server?
                  </div>
-                 <span className="text-xs text-gray-400 font-bold px-2">{selectedTicket.user} • 10:45 AM</span>
+                 <span className="text-xs text-gray-400 font-bold ">{selectedTicket.user} • 10:45 AM</span>
               </div>
 
               <div className="flex flex-col gap-2 self-end max-w-[80%] items-end">
                  <div className="bg-[#111] text-white p-5 rounded-3xl rounded-tr-none shadow-xl text-sm leading-relaxed">
                     Hey {selectedTicket.user.split(' ')[0]}, I've just checked the status page. There was a minor blip in the API gateway. I've force-synced your session from here. Please try again now.
                  </div>
-                 <span className="text-xs text-gray-400 font-bold flex items-center gap-1 px-2">Sent By Michael (Admin) <CheckCircle2 size={10} className="text-emerald-500" /></span>
+                 <span className="text-xs text-gray-400 font-bold flex items-center gap-1 ">Sent By Michael (Admin) <CheckCircle2 size={10} className="text-emerald-500" /></span>
               </div>
 
               <div className="text-center my-4">
@@ -156,5 +156,6 @@ export default function AdminMessaging() {
     </div>
   );
 }
+
 
 

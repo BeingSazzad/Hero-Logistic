@@ -83,7 +83,7 @@ export default function AdminFinance() {
       )}
 
       {/* ── Header ── */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="hero-h1">Finance &amp; P&amp;L</h1>
           <p className="hero-body text-gray-600 mt-1">Revenue, expenses &amp; profitability dashboard</p>
@@ -106,7 +106,7 @@ export default function AdminFinance() {
       <div className="w-full h-px bg-gray-200/60 mb-2" />
 
       {/* ── KPI Summary Row ── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 px-2">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 ">
         {[
           { label: 'Total Revenue',   value: fmt(totalRevenue),  sub: 'Collected (Paid)',    icon: TrendingUp,   color: 'text-emerald-600', bg: 'bg-emerald-50', trend: '+14.2%', up: true },
           { label: 'Pending / Owed',  value: fmt(totalPending),  sub: 'Unpaid + Overdue',    icon: AlertCircle,  color: 'text-amber-600',   bg: 'bg-amber-50',   trend: '+2.1%',  up: false },
@@ -132,7 +132,7 @@ export default function AdminFinance() {
       </div>
 
       {/* ── Tabs ── */}
-      <div className="px-2">
+      <div className="">
         <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-2xl border border-gray-200 w-fit shadow-inner">
           {[
             { key: 'pl',           label: 'P&L Breakdown',   icon: BarChart2 },
@@ -154,7 +154,7 @@ export default function AdminFinance() {
 
       {/* ── P&L Tab ── */}
       {activeTab === 'pl' && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 px-2">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
 
           {/* Revenue Breakdown */}
           <div className="bg-white rounded-3xl border border-gray-100 shadow-xl p-6">
@@ -276,7 +276,7 @@ export default function AdminFinance() {
                     <td className="px-6 py-5 font-semibold text-gray-900 text-sm">{acc.customer}</td>
                     <td className="px-6 py-5 font-semibold text-gray-900 text-sm">{fmt(acc.amount)}</td>
                     <td className="px-6 py-5">
-                      <span className="text-xs font-semibold text-blue-600 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-lg">{acc.loads} loads</span>
+                      <span className="text-xs font-semibold text-blue-600 bg-blue-50 border border-blue-100 .5 py-1 rounded-lg">{acc.loads} loads</span>
                     </td>
                     <td className="px-6 py-5">
                       <span className={`text-sm font-semibold ${acc.status === 'Overdue' ? 'text-red-500' : 'text-gray-700'}`}>{acc.dueDate}</span>
@@ -352,5 +352,6 @@ export default function AdminFinance() {
     </div>
   );
 }
+
 
 

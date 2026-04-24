@@ -21,7 +21,7 @@ function StatusBadge({ status }) {
     'In Sorting': 'bg-violet-100 text-violet-700 border-violet-200',
     'Unassigned': 'badge-gray',
   };
-  return <span className={`badge ${map[status] ?? 'badge-gray'} text-xs font-semibold uppercase tracking-widest px-2 py-0.5`}>{status}</span>;
+  return <span className={`badge ${map[status] ?? 'badge-gray'} text-xs font-semibold uppercase tracking-widest  py-0.5`}>{status}</span>;
 }
 
 export default function DispatchDashboard() {
@@ -39,7 +39,7 @@ export default function DispatchDashboard() {
   const handleRowClick = (id) => navigate(`/dispatch/loads/${id}`);
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-[1600px] mx-auto pb-10">
+    <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-10">
       
       {/* ── Header ── */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
@@ -82,7 +82,7 @@ export default function DispatchDashboard() {
               <div className={`w-9 h-9 rounded-hero-sm flex items-center justify-center bg-${kpi.color}-50 text-${kpi.color}-500 border border-${kpi.color}-100`}>
                 <kpi.icon size={18} />
               </div>
-              <span className={`text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full bg-${kpi.color}-50 text-${kpi.color}-600`}>{kpi.trend}</span>
+              <span className={`text-xs font-semibold uppercase tracking-widest  py-0.5 rounded-full bg-${kpi.color}-50 text-${kpi.color}-600`}>{kpi.trend}</span>
             </div>
             <div>
               <p className="hero-metadata mb-1">{kpi.label}</p>
@@ -203,5 +203,7 @@ export default function DispatchDashboard() {
     </div>
   );
 }
+
+
 
 

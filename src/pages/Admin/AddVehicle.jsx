@@ -29,7 +29,7 @@ export default function AdminAddVehicle() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
       
       {/* Standardized Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <button 
             onClick={() => navigate('/admin/fleet')}
@@ -60,7 +60,7 @@ export default function AdminAddVehicle() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {CURRENT_VEHICLE_COUNT >= PLAN_LIMIT && (
-        <div className="px-2 mb-2">
+        <div className=" mb-2">
           <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center gap-4">
              <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center shrink-0">
                <ShieldAlert size={20} className="text-red-600" />
@@ -76,7 +76,7 @@ export default function AdminAddVehicle() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
 
         {/* Main Details (Col-span-2) */}
         <div className="md:col-span-2 flex flex-col gap-6">
@@ -225,5 +225,6 @@ export default function AdminAddVehicle() {
     </div>
   );
 }
+
 
 

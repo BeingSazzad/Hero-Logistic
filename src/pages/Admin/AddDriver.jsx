@@ -29,7 +29,7 @@ export default function AdminAddDriver() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
       
       {/* Standardized Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <button 
             onClick={() => navigate('/admin/drivers')}
@@ -40,7 +40,7 @@ export default function AdminAddDriver() {
           <div>
             <div className="flex items-center gap-3">
                <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Add New Driver</h1>
-               <span className="text-xs font-bold bg-[#F0FDF4] text-[#16A34A] border border-[#DCFCE7] px-2.5 py-1 rounded-md uppercase tracking-widest leading-none">New</span>
+               <span className="text-xs font-bold bg-[#F0FDF4] text-[#16A34A] border border-[#DCFCE7] .5 py-1 rounded-md uppercase tracking-widest leading-none">New</span>
             </div>
             <p className="text-sm text-gray-500 mt-1">
                Register a new fleet operator with full profile, documents, and work setup.
@@ -62,7 +62,7 @@ export default function AdminAddDriver() {
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
         
         {/* ── LEFT COLUMN (Col-span-2): All form sections ── */}
         <div className="lg:col-span-2 flex flex-col gap-6">
@@ -326,7 +326,7 @@ export default function AdminAddDriver() {
            <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
               <div className="p-4 border-b border-gray-100 bg-[#FAFAFA] flex items-center justify-between">
                  <h2 className="text-xs font-bold text-[#111] uppercase tracking-wide flex items-center gap-2"><Zap size={14} className="text-[#FFCC00]"/> Driver App Access</h2>
-                 <span className="text-xs font-semibold bg-blue-50 text-blue-600 px-2 py-0.5 rounded border border-blue-100 uppercase tracking-tighter">PWA Secured</span>
+                 <span className="text-xs font-semibold bg-blue-50 text-blue-600  py-0.5 rounded border border-blue-100 uppercase tracking-tighter">PWA Secured</span>
               </div>
               <div className="p-5">
                  <p className="text-xs text-gray-500 leading-relaxed mb-4">
@@ -403,6 +403,7 @@ export default function AdminAddDriver() {
     </div>
   );
 }
+
 
 
 

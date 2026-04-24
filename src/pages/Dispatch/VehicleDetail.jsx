@@ -32,7 +32,7 @@ export default function DispatchVehicleDetail() {
       <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
          {/* ── Header ── */}
-         <div className="flex justify-between items-center mb-2 px-2">
+         <div className="flex justify-between items-center mb-2 ">
             <div className="flex items-center gap-4">
                <button onClick={() => navigate(-1)} className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-all shadow-sm">
                   <ArrowLeft size={20} />
@@ -40,9 +40,9 @@ export default function DispatchVehicleDetail() {
                <div>
                   <div className="flex items-center gap-3">
                      <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{v.id}</h1>
-                     <span className={`text-xs font-semibold px-2.5 py-1 rounded border uppercase tracking-widest ${statusStyle(v.status)}`}>{v.status}</span>
+                     <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest ${statusStyle(v.status)}`}>{v.status}</span>
                      {v.compliance === 'Warning' && (
-                        <span className="text-xs font-semibold px-2 py-1 rounded bg-red-50 text-red-600 border border-red-100 uppercase tracking-widest flex items-center gap-1">
+                        <span className="text-xs font-semibold  py-1 rounded bg-red-50 text-red-600 border border-red-100 uppercase tracking-widest flex items-center gap-1">
                            <AlertTriangle size={10} /> Compliance Warning
                         </span>
                      )}
@@ -66,7 +66,7 @@ export default function DispatchVehicleDetail() {
          <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
          {/* ── Asset Gallery & Identity ── */}
-         <div className="flex flex-col lg:flex-row gap-8 px-2 mb-4">
+         <div className="flex flex-col lg:flex-row gap-8  mb-4">
             <div className="flex-1 flex flex-col gap-3">
                <div className="relative aspect-[16/9] w-full rounded-2xl bg-[#111] overflow-hidden shadow-xl border-4 border-white group">
                   <img
@@ -100,10 +100,10 @@ export default function DispatchVehicleDetail() {
 
             <div className="lg:w-1/3 flex flex-col justify-center">
                <div className="flex items-center gap-3 mb-2">
-                  <span className={`text-xs font-semibold px-2.5 py-1 rounded border uppercase tracking-widest ${statusStyle(v.status)}`}>
+                  <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest ${statusStyle(v.status)}`}>
                      <div className={`w-1.5 h-1.5 rounded-full bg-current ${v.status === 'Active' ? 'animate-pulse' : ''}`}></div> {v.status}
                   </span>
-                  <span className="text-xs font-bold px-2.5 py-1 rounded-md border border-gray-200 text-gray-500 uppercase tracking-widest">{v.type}</span>
+                  <span className="text-xs font-bold .5 py-1 rounded-md border border-gray-200 text-gray-500 uppercase tracking-widest">{v.type}</span>
                </div>
                <h2 className="text-4xl font-semibold text-gray-900 tracking-tighter leading-none mb-2">{v.id}</h2>
                <h3 className="text-xl font-bold text-gray-500 tracking-tight mb-4">{v.make}</h3>
@@ -121,7 +121,7 @@ export default function DispatchVehicleDetail() {
             </div>
          </div>
 
-         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
+         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
             <div className="lg:col-span-2 space-y-6">
                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {[
@@ -219,7 +219,7 @@ export default function DispatchVehicleDetail() {
                <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
                   <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center justify-between">
                      <h3 className="hero-metadata flex items-center gap-2"><User size={12} /> Shift Roster</h3>
-                     <span className="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-xs font-semibold">{v.shifts?.length || 0} Drivers</span>
+                     <span className="bg-gray-100 text-gray-500  py-0.5 rounded text-xs font-semibold">{v.shifts?.length || 0} Drivers</span>
                   </div>
                   <div className="p-5 flex flex-col gap-4 max-h-[300px] overflow-y-auto">
                      {!v.shifts || v.shifts.length === 0 ? (
@@ -236,7 +236,7 @@ export default function DispatchVehicleDetail() {
                               <p className="text-xs text-gray-400 uppercase tracking-widest font-bold mt-0.5">{shift.id}</p>
                            </div>
                            <div className="text-right shrink-0">
-                              <p className="text-xs font-semibold text-blue-600 bg-blue-50 border border-blue-100 px-2 py-1 rounded truncate max-w-[120px]">{shift.shift}</p>
+                              <p className="text-xs font-semibold text-blue-600 bg-blue-50 border border-blue-100  py-1 rounded truncate max-w-[120px]">{shift.shift}</p>
                            </div>
                         </div>
                      ))}
@@ -274,5 +274,6 @@ export default function DispatchVehicleDetail() {
       </div>
    );
 }
+
 
 

@@ -145,7 +145,7 @@ export default function PODReview() {
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto">
-      <div className="flex justify-between items-end px-2">
+      <div className="flex justify-between items-end ">
         <div>
           <h1 className="hero-h1">POD Review Queue</h1>
           <p className="hero-metadata text-gray-600 mt-1">{pods.length - approved.length} pending · {approved.length} approved today</p>
@@ -196,5 +196,6 @@ export default function PODReview() {
     </div>
   );
 }
+
 
 

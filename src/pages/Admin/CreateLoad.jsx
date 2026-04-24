@@ -121,7 +121,7 @@ export default function AdminCreateLoad() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <button
             onClick={() => navigate('/admin/loads')}
@@ -132,7 +132,7 @@ export default function AdminCreateLoad() {
           <div>
             <div className="flex items-center gap-3">
               <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Create Load</h1>
-              <span className="text-xs font-bold bg-[#F0FDF4] text-[#16A34A] border border-[#DCFCE7] px-2.5 py-1 rounded-md uppercase tracking-widest">Draft</span>
+              <span className="text-xs font-bold bg-[#F0FDF4] text-[#16A34A] border border-[#DCFCE7] .5 py-1 rounded-md uppercase tracking-widest">Draft</span>
             </div>
             <p className="text-sm text-gray-500 mt-1">Configure your load type and add items below.</p>
           </div>
@@ -185,7 +185,7 @@ export default function AdminCreateLoad() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 px-2 mt-2">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6  mt-2">
 
         {/* ── Main Form ── */}
         <div className="lg:col-span-8 flex flex-col gap-6">
@@ -271,7 +271,7 @@ export default function AdminCreateLoad() {
                               <p className="font-semibold text-sm text-gray-900 truncate">{u.name}</p>
                               <p className="hero-metadata">{u.phone} · {u.type}</p>
                             </div>
-                            <span className="text-xs text-gray-400 font-semibold uppercase tracking-widest shrink-0 border border-gray-100 px-2 py-0.5 rounded-md ml-auto">{u.id}</span>
+                            <span className="text-xs text-gray-400 font-semibold uppercase tracking-widest shrink-0 border border-gray-100  py-0.5 rounded-md ml-auto">{u.id}</span>
                           </button>
                         ))}
                       </div>
@@ -288,7 +288,7 @@ export default function AdminCreateLoad() {
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-3 mb-1.5">
                             <h4 className="font-semibold text-white text-lg tracking-tight">{selectedSender.name}</h4>
-                            <span className="text-xs font-semibold text-white bg-white/20 border border-white/30 px-2.5 py-0.5 rounded uppercase tracking-widest">ID: {selectedSender.id}</span>
+                            <span className="text-xs font-semibold text-white bg-white/20 border border-white/30 .5 py-0.5 rounded uppercase tracking-widest">ID: {selectedSender.id}</span>
                           </div>
                           <div className="grid grid-cols-2 gap-y-1.5 gap-x-6">
                             <p className="text-xs font-bold text-blue-100 flex items-center gap-2"><Phone size={12} className="opacity-70" />{selectedSender.phone}</p>
@@ -342,7 +342,7 @@ export default function AdminCreateLoad() {
                         <p className="text-sm font-semibold text-gray-900">
                           {item.description || (item.niche === 'car' ? 'Vehicle Entry' : item.niche === 'dangerous' ? 'Hazardous Material' : 'Freight Item')}
                         </p>
-                        {item.vin && <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-100 uppercase tracking-widest">VIN: {item.vin}</span>}
+                        {item.vin && <span className="text-xs font-semibold text-blue-600 bg-blue-50  py-0.5 rounded border border-blue-100 uppercase tracking-widest">VIN: {item.vin}</span>}
                       </div>
                       <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mt-1">
                         {item.pickupAddress ? `📍 ${item.pickupAddress}` : 'Location data pending'}
@@ -596,6 +596,7 @@ export default function AdminCreateLoad() {
     </div>
   );
 }
+
 
 
 

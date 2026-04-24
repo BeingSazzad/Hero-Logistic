@@ -119,7 +119,7 @@ export default function AdminBranchDetail() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* ── Header ── */}
-      <div className="flex justify-between items-start mb-2 px-2 flex-wrap gap-4">
+      <div className="flex justify-between items-start mb-2  flex-wrap gap-4">
         <div className="flex items-start gap-4">
           <button onClick={() => navigate('/admin/branches')}
             className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-gray-500 hover:text-gray-900 transition-all shadow-sm shrink-0 mt-1">
@@ -128,8 +128,8 @@ export default function AdminBranchDetail() {
           <div>
             <div className="flex items-center gap-3 flex-wrap">
               <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{b.name}</h1>
-              <span className={`text-xs font-semibold px-2.5 py-1 rounded border uppercase tracking-widest ${b.type === 'Primary Depot' ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-gray-100 text-gray-600 border-gray-200'}`}>{b.type}</span>
-              <span className={`text-xs font-semibold px-2.5 py-1 rounded border uppercase tracking-widest flex items-center gap-1 ${b.status === 'Online' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]'}`}>
+              <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest ${b.type === 'Primary Depot' ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-gray-100 text-gray-600 border-gray-200'}`}>{b.type}</span>
+              <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest flex items-center gap-1 ${b.status === 'Online' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]'}`}>
                 <span className={`w-1.5 h-1.5 rounded-full ${b.status === 'Online' ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`}></span>
                 {b.status}
               </span>
@@ -164,7 +164,7 @@ export default function AdminBranchDetail() {
       <div className="w-full h-px bg-gray-200/60"></div>
 
       {/* ── KPI Strip ── */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 px-2">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 ">
         {[
           { label: 'Total Staff',    val: b.kpi.staff,      icon: Users,       color: 'text-blue-500',    bg: 'bg-blue-50',    border: 'border-blue-100' },
           { label: 'Drivers',        val: b.kpi.drivers,    icon: UserCog,     color: 'text-indigo-500',  bg: 'bg-indigo-50',  border: 'border-indigo-100' },
@@ -208,7 +208,7 @@ export default function AdminBranchDetail() {
       </div>
 
       {/* ── Tab Nav ── */}
-      <div className="px-2">
+      <div className="">
         <div className="flex gap-1 bg-gray-100 p-1 rounded-xl border border-gray-200 w-fit shadow-inner">
           {TABS.map(t => (
             <button key={t.id} onClick={() => setActiveTab(t.id)}
@@ -221,7 +221,7 @@ export default function AdminBranchDetail() {
 
       {/* ── Tab: Overview ── */}
       {activeTab === 'overview' && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
           <div className="lg:col-span-2 space-y-6">
 
             {/* Branch Profile */}
@@ -280,7 +280,7 @@ export default function AdminBranchDetail() {
                         <div className="text-xs text-gray-400 font-bold mt-0.5">{j.customer}</div>
                       </td>
                       <td className="px-5 py-3.5">
-                        <span className={`text-xs font-semibold px-2 py-1 rounded border uppercase tracking-widest ${jobStatusStyle(j.status)}`}>{j.status}</span>
+                        <span className={`text-xs font-semibold  py-1 rounded border uppercase tracking-widest ${jobStatusStyle(j.status)}`}>{j.status}</span>
                       </td>
                       <td className="px-5 py-3.5 text-xs font-bold text-gray-600">{j.driver}</td>
                       <td className="px-5 py-3.5 text-xs font-bold text-gray-600">{j.eta}</td>
@@ -332,7 +332,7 @@ export default function AdminBranchDetail() {
                       <p className="text-sm font-bold text-gray-900 truncate">{u.name}</p>
                       <p className="text-xs text-gray-400 font-bold">{u.role}</p>
                     </div>
-                    <span className={`text-xs font-semibold px-2 py-0.5 rounded border uppercase tracking-widest shrink-0 ${u.status === 'Active' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-gray-100 text-gray-400 border-gray-200'}`}>{u.status}</span>
+                    <span className={`text-xs font-semibold  py-0.5 rounded border uppercase tracking-widest shrink-0 ${u.status === 'Active' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-gray-100 text-gray-400 border-gray-200'}`}>{u.status}</span>
                   </div>
                 ))}
                 {b.authority.length === 0 && (
@@ -349,7 +349,7 @@ export default function AdminBranchDetail() {
 
       {/* ── Tab: Authority ── */}
       {activeTab === 'authority' && (
-        <div className="px-2">
+        <div className="">
           <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/50 flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -391,7 +391,7 @@ export default function AdminBranchDetail() {
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded border uppercase tracking-widest ${roleColor(u.role)}`}>{u.role}</span>
+                      <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest ${roleColor(u.role)}`}>{u.role}</span>
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2 text-xs font-bold text-gray-600">
@@ -401,7 +401,7 @@ export default function AdminBranchDetail() {
                     </td>
                     <td className="px-6 py-4 text-xs font-bold text-gray-500">{u.since}</td>
                     <td className="px-6 py-4">
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded border uppercase tracking-widest ${u.status === 'Active' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-gray-100 text-gray-500 border-gray-200'}`}>{u.status}</span>
+                      <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest ${u.status === 'Active' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-gray-100 text-gray-500 border-gray-200'}`}>{u.status}</span>
                     </td>
                     <td className="px-6 py-4 text-right">
                       <button onClick={e => { e.stopPropagation(); navigate(`/admin/users/${u.id}`); }}
@@ -419,7 +419,7 @@ export default function AdminBranchDetail() {
 
       {/* ── Tab: Drivers ── */}
       {activeTab === 'drivers' && (
-        <div className="px-2">
+        <div className="">
           <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/50 flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -461,7 +461,7 @@ export default function AdminBranchDetail() {
                     <td className="px-6 py-4 font-semibold text-gray-700 text-sm">{d.vehicle}</td>
                     <td className="px-6 py-4 text-xs font-bold text-gray-500">{d.type}</td>
                     <td className="px-6 py-4">
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded border uppercase tracking-widest ${driverStatusStyle(d.status)}`}>{d.status}</span>
+                      <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest ${driverStatusStyle(d.status)}`}>{d.status}</span>
                     </td>
                     <td className="px-6 py-4 text-xs font-bold text-gray-700">{d.load}</td>
                     <td className="px-6 py-4 text-xs font-bold text-gray-600">{d.eta}</td>
@@ -480,7 +480,7 @@ export default function AdminBranchDetail() {
 
       {/* ── Tab: Fleet ── */}
       {activeTab === 'fleet' && (
-        <div className="px-2">
+        <div className="">
           <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/50 flex items-center gap-2">
               <Truck size={14} className="text-gray-400"/>
@@ -508,7 +508,7 @@ export default function AdminBranchDetail() {
                     <td className="px-6 py-4 font-semibold text-gray-900 text-sm">{v.id}</td>
                     <td className="px-6 py-4 text-xs font-bold text-gray-500">{v.type}</td>
                     <td className="px-6 py-4">
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded border uppercase tracking-widest ${
+                      <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest ${
                         v.status === 'In Service'  ? 'bg-blue-50 text-blue-600 border-blue-100' :
                         v.status === 'Parked'      ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
                         'bg-red-50 text-red-600 border-red-100'
@@ -531,7 +531,7 @@ export default function AdminBranchDetail() {
 
       {/* ── Tab: Recent Jobs ── */}
       {activeTab === 'jobs' && (
-        <div className="px-2">
+        <div className="">
           <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
             <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/50 flex items-center gap-2">
               <Package size={14} className="text-gray-400"/>
@@ -560,7 +560,7 @@ export default function AdminBranchDetail() {
                     <td className="px-6 py-4 font-semibold text-gray-900 text-sm">{j.id}</td>
                     <td className="px-6 py-4 text-xs font-bold text-gray-600">{j.customer}</td>
                     <td className="px-6 py-4">
-                      <span className={`text-xs font-semibold px-2.5 py-1 rounded border uppercase tracking-widest ${jobStatusStyle(j.status)}`}>{j.status}</span>
+                      <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest ${jobStatusStyle(j.status)}`}>{j.status}</span>
                     </td>
                     <td className="px-6 py-4 text-xs font-bold text-gray-600">{j.driver}</td>
                     <td className="px-6 py-4 text-xs font-bold text-gray-600">{j.eta}</td>
@@ -580,5 +580,6 @@ export default function AdminBranchDetail() {
     </div>
   );
 }
+
 
 

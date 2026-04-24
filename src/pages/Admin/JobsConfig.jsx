@@ -6,7 +6,7 @@ export default function AdminJobsConfig() {
     <div className="flex flex-col gap-8 w-full max-w-[1440px] mx-auto pb-12">
       
       {/* ── Header ── */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-100 rounded-hero-sm text-hero-dark shadow-sm">
             <Settings2 size={20} />
@@ -23,7 +23,7 @@ export default function AdminJobsConfig() {
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 px-2">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 ">
         
         {/* Load Architecture (Left 8 Units) */}
         <div className="lg:col-span-8 space-y-8">
@@ -152,6 +152,7 @@ export default function AdminJobsConfig() {
     </div>
   );
 }
+
 
 
 

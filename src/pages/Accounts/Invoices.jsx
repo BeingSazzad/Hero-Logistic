@@ -35,7 +35,7 @@ export default function Invoices() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Invoices</h1>
           <p className="text-sm text-gray-500 mt-1">Manage and send customer invoices. Track payment status and follow up on overdue accounts.</p>
@@ -53,7 +53,7 @@ export default function Invoices() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 px-2 mb-2">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4  mb-2">
         {[
           { label: 'Total Outstanding', value: '$127,300', color: 'text-gray-900' },
           { label: 'Overdue Balance',   value: '$18,900',  color: 'text-red-600' },
@@ -153,5 +153,6 @@ export default function Invoices() {
     </div>
   );
 }
+
 
 

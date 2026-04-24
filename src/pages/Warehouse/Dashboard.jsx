@@ -18,7 +18,7 @@ export default function WarehouseDashboard() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
       
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="hero-h1">Overview</h1>
           <p className="hero-body text-gray-600 mt-1">
@@ -43,7 +43,7 @@ export default function WarehouseDashboard() {
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
       {/* Action Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 px-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 ">
         
         {/* Receive */}
         <button onClick={() => navigate('/warehouse/inbound')} className="lg:col-span-2 bg-[#FFCC00] hover:bg-[#E6B800] p-6 rounded-xl shadow-sm flex flex-col items-center justify-center text-center gap-3 group active:scale-95 transition-all">
@@ -96,7 +96,7 @@ export default function WarehouseDashboard() {
       </div>
 
       {/* Intelligence Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
         
         {/* Live Task Feed */}
         <div className="lg:col-span-2">
@@ -129,7 +129,7 @@ export default function WarehouseDashboard() {
                           <span className={`w-2 h-2 rounded-full ${task.type === 'Inbound' ? 'bg-[#FFCC00]' : 'bg-blue-500'}`}></span>
                           <span className="text-sm font-bold text-[#111]">{task.type}</span>
                         </div>
-                        <span className={`text-xs font-bold uppercase tracking-widest px-2 py-0.5 rounded border ${
+                        <span className={`text-xs font-bold uppercase tracking-widest  py-0.5 rounded border ${
                           task.priority === 'Critical' ? 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2] animate-pulse' :
                           task.priority === 'High'     ? 'bg-yellow-50 text-yellow-700 border-yellow-200' :
                                                          'bg-gray-50 text-gray-500 border-gray-200'
@@ -202,7 +202,7 @@ export default function WarehouseDashboard() {
                   <span className="text-xs font-semibold text-[#111] uppercase">{g.gate}</span>
                   <p className="text-xs text-gray-400 font-medium mt-0.5">{g.vehicle}</p>
                 </div>
-                <span className={`text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-md border ${g.cls}`}>{g.status}</span>
+                <span className={`text-xs font-bold uppercase tracking-widest .5 py-1 rounded-md border ${g.cls}`}>{g.status}</span>
               </div>
             ))}
           </div>
@@ -212,6 +212,7 @@ export default function WarehouseDashboard() {
     </div>
   );
 }
+
 
 
 

@@ -71,7 +71,7 @@ export default function CustomerTracking() {
               <p className="font-bold text-gray-900 text-sm">{t.id}</p>
               <div className="flex items-center gap-1 text-xs text-gray-500 mt-1"><MapPin size={10} />{t.from} → {t.to}</div>
               <div className="flex justify-between items-center mt-2">
-                <span className="text-xs font-semibold uppercase text-yellow-700 bg-yellow-100 px-2 py-0.5 rounded-full">{t.status}</span>
+                <span className="text-xs font-semibold uppercase text-yellow-700 bg-yellow-100  py-0.5 rounded-full">{t.status}</span>
                 <span className="text-xs text-gray-500 flex items-center gap-1"><Clock size={10} /> ETA {t.eta}</span>
               </div>
               <div className="w-full h-1.5 bg-gray-100 rounded-full mt-2 overflow-hidden">
@@ -88,11 +88,11 @@ export default function CustomerTracking() {
             <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
             <div className="absolute" style={{ top: '45%', left: '35%' }}>
               <div className="w-6 h-6 bg-green-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center"><MapPin size={13} color="white" /></div>
-              <div className="bg-white text-xs font-bold px-2 py-0.5 rounded-full shadow mt-1 whitespace-nowrap">{selected.from}</div>
+              <div className="bg-white text-xs font-bold  py-0.5 rounded-full shadow mt-1 whitespace-nowrap">{selected.from}</div>
             </div>
             <div className="absolute" style={{ top: '55%', right: '30%' }}>
               <div className="w-6 h-6 bg-red-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center"><MapPin size={13} color="white" /></div>
-              <div className="bg-white text-xs font-bold px-2 py-0.5 rounded-full shadow mt-1 whitespace-nowrap">{selected.to}</div>
+              <div className="bg-white text-xs font-bold  py-0.5 rounded-full shadow mt-1 whitespace-nowrap">{selected.to}</div>
             </div>
             {/* Truck dot */}
             <div className="absolute" style={{ top: '48%', left: '52%' }}>
@@ -144,7 +144,7 @@ export default function CustomerTracking() {
                                <p className={`text-xs font-semibold uppercase tracking-[0.2em] ${step.current ? 'text-yellow-600' : 'text-gray-400'}`}>
                                   {step.city}
                                </p>
-                               {step.done && <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded tracking-widest uppercase">Scanned</span>}
+                               {step.done && <span className="text-xs font-bold text-emerald-600 bg-emerald-50  py-0.5 rounded tracking-widest uppercase">Scanned</span>}
                             </div>
                             
                             <div className={`mt-2 p-4 rounded-2xl border transition-all ${step.current ? 'bg-gray-900 border-gray-800 shadow-2xl translate-x-1' : 'bg-gray-50/50 border-gray-100'}`}>
@@ -190,6 +190,7 @@ export default function CustomerTracking() {
     </div>
   );
 }
+
 
 
 

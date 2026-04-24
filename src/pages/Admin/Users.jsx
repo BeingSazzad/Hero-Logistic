@@ -49,7 +49,7 @@ export default function AdminUsers() {
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 flex items-center justify-center bg-white border border-gray-100 rounded-hero-sm text-hero-dark shadow-sm">
             <User size={20} />
@@ -124,7 +124,7 @@ export default function AdminUsers() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-md border uppercase tracking-widest ${roleColor(u.role)}`}>{u.role}</span>
+                    <span className={`text-xs font-semibold .5 py-1 rounded-md border uppercase tracking-widest ${roleColor(u.role)}`}>{u.role}</span>
                   </td>
                   <td className="px-6 py-4">
                     <span className="text-xs font-bold text-gray-600">{u.branch}</span>
@@ -141,7 +141,7 @@ export default function AdminUsers() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-md border uppercase tracking-widest ${u.status === 'Active' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 'bg-gray-100 text-gray-500 border-gray-200'}`}>
+                    <span className={`text-xs font-semibold .5 py-1 rounded-md border uppercase tracking-widest ${u.status === 'Active' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 'bg-gray-100 text-gray-500 border-gray-200'}`}>
                       {u.status === 'Active' ? <span className="flex items-center gap-1"><CheckCircle2 size={10}/> {u.status}</span> : u.status}
                     </span>
                   </td>
@@ -160,6 +160,7 @@ export default function AdminUsers() {
     </div>
   );
 }
+
 
 
 

@@ -97,7 +97,7 @@ function GlobalSearch() {
                         <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{r.desc}</p>
                       </div>
                     </div>
-                    <span className="text-xs font-semibold uppercase tracking-widest text-gray-400 border border-gray-100 px-2 py-1 rounded-lg group-hover:border-gray-200">{r.status}</span>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-gray-400 border border-gray-100  py-1 rounded-lg group-hover:border-gray-200">{r.status}</span>
                   </div>
                 ))}
               </div>
@@ -364,12 +364,13 @@ export default function SidebarLayout({
           </div>
         </header>
 
-        <div className="flex-1 overflow-auto bg-gray-50 p-6">
+        <div className="flex-1 overflow-auto bg-gray-50 px-8 py-6">
           {children ?? <Outlet />}
         </div>
       </main>
     </div>
   );
 }
+
 
 

@@ -21,7 +21,7 @@ export default function AdminInviteUser() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
 
       {/* Header */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div className="flex items-center gap-4">
           <button onClick={() => navigate('/admin/users')}
             className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-all shadow-sm">
@@ -43,7 +43,7 @@ export default function AdminInviteUser() {
 
       <div className="w-full h-px bg-gray-200/60 mb-2"></div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
 
         {/* Left col: Profile */}
         <div className="md:col-span-1 flex flex-col gap-6">
@@ -133,7 +133,7 @@ export default function AdminInviteUser() {
                     <p className={`text-xs leading-relaxed font-medium relative z-10 ${isSelected && r.dark ? 'text-gray-400' : 'text-gray-500'}`}>
                       {r.desc}
                     </p>
-                    <div className={`text-xs font-semibold uppercase tracking-widest px-2 py-0.5 rounded w-fit relative z-10 ${
+                    <div className={`text-xs font-semibold uppercase tracking-widest  py-0.5 rounded w-fit relative z-10 ${
                       isSelected && r.dark ? 'bg-[#FFCC00]/20 text-[#FFCC00]' : 'bg-gray-100 text-gray-500'
                     }`}>
                       {r.access}
@@ -149,6 +149,7 @@ export default function AdminInviteUser() {
     </div>
   );
 }
+
 
 
 

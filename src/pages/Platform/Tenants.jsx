@@ -28,7 +28,7 @@ export default function Tenants() {
           <div className="flex gap-1 mb-8">
             {[1,2,3,4].map(s => <div key={s} className={`flex-1 h-1.5 rounded-full ${s <= wizardStep ? 'bg-[#FFCC00]' : 'bg-gray-100'}`} />)}
           </div>
-          <p className="text-xs text-yellow-600 font-bold uppercase tracking-widest mb-1 shadow-sm w-fit border border-yellow-100 px-2 py-0.5 rounded bg-yellow-50">Step {wizardStep} of 4</p>
+          <p className="text-xs text-yellow-600 font-bold uppercase tracking-widest mb-1 shadow-sm w-fit border border-yellow-100  py-0.5 rounded bg-yellow-50">Step {wizardStep} of 4</p>
 
           {wizardStep === 1 && <>
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Company Information</h2>
@@ -58,7 +58,7 @@ export default function Tenants() {
                     </div>
                     <div className="text-right">
                       <p className="font-semibold text-gray-900">{p.price}</p>
-                      {p.recommended && <span className="text-xs bg-[#FFCC00] text-black px-2 py-0.5 rounded font-bold uppercase tracking-widest mt-1 inline-block">Recommended</span>}
+                      {p.recommended && <span className="text-xs bg-[#FFCC00] text-black  py-0.5 rounded font-bold uppercase tracking-widest mt-1 inline-block">Recommended</span>}
                     </div>
                   </div>
                 </div>
@@ -114,7 +114,7 @@ export default function Tenants() {
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
       
       {/* Updated Header - Matching Reference Style */}
-      <div className="flex justify-between items-center mb-2 px-2">
+      <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="hero-h1">Companies</h1>
           <p className="hero-body text-gray-600 mt-1">Manage all companies using the platform and their accounts.</p>
@@ -229,6 +229,7 @@ export default function Tenants() {
     </div>
   );
 }
+
 
 
 
