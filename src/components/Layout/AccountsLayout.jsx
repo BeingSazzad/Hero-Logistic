@@ -8,7 +8,7 @@ import SidebarLayout from './SidebarLayout';
 import { useAuthStore } from '../../store/authStore';
 
 const navConfig = [
-  { type: 'link', to: '/accounts',                label: 'Accounts Intelligence',      icon: LayoutDashboard, end: true },
+  { type: 'link', to: '/accounts',                label: 'Command Center',      icon: LayoutDashboard, end: true },
   { type: 'link', to: '/accounts/pod-review',     label: 'POD Review',     icon: FileCheck, badge: 12 },
   { type: 'link', to: '/accounts/invoices',       label: 'My Invoices',       icon: FileText },
   { type: 'link', to: '/accounts/payments',       label: 'Payments',       icon: CreditCard },

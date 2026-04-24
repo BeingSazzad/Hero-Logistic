@@ -57,7 +57,7 @@ function GlobalSearch() {
         <span className="text-xs font-bold flex-1 select-none">Quick Search...</span>
         <div className="flex items-center gap-1 opacity-40">
            <Command size={10} />
-           <span className="text-[10px] font-black uppercase">K</span>
+           <span className="text-xs font-black uppercase">K</span>
         </div>
       </div>
 
@@ -82,7 +82,7 @@ function GlobalSearch() {
             {query.length <= 2 ? (
               <div className="p-12 text-center">
                 <Search size={32} className="mx-auto text-gray-100 mb-3" />
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Type to search the registry</p>
+                <p className="text-xs font-black text-gray-400 uppercase tracking-widest">Type to search the registry</p>
               </div>
             ) : results.length > 0 ? (
               <div className="space-y-1">
@@ -94,17 +94,17 @@ function GlobalSearch() {
                       </div>
                       <div>
                         <p className="text-sm font-black text-gray-900 leading-none mb-1">{r.title}</p>
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{r.desc}</p>
+                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{r.desc}</p>
                       </div>
                     </div>
-                    <span className="text-[9px] font-black uppercase tracking-widest text-gray-400 border border-gray-100 px-2 py-1 rounded-lg group-hover:border-gray-200">{r.status}</span>
+                    <span className="text-xs font-black uppercase tracking-widest text-gray-400 border border-gray-100 px-2 py-1 rounded-lg group-hover:border-gray-200">{r.status}</span>
                   </div>
                 ))}
               </div>
             ) : (
               <div className="p-12 text-center">
                 <AlertCircle size={32} className="mx-auto text-red-50 mb-3" />
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">No matching records found</p>
+                <p className="text-xs font-black text-gray-400 uppercase tracking-widest">No matching records found</p>
               </div>
             )}
           </div>
@@ -120,7 +120,7 @@ function GlobalSearch() {
                  <span className="text-[8px] font-black uppercase text-gray-400">Select</span>
                </div>
             </div>
-            <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Global Asset Search</p>
+            <p className="text-xs font-black text-gray-400 uppercase tracking-widest">Global Asset Search</p>
           </div>
         </div>
       )}
@@ -273,15 +273,15 @@ export default function SidebarLayout({
   return (
     <div className="flex h-screen w-full overflow-hidden bg-gray-50 font-sans">
       {/* ── Sidebar ── */}
-      <aside className="w-[230px] min-w-[230px] bg-[#111111] shrink-0 flex flex-col h-full overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
+      <aside className="w-[260px] min-w-[260px] bg-[#111111] shrink-0 flex flex-col h-full overflow-y-auto hidden-scrollbar">
 
         {/* Brand */}
-        <div className="px-5 pt-6 pb-5 border-b border-white/5 shrink-0">
-          <div className="flex items-center mb-2">
+        <div className="px-6 pt-7 pb-6 border-b border-white/5 shrink-0">
+          <div className="flex items-center mb-2.5">
             <img
               src="/logo.png"
               alt="HERO Logistics"
-              className="h-10 object-contain cursor-pointer"
+              className="h-9 object-contain cursor-pointer"
               onClick={() => navigate('/')}
               onError={(e) => {
                 e.target.style.display = 'none';
@@ -290,30 +290,30 @@ export default function SidebarLayout({
             />
             {/* Fallback Text Logo */}
             <div className="hidden items-center gap-2.5 cursor-pointer" onClick={() => navigate('/')}>
-              <div className="w-8 h-8 bg-[#FFCC00] rounded-lg flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,204,0,0.25)]">
+              <div className="w-8 h-8 bg-[#FFCC00] rounded-hero-sm flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,204,0,0.25)]">
                 <Zap size={16} className="text-[#111]" strokeWidth={3} />
               </div>
               <span className="text-white font-black text-xl tracking-tighter uppercase">HERO</span>
             </div>
           </div>
-          <div className="flex items-center gap-1.5 ml-1">
+          <div className="flex items-center gap-1.5 ml-0.5">
             {roleIcon && <span className="text-[#FFCC00] shrink-0">{roleIcon}</span>}
             <p className="text-[#FFCC00] text-xs font-black tracking-[0.2em] uppercase whitespace-nowrap truncate">{roleName}</p>
           </div>
 
           {/* Branch badge */}
           {branchBadge && user.branchName && (
-            <div className="flex items-center gap-2 mt-4 bg-white/5 px-3 py-2 rounded-lg border border-white/5">
+            <div className="flex items-center gap-2 mt-5 bg-white/5 px-3 py-2 rounded-hero-sm border border-white/5">
               <div className="min-w-0 flex-1">
-                <p className="text-xs font-black text-gray-500 uppercase tracking-widest">Active Branch</p>
-                <p className="text-white text-xs font-bold truncate">{user.branchName}</p>
+                <p className="text-xs font-black text-gray-500 uppercase tracking-widest mb-0.5">Terminal</p>
+                <p className="text-white text-xs font-black truncate">{user.branchName}</p>
               </div>
             </div>
           )}
         </div>
 
         {/* Nav */}
-        <nav className="flex flex-col gap-0.5 px-3 pt-4 pb-4 flex-1">
+        <nav className="flex flex-col gap-1 px-4 pt-5 pb-5 flex-1">
           {navConfig.map((item, i) =>
             item.type === 'group'
               ? <SideNavGroup key={i} group={item} />
@@ -322,16 +322,16 @@ export default function SidebarLayout({
         </nav>
 
         {/* Profile Footer */}
-        <div className="px-3 pb-5 border-t border-white/5 pt-3 shrink-0">
+        <div className="px-4 pb-6 border-t border-white/5 pt-4 shrink-0">
           <button
             onClick={() => {
               useAuthStore.getState().logout();
               navigate('/login');
             }}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-500 hover:text-white hover:bg-red-500/10 transition-all"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-hero-sm text-xs font-black text-red-500 hover:text-white hover:bg-red-500/10 transition-all uppercase tracking-widest"
           >
-            <LogOut size={15} />
-            <span>Logout</span>
+            <LogOut size={14} />
+            <span>Sign Out</span>
           </button>
         </div>
       </aside>
@@ -339,10 +339,10 @@ export default function SidebarLayout({
       {/* ── Main Content ── */}
       <main className="flex-1 flex flex-col h-full overflow-hidden">
         {/* Topbar */}
-        <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-8 shrink-0 shadow-sm z-40">
+        <header className="h-14 bg-white border-b border-gray-100 flex items-center justify-between px-8 shrink-0 z-40">
           <div className="flex items-center gap-8">
             <div className="flex flex-col">
-              <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] leading-none mb-1">Navigation / {roleName}</p>
+              <p className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] leading-none mb-1">{roleName}</p>
               <p className="text-xs font-black text-gray-900 uppercase tracking-tight">{topbarTitle}</p>
             </div>
             {showSearch && <GlobalSearch />}
@@ -351,23 +351,24 @@ export default function SidebarLayout({
           <div className="flex items-center gap-6">
             {topbarExtra}
             <NotificationBell notifications={notifications} />
-            <div className="h-8 w-px bg-gray-100 mx-1"></div>
+            <div className="h-6 w-px bg-gray-100 mx-1"></div>
             <div className="flex items-center gap-3">
               <div className="text-right hidden sm:block">
-                <p className="text-xs font-black text-[#111] leading-none mb-1 uppercase tracking-tight">{user.name || 'Dispatcher'}</p>
-                <p className="text-[9px] font-bold text-gray-400 uppercase tracking-[0.15em]">{user.role || 'Admin'}</p>
+                <p className="text-xs font-black text-[#111] leading-none mb-1 uppercase tracking-tight">{user.name || 'Operator'}</p>
+                <p className="text-xs font-black text-gray-400 uppercase tracking-[0.15em]">{user.role || 'Admin'}</p>
               </div>
-              <div className="w-10 h-10 rounded-2xl bg-[#FFCC00] border-2 border-white flex items-center justify-center font-black text-[#111] text-xs shadow-xl shadow-[#FFCC00]/20">
+              <div className="w-9 h-9 rounded-hero-sm bg-[#FFCC00] border border-black/5 flex items-center justify-center font-black text-[#111] text-xs shadow-sm">
                 {initials}
               </div>
             </div>
           </div>
         </header>
 
-        <div className="flex-1 overflow-auto bg-gray-50 p-8 pt-6">
+        <div className="flex-1 overflow-auto bg-gray-50 p-6">
           {children ?? <Outlet />}
         </div>
       </main>
     </div>
   );
 }
+

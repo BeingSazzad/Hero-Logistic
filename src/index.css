@@ -43,8 +43,8 @@
   /* ── Global UI Weight Reset ── */
   button,
   .btn {
-    font-weight: 600 !important;
-    /* Buttons -> Semibold */
+    font-weight: 700 !important;
+    /* Buttons -> Bold */
   }
 
   label {
@@ -116,14 +116,20 @@
 
   /* ── Buttons ── */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 px-5 rounded-xl text-base font-semibold transition-all cursor-pointer select-none active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 px-5 rounded-xl text-base font-bold transition-all cursor-pointer select-none active:scale-95;
     height: 48px;
     /* Standard 48px touch target */
   }
 
+  .btn-sm {
+    @apply inline-flex items-center justify-center gap-2 px-4 rounded-lg text-sm font-bold transition-all cursor-pointer select-none active:scale-95;
+    height: 44px;
+    /* Small 44px touch target */
+  }
+
   /* Large CTA buttons used in Driver module (full-width action cards) */
   .btn-cta {
-    @apply w-full inline-flex items-center justify-center gap-2.5 rounded-2xl text-base font-semibold transition-all active:scale-[0.98] cursor-pointer select-none;
+    @apply w-full inline-flex items-center justify-center gap-2.5 rounded-2xl text-base font-bold transition-all active:scale-[0.98] cursor-pointer select-none;
     height: 48px;
   }
 

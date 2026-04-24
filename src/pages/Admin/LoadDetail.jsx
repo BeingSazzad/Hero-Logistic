@@ -85,8 +85,8 @@ export default function AdminLoadDetail() {
         <div className="fixed top-24 right-8 bg-red-600 text-white px-6 py-4 rounded-2xl shadow-2xl z-[100] flex items-center gap-3 animate-in slide-in-from-right-10 border border-red-700">
            <ShieldAlert size={20} />
            <div>
-              <p className="text-sm font-black uppercase tracking-widest">Override Executed</p>
-              <p className="text-xs font-bold text-red-100">Super admin bypass logged successfully.</p>
+              <p className="text-sm font-semibold">Override Executed</p>
+              <p className="text-xs font-medium text-red-100">Super admin bypass logged successfully.</p>
            </div>
         </div>
       )}
@@ -95,7 +95,7 @@ export default function AdminLoadDetail() {
             {/* LEFT COMPONENT: Dynamic Network Journey */}
         <div className="lg:col-span-1 flex flex-col gap-6">
           <div className="card bg-white shadow-sm p-6 border border-gray-100">
-            <h2 className="text-sm font-black text-gray-900 tracking-widest uppercase border-b border-gray-100 pb-4 mb-6">Transport Network Flow</h2>
+            <h2 className="text-sm font-semibold text-gray-800 border-b border-gray-100 pb-4 mb-6">Transport Network Flow</h2>
             
             <div className="space-y-0 relative">
                <div className="absolute top-4 bottom-8 left-[11px] w-0.5 bg-gray-50"></div>
@@ -416,15 +416,15 @@ export default function AdminLoadDetail() {
               <div className="border-2 border-gray-900 rounded-xl p-5 font-mono space-y-3">
                 <div className="flex justify-between items-start">
                   <div>
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">HERO LOGISTICS</p>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">HERO LOGISTICS</p>
                     <p className="text-xs font-black text-gray-900 uppercase tracking-widest mt-0.5">Priority Freight</p>
                   </div>
                   <span className="text-xs font-black bg-[#FFCC00] text-black px-2 py-0.5 rounded">EXPRESS</span>
                 </div>
                 <div className="border-t border-dashed border-gray-300 pt-3">
-                  <p className="text-[10px] text-gray-400 uppercase tracking-widest">FROM</p>
+                  <p className="text-xs text-gray-400 uppercase tracking-widest">FROM</p>
                   <p className="text-sm font-black text-gray-900">Sydney Central Depot</p>
-                  <p className="text-[10px] text-gray-500 mt-2 uppercase tracking-widest">TO</p>
+                  <p className="text-xs text-gray-500 mt-2 uppercase tracking-widest">TO</p>
                   <p className="text-sm font-black text-gray-900">Melbourne Depot</p>
                 </div>
                 {/* Barcode placeholder */}
@@ -437,7 +437,7 @@ export default function AdminLoadDetail() {
                   </div>
                   <p className="text-center text-xs font-black tracking-[0.3em] text-gray-900 mt-1">{id || 'SHP-9000'}</p>
                 </div>
-                <div className="border-t border-dashed border-gray-300 pt-3 flex justify-between text-[10px] text-gray-400 uppercase tracking-widest">
+                <div className="border-t border-dashed border-gray-300 pt-3 flex justify-between text-xs text-gray-400 uppercase tracking-widest">
                   <span>Weight: 18.4t</span>
                   <span>Items: 1</span>
                   <span>{new Date().toLocaleDateString()}</span>
@@ -457,4 +457,5 @@ export default function AdminLoadDetail() {
     </div>
   );
 }
+
 

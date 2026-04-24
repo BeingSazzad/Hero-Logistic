@@ -8,11 +8,11 @@ import SidebarLayout from './SidebarLayout';
 import { useAuthStore } from '../../store/authStore';
 
 const navConfig = [
-  { type: 'link', to: '/dispatch', label: 'Overview', icon: LayoutDashboard, end: true },
+  { type: 'link', to: '/dispatch', label: 'Command Center', icon: LayoutDashboard, end: true },
   { type: 'link', to: '/dispatch/loads', label: 'Loads', icon: Package },
   { type: 'link', to: '/dispatch/inbox', label: 'Load Inbox', icon: Inbox },
   { type: 'link', to: '/dispatch/terminal', label: 'Terminal Workspace', icon: Zap },
-  { type: 'link', to: '/dispatch/tracking', label: 'Live Tracking', icon: MapPin },
+  { type: 'link', to: '/dispatch/tracking', label: 'Fleet Monitor', icon: MapPin },
   { type: 'link', to: '/dispatch/fleet', label: 'Fleet Assets', icon: Truck },
   { type: 'link', to: '/dispatch/vehicle-registry', label: 'Vehicle Registry', icon: ClipboardList },
   { type: 'link', to: '/dispatch/drivers', label: 'Roster Control', icon: Users },

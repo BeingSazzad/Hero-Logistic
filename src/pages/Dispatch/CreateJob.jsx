@@ -103,7 +103,7 @@ export default function DispatchCreateJob() {
     setShowReceiverDropdown(false);
   };
   const clearReceiver = () => { setSelectedReceiver(null); setReceiverSearch(''); };
-  
+
   const copyReceiverFromSender = () => {
     if (selectedSender) {
       setSelectedReceiver(selectedSender);
@@ -153,7 +153,7 @@ export default function DispatchCreateJob() {
         <div className="flex items-center gap-4">
           <button
             onClick={() => navigate('/dispatch/loads')}
-            className="w-10 h-10 flex items-center justify-center bg-white border border-gray-200 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-all shadow-sm"
+            className="w-12 h-12 flex items-center justify-center bg-white border border-gray-200 rounded-xl text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-all shadow-sm"
           >
             <ArrowLeft size={20} />
           </button>
@@ -162,7 +162,6 @@ export default function DispatchCreateJob() {
               <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Create Load</h1>
               <span className="text-xs font-bold bg-[#F0FDF4] text-[#16A34A] border border-[#DCFCE7] px-2.5 py-1 rounded-md uppercase tracking-widest">Draft</span>
             </div>
-            <p className="text-sm text-gray-500 mt-1">Configure your load type and add items below.</p>
           </div>
         </div>
         <div className="flex gap-4">
@@ -227,7 +226,6 @@ export default function DispatchCreateJob() {
                 </div>
                 <div>
                   <h2 className="text-sm font-black text-gray-900 uppercase tracking-wide">Sender Identity</h2>
-                  <p className="text-xs text-gray-400 font-bold uppercase mt-0.5 tracking-widest">Originating Party</p>
                 </div>
               </div>
               <div className="flex bg-gray-100 p-1 rounded-xl border border-gray-200/60">
@@ -235,7 +233,7 @@ export default function DispatchCreateJob() {
                   <button
                     key={mode}
                     onClick={() => { setSenderMode(mode); clearSender(); }}
-                    className={`px-5 py-2 text-xs font-black rounded-lg transition-all uppercase tracking-widest ${senderMode === mode ? 'bg-white text-gray-900 shadow-sm border border-gray-200/50' : 'text-gray-500 hover:text-gray-700'}`}
+                    className={`btn-sm uppercase tracking-widest ${senderMode === mode ? 'bg-white text-gray-900 shadow-sm border border-gray-200/50' : 'text-gray-500 hover:text-gray-700 bg-transparent border-transparent'}`}
                   >
                     {mode === 'guest' ? 'Quick Guest' : 'Existing Client'}
                   </button>
@@ -347,7 +345,6 @@ export default function DispatchCreateJob() {
                 </div>
                 <div>
                   <h2 className="text-sm font-black text-gray-900 uppercase tracking-wide">Receiver Identity</h2>
-                  <p className="text-xs text-gray-400 font-bold uppercase mt-0.5 tracking-widest">Destination Party</p>
                 </div>
               </div>
               <div className="flex bg-gray-100 p-1 rounded-xl border border-gray-200/60">
@@ -355,7 +352,7 @@ export default function DispatchCreateJob() {
                   <button
                     key={mode}
                     onClick={() => { setReceiverMode(mode); clearReceiver(); }}
-                    className={`px-5 py-2 text-xs font-black rounded-lg transition-all uppercase tracking-widest ${receiverMode === mode ? 'bg-white text-gray-900 shadow-sm border border-gray-200/50' : 'text-gray-500 hover:text-gray-700'}`}
+                    className={`btn-sm uppercase tracking-widest ${receiverMode === mode ? 'bg-white text-gray-900 shadow-sm border border-gray-200/50' : 'text-gray-500 hover:text-gray-700 bg-transparent border-transparent'}`}
                   >
                     {mode === 'guest' ? 'Quick Guest' : 'Existing Client'}
                   </button>
@@ -470,11 +467,10 @@ export default function DispatchCreateJob() {
                 <h2 className="text-sm font-black text-gray-900 uppercase tracking-wide flex items-center gap-2">
                   <Boxes size={18} className="text-blue-600" /> Manifest Items
                 </h2>
-                <p className="text-xs text-gray-400 mt-0.5 font-bold uppercase tracking-widest">Detailed Content Declaration</p>
               </div>
               <button
                 onClick={addItem}
-                className="flex items-center gap-2 bg-gray-900 hover:bg-black text-[#FFCC00] px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-lg active:scale-95"
+                className="btn-sm bg-gray-900 hover:bg-black text-[#FFCC00] uppercase tracking-widest shadow-lg"
               >
                 <Plus size={14} strokeWidth={4} /> Add Item
               </button>
@@ -649,12 +645,12 @@ export default function DispatchCreateJob() {
                       </div>
                     </div>
                     <div className="pt-4 border-t border-gray-100 flex justify-end">
-                      <button 
+                      <button
                         onClick={(e) => {
                           e.stopPropagation();
                           alert(`Shipping Label Generated for Item #${idx + 1}`);
                         }}
-                        className="flex items-center gap-2 bg-gray-50 hover:bg-[#FFCC00] hover:text-black hover:border-[#FFCC00] text-gray-700 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all border border-gray-200 shadow-sm active:scale-95"
+                        className="btn-sm bg-gray-50 hover:bg-[#FFCC00] hover:text-black hover:border-[#FFCC00] text-gray-700 uppercase tracking-widest border border-gray-200 shadow-sm"
                       >
                         <Barcode size={16} /> Generate Shipping Label
                       </button>
@@ -667,7 +663,7 @@ export default function DispatchCreateJob() {
 
             <button
               onClick={addItem}
-              className="w-full py-4 border-2 border-dashed border-gray-200 rounded-xl text-sm font-bold text-gray-400 hover:border-violet-300 hover:text-violet-500 hover:bg-violet-50/30 transition-all flex items-center justify-center gap-2"
+              className="btn w-full border-2 border-dashed border-gray-200 text-gray-400 hover:border-violet-300 hover:text-violet-500 hover:bg-violet-50/30 bg-transparent shadow-none uppercase tracking-widest"
             >
               <Plus size={16} /> Add Another Item
             </button>
@@ -748,12 +744,9 @@ export default function DispatchCreateJob() {
           </div>
 
           <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
-            <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide flex items-center gap-2 mb-2">
-              <Shield size={14} className="text-emerald-500" /> Declaration
+            <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide flex items-center gap-2">
+              <Shield size={14} className="text-emerald-500" /> Declaration Confirmed
             </h3>
-            <p className="text-xs text-gray-500 leading-relaxed">
-              By creating this Load, you confirm all items are correctly declared and comply with transport regulations.
-            </p>
           </div>
         </div>
       </div>

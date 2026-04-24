@@ -31,7 +31,7 @@ export default function DriverMessages() {
     if (!finalMsg.trim()) return;
     
     setMessages([...messages, {
-      id: Date.now(),
+      id: messages.length + 100,
       text: finalMsg,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       sender: 'driver',
@@ -64,8 +64,8 @@ export default function DriverMessages() {
                   <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-[#111] rounded-full"></span>
                </div>
                <div>
-                  <h1 className="font-bold text-sm tracking-tight">Fleet Support</h1>
-                  <p className="text-xs text-[#FFCC00] font-black uppercase tracking-widest mt-0.5">SYD_DISPATCH_01</p>
+                  <h1 className="font-semibold text-sm tracking-tight">Fleet Support</h1>
+                  <p className="text-xs font-medium text-[#FFCC00] mt-0.5">SYD_DISPATCH_01</p>
                </div>
             </div>
          </div>

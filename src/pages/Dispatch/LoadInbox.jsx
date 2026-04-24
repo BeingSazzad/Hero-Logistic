@@ -74,52 +74,52 @@ export default function DispatchLoadInbox() {
   };
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-[1200px] mx-auto pb-12">
+    <div className="flex flex-col gap-6 w-full max-w-[1600px] mx-auto pb-10">
 
       {/* ── Header ── */}
-      <div className="flex justify-between items-start mb-2 px-2">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
         <div>
           <div className="flex items-center gap-4">
-            <h1 className="text-3xl font-black text-gray-900 tracking-tight uppercase">Load Inbox</h1>
+            <h1 className="hero-h1">Load Inbox</h1>
             {pendingCount > 0 && (
-              <span className="text-[10px] font-black bg-[#FFCC00] text-black px-3 py-1.5 rounded-xl uppercase tracking-widest animate-pulse shadow-lg shadow-yellow-200">
+              <span className="text-xs font-black bg-brand text-black px-2.5 py-1 rounded-full uppercase tracking-widest animate-pulse shadow-sm shadow-brand/30">
                 {pendingCount} Pending
               </span>
             )}
           </div>
-          <p className="text-sm font-bold text-gray-500 mt-1 uppercase tracking-widest">
-            Field-submitted draft loads — Review & convert to active
+          <p className="hero-body text-gray-600 mt-1">
+            Field-submitted draft loads — Review &amp; convert to active
           </p>
         </div>
         <button
           onClick={() => navigate('/dispatch/loads/create')}
-          className="flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#111] text-[#FFCC00] text-[10px] font-black uppercase tracking-widest hover:bg-black transition-all shadow-xl active:scale-95"
+          className="btn btn-dark"
         >
           <Plus size={16} /> New Manual Load
         </button>
       </div>
 
-      <div className="w-full h-px bg-gray-200/60 mb-2" />
+      <div className="w-full h-px bg-gray-100" />
 
       {/* ── Filters ── */}
-      <div className="flex items-center gap-4 flex-wrap px-2">
-        <div className="relative flex-1 max-w-sm group">
-          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" />
+      <div className="flex items-center gap-4 flex-wrap">
+        <div className="relative flex-1 lg:w-80 lg:flex-none">
+          <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
             placeholder="Search by ID, Driver, or Origin..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full bg-white border border-gray-200 rounded-2xl py-3.5 pl-12 pr-4 text-sm font-bold focus:outline-none focus:ring-4 focus:ring-[#FFCC00]/10 focus:border-[#FFCC00] transition-all shadow-sm"
+            className="w-full bg-white border border-gray-200 rounded-hero-sm py-2 pl-10 pr-4 text-sm font-medium focus:outline-none focus:ring-4 focus:ring-brand/10 focus:border-brand transition-all shadow-sm"
           />
         </div>
-        <div className="flex bg-gray-100 p-1 rounded-2xl border border-gray-200 shadow-inner">
+        <div className="flex bg-gray-50 p-1 rounded-hero-sm border border-gray-200 shadow-inner">
           {['All', 'Pending', 'High'].map(f => (
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`px-4 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
-                filter === f ? 'bg-white text-gray-900 shadow-md border border-gray-200' : 'text-gray-500 hover:text-gray-900'
+              className={`px-4 py-1.5 rounded-md text-xs font-black uppercase tracking-widest transition-all ${
+                filter === f ? 'bg-white text-gray-900 shadow-sm border border-gray-200' : 'text-gray-500 hover:text-gray-900'
               }`}
             >
               {f}
@@ -129,12 +129,12 @@ export default function DispatchLoadInbox() {
       </div>
 
       {/* ── Inbox List ── */}
-      <div className="flex flex-col gap-4 px-2">
+      <div className="flex flex-col gap-5">
         {drafts.length === 0 ? (
-          <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-24 flex flex-col items-center text-center">
-            <Inbox size={56} className="text-gray-200 mb-4" strokeWidth={1} />
-            <h3 className="text-base font-black text-gray-900 uppercase tracking-tight">Inbox is Empty</h3>
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-2">No pending drafts from field drivers.</p>
+          <div className="card p-16 flex flex-col items-center text-center">
+            <Inbox size={48} className="text-gray-200 mb-4" strokeWidth={1.5} />
+            <h3 className="text-base font-semibold text-gray-900">Inbox is Empty</h3>
+            <p className="hero-body text-gray-600 mt-1">No pending drafts from field drivers.</p>
           </div>
         ) : (
           drafts.map(draft => {
@@ -145,40 +145,40 @@ export default function DispatchLoadInbox() {
             return (
               <div
                 key={draft.id}
-                className={`bg-white rounded-[2rem] border shadow-xl overflow-hidden transition-all ${
-                  state === 'approved' ? 'border-emerald-100 opacity-70' :
-                  state === 'rejected' ? 'border-red-100 opacity-50' :
-                  'border-gray-100 hover:shadow-2xl'
+                className={`card relative overflow-hidden transition-all ${
+                  state === 'approved' ? 'border-emerald-100 opacity-80' :
+                  state === 'rejected' ? 'border-red-100 opacity-60' :
+                  'border-gray-100 hover:border-gray-300'
                 }`}
               >
                 {/* Top bar indicator */}
-                <div className={`h-1 w-full ${
-                  draft.urgency === 'High' ? 'bg-red-400' : 'bg-amber-400'
+                <div className={`absolute top-0 left-0 right-0 h-1 w-full ${
+                  draft.urgency === 'High' ? 'bg-red-400' : 'bg-brand'
                 }`} />
 
-                <div className="p-6">
+                <div className="p-5 mt-1">
                   {/* Row 1: id + status + time */}
                   <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border-2 ${
-                        state === 'approved' ? 'bg-emerald-50 border-emerald-100' :
-                        state === 'rejected' ? 'bg-red-50 border-red-100' :
-                        'bg-amber-50 border-amber-100'
+                    <div className="flex items-center gap-4">
+                      <div className={`w-10 h-10 rounded-hero-sm flex items-center justify-center border-2 ${
+                        state === 'approved' ? 'bg-emerald-50 border-emerald-100 text-emerald-500' :
+                        state === 'rejected' ? 'bg-red-50 border-red-100 text-red-500' :
+                        'bg-brand/10 border-brand/20 text-brand'
                       }`}>
-                        {state === 'approved' ? <CheckCircle2 size={22} className="text-emerald-500" /> :
-                         state === 'rejected'  ? <X size={22} className="text-red-500" /> :
-                                                 <Clock size={22} className="text-amber-500" />}
+                        {state === 'approved' ? <CheckCircle2 size={18} /> :
+                         state === 'rejected'  ? <X size={18} /> :
+                                                 <Clock size={18} />}
                       </div>
                       <div>
                         <div className="flex items-center gap-3">
-                          <h3 className="font-mono font-black text-gray-900 text-lg tracking-tight leading-none">{draft.id}</h3>
+                          <h3 className="font-bold text-gray-900 text-lg tracking-tight leading-none">{draft.id}</h3>
                           {draft.urgency === 'High' && (
-                            <span className={`text-[9px] font-black uppercase tracking-[0.15em] px-2.5 py-1 rounded-xl border ${urgCfg.badge} flex items-center gap-1`}>
+                            <span className={`text-xs font-black uppercase tracking-[0.1em] px-2 py-0.5 rounded-sm border ${urgCfg.badge} flex items-center gap-1`}>
                               <AlertCircle size={10} /> Urgent
                             </span>
                           )}
                         </div>
-                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1">{draft.submittedAt}</p>
+                        <p className="text-xs font-medium text-gray-500 mt-1.5">{draft.submittedAt}</p>
                       </div>
                     </div>
 
@@ -187,26 +187,26 @@ export default function DispatchLoadInbox() {
                         <>
                           <button
                             onClick={() => setRejected(r => [...r, draft.id])}
-                            className="p-3 rounded-xl border border-red-100 text-red-400 hover:bg-red-50 transition-all"
+                            className="w-11 h-11 flex items-center justify-center rounded-hero-sm border border-red-100 text-red-400 hover:bg-red-50 transition-all"
                           >
                             <X size={18} />
                           </button>
                           <button
                             onClick={() => setApproved(a => [...a, draft.id])}
-                            className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#FFCC00] text-black text-[10px] font-black uppercase tracking-[0.1em] shadow-lg hover:bg-yellow-400 active:scale-[0.97] transition-all"
+                            className="btn-sm bg-brand text-black uppercase tracking-widest shadow-sm hover:brightness-105"
                           >
-                            <CheckCircle2 size={16} /> Approve & Convert
+                            <CheckCircle2 size={16} /> Approve
                           </button>
                         </>
                       )}
                       {state === 'approved' && (
-                        <span className="text-[10px] font-black text-emerald-600 uppercase tracking-widest flex items-center gap-2">
-                          <CheckCircle2 size={16} /> Converted to Load
+                        <span className="text-xs font-black text-emerald-600 uppercase tracking-widest flex items-center gap-2 bg-emerald-50 px-3 py-1.5 rounded-full">
+                          <CheckCircle2 size={14} /> Converted
                         </span>
                       )}
                       {state === 'rejected' && (
-                        <span className="text-[10px] font-black text-red-500 uppercase tracking-widest flex items-center gap-2">
-                          <X size={16} /> Draft Rejected
+                        <span className="text-xs font-black text-red-500 uppercase tracking-widest flex items-center gap-2 bg-red-50 px-3 py-1.5 rounded-full">
+                          <X size={14} /> Rejected
                         </span>
                       )}
                     </div>
@@ -214,42 +214,44 @@ export default function DispatchLoadInbox() {
 
                   {/* Row 2: meta chips */}
                   <div className="flex items-center gap-3 flex-wrap mb-4">
-                    <span className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest bg-gray-50 border border-gray-100 px-3 py-2 rounded-xl">
-                      <User size={13} /> {draft.driver}
+                    <span className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-md">
+                      <User size={12} className="text-gray-400" /> {draft.driver}
                     </span>
-                    <span className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest bg-gray-50 border border-gray-100 px-3 py-2 rounded-xl">
-                      <Car size={13} /> {draft.vehicleCount} Vehicles
+                    <span className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-md">
+                      <Car size={12} className="text-gray-400" /> {draft.vehicleCount} Units
                     </span>
-                    <span className="flex items-center gap-2 text-[10px] font-black text-blue-600 uppercase tracking-widest bg-blue-50 border border-blue-100 px-3 py-2 rounded-xl">
-                      <MapPin size={13} /> {draft.origin}
-                    </span>
-                    <ArrowRight size={14} className="text-gray-300" />
-                    <span className="flex items-center gap-2 text-[10px] font-black text-emerald-700 uppercase tracking-widest bg-emerald-50 border border-emerald-100 px-3 py-2 rounded-xl">
-                      <MapPin size={13} /> {draft.dest}
-                    </span>
+                    <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-50/50 border border-blue-100 rounded-md">
+                      <span className="flex items-center gap-1 text-xs font-medium text-blue-700">
+                         {draft.origin.split(' ')[0]}
+                      </span>
+                      <ArrowRight size={10} className="text-blue-300" />
+                      <span className="flex items-center gap-1 text-xs font-medium text-emerald-700">
+                         {draft.dest.split(' ')[0]}
+                      </span>
+                    </div>
                   </div>
 
                   {/* Expand / VINs */}
                   <button
                     onClick={() => setExpandedId(expanded ? null : draft.id)}
-                    className="w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-gray-50 border border-gray-100 text-[10px] font-black text-gray-500 uppercase tracking-widest hover:bg-gray-100 transition-all"
+                    className="w-full flex items-center justify-between px-4 py-2.5 rounded-hero-sm bg-gray-50 border border-gray-100 text-xs font-medium text-gray-500 hover:bg-gray-100 transition-all"
                   >
                     <span>View VIN Manifest ({draft.vins.length})</span>
-                    <ChevronRight size={16} className={`transition-transform ${expanded ? 'rotate-90' : ''}`} />
+                    <ChevronRight size={14} className={`transition-transform ${expanded ? 'rotate-90' : ''}`} />
                   </button>
 
                   {expanded && (
-                    <div className="mt-4 space-y-2">
+                    <div className="mt-3 space-y-2">
                       {draft.vins.map((vin, i) => (
-                        <div key={vin} className="flex items-center gap-4 bg-white border border-gray-100 rounded-2xl px-5 py-3 shadow-sm">
-                          <span className="text-[9px] font-black text-gray-300 uppercase w-5">#{i + 1}</span>
-                          <span className="font-mono text-sm font-black text-gray-900 tracking-widest flex-1">{vin}</span>
-                          <CheckCircle2 size={16} className="text-emerald-400" />
+                        <div key={vin} className="flex items-center gap-4 bg-white border border-gray-100 rounded-hero-sm px-4 py-2.5 shadow-sm">
+                          <span className="text-xs font-medium text-gray-300 w-5">#{i + 1}</span>
+                          <span className="font-mono text-xs font-semibold text-gray-900 tracking-widest flex-1">{vin}</span>
+                          <CheckCircle2 size={14} className="text-emerald-400" />
                         </div>
                       ))}
                       {draft.notes && (
-                        <div className="mt-3 bg-amber-50 border border-amber-100 rounded-2xl px-5 py-4">
-                          <p className="text-[9px] font-black text-amber-600 uppercase tracking-widest mb-1">Driver Notes</p>
+                        <div className="mt-2 bg-amber-50/50 border border-amber-100 rounded-hero-sm px-4 py-3">
+                          <p className="text-xs font-semibold text-amber-600 mb-0.5">Driver Notes</p>
                           <p className="text-xs font-bold text-amber-900">{draft.notes}</p>
                         </div>
                       )}
@@ -265,3 +267,4 @@ export default function DispatchLoadInbox() {
     </div>
   );
 }
+

@@ -67,25 +67,25 @@ export default function DriverCreateDraft() {
         <div className="w-28 h-28 bg-[#FFCC00] rounded-full flex items-center justify-center mb-8 shadow-2xl shadow-yellow-400/30 animate-bounce">
           <CheckCircle2 size={56} strokeWidth={2.5} />
         </div>
-        <h2 className="text-3xl font-black text-gray-900 uppercase tracking-tight">Draft Sent!</h2>
-        <p className="text-sm font-bold text-gray-500 mt-3 max-w-[260px] leading-snug">
+        <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Draft Sent!</h2>
+        <p className="text-sm font-medium text-gray-500 mt-3 max-w-[260px] leading-snug">
           Your draft load has been forwarded to dispatch for review and approval.
         </p>
         <div className="mt-8 bg-white border border-gray-100 rounded-3xl p-5 w-full max-w-[300px] shadow-sm text-left space-y-3">
           <div>
-            <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Origin</p>
-            <p className="text-xs font-black text-gray-900 mt-0.5">{origin}</p>
+            <p className="hero-metadata">Origin</p>
+            <p className="text-xs font-medium text-gray-900 mt-0.5">{origin}</p>
           </div>
           <div>
-            <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Destination</p>
-            <p className="text-xs font-black text-gray-900 mt-0.5">{dest}</p>
+            <p className="hero-metadata">Destination</p>
+            <p className="text-xs font-medium text-gray-900 mt-0.5">{dest}</p>
           </div>
           <div>
-            <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Vehicles</p>
-            <p className="text-xs font-black text-gray-900 mt-0.5">{vehicles.length} unit(s)</p>
+            <p className="hero-metadata">Vehicles</p>
+            <p className="text-xs font-medium text-gray-900 mt-0.5">{vehicles.length} unit(s)</p>
           </div>
         </div>
-        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-6">Returning to dashboard...</p>
+        <p className="text-xs font-medium text-gray-400 mt-6">Returning to dashboard...</p>
       </div>
     );
   }
@@ -104,8 +104,8 @@ export default function DriverCreateDraft() {
             <ArrowLeft size={22} />
           </button>
           <div>
-            <h1 className="text-xl font-black text-white uppercase tracking-tight leading-none">New Draft Load</h1>
-            <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mt-1">Field submission → Dispatch Review</p>
+            <h1 className="text-xl font-bold text-white tracking-tight leading-none">New Draft Load</h1>
+            <p className="text-xs font-medium text-gray-500 mt-1">Field submission → Dispatch Review</p>
           </div>
         </div>
 
@@ -119,7 +119,7 @@ export default function DriverCreateDraft() {
             urgency === 'High' ? 'bg-red-900/30 border-red-800 text-red-400' : 'bg-white/5 border-white/10 text-gray-400'
           }`}>
             <AlertCircle size={14} />
-            <span className="text-[10px] font-black uppercase tracking-widest">{urgency} Priority</span>
+            <span className="text-xs font-black uppercase tracking-widest">{urgency} Priority</span>
           </div>
         </div>
       </div>
@@ -128,7 +128,7 @@ export default function DriverCreateDraft() {
 
         {/* Origin */}
         <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
-          <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2 mb-3">
+          <label className="text-xs font-semibold text-gray-500 flex items-center gap-2 mb-3">
             <Navigation size={14} className="text-blue-500" /> Pickup / Origin Depot
           </label>
           <select
@@ -143,7 +143,7 @@ export default function DriverCreateDraft() {
 
         {/* Destination */}
         <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
-          <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2 mb-3">
+          <label className="text-xs font-semibold text-gray-500 flex items-center gap-2 mb-3">
             <MapPin size={14} className="text-emerald-500" /> Final Destination
           </label>
           <select
@@ -158,7 +158,7 @@ export default function DriverCreateDraft() {
 
         {/* Urgency */}
         <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
-          <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2 mb-3">
+          <label className="text-xs font-semibold text-gray-500 flex items-center gap-2 mb-3">
             <AlertCircle size={14} className="text-amber-500" /> Priority Level
           </label>
           <div className="flex gap-3">
@@ -166,7 +166,7 @@ export default function DriverCreateDraft() {
               <button
                 key={u}
                 onClick={() => setUrgency(u)}
-                className={`flex-1 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-widest border-2 transition-all ${
+                className={`flex-1 py-3.5 rounded-2xl text-xs font-black uppercase tracking-widest border-2 transition-all ${
                   urgency === u
                     ? u === 'High'
                       ? 'border-red-400 bg-red-50 text-red-600'
@@ -182,7 +182,7 @@ export default function DriverCreateDraft() {
 
         {/* Vehicles */}
         <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100 flex flex-col gap-4">
-          <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+          <label className="text-xs font-semibold text-gray-500 flex items-center gap-2">
             <Car size={14} className="text-blue-500" /> Vehicle VINs / Plates
           </label>
 
@@ -208,7 +208,7 @@ export default function DriverCreateDraft() {
           </div>
 
           {vinError && (
-            <p className="text-[10px] font-black text-red-500 uppercase tracking-widest px-1">{vinError}</p>
+            <p className="text-xs font-black text-red-500 uppercase tracking-widest px-1">{vinError}</p>
           )}
 
           {/* VIN List */}
@@ -221,7 +221,7 @@ export default function DriverCreateDraft() {
                   </div>
                   <div>
                     <span className="font-mono text-sm font-black text-gray-900 tracking-widest">{v.vin}</span>
-                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-0.5">Unit #{idx + 1}</p>
+                    <p className="text-xs font-medium text-gray-400 mt-0.5">Unit #{idx + 1}</p>
                   </div>
                 </div>
                 <button onClick={() => removeVehicle(idx)} className="p-2.5 text-red-300 hover:text-red-500 rounded-xl hover:bg-red-50 transition-all">
@@ -232,7 +232,7 @@ export default function DriverCreateDraft() {
             {vehicles.length === 0 && (
               <div className="text-center py-6 text-gray-300">
                 <Car size={40} className="mx-auto mb-2 opacity-30" />
-                <p className="text-[10px] font-black uppercase tracking-widest">No vehicles added yet</p>
+                <p className="text-xs font-black uppercase tracking-widest">No vehicles added yet</p>
               </div>
             )}
           </div>
@@ -240,7 +240,7 @@ export default function DriverCreateDraft() {
 
         {/* Driver Notes */}
         <div className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100">
-          <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2 mb-3">
+          <label className="text-xs font-semibold text-gray-500 flex items-center gap-2 mb-3">
             <FileText size={14} className="text-violet-400" /> Field Notes (Optional)
           </label>
           <textarea
@@ -266,7 +266,7 @@ export default function DriverCreateDraft() {
         </button>
 
         {!canSubmit && (
-          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest text-center -mt-2">
+          <p className="text-xs font-medium text-gray-400 text-center -mt-2">
             {!origin ? 'Select pickup origin' : !dest ? 'Select destination' : 'Add at least one vehicle'}
           </p>
         )}
@@ -274,3 +274,4 @@ export default function DriverCreateDraft() {
     </div>
   );
 }
+

@@ -41,8 +41,8 @@ export default function WarehouseOutbound() {
       {/* ── Header ── */}
       <div className="flex justify-between items-center mb-2 px-2">
         <div>
-          <h1 className="text-3xl font-black text-gray-900 tracking-tight uppercase">Outbound Release</h1>
-          <p className="text-sm font-bold text-gray-500 mt-1 uppercase tracking-widest">
+          <h1 className="hero-h1">Outbound Release</h1>
+          <p className="hero-body text-gray-600 mt-1">
             {MOCK_LOADS.filter(l => getStatus(l) !== 'Dispatched').length} loads pending vehicle release
           </p>
         </div>
@@ -59,8 +59,8 @@ export default function WarehouseOutbound() {
         ].map(s => (
           <div key={s.label} className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 flex items-center justify-between group hover:shadow-xl transition-all">
             <div>
-              <p className="text-[10px] text-gray-400 uppercase font-black tracking-widest">{s.label}</p>
-              <p className={`text-4xl font-black mt-1.5 leading-none ${s.color}`}>{s.value}</p>
+              <p className="hero-metadata">{s.label}</p>
+              <p className={`text-2xl font-semibold mt-1.5 leading-none ${s.color}`}>{s.value}</p>
             </div>
             <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${s.bg} ${s.color} group-hover:scale-110 transition-transform`}>
               <s.icon size={26} />
@@ -95,47 +95,47 @@ export default function WarehouseOutbound() {
                     </div>
                     <div>
                       <div className="flex items-center gap-3 mb-1">
-                        <span className="font-mono font-black text-gray-900 text-lg tracking-tight leading-none">{load.id}</span>
-                        <span className={`text-[9px] font-black uppercase tracking-[0.15em] px-2.5 py-1 rounded-xl border ${cfg.bg} ${cfg.text} ${cfg.border}`}>
+                        <span className="font-mono font-semibold text-gray-900 text-sm leading-none">{load.id}</span>
+                        <span className={`text-xs font-black uppercase tracking-[0.15em] px-2.5 py-1 rounded-xl border ${cfg.bg} ${cfg.text} ${cfg.border}`}>
                           {status}
                         </span>
                       </div>
-                      <p className="text-sm font-black text-gray-900">{load.customer}</p>
+                      <p className="text-sm font-semibold text-gray-900">{load.customer}</p>
                       <div className="flex items-center gap-2 mt-1.5">
                         <MapPin size={12} className="text-emerald-500" />
-                        <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{load.dest}</span>
+                        <span className="text-xs font-medium text-gray-500">{load.dest}</span>
                       </div>
                     </div>
                   </div>
                   <div className="text-right shrink-0">
                     <div className="flex items-center gap-2 justify-end">
                       <Car size={14} className="text-gray-300" />
-                      <span className="text-2xl font-black text-gray-900 leading-none">{load.vehicles}</span>
+                      <span className="text-2xl font-semibold text-hero-dark leading-none">{load.vehicles}</span>
                     </div>
-                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-1">Vehicles</p>
+                    <p className="hero-metadata mt-1">Vehicles</p>
                   </div>
                 </div>
 
                 {/* Details strip */}
                 <div className="grid grid-cols-3 gap-3 mb-5 bg-gray-50 rounded-2xl p-4 border border-gray-100">
                   <div>
-                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Driver</p>
-                    <p className="text-xs font-black text-gray-900">{load.driver}</p>
+                    <p className="hero-metadata mb-1">Driver</p>
+                    <p className="text-xs font-medium text-gray-900">{load.driver}</p>
                   </div>
                   <div>
-                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Vehicle</p>
-                    <p className="text-xs font-black text-gray-900">{load.truck}</p>
+                    <p className="hero-metadata mb-1">Vehicle</p>
+                    <p className="text-xs font-medium text-gray-900">{load.truck}</p>
                   </div>
                   <div>
-                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mb-1">Gate & Time</p>
-                    <p className="text-xs font-black text-blue-600">{load.dock} · {load.time}</p>
+                    <p className="hero-metadata mb-1">Gate &amp; Time</p>
+                    <p className="text-xs font-semibold text-blue-600">{load.dock} · {load.time}</p>
                   </div>
                 </div>
 
                 {/* Action Row */}
                 {!isDispatched && (
                   <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                    <button className="flex items-center gap-2 px-5 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-gray-500 border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all">
+                    <button className="btn-sm btn-outline flex items-center gap-2">
                       <Barcode size={16} /> Print Labels
                     </button>
                     <div className="flex-1" />
@@ -160,7 +160,7 @@ export default function WarehouseOutbound() {
                 {isDispatched && (
                   <div className="flex items-center gap-3 pt-4 border-t border-gray-100 text-emerald-600">
                     <PackageCheck size={20} />
-                    <span className="text-[10px] font-black uppercase tracking-widest">Dispatched & Gate Cleared</span>
+                    <span className="text-xs font-medium">Dispatched &amp; Gate Cleared</span>
                     <Shield size={16} className="ml-auto text-emerald-300" />
                   </div>
                 )}
@@ -172,3 +172,4 @@ export default function WarehouseOutbound() {
     </div>
   );
 }
+

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { 
   Search, Truck, MapPin, Navigation, Clock, 
-  Layers, Maximize2, Crosshair, Bell, AlertTriangle,
-  Phone, Activity
+  Layers, Maximize2, Crosshair, Bell, Activity,
+  Phone, X
 } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 
@@ -33,23 +33,24 @@ export default function DispatchTracking() {
   const filteredVehicles = activeVehicles.filter(v => v.branchId === user.branchId);
 
   return (
-    <div className="flex flex-col h-[calc(100vh-8rem)]">
+    <div className="flex flex-col h-[calc(100vh-8rem)] w-full max-w-[1600px] mx-auto pb-6">
       
-      {/* ── 1. Live HUD Header ── */}
-      <div className="flex justify-between items-center mb-6 shrink-0">
+      {/* ── Refined Header ── */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4 shrink-0">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 tracking-tight flex items-center gap-3">
-             <Crosshair className="text-blue-500" size={24}/> Mobile GPS Monitor
+          <h1 className="hero-h1 mb-1 flex items-center gap-2">
+             <Crosshair className="text-brand" size={24}/> Fleet Monitor
           </h1>
-          <p className="text-sm font-bold text-gray-400 mt-1 uppercase tracking-widest flex items-center gap-2">
-             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Driver Phone Signal • Live Tracking
+          <p className="hero-body text-gray-600 flex items-center gap-2">
+             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span> 
+             Live Network • {user.branchName || 'Global'}
           </p>
         </div>
-        <div className="flex gap-2">
-           <button className="btn bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 flex items-center gap-2 shadow-sm font-bold">
-              <Layers size={14}/> Base Layers
+        <div className="flex gap-3">
+           <button className="btn-sm btn-outline flex items-center gap-2">
+              <Layers size={14}/> Layers
            </button>
-           <button className="btn bg-[#111] text-[#FFCC00] border-transparent hover:bg-black flex items-center gap-2 shadow-xl font-bold px-6">
+           <button className="btn-sm btn-dark flex items-center gap-2">
               <Maximize2 size={14}/> Full Screen
            </button>
         </div>
@@ -57,56 +58,59 @@ export default function DispatchTracking() {
 
       <div className="flex flex-col lg:flex-row gap-6 h-full min-h-0 overflow-hidden">
         
-        {/* ── 2. Telemetry Sidebar ── */}
-        <div className="w-full lg:w-[400px] flex flex-col bg-white rounded-3xl border border-gray-100 shadow-xl shrink-0 overflow-hidden">
-          <div className="p-6 border-b border-gray-100 bg-gray-50/50">
-            <div className="relative group">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16} />
-              <input type="text" placeholder="Ping driver or vessel ID..." className="input pl-9 w-full bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] shadow-inner rounded-xl transition-all" />
+        {/* ── Telemetry Sidebar ── */}
+        <div className="w-full lg:w-[420px] flex flex-col card shrink-0 overflow-hidden shadow-sm">
+          <div className="p-5 border-b border-gray-100 bg-[#FAFAFA]">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+              <input 
+                type="text" 
+                placeholder="Search driver or vehicle..." 
+                className="w-full bg-white border border-gray-200 focus:ring-4 focus:ring-brand/10 focus:border-brand rounded-hero-sm py-2 pl-10 pr-4 text-sm font-medium transition-all shadow-sm" 
+              />
             </div>
-            <div className="flex gap-2 mt-4">
-              <div className="flex-1 flex flex-col items-center justify-center p-3 bg-emerald-50 text-emerald-700 rounded-2xl border border-emerald-100 shadow-sm relative overflow-hidden group">
-                <span className="text-xs font-black uppercase tracking-widest relative z-10">Active</span>
-                <span className="text-2xl font-black relative z-10">24</span>
-                <Truck size={30} className="absolute -right-2 -bottom-2 opacity-10 group-hover:rotate-12 transition-transform"/>
+            <div className="flex gap-3 mt-4">
+              <div className="flex-1 flex flex-col p-3 bg-emerald-50/50 rounded-hero-sm border border-emerald-100/50">
+                <span className="hero-metadata text-emerald-600 mb-1">Active Units</span>
+                <span className="text-xl font-semibold text-emerald-900 leading-none">24</span>
               </div>
-              <div className="flex-1 flex flex-col items-center justify-center p-3 bg-red-50 text-red-700 rounded-2xl border border-red-100 shadow-sm relative overflow-hidden group">
-                <span className="text-xs font-black uppercase tracking-widest relative z-10">Alerts</span>
-                <span className="text-2xl font-black relative z-10">03</span>
-                <AlertTriangle size={30} className="absolute -right-2 -bottom-2 opacity-10 group-hover:rotate-12 transition-transform"/>
+              <div className="flex-1 flex flex-col p-3 bg-red-50/50 rounded-hero-sm border border-red-100/50">
+                <span className="hero-metadata text-red-600 mb-1">Incidents</span>
+                <span className="text-xl font-semibold text-red-900 leading-none">03</span>
               </div>
             </div>
           </div>
           
-          <div className="flex-1 overflow-y-auto custom-scrollbar bg-gray-50/20">
+          <div className="flex-1 overflow-y-auto hidden-scrollbar">
             {filteredVehicles.map(v => (
               <div 
                 key={v.id} 
                 onClick={() => setSelectedVehicle(v)}
-                className={`p-6 border-b border-gray-50 transition-all cursor-pointer relative overflow-hidden ${selectedVehicle?.id === v.id ? 'bg-white shadow-[inset_4px_0_0_0_#FFCC00]' : 'hover:bg-white/80'}`}
+                className={`px-5 py-4 border-b border-gray-50 transition-all cursor-pointer ${selectedVehicle?.id === v.id ? 'bg-brand/[0.03] border-l-4 border-l-brand' : 'hover:bg-gray-50/50 border-l-4 border-l-transparent'}`}
               >
-                <div className="flex justify-between items-start mb-3 relative z-10">
+                <div className="flex justify-between items-start">
                   <div className="flex items-center gap-3">
-                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center shadow-lg border ${v.status === 'Moving' ? 'bg-emerald-500 text-white border-emerald-400' : 'bg-gray-100 text-gray-400 border-gray-200'}`}>
-                        <Truck size={20} className={v.status === 'Moving' ? '' : ''}/>
+                     <div className={`w-9 h-9 rounded-hero-sm bg-gray-900 flex items-center justify-center text-brand shadow-sm`}>
+                        <Truck size={16}/>
                      </div>
                      <div>
-                        <p className="font-black text-gray-900 text-sm tracking-tight">{v.id}</p>
-                        <p className="text-xs font-black text-[#FFCC00] bg-gray-900 px-2 py-0.5 rounded shadow-sm inline-block mt-1 uppercase tracking-widest">{v.driver}</p>
+                        <p className="text-sm font-semibold text-gray-900">{v.id}</p>
+                        <p className="text-xs font-medium text-gray-500 mt-0.5">{v.driver}</p>
                      </div>
                   </div>
                   <div className="text-right">
-                     <span className={`text-xs font-black uppercase tracking-widest ${v.status === 'Moving' ? 'text-emerald-500' : 'text-gray-400'}`}>{v.status}</span>
-                     <p className="text-xs font-bold text-gray-400 mt-1 uppercase truncate max-w-[80px]">{v.loc.split(',')[1] || v.loc}</p>
+                     <span className={`text-xs font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${v.status === 'Moving' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-gray-500'}`}>{v.status}</span>
+                     <p className="text-xs font-medium text-gray-400 mt-1 truncate max-w-[120px]">{v.loc}</p>
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-2 gap-3 mt-4">
-                  <div className="flex items-center gap-2 text-xs font-bold text-gray-600 bg-gray-50 p-2 rounded-lg">
+                <div className="flex items-center gap-2 mt-4 ml-12">
+                  <div className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
                     <Navigation size={12} className="text-blue-500" /> {v.speed}
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-black text-gray-900 bg-[#FFCC00]/10 border border-[#FFCC00]/20 p-2 rounded-lg">
-                    <Clock size={12} className="text-yellow-600" /> {v.eta} INV
+                  <span className="text-gray-200">•</span>
+                  <div className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
+                    <Clock size={12} className="text-amber-500" /> {v.eta} away
                   </div>
                 </div>
               </div>
@@ -114,85 +118,74 @@ export default function DispatchTracking() {
           </div>
         </div>
 
-        {/* ── 3. Strategic Map HUD ── */}
-        <div className="flex-1 bg-gray-900 rounded-[2.5rem] border border-gray-800 overflow-hidden relative shadow-2xl">
+        {/* ── Map View ── */}
+        <div className="flex-1 bg-gray-50 rounded-hero-md border border-gray-200 overflow-hidden relative shadow-inner">
            
-           {/* Mock Map Texture */}
-           <div className="absolute inset-0 opacity-20 pointer-events-none" 
-                style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+           {/* Mock Map Placeholder */}
+           <div className="absolute inset-0 bg-[#F1F5F9]" 
+                style={{ backgroundImage: 'radial-gradient(#CBD5E1 1px, transparent 0)', backgroundSize: '24px 24px' }} />
            
-           {/* Ambient HUD Lighting */}
-           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] pointer-events-none"></div>
-
-           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-             <div className="w-24 h-24 rounded-full border border-blue-500/20 flex items-center justify-center animate-[ping_3s_infinite] absolute"></div>
-             <div className="text-center relative z-10 px-12">
-               <Crosshair size={48} strokeWidth={1} className="text-blue-500/20 mx-auto mb-6" />
-               <h4 className="text-white font-black text-xl tracking-tight mb-2">Driver GPS Active</h4>
-               <p className="text-gray-500 text-sm max-w-sm mx-auto font-medium">Tracking via driver mobile application. Coordinates update every 30 seconds.</p>
-             </div>
-           </div>
-           
-           {/* Floating HUD Elements */}
-           <div className="absolute inset-x-6 top-6 flex justify-between pointer-events-none">
-              <div className="bg-gray-900/80 backdrop-blur-md border border-white/10 p-4 rounded-3xl shadow-2xl pointer-events-auto">
-                 <div className="flex items-center gap-4">
-                    <div className="flex flex-col">
-                       <span className="text-xs font-black text-[#FFCC00] uppercase tracking-widest mb-1">Mobile App Signal</span>
-                       <span className="text-sm font-black text-white px-3 py-1 bg-[#FFCC00]/10 border border-[#FFCC00]/20 rounded-xl shadow-inner">{user.branchName} Node</span>
-                    </div>
-                    <div className="w-px h-10 bg-white/10"></div>
-                    <div className="flex flex-col">
-                       <span className="text-xs font-black text-gray-400 uppercase tracking-widest mb-1">Signal</span>
-                       <div className="flex gap-0.5 items-end h-4">
-                          {[20, 60, 40, 100].map((h, i) => <div key={i} className="w-1 bg-emerald-500 rounded-t-full" style={{ height: `${h}%` }}></div>)}
-                       </div>
-                    </div>
+           {/* Clean Overlay UI */}
+           <div className="absolute inset-x-4 top-4 flex justify-between pointer-events-none">
+              <div className="bg-white/95 backdrop-blur border border-gray-200 px-4 py-2.5 rounded-hero-sm shadow-sm pointer-events-auto flex items-center gap-4">
+                 <div className="flex flex-col">
+                    <span className="hero-metadata mb-0.5">Focus Area</span>
+                    <span className="text-xs font-semibold text-gray-900">{user.branchName || 'Global Terminal'}</span>
+                 </div>
+                 <div className="w-px h-6 bg-gray-200"></div>
+                 <div className="flex gap-1 items-end h-3">
+                    {[20, 60, 40, 100].map((h, i) => <div key={i} className="w-1 bg-emerald-500 rounded-t-sm" style={{ height: `${h}%` }}></div>)}
                  </div>
               </div>
 
-              <div className="flex flex-col gap-3 pointer-events-auto">
-                 <button className="w-12 h-12 bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl flex items-center justify-center text-white transition-all shadow-xl group">
-                    <Bell size={18} className="group-hover:rotate-12 transition-transform" />
+              <div className="flex gap-2 pointer-events-auto">
+                 <button className="w-10 h-10 bg-white border border-gray-200 rounded-hero-sm flex items-center justify-center text-gray-600 shadow-sm hover:bg-gray-50">
+                    <Bell size={16} />
                  </button>
-                 <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl flex flex-col shadow-xl">
-                    <button className="w-12 h-12 flex items-center justify-center text-white hover:bg-white/10 transition-all font-black">+</button>
-                    <div className="h-px bg-white/10 mx-2"></div>
-                    <button className="w-12 h-12 flex items-center justify-center text-white hover:bg-white/10 transition-all font-black">-</button>
+                 <div className="bg-white border border-gray-200 rounded-hero-sm flex shadow-sm overflow-hidden">
+                    <button className="w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-all font-black border-r border-gray-100 text-lg">+</button>
+                    <button className="w-10 h-10 flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-all font-black text-lg">-</button>
                  </div>
               </div>
            </div>
-
-           {/* Selected Vehicle Detail HUD (Bottom) */}
+           
+           {/* Selected Vehicle Card */}
            {selectedVehicle && (
-             <div className="absolute inset-x-6 bottom-6 flex justify-center pointer-events-none animate-in slide-in-from-bottom-6 transition-all">
-                <div className="bg-gray-900/90 backdrop-blur-2xl border border-[#FFCC00]/30 p-8 rounded-[3rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] pointer-events-auto max-w-4xl w-full flex items-center gap-10">
-                   <div className="w-24 h-24 rounded-full border-4 border-[#FFCC00] flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(255,204,0,0.2)]">
-                      <Truck size={40} className="text-[#FFCC00]" />
+             <div className="absolute inset-x-4 bottom-4 flex justify-center pointer-events-none animate-in slide-in-from-bottom-2">
+                <div className="bg-white border border-gray-200 p-5 rounded-hero-md shadow-xl pointer-events-auto max-w-xl w-full flex items-center gap-5">
+                   <div className="w-12 h-12 rounded-hero-sm bg-gray-900 flex items-center justify-center shrink-0 shadow-sm">
+                      <Truck size={20} className="text-brand" />
                    </div>
                    <div className="flex-1 min-w-0">
-                      <h4 className="text-2xl font-black text-white tracking-tighter truncate capitalize">{selectedVehicle.driver} <span className="text-[#FFCC00] text-sm ml-2 px-3 py-1 bg-[#FFCC00]/10 rounded-full border border-[#FFCC00]/20">{selectedVehicle.id}</span></h4>
-                      <p className="text-gray-400 text-sm font-medium mt-1 mb-6 flex items-center gap-1.5 truncate"><MapPin size={14} className="text-gray-600"/> {selectedVehicle.loc}</p>
+                      <div className="flex items-center gap-2 mb-1">
+                        <h4 className="text-sm font-semibold text-gray-900 truncate">{selectedVehicle.driver}</h4>
+                        <span className="text-xs font-black text-gray-500 px-2 py-0.5 bg-gray-100 rounded-full">{selectedVehicle.id}</span>
+                      </div>
+                      <p className="text-gray-400 text-xs font-medium mb-3 flex items-center gap-1.5 truncate">
+                        <MapPin size={12} className="text-gray-300"/> {selectedVehicle.loc}
+                      </p>
                       
-                      <div className="grid grid-cols-3 gap-6">
+                      <div className="flex gap-5">
                          {[
-                           { label: 'Tracking Source', val: 'Mobile App GPS', icon: Phone },
-                           { label: 'Device Status', val: 'Online / Active', icon: Activity },
-                           { label: 'Last Signal', val: '2m ago', icon: Navigation },
+                           { label: 'Source', val: 'Mobile GPS', icon: Phone },
+                           { label: 'Signal', val: 'Active', icon: Activity },
                          ].map((item, i) => (
-                           <div key={i} className="flex flex-col bg-white/5 p-3 rounded-2xl border border-white/5">
-                              <span className="text-xs font-black text-gray-500 uppercase tracking-widest flex items-center gap-1.5 mb-1"><item.icon size={10}/> {item.label}</span>
-                              <span className="text-sm font-black text-white">{item.val}</span>
+                           <div key={i} className="flex items-center gap-1.5">
+                              <item.icon size={12} className="text-gray-400"/>
+                              <span className="text-xs font-black uppercase tracking-widest text-gray-600">{item.val}</span>
                            </div>
                          ))}
                       </div>
                    </div>
-                   <div className="flex flex-col gap-3">
-                      <button className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-8 py-3 rounded-2xl font-black uppercase text-xs tracking-[0.15em] flex items-center gap-2 shadow-[0_0_20px_rgba(255,204,0,0.3)] transition-all active:scale-95">
-                         <Phone size={14}/> Open COMMS
+                   <div className="flex items-center gap-3">
+                      <button className="bg-brand hover:bg-brand-hover text-black px-5 py-2.5 rounded-hero-sm font-black text-xs uppercase tracking-widest shadow-sm transition-all">
+                         Comm
                       </button>
-                      <button className="bg-white/5 hover:bg-white/10 text-white px-8 py-3 rounded-2xl font-black uppercase text-xs tracking-[0.15em] border border-white/10 transition-all active:scale-95">
-                         Close HUD
+                      <button 
+                        onClick={() => setSelectedVehicle(null)}
+                        className="p-2 text-gray-400 hover:text-gray-900 transition-colors"
+                      >
+                         <X size={16} />
                       </button>
                    </div>
                 </div>
@@ -204,4 +197,5 @@ export default function DispatchTracking() {
     </div>
   );
 }
+
 

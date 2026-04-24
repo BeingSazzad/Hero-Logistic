@@ -53,8 +53,8 @@ export default function DriverExpenses() {
               <Receipt size={24} />
             </div>
             <div>
-              <h2 className="text-xl font-black text-white uppercase tracking-tight">Log Expense</h2>
-              <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mt-0.5">Reimbursement Claim</p>
+              <h2 className="text-xl font-bold text-white tracking-tight">Log Expense</h2>
+              <p className="text-xs font-medium text-gray-500 mt-0.5">Reimbursement Claim</p>
             </div>
           </div>
           <button onClick={() => { setStep('list'); setCategory(null); setAmount(''); setVendor(''); setReceiptCaptured(false); }}
@@ -67,7 +67,7 @@ export default function DriverExpenses() {
 
           {/* Category Picker */}
           <div>
-            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-3 px-1">Expense Category</label>
+            <label className="text-xs font-semibold text-gray-500 block mb-3 px-1">Expense Category</label>
             <div className="grid grid-cols-3 gap-2">
               {categories.map(cat => (
                 <button
@@ -80,7 +80,7 @@ export default function DriverExpenses() {
                   }`}
                 >
                   <cat.icon size={22} className={category?.id === cat.id ? 'text-[#FFCC00]' : ''} />
-                  <span className="text-[9px] font-black uppercase tracking-widest leading-tight">{cat.label}</span>
+                  <span className="text-xs font-black uppercase tracking-widest leading-tight">{cat.label}</span>
                 </button>
               ))}
             </div>
@@ -88,7 +88,7 @@ export default function DriverExpenses() {
 
           {/* Amount */}
           <div>
-            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2 px-1">Amount ($)</label>
+            <label className="text-xs font-semibold text-gray-500 block mb-2 px-1">Amount ($)</label>
             <div className="relative">
               <span className="absolute left-5 top-1/2 -translate-y-1/2 text-2xl font-black text-gray-200">$</span>
               <input
@@ -103,7 +103,7 @@ export default function DriverExpenses() {
 
           {/* Vendor */}
           <div>
-            <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2 px-1">Vendor / Notes</label>
+            <label className="text-xs font-semibold text-gray-500 block mb-2 px-1">Vendor / Notes</label>
             <input
               type="text"
               value={vendor}
@@ -132,7 +132,7 @@ export default function DriverExpenses() {
                 <Camera size={30} />
                 <div className="text-center">
                   <span className="text-xs font-black uppercase tracking-widest block">Capture Receipt</span>
-                  <span className="text-[9px] font-bold text-gray-300 uppercase tracking-widest mt-0.5 block">Take a photo for verification</span>
+                  <span className="text-xs font-bold text-gray-300 uppercase tracking-widest mt-0.5 block">Take a photo for verification</span>
                 </div>
               </>
             )}
@@ -141,7 +141,7 @@ export default function DriverExpenses() {
           <button
             onClick={() => { if (category && amount) setStep('success'); }}
             disabled={!category || !amount}
-            className={`w-full py-5 font-black uppercase text-xs rounded-2xl shadow-xl transition-all active:scale-[0.98] mt-2 ${
+            className={`btn-cta mt-2 shadow-xl ${
               category && amount
                 ? 'bg-[#111] hover:bg-black text-[#FFCC00]'
                 : 'bg-gray-100 text-gray-300 cursor-not-allowed'
@@ -166,15 +166,15 @@ export default function DriverExpenses() {
           Expense queued for Accounts review. You'll be notified when approved.
         </p>
         <div className="mt-8 bg-white border border-gray-100 rounded-3xl p-5 w-full max-w-[280px] shadow-sm text-left">
-          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Category</p>
-          <p className="font-black text-gray-900 text-sm">{category?.label || '—'}</p>
+          <p className="hero-metadata mb-1">Category</p>
+          <p className="font-semibold text-gray-900 text-sm">{category?.label || '—'}</p>
           <div className="w-full h-px bg-gray-100 my-3" />
-          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Amount</p>
-          <p className="font-black text-gray-900 text-xl">${amount}</p>
+          <p className="hero-metadata mb-1">Amount</p>
+          <p className="font-semibold text-gray-900 text-xl">${amount}</p>
         </div>
         <button
           onClick={() => { setStep('list'); setCategory(null); setAmount(''); setVendor(''); setReceiptCaptured(false); }}
-          className="mt-8 px-10 py-5 bg-[#111] text-[#FFCC00] rounded-2xl font-black uppercase text-xs hover:bg-black transition-all shadow-lg active:scale-95"
+          className="btn-cta mt-8 bg-[#111] text-[#FFCC00] hover:bg-black shadow-lg"
         >
           Back to Expenses
         </button>
@@ -190,15 +190,15 @@ export default function DriverExpenses() {
       <div className="bg-[#111] px-6 pt-12 pb-8 shadow-xl relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-black opacity-60 pointer-events-none" />
         <div className="relative z-10">
-          <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2">Pending Reimbursement</p>
+          <p className="text-xs font-medium text-gray-500 mb-2">Pending Reimbursement</p>
           <div className="flex items-end justify-between">
             <div>
               <h2 className="text-4xl font-black text-white leading-none">$145.20</h2>
-              <p className="text-[10px] font-black text-[#FFCC00] uppercase mt-2 tracking-widest">Awaiting Approval</p>
+              <p className="text-xs font-medium text-[#FFCC00] mt-2">Awaiting Approval</p>
             </div>
             <div className="text-right">
               <h2 className="text-xl font-black text-gray-400">$1,240.00</h2>
-              <p className="text-[10px] font-black text-gray-600 uppercase mt-1 tracking-widest">Paid This Month</p>
+              <p className="text-xs font-medium text-gray-600 mt-1">Paid This Month</p>
             </div>
           </div>
         </div>
@@ -209,7 +209,7 @@ export default function DriverExpenses() {
         {/* New Log CTA */}
         <button
           onClick={() => setStep('form')}
-          className="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black py-5 rounded-2xl flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-lg border border-yellow-300"
+          className="btn-cta bg-[#FFCC00] hover:bg-yellow-400 text-black shadow-lg border border-yellow-300"
         >
           <Plus size={22} strokeWidth={3} />
           <span className="text-xs font-black uppercase tracking-widest">Log New Expense</span>
@@ -217,8 +217,8 @@ export default function DriverExpenses() {
 
         {/* Feed Header */}
         <div className="flex items-center justify-between px-1 pt-2">
-          <h3 className="text-xs font-black text-gray-900 uppercase tracking-[0.15em]">Recent Submissions</h3>
-          <button className="text-[10px] font-black text-gray-400 flex items-center gap-1.5 uppercase hover:text-gray-700 transition-colors">
+          <h3 className="text-xs font-semibold text-gray-800">Recent Submissions</h3>
+          <button className="text-xs font-black text-gray-400 flex items-center gap-1.5 uppercase hover:text-gray-700 transition-colors">
             <History size={12} /> Full History
           </button>
         </div>
@@ -234,22 +234,22 @@ export default function DriverExpenses() {
                                             <Receipt size={20} />}
                 </div>
                 <div>
-                  <p className="text-sm font-black text-gray-900 tracking-tight mb-0.5">{log.vendor}</p>
+                  <p className="text-sm font-semibold text-gray-900 mb-0.5">{log.vendor}</p>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] text-gray-400 font-black uppercase tracking-wider">{log.date}</span>
+                    <span className="text-xs font-medium text-gray-400">{log.date}</span>
                     <span className="w-1 h-1 bg-gray-200 rounded-full" />
-                    <span className={`text-[10px] font-black uppercase tracking-widest ${STATUS_STYLE[log.status]}`}>
+                    <span className={`text-xs font-black uppercase tracking-widest ${STATUS_STYLE[log.status]}`}>
                       {log.status}
                     </span>
                   </div>
                   {log.reason && (
-                    <p className="text-[9px] font-black text-red-400 uppercase tracking-widest mt-0.5">↳ {log.reason}</p>
+                    <p className="text-xs font-black text-red-400 uppercase tracking-widest mt-0.5">↳ {log.reason}</p>
                   )}
                 </div>
               </div>
               <div className="text-right shrink-0">
-                <p className="text-lg font-black text-gray-900 tracking-tighter">${log.amount}</p>
-                <span className="text-[9px] font-bold text-gray-300 uppercase tracking-widest">{log.id}</span>
+                <p className="text-lg font-semibold text-gray-900">${log.amount}</p>
+                <span className="text-xs font-bold text-gray-300 uppercase tracking-widest">{log.id}</span>
               </div>
             </div>
           ))}
@@ -259,3 +259,4 @@ export default function DriverExpenses() {
     </div>
   );
 }
+

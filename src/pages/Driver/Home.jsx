@@ -25,11 +25,11 @@ export default function DriverHome() {
                   JT
                </div>
                <div>
-                  <p className="text-xs font-black text-gray-500 uppercase tracking-widest leading-none">Primary Operator</p>
-                  <p className="text-sm font-black text-white mt-1 uppercase">Jack Taylor</p>
+                  <p className="text-xs font-medium text-gray-500 leading-none">Primary Operator</p>
+                  <p className="text-sm font-semibold text-white mt-1">Jack Taylor</p>
                   <div className="flex items-center gap-1.5 mt-1">
                      <div className={`w-1.5 h-1.5 rounded-full ${isOnline ? 'bg-emerald-500 animate-pulse' : 'bg-gray-500'}`}></div>
-                     <span className={`text-xs font-black uppercase tracking-widest ${isOnline ? 'text-emerald-500' : 'text-gray-500'}`}>{isOnline ? 'Online' : 'Offline'}</span>
+                     <span className={`text-xs font-medium ${isOnline ? 'text-emerald-500' : 'text-gray-500'}`}>{isOnline ? 'Online' : 'Offline'}</span>
                   </div>
                </div>
             </div>
@@ -68,7 +68,7 @@ export default function DriverHome() {
                   <Package size={24} className="text-blue-600" />
                </div>
                <div className="text-left flex-1">
-                  <span className="block text-[10px] font-black uppercase tracking-widest text-blue-500 mb-0.5">Quick Action</span>
+                  <span className="block text-xs font-black uppercase tracking-widest text-blue-500 mb-0.5">Quick Action</span>
                   <span className="block text-sm font-black uppercase tracking-tight text-blue-900">Create Draft Load</span>
                </div>
                <ChevronRight size={20} className="text-blue-300" />
@@ -93,7 +93,7 @@ export default function DriverHome() {
          {/* ── 4. Strategic: Up Next ── */}
          <div className="space-y-4">
             <div className="flex items-center justify-between px-1">
-               <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em]">Operational Schedule</h3>
+               <h3 className="text-xs font-semibold text-gray-800">Operational Schedule</h3>
                <span className="text-xs font-black text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full uppercase tracking-widest">2 jobs today</span>
             </div>
             
@@ -109,7 +109,7 @@ export default function DriverHome() {
                               <span className="text-xs font-black text-orange-600 bg-orange-50 px-2 py-0.5 rounded uppercase tracking-tighter">{job.priority}</span>
                               <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{job.id}</span>
                            </div>
-                           <p className="font-black text-gray-900 text-sm tracking-tight truncate leading-none uppercase">{job.area}</p>
+                           <p className="font-semibold text-gray-900 text-sm truncate leading-none">{job.area}</p>
                            <div className="flex items-center gap-2 text-xs font-bold text-gray-400 mt-2 uppercase">
                               <span className="flex items-center gap-1 leading-none"><Clock size={12} /> {job.time}</span>
                            </div>
@@ -129,7 +129,7 @@ export default function DriverHome() {
                <AlertTriangle size={20} className="text-blue-600" />
             </div>
             <div>
-               <p className="text-xs font-black text-blue-600 uppercase tracking-[0.2em]">Operational Alert</p>
+               <p className="text-xs font-semibold text-blue-600">Operational Alert</p>
                <p className="text-xs font-bold text-blue-900 mt-1 leading-tight">Sydney Heavy Rain: Expect +15m delay in CBD route.</p>
             </div>
          </div>
@@ -137,4 +137,5 @@ export default function DriverHome() {
       </div>
    );
 }
+
 

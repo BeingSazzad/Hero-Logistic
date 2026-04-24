@@ -45,87 +45,86 @@ export default function DispatchJobDetail() {
   };
 
   return (
-    <div className="w-full max-w-[1440px] mx-auto pb-16">
+    <div className="w-full max-w-[1600px] mx-auto pb-16">
       <button onClick={() => navigate('/dispatch/loads')}
-        className="flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-gray-900 mb-6 transition-colors">
+        className="flex items-center gap-2 text-xs font-semibold text-gray-500 hover:text-gray-900 mb-6 transition-colors">
         <ArrowLeft size={16} /> Back to Loads
       </button>
 
-      {/* Success Success Toast */}
+      {/* Success Toast */}
       {showSuccess && (
-        <div className="fixed top-6 right-6 z-50 bg-[#111] text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border border-white/10 animate-in slide-in-from-right">
-          <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+        <div className="fixed top-6 right-6 z-50 bg-gray-900 text-white px-6 py-4 rounded-hero-md shadow-2xl flex items-center gap-4 border border-gray-800 animate-in slide-in-from-right">
+          <div className="w-10 h-10 rounded-hero-sm bg-emerald-500 flex items-center justify-center shrink-0 shadow-inner text-white">
             <CheckCircle2 size={20} />
           </div>
           <div>
-            <p className="font-black text-sm uppercase tracking-tight">Resource Allocated</p>
-            <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mt-0.5">{selectedDriver?.name} assigned to mission</p>
+            <p className="font-semibold text-sm">Resource Allocated</p>
+            <p className="text-xs font-medium text-gray-400 mt-1">{selectedDriver?.name} assigned to mission</p>
           </div>
-          <button onClick={() => setShowSuccess(false)} className="ml-4 text-gray-500 hover:text-white">
+          <button onClick={() => setShowSuccess(false)} className="ml-4 text-gray-500 hover:text-white transition-colors">
             <X size={18} />
           </button>
         </div>
       )}
 
       {/* Header Context */}
-      <div className="flex justify-between items-start mb-6 px-2">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-6">
         <div>
-          <div className="flex items-center gap-3 flex-wrap">
-            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{id || 'SHP-9055'}</h1>
-            <span className={`badge font-bold uppercase tracking-widest text-xs ${exceptionActive ? 'bg-red-100 text-red-600' : 'bg-blue-100 text-blue-600'}`}>
+          <div className="flex items-center gap-3 mb-1">
+            <h1 className="hero-h1">{id || 'SHP-9055'}</h1>
+            <span className={`px-2 py-0.5 rounded-sm font-black uppercase tracking-widest text-xs shadow-sm border ${exceptionActive ? 'bg-red-50 text-red-600 border-red-100' : 'bg-blue-50 text-blue-600 border-blue-100'}`}>
               ● {assigned ? 'Assigned' : 'In Progress'}
             </span>
-            <span className={`badge font-bold uppercase tracking-widest text-xs ${deliveryMode === 'Depot' ? 'bg-indigo-100 text-indigo-700' : 'bg-emerald-100 text-emerald-700'}`}>
+            <span className={`px-2 py-0.5 rounded-sm font-black uppercase tracking-widest text-xs shadow-sm border ${deliveryMode === 'Depot' ? 'bg-indigo-50 text-indigo-700 border-indigo-100' : 'bg-emerald-50 text-emerald-700 border-emerald-100'}`}>
               {deliveryMode === 'Depot' ? '🏢 Depot-to-Depot' : '🚪 Door-to-Door'}
             </span>
           </div>
-          <p className="text-sm font-bold text-gray-500 mt-2 flex items-center gap-2">
-            Acme Corp Logistics <span className="text-gray-300">•</span> Sydney Central Depot → Melbourne Depot
-          </p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex items-center gap-3 w-full lg:w-auto">
           <button
             onClick={() => setShowPodModal(true)}
-            className="btn bg-emerald-500 hover:bg-emerald-600 text-white flex items-center gap-2 font-bold shadow-[0_0_15px_rgba(16,185,129,0.3)] border border-emerald-400"
+            className="btn-sm flex-1 lg:flex-none bg-emerald-500 hover:bg-emerald-600 text-white uppercase tracking-widest shadow-sm transition-all"
           >
             <PackageCheck size={16} /> Collect POD
           </button>
           <button
             onClick={() => window.open(`/customer/tracking?id=${id || 'SHP-9055'}`, '_blank')}
-            className="btn bg-white border border-[#FFCC00] text-[#111] hover:bg-yellow-50 flex items-center gap-2 font-bold shadow-sm"
+            className="btn-sm flex-1 lg:flex-none bg-brand hover:brightness-105 text-black uppercase tracking-widest shadow-sm transition-all"
           >
             <Share2 size={16} /> Live Tracking
           </button>
           <button
             onClick={() => window.print()}
-            className="btn bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 flex items-center gap-2 font-bold shadow-sm"
+            className="btn-sm flex-1 lg:flex-none bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 uppercase tracking-widest shadow-sm transition-all"
           >
             <FileText size={16} /> Manifest
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-2">
+      <div className="w-full h-px bg-gray-100 mb-6" />
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* LEFT COMPONENT: Dynamic Network Journey */}
         <div className="lg:col-span-1 flex flex-col gap-6">
-          <div className="card bg-white shadow-sm p-6 border border-gray-100">
-            <h2 className="text-sm font-black text-gray-900 tracking-widest uppercase border-b border-gray-100 pb-4 mb-6">Transport Network Flow</h2>
+          <div className="card shadow-sm p-6 border border-gray-100 rounded-hero-md bg-white">
+            <h2 className="text-sm font-semibold text-gray-800 border-b border-gray-100 pb-4 mb-6">Transport Network Flow</h2>
 
             <div className="space-y-0 relative">
-              <div className="absolute top-4 bottom-8 left-[11px] w-0.5 bg-gray-50"></div>
+              <div className="absolute top-4 bottom-8 left-[11px] w-0.5 bg-gray-100"></div>
               {NETWORK_STAGES.map((stage, idx) => {
                 const isCompleted = stage.id < activeStage;
                 const isCurrent = stage.id === activeStage;
 
                 return (
-                  <div key={stage.id} className={`flex gap-4 relative z-10 p-3 rounded-2xl transition-all ${isCurrent ? 'bg-yellow-50 border border-yellow-100 shadow-sm' : ''}`}>
+                  <div key={stage.id} className={`flex gap-4 relative z-10 p-3 rounded-hero-sm transition-all ${isCurrent ? 'bg-brand/10 border border-brand/20 shadow-sm' : ''}`}>
                     <div className="pt-0.5 shrink-0">
                       {isCompleted ? (
                         <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center border-4 border-white shadow-sm">
                           <CheckCircle2 size={12} className="text-white" />
                         </div>
                       ) : isCurrent ? (
-                        <div className="w-6 h-6 rounded-full bg-yellow-400 flex items-center justify-center border-4 border-white shadow-md animate-pulse">
+                        <div className="w-6 h-6 rounded-full bg-brand flex items-center justify-center border-4 border-white shadow-md animate-pulse">
                           <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
                         </div>
                       ) : (
@@ -134,15 +133,15 @@ export default function DispatchJobDetail() {
                         </div>
                       )}
                     </div>
-                    <div className={`w-full ${!isCurrent && !isCompleted ? 'opacity-30' : ''}`}>
-                      <p className={`text-xs font-black uppercase tracking-widest ${isCurrent ? 'text-yellow-700' : 'text-gray-400'}`}>{stage.type}</p>
-                      <p className={`text-sm font-bold mt-0.5 ${isCurrent ? 'text-gray-900' : 'text-gray-600'}`}>{stage.label}</p>
-                      <div className="flex justify-between items-end mt-1">
-                        <p className="text-xs text-gray-500 font-medium leading-relaxed">
+                    <div className={`w-full ${!isCurrent && !isCompleted ? 'opacity-40' : ''}`}>
+                      <p className={`text-xs font-medium uppercase tracking-wide ${isCurrent ? 'text-brand' : 'text-gray-400'}`}>{stage.type}</p>
+                      <p className={`text-sm font-semibold mt-0.5 ${isCurrent ? 'text-gray-900' : 'text-gray-600'}`}>{stage.label}</p>
+                      <div className="flex justify-between items-end mt-1.5">
+                        <p className="text-xs font-medium text-gray-500 leading-relaxed">
                           {stage.location} <span className="text-gray-300 mx-1">/</span> {stage.actor}
                         </p>
                         {!isCompleted && isCurrent && (
-                          <button onClick={() => setShowAssignModal(true)} className="text-xs font-black uppercase tracking-widest text-[#FFCC00] bg-black px-2 py-0.5 rounded">Assign Resource</button>
+                          <button onClick={() => setShowAssignModal(true)} className="btn-sm h-8 px-3 text-xs bg-gray-900 text-brand hover:bg-black rounded-sm shadow-sm uppercase tracking-widest">Assign Resource</button>
                         )}
                       </div>
                     </div>
@@ -153,28 +152,28 @@ export default function DispatchJobDetail() {
           </div>
 
           {/* Terminal Handover Control Block */}
-          <div className="card bg-[#111] text-white p-6 shadow-xl border border-gray-800 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+          <div className="card bg-gray-900 text-white p-6 shadow-lg border border-gray-800 rounded-hero-md relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity text-brand">
               <Truck size={60} />
             </div>
-            <h2 className="text-xs font-black text-[#FFCC00] tracking-[0.2em] uppercase mb-6 flex items-center gap-2">
+            <h2 className="text-xs font-semibold text-brand uppercase tracking-wide mb-6 flex items-center gap-2">
               <ShieldAlert size={14} /> Terminal Operations
             </h2>
 
             <div className="space-y-6 relative z-10">
-              <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
-                <p className="text-xs font-black uppercase text-gray-500 tracking-widest mb-2">Current Asset Allocation</p>
+              <div className="p-4 bg-white/5 rounded-hero-sm border border-white/10 shadow-inner">
+                <p className="hero-metadata mb-3">Current Asset Allocation</p>
                 {assigned ? (
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-yellow-400 text-black flex items-center justify-center font-black">{selectedDriver.initials}</div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-hero-sm bg-brand text-black flex items-center justify-center font-black text-lg shadow-sm border border-brand">{selectedDriver.initials}</div>
                     <div>
-                      <p className="text-sm font-bold uppercase tracking-tight">{selectedDriver.name}</p>
-                      <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">{selectedDriver.vehicle} · {selectedDriver.rank}</p>
+                      <p className="text-sm font-semibold">{selectedDriver.name}</p>
+                      <p className="text-xs font-medium text-gray-400 mt-1">{selectedDriver.vehicle} · {selectedDriver.rank}</p>
                     </div>
                   </div>
                 ) : (
                   <div className="flex items-center gap-3 opacity-50 italic">
-                    <p className="text-xs font-bold text-gray-400">Waiting for resource assignment...</p>
+                    <p className="text-xs font-medium text-gray-400">Waiting for resource assignment...</p>
                   </div>
                 )}
               </div>
@@ -182,13 +181,10 @@ export default function DispatchJobDetail() {
               <div className="flex flex-col gap-3">
                 <button
                   onClick={() => setShowAssignModal(true)}
-                  className="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black py-4 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-lg shadow-yellow-400/10 transition-all flex items-center justify-center gap-2"
+                  className="btn w-full bg-brand hover:brightness-105 text-black rounded-hero-sm uppercase tracking-[0.2em] shadow-sm transition-all flex items-center justify-center gap-2"
                 >
                   {assigned ? 'Reassign Resource' : 'Allocate Driver & Vehicle'}
                 </button>
-                <p className="text-xs text-center font-bold text-gray-500 uppercase tracking-widest px-4">
-                  Confirmed resources will receive automated SMS notifications.
-                </p>
               </div>
             </div>
           </div>
@@ -199,65 +195,65 @@ export default function DispatchJobDetail() {
 
           {/* Consignor and Consignee */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="card bg-white p-5 shadow-sm border border-gray-100 flex flex-col gap-3">
-              <h3 className="text-xs font-black uppercase tracking-widest text-gray-400">Consignor (Sender)</h3>
+            <div className="card bg-white p-6 shadow-sm border border-gray-100 rounded-hero-md flex flex-col gap-3">
+              <h3 className="hero-metadata mb-1">Consignor (Sender)</h3>
               <div>
-                <p className="text-sm font-bold text-gray-900">Acme Corp Logistics</p>
-                <p className="text-xs text-gray-500 font-medium mt-1">Warehouse 4, 12 Botany Rd, Alexandria NSW 2015</p>
-                <p className="text-xs text-gray-500 font-medium mt-0.5 pt-2 border-t border-gray-50">Contact: James Hargrove <br /><span className="font-bold text-hero-dark">+61 2 9283 1122</span></p>
+                <p className="text-sm font-semibold text-gray-900">Acme Corp Logistics</p>
+                <p className="text-xs font-medium text-gray-500 mt-1.5">Warehouse 4, 12 Botany Rd, Alexandria NSW 2015</p>
+                <p className="text-xs font-medium text-gray-500 mt-3 pt-3 border-t border-gray-100 leading-relaxed">Contact: James Hargrove <br /><span className="text-gray-900">+61 2 9283 1122</span></p>
               </div>
             </div>
-            <div className="card bg-white p-5 shadow-sm border border-gray-100 flex flex-col gap-3">
-              <h3 className="text-xs font-black uppercase tracking-widest text-gray-400">Consignee (Receiver)</h3>
+            <div className="card bg-white p-6 shadow-sm border border-gray-100 rounded-hero-md flex flex-col gap-3">
+              <h3 className="hero-metadata mb-1">Consignee (Receiver)</h3>
               <div>
-                <p className="text-sm font-bold text-gray-900">Tech Solutions Ltd</p>
-                <p className="text-xs text-gray-500 font-medium mt-1">1 Innovation Dr, Port Botany NSW 2036</p>
-                <p className="text-xs text-gray-500 font-medium mt-0.5 pt-2 border-t border-gray-50">Contact: Tom Carey <br /><span className="font-bold text-hero-dark">+61 2 9666 0011</span></p>
+                <p className="text-sm font-semibold text-gray-900">Tech Solutions Ltd</p>
+                <p className="text-xs font-medium text-gray-500 mt-1.5">1 Innovation Dr, Port Botany NSW 2036</p>
+                <p className="text-xs font-medium text-gray-500 mt-3 pt-3 border-t border-gray-100 leading-relaxed">Contact: Tom Carey <br /><span className="text-gray-900">+61 2 9666 0011</span></p>
               </div>
             </div>
           </div>
 
           {/* Tracking */}
-          <div className="card bg-[#0f172a] p-0 overflow-hidden relative shadow-lg min-h-[300px] flex items-center justify-center border border-gray-800">
+          <div className="card bg-[#0f172a] p-0 overflow-hidden relative shadow-md rounded-hero-md min-h-[300px] flex items-center justify-center border border-gray-800">
             <div className="absolute inset-0 bg-[#0f172a]" style={{ backgroundImage: 'radial-gradient(#1e293b 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
-            <p className="z-10 text-slate-500 font-bold tracking-widest uppercase text-sm flex items-center gap-2"><MapPin /> Map Vector Integration Zone</p>
+            <p className="z-10 text-slate-500 font-medium text-xs flex items-center gap-2"><MapPin size={16} /> Map Vector Integration Zone</p>
             {assigned && (
-              <div className="absolute bottom-4 right-4 bg-white/10 backdrop-blur-md border border-white/10 p-3 rounded-xl z-10 text-white shadow-xl">
-                <p className="text-xs font-black uppercase tracking-widest text-[#FACC15] mb-1">Driver Location</p>
-                <p className="text-sm font-bold truncate max-w-[200px]">M1 Motorway, Sydney North</p>
-                <p className="text-xs text-slate-300 mt-1">Signal strength high</p>
+              <div className="absolute bottom-4 right-4 bg-white/10 backdrop-blur-md border border-white/10 p-4 rounded-hero-sm z-10 text-white shadow-xl">
+                <p className="hero-metadata text-brand mb-2">Driver Location</p>
+                <p className="text-sm font-semibold truncate max-w-[200px]">M1 Motorway, Sydney North</p>
+                <p className="text-xs font-medium text-slate-300 mt-1.5 flex items-center gap-1.5"><span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Signal strength high</p>
               </div>
             )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="card bg-white p-5 shadow-sm border border-gray-100 flex flex-col gap-4">
-              <h3 className="text-xs font-black uppercase tracking-widest text-gray-400">Load Metadata</h3>
+            <div className="card bg-white p-6 shadow-sm border border-gray-100 rounded-hero-md flex flex-col gap-5">
+              <h3 className="hero-metadata">Load Metadata</h3>
               <div className="space-y-4">
-                <div className="flex justify-between border-b border-gray-50 pb-2">
-                  <span className="text-xs font-bold text-gray-500">Commodity</span>
-                  <span className="text-sm font-black text-gray-900">Electronics</span>
+                <div className="flex justify-between border-b border-gray-50 pb-3">
+                  <span className="hero-metadata">Commodity</span>
+                  <span className="text-sm font-semibold text-gray-900">Electronics</span>
                 </div>
-                <div className="flex justify-between border-b border-gray-50 pb-2">
-                  <span className="text-xs font-bold text-gray-500">Weight & Vol</span>
-                  <span className="text-sm font-black text-gray-900">18.42t / 41 CBM</span>
+                <div className="flex justify-between border-b border-gray-50 pb-3">
+                  <span className="hero-metadata">Weight & Vol</span>
+                  <span className="text-sm font-semibold text-gray-900">18.42t / 41 CBM</span>
                 </div>
-                <div className="flex justify-between border-b border-gray-50 pb-2">
-                  <span className="text-xs font-bold text-gray-500">Target ETA</span>
-                  <span className="text-sm font-black text-gray-900">Today, 17:30</span>
+                <div className="flex justify-between border-b border-gray-50 pb-3">
+                  <span className="hero-metadata">Target ETA</span>
+                  <span className="text-sm font-semibold text-gray-900">Today, 17:30</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-xs font-bold text-gray-500">Service</span>
-                  <span className="text-xs font-black text-black bg-[#FFCC00] px-2 py-0.5 rounded uppercase tracking-widest">Normal</span>
+                <div className="flex justify-between items-center">
+                  <span className="hero-metadata">Service</span>
+                  <span className="text-xs font-black text-black bg-brand px-2 py-0.5 rounded-sm uppercase tracking-widest shadow-sm">Normal</span>
                 </div>
               </div>
             </div>
 
-            <div className="card bg-white p-5 shadow-sm border border-gray-100 flex flex-col gap-4 text-center justify-center">
-              <p className="text-xs font-black text-gray-400 uppercase tracking-widest">Document Control</p>
-              <div className="flex flex-col gap-2">
-                <button className="py-2.5 bg-gray-50 border border-gray-100 hover:bg-gray-100 rounded-xl text-xs font-black uppercase tracking-widest transition-all">Download Waybill</button>
-                <button className="py-2.5 bg-gray-50 border border-gray-100 hover:bg-gray-100 rounded-xl text-xs font-black uppercase tracking-widest transition-all">Consignee POD</button>
+            <div className="card bg-white p-6 shadow-sm border border-gray-100 rounded-hero-md flex flex-col gap-6 text-center justify-center">
+              <p className="hero-metadata">Document Control</p>
+              <div className="flex flex-col gap-3">
+                <button className="btn-sm w-full bg-gray-50 border border-gray-200 hover:bg-gray-100 rounded-hero-sm uppercase tracking-widest transition-all shadow-sm">Download Waybill</button>
+                <button className="btn-sm w-full bg-gray-50 border border-gray-200 hover:bg-gray-100 rounded-hero-sm uppercase tracking-widest transition-all shadow-sm">Consignee POD</button>
               </div>
             </div>
           </div>
@@ -266,34 +262,34 @@ export default function DispatchJobDetail() {
 
       {/* Driver Selection Modal */}
       {showAssignModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onClick={() => setShowAssignModal(false)}>
-          <div className="bg-white w-full max-w-lg rounded-2xl shadow-2xl flex flex-col max-h-[85vh] overflow-hidden" onClick={e => e.stopPropagation()}>
-            <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-[#111] text-white">
-              <h3 className="text-xl font-bold tracking-tight">Assign Resource</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in" onClick={() => setShowAssignModal(false)}>
+          <div className="bg-white w-full max-w-lg rounded-hero-md shadow-2xl flex flex-col max-h-[85vh] overflow-hidden animate-in zoom-in-95" onClick={e => e.stopPropagation()}>
+            <div className="p-6 border-b border-gray-800 flex justify-between items-center bg-gray-900 text-white">
+              <h3 className="text-lg font-bold text-white tracking-tight">Assign Resource</h3>
               <button onClick={() => setShowAssignModal(false)} className="p-2 hover:bg-white/10 rounded-full transition-colors"><X size={20} /></button>
             </div>
             <div className="p-6 overflow-y-auto flex-1 space-y-4 bg-gray-50/50">
               {AVAILABLE_DRIVERS.map(driver => (
-                <div key={driver.id} className={`bg-white border p-4 rounded-xl flex items-center justify-between transition-all cursor-pointer ${selectedDriver?.id === driver.id ? 'border-[#FFCC00] shadow-md ring-1 ring-[#FFCC00]' : 'border-gray-200 hover:border-gray-300'}`} onClick={() => setSelectedDriver(driver)}>
+                <div key={driver.id} className={`bg-white border p-4 rounded-hero-sm flex items-center justify-between transition-all cursor-pointer ${selectedDriver?.id === driver.id ? 'border-brand shadow-md ring-2 ring-brand' : 'border-gray-200 hover:border-gray-300'}`} onClick={() => setSelectedDriver(driver)}>
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-[#111] text-[#FFCC00] flex items-center justify-center font-black">{driver.initials}</div>
+                    <div className="w-12 h-12 rounded-hero-sm bg-gray-900 text-brand flex items-center justify-center font-black text-lg">{driver.initials}</div>
                     <div>
-                      <p className="text-sm font-bold text-gray-900">{driver.name}</p>
-                      <p className="text-xs font-black uppercase tracking-widest text-gray-500 mt-0.5">{driver.vehicle} · {driver.rank}</p>
+                      <p className="text-sm font-semibold text-gray-900">{driver.name}</p>
+                      <p className="text-xs font-medium text-gray-500 mt-1">{driver.vehicle} · {driver.rank}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className={`text-xs font-black uppercase tracking-widest ${driver.status === 'On Duty' ? 'text-emerald-500' : 'text-amber-500'}`}>{driver.availability}</p>
+                    <p className={`text-xs font-medium ${driver.status === 'On Duty' ? 'text-emerald-500' : 'text-amber-500'}`}>{driver.availability}</p>
                   </div>
                 </div>
               ))}
             </div>
             <div className="p-6 border-t border-gray-100 flex justify-end gap-3 bg-white">
-              <button onClick={() => setShowAssignModal(false)} className="px-5 py-2.5 text-sm font-bold text-gray-500 uppercase tracking-widest">Cancel</button>
+              <button onClick={() => setShowAssignModal(false)} className="btn-sm bg-gray-50 border border-gray-200 text-gray-600 uppercase tracking-widest rounded-hero-sm hover:bg-gray-100 transition-all shadow-sm">Cancel</button>
               <button
                 disabled={!selectedDriver}
                 onClick={handleAssign}
-                className="px-8 py-2.5 bg-[#FFCC00] hover:bg-yellow-400 text-black font-black text-sm uppercase tracking-widest rounded-xl transition-all shadow-lg active:scale-95 disabled:opacity-50"
+                className="btn-sm px-8 bg-brand hover:brightness-105 text-black uppercase tracking-widest rounded-hero-sm transition-all shadow-md active:scale-95 disabled:opacity-50"
               >
                 Confirm & Dispatch
               </button>
@@ -304,31 +300,29 @@ export default function DispatchJobDetail() {
 
       {/* POD Modal Clone */}
       {showPodModal && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowPodModal(false)}>
-           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl overflow-hidden flex flex-col" onClick={e => e.stopPropagation()}>
-              <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-[#111]">
-                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-[#FFCC00] flex items-center justify-center text-black">
-                       <PackageCheck size={20}/>
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in" onClick={() => setShowPodModal(false)}>
+           <div className="bg-white rounded-hero-md shadow-2xl w-full max-w-xl overflow-hidden flex flex-col animate-in zoom-in-95" onClick={e => e.stopPropagation()}>
+              <div className="px-6 py-5 border-b border-gray-800 flex justify-between items-center bg-gray-900">
+                 <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-hero-sm bg-brand flex items-center justify-center text-black shadow-inner">
+                       <PackageCheck size={24}/>
                     </div>
                     <div>
-                      <h2 className="text-lg font-black text-white tracking-tight uppercase">Handover Authorized</h2>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-0.5">Secure Proof of Delivery</p>
+                      <h2 className="text-lg font-bold text-white tracking-tight">Handover Authorized</h2>
                     </div>
                  </div>
-                 <button onClick={() => setShowPodModal(false)} className="w-8 h-8 flex items-center justify-center text-gray-400 hover:bg-white/10 rounded-lg transition-colors">
-                    <X size={18} />
+                 <button onClick={() => setShowPodModal(false)} className="w-10 h-10 flex items-center justify-center text-gray-400 hover:bg-white/10 rounded-hero-sm transition-colors">
+                    <X size={20} />
                  </button>
               </div>
-              <div className="p-12 text-center">
-                 <div className="w-16 h-16 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-100 animate-pulse">
-                    <FileSignature size={32} />
+              <div className="p-12 text-center bg-gray-50/50">
+                 <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-blue-100 animate-pulse shadow-sm">
+                    <FileSignature size={40} />
                  </div>
-                 <h4 className="text-lg font-black text-gray-900 uppercase">Verification Pending</h4>
-                 <p className="text-sm font-bold text-gray-500 mt-2 max-w-xs mx-auto">Dispatch authorization requires physical signature scan or receiver PIN verification.</p>
-                 <div className="mt-8 pt-8 border-t border-gray-100 flex justify-center gap-4">
-                    <button onClick={() => setShowPodModal(false)} className="px-6 py-3 border border-gray-200 rounded-xl text-xs font-black uppercase text-gray-500 hover:bg-gray-50 transition-all">Cancel</button>
-                    <button className="px-6 py-3 bg-[#FFCC00] hover:bg-yellow-400 text-black rounded-xl text-xs font-black uppercase shadow-lg transition-all" onClick={() => setPodStatus('done')}>Unlock Handover</button>
+                 <h4 className="text-lg font-bold text-gray-900 tracking-tight">Verification Pending</h4>
+                 <div className="mt-10 pt-8 border-t border-gray-200 flex justify-center gap-4">
+                    <button onClick={() => setShowPodModal(false)} className="btn bg-white border border-gray-200 rounded-hero-sm uppercase tracking-widest text-gray-600 hover:bg-gray-50 transition-all shadow-sm">Cancel</button>
+                    <button className="btn px-8 bg-brand hover:brightness-105 text-black rounded-hero-sm uppercase tracking-widest shadow-md transition-all active:scale-95" onClick={() => { setPodStatus('done'); setShowPodModal(false); }}>Unlock Handover</button>
                  </div>
               </div>
            </div>
@@ -338,4 +332,3 @@ export default function DispatchJobDetail() {
     </div>
   );
 }
-

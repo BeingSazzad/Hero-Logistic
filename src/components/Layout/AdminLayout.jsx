@@ -8,7 +8,7 @@ import SidebarLayout from './SidebarLayout';
 import { useAuthStore } from '../../store/authStore';
 
 const navConfig = [
-  { type: 'link', label: 'Dashboard', icon: LayoutDashboard, to: '/admin', end: true },
+  { type: 'link', label: 'Command Center', icon: LayoutDashboard, to: '/admin', end: true },
   { type: 'link', label: 'Loads', icon: Package, to: '/admin/loads' },
   { type: 'link', label: 'Vehicles', icon: Network, to: '/admin/fleet' },
   {

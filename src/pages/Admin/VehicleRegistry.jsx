@@ -122,12 +122,12 @@ export default function VehicleRegistry() {
       {/* ── Header ── */}
       <div className="flex items-center justify-between mb-2">
         <div>
-          <h1 className="text-3xl font-black text-gray-900 tracking-tight uppercase">Vehicle Registry</h1>
-          <p className="text-sm font-bold text-gray-500 mt-1 uppercase tracking-widest">{vehicles.length} assets registered · Global VIN Search</p>
+          <h1 className="hero-h1">Vehicle Registry</h1>
+          <p className="hero-body text-gray-600 mt-1">{vehicles.length} assets registered · Global VIN Search</p>
         </div>
         <button
           onClick={() => { setShowModal(true); setForm(EMPTY_FORM); setErrors({}); setVinOk(null); }}
-          className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gray-900 text-[#FFCC00] text-sm font-black uppercase tracking-widest hover:bg-black transition-all shadow-xl active:scale-95"
+          className="btn btn-dark"
         >
           <Plus size={18} strokeWidth={3} /> Register Vehicle
         </button>
@@ -157,7 +157,7 @@ export default function VehicleRegistry() {
             <button
               key={s}
               onClick={() => setStatusFilter(s)}
-              className={`px-4 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+              className={`px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${
                 statusFilter === s
                   ? 'bg-white text-gray-900 shadow-md border border-gray-200'
                   : 'text-gray-500 hover:text-gray-900'
@@ -175,11 +175,11 @@ export default function VehicleRegistry() {
           <table className="w-full text-left">
             <thead>
               <tr className="border-b border-gray-50 bg-[#FAFAFA]">
-                <th className="py-5 px-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Vehicle Asset</th>
-                <th className="py-5 px-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">VIN / Plate</th>
-                <th className="py-5 px-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Operational Status</th>
-                <th className="py-5 px-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Current Task</th>
-                <th className="py-5 px-6 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Target</th>
+                <th className="py-5 px-6 text-xs font-medium text-gray-500 uppercase tracking-wide">Vehicle Asset</th>
+                <th className="py-5 px-6 text-xs font-medium text-gray-500 uppercase tracking-wide">VIN / Plate</th>
+                <th className="py-5 px-6 text-xs font-medium text-gray-500 uppercase tracking-wide">Operational Status</th>
+                <th className="py-5 px-6 text-xs font-medium text-gray-500 uppercase tracking-wide">Current Task</th>
+                <th className="py-5 px-6 text-xs font-medium text-gray-500 uppercase tracking-wide">Target</th>
                 <th className="py-5 px-6 text-right"></th>
               </tr>
             </thead>
@@ -188,7 +188,7 @@ export default function VehicleRegistry() {
                 <tr>
                   <td colSpan={6} className="py-24 text-center text-gray-400">
                     <Car size={48} className="mx-auto mb-4 opacity-10" />
-                    <p className="text-sm font-black uppercase tracking-widest">No matching vehicles found</p>
+                    <p className="text-sm font-semibold text-gray-500">No matching vehicles found</p>
                   </td>
                 </tr>
               ) : filtered.map(v => {
@@ -201,34 +201,34 @@ export default function VehicleRegistry() {
                           <Car size={24} className="text-gray-400 group-hover:text-black" />
                         </div>
                         <div>
-                          <p className="font-black text-gray-900 text-base tracking-tight leading-none">{v.year} {v.make} {v.model}</p>
-                          <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1.5">{v.color} · {v.type} · {v.weight}</p>
+                          <p className="font-semibold text-gray-900 text-sm leading-none">{v.year} {v.make} {v.model}</p>
+                          <p className="text-xs font-medium text-gray-500 mt-1.5">{v.color} · {v.type} · {v.weight}</p>
                         </div>
                       </div>
                     </td>
                     <td className="py-5 px-6">
-                      <div className="inline-block px-2 py-1 bg-gray-50 border border-gray-200 rounded font-mono text-[11px] font-black text-gray-700 uppercase tracking-wider mb-1">
+                      <div className="inline-block px-2 py-1 bg-gray-50 border border-gray-200 rounded font-mono text-xs font-black text-gray-700 uppercase tracking-wider mb-1">
                         {v.vin}
                       </div>
-                      <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">{v.plate}</p>
+                      <p className="text-xs font-medium text-gray-500 ml-1">{v.plate}</p>
                     </td>
                     <td className="py-5 px-6">
-                      <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest border ${sm.bg} ${sm.text} border-transparent shadow-sm`}>
+                      <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-black uppercase tracking-widest border ${sm.bg} ${sm.text} border-transparent shadow-sm`}>
                         <span className={`w-1.5 h-1.5 rounded-full ${sm.dot}`} />
                         {v.status}
                       </span>
                     </td>
                     <td className="py-5 px-6">
                       {v.currentLoad
-                        ? <span className="font-mono text-xs font-black text-blue-700 bg-blue-50 px-3 py-1.5 rounded-xl border border-blue-100 shadow-sm">{v.currentLoad}</span>
-                        : <span className="text-[10px] font-black text-gray-300 uppercase tracking-widest">Available</span>}
+                        ? <span className="font-mono text-xs font-semibold text-blue-700 bg-blue-50 px-3 py-1.5 rounded-xl border border-blue-100 shadow-sm">{v.currentLoad}</span>
+                        : <span className="text-xs font-medium text-gray-400">Available</span>}
                     </td>
                     <td className="py-5 px-6">
-                      <div className="flex items-center gap-2 text-gray-900 text-xs font-black uppercase tracking-tight">
+                      <div className="flex items-center gap-2 text-gray-900 text-xs font-semibold">
                         <MapPin size={14} className="text-emerald-500 shrink-0" />
                         {v.destination}
                       </div>
-                      <p className="text-[10px] font-black text-gray-400 uppercase mt-1 tracking-widest">{v.customer}</p>
+                      <p className="text-xs font-medium text-gray-500 mt-1">{v.customer}</p>
                     </td>
                     <td className="py-5 px-6 text-right">
                       <div className="flex items-center justify-end gap-2">
@@ -247,7 +247,7 @@ export default function VehicleRegistry() {
                           className="p-2.5 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white transition-all border border-blue-100 shadow-sm active:scale-95 flex items-center gap-2"
                           title="Assign Load"
                         >
-                          <Truck size={16} /> <span className="text-[10px] font-black uppercase tracking-widest hidden xl:inline">Assign</span>
+                          <Truck size={16} /> <span className="text-xs font-black uppercase tracking-widest hidden xl:inline">Assign</span>
                         </button>
                         <button
                           onClick={() => setLabelVehicle(v)}
@@ -272,8 +272,8 @@ export default function VehicleRegistry() {
           <div className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-[680px] max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-300">
             <div className="sticky top-0 bg-white/80 backdrop-blur-xl flex items-center justify-between p-8 border-b border-gray-100 z-10">
               <div>
-                <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tight">Register Asset</h2>
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mt-1">Permanent entry for multi-load assignment</p>
+                <h2 className="text-xl font-bold text-gray-900 tracking-tight">Register Asset</h2>
+                <p className="hero-body text-gray-600 mt-1">Permanent entry for multi-load assignment</p>
               </div>
               <button onClick={() => setShowModal(false)} className="w-12 h-12 flex items-center justify-center rounded-2xl hover:bg-gray-100 transition-colors">
                 <X size={24} className="text-gray-400" />
@@ -283,7 +283,7 @@ export default function VehicleRegistry() {
             <div className="p-8 flex flex-col gap-8">
               {/* VIN */}
               <section>
-                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 ml-1">
+                <label className="block text-xs font-semibold text-gray-500 mb-3 ml-1">
                   17-Digit VIN Identifier <span className="text-red-500">*</span>
                 </label>
                 <div className="relative group">
@@ -301,14 +301,14 @@ export default function VehicleRegistry() {
                     {!vinChecking && vinOk === 'duplicate' && <AlertCircle  size={20} className="text-red-500" />}
                   </div>
                 </div>
-                {errors.vin && <p className="text-[10px] font-black text-red-500 mt-2 ml-1 uppercase">{errors.vin}</p>}
-                {!errors.vin && vinOk === 'ok' && <p className="text-[10px] font-black text-emerald-600 mt-2 ml-1 uppercase tracking-widest">VIN Verified ✓</p>}
+                {errors.vin && <p className="text-xs font-black text-red-500 mt-2 ml-1 uppercase">{errors.vin}</p>}
+                {!errors.vin && vinOk === 'ok' && <p className="text-xs font-black text-emerald-600 mt-2 ml-1 uppercase tracking-widest">VIN Verified ✓</p>}
               </section>
 
               <div className="grid grid-cols-2 gap-6">
                 {/* Plate */}
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 ml-1">Rego / Plate</label>
+                  <label className="block text-xs font-semibold text-gray-500 mb-3 ml-1">Rego / Plate</label>
                   <div className="relative group">
                     <Tag size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-blue-500" />
                     <input
@@ -323,7 +323,7 @@ export default function VehicleRegistry() {
 
                 {/* Type */}
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 ml-1">Body Type</label>
+                  <label className="block text-xs font-semibold text-gray-500 mb-3 ml-1">Body Type</label>
                   <select value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value }))} className="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl py-4 px-4 text-sm font-black uppercase tracking-widest appearance-none focus:outline-none focus:bg-white focus:border-violet-400 transition-all">
                     {['Sedan', 'SUV', 'Ute', 'Van', 'Truck', 'Motorcycle', 'Other'].map(t => <option key={t}>{t}</option>)}
                   </select>
@@ -331,7 +331,7 @@ export default function VehicleRegistry() {
 
                 {/* Make */}
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 ml-1">Manufacturer</label>
+                  <label className="block text-xs font-semibold text-gray-500 mb-3 ml-1">Manufacturer</label>
                   <input type="text" placeholder="e.g. Toyota" value={form.make}
                     onChange={e => setForm(f => ({ ...f, make: e.target.value }))}
                     className="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl py-4 px-4 text-sm font-black uppercase tracking-widest focus:outline-none focus:bg-white focus:border-[#111] transition-all" />
@@ -339,7 +339,7 @@ export default function VehicleRegistry() {
 
                 {/* Model */}
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 ml-1">Model Name</label>
+                  <label className="block text-xs font-semibold text-gray-500 mb-3 ml-1">Model Name</label>
                   <input type="text" placeholder="e.g. Camry" value={form.model}
                     onChange={e => setForm(f => ({ ...f, model: e.target.value }))}
                     className="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl py-4 px-4 text-sm font-black uppercase tracking-widest focus:outline-none focus:bg-white focus:border-[#111] transition-all" />
@@ -348,17 +348,17 @@ export default function VehicleRegistry() {
 
               <div className="grid grid-cols-3 gap-6">
                  <div>
-                   <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 ml-1">Year</label>
+                   <label className="block text-xs font-semibold text-gray-500 mb-3 ml-1">Year</label>
                    <input type="text" placeholder="2024" value={form.year}
                      onChange={e => setForm(f => ({ ...f, year: e.target.value }))} className="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl py-4 px-4 text-sm font-black focus:outline-none focus:bg-white transition-all" />
                  </div>
                  <div>
-                   <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 ml-1">Color</label>
+                   <label className="block text-xs font-semibold text-gray-500 mb-3 ml-1">Color</label>
                    <input type="text" placeholder="White" value={form.color}
                      onChange={e => setForm(f => ({ ...f, color: e.target.value }))} className="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl py-4 px-4 text-sm font-black focus:outline-none focus:bg-white transition-all" />
                  </div>
                  <div>
-                   <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 ml-1">Weight</label>
+                   <label className="block text-xs font-semibold text-gray-500 mb-3 ml-1">Weight</label>
                    <input type="text" placeholder="1500kg" value={form.weight}
                      onChange={e => setForm(f => ({ ...f, weight: e.target.value }))} className="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl py-4 px-4 text-sm font-black focus:outline-none focus:bg-white transition-all" />
                  </div>
@@ -366,15 +366,15 @@ export default function VehicleRegistry() {
 
               <div className="border-t border-gray-100 pt-8 grid grid-cols-2 gap-6">
                 <div className="col-span-2">
-                   <h4 className="text-[10px] font-black text-gray-900 uppercase tracking-[0.2em] mb-4">Ownership & Routing</h4>
+                   <h4 className="text-xs font-semibold text-gray-800 mb-4">Ownership &amp; Routing</h4>
                 </div>
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 ml-1">Customer / Owner</label>
+                  <label className="block text-xs font-semibold text-gray-500 mb-3 ml-1">Customer / Owner</label>
                   <input type="text" placeholder="Client name or ID" value={form.customer}
                     onChange={e => setForm(f => ({ ...f, customer: e.target.value }))} className="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl py-4 px-4 text-sm font-black focus:outline-none focus:bg-white transition-all" />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3 ml-1">Final Destination</label>
+                  <label className="block text-xs font-semibold text-gray-500 mb-3 ml-1">Final Destination</label>
                   <input type="text" placeholder="e.g. Brisbane QLD" value={form.destination}
                     onChange={e => setForm(f => ({ ...f, destination: e.target.value }))} className="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl py-4 px-4 text-sm font-black focus:outline-none focus:bg-white transition-all" />
                 </div>
@@ -399,8 +399,8 @@ export default function VehicleRegistry() {
           <div className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-[480px] overflow-hidden animate-in zoom-in-95 duration-300">
             <div className="flex items-center justify-between p-8 border-b border-gray-100">
               <div>
-                <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight">Assign Load</h2>
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1">Vehicle: {assignLoadModal.vin}</p>
+                <h2 className="text-xl font-bold text-gray-900 tracking-tight">Assign Load</h2>
+                <p className="hero-body text-gray-600 mt-1">Vehicle: {assignLoadModal.vin}</p>
               </div>
               <button onClick={() => setAssignLoadModal(null)} className="w-10 h-10 flex items-center justify-center rounded-2xl hover:bg-gray-100 transition-colors">
                 <X size={20} className="text-gray-400" />
@@ -408,7 +408,7 @@ export default function VehicleRegistry() {
             </div>
             <div className="p-8 flex flex-col gap-6">
               <div>
-                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Load ID / Manifest Number</label>
+                <label className="block text-xs font-semibold text-gray-500 mb-2">Load ID / Manifest Number</label>
                 <div className="relative group">
                   <Hash className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16} />
                   <input
@@ -438,8 +438,8 @@ export default function VehicleRegistry() {
           <div className="bg-white rounded-[3rem] shadow-2xl w-full max-w-[420px] overflow-hidden animate-in fade-in zoom-in-95 duration-300">
             <div className="flex items-center justify-between p-8 border-b border-gray-100 bg-[#FAFAFA]">
               <div>
-                <h2 className="text-lg font-black text-gray-900 uppercase tracking-tight leading-none">Shipping Label</h2>
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-2">Print & Attach to windshield</p>
+                <h2 className="text-lg font-bold text-gray-900 tracking-tight leading-none">Shipping Label</h2>
+                <p className="hero-body text-gray-600 mt-2">Print &amp; Attach to windshield</p>
               </div>
               <button onClick={() => setLabelVehicle(null)} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white transition-colors border border-transparent hover:border-gray-200">
                 <X size={20} className="text-gray-400" />
@@ -483,7 +483,7 @@ export default function VehicleRegistry() {
                 >
                   <Printer size={18} strokeWidth={3} /> Execute Print Job
                 </button>
-                <p className="text-[9px] font-black text-gray-400 text-center uppercase tracking-widest">System Hash: HL-{labelVehicle.id.toString().padStart(6, '0')}</p>
+                <p className="text-xs font-black text-gray-400 text-center uppercase tracking-widest">System Hash: HL-{labelVehicle.id.toString().padStart(6, '0')}</p>
               </div>
             </div>
           </div>
@@ -492,3 +492,4 @@ export default function VehicleRegistry() {
     </div>
   );
 }
+

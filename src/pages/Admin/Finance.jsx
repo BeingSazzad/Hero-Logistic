@@ -76,7 +76,7 @@ export default function AdminFinance() {
         <div className="fixed top-6 right-6 bg-black text-[#FFCC00] px-6 py-4 rounded-2xl shadow-2xl z-[100] flex items-center gap-3 animate-in slide-in-from-right-10 border border-[#FFCC00]">
           <CheckCircle2 size={20} />
           <div>
-            <p className="text-sm font-black uppercase tracking-widest">Downloaded</p>
+            <p className="text-sm font-semibold">Downloaded</p>
             <p className="text-xs font-bold text-gray-400">Invoice PDF ready.</p>
           </div>
         </div>
@@ -85,19 +85,19 @@ export default function AdminFinance() {
       {/* ── Header ── */}
       <div className="flex justify-between items-center mb-2 px-2">
         <div>
-          <h1 className="text-3xl font-black text-gray-900 tracking-tight uppercase">Finance & P&L</h1>
-          <p className="text-sm font-bold text-gray-500 mt-1 uppercase tracking-widest">Revenue, expenses & profitability dashboard</p>
+          <h1 className="hero-h1">Finance &amp; P&amp;L</h1>
+          <p className="hero-body text-gray-600 mt-1">Revenue, expenses &amp; profitability dashboard</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="relative">
-            <select className="appearance-none bg-white border border-gray-200 text-xs font-black uppercase tracking-widest rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:border-[#FFCC00] shadow-sm cursor-pointer">
+            <select className="appearance-none bg-white border border-gray-200 text-xs font-medium rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:border-[#FFCC00] shadow-sm cursor-pointer">
               <option>This Quarter</option>
               <option>FY 2026–27</option>
               <option>Last 30 Days</option>
             </select>
             <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
           </div>
-          <button className="flex items-center gap-2 px-5 py-3 rounded-xl bg-[#111] text-[#FFCC00] text-[10px] font-black uppercase tracking-widest shadow-xl active:scale-95 transition-all">
+          <button className="btn btn-dark">
             <Receipt size={16} /> New Invoice
           </button>
         </div>
@@ -118,14 +118,14 @@ export default function AdminFinance() {
               <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${k.bg} ${k.color} group-hover:scale-110 transition-transform`}>
                 <k.icon size={22} />
               </div>
-              <span className={`text-[10px] font-black px-3 py-1.5 rounded-xl uppercase tracking-widest ${k.up ? 'text-emerald-600 bg-emerald-50' : 'text-red-500 bg-red-50'}`}>
+              <span className={`text-xs font-black px-3 py-1.5 rounded-xl uppercase tracking-widest ${k.up ? 'text-emerald-600 bg-emerald-50' : 'text-red-500 bg-red-50'}`}>
                 {k.trend}
               </span>
             </div>
             <div>
-              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{k.label}</p>
-              <p className="text-2xl font-black text-gray-900 mt-1 leading-none">{k.value}</p>
-              <p className="text-[10px] font-bold text-gray-400 mt-1.5 uppercase tracking-widest">{k.sub}</p>
+              <p className="hero-metadata">{k.label}</p>
+              <p className="text-2xl font-semibold text-hero-dark mt-1 leading-none">{k.value}</p>
+              <p className="text-xs font-medium text-gray-400 mt-1.5">{k.sub}</p>
             </div>
           </div>
         ))}
@@ -142,7 +142,7 @@ export default function AdminFinance() {
             <button
               key={t.key}
               onClick={() => setActiveTab(t.key)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold transition-all ${
                 activeTab === t.key ? 'bg-white text-gray-900 shadow-md border border-gray-200' : 'text-gray-500 hover:text-gray-900'
               }`}
             >
@@ -158,29 +158,29 @@ export default function AdminFinance() {
 
           {/* Revenue Breakdown */}
           <div className="bg-white rounded-3xl border border-gray-100 shadow-xl p-6">
-            <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-5 flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-gray-800 mb-5 flex items-center gap-2">
               <TrendingUp size={16} className="text-emerald-500" /> Revenue Breakdown
             </h3>
             <div className="space-y-3">
               {TRANSACTIONS.filter(t => t.status === 'Paid').map(t => (
                 <div key={t.id} className="flex items-center justify-between p-4 bg-emerald-50/50 border border-emerald-100 rounded-2xl">
                   <div>
-                    <p className="text-xs font-black text-gray-900">{t.customer}</p>
-                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-0.5">{t.id} · {t.loads} loads</p>
+                    <p className="text-xs font-semibold text-gray-900">{t.customer}</p>
+                    <p className="text-xs font-medium text-gray-500 mt-0.5">{t.id} · {t.loads} loads</p>
                   </div>
-                  <span className="text-sm font-black text-emerald-700">{fmt(t.amount)}</span>
+                  <span className="text-sm font-semibold text-emerald-700">{fmt(t.amount)}</span>
                 </div>
               ))}
               <div className="flex items-center justify-between p-4 bg-emerald-500 rounded-2xl">
-                <span className="text-xs font-black text-white uppercase tracking-widest">Total Revenue</span>
-                <span className="text-base font-black text-white">{fmt(totalRevenue)}</span>
+                <span className="text-xs font-medium text-white">Total Revenue</span>
+                <span className="text-base font-semibold text-white">{fmt(totalRevenue)}</span>
               </div>
             </div>
           </div>
 
           {/* Expense Breakdown */}
           <div className="bg-white rounded-3xl border border-gray-100 shadow-xl p-6">
-            <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-5 flex items-center gap-2">
+            <h3 className="text-sm font-semibold text-gray-800 mb-5 flex items-center gap-2">
               <TrendingDown size={16} className="text-red-500" /> Expense Breakdown
             </h3>
             <div className="space-y-3">
@@ -191,25 +191,25 @@ export default function AdminFinance() {
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <e.icon size={14} className="text-gray-400" />
-                        <span className="text-xs font-black text-gray-900">{e.category}</span>
+                        <span className="text-xs font-semibold text-gray-900">{e.category}</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className={`text-[9px] font-black uppercase ${e.trend > 0 ? 'text-red-500' : 'text-emerald-500'}`}>
+                        <span className={`text-xs font-black uppercase ${e.trend > 0 ? 'text-red-500' : 'text-emerald-500'}`}>
                           {e.trend > 0 ? '+' : ''}{e.trend}%
                         </span>
-                        <span className="text-xs font-black text-gray-900">{fmt(e.amount)}</span>
+                        <span className="text-xs font-semibold text-gray-900">{fmt(e.amount)}</span>
                       </div>
                     </div>
                     <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
                       <div className="h-full bg-red-400 rounded-full transition-all" style={{ width: `${pct}%` }} />
                     </div>
-                    <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest mt-1">{pct}% of total spend</p>
+                    <p className="text-xs font-medium text-gray-400 mt-1">{pct}% of total spend</p>
                   </div>
                 );
               })}
               <div className="flex items-center justify-between p-4 bg-gray-900 rounded-2xl">
-                <span className="text-xs font-black text-white uppercase tracking-widest">Total Expenses</span>
-                <span className="text-base font-black text-red-400">{fmt(totalExpenses)}</span>
+                <span className="text-xs font-medium text-white">Total Expenses</span>
+                <span className="text-base font-semibold text-red-400">{fmt(totalExpenses)}</span>
               </div>
             </div>
           </div>
@@ -217,21 +217,21 @@ export default function AdminFinance() {
           {/* Net Profit Banner */}
           <div className="lg:col-span-2 bg-[#111] rounded-3xl border border-gray-800 shadow-2xl p-8 flex items-center justify-between">
             <div>
-              <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-1">Net Profit (This Quarter)</p>
-              <p className="text-5xl font-black text-[#FFCC00] leading-none">{fmt(Math.max(netProfit, 0))}</p>
-              <p className="text-xs font-black text-gray-500 uppercase tracking-widest mt-3">{margin}% profit margin · Revenue − Expenses</p>
+              <p className="hero-metadata mb-1">Net Profit (This Quarter)</p>
+              <p className="text-4xl font-bold text-[#FFCC00] leading-none">{fmt(Math.max(netProfit, 0))}</p>
+              <p className="text-xs font-medium text-gray-500 mt-3">{margin}% profit margin · Revenue − Expenses</p>
             </div>
             <div className="text-right">
-              <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1">Revenue vs Expenses</div>
+              <div className="text-xs font-medium text-gray-500 mb-1">Revenue vs Expenses</div>
               <div className="flex items-center gap-4 justify-end mt-2">
                 <div className="text-right">
-                  <p className="text-[9px] font-black text-emerald-500 uppercase tracking-widest">Revenue</p>
-                  <p className="text-lg font-black text-white">{fmt(totalRevenue)}</p>
+                  <p className="text-xs font-medium text-emerald-500">Revenue</p>
+                  <p className="text-lg font-semibold text-white">{fmt(totalRevenue)}</p>
                 </div>
                 <div className="w-px h-10 bg-gray-800" />
                 <div className="text-right">
-                  <p className="text-[9px] font-black text-red-400 uppercase tracking-widest">Expenses</p>
-                  <p className="text-lg font-black text-white">{fmt(totalExpenses)}</p>
+                  <p className="text-xs font-medium text-red-400">Expenses</p>
+                  <p className="text-lg font-semibold text-white">{fmt(totalExpenses)}</p>
                 </div>
               </div>
             </div>
@@ -256,7 +256,7 @@ export default function AdminFinance() {
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left">
-              <thead className="bg-gray-50/50 text-[10px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-100">
+              <thead className="bg-gray-50/50 text-xs font-medium text-gray-500 uppercase tracking-wide border-b border-gray-100">
                 <tr>
                   <th className="px-6 py-5">Invoice ID</th>
                   <th className="px-6 py-5">Customer</th>
@@ -271,18 +271,18 @@ export default function AdminFinance() {
                 {filteredTx.map(acc => (
                   <tr className="hover:bg-gray-50/50 cursor-pointer group transition-all" key={acc.id}>
                     <td className="px-6 py-5">
-                      <span className="font-mono font-black text-gray-900 text-sm">{acc.id}</span>
+                      <span className="font-mono font-semibold text-gray-900 text-sm">{acc.id}</span>
                     </td>
-                    <td className="px-6 py-5 font-black text-gray-900 text-sm">{acc.customer}</td>
-                    <td className="px-6 py-5 font-black text-gray-900 text-sm">{fmt(acc.amount)}</td>
+                    <td className="px-6 py-5 font-semibold text-gray-900 text-sm">{acc.customer}</td>
+                    <td className="px-6 py-5 font-semibold text-gray-900 text-sm">{fmt(acc.amount)}</td>
                     <td className="px-6 py-5">
-                      <span className="text-[10px] font-black text-blue-600 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-lg">{acc.loads} loads</span>
-                    </td>
-                    <td className="px-6 py-5">
-                      <span className={`text-sm font-black ${acc.status === 'Overdue' ? 'text-red-500' : 'text-gray-700'}`}>{acc.dueDate}</span>
+                      <span className="text-xs font-black text-blue-600 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-lg">{acc.loads} loads</span>
                     </td>
                     <td className="px-6 py-5">
-                      <span className={`text-[10px] font-black px-3 py-1.5 rounded-xl border uppercase tracking-widest ${STATUS_STYLE[acc.status]}`}>
+                      <span className={`text-sm font-semibold ${acc.status === 'Overdue' ? 'text-red-500' : 'text-gray-700'}`}>{acc.dueDate}</span>
+                    </td>
+                    <td className="px-6 py-5">
+                      <span className={`text-xs font-black px-3 py-1.5 rounded-xl border uppercase tracking-widest ${STATUS_STYLE[acc.status]}`}>
                         {acc.status}
                       </span>
                     </td>
@@ -290,7 +290,7 @@ export default function AdminFinance() {
                       <button
                         onClick={e => { e.stopPropagation(); handleDownload(acc.id); }}
                         disabled={!!loadingInvoice}
-                        className="flex items-center gap-2 text-[10px] font-black text-gray-500 border border-gray-200 hover:bg-gray-900 hover:text-[#FFCC00] hover:border-gray-900 px-4 py-2 rounded-xl transition-all uppercase tracking-widest ml-auto shadow-sm disabled:opacity-40"
+                        className="flex items-center gap-2 text-xs font-black text-gray-500 border border-gray-200 hover:bg-gray-900 hover:text-[#FFCC00] hover:border-gray-900 px-4 py-2 rounded-xl transition-all uppercase tracking-widest ml-auto shadow-sm disabled:opacity-40"
                       >
                         {loadingInvoice === acc.id ? <Loader2 size={12} className="animate-spin" /> : <Download size={12} />}
                         PDF
@@ -309,7 +309,7 @@ export default function AdminFinance() {
         <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden mx-2">
           <div className="overflow-x-auto">
             <table className="w-full text-left">
-              <thead className="bg-gray-50/50 text-[10px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-100">
+              <thead className="bg-gray-50/50 text-xs font-medium text-gray-500 uppercase tracking-wide border-b border-gray-100">
                 <tr>
                   <th className="px-6 py-5">Audit ID</th>
                   <th className="px-6 py-5">Event</th>
@@ -321,19 +321,19 @@ export default function AdminFinance() {
               <tbody className="divide-y divide-gray-50">
                 {AUDIT_LOGS.map(log => (
                   <tr className="hover:bg-gray-50/50 transition-all" key={log.id}>
-                    <td className="px-6 py-5 font-mono font-black text-gray-500 text-xs">{log.id}</td>
+                    <td className="px-6 py-5 font-mono font-medium text-gray-500 text-xs">{log.id}</td>
                     <td className="px-6 py-5 font-bold text-gray-900 text-sm">{log.action}</td>
                     <td className="px-6 py-5">
                       <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-xl bg-gray-100 flex items-center justify-center text-[10px] font-black text-gray-500">
+                        <div className="w-7 h-7 rounded-xl bg-gray-100 flex items-center justify-center text-xs font-black text-gray-500">
                           {log.user.split(' ').map(n => n[0]).join('')}
                         </div>
-                        <span className="text-xs font-black text-gray-900">{log.user}</span>
+                        <span className="text-xs font-semibold text-gray-900">{log.user}</span>
                       </div>
                     </td>
                     <td className="px-6 py-5 text-xs font-bold text-gray-500">{log.time}</td>
                     <td className="px-6 py-5">
-                      <span className={`text-[10px] font-black px-3 py-1.5 rounded-xl border uppercase tracking-widest ${
+                      <span className={`text-xs font-black px-3 py-1.5 rounded-xl border uppercase tracking-widest ${
                         log.status === 'Success' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
                         log.status === 'Warning' ? 'bg-amber-50 text-amber-600 border-amber-100' :
                                                    'bg-red-50 text-red-600 border-red-100'
@@ -352,3 +352,4 @@ export default function AdminFinance() {
     </div>
   );
 }
+
