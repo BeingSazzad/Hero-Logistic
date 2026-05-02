@@ -359,8 +359,12 @@ export default function SidebarLayout({
                 <p className="text-xs font-semibold text-[#111] leading-none mb-1 uppercase tracking-tight">{(user as any)?.name || 'Operator'}</p>
                 <p className="text-xs font-semibold text-gray-400 uppercase tracking-[0.15em]">{(user as any)?.role || 'Admin'}</p>
               </div>
-              <div className="w-9 h-9 rounded-hero-sm bg-brand-yellow border border-black/5 flex items-center justify-center font-semibold text-hero-dark text-xs shadow-sm">
-                {initials}
+              <div className="w-9 h-9 rounded-hero-sm bg-brand-yellow border border-black/5 flex items-center justify-center font-semibold text-hero-dark text-xs shadow-sm overflow-hidden">
+                {(user as any)?.avatar ? (
+                  <img src={(user as any).avatar} alt="Profile" className="w-full h-full object-cover" />
+                ) : (
+                  initials
+                )}
               </div>
             </div>
           </div>

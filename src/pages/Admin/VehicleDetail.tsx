@@ -16,7 +16,7 @@ const vehicle = {
   fuelType: 'Diesel',
   status: 'Active',
   depot: 'Sydney Central Depot',
-  assignedDriver: { id: 'DRV-102', name: 'Jack Taylor' },
+  assignedDriver: { id: 'DRV-102', name: 'Jack Taylor', avatar: '/driver_avatar_2_1777708515488.png' },
   currentLoad: { id: 'SHP-20481', route: 'Sydney Port → Blacktown DC', progress: 65 },
   odometer: '184,220 km',
   fuelLog: [
@@ -38,11 +38,11 @@ const vehicle = {
 };
 
 const availableDrivers = [
-  { id: 'DRV-102', name: 'Jack Taylor',  status: 'Available', depot: 'Sydney Central Depot' },
-  { id: 'DRV-087', name: 'Maria Santos', status: 'Available', depot: 'Sydney Central Depot' },
-  { id: 'DRV-091', name: 'Chris Nguyen', status: 'On Leave',  depot: 'Melbourne Depot' },
-  { id: 'DRV-044', name: 'Devon Clarke', status: 'Available', depot: 'Sydney Central Depot' },
-  { id: 'DRV-058', name: 'Priya Mehta',  status: 'On Shift',  depot: 'Brisbane Port' },
+  { id: 'DRV-102', name: 'Jack Taylor',  status: 'Available', depot: 'Sydney Central Depot', avatar: '/driver_avatar_2_1777708515488.png' },
+  { id: 'DRV-087', name: 'Maria Santos', status: 'Available', depot: 'Sydney Central Depot', avatar: '/driver_avatar_1_1777708494778.png' },
+  { id: 'DRV-091', name: 'Chris Nguyen', status: 'On Leave',  depot: 'Melbourne Depot',      avatar: '/driver_avatar_3_1777708569850.png' },
+  { id: 'DRV-044', name: 'Devon Clarke', status: 'Available', depot: 'Sydney Central Depot', avatar: '/driver_avatar_4_1777708585605.png' },
+  { id: 'DRV-058', name: 'Priya Mehta',  status: 'On Shift',  depot: 'Brisbane Port',       avatar: '/driver_avatar_1_1777708494778.png' },
 ];
 
 // Utility: generate initials from full name
@@ -127,7 +127,7 @@ export default function AdminVehicleDetail() {
         <div className="lg:col-span-7 flex flex-col gap-3">
           <div className="relative aspect-[16/10] w-full rounded-2xl bg-[#0a0a0a] overflow-hidden shadow-lg group">
             <img
-              src={photo || '/assets/truck_front.png'}
+              src={photo || '/ford_ranger_silver_1777708602634.png'}
               alt={vehicle.make}
               className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all"
             />
@@ -149,7 +149,7 @@ export default function AdminVehicleDetail() {
           </div>
           {/* Thumbnail strip */}
           <div className="flex gap-2">
-            {['/assets/truck_front.png', '/assets/truck_side.png', '/assets/truck_cabin.png'].map((img, i) => (
+            {['/ford_ranger_silver_1777708602634.png', '/honda_crv_black_1777708547079.png', '/nissan_xtrail_blue_1777708637322.png'].map((img, i) => (
               <button
                 key={i}
                 onClick={() => setPhoto(img)}
@@ -181,8 +181,8 @@ export default function AdminVehicleDetail() {
               </button>
             </div>
             <div className="flex items-center gap-3 relative z-10">
-              <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-white font-bold text-xs shrink-0">
-                {initials(selectedDriver.name)}
+              <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-white font-bold text-xs shrink-0 overflow-hidden">
+                {(selectedDriver as any).avatar ? <img src={(selectedDriver as any).avatar} className="w-full h-full object-cover" /> : initials(selectedDriver.name)}
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-white leading-tight truncate">{selectedDriver.name}</p>
@@ -492,15 +492,15 @@ export default function AdminVehicleDetail() {
                     key={driver.id}
                     disabled={isUnavailable}
                     onClick={() => {
-                      setSelectedDriver({ id: driver.id, name: driver.name });
+                      setSelectedDriver({ id: driver.id, name: driver.name, avatar: driver.avatar });
                       setShowDriverPicker(false);
                     }}
                     className={`w-full flex items-center gap-3 px-6 py-3.5 text-left transition-all
                       ${isUnavailable ? 'opacity-40 cursor-not-allowed' : 'hover:bg-gray-50 cursor-pointer'}
                       ${isSelected ? 'bg-amber-50' : ''}`}
                   >
-                    <div className="w-9 h-9 rounded-xl bg-gray-900 flex items-center justify-center text-white text-xs font-bold shrink-0">
-                      {initials(driver.name)}
+                    <div className="w-9 h-9 rounded-xl bg-gray-900 flex items-center justify-center text-white text-xs font-bold shrink-0 overflow-hidden">
+                      {driver.avatar ? <img src={driver.avatar} className="w-full h-full object-cover" /> : initials(driver.name)}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-semibold text-gray-900">{driver.name}</p>

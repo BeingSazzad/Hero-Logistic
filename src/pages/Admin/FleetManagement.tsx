@@ -13,10 +13,10 @@ export default function AdminFleetManagement() {
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
 
   const fleet = [
-    { id: 'TRK-102', branch: 'SYDNEY', reg: 'XQG-984', type: 'Heavy Truck', cap: '20t', status: 'Active', service: '4,500 km', fuel: '18L/100km', lastUpdate: 'Live' },
-    { id: 'VAN-08',  branch: 'MELBOURNE', reg: 'BZX-441', type: 'Delivery Van', cap: '2.5t', status: 'Maintenance', service: 'Overdue', fuel: '12L/100km', lastUpdate: '2h ago' },
-    { id: 'TRL-44',  branch: 'BRISBANE', reg: 'T-9921',  type: 'Trailer Flatbed', cap: '40t', status: 'Active', service: '12,000 km', fuel: '-', lastUpdate: 'Live' },
-    { id: 'TRK-09',  branch: 'SYDNEY', reg: 'XYY-112', type: 'Heavy Truck', cap: '20t', status: 'Inbound', service: '1,200 km', fuel: '19L/100km', lastUpdate: 'Live' },
+    { id: 'TRK-102', branch: 'SYDNEY', reg: 'XQG-984', type: 'Heavy Truck', cap: '20t', status: 'Active', service: '4,500 km', fuel: '18L/100km', lastUpdate: 'Live', driver: 'Jack Taylor', avatar: '/driver_avatar_2_1777708515488.png' },
+    { id: 'VAN-08',  branch: 'MELBOURNE', reg: 'BZX-441', type: 'Delivery Van', cap: '2.5t', status: 'Maintenance', service: 'Overdue', fuel: '12L/100km', lastUpdate: '2h ago', driver: 'Oliver Brown', avatar: '/driver_avatar_3_1777708569850.png' },
+    { id: 'TRL-44',  branch: 'BRISBANE', reg: 'T-9921',  type: 'Trailer Flatbed', cap: '40t', status: 'Active', service: '12,000 km', fuel: '-', lastUpdate: 'Live', driver: 'Noah Williams', avatar: '/driver_avatar_1_1777708494778.png' },
+    { id: 'TRK-09',  branch: 'SYDNEY', reg: 'XYY-112', type: 'Heavy Truck', cap: '20t', status: 'Inbound', service: '1,200 km', fuel: '19L/100km', lastUpdate: 'Live', driver: 'Liam Smith', avatar: '/driver_avatar_4_1777708585605.png' },
   ];
 
   // Fix: Unified filtering logic
@@ -147,9 +147,9 @@ export default function AdminFleetManagement() {
                <tr>
                  <th className="px-6 py-4">Vehicle Details</th>
                  <th className="px-6 py-4">Branch</th>
+                 <th className="px-6 py-4">Assigned Driver</th>
                  <th className="px-6 py-4">Type</th>
                  <th className="px-6 py-4">Status</th>
-                 <th className="px-6 py-4">Next Service</th>
                  <th className="px-6 py-4 text-right">Actions</th>
                </tr>
              </thead>
@@ -174,6 +174,14 @@ export default function AdminFleetManagement() {
                        </div>
                     </td>
                     <td className="px-6 py-5">
+                       <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-full w-fit bg-gray-100 flex items-center justify-center text-[10px] font-bold text-gray-400 overflow-hidden border border-gray-100">
+                             {v.avatar ? <img src={v.avatar} className="w-full h-full object-cover" /> : v.driver[0]}
+                          </div>
+                          <span className="text-xs font-bold text-gray-700">{v.driver}</span>
+                       </div>
+                    </td>
+                    <td className="px-6 py-5">
                        <div className="flex flex-col">
                           <span className="text-xs font-semibold text-[#111] uppercase tracking-wide">{v.type}</span>
                           <span className="text-xs text-gray-400 font-bold uppercase mt-1">Payload: {v.cap}</span>
@@ -187,11 +195,6 @@ export default function AdminFleetManagement() {
                       }`}>
                          {v.status}
                       </span>
-                    </td>
-                    <td className="px-6 py-5">
-                       <div className="flex flex-col">
-                          <div className={`text-xs font-semibold ${v.service === 'Overdue' ? 'text-red-500' : 'text-[#111]'}`}>{v.service}</div>
-                       </div>
                     </td>
                     <td className="px-6 py-4 text-right">
                        <button 

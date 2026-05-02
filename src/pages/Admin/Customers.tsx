@@ -6,12 +6,12 @@ import {
 } from 'lucide-react';
 
 const RAW_CUSTOMERS = [
-  { id: 'CUST-001', name: 'Acme Corp Logistics',      contact: 'John Smith',   email: 'john@acme.com.au',    phone: '+61 411 000 001', creditLimit: 50000,  terms: 'Net 30', status: 'Active',    Loads: 142, revenue: '$28,400', rating: 4.8 },
-  { id: 'CUST-002', name: 'Tech Solutions Ltd',       contact: 'Emma Watson',  email: 'emma@techsol.com',    phone: '+61 412 000 002', creditLimit: 10000,  terms: 'Net 14', status: 'Active',    Loads: 38,  revenue: '$7,200',  rating: 4.5 },
-  { id: 'CUST-003', name: 'Global Traders Australia', contact: 'Lucas Brown',  email: 'lucas@globaltr.com',  phone: '+61 413 000 003', creditLimit: 150000, terms: 'Net 60', status: 'On Hold',   Loads: 0,   revenue: '$0',      rating: 3.2 },
-  { id: 'CUST-004', name: 'Fresh Markets AU',         contact: 'Ben Chu',      email: 'ben@freshmarkets.com', phone: '+61 414 000 004', creditLimit: 25000,  terms: 'Net 14', status: 'Active',    Loads: 89,  revenue: '$14,600', rating: 4.9 },
-  { id: 'CUST-005', name: 'Southport Logistics',      contact: 'Sarah Miller', email: 'sarah@southport.com', phone: '+61 415 000 005', creditLimit: 80000,  terms: 'Net 30', status: 'Active',    Loads: 204, revenue: '$41,300', rating: 4.7 },
-  { id: 'CUST-006', name: 'Blue River Exports',       contact: 'Mike Tan',     email: 'mike@blueriver.com',  phone: '+61 416 000 006', creditLimit: 5000,   terms: 'Net 7',  status: 'Suspended', Loads: 0,   revenue: '$0',      rating: 2.8 },
+  { id: 'CUST-001', name: 'Acme Corp Logistics',      contact: 'John Smith',   email: 'john@acme.com.au',    phone: '+61 411 000 001', creditLimit: 50000,  terms: 'Net 30', status: 'Active',    Loads: 142, revenue: '$28,400', rating: 4.8, logo: '/hero_logistic_asset_inventory_final_1777697265907.webp' },
+  { id: 'CUST-002', name: 'Tech Solutions Ltd',       contact: 'Emma Watson',  email: 'emma@techsol.com',    phone: '+61 412 000 002', creditLimit: 10000,  terms: 'Net 14', status: 'Active',    Loads: 38,  revenue: '$7,200',  rating: 4.5, logo: '/hero_logistic_stock_inventory_1777697208879.webp' },
+  { id: 'CUST-003', name: 'Global Traders Australia', contact: 'Lucas Brown',  email: 'lucas@globaltr.com',  phone: '+61 413 000 003', creditLimit: 150000, terms: 'Net 60', status: 'On Hold',   Loads: 0,   revenue: '$0',      rating: 3.2, logo: '/hero_logistics_bg_1777698890699.png' },
+  { id: 'CUST-004', name: 'Fresh Markets AU',         contact: 'Ben Chu',      email: 'ben@freshmarkets.com', phone: '+61 414 000 004', creditLimit: 25000,  terms: 'Net 14', status: 'Active',    Loads: 89,  revenue: '$14,600', rating: 4.9, logo: '/hero_logistic_run_1777697004064.webp' },
+  { id: 'CUST-005', name: 'Southport Logistics',      contact: 'Sarah Miller', email: 'sarah@southport.com', phone: '+61 415 000 005', creditLimit: 80000,  terms: 'Net 30', status: 'Active',    Loads: 204, revenue: '$41,300', rating: 4.7, logo: '/hero_logistic_asset_inventory_final_1777697265907.webp' },
+  { id: 'CUST-006', name: 'Blue River Exports',       contact: 'Mike Tan',     email: 'mike@blueriver.com',  phone: '+61 416 000 006', creditLimit: 5000,   terms: 'Net 7',  status: 'Suspended', Loads: 0,   revenue: '$0',      rating: 2.8, logo: '/hero_logistic_stock_inventory_1777697208879.webp' },
 ];
 
 const STATUS_TABS = ['All', 'Active', 'On Hold', 'Suspended'];
@@ -114,8 +114,12 @@ export default function AdminCustomers() {
                   className="hover:bg-gray-50/80 transition-all cursor-pointer group border-l-4 border-l-transparent hover:border-l-brand-yellow">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-lg bg-[#111] flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0 group-hover:border-brand-yellow border-2 border-transparent transition-colors">
-                        {c.name.split(' ').map(n=>n[0]).join('').slice(0,2)}
+                      <div className="w-9 h-9 rounded-lg bg-[#111] flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0 group-hover:border-brand-yellow border-2 border-transparent transition-colors overflow-hidden">
+                        {c.logo ? (
+                          <img src={c.logo} alt={c.name} className="w-full h-full object-cover" />
+                        ) : (
+                          c.name.split(' ').map(n=>n[0]).join('').slice(0,2)
+                        )}
                       </div>
                       <div>
                         <div className="font-bold text-[#111] text-sm">{c.name}</div>

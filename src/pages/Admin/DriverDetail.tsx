@@ -9,7 +9,7 @@ import {
 const driver = {
   id: 'DRV-102',
   name: 'Jack Taylor',
-  avatar: 'JT',
+  avatar: '/driver_avatar_2_1777708515488.png',
   phone: '+61 412 000 102',
   email: 'jack.taylor@hero.com',
   address: '14 Parramatta Rd, Strathfield NSW 2135',
@@ -54,7 +54,7 @@ export default function AdminDriverDetail() {
           </button>
           <div className="flex items-center gap-6">
              <div className="w-24 h-24 rounded-2xl bg-[#111] overflow-hidden shadow-md border-2 border-gray-100 shrink-0">
-               <img src="/assets/driver_profile.png" alt="Driver" className="w-full h-full object-cover" />
+               <img src="/driver_avatar_2_1777708515488.png" alt="Driver" className="w-full h-full object-cover" />
              </div>
              <div>
                <div className="flex items-center gap-3">
