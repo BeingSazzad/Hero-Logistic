@@ -268,7 +268,7 @@ export default function SidebarLayout({
   children,
 }) {
   const navigate = useNavigate();
-  const initials = user.initials || (user.name ? user.name.split(' ').map(n => n[0]).join('').toUpperCase() : '??');
+  const initials = (user as any).initials || ((user as any).name ? (user as any).name.split(' ').map((n: string) => n[0]).join('').toUpperCase() : '??');
 
   return (
     <div className="flex h-screen w-full overflow-hidden bg-gray-50 font-sans">
@@ -284,8 +284,10 @@ export default function SidebarLayout({
               className="h-14 w-auto object-contain cursor-pointer"
               onClick={() => navigate('/')}
               onError={(e) => {
-                e.target.style.display = 'none';
-                if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                const next = target.nextElementSibling as HTMLElement;
+                if (next) next.style.display = 'flex';
               }}
             />
             {/* Fallback Text Logo */}
@@ -302,11 +304,11 @@ export default function SidebarLayout({
           </div>
 
           {/* Branch badge */}
-          {branchBadge && user.branchName && (
+          {branchBadge && (user as any)?.branchName && (
             <div className="flex items-center gap-2 mt-5 bg-white/5 px-3 py-2 rounded-hero-sm border border-white/5">
               <div className="min-w-0 flex-1">
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-0.5">Terminal</p>
-                <p className="text-white text-xs font-semibold truncate">{user.branchName}</p>
+                <p className="text-white text-xs font-semibold truncate">{(user as any)?.branchName}</p>
               </div>
             </div>
           )}
@@ -354,8 +356,8 @@ export default function SidebarLayout({
             <div className="h-6 w-px bg-gray-100 mx-1"></div>
             <div className="flex items-center gap-3">
               <div className="text-right hidden sm:block">
-                <p className="text-xs font-semibold text-[#111] leading-none mb-1 uppercase tracking-tight">{user.name || 'Operator'}</p>
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-[0.15em]">{user.role || 'Admin'}</p>
+                <p className="text-xs font-semibold text-[#111] leading-none mb-1 uppercase tracking-tight">{(user as any)?.name || 'Operator'}</p>
+                <p className="text-xs font-semibold text-gray-400 uppercase tracking-[0.15em]">{(user as any)?.role || 'Admin'}</p>
               </div>
               <div className="w-9 h-9 rounded-hero-sm bg-brand-yellow border border-black/5 flex items-center justify-center font-semibold text-hero-dark text-xs shadow-sm">
                 {initials}

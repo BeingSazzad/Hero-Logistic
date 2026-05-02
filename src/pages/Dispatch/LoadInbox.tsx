@@ -6,7 +6,21 @@ import {
   User, Plus, X, CheckCircle2, ArrowRight
 } from 'lucide-react';
 
-const MOCK_INBOX = [
+interface DraftLoad {
+  id: string;
+  driver: string;
+  submittedAt: string;
+  vehicleCount: number;
+  vins: string[];
+  origin: string;
+  dest: string;
+  status: string;
+  urgency: 'High' | 'Normal';
+  notes: string;
+  avatar?: string;
+}
+
+const MOCK_INBOX: DraftLoad[] = [
   {
     id: 'DRAFT-1092',
     driver: 'Michael Chen',
@@ -48,7 +62,7 @@ const MOCK_INBOX = [
   },
 ];
 
-const URGENCY_STYLE = {
+const URGENCY_STYLE: Record<string, { badge: string; icon: any }> = {
   High:   { badge: 'bg-red-50 text-red-600 border-red-100',    icon: AlertCircle },
   Normal: { badge: 'bg-gray-100 text-gray-500 border-gray-200', icon: Clock },
 };
@@ -56,9 +70,9 @@ const URGENCY_STYLE = {
 export default function DispatchLoadInbox() {
   const navigate = useNavigate();
   const [search, setSearch]     = useState('');
-  const [approved, setApproved] = useState([]);
-  const [rejected, setRejected] = useState([]);
-  const [expandedId, setExpandedId] = useState(null);
+  const [approved, setApproved] = useState<string[]>([]);
+  const [rejected, setRejected] = useState<string[]>([]);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
   const [filter, setFilter]     = useState('All');
 
   const drafts = MOCK_INBOX.filter(d => {

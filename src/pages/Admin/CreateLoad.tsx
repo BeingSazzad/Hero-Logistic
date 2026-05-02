@@ -41,6 +41,7 @@ const createItem = (id) => ({
   packaging: 'Pallets',
   pickupAddress: '',
   dropoffAddress: '',
+  targetBranch: '',
   pickupSameAsSender: false,
   collapsed: false,
 });
@@ -104,8 +105,8 @@ export default function AdminCreateLoad() {
     setItems(prev => prev.map(i => i.id === id ? { ...i, collapsed: !i.collapsed } : i));
   };
 
-  const totalWeight = items.reduce((sum, i) => sum + (parseFloat(i.weight) || 0), 0);
-  const totalQty = items.reduce((sum, i) => sum + (parseInt(i.qty) || 0), 0);
+  const totalWeight = items.reduce((sum, i) => sum + (Number(parseFloat(i.weight as string)) || 0), 0);
+  const totalQty = items.reduce((sum, i) => sum + (Number(i.qty) || 0), 0);
 
   const copyPickupFromSender = (id) => {
     if (!selectedSender) return;

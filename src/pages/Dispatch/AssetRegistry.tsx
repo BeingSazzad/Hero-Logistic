@@ -78,6 +78,7 @@ export default function AssetRegistry() {
       id: newId,
       status: 'Pending',
       registered: new Date().toISOString().slice(0, 10),
+      thumbnail: '/ford_ranger_silver_1777708602634.png' // Default thumbnail for new assets
     }]);
     setForm(emptyForm);
     setFormError('');
@@ -177,7 +178,7 @@ export default function AssetRegistry() {
             <tbody className="divide-y divide-gray-50">
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan="8" className="px-6 py-16 text-center text-gray-400 font-bold text-xs uppercase tracking-widest">
+                  <td colSpan={8} className="px-6 py-16 text-center text-gray-400 font-bold text-xs uppercase tracking-widest">
                     No assets match your search criteria
                   </td>
                 </tr>

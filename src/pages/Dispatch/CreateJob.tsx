@@ -43,6 +43,7 @@ const createItem = (id) => ({
   dropoffAddress: '',
   pickupSameAsSender: false,
   collapsed: false,
+  targetBranch: '',
 });
 
 export default function DispatchCreateJob() {
@@ -132,8 +133,8 @@ export default function DispatchCreateJob() {
     setItems(prev => prev.map(i => i.id === id ? { ...i, collapsed: !i.collapsed } : i));
   };
 
-  const totalWeight = items.reduce((sum, i) => sum + (parseFloat(i.weight) || 0), 0);
-  const totalQty = items.reduce((sum, i) => sum + (parseInt(i.qty) || 0), 0);
+  const totalWeight = items.reduce((sum, i) => sum + (parseFloat(i.weight as string) || 0), 0);
+  const totalQty = items.reduce((sum, i) => sum + (parseInt(i.qty as any) || 0), 0);
 
   const copyPickupFromSender = (id) => {
     if (!selectedSender) return;

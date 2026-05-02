@@ -1,14 +1,5 @@
 import { create } from 'zustand';
-
-export interface User {
-  name: string;
-  role: 'admin' | 'dispatcher' | 'driver' | 'warehouse' | 'accounts' | 'platform';
-  branchId: string;
-  branchName: string;
-  email: string;
-  canEditLoads: boolean;
-  avatar?: string;
-}
+import { User } from '../types';
 
 interface AuthState {
   user: User | null;

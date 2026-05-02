@@ -5,8 +5,26 @@ import {
   Hash, Car, MapPin, Loader2, Fingerprint, Edit3, Trash2
 } from 'lucide-react';
 
+interface Vehicle {
+  id: number;
+  vin: string;
+  plate: string;
+  make: string;
+  model: string;
+  year: string;
+  color: string;
+  type: string;
+  weight: string;
+  status: string;
+  currentLoad: string | null;
+  destination: string;
+  customer: string;
+  tags: string[];
+  image?: string;
+}
+
 // ── Mock Data ──────────────────────────────────────────────────────────────
-const MOCK_VEHICLES = [
+const MOCK_VEHICLES: Vehicle[] = [
   { id: 1, vin: '1HGCM82633A004352', plate: 'ABC 123', make: 'Toyota', model: 'Camry', year: '2022', color: 'White', type: 'Sedan', weight: '1,450 kg', status: 'In Depot', currentLoad: 'LD-2041', destination: 'Brisbane QLD', customer: 'AutoDeal Pty Ltd', tags: ['Priority', 'Express'], image: '/toyota_camry_white_1777708531313.png' },
   { id: 2, vin: '2T1BURHE0JC034820', plate: 'XYZ 987', make: 'Honda', model: 'CR-V', year: '2023', color: 'Black', type: 'SUV', weight: '1,720 kg', status: 'In Transit', currentLoad: 'LD-2039', destination: 'Melbourne VIC', customer: 'Smith Motors', tags: ['Fragile'], image: '/honda_crv_black_1777708547079.png' },
   { id: 3, vin: '5YJSA1DG9PFJ12345', plate: 'EV 0001', make: 'Tesla', model: 'Model S', year: '2024', color: 'Red', type: 'Sedan', weight: '2,162 kg', status: 'Delivered', currentLoad: 'LD-2031', destination: 'Sydney NSW', customer: 'EV Fleet Co', tags: [], image: '/tesla_model_s_red_1777708622081.png' },
@@ -28,19 +46,19 @@ const EMPTY_FORM = {
 };
 
 export default function VehicleRegistry() {
-  const [vehicles, setVehicles]       = useState(MOCK_VEHICLES);
+  const [vehicles, setVehicles]       = useState<Vehicle[]>(MOCK_VEHICLES);
   const [search, setSearch]           = useState('');
   const [showModal, setShowModal]     = useState(false);
-  const [form, setForm]               = useState(EMPTY_FORM);
-  const [errors, setErrors]           = useState({});
+  const [form, setForm]               = useState<any>(EMPTY_FORM);
+  const [errors, setErrors]           = useState<any>({});
   const [vinChecking, setVinChecking] = useState(false);
-  const [vinOk, setVinOk]            = useState(null);
-  const [labelVehicle, setLabelVehicle] = useState(null);
+  const [vinOk, setVinOk]            = useState<string | null>(null);
+  const [labelVehicle, setLabelVehicle] = useState<Vehicle | null>(null);
   const [statusFilter, setStatusFilter] = useState('All');
   
-  const [assignLoadModal, setAssignLoadModal] = useState(null);
+  const [assignLoadModal, setAssignLoadModal] = useState<Vehicle | null>(null);
   const [loadInput, setLoadInput] = useState('');
-  const [editingVehicle, setEditingVehicle] = useState(null);
+  const [editingVehicle, setEditingVehicle] = useState<Vehicle | null>(null);
 
   const vinTimer = useRef(null);
 
@@ -102,7 +120,7 @@ export default function VehicleRegistry() {
 
   // ── Form Validation ──────────────────────────────────────────────
   const validate = () => {
-    const e = {};
+    const e: any = {};
     if (!form.vin || form.vin.length < 10) e.vin = 'Valid VIN required (min 10 chars)';
     if (vinOk === 'duplicate' && (!editingVehicle || form.vin.toUpperCase() !== editingVehicle.vin)) e.vin = 'This VIN already exists in registry';
     if (!form.plate.trim()) e.plate = 'Number plate required';
@@ -320,8 +338,7 @@ export default function VehicleRegistry() {
           <div className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-[680px] max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-300">
             <div className="sticky top-0 bg-white/80 backdrop-blur-xl flex items-center justify-between p-8 border-b border-gray-100 z-10">
               <div>
-                <h2 className="text-xl font-bold text-gray-900 tracking-tight">{editingVehicle ? 'Edit Asset' : 'Register Asset'}</h2>
-                <p className="hero-body text-gray-600 mt-1">{editingVehicle ? `Updating vehicle ${editingVehicle.vin}` : 'Permanent entry for multi-load assignment'}</p>
+                <p className="hero-body text-gray-600 mt-1">{editingVehicle ? `Updating vehicle ${editingVehicle?.vin}` : 'Permanent entry for multi-load assignment'}</p>
               </div>
               <button onClick={() => { setShowModal(false); setEditingVehicle(null); }} className="w-12 h-12 flex items-center justify-center rounded-2xl hover:bg-gray-100 transition-colors">
                 <X size={24} className="text-gray-400" />
@@ -341,7 +358,7 @@ export default function VehicleRegistry() {
                     placeholder="Enter VIN..."
                     value={form.vin}
                     onChange={e => handleVinChange(e.target.value)}
-                    className={`w-full bg-gray-50 border-2 rounded-2xl py-4 pl-12 pr-12 text-sm font-mono font-semibold uppercase tracking-widest focus:outline-none focus:bg-white transition-all ${errors.vin ? 'border-red-400' : 'border-gray-100 focus:border-brand-yellow'}`}
+                    className={`w-full bg-gray-50 border-2 rounded-2xl py-4 pl-12 pr-12 text-sm font-mono font-semibold uppercase tracking-widest focus:outline-none focus:bg-white transition-all ${(errors as any).vin ? 'border-red-400' : 'border-gray-100 focus:border-brand-yellow'}`}
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2">
                     {vinChecking && <Loader2 size={20} className="text-brand-yellow animate-spin" />}
@@ -349,7 +366,7 @@ export default function VehicleRegistry() {
                     {!vinChecking && vinOk === 'duplicate' && <AlertCircle  size={20} className="text-red-500" />}
                   </div>
                 </div>
-                {errors.vin && <p className="text-xs font-semibold text-red-500 mt-2 ml-1 uppercase">{errors.vin}</p>}
+                {(errors as any).vin && <p className="text-xs font-semibold text-red-500 mt-2 ml-1 uppercase">{(errors as any).vin}</p>}
                 {!errors.vin && vinOk === 'ok' && <p className="text-xs font-semibold text-emerald-600 mt-2 ml-1 uppercase tracking-widest">VIN Verified ✓</p>}
               </section>
 
@@ -448,7 +465,7 @@ export default function VehicleRegistry() {
             <div className="flex items-center justify-between p-8 border-b border-gray-100">
               <div>
                 <h2 className="text-xl font-bold text-gray-900 tracking-tight">Assign Load</h2>
-                <p className="hero-body text-gray-600 mt-1">Vehicle: {assignLoadModal.vin}</p>
+                <p className="hero-body text-gray-600 mt-1">Vehicle: {assignLoadModal?.vin}</p>
               </div>
               <button onClick={() => setAssignLoadModal(null)} className="w-10 h-10 flex items-center justify-center rounded-2xl hover:bg-gray-100 transition-colors">
                 <X size={20} className="text-gray-400" />
@@ -498,12 +515,12 @@ export default function VehicleRegistry() {
               <div className="border-[3px] border-black rounded-[2rem] p-8 flex flex-col items-center gap-6 bg-white shadow-2xl scale-105 my-4">
                 <div className="flex flex-col gap-1 items-center text-center">
                   <p className="text-[12px] font-semibold text-black uppercase tracking-[0.3em] mb-2 border-b-2 border-black pb-1">HERO LOGISTICS</p>
-                  <p className="text-xl font-semibold text-black leading-none">{labelVehicle.year} {labelVehicle.make}</p>
-                  <p className="text-lg font-semibold text-black/60 uppercase tracking-tight">{labelVehicle.model}</p>
+                  <p className="text-xl font-semibold text-black leading-none">{labelVehicle?.year} {labelVehicle?.make}</p>
+                  <p className="text-lg font-semibold text-black/60 uppercase tracking-tight">{labelVehicle?.model}</p>
                 </div>
                 
                 <div className="bg-black text-white px-6 py-2 rounded-lg text-lg font-semibold tracking-widest">
-                  {labelVehicle.plate}
+                  {labelVehicle?.plate}
                 </div>
 
                 {/* Mock Barcode */}
@@ -516,10 +533,10 @@ export default function VehicleRegistry() {
                 </div>
 
                 <div className="flex flex-col items-center">
-                   <p className="font-mono text-sm font-semibold text-black tracking-[0.2em]">{labelVehicle.vin}</p>
+                   <p className="font-mono text-sm font-semibold text-black tracking-[0.2em]">{labelVehicle?.vin}</p>
                    <div className="mt-6 flex items-center gap-2 bg-emerald-50 border border-emerald-100 px-4 py-2 rounded-xl">
                       <MapPin size={16} className="text-emerald-600" />
-                      <span className="text-xs font-semibold text-emerald-900 uppercase tracking-tight">{labelVehicle.destination}</span>
+                      <span className="text-xs font-semibold text-emerald-900 uppercase tracking-tight">{labelVehicle?.destination}</span>
                    </div>
                 </div>
               </div>

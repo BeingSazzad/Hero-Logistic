@@ -1,7 +1,27 @@
 import { create } from 'zustand';
 
+interface LoadStore {
+  LoadYear: string;
+  revenueYear: string;
+  metrics: {
+    totalLoads: string;
+    activeVehicles: string;
+    totalRevenue: string;
+    pendingIssues: string;
+    totalBranches: string;
+    totalDrivers: string;
+    totalCustomers: string;
+  };
+  LoadData: number[];
+  incomeData: number[];
+  distData: { label: string; val: number; color: string }[];
+  recentActivities: { id: string; action: string; user: string; time: string; status: string }[];
+  setLoadYear: (year: string) => void;
+  setRevenueYear: (year: string) => void;
+}
+
 // Simulated Frontend-Only State Store for Loads/Dashboard
-export const useLoadStore = create((set) => ({
+export const useLoadStore = create<LoadStore>((set) => ({
   LoadYear: '2026',
   revenueYear: '2026',
   

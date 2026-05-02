@@ -2,7 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Truck, MapPin, Clock, Navigation } from 'lucide-react';
 
-const trips = [
+interface Trip {
+  id: string;
+  driver: string;
+  vehicle: string;
+  status: string;
+  currentCity: string;
+  progress: number;
+  from: string;
+  to: string;
+  phone: string;
+  eta: string;
+  steps: {
+    city: string;
+    label: string;
+    done: boolean;
+    current?: boolean;
+  }[];
+}
+
+const trips: Trip[] = [
   { 
     id: 'SHP-9042', 
     driver: 'James Mitchell', 
@@ -13,11 +32,12 @@ const trips = [
     from: 'Sydney', 
     to: 'Melbourne', 
     phone: '0412 345 678',
+    eta: 'Tomorrow, 4:00 PM',
     steps: [
       { city: 'Sydney CBD', label: 'Collected from Customer', done: true },
       { city: 'Sydney Depot', label: 'Processing at Depot', done: true },
       { city: 'Goulburn Depot', label: 'Departed Central Depot', done: true },
-      { city: 'Albury', label: 'Inter-city Transit', current: true },
+      { city: 'Albury', label: 'Inter-city Transit', current: true, done: false },
       { city: 'Melbourne Depot', label: 'Awaiting Arrival', done: false },
       { city: 'Melbourne CBD', label: 'Out for Delivery', done: false }
     ]
@@ -32,11 +52,12 @@ const trips = [
     from: 'Melbourne Depot', 
     to: 'St Kilda', 
     phone: '0423 567 890',
+    eta: 'Today, 2:30 PM',
     steps: [
       { city: 'Brisbane Depot', label: 'Line-haul Departed', done: true },
       { city: 'Melbourne Depot', label: 'Sorting at Depot', done: true },
       { city: 'Melbourne Depot', label: 'Staged for Delivery', done: true },
-      { city: 'Melbourne CBD', label: 'With Courier', current: true }
+      { city: 'Melbourne CBD', label: 'With Courier', current: true, done: false }
     ]
   },
 ];

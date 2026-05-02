@@ -7,15 +7,28 @@ import {
   Activity, ChevronRight
 } from 'lucide-react';
 
-const jobs = [
+interface Job {
+  id: string;
+  customer: string;
+  route: string;
+  driver: string;
+  vehicle: string;
+  status: 'In Transit' | 'Arriving Soon' | 'In Sorting' | 'Unassigned';
+  progress: number;
+  eta: string;
+  nextStop: string;
+  avatar?: string;
+}
+
+const jobs: Job[] = [
   { id: 'SHP-20481', customer: 'Acme Corp',          route: 'Sydney Depot → Melbourne Depot',  driver: 'Jack Taylor',  vehicle: 'TRK-102', status: 'In Transit', progress: 65, eta: '2:45 PM', nextStop: 'Melbourne Terminal', avatar: '/driver_avatar_2_1777708515488.png' },
   { id: 'SHP-20482', customer: 'Tech Solutions Ltd',  route: 'Brisbane Depot → Sydney Depot',      driver: 'Liam Smith',  vehicle: 'VAN-08',   status: 'Arriving Soon',  progress: 85, eta: '4:30 PM', nextStop: 'Sydney Central Depot', avatar: '/driver_avatar_4_1777708585605.png' },
   { id: 'SHP-20483', customer: 'Global Traders',      route: 'Perth Depot → Adelaide Depot',   driver: 'Noah Williams',   vehicle: 'TRK-05',   status: 'In Sorting',   progress: 100, eta: 'Done', nextStop: 'Adelaide Terminal', avatar: '/driver_avatar_1_1777708494778.png' },
   { id: 'SHP-20484', customer: 'Express Goods',       route: 'Sydney Depot → Newcastle Depot',  driver: 'Unassigned',   vehicle: '-',        status: 'Unassigned',   progress: 0, eta: '-', nextStop: 'Newcastle Depot' },
 ];
 
-function StatusBadge({ status }) {
-  const map = {
+function StatusBadge({ status }: { status: Job['status'] }) {
+  const map: Record<string, string> = {
     'In Transit': 'badge-blue',
     'Arriving Soon': 'bg-amber-100 text-amber-700 border-amber-200',
     'In Sorting': 'bg-violet-100 text-violet-700 border-violet-200',

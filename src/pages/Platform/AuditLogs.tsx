@@ -123,7 +123,7 @@ export default function AuditLogs() {
                ))}
                {filtered.length === 0 && (
                  <tr>
-                    <td colSpan="5" className="px-6 py-12 text-center text-sm font-medium text-gray-500">
+                    <td colSpan={5} className="px-6 py-12 text-center text-sm font-medium text-gray-500">
                        No audit logs match your search.
                     </td>
                  </tr>

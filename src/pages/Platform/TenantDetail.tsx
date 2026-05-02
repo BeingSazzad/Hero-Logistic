@@ -200,7 +200,7 @@ export default function TenantDetail() {
                <p className="text-sm text-gray-500 mb-4">
                  They will immediately lose access to their dispatch dashboard, routing, and mobile apps. All active drivers will be signed out.
                </p>
-               <textarea className="input w-full mb-6 resize-none" rows="3" placeholder="Reason for suspension (optional)..."></textarea>
+               <textarea className="input w-full mb-6 resize-none" rows={3} placeholder="Reason for suspension (optional)..."></textarea>
                <div className="flex gap-3">
                   <button onClick={() => setModal(null)} className="btn bg-gray-100 hover:bg-gray-200 text-gray-700 flex-1">Cancel</button>
                   <button onClick={() => { setStatus('Suspended'); setModal(null); }} className="btn bg-red-600 hover:bg-red-700 text-white flex-1">Enforce Suspension</button>

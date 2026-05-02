@@ -1,10 +1,15 @@
 import React, { createContext, useContext, useState } from 'react';
 
-const AuthContext = createContext();
+interface AuthContextType {
+  user: any;
+  setUser: (user: any) => void;
+}
 
-export const AuthProvider = ({ children }) => {
+const AuthContext = createContext<AuthContextType | null>(null);
+
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   // Simulating a logged in Dispatcher assigned to "Sydney Central"
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<any>({
     name: 'Sarah Mitchell',
     role: 'dispatcher',
     branchId: 'SYD-CENTRAL',

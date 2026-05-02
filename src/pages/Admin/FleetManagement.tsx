@@ -204,7 +204,7 @@ export default function AdminFleetManagement() {
                   </tr>
                 )) : (
                   <tr>
-                    <td colSpan="6" className="px-6 py-20 text-center">
+                    <td colSpan={6} className="px-6 py-20 text-center">
                        <div className="flex flex-col items-center gap-3">
                           <Search size={40} className="text-gray-100" />
                           <p className="text-sm font-bold text-gray-400">No vehicles found matching your criteria.</p>

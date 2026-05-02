@@ -27,8 +27,10 @@ export default function CustomerLayout() {
               className="h-12 w-auto object-contain cursor-pointer"
               onClick={() => navigate('/')}
               onError={(e) => {
-                e.target.style.display = 'none';
-                if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                const next = target.nextElementSibling as HTMLElement;
+                if (next) next.style.display = 'flex';
               }}
             />
             <div className="hidden items-center gap-2.5 cursor-pointer" onClick={() => navigate('/')}>

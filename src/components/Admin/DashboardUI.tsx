@@ -5,6 +5,28 @@ import {
   Zap, Navigation, CheckCircle, ShieldCheck, DollarSign, ChevronRight
 } from 'lucide-react';
 
+interface DashboardUIProps {
+  LoadYear: string;
+  setLoadYear: (year: string) => void;
+  revenueYear: string;
+  setRevenueYear: (year: string) => void;
+  recentActivities: { id: string; action: string; user: string; time: string; status: string }[];
+  LoadData: number[];
+  incomeData: number[];
+  metrics: {
+    totalLoads: string;
+    activeVehicles: string;
+    totalRevenue: string;
+    pendingIssues: string;
+    totalBranches: string;
+    totalDrivers: string;
+    totalCustomers: string;
+  };
+  distData: { label: string; val: number; color: string }[];
+  navigate: (path: string) => void;
+  months: string[];
+}
+
 export default function DashboardUI({
   LoadYear,
   setLoadYear,
@@ -16,7 +38,7 @@ export default function DashboardUI({
   metrics,
   distData,
   navigate
-}) {
+}: DashboardUIProps) {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   return (

@@ -204,7 +204,7 @@ export default function AdminLoads() {
             <tbody className="divide-y divide-gray-50">
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan="7" className="px-6 py-16 text-center text-gray-400 font-bold uppercase text-xs tracking-widest">
+                  <td colSpan={7} className="px-6 py-16 text-center text-gray-400 font-bold uppercase text-xs tracking-widest">
                     No active Loads in this terminal
                   </td>
                 </tr>
