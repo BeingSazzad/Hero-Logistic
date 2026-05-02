@@ -127,7 +127,7 @@ export default function AdminVehicleDetail() {
         <div className="lg:col-span-7 flex flex-col gap-3">
           <div className="relative aspect-[16/10] w-full rounded-2xl bg-[#0a0a0a] overflow-hidden shadow-lg group">
             <img
-              src={photo || 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop'}
+              src={photo || 'https://images.unsplash.com/photo-1591768793355-74d7ca738056?q=80&w=1200&auto=format&fit=crop'}
               alt={vehicle.make}
               className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all"
             />
@@ -149,7 +149,12 @@ export default function AdminVehicleDetail() {
           </div>
           {/* Thumbnail strip */}
           <div className="flex gap-2">
-            {['https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop', 'https://images.unsplash.com/photo-1549194382-246df982469e?q=80&w=800&auto=format&fit=crop', 'https://images.unsplash.com/photo-1586191582151-f73972d10942?q=80&w=800&auto=format&fit=crop'].map((img, i) => (
+            {[
+              'https://images.unsplash.com/photo-1591768793355-74d7ca738056?q=80&w=800&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1586191582151-f73972d10942?q=80&w=800&auto=format&fit=crop',
+              'https://images.unsplash.com/photo-1519003300449-424ad040507b?q=80&w=800&auto=format&fit=crop'
+            ].map((img, i) => (
               <button
                 key={i}
                 onClick={() => setPhoto(img)}

@@ -37,10 +37,10 @@ export default function AdminLoads() {
     { id: 'SHP-9054', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', customerRef: 'PO-8822', stockNumber: 'STK-4402', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'Medium', eta: '—', pickup: '12:30 PM', window: '13:00–15:00', load: '2.1t', notes: '' },
     { id: 'SHP-9060', branchId: 'SYD-CENTRAL', customer: 'Velocity Logistics', customerRef: 'VL-X77', stockNumber: 'STK-4403', origin: 'Melbourne Depot', dest: 'Brisbane Depot', queue: 'unassigned', unassignedType: 'Branch Transfers', driver: null, vehicle: null, priority: 'High', eta: '—', pickup: 'Awaiting Transit', window: '—', load: '14.5t', notes: 'Depot cross-dock completed' },
     { id: 'SHP-9061', branchId: 'SYD-CENTRAL', customer: 'Local Retailer', customerRef: 'LR-102', stockNumber: 'STK-4404', origin: 'Perth Depot', dest: 'Sydney Local', queue: 'unassigned', unassignedType: 'Local Deliveries', driver: null, vehicle: null, priority: 'Medium', eta: '—', pickup: 'Arrived at Staging', window: 'Before 17:00', load: '2.4t', notes: '' },
-    { id: 'SHP-9042', branchId: 'SYD-CENTRAL', customer: 'Acme Corp Logistics', customerRef: 'ACME-221', stockNumber: 'STK-4405', origin: 'Sydney Depot', dest: 'Melbourne Branch', queue: 'assigned', driver: 'Jack Taylor', vehicle: 'XQG-984', priority: 'High', eta: '14:30', pickup: '06:00 AM', window: 'Deliver by 16:00', load: '18.4t', notes: '', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop' },
-    { id: 'SHP-9035', branchId: 'SYD-CENTRAL', customer: 'Southport Logistics', customerRef: 'SPL-55', stockNumber: 'STK-4406', origin: 'Adelaide Depot', dest: 'Sydney Depot', queue: 'assigned', driver: 'Oliver Brown', vehicle: 'V-102', priority: 'High', eta: 'Arrived at Branch', pickup: '05:00 AM', window: 'Delivered by 11:00', load: '12.0t', notes: '', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop' },
-    { id: 'SHP-9041', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', customerRef: 'PO-8811', stockNumber: 'STK-4407', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'exception', driver: 'Liam Smith', vehicle: 'BGT-221', priority: 'Medium', eta: 'Delayed', pickup: '07:00 AM', window: 'Deliver by 14:00', load: '9.5t', notes: 'Driver reports heavy traffic', exception: 'Delay', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop' },
-    { id: 'SHP-9039', branchId: 'SYD-CENTRAL', customer: 'Global Traders AU', customerRef: 'GT-449', stockNumber: 'STK-4408', origin: 'Brisbane Depot', dest: 'Gold Coast Branch', queue: 'completed', driver: 'Liam Smith', vehicle: 'KLY-004', priority: 'Low', eta: 'Received', pickup: '03:00 AM', window: 'Deliver by 08:00', load: '5.5t', notes: '', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop' },
+    { id: 'SHP-9042', branchId: 'SYD-CENTRAL', customer: 'Acme Corp Logistics', customerRef: 'ACME-221', stockNumber: 'STK-4405', origin: 'Sydney Depot', dest: 'Melbourne Branch', queue: 'assigned', driver: 'Jack Taylor', vehicle: 'XQG-984', priority: 'High', eta: '14:30', pickup: '06:00 AM', window: 'Deliver by 16:00', load: '18.4t', notes: '', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop', truckThumb: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop' },
+    { id: 'SHP-9035', branchId: 'SYD-CENTRAL', customer: 'Southport Logistics', customerRef: 'SPL-55', stockNumber: 'STK-4406', origin: 'Adelaide Depot', dest: 'Sydney Depot', queue: 'assigned', driver: 'Oliver Brown', vehicle: 'V-102', priority: 'High', eta: 'Arrived at Branch', pickup: '05:00 AM', window: 'Delivered by 11:00', load: '12.0t', notes: '', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop', truckThumb: 'https://images.unsplash.com/photo-1519003300449-424ad040507b?q=80&w=800&auto=format&fit=crop' },
+    { id: 'SHP-9041', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', customerRef: 'PO-8811', stockNumber: 'STK-4407', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'exception', driver: 'Liam Smith', vehicle: 'BGT-221', priority: 'Medium', eta: 'Delayed', pickup: '07:00 AM', window: 'Deliver by 14:00', load: '9.5t', notes: 'Driver reports heavy traffic', exception: 'Delay', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop', truckThumb: 'https://images.unsplash.com/photo-1586191582151-f73972d10942?q=80&w=800&auto=format&fit=crop' },
+    { id: 'SHP-9039', branchId: 'SYD-CENTRAL', customer: 'Global Traders AU', customerRef: 'GT-449', stockNumber: 'STK-4408', origin: 'Brisbane Depot', dest: 'Gold Coast Branch', queue: 'completed', driver: 'Liam Smith', vehicle: 'KLY-004', priority: 'Low', eta: 'Received', pickup: '03:00 AM', window: 'Deliver by 08:00', load: '5.5t', notes: '', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop', truckThumb: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop' },
   ];
 
   const branchJobs = useMemo(() => {
@@ -223,9 +223,20 @@ export default function AdminLoads() {
                     />
                   </td>
                   <td className="px-6 py-4">
-                    <div className="font-semibold text-[#111] text-sm tracking-tight">{job.id}</div>
-                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
-                      Ref: {job.customerRef || '—'} {job.stockNumber ? `• SN: ${job.stockNumber}` : ''}
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-gray-900 overflow-hidden flex items-center justify-center shrink-0 shadow-lg border border-gray-100 group-hover:scale-105 transition-transform">
+                        {job.truckThumb ? (
+                          <img src={job.truckThumb} className="w-full h-full object-cover" alt="Truck" />
+                        ) : (
+                          <Truck size={18} className="text-brand-yellow" />
+                        )}
+                      </div>
+                      <div>
+                        <div className="font-semibold text-[#111] text-sm tracking-tight">{job.id}</div>
+                        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
+                          Ref: {job.customerRef || '—'} {job.stockNumber ? `• SN: ${job.stockNumber}` : ''}
+                        </div>
+                      </div>
                     </div>
                   </td>
                   <td className="px-6 py-4">
