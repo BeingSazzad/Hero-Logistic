@@ -26,11 +26,11 @@ const STATUS_STYLE = {
 };
 
 const INITIAL_ASSETS = [
-  { id: 'AST-001', vin: '1FUJGBDV8CLBP8834', rego: 'XQG-984',    make: 'Freightliner Cascadia', type: 'Semi Truck',   year: '2021', niche: 'General Freight',     payload: '28t',  length: '20.0', width: '2.5', height: '4.3', status: 'Active',      registered: '2024-03-12', thumbnail: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop' },
-  { id: 'AST-002', vin: 'WDB9066351L123456', rego: 'BZX-441',    make: 'Mercedes Sprinter 519', type: 'Cargo Van',     year: '2022', niche: 'General Freight',     payload: '3.5t', length: '6.0',  width: '2.1', height: '2.8', status: 'Maintenance', registered: '2024-07-01', thumbnail: 'https://images.unsplash.com/photo-1549194382-246df982469e?q=80&w=800&auto=format&fit=crop' },
+  { id: 'AST-001', vin: '1FUJGBDV8CLBP8834', rego: 'XQG-984',    make: 'Freightliner Cascadia', type: 'Semi Truck',   year: '2021', niche: 'General Freight',     payload: '28t',  length: '20.0', width: '2.5', height: '4.3', status: 'Active',      registered: '2024-03-12', thumbnail: 'https://images.unsplash.com/photo-1591768793355-74d7ca738056?q=80&w=800&auto=format&fit=crop' },
+  { id: 'AST-002', vin: 'WDB9066351L123456', rego: 'BZX-441',    make: 'Mercedes Sprinter 519', type: 'Cargo Van',     year: '2022', niche: 'General Freight',     payload: '3.5t', length: '6.0',  width: '2.1', height: '2.8', status: 'Maintenance', registered: '2024-07-01', thumbnail: 'https://images.unsplash.com/photo-1519003300449-424ad040507b?q=80&w=800&auto=format&fit=crop' },
   { id: 'AST-003', vin: '4V4NC9EH5HN123789', rego: 'T-9921',     make: 'Vawdrey Drop Deck',    type: 'Trailer / Flatbed', year: '2020', niche: 'Car / Vehicle Transport', payload: '40t', length: '14.6', width: '2.5', height: '1.8', status: 'Active', registered: '2023-11-20', thumbnail: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop' },
   { id: 'AST-004', vin: '1XKDDP9X9LJ123001', rego: 'BGT-221',    make: 'Isuzu FTR 900',        type: 'Rigid Truck',   year: '2020', niche: 'Dangerous Goods',     payload: '9t',   length: '9.0',  width: '2.5', height: '3.6', status: 'Active',      registered: '2024-01-15', thumbnail: 'https://images.unsplash.com/photo-1549194382-246df982469e?q=80&w=800&auto=format&fit=crop' },
-  { id: 'AST-005', vin: '3AKJGLDRXJSJT4321', rego: 'TRK-05-MEL', make: 'Kenworth T610',        type: 'Semi Truck',    year: '2019', niche: 'Refrigerated',        payload: '42t',  length: '19.0', width: '2.5', height: '4.3', status: 'Active',      registered: '2023-06-08', thumbnail: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop' },
+  { id: 'AST-005', vin: '3AKJGLDRXJSJT4321', rego: 'TRK-05-MEL', make: 'Kenworth T610',        type: 'Semi Truck',    year: '2019', niche: 'Refrigerated',        payload: '42t',  length: '19.0', width: '2.5', height: '4.3', status: 'Active',      registered: '2023-06-08', thumbnail: 'https://images.unsplash.com/photo-1586191582151-f73972d10942?q=80&w=800&auto=format&fit=crop' },
 ];
 
 const emptyForm = {
@@ -47,6 +47,11 @@ export default function AssetRegistry() {
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [formError, setFormError] = useState('');
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+
+  const toggleSelect = (id: string) => {
+    setSelectedIds(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
+  };
 
   const filtered = assets.filter(a => {
     const q = search.toLowerCase();
@@ -126,6 +131,24 @@ export default function AssetRegistry() {
         ))}
       </div>
 
+      {/* ── Batch Actions ── */}
+      {selectedIds.length > 0 && (
+        <div className="bg-[#111] text-white p-4 rounded-xl flex items-center justify-between shadow-xl animate-in fade-in slide-in-from-top-2 border border-gray-800 mx-2 mb-4">
+          <div className="flex items-center gap-4">
+            <div className="w-8 h-8 rounded bg-brand-yellow text-black flex items-center justify-center font-bold">{selectedIds.length}</div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest">Assets Selected</p>
+              <p className="text-[10px] text-gray-400 uppercase font-bold">Synchronized Batch Operations</p>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <button className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-[10px] font-bold uppercase tracking-widest border border-white/10 transition-all">Maintenance</button>
+            <button className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-[10px] font-bold uppercase tracking-widest border border-white/10 transition-all">Audit Compliance</button>
+            <button onClick={() => setSelectedIds([])} className="p-2 hover:bg-white/10 rounded-lg transition-all"><X size={16}/></button>
+          </div>
+        </div>
+      )}
+
       {/* ── Table Card ── */}
       <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden mx-2">
 
@@ -165,6 +188,14 @@ export default function AssetRegistry() {
           <table className="w-full text-left">
             <thead className="bg-gray-50/50 text-xs font-semibold text-gray-500 uppercase tracking-widest border-b border-gray-100">
               <tr>
+                <th className="px-6 py-4 w-4">
+                  <input
+                    type="checkbox"
+                    onChange={(e) => setSelectedIds(e.target.checked ? filtered.map(a => a.id) : [])}
+                    checked={selectedIds.length === filtered.length && filtered.length > 0}
+                    className="w-4 h-4 rounded border-gray-300 accent-[#111] cursor-pointer"
+                  />
+                </th>
                 <th className="px-6 py-4">Asset ID</th>
                 <th className="px-6 py-4">VIN / Registration</th>
                 <th className="px-6 py-4">Make / Type</th>
@@ -183,8 +214,16 @@ export default function AssetRegistry() {
                   </td>
                 </tr>
               ) : filtered.map(a => (
-                <tr key={a.id} className="hover:bg-gray-50/70 transition-all group cursor-pointer"
+                <tr key={a.id} className={`hover:bg-gray-50/70 transition-all group cursor-pointer border-l-4 ${selectedIds.includes(a.id) ? 'border-l-brand-yellow bg-yellow-50/10' : 'border-l-transparent'}`}
                   onClick={() => navigate(`/dispatch/vehicles/${a.id}`)}>
+                  <td className="px-6 py-4 w-4" onClick={e => e.stopPropagation()}>
+                    <input
+                      type="checkbox"
+                      checked={selectedIds.includes(a.id)}
+                      onChange={() => toggleSelect(a.id)}
+                      className="w-4 h-4 rounded border-gray-300 accent-[#111] cursor-pointer"
+                    />
+                  </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center group-hover:border-brand-yellow transition-colors overflow-hidden">
