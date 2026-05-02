@@ -19,9 +19,9 @@ export default function DriverHome() {
       <div className="flex flex-col gap-5 w-full max-w-[480px] mx-auto min-h-screen bg-gray-50 pb-24 p-5">
 
          {/* ── 1. Operator Status HUD ── */}
-         <div className="flex justify-between items-center bg-[#111] p-4 rounded-3xl shadow-xl border border-white/5">
+         <div className="flex justify-between items-center bg-[#111] p-4 rounded-hero-lg shadow-xl border border-white/5">
             <div className="flex items-center gap-4">
-               <div className="w-12 h-12 rounded-2xl bg-brand-yellow border-2 border-white/10 flex items-center justify-center font-semibold text-black text-xl shadow-inner overflow-hidden">
+               <div className="w-12 h-12 rounded-hero-md bg-brand-yellow border-2 border-white/10 flex items-center justify-center font-semibold text-black text-xl shadow-inner overflow-hidden">
                   <img src="/driver_avatar_1_1777708494778.png" alt="Operator" className="w-full h-full object-cover" />
                </div>
                <div>
@@ -34,7 +34,7 @@ export default function DriverHome() {
                </div>
             </div>
             <div className="flex items-center gap-2">
-               <button onClick={() => setIsOnline(!isOnline)} className={`p-3 rounded-2xl transition-all ${isOnline ? 'bg-emerald-500/10 text-emerald-500' : 'bg-white/5 text-gray-400'}`}>
+               <button onClick={() => setIsOnline(!isOnline)} className={`p-3 rounded-hero-md transition-all ${isOnline ? 'bg-emerald-500/10 text-emerald-500' : 'bg-white/5 text-gray-400'}`}>
                   <Zap size={20} className={isOnline ? 'fill-emerald-500' : ''} />
                </button>
             </div>
@@ -44,27 +44,27 @@ export default function DriverHome() {
          <div className="grid grid-cols-2 gap-4">
             <button 
                onClick={() => navigate('/driver/safety-check')} 
-               className="bg-white hover:bg-gray-50 text-gray-900 px-5 py-6 rounded-[2rem] shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-3 border border-gray-100"
+               className="bg-white hover:bg-gray-50 text-gray-900 px-5 py-6 rounded-hero-lg shadow-sm active:scale-95 transition-all flex flex-col items-center justify-center gap-3 border border-gray-100"
             >
-               <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center shrink-0 text-emerald-600">
+               <div className="w-12 h-12 bg-emerald-50 rounded-hero-md flex items-center justify-center shrink-0 text-emerald-600">
                   <ShieldCheck size={28} />
                </div>
                <span className="text-xs font-semibold uppercase tracking-tight text-center">Compliance</span>
             </button>
             <button 
                onClick={() => navigate('/driver/active')} 
-               className="bg-brand-yellow hover:bg-brand-orange text-black px-5 py-6 rounded-[2rem] shadow-xl active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-3 border border-brand-yellow"
+               className="bg-brand-yellow hover:bg-brand-orange text-black px-5 py-6 rounded-hero-lg shadow-xl active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-3 border border-brand-yellow"
             >
-               <div className="w-12 h-12 bg-black/10 rounded-2xl flex items-center justify-center shrink-0">
+               <div className="w-12 h-12 bg-black/10 rounded-hero-md flex items-center justify-center shrink-0">
                   <Navigation size={28} className="text-black" />
                </div>
                <span className="text-xs font-semibold uppercase tracking-tight text-center">Route</span>
             </button>
             <button 
                onClick={() => navigate('/driver/draft')} 
-               className="col-span-2 bg-blue-50 hover:bg-blue-100 text-blue-900 p-4 rounded-2xl shadow-sm active:scale-[0.98] transition-all flex items-center gap-4 border border-blue-100"
+               className="col-span-2 bg-blue-50 hover:bg-blue-100 text-blue-900 p-4 rounded-hero-lg shadow-sm active:scale-[0.98] transition-all flex items-center gap-4 border border-blue-100"
             >
-               <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
+               <div className="w-12 h-12 bg-blue-100 rounded-hero-md flex items-center justify-center shrink-0">
                   <Package size={24} className="text-blue-600" />
                </div>
                <div className="text-left flex-1">
@@ -76,9 +76,9 @@ export default function DriverHome() {
          </div>
 
          {/* ── 3. Emergency Dispatch Action ── */}
-         <button onClick={() => navigate('/driver/incident')} className="bg-red-50 hover:bg-red-100 p-4 rounded-2xl border border-red-100 flex items-center justify-between group transition-all active:scale-[0.98]">
+         <button onClick={() => navigate('/driver/incident')} className="bg-red-50 hover:bg-red-100 p-4 rounded-hero-lg border border-red-100 flex items-center justify-between group transition-all active:scale-[0.98]">
             <div className="flex items-center gap-4">
-               <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center text-red-600 shrink-0">
+               <div className="w-10 h-10 bg-red-100 rounded-hero-md flex items-center justify-center text-red-600 shrink-0">
                   <ShieldAlert size={20} fill="currentColor" className="opacity-20" />
                   <ShieldAlert size={20} className="absolute" />
                </div>
@@ -99,9 +99,9 @@ export default function DriverHome() {
             
             <div className="flex flex-col gap-3">
                {upcoming.map((job) => (
-                  <div key={job.id} onClick={() => navigate('/driver/loads')} className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer">
+                  <div key={job.id} onClick={() => navigate('/driver/loads')} className="bg-white rounded-hero-lg border border-gray-100 shadow-sm p-5 flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer">
                      <div className="flex items-center gap-4 min-w-0">
-                        <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-gray-400 shrink-0 border border-gray-100 group-hover:bg-brand-yellow group-hover:text-black group-hover:border-transparent transition-all">
+                        <div className="w-12 h-12 rounded-hero-md bg-gray-50 flex items-center justify-center text-gray-400 shrink-0 border border-gray-100 group-hover:bg-brand-yellow group-hover:text-black group-hover:border-transparent transition-all">
                            <Package size={22} />
                         </div>
                         <div className="min-w-0">
@@ -124,8 +124,8 @@ export default function DriverHome() {
          </div>
 
          {/* ── 5. System Bulletin ── */}
-         <div className="bg-blue-50/50 p-4 rounded-2xl border border-blue-100/50 flex items-center gap-4 mt-auto">
-            <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center shrink-0">
+         <div className="bg-blue-50/50 p-4 rounded-hero-lg border border-blue-100/50 flex items-center gap-4 mt-auto">
+            <div className="w-10 h-10 bg-blue-100 rounded-hero-md flex items-center justify-center shrink-0">
                <AlertTriangle size={20} className="text-blue-600" />
             </div>
             <div>
@@ -136,8 +136,5 @@ export default function DriverHome() {
 
       </div>
    );
-}
-
-
 
 

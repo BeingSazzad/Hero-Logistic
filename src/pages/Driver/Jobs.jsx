@@ -40,7 +40,7 @@ export default function DriverJobs() {
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-[0.2em] mb-1">Estimated Payouts</p>
             <h2 className="text-3xl font-semibold text-brand-yellow leading-none">$2,142.30</h2>
          </div>
-         <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center border border-white/10">
+         <div className="w-12 h-12 bg-white/10 rounded-hero-md flex items-center justify-center border border-white/10">
             <Calculator size={20} className="text-brand-yellow" />
          </div>
       </div>
@@ -48,30 +48,30 @@ export default function DriverJobs() {
       <div className="p-4 space-y-4">
         
         {/* ── Tabs ── */}
-        <div className="flex gap-2 p-1.5 bg-gray-200/50 rounded-2xl border border-gray-100 mt-2">
-          {[
-            { key: 'active', label: 'In Progress' },
-            { key: 'done', label: 'History' },
-            { key: 'all', label: 'Manifest' },
-          ].map(t => (
-            <button
-              key={t.key}
-              onClick={() => setTab(t.key)}
-              className={`flex-1 py-3 text-xs font-semibold uppercase tracking-widest rounded-xl transition-all ${tab === t.key ? 'bg-white shadow-xl text-gray-900 border border-gray-100' : 'text-gray-400'}`}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
+         <div className="flex gap-2 p-1.5 bg-gray-200/50 rounded-hero-md border border-gray-100 mt-2">
+           {[
+             { key: 'active', label: 'In Progress' },
+             { key: 'done', label: 'History' },
+             { key: 'all', label: 'Manifest' },
+           ].map(t => (
+             <button
+               key={t.key}
+               onClick={() => setTab(t.key)}
+               className={`flex-1 py-3 text-xs font-semibold uppercase tracking-widest rounded-hero-sm transition-all ${tab === t.key ? 'bg-white shadow-xl text-gray-900 border border-gray-100' : 'text-gray-400'}`}
+             >
+               {t.label}
+             </button>
+           ))}
+         </div>
 
         {/* ── Job Cards ── */}
         <div className="space-y-4">
           {filtered.map(job => (
-            <div 
-              key={job.id} 
-              onClick={() => navigate(`/driver/loads/${job.id}`)}
-              className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 active:scale-[0.98] transition-all group cursor-pointer"
-            >
+             <div 
+               key={job.id} 
+               onClick={() => navigate(`/driver/loads/${job.id}`)}
+               className="bg-white rounded-hero-md border border-gray-100 shadow-sm p-5 active:scale-[0.98] transition-all group cursor-pointer"
+             >
               <div className="flex items-start justify-between mb-4">
                 <div className="min-w-0 pr-2">
                    <span className="text-xs font-semibold text-brand-yellow bg-black  py-0.5 rounded uppercase tracking-widest">{job.id}</span>
@@ -97,26 +97,26 @@ export default function DriverJobs() {
                  </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 pb-5 border-b border-gray-50 mb-5">
-                 <div className="flex items-center gap-2.5 bg-gray-50/50 p-2.5 rounded-xl border border-gray-100">
-                    <Package size={14} className="text-gray-400" />
-                    <span className="text-xs font-bold text-gray-600">{job.items} • {job.weight}</span>
-                 </div>
-                 <div className="flex items-center gap-2.5 bg-gray-50/50 p-2.5 rounded-xl border border-gray-100">
-                    <Clock size={14} className="text-gray-400" />
-                    <span className="text-xs font-bold text-gray-600">{job.date}</span>
-                 </div>
-              </div>
+               <div className="grid grid-cols-2 gap-3 pb-5 border-b border-gray-50 mb-5">
+                  <div className="flex items-center gap-2.5 bg-gray-50/50 p-2.5 rounded-hero-sm border border-gray-100">
+                     <Package size={14} className="text-gray-400" />
+                     <span className="text-xs font-bold text-gray-600">{job.items} • {job.weight}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 bg-gray-50/50 p-2.5 rounded-hero-sm border border-gray-100">
+                     <Clock size={14} className="text-gray-400" />
+                     <span className="text-xs font-bold text-gray-600">{job.date}</span>
+                  </div>
+               </div>
 
               <div className="flex justify-between items-center">
                  <div className="flex flex-col">
                     <span className="hero-metadata">Est. Payout</span>
                     <span className="text-xl font-semibold text-gray-900 tracking-tighter">${job.earnings}</span>
                  </div>
-                 <button className="h-10 w-10 bg-gray-900 group-hover:bg-black text-brand-yellow rounded-xl flex items-center justify-center shadow-lg transition-all active:scale-95">
-                    <ArrowRight size={18} />
-                 </button>
-              </div>
+                  <button className="h-10 w-10 bg-gray-900 group-hover:bg-black text-brand-yellow rounded-hero-sm flex items-center justify-center shadow-lg transition-all active:scale-95">
+                     <ArrowRight size={18} />
+                  </button>
+               </div>
             </div>
           ))}
         </div>

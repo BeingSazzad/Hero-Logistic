@@ -6,9 +6,9 @@ import {
 } from 'lucide-react';
 
 const internalTickets = [
-  { id: 'TKT-701', user: 'Jack Taylor', role: 'Driver', issue: 'App crashing on route sync', priority: 'High', status: 'Open', time: '12 mins ago' },
-  { id: 'TKT-702', user: 'Sarah Mitchell', role: 'Dispatch', issue: 'Need vehicle re-assignment permission', priority: 'Medium', status: 'Open', time: '2 hrs ago' },
-  { id: 'TKT-699', user: 'Noah Williams', role: 'Driver', issue: 'License verification stalled', priority: 'High', status: 'Resolved', time: '1 day ago' },
+  { id: 'TKT-701', user: 'Jack Taylor', role: 'Driver', issue: 'App crashing on route sync', priority: 'High', status: 'Open', time: '12 mins ago', avatar: '/driver_avatar_2_1777708515488.png' },
+  { id: 'TKT-702', user: 'Sarah Mitchell', role: 'Dispatch', issue: 'Need vehicle re-assignment permission', priority: 'Medium', status: 'Open', time: '2 hrs ago', avatar: '/driver_avatar_3_1777708569850.png' },
+  { id: 'TKT-699', user: 'Noah Williams', role: 'Driver', issue: 'License verification stalled', priority: 'High', status: 'Resolved', time: '1 day ago', avatar: '/driver_avatar_1_1777708494778.png' },
 ];
 
 export default function AdminMessaging() {
@@ -81,7 +81,9 @@ export default function AdminMessaging() {
                 <h4 className="text-sm font-bold text-gray-900 mb-1 leading-tight">{t.issue}</h4>
                 <div className="flex items-center gap-2">
                   <div className="flex items-center gap-1.5">
-                    <div className="w-4 h-4 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-600">{t.user[0]}</div>
+                    <div className="w-5 h-5 rounded-full bg-gray-200 overflow-hidden flex items-center justify-center text-[10px] font-bold text-gray-600">
+                      {t.avatar ? <img src={t.avatar} alt={t.user} className="w-full h-full object-cover" /> : t.user[0]}
+                    </div>
                     <span className="text-xs font-bold text-gray-500">{t.user}</span>
                   </div>
                   <span className="w-1 h-1 bg-gray-200 rounded-full"></span>

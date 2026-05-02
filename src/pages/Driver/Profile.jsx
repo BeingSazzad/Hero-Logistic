@@ -29,7 +29,7 @@ export default function DriverProfile() {
              <h1 className="text-white font-bold text-lg tracking-wide">Personal Information</h1>
           </div>
           <div className="p-5 flex flex-col gap-5 mt-2">
-             <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center">
+             <div className="bg-white p-5 rounded-hero-lg border border-gray-100 shadow-sm flex flex-col items-center">
                 <div className="relative group cursor-pointer" onClick={() => setProfilePhoto('/assets/sample_driver.png')}>
                    <div className="w-24 h-24 rounded-full w-fit border-4 border-white shadow-xl overflow-hidden bg-brand-yellow flex items-center justify-center font-semibold text-3xl text-black">
                       {profilePhoto ? <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover"/> : (user?.name?.split(' ').map(n=>n[0]).join('') || 'JM')}
@@ -44,20 +44,20 @@ export default function DriverProfile() {
                 <p className="text-xs uppercase font-semibold text-gray-400 tracking-widest mt-4">Tap to update avatar</p>
              </div>
              
-             <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-4">
+             <div className="bg-white p-5 rounded-hero-lg border border-gray-100 shadow-sm space-y-4">
                <div>
                   <label className="hero-metadata block mb-2 px-1">Full Name</label>
-                  <input type="text" defaultValue={user?.name || "James Mitchell"} className="w-full bg-gray-50 border border-gray-100 focus:border-brand-yellow focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
+                  <input type="text" defaultValue={user?.name || "James Mitchell"} className="w-full bg-gray-50 border border-gray-100 focus:border-brand-yellow focus:bg-white rounded-hero-sm py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
                </div>
                <div>
                   <label className="hero-metadata block mb-2 px-1">Mobile Number</label>
-                  <input type="text" defaultValue="+61 412 345 678" className="w-full bg-gray-50 border border-gray-100 focus:border-brand-yellow focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
+                  <input type="text" defaultValue="+61 412 345 678" className="w-full bg-gray-50 border border-gray-100 focus:border-brand-yellow focus:bg-white rounded-hero-sm py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
                </div>
                <div>
                   <label className="hero-metadata block mb-2 px-1 flex items-center gap-1.5"><Mail size={12}/> Login Email</label>
-                  <input type="email" defaultValue={user?.email || "j.mitchell@hero.com.au"} readOnly className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3.5 px-4 text-sm font-bold text-gray-400 cursor-not-allowed outline-none shadow-inner" />
+                  <input type="email" defaultValue={user?.email || "j.mitchell@hero.com.au"} readOnly className="w-full bg-gray-50 border border-gray-100 rounded-hero-sm py-3.5 px-4 text-sm font-bold text-gray-400 cursor-not-allowed outline-none shadow-inner" />
                </div>
-               <button onClick={() => setActiveView('main')} className="w-full py-4 bg-brand-yellow hover:bg-brand-orange text-black font-semibold uppercase text-xs tracking-widest rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 mt-4 active:scale-95">Save Changes</button>
+               <button onClick={() => setActiveView('main')} className="w-full py-4 bg-brand-yellow hover:bg-brand-orange text-black font-semibold uppercase text-xs tracking-widest rounded-hero-sm transition-all shadow-sm flex items-center justify-center gap-2 mt-4 active:scale-95">Save Changes</button>
              </div>
           </div>
         </div>
@@ -74,20 +74,20 @@ export default function DriverProfile() {
              <h1 className="text-white font-bold text-lg tracking-wide">Change Password</h1>
           </div>
           <div className="p-5 flex flex-col gap-5 mt-2">
-             <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-4">
+             <div className="bg-white p-5 rounded-hero-lg border border-gray-100 shadow-sm space-y-4">
                <div>
                  <label className="hero-metadata block mb-2 px-1">Current Password</label>
-                 <input type="password" placeholder="••••••••" className="w-full bg-gray-50 border border-gray-100 focus:border-gray-300 focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
+                 <input type="password" placeholder="••••••••" className="w-full bg-gray-50 border border-gray-100 focus:border-gray-300 focus:bg-white rounded-hero-sm py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
                </div>
                <div>
                  <label className="hero-metadata block mb-2 px-1">New Password</label>
-                 <input type="password" placeholder="New Password" className="w-full bg-gray-50 border border-gray-100 focus:border-gray-300 focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
+                 <input type="password" placeholder="New Password" className="w-full bg-gray-50 border border-gray-100 focus:border-gray-300 focus:bg-white rounded-hero-sm py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
                </div>
                <div>
                  <label className="hero-metadata block mb-2 px-1">Confirm New Password</label>
-                 <input type="password" placeholder="Confirm Password" className="w-full bg-gray-50 border border-gray-100 focus:border-gray-300 focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
+                 <input type="password" placeholder="Confirm Password" className="w-full bg-gray-50 border border-gray-100 focus:border-gray-300 focus:bg-white rounded-hero-sm py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
                </div>
-               <button onClick={() => setActiveView('main')} className="w-full py-4 bg-[#111] hover:bg-black text-brand-yellow font-semibold uppercase text-xs tracking-widest rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 mt-4 active:scale-95"><Shield size={16}/> Update Password</button>
+               <button onClick={() => setActiveView('main')} className="w-full py-4 bg-[#111] hover:bg-black text-brand-yellow font-semibold uppercase text-xs tracking-widest rounded-hero-sm transition-all shadow-sm flex items-center justify-center gap-2 mt-4 active:scale-95"><Shield size={16}/> Update Password</button>
              </div>
           </div>
         </div>
@@ -143,7 +143,7 @@ export default function DriverProfile() {
           </div>
           <div className="p-4 mt-2 space-y-3">
              {docs.map(doc => (
-                <div key={doc.name} className={`flex items-center justify-between p-5 rounded-2xl border transition-all ${doc.ok ? 'bg-white border-gray-100 shadow-sm' : 'bg-red-50 border-red-100 shadow-sm'}`}>
+                <div key={doc.name} className={`flex items-center justify-between p-5 rounded-hero-lg border transition-all ${doc.ok ? 'bg-white border-gray-100 shadow-sm' : 'bg-red-50 border-red-100 shadow-sm'}`}>
                   <div className="flex items-center gap-4">
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${doc.ok ? 'bg-emerald-50 text-emerald-500' : 'bg-red-100 text-red-500'}`}>
                        {doc.ok ? <CheckCircle2 size={22} /> : <AlertCircle size={22} />}
@@ -297,19 +297,19 @@ export default function DriverProfile() {
       </div>
 
       <div className="p-4 flex flex-col gap-5">
-        {/* ── 2. Profile Summary Card ── */}
-        <div className="bg-[#111] text-white rounded-2xl p-5 flex items-center gap-4 shadow-lg border border-gray-800">
-          <div className="w-16 h-16 rounded-full w-fit bg-brand-yellow border-2 border-white flex items-center justify-center font-semibold text-[#111] text-2xl shrink-0 shadow-inner overflow-hidden">
-            {profilePhoto ? <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover"/> : (user?.name?.split(' ').map(n=>n[0]).join('') || 'JM')}
-          </div>
-          <div>
-            <h2 className="text-xl font-semibold tracking-tight text-white mb-0.5">{user?.name || 'James Mitchell'}</h2>
-            <p className="text-xs font-semibold text-brand-yellow uppercase tracking-widest">{user?.role || 'Heavy Vehicle Driver'} · {user?.branchName || 'Sydney Area'}</p>
-          </div>
-        </div>
+         {/* ── 2. Profile Summary Card ── */}
+         <div className="bg-[#111] text-white rounded-hero-lg p-5 flex items-center gap-4 shadow-lg border border-gray-800">
+           <div className="w-16 h-16 rounded-full w-fit bg-brand-yellow border-2 border-white flex items-center justify-center font-semibold text-[#111] text-2xl shrink-0 shadow-inner overflow-hidden">
+             {profilePhoto ? <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover"/> : (user?.name?.split(' ').map(n=>n[0]).join('') || 'JM')}
+           </div>
+           <div>
+             <h2 className="text-xl font-semibold tracking-tight text-white mb-0.5">{user?.name || 'James Mitchell'}</h2>
+             <p className="text-xs font-semibold text-brand-yellow uppercase tracking-widest">{user?.role || 'Heavy Vehicle Driver'} · {user?.branchName || 'Sydney Area'}</p>
+           </div>
+         </div>
 
-        {/* ── 3. Action Menu List ── */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col overflow-hidden">
+         {/* ── 3. Action Menu List ── */}
+         <div className="bg-white rounded-hero-lg border border-gray-100 shadow-sm flex flex-col overflow-hidden">
           
           <button onClick={() => setActiveView('edit')} className="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 active:bg-gray-100 transition-colors">
              <div className="flex items-center gap-4">
@@ -384,8 +384,8 @@ export default function DriverProfile() {
           </button>
         </div>
 
-        {/* ── 5. System Items ── */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col overflow-hidden">
+         {/* ── 5. System Items ── */}
+         <div className="bg-white rounded-hero-lg border border-gray-100 shadow-sm flex flex-col overflow-hidden">
           <button onClick={() => setActiveView('support')} className="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 active:bg-gray-100 transition-colors group">
              <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 border border-blue-100">

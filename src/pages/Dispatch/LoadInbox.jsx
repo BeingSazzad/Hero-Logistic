@@ -17,7 +17,8 @@ const MOCK_INBOX = [
     dest: 'Brisbane QLD',
     status: 'Pending Review',
     urgency: 'High',
-    notes: 'Customer confirmed urgent. Two sedans, both undamaged.'
+    notes: 'Customer confirmed urgent. Two sedans, both undamaged.',
+    avatar: '/driver_avatar_2_1777708515488.png'
   },
   {
     id: 'DRAFT-1091',
@@ -29,7 +30,8 @@ const MOCK_INBOX = [
     dest: 'Perth WA',
     status: 'Pending Review',
     urgency: 'Normal',
-    notes: 'Oversize Ute. Requires flatbed trailer.'
+    notes: 'Oversize Ute. Requires flatbed trailer.',
+    avatar: '/driver_avatar_3_1777708569850.png'
   },
   {
     id: 'DRAFT-1088',
@@ -41,7 +43,8 @@ const MOCK_INBOX = [
     dest: 'Adelaide SA',
     status: 'Pending Review',
     urgency: 'Normal',
-    notes: 'Port pickup. Vehicles in compound storage.'
+    notes: 'Port pickup. Vehicles in compound storage.',
+    avatar: '/driver_avatar_4_1777708585605.png'
   },
 ];
 
@@ -215,7 +218,10 @@ export default function DispatchLoadInbox() {
                   {/* Row 2: meta chips */}
                   <div className="flex items-center gap-3 flex-wrap mb-4">
                     <span className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-md">
-                      <User size={12} className="text-gray-400" /> {draft.driver}
+                      <div className="w-4 h-4 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
+                        {draft.avatar ? <img src={draft.avatar} alt={draft.driver} className="w-full h-full object-cover" /> : <User size={10} className="text-gray-400" />}
+                      </div>
+                      {draft.driver}
                     </span>
                     <span className="flex items-center gap-1.5 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-100 px-3 py-1.5 rounded-md">
                       <Car size={12} className="text-gray-400" /> {draft.vehicleCount} Units

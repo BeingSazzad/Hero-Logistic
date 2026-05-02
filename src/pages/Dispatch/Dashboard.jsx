@@ -8,9 +8,9 @@ import {
 } from 'lucide-react';
 
 const jobs = [
-  { id: 'SHP-20481', customer: 'Acme Corp',          route: 'Sydney Depot → Melbourne Depot',  driver: 'Jack Taylor',  vehicle: 'TRK-102', status: 'In Transit', progress: 65, eta: '2:45 PM', nextStop: 'Melbourne Terminal' },
-  { id: 'SHP-20482', customer: 'Tech Solutions Ltd',  route: 'Brisbane Depot → Sydney Depot',      driver: 'Liam Smith',  vehicle: 'VAN-08',   status: 'Arriving Soon',  progress: 85, eta: '4:30 PM', nextStop: 'Sydney Central Depot' },
-  { id: 'SHP-20483', customer: 'Global Traders',      route: 'Perth Depot → Adelaide Depot',   driver: 'Noah Williams',   vehicle: 'TRK-05',   status: 'In Sorting',   progress: 100, eta: 'Done', nextStop: 'Adelaide Terminal' },
+  { id: 'SHP-20481', customer: 'Acme Corp',          route: 'Sydney Depot → Melbourne Depot',  driver: 'Jack Taylor',  vehicle: 'TRK-102', status: 'In Transit', progress: 65, eta: '2:45 PM', nextStop: 'Melbourne Terminal', avatar: '/driver_avatar_2_1777708515488.png' },
+  { id: 'SHP-20482', customer: 'Tech Solutions Ltd',  route: 'Brisbane Depot → Sydney Depot',      driver: 'Liam Smith',  vehicle: 'VAN-08',   status: 'Arriving Soon',  progress: 85, eta: '4:30 PM', nextStop: 'Sydney Central Depot', avatar: '/driver_avatar_4_1777708585605.png' },
+  { id: 'SHP-20483', customer: 'Global Traders',      route: 'Perth Depot → Adelaide Depot',   driver: 'Noah Williams',   vehicle: 'TRK-05',   status: 'In Sorting',   progress: 100, eta: 'Done', nextStop: 'Adelaide Terminal', avatar: '/driver_avatar_1_1777708494778.png' },
   { id: 'SHP-20484', customer: 'Express Goods',       route: 'Sydney Depot → Newcastle Depot',  driver: 'Unassigned',   vehicle: '-',        status: 'Unassigned',   progress: 0, eta: '-', nextStop: 'Newcastle Depot' },
 ];
 
@@ -134,8 +134,10 @@ export default function DispatchDashboard() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
-                          <div className={`w-8 h-8 rounded bg-gray-900 text-brand flex items-center justify-center font-semibold text-xs shadow-sm`}>
-                            {job.driver === 'Unassigned' ? '?' : job.driver[0]}
+                          <div className={`w-8 h-8 rounded overflow-hidden bg-gray-900 text-brand flex items-center justify-center font-semibold text-xs shadow-sm`}>
+                            {job.driver === 'Unassigned' ? '?' : (
+                              job.avatar ? <img src={job.avatar} alt={job.driver} className="w-full h-full object-cover" /> : job.driver[0]
+                            )}
                           </div>
                           <div>
                             <div className={`text-xs font-semibold ${job.driver === 'Unassigned' ? 'text-red-500' : 'text-gray-900'}`}>{job.driver}</div>

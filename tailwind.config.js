@@ -26,9 +26,9 @@ export default {
         sans: ['Inter', 'sans-serif'],
       },
       borderRadius: {
-        'hero-sm': '0.5rem',
-        'hero-md': '0.75rem',
-        'hero-lg': '1rem',
+        'hero-sm': '0.75rem',  /* 12px */
+        'hero-md': '1.125rem', /* 18px */
+        'hero-lg': '1.5rem',   /* 24px */
       }
     },
   },

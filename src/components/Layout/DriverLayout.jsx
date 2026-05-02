@@ -6,9 +6,9 @@ import { House, Map, FileText, User, Bell, Zap, Receipt, MessageSquare } from 'l
 // as it simulates a native phone app, not a desktop portal.
 const bottomNav = [
   { to: '/driver', label: 'Home', icon: House, end: true },
-  { to: '/driver/loads', label: 'Assigned', icon: FileText },
-  { to: '/driver/active', label: 'Active Route', icon: Map },
-  { to: '/driver/expenses', label: 'Expenses', icon: Receipt },
+  { to: '/driver/loads', label: 'Jobs', icon: FileText },
+  { to: '/driver/active', label: 'Route', icon: Map },
+  { to: '/driver/expenses', label: 'Pay', icon: Receipt },
   { to: '/driver/profile', label: 'Profile', icon: User },
 ];
 
@@ -67,21 +67,27 @@ export default function DriverLayout() {
           <Outlet />
         </div>
 
-        {/* Bottom nav — Hidden on Live Map for focused navigation */}
+        {/* Bottom nav — Refined Mobile Experience */}
         {location.pathname !== '/driver/active' && (
-          <div className="absolute bottom-0 left-0 right-0 h-[72px] bg-white border-t border-gray-100 flex items-center justify-around  shrink-0 z-50">
+          <div className="absolute bottom-6 left-5 right-5 h-[68px] bg-white/90 backdrop-blur-xl border border-white/20 flex items-center justify-around px-2 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.2)] rounded-[24px] z-50">
             {bottomNav.map(({ to, label, icon: Icon, end }) => (
-              <NavLink key={to} to={to} end={end} className="flex-1">
+              <NavLink key={to} to={to} end={end} className="flex-1 group">
                 {({ isActive }) => (
-                  <div className={`flex flex-col items-center gap-1 transition-all`}>
+                  <div className={`flex flex-col items-center gap-1.5 transition-all relative py-2 rounded-2xl ${isActive ? '' : 'hover:bg-gray-50'}`}>
+                    {isActive && (
+                      <div className="absolute inset-0 bg-brand-yellow/10 rounded-2xl -z-10 animate-in fade-in zoom-in-95 duration-200" />
+                    )}
                     <Icon
                       size={20}
-                      color={isActive ? '#111' : '#9CA3AF'}
-                      strokeWidth={isActive ? 2.5 : 1.5}
+                      className={`transition-all duration-300 ${isActive ? 'text-gray-900 scale-110' : 'text-gray-400 group-hover:text-gray-600'}`}
+                      strokeWidth={isActive ? 2.5 : 2}
                     />
-                    <span className={`text-xs leading-none uppercase ${isActive ? 'font-semibold text-[#111]' : 'font-normal text-gray-400'}`}>
+                    <span className={`text-[10px] uppercase tracking-wider transition-all ${isActive ? 'font-bold text-gray-900' : 'font-normal text-gray-400 group-hover:text-gray-500'}`}>
                       {label}
                     </span>
+                    {isActive && (
+                      <div className="absolute -bottom-1 w-1.5 h-1.5 bg-brand-yellow rounded-full w-fit shadow-[0_0_8px_rgba(255,183,0,0.8)]" />
+                    )}
                   </div>
                 )}
               </NavLink>
