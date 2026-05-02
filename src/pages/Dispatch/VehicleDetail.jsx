@@ -7,10 +7,10 @@ import {
 } from 'lucide-react';
 
 const VEHICLE_DB = {
-   'TRK-102': { id: 'TRK-102', make: 'Freightliner Cascadia', type: 'Semi Truck', plate: 'XQG-984', year: '2021', status: 'Active', fuel: '72%', mileage: '128,440 km', nextService: 'April 22, 2026', lastService: 'Jan 15, 2026', compliance: 'Valid', capacity: '28t', location: 'Hume Highway, Goulburn NSW', trips: 412, rating: 4.8, shifts: [{ id: 'DRV-102', name: 'Jack Taylor', shift: 'Day Shift (06:00 - 18:00)', initials: 'JT' }, { id: 'DRV-134', name: 'Oliver Brown', shift: 'Night Shift (18:00 - 06:00)', initials: 'OB' }] },
-   'VAN-14': { id: 'VAN-14', make: 'Mercedes Sprinter 519', type: 'Cargo Van', plate: 'VAN-14-SYD', year: '2022', status: 'Loading', fuel: '55%', mileage: '44,200 km', nextService: 'May 10, 2026', lastService: 'Feb 02, 2026', compliance: 'Valid', capacity: '3.5t', location: 'Warehouse A, Sydney NSW', trips: 198, rating: 4.5, shifts: [{ id: 'DRV-134', name: 'Oliver Brown', shift: 'Day Shift (06:00 - 18:00)', initials: 'OB' }] },
-   'BGT-221': { id: 'BGT-221', make: 'Isuzu FTR 900', type: 'Medium Truck', plate: 'BGT-221', year: '2020', status: 'Delay Alert', fuel: '31%', mileage: '89,100 km', nextService: 'April 15, 2026', lastService: 'Dec 12, 2025', compliance: 'Warning', capacity: '9t', location: 'Pacific Highway, NSW', trips: 301, rating: 4.2, shifts: [{ id: 'DRV-105', name: 'Liam Smith', shift: 'Day Shift (08:00 - 20:00)', initials: 'LS' }] },
-   'TRK-05': { id: 'TRK-05', make: 'Kenworth T610', type: 'Road Train', plate: 'TRK-05-MEL', year: '2019', status: 'Active', fuel: '88%', mileage: '204,000 km', nextService: 'June 01, 2026', lastService: 'Mar 01, 2026', compliance: 'Valid', capacity: '42t', location: 'Pacific Highway, NSW', trips: 680, rating: 4.6, shifts: [] },
+   'TRK-102': { id: 'TRK-102', make: 'Freightliner Cascadia', type: 'Semi Truck', plate: 'XQG-984', year: '2021', status: 'Active', fuel: '72%', mileage: '128,440 km', nextService: 'April 22, 2026', lastService: 'Jan 15, 2026', compliance: 'Valid', capacity: '28t', location: 'Hume Highway, Goulburn NSW', trips: 412, rating: 4.8, thumbnail: '/ford_ranger_silver_1777708602634.png', shifts: [{ id: 'DRV-102', name: 'Jack Taylor', shift: 'Day Shift (06:00 - 18:00)', initials: 'JT', avatar: '/driver_avatar_2_1777708515488.png' }, { id: 'DRV-134', name: 'Oliver Brown', shift: 'Night Shift (18:00 - 06:00)', initials: 'OB', avatar: '/driver_avatar_3_1777708569850.png' }] },
+   'VAN-14': { id: 'VAN-14', make: 'Mercedes Sprinter 519', type: 'Cargo Van', plate: 'VAN-14-SYD', year: '2022', status: 'Loading', fuel: '55%', mileage: '44,200 km', nextService: 'May 10, 2026', lastService: 'Feb 02, 2026', compliance: 'Valid', capacity: '3.5t', location: 'Warehouse A, Sydney NSW', trips: 198, rating: 4.5, thumbnail: '/honda_crv_black_1777708547079.png', shifts: [{ id: 'DRV-134', name: 'Oliver Brown', shift: 'Day Shift (06:00 - 18:00)', initials: 'OB', avatar: '/driver_avatar_3_1777708569850.png' }] },
+   'BGT-221': { id: 'BGT-221', make: 'Isuzu FTR 900', type: 'Medium Truck', plate: 'BGT-221', year: '2020', status: 'Delay Alert', fuel: '31%', mileage: '89,100 km', nextService: 'April 15, 2026', lastService: 'Dec 12, 2025', compliance: 'Warning', capacity: '9t', location: 'Pacific Highway, NSW', trips: 301, rating: 4.2, thumbnail: '/hero_logistic_asset_inventory_final_1777697265907.webp', shifts: [{ id: 'DRV-105', name: 'Liam Smith', shift: 'Day Shift (08:00 - 20:00)', initials: 'LS', avatar: '/driver_avatar_4_1777708585605.png' }] },
+   'TRK-05': { id: 'TRK-05', make: 'Kenworth T610', type: 'Road Train', plate: 'TRK-05-MEL', year: '2019', status: 'Active', fuel: '88%', mileage: '204,000 km', nextService: 'June 01, 2026', lastService: 'Mar 01, 2026', compliance: 'Valid', capacity: '42t', location: 'Pacific Highway, NSW', trips: 680, rating: 4.6, thumbnail: '/ford_ranger_silver_1777708602634.png', shifts: [] },
 };
 
 const statusStyle = (s) => {
@@ -70,7 +70,7 @@ export default function DispatchVehicleDetail() {
             <div className="flex-1 flex flex-col gap-3">
                <div className="relative aspect-[16/9] w-full rounded-2xl bg-[#111] overflow-hidden shadow-xl border-4 border-white group">
                   <img
-                     src={photo || "/assets/truck_front.png"}
+                     src={photo || v.thumbnail || "/ford_ranger_silver_1777708602634.png"}
                      alt="Fleet Asset"
                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -81,11 +81,11 @@ export default function DispatchVehicleDetail() {
                      </div>
                   </div>
                </div>
-               <div className="flex gap-3">
+                <div className="flex gap-3">
                   {[
-                     { src: "/assets/truck_front.png", label: 'Front' },
-                     { src: "/assets/truck_side.png", label: 'Side' },
-                     { src: "/assets/truck_cabin.png", label: 'Cabin' }
+                     { src: v.thumbnail || "/ford_ranger_silver_1777708602634.png", label: 'Primary' },
+                     { src: "/honda_crv_black_1777708547079.png", label: 'Alternate' },
+                     { src: "/hero_logistic_asset_inventory_final_1777697265907.webp", label: 'Fleet' }
                   ].map((img, i) => (
                      <button
                         key={i}
@@ -95,7 +95,7 @@ export default function DispatchVehicleDetail() {
                         <img src={img.src} alt={img.label} className="w-full h-full object-cover" />
                      </button>
                   ))}
-               </div>
+                </div>
             </div>
 
             <div className="lg:w-1/3 flex flex-col justify-center">
@@ -227,10 +227,10 @@ export default function DispatchVehicleDetail() {
                            <p className="text-sm font-bold text-gray-400">No active shifts scheduled.</p>
                         </div>
                      ) : v.shifts.map((shift, idx) => (
-                        <div key={idx} className="flex items-center gap-4 bg-gray-50/50 p-3 rounded-xl border border-gray-100">
-                           <div className="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-brand-yellow font-semibold text-xs shadow-lg shrink-0">
-                              {shift.initials}
-                           </div>
+                         <div key={idx} className="flex items-center gap-4 bg-gray-50/50 p-3 rounded-xl border border-gray-100">
+                            <div className="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-brand-yellow font-semibold text-xs shadow-lg shrink-0 overflow-hidden">
+                               {shift.avatar ? <img src={shift.avatar} alt={shift.name} className="w-full h-full object-cover" /> : shift.initials}
+                            </div>
                            <div className="flex-1 min-w-0">
                               <p className="font-semibold text-gray-900 truncate">{shift.name}</p>
                               <p className="text-xs text-gray-400 uppercase tracking-widest font-bold mt-0.5">{shift.id}</p>
