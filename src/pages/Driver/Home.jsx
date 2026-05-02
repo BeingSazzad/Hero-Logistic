@@ -21,7 +21,7 @@ export default function DriverHome() {
          {/* ── 1. Operator Status HUD ── */}
          <div className="flex justify-between items-center bg-[#111] p-4 rounded-3xl shadow-xl border border-white/5">
             <div className="flex items-center gap-4">
-               <div className="w-12 h-12 rounded-2xl bg-[#FFCC00] border-2 border-white/10 flex items-center justify-center font-semibold text-black text-xl shadow-inner">
+               <div className="w-12 h-12 rounded-2xl bg-[#FACC15] border-2 border-white/10 flex items-center justify-center font-semibold text-black text-xl shadow-inner">
                   JT
                </div>
                <div>
@@ -53,7 +53,7 @@ export default function DriverHome() {
             </button>
             <button 
                onClick={() => navigate('/driver/active')} 
-               className="bg-[#FFCC00] hover:bg-yellow-500 text-black px-5 py-6 rounded-[2rem] shadow-xl active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-3 border border-yellow-400"
+               className="bg-[#FACC15] hover:bg-yellow-500 text-black px-5 py-6 rounded-[2rem] shadow-xl active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-3 border border-yellow-400"
             >
                <div className="w-12 h-12 bg-black/10 rounded-2xl flex items-center justify-center shrink-0">
                   <Navigation size={28} className="text-black" />
@@ -101,7 +101,7 @@ export default function DriverHome() {
                {upcoming.map((job) => (
                   <div key={job.id} onClick={() => navigate('/driver/loads')} className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer">
                      <div className="flex items-center gap-4 min-w-0">
-                        <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-gray-400 shrink-0 border border-gray-100 group-hover:bg-[#FFCC00] group-hover:text-black group-hover:border-transparent transition-all">
+                        <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-gray-400 shrink-0 border border-gray-100 group-hover:bg-[#FACC15] group-hover:text-black group-hover:border-transparent transition-all">
                            <Package size={22} />
                         </div>
                         <div className="min-w-0">

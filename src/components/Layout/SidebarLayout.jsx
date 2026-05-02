@@ -37,8 +37,8 @@ function GlobalSearch() {
         { id: 'LD-2048', type: 'Load', title: 'Load LD-2048', desc: 'Dest: Brisbane QLD', status: 'Loading' },
         { id: 'VIN-82633', type: 'Vehicle', title: '1HGCM82633A004352', desc: 'Toyota Camry • Plate: XQG-984', status: 'In-Depot' },
         { id: 'DRV-102', type: 'Driver', title: 'James Mitchell', desc: 'Active on TRK-102', status: 'On Duty' },
-      ].filter(item => 
-        item.title.toLowerCase().includes(query.toLowerCase()) || 
+      ].filter(item =>
+        item.title.toLowerCase().includes(query.toLowerCase()) ||
         item.id.toLowerCase().includes(query.toLowerCase())
       );
       setResults(mock);
@@ -49,25 +49,25 @@ function GlobalSearch() {
 
   return (
     <div className="relative" ref={containerRef}>
-      <div 
+      <div
         onClick={() => setOpen(true)}
         className="flex items-center gap-3 bg-gray-50 border border-gray-100 px-4 py-2 rounded-xl text-gray-400 hover:bg-gray-100 hover:border-gray-200 transition-all cursor-pointer group w-64 lg:w-80"
       >
         <Search size={16} className="group-hover:text-gray-900 transition-colors" />
         <span className="text-xs font-bold flex-1 select-none">Quick Search...</span>
         <div className="flex items-center gap-1 opacity-40">
-           <Command size={10} />
-           <span className="text-xs font-semibold uppercase">K</span>
+          <Command size={10} />
+          <span className="text-xs font-semibold uppercase">K</span>
         </div>
       </div>
 
       {open && (
         <div className="absolute top-0 right-0 lg:right-auto lg:left-0 w-[420px] bg-white rounded-3xl shadow-2xl border border-gray-100 z-[100] animate-in fade-in zoom-in-95 duration-200 overflow-hidden">
           <div className="p-4 border-b border-gray-100 flex items-center gap-3 bg-gray-50/50">
-            <Search size={20} className="text-[#FFCC00]" />
-            <input 
+            <Search size={20} className="text-[#FACC15]" />
+            <input
               autoFocus
-              type="text" 
+              type="text"
               placeholder="Search VIN, Load ID, Driver or Destination..."
               value={query}
               onChange={e => setQuery(e.target.value)}
@@ -89,7 +89,7 @@ function GlobalSearch() {
                 {results.map((r, i) => (
                   <div key={i} className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-2xl cursor-pointer group transition-all">
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 group-hover:bg-[#FFCC00] group-hover:text-black group-hover:border-[#FFCC00] transition-all">
+                      <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 group-hover:bg-[#FACC15] group-hover:text-black group-hover:border-[#FACC15] transition-all">
                         {r.type === 'Vehicle' ? <Car size={18} /> : r.type === 'Load' ? <Shield size={18} /> : <Zap size={18} />}
                       </div>
                       <div>
@@ -111,14 +111,14 @@ function GlobalSearch() {
 
           <div className="p-3 border-t border-gray-100 bg-gray-50/50 flex items-center justify-between">
             <div className="flex items-center gap-4">
-               <div className="flex items-center gap-1">
-                 <span className="text-[8px] font-semibold bg-white border border-gray-200 rounded px-1 text-gray-400 shadow-sm">ESC</span>
-                 <span className="text-[8px] font-semibold uppercase text-gray-400">Close</span>
-               </div>
-               <div className="flex items-center gap-1">
-                 <span className="text-[8px] font-semibold bg-white border border-gray-200 rounded px-1 text-gray-400 shadow-sm">ENTER</span>
-                 <span className="text-[8px] font-semibold uppercase text-gray-400">Select</span>
-               </div>
+              <div className="flex items-center gap-1">
+                <span className="text-[8px] font-semibold bg-white border border-gray-200 rounded px-1 text-gray-400 shadow-sm">ESC</span>
+                <span className="text-[8px] font-semibold uppercase text-gray-400">Close</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="text-[8px] font-semibold bg-white border border-gray-200 rounded px-1 text-gray-400 shadow-sm">ENTER</span>
+                <span className="text-[8px] font-semibold uppercase text-gray-400">Select</span>
+              </div>
             </div>
             <p className="hero-metadata">Global Asset Search</p>
           </div>
@@ -134,13 +134,13 @@ export function SideNavItem({ to, label, Icon, end, badge }) {
     <NavLink to={to} end={end} className="group">
       {({ isActive }) => (
         <div className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${isActive
-            ? 'bg-[#FFCC00] text-[#111] shadow-md shadow-[#FFCC00]/20'
-            : 'text-gray-400 hover:text-white hover:bg-white/5'
+          ? 'bg-gradient-to-r from-brand-yellow to-brand-orange text-[#111] shadow-md shadow-brand-yellow/20'
+          : 'text-gray-400 hover:text-white hover:bg-white/5'
           }`}>
           {Icon && <Icon size={15} className={isActive ? 'text-[#111]' : 'text-gray-500 group-hover:text-white transition-colors'} />}
           <span className="flex-1 leading-none">{label}</span>
           {badge != null && (
-            <span className={`text-xs font-semibold rounded-full px-1.5 py-0.5 min-w-[18px] text-center ${isActive ? 'bg-[#111] text-[#FFCC00]' : 'bg-red-500 text-white'}`}>
+            <span className={`text-xs font-semibold rounded-full px-1.5 py-0.5 min-w-[18px] text-center ${isActive ? 'bg-[#111] text-[#FACC15]' : 'bg-red-500 text-white'}`}>
               {badge}
             </span>
           )}
@@ -170,7 +170,7 @@ export function SideNavGroup({ group }) {
         className={`w-full flex items-center justify-between px-3 py-2 text-gray-500 hover:text-white group transition-colors rounded-lg mb-0.5 ${isChildActive && !open ? 'bg-white/5' : ''}`}
       >
         <div className="flex items-center gap-2">
-          {group.icon && <group.icon size={13} className={`transition-colors ${isChildActive ? 'text-[#FFCC00]' : 'text-gray-600 group-hover:text-white'}`} />}
+          {group.icon && <group.icon size={13} className={`transition-colors ${isChildActive ? 'text-[#FACC15]' : 'text-gray-600 group-hover:text-white'}`} />}
           <span className={`text-sm font-medium ${isChildActive ? 'text-white' : ''}`}>{group.label}</span>
         </div>
         {open
@@ -184,8 +184,8 @@ export function SideNavGroup({ group }) {
             <NavLink key={item.to} to={item.to}>
               {({ isActive }) => (
                 <div className={`flex items-center gap-3 ml-4 px-3 py-2 rounded-lg text-sm font-medium transition-all border-l-2 cursor-pointer ${isActive
-                    ? 'bg-[#FFCC00]/10 border-[#FFCC00] text-[#FFCC00]'
-                    : 'text-gray-500 border-transparent hover:text-white hover:bg-white/5 hover:border-white/10'
+                  ? 'bg-[#FACC15]/10 border-[#FACC15] text-[#FACC15]'
+                  : 'text-gray-500 border-transparent hover:text-white hover:bg-white/5 hover:border-white/10'
                   }`}>
                   <span>{item.label}</span>
                 </div>
@@ -231,14 +231,14 @@ function NotificationBell({ notifications = [] }) {
         <div className="absolute top-full right-0 mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 z-50 animate-in fade-in slide-in-from-top-2">
           <div className="px-4 py-3 border-b border-gray-50 flex justify-between items-center">
             <h3 className="font-bold text-gray-900 text-sm">Notifications</h3>
-            <span className="text-xs text-[#FFCC00] font-semibold uppercase tracking-widest cursor-pointer hover:opacity-70">Clear all</span>
+            <span className="text-xs text-[#FACC15] font-semibold uppercase tracking-widest cursor-pointer hover:opacity-70">Clear all</span>
           </div>
           <div className="divide-y divide-gray-50 max-h-80 overflow-auto">
             {items.map((n, i) => (
               <div key={i} className={`p-4 hover:bg-gray-50 cursor-pointer transition-colors ${n.unread ? 'bg-amber-50/30' : ''}`}>
                 <div className="flex justify-between items-start mb-1">
                   <p className={`text-sm ${n.unread ? 'font-bold text-gray-900' : 'font-medium text-gray-700'}`}>{n.title}</p>
-                  {n.unread && <span className="w-2 h-2 rounded-full bg-[#FFCC00] mt-1 shrink-0" />}
+                  {n.unread && <span className="w-2 h-2 rounded-full bg-[#FACC15] mt-1 shrink-0" />}
                 </div>
                 <p className="text-xs text-gray-500 mb-1">{n.desc}</p>
                 <p className="text-xs text-gray-400 font-bold">{n.time}</p>
@@ -281,7 +281,7 @@ export default function SidebarLayout({
             <img
               src="/logo.png"
               alt="HERO Logistics"
-              className="h-9 object-contain cursor-pointer"
+              className="h-14 w-auto object-contain cursor-pointer"
               onClick={() => navigate('/')}
               onError={(e) => {
                 e.target.style.display = 'none';
@@ -290,15 +290,15 @@ export default function SidebarLayout({
             />
             {/* Fallback Text Logo */}
             <div className="hidden items-center gap-2.5 cursor-pointer" onClick={() => navigate('/')}>
-              <div className="w-8 h-8 bg-[#FFCC00] rounded-hero-sm flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,204,0,0.25)]">
+              <div className="w-8 h-8 bg-[#FACC15] rounded-hero-sm flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,204,0,0.25)]">
                 <Zap size={16} className="text-[#111]" strokeWidth={3} />
               </div>
               <span className="text-white font-semibold text-xl tracking-tighter uppercase">HERO</span>
             </div>
           </div>
           <div className="flex items-center gap-1.5 ml-0.5">
-            {roleIcon && <span className="text-[#FFCC00] shrink-0">{roleIcon}</span>}
-            <p className="text-[#FFCC00] text-xs font-semibold tracking-[0.2em] uppercase whitespace-nowrap truncate">{roleName}</p>
+            {roleIcon && <span className="text-brand-orange shrink-0">{roleIcon}</span>}
+            <p className="text-brand-orange text-xs font-semibold tracking-[0.2em] uppercase whitespace-nowrap truncate">{roleName}</p>
           </div>
 
           {/* Branch badge */}
@@ -347,7 +347,7 @@ export default function SidebarLayout({
             </div>
             {showSearch && <GlobalSearch />}
           </div>
-          
+
           <div className="flex items-center gap-6">
             {topbarExtra}
             <NotificationBell notifications={notifications} />
@@ -357,7 +357,7 @@ export default function SidebarLayout({
                 <p className="text-xs font-semibold text-[#111] leading-none mb-1 uppercase tracking-tight">{user.name || 'Operator'}</p>
                 <p className="text-xs font-semibold text-gray-400 uppercase tracking-[0.15em]">{user.role || 'Admin'}</p>
               </div>
-              <div className="w-9 h-9 rounded-hero-sm bg-[#FFCC00] border border-black/5 flex items-center justify-center font-semibold text-[#111] text-xs shadow-sm">
+              <div className="w-9 h-9 rounded-hero-sm bg-[#FACC15] border border-black/5 flex items-center justify-center font-semibold text-[#111] text-xs shadow-sm">
                 {initials}
               </div>
             </div>

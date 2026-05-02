@@ -51,7 +51,7 @@ export default function AdminMessaging() {
         </div>
       )}
       {sentToast && (
-        <div className="fixed top-24 right-8 bg-[#111] text-[#FFCC00] px-6 py-4 rounded-2xl shadow-2xl z-50 flex items-center gap-3 border border-white/10">
+        <div className="fixed top-24 right-8 bg-[#111] text-[#FACC15] px-6 py-4 rounded-2xl shadow-2xl z-50 flex items-center gap-3 border border-white/10">
            <Send size={18} /> <p className="text-sm font-semibold uppercase tracking-widest">Reply Sent</p>
         </div>
       )}

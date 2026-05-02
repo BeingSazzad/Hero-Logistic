@@ -126,7 +126,7 @@ export default function AdminExceptions() {
                       <div className="relative w-full md:w-48">
                          <button 
                            onClick={(e) => { e.stopPropagation(); setActiveDropdown(activeDropdown === item.id ? null : item.id); }}
-                           className={`w-full flex items-center justify-between px-4 py-2.5 font-semibold text-xs uppercase tracking-widest rounded-xl transition-all ${isResolved ? 'bg-white border border-gray-200 text-gray-900 shadow-sm' : 'bg-[#FFCC00] text-black hover:bg-[#E6B800]'}`}
+                           className={`w-full flex items-center justify-between px-4 py-2.5 font-semibold text-xs uppercase tracking-widest rounded-xl transition-all ${isResolved ? 'bg-white border border-gray-200 text-gray-900 shadow-sm' : 'bg-[#FACC15] text-black hover:bg-[#E6B800]'}`}
                          >
                             {isResolved ? item.status : 'Update Status'} <ChevronDown size={14} className={`transition-transform ${activeDropdown === item.id ? 'rotate-180' : ''}`}/>
                          </button>
@@ -167,7 +167,7 @@ export default function AdminExceptions() {
 
       {/* Footer Info */}
       <div className="bg-gray-900 p-4 rounded-2xl text-white flex items-center gap-4">
-         <div className="w-8 h-8 rounded-lg bg-[#FFCC00] flex items-center justify-center text-black shrink-0 shadow-sm">
+         <div className="w-8 h-8 rounded-lg bg-[#FACC15] flex items-center justify-center text-black shrink-0 shadow-sm">
             <Info size={18}/>
          </div>
          <p className="text-xs font-bold text-gray-400">

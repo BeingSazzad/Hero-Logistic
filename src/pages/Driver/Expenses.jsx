@@ -49,7 +49,7 @@ export default function DriverExpenses() {
         {/* Header */}
         <div className="bg-[#111] px-6 pt-12 pb-6 shadow-xl flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-[#FFCC00] flex items-center justify-center text-black shadow-lg">
+            <div className="w-11 h-11 rounded-2xl bg-[#FACC15] flex items-center justify-center text-black shadow-lg">
               <Receipt size={24} />
             </div>
             <div>
@@ -75,11 +75,11 @@ export default function DriverExpenses() {
                   onClick={() => setCategory(cat)}
                   className={`flex flex-col items-center gap-2 p-4 rounded-2xl border-2 transition-all text-center ${
                     category?.id === cat.id
-                      ? 'border-[#FFCC00] bg-[#111] text-white'
+                      ? 'border-[#FACC15] bg-[#111] text-white'
                       : 'border-gray-100 bg-white text-gray-600 hover:border-gray-300'
                   }`}
                 >
-                  <cat.icon size={22} className={category?.id === cat.id ? 'text-[#FFCC00]' : ''} />
+                  <cat.icon size={22} className={category?.id === cat.id ? 'text-[#FACC15]' : ''} />
                   <span className="text-xs font-semibold uppercase tracking-widest leading-tight">{cat.label}</span>
                 </button>
               ))}
@@ -96,7 +96,7 @@ export default function DriverExpenses() {
                 value={amount}
                 onChange={e => setAmount(e.target.value)}
                 placeholder="0.00"
-                className="w-full bg-white border-2 border-gray-100 py-4 pl-10 pr-5 rounded-2xl text-2xl font-semibold focus:outline-none focus:ring-4 focus:ring-[#FFCC00]/10 focus:border-[#FFCC00] transition-all shadow-sm"
+                className="w-full bg-white border-2 border-gray-100 py-4 pl-10 pr-5 rounded-2xl text-2xl font-semibold focus:outline-none focus:ring-4 focus:ring-[#FACC15]/10 focus:border-[#FACC15] transition-all shadow-sm"
               />
             </div>
           </div>
@@ -109,7 +109,7 @@ export default function DriverExpenses() {
               value={vendor}
               onChange={e => setVendor(e.target.value)}
               placeholder="e.g. Shell Melbourne, City Parking..."
-              className="w-full bg-white border-2 border-gray-100 py-4 px-5 rounded-2xl text-sm font-semibold focus:outline-none focus:ring-4 focus:ring-[#FFCC00]/10 focus:border-[#FFCC00] transition-all shadow-sm"
+              className="w-full bg-white border-2 border-gray-100 py-4 px-5 rounded-2xl text-sm font-semibold focus:outline-none focus:ring-4 focus:ring-[#FACC15]/10 focus:border-[#FACC15] transition-all shadow-sm"
             />
           </div>
 
@@ -119,7 +119,7 @@ export default function DriverExpenses() {
             className={`w-full py-8 border-2 rounded-[2.5rem] flex flex-col items-center justify-center gap-3 transition-all cursor-pointer ${
               receiptCaptured
                 ? 'border-emerald-400 bg-emerald-50 text-emerald-600'
-                : 'border-dashed border-gray-100 bg-white text-gray-400 hover:border-[#FFCC00] hover:bg-[#FFCC00]/5'
+                : 'border-dashed border-gray-100 bg-white text-gray-400 hover:border-[#FACC15] hover:bg-[#FACC15]/5'
             }`}
           >
             {receiptCaptured ? (
@@ -143,7 +143,7 @@ export default function DriverExpenses() {
             disabled={!category || !amount}
             className={`btn-cta mt-2 shadow-xl ${
               category && amount
-                ? 'bg-[#111] hover:bg-black text-[#FFCC00]'
+                ? 'bg-[#111] hover:bg-black text-[#FACC15]'
                 : 'bg-gray-100 text-gray-300 cursor-not-allowed'
             }`}
           >
@@ -158,7 +158,7 @@ export default function DriverExpenses() {
   if (step === 'success') {
     return (
       <div className="flex flex-col items-center justify-center bg-gray-50 min-h-screen p-8 text-center animate-in zoom-in-95 duration-300">
-        <div className="w-28 h-28 bg-[#FFCC00] rounded-full flex items-center justify-center text-black mb-8 shadow-2xl shadow-yellow-400/30 animate-bounce">
+        <div className="w-28 h-28 bg-[#FACC15] rounded-full flex items-center justify-center text-black mb-8 shadow-2xl shadow-yellow-400/30 animate-bounce">
           <CheckCircle2 size={56} strokeWidth={2.5} />
         </div>
         <h2 className="text-3xl font-semibold text-gray-900 uppercase tracking-tight">Submitted!</h2>
@@ -174,7 +174,7 @@ export default function DriverExpenses() {
         </div>
         <button
           onClick={() => { setStep('list'); setCategory(null); setAmount(''); setVendor(''); setReceiptCaptured(false); }}
-          className="btn-cta mt-8 bg-[#111] text-[#FFCC00] hover:bg-black shadow-lg"
+          className="btn-cta mt-8 bg-[#111] text-[#FACC15] hover:bg-black shadow-lg"
         >
           Back to Expenses
         </button>
@@ -194,7 +194,7 @@ export default function DriverExpenses() {
           <div className="flex items-end justify-between">
             <div>
               <h2 className="text-4xl font-semibold text-white leading-none">$145.20</h2>
-              <p className="text-xs font-medium text-[#FFCC00] mt-2">Awaiting Approval</p>
+              <p className="text-xs font-medium text-[#FACC15] mt-2">Awaiting Approval</p>
             </div>
             <div className="text-right">
               <h2 className="text-xl font-semibold text-gray-400">$1,240.00</h2>
@@ -209,7 +209,7 @@ export default function DriverExpenses() {
         {/* New Log CTA */}
         <button
           onClick={() => setStep('form')}
-          className="btn-cta bg-[#FFCC00] hover:bg-yellow-400 text-black shadow-lg border border-yellow-300"
+          className="btn-cta bg-[#FACC15] hover:bg-yellow-400 text-black shadow-lg border border-yellow-300"
         >
           <Plus size={22} strokeWidth={3} />
           <span className="text-xs font-semibold uppercase tracking-widest">Log New Expense</span>

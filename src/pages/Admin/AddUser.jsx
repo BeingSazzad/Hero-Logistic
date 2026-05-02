@@ -49,24 +49,24 @@ export default function AdminInviteUser() {
         <div className="md:col-span-1 flex flex-col gap-6">
           <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
             <div className="p-5 border-b border-gray-100 bg-gray-50/50 flex items-center gap-3">
-              <UserCog className="text-[#FFCC00]" size={18} />
+              <UserCog className="text-[#FACC15]" size={18} />
               <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-widest">User Profile</h2>
             </div>
             <div className="p-6 flex flex-col gap-5">
               <div>
                 <label className="block hero-metadata mb-1.5 ml-1">Full Name</label>
                 <div className="relative group">
-                  <UserCog className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={15}/>
+                  <UserCog className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={15}/>
                   <input type="text" placeholder="e.g. Liam Smith"
-                    className="w-full bg-white border border-gray-200 focus:border-[#FFCC00] rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20" />
+                    className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
                 </div>
               </div>
               <div>
                 <label className="block hero-metadata mb-1.5 ml-1">Work Email</label>
                 <div className="relative group">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={15}/>
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={15}/>
                   <input type="email" placeholder="user@company.com"
-                    className="w-full bg-white border border-gray-200 focus:border-[#FFCC00] rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20" />
+                    className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 pl-11 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
                 </div>
               </div>
               <div>
@@ -74,7 +74,7 @@ export default function AdminInviteUser() {
                 <div className="relative">
                   <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={15}/>
                   <select value={selectedBranch} onChange={e => setSelectedBranch(e.target.value)}
-                    className="w-full bg-white border border-gray-200 focus:border-[#FFCC00] rounded-lg py-2.5 pl-11 pr-10 text-sm font-medium text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 transition-all">
+                    className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 pl-11 pr-10 text-sm font-medium text-gray-900 appearance-none focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 transition-all">
                     {BRANCHES.map(b => <option key={b}>{b}</option>)}
                   </select>
                   <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={14}/>
@@ -85,8 +85,8 @@ export default function AdminInviteUser() {
 
           {/* Access summary */}
           <div className="bg-[#111] rounded-xl p-5 text-white border border-gray-800 relative overflow-hidden">
-            <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#FFCC00]/10 rounded-full blur-2xl pointer-events-none"/>
-            <p className="text-xs font-semibold text-[#FFCC00] uppercase tracking-widest mb-2 relative z-10">Selected Role</p>
+            <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#FACC15]/10 rounded-full blur-2xl pointer-events-none"/>
+            <p className="text-xs font-semibold text-[#FACC15] uppercase tracking-widest mb-2 relative z-10">Selected Role</p>
             <p className="text-base font-semibold text-white relative z-10">{ROLES.find(r => r.id === selectedRole)?.label}</p>
             <p className="text-xs text-gray-400 font-bold mt-1 relative z-10">{ROLES.find(r => r.id === selectedRole)?.access}</p>
             <p className="text-xs text-gray-500 mt-3 leading-relaxed relative z-10">{ROLES.find(r => r.id === selectedRole)?.desc}</p>
@@ -110,11 +110,11 @@ export default function AdminInviteUser() {
                   <label key={r.id} onClick={() => setSelectedRole(r.id)}
                     className={`flex flex-col gap-3 p-5 border-2 rounded-xl cursor-pointer transition-all relative overflow-hidden ${
                       isSelected
-                        ? r.dark ? 'border-[#111] bg-[#111]' : 'border-[#FFCC00] bg-[#FFFBEB]'
+                        ? r.dark ? 'border-[#111] bg-[#111]' : 'border-[#FACC15] bg-[#FFFBEB]'
                         : 'border-gray-200 bg-white hover:border-gray-400 hover:shadow-sm'
                     }`}>
                     {isSelected && r.dark && (
-                      <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#FFCC00]/10 rounded-full blur-2xl pointer-events-none"/>
+                      <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#FACC15]/10 rounded-full blur-2xl pointer-events-none"/>
                     )}
                     <div className="flex justify-between items-start relative z-10">
                       <span className={`text-sm font-semibold tracking-wide ${isSelected && r.dark ? 'text-white' : 'text-gray-900'}`}>
@@ -123,8 +123,8 @@ export default function AdminInviteUser() {
                       <div className={`w-5 h-5 rounded-full border-2 shrink-0 transition-all flex items-center justify-center ${
                         isSelected
                           ? r.dark
-                            ? 'border-[#FFCC00] bg-[#FFCC00]'
-                            : 'border-[#FFCC00] bg-[#FFCC00]'
+                            ? 'border-[#FACC15] bg-[#FACC15]'
+                            : 'border-[#FACC15] bg-[#FACC15]'
                           : 'border-gray-300'
                       }`}>
                         {isSelected && <div className="w-2 h-2 rounded-full bg-[#111]"/>}
@@ -134,7 +134,7 @@ export default function AdminInviteUser() {
                       {r.desc}
                     </p>
                     <div className={`text-xs font-semibold uppercase tracking-widest  py-0.5 rounded w-fit relative z-10 ${
-                      isSelected && r.dark ? 'bg-[#FFCC00]/20 text-[#FFCC00]' : 'bg-gray-100 text-gray-500'
+                      isSelected && r.dark ? 'bg-[#FACC15]/20 text-[#FACC15]' : 'bg-gray-100 text-gray-500'
                     }`}>
                       {r.access}
                     </div>

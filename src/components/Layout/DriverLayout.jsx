@@ -48,7 +48,7 @@ export default function DriverLayout() {
         {location.pathname !== '/driver/active' && (
           <div className="bg-[#111] flex items-center justify-between px-5 py-3 shrink-0">
             <div className="flex items-center gap-3">
-               <div className="w-8 h-8 bg-[#FFCC00] rounded-lg rotate-12 flex items-center justify-center shadow-lg shadow-[#FFCC00]/20">
+               <div className="w-8 h-8 bg-[#FACC15] rounded-lg rotate-12 flex items-center justify-center shadow-lg shadow-[#FACC15]/20">
                   <Zap size={15} color="#111" strokeWidth={3} />
                </div>
                <p className="text-white text-sm font-bold uppercase tracking-tight">{getPageTitle()}</p>
@@ -57,7 +57,7 @@ export default function DriverLayout() {
               `relative p-2 rounded-xl transition-all ${isActive ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`
             }>
               <Bell size={20} />
-              <span className="absolute top-2 right-2 w-2 h-2 bg-[#FFCC00] rounded-full animate-pulse" />
+              <span className="absolute top-2 right-2 w-2 h-2 bg-[#FACC15] rounded-full animate-pulse" />
             </NavLink>
           </div>
         )}

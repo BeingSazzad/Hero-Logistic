@@ -18,7 +18,7 @@ export default function AdminAuditLogs() {
           <h1 className="hero-h1">System Audit Logs</h1>
           <p className="hero-body text-gray-600 mt-1">Activity traceability including role changes, login history, and data mutations.</p>
         </div>
-        <button className="bg-gray-900 hover:bg-black text-[#FFCC00] px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+        <button className="bg-gray-900 hover:bg-black text-[#FACC15] px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
           <Download size={16}/> Export Logs
         </button>
       </div>

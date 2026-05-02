@@ -138,7 +138,7 @@ export default function AdminLoadDetail() {
              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Truck size={60} />
              </div>
-             <h2 className="text-xs font-semibold text-[#FFCC00] tracking-[0.2em] uppercase mb-6 flex items-center gap-2">
+             <h2 className="text-xs font-semibold text-[#FACC15] tracking-[0.2em] uppercase mb-6 flex items-center gap-2">
                 <ShieldAlert size={14}/> Terminal Management
              </h2>
              
@@ -161,14 +161,14 @@ export default function AdminLoadDetail() {
                          key={m.key}
                          onClick={() => setDeliveryMode(m.key)}
                          className={`flex-1 py-2 rounded-lg text-xs font-semibold uppercase tracking-[0.15em] transition-all ${
-                           deliveryMode === m.key ? 'bg-[#FFCC00] text-black shadow' : 'text-gray-500 hover:text-gray-300'
+                           deliveryMode === m.key ? 'bg-[#FACC15] text-black shadow' : 'text-gray-500 hover:text-gray-300'
                          }`}
                        >{m.label}</button>
                      ))}
                    </div>
                    <button 
                      onClick={() => setActiveStage(prev => Math.min(5, prev + 1))}
-                     className="w-full bg-[#FFCC00] hover:bg-yellow-400 text-black py-4 rounded-2xl font-semibold text-xs uppercase tracking-[0.2em] shadow-lg shadow-yellow-400/10 transition-all flex items-center justify-center gap-2"
+                     className="w-full bg-[#FACC15] hover:bg-yellow-400 text-black py-4 rounded-2xl font-semibold text-xs uppercase tracking-[0.2em] shadow-lg shadow-yellow-400/10 transition-all flex items-center justify-center gap-2"
                    >
                      Authorize Handover <ArrowLeft size={16} className="rotate-180" />
                    </button>
@@ -266,7 +266,7 @@ export default function AdminLoadDetail() {
         <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden mt-6">
           <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex justify-between items-center">
             <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide flex items-center gap-2">
-              <PackageCheck size={14} className="text-[#FFCC00]" /> Driver POD Evidence
+              <PackageCheck size={14} className="text-[#FACC15]" /> Driver POD Evidence
             </h3>
             <span className="text-xs font-bold text-orange-600 bg-orange-50 border border-orange-200 .5 py-1 rounded uppercase tracking-widest flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse"></span> 3 Items Queued
@@ -300,7 +300,7 @@ export default function AdminLoadDetail() {
             
             <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-[#111]">
               <div className="flex items-center gap-3">
-                 <div className="w-10 h-10 rounded-lg bg-[#FFCC00] flex items-center justify-center text-black">
+                 <div className="w-10 h-10 rounded-lg bg-[#FACC15] flex items-center justify-center text-black">
                     <PackageCheck size={20}/>
                  </div>
                  <div>
@@ -316,7 +316,7 @@ export default function AdminLoadDetail() {
             <div className="p-6 space-y-6 flex-1 overflow-y-auto">
               {podStatus === 'done' ? (
                  <div className="py-16 flex flex-col items-center justify-center text-center">
-                    <div className="w-20 h-20 bg-[#FFCC00] rounded-full flex items-center justify-center text-black mb-6 shadow-xl shadow-[#FFCC00]/20 animate-bounce">
+                    <div className="w-20 h-20 bg-[#FACC15] rounded-full flex items-center justify-center text-black mb-6 shadow-xl shadow-[#FACC15]/20 animate-bounce">
                        <CheckCircle2 size={40} />
                     </div>
                     <h3 className="text-2xl font-semibold text-gray-900 uppercase">Handover Authorized</h3>
@@ -388,9 +388,9 @@ export default function AdminLoadDetail() {
                           }, 1000);
                        }}
                        disabled={podStatus === 'submitting'}
-                       className="px-8 py-3 bg-[#111] hover:bg-black text-[#FFCC00] rounded-lg font-semibold text-sm uppercase tracking-widest transition-all shadow-xl shadow-black/20 disabled:opacity-50 flex justify-center items-center gap-2"
+                       className="px-8 py-3 bg-[#111] hover:bg-black text-[#FACC15] rounded-lg font-semibold text-sm uppercase tracking-widest transition-all shadow-xl shadow-black/20 disabled:opacity-50 flex justify-center items-center gap-2"
                      >
-                       {podStatus === 'submitting' ? <div className="w-5 h-5 border-2 border-[#FFCC00]/30 border-t-[#FFCC00] rounded-full animate-spin"/> : 'Authorize Handover'}
+                       {podStatus === 'submitting' ? <div className="w-5 h-5 border-2 border-[#FACC15]/30 border-t-[#FACC15] rounded-full animate-spin"/> : 'Authorize Handover'}
                      </button>
                   </div>
                 </>
@@ -419,7 +419,7 @@ export default function AdminLoadDetail() {
                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">HERO LOGISTICS</p>
                     <p className="text-xs font-semibold text-gray-900 uppercase tracking-widest mt-0.5">Priority Freight</p>
                   </div>
-                  <span className="text-xs font-semibold bg-[#FFCC00] text-black  py-0.5 rounded">EXPRESS</span>
+                  <span className="text-xs font-semibold bg-[#FACC15] text-black  py-0.5 rounded">EXPRESS</span>
                 </div>
                 <div className="border-t border-dashed border-gray-300 pt-3">
                   <p className="text-xs text-gray-400 uppercase tracking-widest">FROM</p>

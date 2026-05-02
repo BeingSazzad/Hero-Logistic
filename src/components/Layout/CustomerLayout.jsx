@@ -4,10 +4,10 @@ import { Package, MapPin, FileText, User, Zap, Bell, LogOut } from 'lucide-react
 
 // Customer layout uses a top-nav bar (not sidebar) as it's a public-facing portal.
 const navItems = [
-  { to: '/customer',          label: 'Acme Distribution',  icon: Package,  end: true },
+  { to: '/customer', label: 'Acme Distribution', icon: Package, end: true },
   { to: '/customer/tracking', label: 'Live Tracking', icon: MapPin },
-  { to: '/customer/invoices', label: 'My Invoices',      icon: FileText },
-  { to: '/customer/account',  label: 'My Account',    icon: User },
+  { to: '/customer/invoices', label: 'My Invoices', icon: FileText },
+  { to: '/customer/account', label: 'My Account', icon: User },
 ];
 
 export default function CustomerLayout() {
@@ -21,18 +21,18 @@ export default function CustomerLayout() {
 
           {/* Brand */}
           <div className="flex items-center gap-2.5">
-            <img 
-              src="/logo.png" 
-              alt="HERO Logistics" 
-              className="h-8 object-contain cursor-pointer"
+            <img
+              src="/logo.png"
+              alt="HERO Logistics"
+              className="h-12 w-auto object-contain cursor-pointer"
               onClick={() => navigate('/')}
               onError={(e) => {
                 e.target.style.display = 'none';
                 if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-              }} 
+              }}
             />
             <div className="hidden items-center gap-2.5 cursor-pointer" onClick={() => navigate('/')}>
-              <div className="w-7 h-7 bg-[#FFCC00] rounded-lg flex items-center justify-center shadow-[0_0_10px_rgba(255,204,0,0.2)]">
+              <div className="w-7 h-7 bg-[#FACC15] rounded-lg flex items-center justify-center shadow-[0_0_10px_rgba(255,204,0,0.2)]">
                 <Zap size={14} color="#111" strokeWidth={3} />
               </div>
               <span className="font-semibold text-[#111] text-lg tracking-tighter uppercase">HERO</span>
@@ -46,11 +46,10 @@ export default function CustomerLayout() {
             {navItems.map(({ to, label, icon: Icon, end }) => (
               <NavLink key={to} to={to} end={end}>
                 {({ isActive }) => (
-                  <div className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-widest transition-all ${
-                    isActive
-                      ? 'bg-[#FFCC00] text-[#111]'
+                  <div className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-widest transition-all ${isActive
+                      ? 'bg-[#FACC15] text-[#111]'
                       : 'text-gray-500 hover:text-[#111] hover:bg-gray-100'
-                  }`}>
+                    }`}>
                     <Icon size={13} />
                     {label}
                   </div>
@@ -65,7 +64,7 @@ export default function CustomerLayout() {
               <Bell size={18} />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
             </button>
-            <div className="w-8 h-8 rounded-full bg-[#FFCC00] flex items-center justify-center font-semibold text-[#111] text-xs shadow-md">
+            <div className="w-8 h-8 rounded-full bg-[#FACC15] flex items-center justify-center font-semibold text-[#111] text-xs shadow-md">
               WL
             </div>
             <button

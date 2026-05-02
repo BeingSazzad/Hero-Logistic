@@ -110,11 +110,11 @@ export default function AdminSafetyChecklists() {
 
       {/* Enforcement Banner */}
       <div className="bg-[#111] rounded-xl p-4 flex items-center gap-4 border border-gray-800">
-        <div className="w-9 h-9 bg-[#FFCC00] rounded-xl flex items-center justify-center text-black shrink-0">
+        <div className="w-9 h-9 bg-[#FACC15] rounded-xl flex items-center justify-center text-black shrink-0">
           <ShieldCheck size={18} />
         </div>
         <div>
-          <p className="text-xs font-semibold text-[#FFCC00] uppercase tracking-widest">Trip Block Enforcement Active</p>
+          <p className="text-xs font-semibold text-[#FACC15] uppercase tracking-widest">Trip Block Enforcement Active</p>
           <p className="text-xs font-medium text-gray-500 mt-0.5">
             Drivers cannot start a trip until all required checklist items are completed. {activeCount} checklist{activeCount !== 1 ? 's' : ''} currently enforced.
           </p>
@@ -194,7 +194,7 @@ export default function AdminSafetyChecklists() {
                 <p className="hero-metadata mb-3">Driver View Preview</p>
                 <div className="bg-[#111] rounded-2xl p-5 max-w-sm mx-auto">
                   <div className="flex items-center gap-3 mb-5 pb-4 border-b border-white/10">
-                    <div className="w-8 h-8 bg-[#FFCC00] rounded-lg flex items-center justify-center text-black">
+                    <div className="w-8 h-8 bg-[#FACC15] rounded-lg flex items-center justify-center text-black">
                       <ShieldCheck size={16} />
                     </div>
                     <div>
@@ -312,7 +312,7 @@ function NewChecklistModal({ onClose, onCreate }) {
           <div>
             <div className="flex justify-between items-center mb-3">
               <label className="text-xs font-semibold text-gray-500 uppercase tracking-widest flex items-center gap-2"><ClipboardList size={12} /> Checklist Items</label>
-              <button onClick={addItem} className="text-xs font-semibold uppercase tracking-widest px-3 py-1.5 bg-gray-900 text-[#FFCC00] rounded-lg flex items-center gap-1.5 hover:bg-black transition-colors">
+              <button onClick={addItem} className="text-xs font-semibold uppercase tracking-widest px-3 py-1.5 bg-gray-900 text-[#FACC15] rounded-lg flex items-center gap-1.5 hover:bg-black transition-colors">
                 <Plus size={11} strokeWidth={3} /> Add Item
               </button>
             </div>
@@ -398,7 +398,7 @@ function EditChecklistModal({ checklist, onClose, onSave }) {
           <div>
             <div className="flex justify-between items-center mb-3">
               <label className="text-xs font-semibold text-gray-500 uppercase tracking-widest flex items-center gap-2"><ClipboardList size={12} /> Items</label>
-              <button onClick={addItem} className="text-xs font-semibold uppercase tracking-widest px-3 py-1.5 bg-gray-900 text-[#FFCC00] rounded-lg flex items-center gap-1.5">
+              <button onClick={addItem} className="text-xs font-semibold uppercase tracking-widest px-3 py-1.5 bg-gray-900 text-[#FACC15] rounded-lg flex items-center gap-1.5">
                 <Plus size={11} strokeWidth={3} /> Add
               </button>
             </div>

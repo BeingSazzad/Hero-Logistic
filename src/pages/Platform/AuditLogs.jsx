@@ -39,7 +39,7 @@ export default function AuditLogs() {
           <p className="text-sm text-gray-500 mt-1">Compliance & security event tracking.</p>
         </div>
         <button 
-          className="bg-gray-900 hover:bg-black text-[#FFCC00] px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
+          className="bg-gray-900 hover:bg-black text-[#FACC15] px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
         >
           <Download size={18} strokeWidth={3} /> Export CSV
         </button>

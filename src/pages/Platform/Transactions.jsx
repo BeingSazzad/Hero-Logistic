@@ -28,7 +28,7 @@ export default function PlatformTransactions() {
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Transactions</h1>
           <p className="text-sm text-gray-500 mt-1">Company subscription billing and payment history.</p>
         </div>
-        <button className="bg-gray-900 hover:bg-black text-[#FFCC00] px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+        <button className="bg-gray-900 hover:bg-black text-[#FACC15] px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
           <Download size={16}/> Export CSV
         </button>
       </div>

@@ -23,7 +23,7 @@ export default function DriverProfile() {
      return (
         <div className="flex flex-col bg-gray-50 min-h-screen pb-24 animate-in slide-in-from-right-4 duration-300">
           <div className="bg-[#111] px-5 py-4 sticky top-0 z-10 flex items-center shadow-md gap-3">
-             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FFCC00] transition-colors p-1 -ml-2 rounded-lg">
+             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FACC15] transition-colors p-1 -ml-2 rounded-lg">
                 <ChevronRight size={24} className="rotate-180" />
              </button>
              <h1 className="text-white font-bold text-lg tracking-wide">Personal Information</h1>
@@ -31,7 +31,7 @@ export default function DriverProfile() {
           <div className="p-5 flex flex-col gap-5 mt-2">
              <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex flex-col items-center">
                 <div className="relative group cursor-pointer" onClick={() => setProfilePhoto('/assets/sample_driver.png')}>
-                   <div className="w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden bg-[#FFCC00] flex items-center justify-center font-semibold text-3xl text-black">
+                   <div className="w-24 h-24 rounded-full border-4 border-white shadow-xl overflow-hidden bg-[#FACC15] flex items-center justify-center font-semibold text-3xl text-black">
                       {profilePhoto ? <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover"/> : (user?.name?.split(' ').map(n=>n[0]).join('') || 'JM')}
                    </div>
                    <div className="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -47,17 +47,17 @@ export default function DriverProfile() {
              <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-4">
                <div>
                   <label className="hero-metadata block mb-2 px-1">Full Name</label>
-                  <input type="text" defaultValue={user?.name || "James Mitchell"} className="w-full bg-gray-50 border border-gray-100 focus:border-[#FFCC00] focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
+                  <input type="text" defaultValue={user?.name || "James Mitchell"} className="w-full bg-gray-50 border border-gray-100 focus:border-[#FACC15] focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
                </div>
                <div>
                   <label className="hero-metadata block mb-2 px-1">Mobile Number</label>
-                  <input type="text" defaultValue="+61 412 345 678" className="w-full bg-gray-50 border border-gray-100 focus:border-[#FFCC00] focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
+                  <input type="text" defaultValue="+61 412 345 678" className="w-full bg-gray-50 border border-gray-100 focus:border-[#FACC15] focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
                </div>
                <div>
                   <label className="hero-metadata block mb-2 px-1 flex items-center gap-1.5"><Mail size={12}/> Login Email</label>
                   <input type="email" defaultValue={user?.email || "j.mitchell@hero.com.au"} readOnly className="w-full bg-gray-50 border border-gray-100 rounded-xl py-3.5 px-4 text-sm font-bold text-gray-400 cursor-not-allowed outline-none shadow-inner" />
                </div>
-               <button onClick={() => setActiveView('main')} className="w-full py-4 bg-[#FFCC00] hover:bg-[#E6B800] text-black font-semibold uppercase text-xs tracking-widest rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 mt-4 active:scale-95">Save Changes</button>
+               <button onClick={() => setActiveView('main')} className="w-full py-4 bg-[#FACC15] hover:bg-[#E6B800] text-black font-semibold uppercase text-xs tracking-widest rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 mt-4 active:scale-95">Save Changes</button>
              </div>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function DriverProfile() {
      return (
         <div className="flex flex-col bg-gray-50 min-h-screen pb-24 animate-in slide-in-from-right-4 duration-300">
           <div className="bg-[#111] px-5 py-4 sticky top-0 z-10 flex items-center shadow-md gap-3">
-             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FFCC00] transition-colors p-1 -ml-2 rounded-lg">
+             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FACC15] transition-colors p-1 -ml-2 rounded-lg">
                 <ChevronRight size={24} className="rotate-180" />
              </button>
              <h1 className="text-white font-bold text-lg tracking-wide">Change Password</h1>
@@ -87,7 +87,7 @@ export default function DriverProfile() {
                  <label className="hero-metadata block mb-2 px-1">Confirm New Password</label>
                  <input type="password" placeholder="Confirm Password" className="w-full bg-gray-50 border border-gray-100 focus:border-gray-300 focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
                </div>
-               <button onClick={() => setActiveView('main')} className="w-full py-4 bg-[#111] hover:bg-black text-[#FFCC00] font-semibold uppercase text-xs tracking-widest rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 mt-4 active:scale-95"><Shield size={16}/> Update Password</button>
+               <button onClick={() => setActiveView('main')} className="w-full py-4 bg-[#111] hover:bg-black text-[#FACC15] font-semibold uppercase text-xs tracking-widest rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 mt-4 active:scale-95"><Shield size={16}/> Update Password</button>
              </div>
           </div>
         </div>
@@ -98,7 +98,7 @@ export default function DriverProfile() {
      return (
         <div className="flex flex-col bg-gray-50 min-h-screen pb-24 animate-in slide-in-from-right-4 duration-300">
           <div className="bg-[#111] px-5 py-4 sticky top-0 z-10 flex items-center shadow-md gap-3">
-             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FFCC00] transition-colors p-1 -ml-2 rounded-lg">
+             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FACC15] transition-colors p-1 -ml-2 rounded-lg">
                 <ChevronRight size={24} className="rotate-180" />
              </button>
              <h1 className="text-white font-bold text-lg tracking-wide">Notifications</h1>
@@ -110,21 +110,21 @@ export default function DriverProfile() {
                       <span className="font-bold text-gray-900 text-sm">Push Notifications</span>
                       <span className="text-xs text-gray-400">Receive alerts on your phone</span>
                    </div>
-                   <input type="checkbox" defaultChecked className="w-5 h-5 accent-[#FFCC00]" />
+                   <input type="checkbox" defaultChecked className="w-5 h-5 accent-[#FACC15]" />
                 </div>
                 <div className="p-4 border-b border-gray-50 flex items-center justify-between">
                    <div className="flex flex-col">
                       <span className="font-bold text-gray-900 text-sm">SMS Job Updates</span>
                       <span className="text-xs text-gray-400">Fallback alerts for dispatch updates</span>
                    </div>
-                   <input type="checkbox" defaultChecked className="w-5 h-5 accent-[#FFCC00]" />
+                   <input type="checkbox" defaultChecked className="w-5 h-5 accent-[#FACC15]" />
                 </div>
                 <div className="p-4 flex items-center justify-between">
                    <div className="flex flex-col">
                       <span className="font-bold text-gray-900 text-sm">Weekly Email Stats</span>
                       <span className="text-xs text-gray-400">Performance report sent to email</span>
                    </div>
-                   <input type="checkbox" className="w-5 h-5 accent-[#FFCC00]" />
+                   <input type="checkbox" className="w-5 h-5 accent-[#FACC15]" />
                 </div>
              </div>
           </div>
@@ -136,7 +136,7 @@ export default function DriverProfile() {
      return (
         <div className="flex flex-col bg-gray-50 min-h-screen pb-24 animate-in slide-in-from-right-4 duration-300">
           <div className="bg-[#111] px-5 py-4 sticky top-0 z-10 flex items-center shadow-md gap-3">
-             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FFCC00] transition-colors p-1 -ml-2 rounded-lg">
+             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FACC15] transition-colors p-1 -ml-2 rounded-lg">
                 <ChevronRight size={24} className="rotate-180" />
              </button>
              <h1 className="text-white font-bold text-lg tracking-wide">Compliance</h1>
@@ -179,14 +179,14 @@ export default function DriverProfile() {
      return (
         <div className="flex flex-col bg-gray-50 min-h-screen pb-24 animate-in slide-in-from-right-4 duration-300">
           <div className="bg-[#111] px-5 py-4 sticky top-0 z-10 flex items-center shadow-md gap-3">
-             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FFCC00] transition-colors p-1 -ml-2 rounded-lg">
+             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FACC15] transition-colors p-1 -ml-2 rounded-lg">
                 <ChevronRight size={24} className="rotate-180" />
              </button>
              <h1 className="text-white font-bold text-lg tracking-wide">Performance Summary</h1>
           </div>
           <div className="p-4 mt-2">
              <div className="grid grid-cols-2 gap-3 mb-6">
-               <div className="bg-[#FFCC00] rounded-2xl p-5 shadow-sm text-center">
+               <div className="bg-[#FACC15] rounded-2xl p-5 shadow-sm text-center">
                  <p className="text-3xl font-semibold text-black">128</p>
                  <p className="text-xs font-semibold uppercase text-black/60 tracking-widest mt-1">Total Trips</p>
                </div>
@@ -219,14 +219,14 @@ export default function DriverProfile() {
      return (
         <div className="flex flex-col bg-gray-50 min-h-screen pb-24 animate-in slide-in-from-right-4 duration-300">
           <div className="bg-[#111] px-5 py-4 sticky top-0 z-10 flex items-center shadow-md gap-3">
-             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FFCC00] transition-colors p-1 -ml-2 rounded-lg">
+             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FACC15] transition-colors p-1 -ml-2 rounded-lg">
                 <ChevronRight size={24} className="rotate-180" />
              </button>
              <h1 className="text-white font-bold text-lg tracking-wide">About App</h1>
           </div>
           <div className="p-4 mt-2">
              <div className="flex flex-col items-center justify-center p-8 bg-white rounded-2xl border border-gray-100 shadow-sm mb-4">
-                <div className="w-16 h-16 bg-[#FFCC00] rounded-2xl flex items-center justify-center text-[#111] font-semibold text-2xl mb-4 shadow-inner">
+                <div className="w-16 h-16 bg-[#FACC15] rounded-2xl flex items-center justify-center text-[#111] font-semibold text-2xl mb-4 shadow-inner">
                    H
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900">HERO Logistics</h3>
@@ -252,7 +252,7 @@ export default function DriverProfile() {
      return (
         <div className="flex flex-col bg-gray-50 min-h-screen pb-24 animate-in slide-in-from-right-4 duration-300">
            <div className="bg-[#111] px-5 py-4 sticky top-0 z-10 flex items-center shadow-md gap-3">
-             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FFCC00] transition-colors p-1 -ml-2 rounded-lg">
+             <button onClick={() => setActiveView('main')} className="text-white hover:text-[#FACC15] transition-colors p-1 -ml-2 rounded-lg">
                 <ArrowLeft size={24} />
              </button>
              <h1 className="text-white font-bold text-lg tracking-wide">Support Center</h1>
@@ -274,13 +274,13 @@ export default function DriverProfile() {
              <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-5">
                <div>
                   <label className="hero-metadata block mb-2 px-1">Subject</label>
-                  <input type="text" placeholder="e.g. Schedule Error, App Glitch..." className="w-full bg-gray-50 border border-gray-100 focus:border-[#FFCC00] focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
+                  <input type="text" placeholder="e.g. Schedule Error, App Glitch..." className="w-full bg-gray-50 border border-gray-100 focus:border-[#FACC15] focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
                </div>
                <div>
                   <label className="hero-metadata block mb-2 px-1">Description</label>
-                  <textarea placeholder="Describe the issue you're facing..." className="w-full min-h-[140px] resize-none bg-gray-50 border border-gray-100 focus:border-[#FFCC00] focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
+                  <textarea placeholder="Describe the issue you're facing..." className="w-full min-h-[140px] resize-none bg-gray-50 border border-gray-100 focus:border-[#FACC15] focus:bg-white rounded-xl py-3.5 px-4 text-sm font-bold text-gray-900 shadow-sm transition-all outline-none" />
                </div>
-               <button onClick={() => { alert('Support ticket sent to Admin.'); setActiveView('main'); }} className="w-full py-4 bg-[#FFCC00] hover:bg-[#E6B800] text-black font-semibold uppercase text-xs tracking-widest rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 mt-4 active:scale-95">
+               <button onClick={() => { alert('Support ticket sent to Admin.'); setActiveView('main'); }} className="w-full py-4 bg-[#FACC15] hover:bg-[#E6B800] text-black font-semibold uppercase text-xs tracking-widest rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 mt-4 active:scale-95">
                  <Send size={16}/> Submit Ticket
                </button>
              </div>
@@ -299,12 +299,12 @@ export default function DriverProfile() {
       <div className="p-4 flex flex-col gap-5">
         {/* ── 2. Profile Summary Card ── */}
         <div className="bg-[#111] text-white rounded-2xl p-5 flex items-center gap-4 shadow-lg border border-gray-800">
-          <div className="w-16 h-16 rounded-full bg-[#FFCC00] border-2 border-white flex items-center justify-center font-semibold text-[#111] text-2xl shrink-0 shadow-inner overflow-hidden">
+          <div className="w-16 h-16 rounded-full bg-[#FACC15] border-2 border-white flex items-center justify-center font-semibold text-[#111] text-2xl shrink-0 shadow-inner overflow-hidden">
             {profilePhoto ? <img src={profilePhoto} alt="Profile" className="w-full h-full object-cover"/> : (user?.name?.split(' ').map(n=>n[0]).join('') || 'JM')}
           </div>
           <div>
             <h2 className="text-xl font-semibold tracking-tight text-white mb-0.5">{user?.name || 'James Mitchell'}</h2>
-            <p className="text-xs font-semibold text-[#FFCC00] uppercase tracking-widest">{user?.role || 'Heavy Vehicle Driver'} · {user?.branchName || 'Sydney Area'}</p>
+            <p className="text-xs font-semibold text-[#FACC15] uppercase tracking-widest">{user?.role || 'Heavy Vehicle Driver'} · {user?.branchName || 'Sydney Area'}</p>
           </div>
         </div>
 

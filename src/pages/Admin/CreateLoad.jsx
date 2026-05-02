@@ -175,7 +175,7 @@ export default function AdminCreateLoad() {
               <button
                 key={type}
                 onClick={() => setTransferType(type)}
-                className={`flex-1 py-1.5 text-xs font-semibold rounded-md flex flex-col items-center transition-all ${transferType === type ? 'bg-[#FFCC00] text-black shadow-lg' : 'text-gray-400 hover:text-white'}`}
+                className={`flex-1 py-1.5 text-xs font-semibold rounded-md flex flex-col items-center transition-all ${transferType === type ? 'bg-[#FACC15] text-black shadow-lg' : 'text-gray-400 hover:text-white'}`}
               >
                 <span className="uppercase tracking-widest">{label}</span>
                 <span className="text-xs font-bold opacity-70 leading-none mt-0.5">{desc}</span>
@@ -264,7 +264,7 @@ export default function AdminCreateLoad() {
                       <div className="mt-2 bg-white border border-gray-200 rounded-2xl shadow-2xl overflow-hidden z-20 relative animate-in slide-in-from-top-2">
                         {senderResults.map(u => (
                           <button key={u.id} onClick={() => selectSender(u)} className="w-full flex items-center gap-4 p-4 hover:bg-blue-50 text-left border-b border-gray-50 last:border-0 transition-all">
-                            <div className="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center text-[#FFCC00] font-semibold text-xs shrink-0 shadow-lg">
+                            <div className="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center text-[#FACC15] font-semibold text-xs shrink-0 shadow-lg">
                               {u.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                             </div>
                             <div className="min-w-0">
@@ -321,7 +321,7 @@ export default function AdminCreateLoad() {
               </div>
               <button
                 onClick={addItem}
-                className="flex items-center gap-2 bg-gray-900 hover:bg-black text-[#FFCC00] px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-widest transition-all shadow-lg active:scale-95"
+                className="flex items-center gap-2 bg-gray-900 hover:bg-black text-[#FACC15] px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-widest transition-all shadow-lg active:scale-95"
               >
                 <Plus size={14} strokeWidth={4} /> Add Item
               </button>
@@ -513,7 +513,7 @@ export default function AdminCreateLoad() {
         {/* ── Sidebar ── */}
         <div className="lg:col-span-4 flex flex-col gap-6">
           <div className="bg-[#111] rounded-xl p-6 text-white shadow-xl border border-gray-800">
-            <h3 className="text-sm font-semibold uppercase tracking-widest mb-4 text-[#FFCC00] flex items-center gap-2 border-b border-white/10 pb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-widest mb-4 text-[#FACC15] flex items-center gap-2 border-b border-white/10 pb-4">
               <Box size={16} /> Load Summary
             </h3>
             <div className="space-y-4">
@@ -532,7 +532,7 @@ export default function AdminCreateLoad() {
                 <label className="block text-xs font-semibold text-gray-400 mb-2">Service Level</label>
                 <div className="flex bg-white/5 p-1 rounded-xl gap-1">
                   {['Normal', 'Express', 'Direct'].map(l => (
-                    <button key={l} onClick={() => setPriority(l)} className={`flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition-all ${priority === l ? 'bg-[#FFCC00] text-black shadow-lg' : 'text-gray-400 hover:text-white'}`}>
+                    <button key={l} onClick={() => setPriority(l)} className={`flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition-all ${priority === l ? 'bg-[#FACC15] text-black shadow-lg' : 'text-gray-400 hover:text-white'}`}>
                       {l}
                     </button>
                   ))}
@@ -543,7 +543,7 @@ export default function AdminCreateLoad() {
                 <span className="text-xs font-semibold text-gray-400">Billing</span>
                 <div className="flex gap-1.5">
                   {['Sender', 'Receiver'].map(t => (
-                    <button key={t} onClick={() => setPaymentBy(t)} className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${paymentBy === t ? 'bg-[#FFCC00] text-black' : 'text-gray-400 hover:text-white'}`}>{t}</button>
+                    <button key={t} onClick={() => setPaymentBy(t)} className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${paymentBy === t ? 'bg-[#FACC15] text-black' : 'text-gray-400 hover:text-white'}`}>{t}</button>
                   ))}
                 </div>
               </div>
@@ -572,7 +572,7 @@ export default function AdminCreateLoad() {
                   <span className="text-sm font-bold">${((items.length * 420 + totalWeight * 2.5 + 45 + (priority === 'Direct' ? 450 : (priority === 'Express' ? 120 : 0))) * 0.1).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>
                 </div>
                 <div className="flex justify-between items-center pt-3 border-t border-white/10">
-                  <span className="text-sm font-bold text-[#FFCC00]">
+                  <span className="text-sm font-bold text-[#FACC15]">
                     {paymentBy === 'Sender' ? 'Total Charged' : 'Total Due'}
                   </span>
                   <span className="text-2xl font-semibold">

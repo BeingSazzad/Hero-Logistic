@@ -52,7 +52,7 @@ export default function AdminCustomers() {
             <p className="text-sm text-gray-500 mt-1">Manage B2B clients, credit limits, and payment terms.</p>
           </div>
         </div>
-        <button onClick={() => navigate('/admin/customers/add')} className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+        <button onClick={() => navigate('/admin/customers/add')} className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
           <Plus size={18} strokeWidth={3} /> New Customer
         </button>
       </div>
@@ -74,11 +74,11 @@ export default function AdminCustomers() {
             <div className="relative flex-1 xl:w-72">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={15} />
               <input type="text" value={search} onChange={e => setSearch(e.target.value)}
-                placeholder="Search by Company or ID..." className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] hover:border-gray-300 transition-all shadow-sm" />
+                placeholder="Search by Company or ID..." className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] hover:border-gray-300 transition-all shadow-sm" />
             </div>
             <div className="relative">
               <select value={sortKey} onChange={e => setSortKey(e.target.value)}
-                className="appearance-none bg-white border border-gray-200 hover:border-gray-300 text-gray-900 text-sm font-normal rounded-lg pl-9 pr-10 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 cursor-pointer shadow-sm">
+                className="appearance-none bg-white border border-gray-200 hover:border-gray-300 text-gray-900 text-sm font-normal rounded-lg pl-9 pr-10 py-2.5 focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 cursor-pointer shadow-sm">
                 <option value="name">Sort by Name</option>
                 <option value="creditLimit">Sort by Credit</option>
                 <option value="Loads">Sort by Loads</option>
@@ -111,10 +111,10 @@ export default function AdminCustomers() {
             <tbody className="divide-y divide-gray-50">
               {filtered.map(c => (
                 <tr key={c.id} onClick={() => navigate(`/admin/customers/${c.id}`)}
-                  className="hover:bg-gray-50/80 transition-all cursor-pointer group border-l-4 border-l-transparent hover:border-l-[#FFCC00]">
+                  className="hover:bg-gray-50/80 transition-all cursor-pointer group border-l-4 border-l-transparent hover:border-l-[#FACC15]">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-lg bg-[#111] flex items-center justify-center text-[#FFCC00] font-semibold text-xs shrink-0 group-hover:border-[#FFCC00] border-2 border-transparent transition-colors">
+                      <div className="w-9 h-9 rounded-lg bg-[#111] flex items-center justify-center text-[#FACC15] font-semibold text-xs shrink-0 group-hover:border-[#FACC15] border-2 border-transparent transition-colors">
                         {c.name.split(' ').map(n=>n[0]).join('').slice(0,2)}
                       </div>
                       <div>

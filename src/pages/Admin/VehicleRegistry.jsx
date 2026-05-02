@@ -138,13 +138,13 @@ export default function VehicleRegistry() {
       {/* ── Search + Filter Bar ── */}
       <div className="flex items-center gap-4 flex-wrap mb-2">
         <div className="relative flex-1 min-w-[300px] group">
-          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" />
+          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" />
           <input
             type="text"
             placeholder="Search VIN, Plate, Make, Model, Destination..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full bg-white border border-gray-200 rounded-2xl py-3.5 pl-12 pr-4 text-sm font-bold text-gray-900 focus:outline-none focus:ring-4 focus:ring-[#FFCC00]/10 focus:border-[#FFCC00] transition-all shadow-sm"
+            className="w-full bg-white border border-gray-200 rounded-2xl py-3.5 pl-12 pr-4 text-sm font-bold text-gray-900 focus:outline-none focus:ring-4 focus:ring-[#FACC15]/10 focus:border-[#FACC15] transition-all shadow-sm"
           />
           {search && (
             <button onClick={() => setSearch('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700">
@@ -197,7 +197,7 @@ export default function VehicleRegistry() {
                   <tr key={v.id} className="hover:bg-gray-50/50 transition-all group">
                     <td className="py-5 px-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center shrink-0 border border-gray-100 group-hover:bg-[#FFCC00] group-hover:border-transparent transition-all">
+                        <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center shrink-0 border border-gray-100 group-hover:bg-[#FACC15] group-hover:border-transparent transition-all">
                           <Car size={24} className="text-gray-400 group-hover:text-black" />
                         </div>
                         <div>
@@ -251,7 +251,7 @@ export default function VehicleRegistry() {
                         </button>
                         <button
                           onClick={() => setLabelVehicle(v)}
-                          className="p-2.5 rounded-xl bg-gray-50 hover:bg-[#111] text-gray-400 hover:text-[#FFCC00] transition-all border border-gray-200 shadow-sm active:scale-95"
+                          className="p-2.5 rounded-xl bg-gray-50 hover:bg-[#111] text-gray-400 hover:text-[#FACC15] transition-all border border-gray-200 shadow-sm active:scale-95"
                           title="Print Shipping Label"
                         >
                           <Barcode size={16} />
@@ -287,16 +287,16 @@ export default function VehicleRegistry() {
                   17-Digit VIN Identifier <span className="text-red-500">*</span>
                 </label>
                 <div className="relative group">
-                  <Fingerprint size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#FFCC00] transition-colors" />
+                  <Fingerprint size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#FACC15] transition-colors" />
                   <input
                     type="text"
                     placeholder="Enter VIN..."
                     value={form.vin}
                     onChange={e => handleVinChange(e.target.value)}
-                    className={`w-full bg-gray-50 border-2 rounded-2xl py-4 pl-12 pr-12 text-sm font-mono font-semibold uppercase tracking-widest focus:outline-none focus:bg-white transition-all ${errors.vin ? 'border-red-400' : 'border-gray-100 focus:border-[#FFCC00]'}`}
+                    className={`w-full bg-gray-50 border-2 rounded-2xl py-4 pl-12 pr-12 text-sm font-mono font-semibold uppercase tracking-widest focus:outline-none focus:bg-white transition-all ${errors.vin ? 'border-red-400' : 'border-gray-100 focus:border-[#FACC15]'}`}
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                    {vinChecking && <Loader2 size={20} className="text-[#FFCC00] animate-spin" />}
+                    {vinChecking && <Loader2 size={20} className="text-[#FACC15] animate-spin" />}
                     {!vinChecking && vinOk === 'ok'        && <CheckCircle2 size={20} className="text-emerald-500" />}
                     {!vinChecking && vinOk === 'duplicate' && <AlertCircle  size={20} className="text-red-500" />}
                   </div>
@@ -384,7 +384,7 @@ export default function VehicleRegistry() {
                 <button onClick={() => setShowModal(false)} className="px-8 py-4 rounded-2xl hero-metadata hover:text-gray-900 transition-colors">
                   Cancel
                 </button>
-                <button onClick={handleSubmit} className="px-10 py-5 rounded-[1.5rem] bg-[#FFCC00] text-black text-sm font-semibold uppercase tracking-[0.1em] shadow-xl hover:shadow-yellow-200 active:scale-[0.98] transition-all">
+                <button onClick={handleSubmit} className="px-10 py-5 rounded-[1.5rem] bg-[#FACC15] text-black text-sm font-semibold uppercase tracking-[0.1em] shadow-xl hover:shadow-yellow-200 active:scale-[0.98] transition-all">
                   Confirm Registration
                 </button>
               </div>
@@ -410,20 +410,20 @@ export default function VehicleRegistry() {
               <div>
                 <label className="block text-xs font-semibold text-gray-500 mb-2">Load ID / Manifest Number</label>
                 <div className="relative group">
-                  <Hash className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16} />
+                  <Hash className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16} />
                   <input
                     type="text"
                     value={loadInput}
                     onChange={e => setLoadInput(e.target.value)}
                     placeholder="e.g. LD-2048"
-                    className="w-full bg-gray-50 border border-gray-200 rounded-2xl py-4 pl-12 pr-4 text-sm font-bold text-gray-900 focus:outline-none focus:ring-4 focus:ring-[#FFCC00]/10 focus:border-[#FFCC00] transition-all uppercase"
+                    className="w-full bg-gray-50 border border-gray-200 rounded-2xl py-4 pl-12 pr-4 text-sm font-bold text-gray-900 focus:outline-none focus:ring-4 focus:ring-[#FACC15]/10 focus:border-[#FACC15] transition-all uppercase"
                   />
                 </div>
               </div>
               <button 
                 onClick={handleAssignLoad} 
                 disabled={!loadInput.trim()}
-                className="w-full py-4 rounded-2xl bg-[#FFCC00] text-black text-sm font-semibold uppercase tracking-[0.1em] shadow-xl hover:shadow-yellow-200 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 rounded-2xl bg-[#FACC15] text-black text-sm font-semibold uppercase tracking-[0.1em] shadow-xl hover:shadow-yellow-200 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Confirm Assignment
               </button>
@@ -479,7 +479,7 @@ export default function VehicleRegistry() {
               <div className="flex flex-col gap-3">
                 <button
                   onClick={() => { window.print(); }}
-                  className="w-full flex items-center justify-center gap-3 py-5 rounded-2xl bg-black text-[#FFCC00] text-sm font-semibold uppercase tracking-widest shadow-xl active:scale-95 transition-all"
+                  className="w-full flex items-center justify-center gap-3 py-5 rounded-2xl bg-black text-[#FACC15] text-sm font-semibold uppercase tracking-widest shadow-xl active:scale-95 transition-all"
                 >
                   <Printer size={18} strokeWidth={3} /> Execute Print Job
                 </button>

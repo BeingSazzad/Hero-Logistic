@@ -8,7 +8,7 @@ export default function AdminReports() {
   const [selectedYear, setSelectedYear] = useState('2026');
 
   const stats = [
-    { label: 'Total Booking Income', val: '$14.2M', diff: '+12.4%', up: true, icon: DollarSign, color: 'text-[#111]', bg: 'bg-[#FFCC00]' },
+    { label: 'Total Booking Income', val: '$14.2M', diff: '+12.4%', up: true, icon: DollarSign, color: 'text-[#111]', bg: 'bg-[#FACC15]' },
     { label: 'Avg Monthly Revenue',  val: '$1.18M', diff: '+8.1%',  up: true, icon: BarChart3,  color: 'text-sky-600',     bg: 'bg-sky-50' },
     { label: 'Successful Loads', val: '142.5K', diff: '+15.5%', up: true, icon: Layers,     color: 'text-emerald-600', bg: 'bg-emerald-50' },
     { label: 'Annual Growth',        val: '1.8x',   diff: '+5.5%',  up: true, icon: TrendingUp, color: 'text-violet-600',  bg: 'bg-violet-50' }
@@ -49,7 +49,7 @@ export default function AdminReports() {
             <select 
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
-              className="appearance-none bg-white border border-gray-200 text-gray-700 pl-9 pr-10 py-2.5 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all cursor-pointer shadow-sm uppercase tracking-widest"
+              className="appearance-none bg-white border border-gray-200 text-gray-700 pl-9 pr-10 py-2.5 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all cursor-pointer shadow-sm uppercase tracking-widest"
             >
               <option value="2026">Year 2026</option>
               <option value="2025">Year 2025</option>
@@ -58,7 +58,7 @@ export default function AdminReports() {
             <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={14}/>
             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={14}/>
           </div>
-          <button className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-5 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm text-sm">
+          <button className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-5 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm text-sm">
             <Download size={16}/> Export
           </button>
         </div>
@@ -95,7 +95,7 @@ export default function AdminReports() {
           {/* Chart Header */}
           <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex justify-between items-center">
             <div className="flex items-center gap-3">
-              <TrendingUp size={18} className="text-[#FFCC00]" />
+              <TrendingUp size={18} className="text-[#FACC15]" />
               <div>
                 <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide">Monthly Revenue</h3>
                 <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">Fiscal Year {selectedYear}</p>
@@ -135,7 +135,7 @@ export default function AdminReports() {
                   </div>
                   {/* Bar */}
                   <div 
-                    className="w-full bg-[#FFCC00] hover:bg-[#111] rounded-t transition-all duration-300 cursor-pointer" 
+                    className="w-full bg-[#FACC15] hover:bg-[#111] rounded-t transition-all duration-300 cursor-pointer" 
                     style={{ height: `${(d.v / maxVal) * 230}px`, minHeight: 8 }}
                   />
                   <span className="text-xs font-bold text-gray-500 uppercase group-hover:text-[#111] transition-colors">{d.m}</span>
@@ -166,7 +166,7 @@ export default function AdminReports() {
         {/* Depot Ranking */}
         <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 flex flex-col">
           <div className="p-5 border-b border-gray-100 flex items-center gap-3 bg-[#FAFAFA]">
-            <div className="w-8 h-8 bg-[#111] rounded-lg flex items-center justify-center text-[#FFCC00]">
+            <div className="w-8 h-8 bg-[#111] rounded-lg flex items-center justify-center text-[#FACC15]">
               <Globe size={16}/>
             </div>
             <div>
@@ -185,7 +185,7 @@ export default function AdminReports() {
                 <div className="flex items-center gap-3">
                   <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                     <div 
-                      className="h-full bg-[#FFCC00] rounded-full group-hover:bg-[#111] transition-all duration-700" 
+                      className="h-full bg-[#FACC15] rounded-full group-hover:bg-[#111] transition-all duration-700" 
                       style={{ width: `${Depot.efficiency}%` }}
                     />
                   </div>
@@ -196,7 +196,7 @@ export default function AdminReports() {
           </div>
 
           <div className="p-5 mt-auto border-t border-gray-100">
-            <button className="w-full py-2.5 bg-[#FFCC00] hover:bg-[#E6B800] text-black rounded-lg font-bold text-sm transition-all shadow-sm">
+            <button className="w-full py-2.5 bg-[#FACC15] hover:bg-[#E6B800] text-black rounded-lg font-bold text-sm transition-all shadow-sm">
               View Full Network
             </button>
           </div>

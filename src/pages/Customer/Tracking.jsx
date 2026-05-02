@@ -180,8 +180,8 @@ export default function CustomerTracking() {
                  </div>
               </div>
 
-              <div className="p-5 bg-black text-[#FFCC00] text-xs font-semibold uppercase tracking-[0.3em] text-center flex items-center justify-center gap-4 group">
-                 <div className="w-2 h-2 rounded-full bg-[#FFCC00] animate-pulse"></div>
+              <div className="p-5 bg-black text-[#FACC15] text-xs font-semibold uppercase tracking-[0.3em] text-center flex items-center justify-center gap-4 group">
+                 <div className="w-2 h-2 rounded-full bg-[#FACC15] animate-pulse"></div>
                  AUSTRALIAN LOGISTICS NETWORK LIVE FEED
               </div>
             </div>

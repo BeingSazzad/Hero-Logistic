@@ -86,8 +86,8 @@ export default function DispatchMessages() {
               <h3 className="font-bold text-gray-900 tracking-tight">Messages</h3>
             </div>
             <div className="relative group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16} />
-              <input type="text" placeholder="Search chats..." className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16} />
+              <input type="text" placeholder="Search chats..." className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all" />
             </div>
           </div>
           
@@ -98,8 +98,8 @@ export default function DispatchMessages() {
                 onClick={() => handleSelectThread(t.id)}
                 className={`p-5 border-b border-gray-100 cursor-pointer transition-all ${
                   activeThreadId === t.id 
-                    ? 'bg-blue-50 border-l-4 border-l-[#FFCC00] shadow-sm' 
-                    : t.unread ? 'bg-white shadow-sm border-l-4 border-l-[#FFCC00]' : 'hover:bg-gray-50 border-l-4 border-l-transparent'
+                    ? 'bg-blue-50 border-l-4 border-l-[#FACC15] shadow-sm' 
+                    : t.unread ? 'bg-white shadow-sm border-l-4 border-l-[#FACC15]' : 'hover:bg-gray-50 border-l-4 border-l-transparent'
                 }`}
               >
                 <div className="flex justify-between items-start mb-1.5">
@@ -110,7 +110,7 @@ export default function DispatchMessages() {
                 <div className="flex justify-between items-center">
                   <p className={`text-xs truncate pr-4 ${t.unread ? 'text-gray-800 font-bold' : 'text-gray-500 font-medium'}`}>{t.msg}</p>
                   {t.unread > 0 && (
-                    <span className="w-5 h-5 rounded-md bg-[#111] text-[#FFCC00] flex items-center justify-center text-xs font-semibold shrink-0 shadow-sm">{t.unread}</span>
+                    <span className="w-5 h-5 rounded-md bg-[#111] text-[#FACC15] flex items-center justify-center text-xs font-semibold shrink-0 shadow-sm">{t.unread}</span>
                   )}
                 </div>
               </div>
@@ -125,7 +125,7 @@ export default function DispatchMessages() {
               onClick={() => navigate('/dispatch/drivers/DRV-102')}
               className="flex items-center gap-3 cursor-pointer group hover:bg-gray-50 p-2 -ml-2 rounded-xl transition-all"
             >
-               <div className="w-11 h-11 rounded border-2 border-transparent bg-[#111] flex items-center justify-center font-semibold text-[#FFCC00] text-sm group-hover:scale-105 transition-transform">
+               <div className="w-11 h-11 rounded border-2 border-transparent bg-[#111] flex items-center justify-center font-semibold text-[#FACC15] text-sm group-hover:scale-105 transition-transform">
                  {activeThread.name.split(' ').map(n=>n[0]).join('')}
                </div>
                <div>
@@ -148,7 +148,7 @@ export default function DispatchMessages() {
             
             {activeMessages.map((m) => (
                <div key={m.id} className={`flex flex-col gap-1.5 max-w-[70%] ${m.sender === 'dispatch' ? 'self-end' : ''}`}>
-                  <div className={`p-4 rounded-xl shadow-sm text-[13px] font-medium leading-relaxed ${m.sender === 'dispatch' ? 'bg-[#FFCC00] text-black rounded-tr-sm' : 'bg-white border border-gray-200 text-gray-800 rounded-tl-sm'}`}>
+                  <div className={`p-4 rounded-xl shadow-sm text-[13px] font-medium leading-relaxed ${m.sender === 'dispatch' ? 'bg-[#FACC15] text-black rounded-tr-sm' : 'bg-white border border-gray-200 text-gray-800 rounded-tl-sm'}`}>
                     {m.text}
                   </div>
                   <span className={`text-xs font-bold text-gray-400 uppercase tracking-widest ${m.sender === 'dispatch' ? 'text-right mr-1' : 'ml-1'}`}>{m.time} {m.sender === 'dispatch' ? '✓✓' : ''}</span>
@@ -163,9 +163,9 @@ export default function DispatchMessages() {
                  onChange={(e) => setInputValue(e.target.value)}
                  onKeyDown={handleKeyDown}
                  placeholder={`Message ${activeThread.name.split(' ')[0]}...`} 
-                 className="w-full border border-gray-200 bg-white rounded-xl px-4 py-3.5 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all h-[52px] min-h-[52px] font-medium shadow-sm"
+                 className="w-full border border-gray-200 bg-white rounded-xl px-4 py-3.5 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all h-[52px] min-h-[52px] font-medium shadow-sm"
                />
-               <button onClick={handleSendMessage} className="bg-[#111] hover:bg-black text-[#FFCC00] w-14 rounded-xl transition-all shadow-sm h-[52px] flex items-center justify-center shrink-0">
+               <button onClick={handleSendMessage} className="bg-[#111] hover:bg-black text-[#FACC15] w-14 rounded-xl transition-all shadow-sm h-[52px] flex items-center justify-center shrink-0">
                  <Send size={18} />
                </button>
             </div>

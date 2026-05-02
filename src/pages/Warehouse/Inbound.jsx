@@ -77,7 +77,7 @@ function ReceiveVehicleModal({ handover, onClose, onConfirm }) {
         {/* Header */}
         <div className="p-8 border-b border-gray-100 flex justify-between items-center shrink-0 bg-[#FAFAFA] rounded-t-[2rem]">
            <div>
-              <h3 className="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-3"><Car className="text-[#FFCC00]" /> Receive &amp; Slot Vehicles</h3>
+              <h3 className="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-3"><Car className="text-[#FACC15]" /> Receive &amp; Slot Vehicles</h3>
               <p className="hero-body text-gray-600 mt-1.5">Check-in manifest • {handover.id}</p>
            </div>
            <button onClick={onClose} className="w-12 h-12 flex items-center justify-center hover:bg-gray-200 rounded-2xl text-gray-400 transition-colors"><X size={24}/></button>
@@ -93,8 +93,8 @@ function ReceiveVehicleModal({ handover, onClose, onConfirm }) {
                </span>
              </div>
              <div className="relative group">
-               <Scan className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-[#FFCC00] transition-colors" size={20} />
-               <input type="text" autoFocus value={scanInput} onChange={e => setScanInput(e.target.value)} onKeyDown={handleScan} placeholder="SCAN VIN BARCODE..." className="w-full bg-black/40 border border-white/5 rounded-2xl py-4.5 pl-14 pr-4 text-sm font-semibold text-[#FFCC00] focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/50 shadow-2xl transition-all uppercase tracking-[0.1em]" />
+               <Scan className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-[#FACC15] transition-colors" size={20} />
+               <input type="text" autoFocus value={scanInput} onChange={e => setScanInput(e.target.value)} onKeyDown={handleScan} placeholder="SCAN VIN BARCODE..." className="w-full bg-black/40 border border-white/5 rounded-2xl py-4.5 pl-14 pr-4 text-sm font-semibold text-[#FACC15] focus:outline-none focus:ring-2 focus:ring-[#FACC15]/50 shadow-2xl transition-all uppercase tracking-[0.1em]" />
              </div>
            </div>
 
@@ -178,7 +178,7 @@ function ReceiveVehicleModal({ handover, onClose, onConfirm }) {
                <button 
                 onClick={onConfirm} 
                 disabled={!isComplete}
-                className={`px-10 py-5 text-xs uppercase tracking-[0.15em] font-semibold rounded-2xl shadow-xl flex items-center gap-3 transition-all ${isComplete ? 'bg-[#FFCC00] hover:bg-black hover:text-[#FFCC00] text-black active:scale-[0.98]' : 'bg-gray-100 text-gray-300 cursor-not-allowed'}`}
+                className={`px-10 py-5 text-xs uppercase tracking-[0.15em] font-semibold rounded-2xl shadow-xl flex items-center gap-3 transition-all ${isComplete ? 'bg-[#FACC15] hover:bg-black hover:text-[#FACC15] text-black active:scale-[0.98]' : 'bg-gray-100 text-gray-300 cursor-not-allowed'}`}
               >
                 <ShieldCheck size={20} /> Commit to Inventory
               </button>
@@ -220,7 +220,7 @@ export default function WarehouseInbound() {
              <p className="hero-metadata">Inbound Transfers</p>
              <p className="text-2xl font-semibold text-hero-dark mt-1.5 leading-none">{MOCK_INBOUND.length}</p>
           </div>
-          <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-gray-50 text-gray-400 group-hover:bg-[#FFCC00] group-hover:text-black transition-all"><Warehouse size={28}/></div>
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-gray-50 text-gray-400 group-hover:bg-[#FACC15] group-hover:text-black transition-all"><Warehouse size={28}/></div>
         </div>
         <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex items-center justify-between group hover:shadow-xl transition-all">
           <div>
@@ -278,7 +278,7 @@ export default function WarehouseInbound() {
                       <div className="text-xs font-medium text-gray-500 mt-2">{r.driver}</div>
                     </td>
                     <td className="px-6 py-6 text-center">
-                      <div className="font-semibold text-gray-900 bg-gray-100 w-12 h-12 rounded-2xl flex items-center justify-center mx-auto text-lg shadow-inner group-hover:bg-[#FFCC00] transition-colors">{r.vehicles}</div>
+                      <div className="font-semibold text-gray-900 bg-gray-100 w-12 h-12 rounded-2xl flex items-center justify-center mx-auto text-lg shadow-inner group-hover:bg-[#FACC15] transition-colors">{r.vehicles}</div>
                     </td>
                     <td className="px-6 py-6">
                       <div className="font-semibold text-gray-900 text-sm leading-none">{r.eta}</div>
@@ -292,7 +292,7 @@ export default function WarehouseInbound() {
                     <td className="px-6 py-6 text-right">
                       {!isReceived ? (
                         <button onClick={() => setActiveHandover(r)}
-                          className="text-xs font-semibold text-black bg-[#FFCC00] hover:bg-black hover:text-[#FFCC00] px-6 py-3 rounded-xl transition-all uppercase tracking-[0.1em] flex items-center gap-2 shadow-lg ml-auto active:scale-95">
+                          className="text-xs font-semibold text-black bg-[#FACC15] hover:bg-black hover:text-[#FACC15] px-6 py-3 rounded-xl transition-all uppercase tracking-[0.1em] flex items-center gap-2 shadow-lg ml-auto active:scale-95">
                           <Scan size={16} /> Scan Manifest
                         </button>
                       ) : (

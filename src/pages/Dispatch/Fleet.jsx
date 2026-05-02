@@ -66,13 +66,13 @@ export default function DispatchFleet() {
         {/* Filter Bar */}
         <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
           <div className="relative w-[320px] group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16} />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16} />
             <input
               type="text"
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search by ID or Reg..."
-              className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm"
+              className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all shadow-sm"
             />
           </div>
 
@@ -107,7 +107,7 @@ export default function DispatchFleet() {
                 <tr className="hover:bg-gray-50/50 transition-all cursor-pointer group" key={v.id} onClick={() => navigate(`/dispatch/vehicles/${v.id}`)}>
                   <td className="px-6 py-5">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center border border-gray-200 shrink-0 group-hover:border-[#FFCC00] transition-colors">
+                      <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center border border-gray-200 shrink-0 group-hover:border-[#FACC15] transition-colors">
                         <Truck size={18} className="text-gray-400 group-hover:text-[#111]" />
                       </div>
                       <div>

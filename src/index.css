@@ -134,7 +134,7 @@
   }
 
   .btn-primary {
-    @apply bg-brand text-hero-dark hover:bg-brand-hover shadow-sm;
+    @apply bg-gradient-to-r from-brand-yellow to-brand-orange text-hero-dark hover:opacity-90 shadow-lg shadow-brand-yellow/10 border-none;
   }
 
   .btn-dark {
@@ -153,7 +153,7 @@
 
   /* ── Input ── */
   .input {
-    @apply w-full px-4 border border-gray-200 rounded-xl text-[15px] font-normal text-gray-900 outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 transition bg-white placeholder:text-gray-400 placeholder:font-normal;
+    @apply w-full px-4 border border-gray-200 rounded-xl text-[15px] font-normal text-gray-900 outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition bg-white placeholder:text-gray-400 placeholder:font-normal;
     height: 48px;
     /* consistent with button height */
     font-weight: 400 !important;

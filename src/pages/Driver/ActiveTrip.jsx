@@ -59,16 +59,16 @@ export default function ActiveTrip() {
          {/* Map Background Simulation */}
          <div className="absolute inset-0 opacity-20 pointer-events-none" 
               style={{ backgroundImage: 'linear-gradient(#222 1px, transparent 1px), linear-gradient(90deg, #222 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,#FFCC0022_0%,transparent_70%)] pointer-events-none"></div>
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,#FACC1522_0%,transparent_70%)] pointer-events-none"></div>
          
          {/* Instruction HUD */}
          <div className="absolute inset-x-4 top-4 bg-white/10 backdrop-blur-xl border border-white/10 rounded-[2rem] p-4 shadow-2xl z-20">
             <div className="flex items-center gap-4">
-               <div className="w-12 h-12 bg-[#FFCC00] rounded-2xl flex items-center justify-center shadow-lg shadow-[#FFCC00]/20 shrink-0">
+               <div className="w-12 h-12 bg-[#FACC15] rounded-2xl flex items-center justify-center shadow-lg shadow-[#FACC15]/20 shrink-0">
                   <Navigation size={28} className="text-[#111] -rotate-45" />
                </div>
                <div className="flex flex-col justify-center">
-                  <p className="text-[#FFCC00] text-xs font-bold uppercase tracking-[0.2em] leading-none mb-1">In 800 Meters</p>
+                  <p className="text-[#FACC15] text-xs font-bold uppercase tracking-[0.2em] leading-none mb-1">In 800 Meters</p>
                   <h2 className="text-white text-base font-bold leading-none">Turn Right onto York Street</h2>
                </div>
             </div>
@@ -77,10 +77,10 @@ export default function ActiveTrip() {
          {/* Vehicle Marker */}
          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <div className="relative">
-               <div className="w-10 h-10 bg-[#FFCC00] rounded-full flex items-center justify-center shadow-[0_0_30px_#FFCC00] animate-pulse">
+               <div className="w-10 h-10 bg-[#FACC15] rounded-full flex items-center justify-center shadow-[0_0_30px_#FACC15] animate-pulse">
                   <div className="w-4 h-4 bg-[#111] rounded-sm transform rotate-45"></div>
                </div>
-               <div className="absolute -inset-10 border border-[#FFCC00]/10 rounded-full animate-ping"></div>
+               <div className="absolute -inset-10 border border-[#FACC15]/10 rounded-full animate-ping"></div>
             </div>
          </div>
 
@@ -148,7 +148,7 @@ export default function ActiveTrip() {
               <div className="flex flex-col gap-4">
                 <button
                   onClick={() => setStep('Arrived')}
-                  className="w-full bg-[#161B22] hover:bg-black text-[#FFCC00] font-semibold uppercase text-sm py-5 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-xl"
+                  className="w-full bg-[#161B22] hover:bg-black text-[#FACC15] font-semibold uppercase text-sm py-5 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-xl"
                 >
                   <CheckCircle2 size={20} /> Confirm Arrival
                 </button>
@@ -171,7 +171,7 @@ export default function ActiveTrip() {
                 </div>
                 <button
                   onClick={() => setStep('Unloading')}
-                  className="w-full bg-[#111] hover:bg-black text-[#FFCC00] font-semibold uppercase text-sm py-6 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-xl"
+                  className="w-full bg-[#111] hover:bg-black text-[#FACC15] font-semibold uppercase text-sm py-6 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-xl"
                 >
                   <Navigation size={18} /> Start Unloading
                 </button>

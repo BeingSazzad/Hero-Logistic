@@ -105,16 +105,16 @@ export default function AdminSubscriptionPlans() {
       {/* Pricing Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8  items-end">
         {plans.map((plan, index) => (
-          <div key={index} className={`relative rounded-3xl border transition-all ${plan.popular ? 'border-[#FFCC00] shadow-xl md:-translate-y-4 bg-white z-10' : 'border-gray-200 bg-white shadow-sm hover:shadow-md'}`}>
+          <div key={index} className={`relative rounded-3xl border transition-all ${plan.popular ? 'border-[#FACC15] shadow-xl md:-translate-y-4 bg-white z-10' : 'border-gray-200 bg-white shadow-sm hover:shadow-md'}`}>
              
              {plan.popular && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FFCC00] text-black text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FACC15] text-black text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
                   <Zap size={14} fill="currentColor" /> Most Popular
                 </div>
              )}
 
              <div className="p-8">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 shadow-sm ${plan.popular ? 'bg-[#FFCC00]/20 text-yellow-600' : 'bg-gray-50 border border-gray-100 text-gray-500'}`}>
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 shadow-sm ${plan.popular ? 'bg-[#FACC15]/20 text-yellow-600' : 'bg-gray-50 border border-gray-100 text-gray-500'}`}>
                    {plan.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{plan.name}</h3>
@@ -133,7 +133,7 @@ export default function AdminSubscriptionPlans() {
                     ${plan.current 
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200' 
                       : plan.popular 
-                        ? 'bg-[#FFCC00] hover:bg-[#E6B800] text-black border border-transparent' 
+                        ? 'bg-[#FACC15] hover:bg-[#E6B800] text-black border border-transparent' 
                         : 'bg-white border text-gray-900 border-gray-200 hover:bg-gray-50'
                     }`}
                 >

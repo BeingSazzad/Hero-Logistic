@@ -48,7 +48,7 @@ export default function AdminAddBranch() {
         {/* Basic Identification */}
         <div className="md:col-span-2 bg-white rounded-2xl border border-gray-100 p-8 shadow-sm">
            <div className="flex items-center gap-3 mb-8">
-              <div className="w-8 h-8 rounded-lg bg-[#FFCC00]/10 flex items-center justify-center text-[#FFCC00]">
+              <div className="w-8 h-8 rounded-lg bg-[#FACC15]/10 flex items-center justify-center text-[#FACC15]">
                  <Info size={18}/>
               </div>
               <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-900">Branch Details</h3>
@@ -60,7 +60,7 @@ export default function AdminAddBranch() {
                  <input 
                    required
                    placeholder="e.g. Sydney West Depot"
-                   className="w-full border border-gray-200 rounded-xl px-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all"
+                   className="w-full border border-gray-200 rounded-xl px-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all"
                    value={formData.name}
                    onChange={e => setFormData({...formData, name: e.target.value})}
                  />
@@ -68,7 +68,7 @@ export default function AdminAddBranch() {
               <div className="space-y-2">
                  <label className="text-xs font-semibold uppercase tracking-widest text-gray-400 ml-1">Branch Type</label>
                  <select 
-                   className="w-full border border-gray-200 rounded-xl px-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all appearance-none"
+                   className="w-full border border-gray-200 rounded-xl px-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all appearance-none"
                    value={formData.type}
                    onChange={e => setFormData({...formData, type: e.target.value})}
                  >
@@ -85,7 +85,7 @@ export default function AdminAddBranch() {
                     <input 
                       required
                       placeholder="123 Industrial Dr, Suburb, VIC 3000"
-                      className="w-full border border-gray-200 rounded-xl pl-12 pr-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all"
+                      className="w-full border border-gray-200 rounded-xl pl-12 pr-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all"
                       value={formData.location}
                       onChange={e => setFormData({...formData, location: e.target.value})}
                     />
@@ -109,7 +109,7 @@ export default function AdminAddBranch() {
                  <input 
                    required
                    placeholder="Enter full name"
-                   className="w-full border border-gray-200 rounded-xl px-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all"
+                   className="w-full border border-gray-200 rounded-xl px-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all"
                    value={formData.manager}
                    onChange={e => setFormData({...formData, manager: e.target.value})}
                  />
@@ -120,7 +120,7 @@ export default function AdminAddBranch() {
                     <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16}/>
                     <input 
                       placeholder="+61 400 000 000"
-                      className="w-full border border-gray-200 rounded-xl pl-12 pr-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all"
+                      className="w-full border border-gray-200 rounded-xl pl-12 pr-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all"
                       value={formData.phone}
                       onChange={e => setFormData({...formData, phone: e.target.value})}
                     />
@@ -143,7 +143,7 @@ export default function AdminAddBranch() {
                  <label className="text-xs font-semibold uppercase tracking-widest text-gray-400 ml-1">Working Hours</label>
                  <input 
                    placeholder="e.g. 24/7 or 06:00 - 22:00"
-                   className="w-full border border-gray-200 rounded-xl px-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all"
+                   className="w-full border border-gray-200 rounded-xl px-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all"
                    value={formData.hours}
                    onChange={e => setFormData({...formData, hours: e.target.value})}
                  />
@@ -153,7 +153,7 @@ export default function AdminAddBranch() {
                  <input 
                    type="number"
                    placeholder="Total square meters"
-                   className="w-full border border-gray-200 rounded-xl px-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all"
+                   className="w-full border border-gray-200 rounded-xl px-5 py-3 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all"
                    value={formData.capacity}
                    onChange={e => setFormData({...formData, capacity: e.target.value})}
                  />
@@ -173,7 +173,7 @@ export default function AdminAddBranch() {
            <button 
              type="submit"
              disabled={loading}
-             className={`px-10 py-3 rounded-xl font-semibold text-xs uppercase tracking-widest flex items-center gap-3 transition-all active:scale-95 ${loading ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-[#FFCC00] text-black shadow-lg shadow-[#FFCC00]/20 hover:shadow-[#FFCC00]/40 hover:bg-[#E6B800]'}`}
+             className={`px-10 py-3 rounded-xl font-semibold text-xs uppercase tracking-widest flex items-center gap-3 transition-all active:scale-95 ${loading ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-[#FACC15] text-black shadow-lg shadow-[#FACC15]/20 hover:shadow-[#FACC15]/40 hover:bg-[#E6B800]'}`}
            >
               {loading ? (
                 <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>

@@ -4,13 +4,13 @@ import { Zap, Eye, EyeOff } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 
 const roles = [
-  { value: 'platform',  label: 'Platform Owner — SaaS Management Console' },
-  { value: 'admin',     label: 'Super Admin — Company Oversight & Governance' },
-  { value: 'dispatch',  label: 'Dispatcher — Core Operations Workspace' },
-  { value: 'accounts',  label: 'Accounts — Finance & Billing Control' },
+  { value: 'platform', label: 'Platform Owner — SaaS Management Console' },
+  { value: 'admin', label: 'Super Admin — Company Oversight & Governance' },
+  { value: 'dispatch', label: 'Dispatcher — Core Operations Workspace' },
+  { value: 'accounts', label: 'Accounts — Finance & Billing Control' },
   { value: 'warehouse', label: 'Warehouse — Floor & Inventory Management' },
-  { value: 'driver',    label: 'Driver — Mobile PWA App' },
-  { value: 'customer',  label: 'Customer Portal — Tracking & Invoices' },
+  { value: 'driver', label: 'Driver — Mobile PWA App' },
+  { value: 'customer', label: 'Customer Portal — Tracking & Invoices' },
 ];
 
 export default function Login() {
@@ -22,7 +22,7 @@ export default function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
+
     // Map internal role values to display roles used in state logic
     const roleMap = {
       'platform': 'Platform Admin',
@@ -51,18 +51,18 @@ export default function Login() {
       {/* Left Brand Panel */}
       <div className="hidden lg:flex w-1/2 bg-[#111111] flex-col justify-between p-12 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5"
-          style={{ backgroundImage: 'radial-gradient(#FACC15 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
+          style={{ backgroundImage: 'radial-gradient(#FB923C 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
 
         <div className="relative z-10 flex items-center mb-8">
-          <img 
-            src="/logo.png" 
-            alt="HERO Logistics" 
-            className="h-10 object-contain cursor-pointer"
+          <img
+            src="/logo.png"
+            alt="HERO Logistics"
+            className="h-32 w-auto object-contain cursor-pointer"
             onClick={() => navigate('/')}
             onError={(e) => {
               e.target.style.display = 'none';
               if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-            }} 
+            }}
           />
           <div className="hidden items-center gap-3">
             <div className="w-9 h-9 bg-yellow-400 rounded-lg flex items-center justify-center">
@@ -101,15 +101,15 @@ export default function Login() {
       <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 p-8">
         <div className="w-full max-w-md">
           <div className="flex lg:hidden items-center justify-center mb-10">
-            <img 
-              src="/logo.png" 
-              alt="HERO Logistics" 
-              className="h-10 object-contain cursor-pointer"
+            <img
+              src="/logo.png"
+              alt="HERO Logistics"
+              className="h-24 w-auto object-contain cursor-pointer"
               onClick={() => navigate('/')}
               onError={(e) => {
                 e.target.style.display = 'none';
                 if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-              }} 
+              }}
             />
             <div className="hidden items-center gap-3">
               <div className="w-9 h-9 bg-yellow-400 rounded-lg flex items-center justify-center">
@@ -127,12 +127,12 @@ export default function Login() {
           <form onSubmit={handleLogin} className="flex flex-col gap-6">
             <div>
               <label className="block hero-metadata mb-2 ml-1">Email Address</label>
-              <input 
-                type="email" 
-                defaultValue="sarah@hero.com" 
+              <input
+                type="email"
+                defaultValue="sarah@hero.com"
                 required
                 className="input"
-                placeholder="you@company.com" 
+                placeholder="you@company.com"
               />
             </div>
 
@@ -142,15 +142,15 @@ export default function Login() {
                 <a href="#" className="text-xs text-yellow-600 font-bold hover:underline">Forgot password?</a>
               </div>
               <div className="relative">
-                <input 
-                  type={showPass ? 'text' : 'password'} 
-                  defaultValue="password123" 
+                <input
+                  type={showPass ? 'text' : 'password'}
+                  defaultValue="password123"
                   required
                   className="input pr-12"
-                  placeholder="••••••••" 
+                  placeholder="••••••••"
                 />
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   onClick={() => setShowPass(!showPass)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
                 >
@@ -162,8 +162,8 @@ export default function Login() {
             <div>
               <label className="block hero-metadata mb-2 ml-1">Select Your Role</label>
               <div className="relative">
-                <select 
-                  value={role} 
+                <select
+                  value={role}
                   onChange={e => setRole(e.target.value)}
                   className="input appearance-none cursor-pointer pr-10"
                 >
@@ -180,9 +180,9 @@ export default function Login() {
               <label htmlFor="remember" className="text-sm text-gray-600 font-medium cursor-pointer">Keep me signed in</label>
             </div>
 
-            <button 
+            <button
               type="submit"
-              className="btn bg-[#FFCC00] hover:bg-[#E6B800] text-black w-full shadow-lg shadow-yellow-400/10 mt-2"
+              className="btn btn-primary w-full mt-2"
             >
               Sign in to Dashboard →
             </button>

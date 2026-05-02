@@ -104,8 +104,8 @@ export default function AccountsDashboard() {
          {/* Actionable Alerts (Pro UX) */}
          <div className="flex flex-col gap-6">
             <div className="bg-gray-900 rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] p-6 text-white relative overflow-hidden group">
-               <div className="absolute top-0 right-0 w-32 h-32 bg-[#FFCC00]/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
-               <h3 className="text-xs font-semibold uppercase tracking-wider text-[#FFCC00] mb-8 flex items-center gap-2 leading-none">
+               <div className="absolute top-0 right-0 w-32 h-32 bg-[#FACC15]/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
+               <h3 className="text-xs font-semibold uppercase tracking-wider text-[#FACC15] mb-8 flex items-center gap-2 leading-none">
                   <TrendingDown size={14} className="animate-bounce" /> Settlement Pulse
                </h3>
                
@@ -115,18 +115,18 @@ export default function AccountsDashboard() {
                         <p className="text-xs font-semibold text-gray-500 uppercase mb-1">Total Payouts Due</p>
                         <p className="text-2xl font-semibold">$18,400</p>
                      </div>
-                     <span onClick={() => navigate('/accounts/settlements')} className="text-xs font-semibold text-[#FFCC00] uppercase underline cursor-pointer hover:text-yellow-300 transition-colors">Reconcile</span>
+                     <span onClick={() => navigate('/accounts/settlements')} className="text-xs font-semibold text-[#FACC15] uppercase underline cursor-pointer hover:text-yellow-300 transition-colors">Reconcile</span>
                   </div>
                   <div className="flex justify-between items-end border-b border-white/10 pb-4">
                      <div>
                         <p className="text-xs font-semibold text-gray-500 uppercase mb-1">Unverified PODs</p>
                         <p className="text-2xl font-semibold">12 Items</p>
                      </div>
-                     <span onClick={() => navigate('/accounts/pod-review')} className="text-xs font-semibold text-[#FFCC00] uppercase underline cursor-pointer hover:text-yellow-300 transition-colors">Verify Now</span>
+                     <span onClick={() => navigate('/accounts/pod-review')} className="text-xs font-semibold text-[#FACC15] uppercase underline cursor-pointer hover:text-yellow-300 transition-colors">Verify Now</span>
                   </div>
                </div>
 
-               <button onClick={() => navigate('/accounts/settlements')} className="w-full mt-6 py-2.5 bg-[#FFCC00] text-black rounded-lg font-bold text-sm shadow-sm hover:bg-[#E6B800] transition-all">
+               <button onClick={() => navigate('/accounts/settlements')} className="w-full mt-6 py-2.5 bg-[#FACC15] text-black rounded-lg font-bold text-sm shadow-sm hover:bg-[#E6B800] transition-all">
                   Process All Settlements
                </button>
             </div>

@@ -38,10 +38,10 @@ export default function DriverJobs() {
       <div className="bg-[#111] px-5 py-6 flex items-center justify-between shadow-xl">
          <div>
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-[0.2em] mb-1">Estimated Payouts</p>
-            <h2 className="text-3xl font-semibold text-[#FFCC00] leading-none">$2,142.30</h2>
+            <h2 className="text-3xl font-semibold text-[#FACC15] leading-none">$2,142.30</h2>
          </div>
          <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center border border-white/10">
-            <Calculator size={20} className="text-[#FFCC00]" />
+            <Calculator size={20} className="text-[#FACC15]" />
          </div>
       </div>
 
@@ -74,7 +74,7 @@ export default function DriverJobs() {
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="min-w-0 pr-2">
-                   <span className="text-xs font-semibold text-[#FFCC00] bg-black  py-0.5 rounded uppercase tracking-widest">{job.id}</span>
+                   <span className="text-xs font-semibold text-[#FACC15] bg-black  py-0.5 rounded uppercase tracking-widest">{job.id}</span>
                    <h3 className="font-semibold text-gray-900 text-lg tracking-tight mt-1 truncate">{job.customer}</h3>
                 </div>
                 <div className={`.5 py-1 rounded-lg border text-xs font-semibold uppercase tracking-widest shrink-0 ${STATUS_VARIANTS[job.status]}`}>
@@ -91,7 +91,7 @@ export default function DriverJobs() {
                     <p className="text-sm font-bold text-gray-700 truncate">{job.from}</p>
                  </div>
                  <div className="relative">
-                    <div className="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-black border-2 border-[#FFCC00]"></div>
+                    <div className="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-black border-2 border-[#FACC15]"></div>
                     <p className="text-xs font-semibold text-gray-300 uppercase tracking-widest leading-none mb-1">Destination</p>
                     <p className="text-sm font-bold text-gray-900 truncate">{job.to}</p>
                  </div>
@@ -113,7 +113,7 @@ export default function DriverJobs() {
                     <span className="hero-metadata">Est. Payout</span>
                     <span className="text-xl font-semibold text-gray-900 tracking-tighter">${job.earnings}</span>
                  </div>
-                 <button className="h-10 w-10 bg-gray-900 group-hover:bg-black text-[#FFCC00] rounded-xl flex items-center justify-center shadow-lg transition-all active:scale-95">
+                 <button className="h-10 w-10 bg-gray-900 group-hover:bg-black text-[#FACC15] rounded-xl flex items-center justify-center shadow-lg transition-all active:scale-95">
                     <ArrowRight size={18} />
                  </button>
               </div>

@@ -30,7 +30,7 @@ export default function Settlements() {
         {!processed ? (
           <button
             onClick={() => setProcessed(true)}
-            className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
+            className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
           >
             <Send size={16} /> Process All Payouts (${total.toLocaleString('en-AU', { minimumFractionDigits: 2 })})
           </button>

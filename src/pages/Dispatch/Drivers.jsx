@@ -60,7 +60,7 @@ export default function DispatchDrivers() {
           <button className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-6 py-2.5 rounded-lg font-bold transition-all shadow-sm">
             Export CSV
           </button>
-          <button onClick={() => navigate('/dispatch/drivers/add')} className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+          <button onClick={() => navigate('/dispatch/drivers/add')} className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
             <Plus size={18} strokeWidth={3} /> Add Driver
           </button>
         </div>
@@ -87,7 +87,7 @@ export default function DispatchDrivers() {
 
           <div className="flex flex-col md:flex-row items-center gap-4 w-full xl:w-auto">
             <div className="relative w-full md:w-[320px]">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FFCC00] transition-colors" size={16} />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16} />
               <input
                 type="text"
                 value={search}
@@ -130,7 +130,7 @@ export default function DispatchDrivers() {
                 <tr className="hover:bg-gray-50 transition-all cursor-pointer group" key={drv.id} onClick={() => navigate(`/dispatch/drivers/${drv.id}`)}>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded border-2 border-transparent bg-[#111] flex items-center justify-center text-[#FFCC00] font-semibold text-xs shrink-0 group-hover:border-[#FFCC00] transition-colors">
+                      <div className="w-10 h-10 rounded border-2 border-transparent bg-[#111] flex items-center justify-center text-[#FACC15] font-semibold text-xs shrink-0 group-hover:border-[#FACC15] transition-colors">
                         {drv.name.split(' ').map(n => n[0]).join('')}
                       </div>
                       <div>
@@ -198,7 +198,7 @@ export default function DispatchDrivers() {
                           <button className="text-xs font-bold text-gray-500 border border-gray-200 hover:bg-gray-50 hover:text-gray-900 px-3 py-2 rounded-lg transition-colors uppercase tracking-widest flex items-center gap-2 shadow-sm">
                             <Phone size={14} /> Call
                           </button>
-                          <button onClick={(e) => { e.stopPropagation(); navigate('/dispatch/messages'); }} className="text-xs font-bold text-black border border-[#E6B800] bg-[#FFCC00] hover:bg-[#E6B800] hover:border-[#CC9900] px-3 py-2 rounded-lg transition-colors uppercase tracking-widest flex items-center gap-2 shadow-sm">
+                          <button onClick={(e) => { e.stopPropagation(); navigate('/dispatch/messages'); }} className="text-xs font-bold text-black border border-[#E6B800] bg-[#FACC15] hover:bg-[#E6B800] hover:border-[#CC9900] px-3 py-2 rounded-lg transition-colors uppercase tracking-widest flex items-center gap-2 shadow-sm">
                             <MessageSquare size={14} /> Chat
                           </button>
                         </>

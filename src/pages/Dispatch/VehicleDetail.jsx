@@ -76,7 +76,7 @@ export default function DispatchVehicleDetail() {
                   />
                   <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
                      <div className="bg-black/50 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
-                        <p className="text-xs font-semibold text-[#FFCC00] uppercase tracking-widest">VIN / Chassis</p>
+                        <p className="text-xs font-semibold text-[#FACC15] uppercase tracking-widest">VIN / Chassis</p>
                         <p className="text-sm font-bold text-white uppercase font-mono">{v.id}-2026-XQG</p>
                      </div>
                   </div>
@@ -90,7 +90,7 @@ export default function DispatchVehicleDetail() {
                      <button
                         key={i}
                         onClick={() => setPhoto(img.src)}
-                        className={`w-24 h-16 rounded-xl border-2 overflow-hidden transition-all shadow-sm ${photo === img.src ? 'border-[#FFCC00] scale-105 shadow-md' : 'border-white hover:border-gray-200'}`}
+                        className={`w-24 h-16 rounded-xl border-2 overflow-hidden transition-all shadow-sm ${photo === img.src ? 'border-[#FACC15] scale-105 shadow-md' : 'border-white hover:border-gray-200'}`}
                      >
                         <img src={img.src} alt={img.label} className="w-full h-full object-cover" />
                      </button>
@@ -228,7 +228,7 @@ export default function DispatchVehicleDetail() {
                         </div>
                      ) : v.shifts.map((shift, idx) => (
                         <div key={idx} className="flex items-center gap-4 bg-gray-50/50 p-3 rounded-xl border border-gray-100">
-                           <div className="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-[#FFCC00] font-semibold text-xs shadow-lg shrink-0">
+                           <div className="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-[#FACC15] font-semibold text-xs shadow-lg shrink-0">
                               {shift.initials}
                            </div>
                            <div className="flex-1 min-w-0">

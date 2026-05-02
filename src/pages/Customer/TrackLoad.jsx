@@ -90,7 +90,7 @@ export default function TrackLoad() {
 
       {/* ── Top bar ── */}
       <div className="bg-[#111] px-6 py-4 flex items-center gap-3">
-        <div className="w-7 h-7 bg-[#FFCC00] rounded-md flex items-center justify-center">
+        <div className="w-7 h-7 bg-[#FACC15] rounded-md flex items-center justify-center">
           <Package size={16} className="text-black" />
         </div>
         <span className="text-white font-bold text-sm tracking-tight">HERO Logistics</span>
@@ -111,13 +111,13 @@ export default function TrackLoad() {
               onChange={e => setQuery(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleTrack()}
               placeholder="e.g. SHP-20481"
-              className="w-full pl-11 pr-4 py-3.5 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/40 focus:border-[#FFCC00] shadow-sm transition-all"
+              className="w-full pl-11 pr-4 py-3.5 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FACC15]/40 focus:border-[#FACC15] shadow-sm transition-all"
             />
           </div>
           <button
             onClick={handleTrack}
             disabled={loading || !query.trim()}
-            className="px-6 py-3.5 bg-[#FFCC00] hover:bg-[#E6B800] disabled:opacity-50 text-black font-bold rounded-xl text-sm transition-all shadow-sm flex items-center gap-2"
+            className="px-6 py-3.5 bg-[#FACC15] hover:bg-[#E6B800] disabled:opacity-50 text-black font-bold rounded-xl text-sm transition-all shadow-sm flex items-center gap-2"
           >
             {loading ? (
               <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
@@ -186,7 +186,7 @@ export default function TrackLoad() {
                 </div>
                 <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
                   <div
-                    className={`h-full rounded-full transition-all ${result.progress === 100 ? 'bg-emerald-500' : 'bg-[#FFCC00]'}`}
+                    className={`h-full rounded-full transition-all ${result.progress === 100 ? 'bg-emerald-500' : 'bg-[#FACC15]'}`}
                     style={{ width: `${result.progress}%` }}
                   ></div>
                 </div>
@@ -223,13 +223,13 @@ export default function TrackLoad() {
                   {result.timeline.map((step, i) => (
                     <div key={i} className="relative flex items-start gap-3">
                       <div className={`absolute -left-[22px] top-0.5 w-2.5 h-2.5 rounded-full border-2 border-white shadow-sm
-                        ${step.done ? (result.progress === 100 ? 'bg-emerald-500' : 'bg-[#FFCC00]') : 'bg-gray-200'}`}
+                        ${step.done ? (result.progress === 100 ? 'bg-emerald-500' : 'bg-[#FACC15]') : 'bg-gray-200'}`}
                       ></div>
                       <div className="flex-1">
                         <p className={`text-sm font-semibold ${step.done ? 'text-gray-900' : 'text-gray-400'}`}>{step.label}</p>
                         <p className="text-xs text-gray-400 mt-0.5">{step.time}</p>
                       </div>
-                      {step.done && <CheckCircle2 size={14} className={result.progress === 100 ? 'text-emerald-500' : 'text-[#FFCC00]'} />}
+                      {step.done && <CheckCircle2 size={14} className={result.progress === 100 ? 'text-emerald-500' : 'text-[#FACC15]'} />}
                     </div>
                   ))}
                 </div>

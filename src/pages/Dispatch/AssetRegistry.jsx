@@ -137,7 +137,7 @@ export default function AssetRegistry() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search VIN, Rego, Make..."
-              className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 focus:border-[#FFCC00] transition-all shadow-sm"
+              className="w-full bg-white border border-gray-200 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all shadow-sm"
             />
           </div>
           <div className="flex flex-wrap gap-3 items-center">
@@ -152,7 +152,7 @@ export default function AssetRegistry() {
             </div>
             {/* Niche filter */}
             <select value={filterNiche} onChange={e => setFilterNiche(e.target.value)}
-              className="text-xs font-semibold border border-gray-200 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#FFCC00]/20 shadow-sm">
+              className="text-xs font-semibold border border-gray-200 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 shadow-sm">
               <option value="All">All Niches</option>
               {NICHE_OPTS.map(n => <option key={n}>{n}</option>)}
             </select>
@@ -186,7 +186,7 @@ export default function AssetRegistry() {
                   onClick={() => navigate(`/dispatch/vehicles/${a.id}`)}>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center group-hover:border-[#FFCC00] transition-colors">
+                      <div className="w-9 h-9 rounded-lg bg-gray-50 border border-gray-200 flex items-center justify-center group-hover:border-[#FACC15] transition-colors">
                         <Truck size={16} className="text-gray-400" />
                       </div>
                       <div>
@@ -304,7 +304,7 @@ export default function AssetRegistry() {
                   {ASSET_TYPES.map(t => (
                     <button key={t.id} onClick={() => setForm(f => ({ ...f, type: t.label }))}
                       className={`flex items-center gap-2.5 p-3 rounded-xl border-2 text-left transition-all ${form.type === t.label ? 'border-[#111] bg-[#111] text-white' : 'border-gray-200 hover:border-gray-300 text-gray-600'}`}>
-                      <t.icon size={16} className={form.type === t.label ? 'text-[#FFCC00]' : ''} />
+                      <t.icon size={16} className={form.type === t.label ? 'text-[#FACC15]' : ''} />
                       <span className="text-xs font-bold">{t.label}</span>
                     </button>
                   ))}

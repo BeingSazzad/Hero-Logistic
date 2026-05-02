@@ -7,14 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
+        'brand-yellow': '#FACC15',
+        'brand-orange': '#FB923C',
         brand: {
-          DEFAULT: '#FFCC00',
-          hover: '#E6B800',
+          DEFAULT: '#FACC15',
+          hover: '#EAB308',
           dark: '#111111',
         },
         hero: {
           success: '#10B981',
-          warning: '#F59E0B',
+          warning: '#FACC15',
           danger: '#EF4444',
           neutral: '#6B7280',
           dark: '#111111',

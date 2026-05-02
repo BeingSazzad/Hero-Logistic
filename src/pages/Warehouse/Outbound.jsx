@@ -145,7 +145,7 @@ export default function WarehouseOutbound() {
                       className={`flex items-center gap-2 px-8 py-4 rounded-2xl text-xs font-semibold uppercase tracking-[0.1em] transition-all shadow-lg active:scale-[0.97] ${
                         isReleasing
                           ? 'bg-gray-100 text-gray-300 cursor-wait'
-                          : 'bg-[#111] text-[#FFCC00] hover:bg-black hover:shadow-xl'
+                          : 'bg-[#111] text-[#FACC15] hover:bg-black hover:shadow-xl'
                       }`}
                     >
                       {isReleasing ? (

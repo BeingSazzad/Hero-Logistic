@@ -26,7 +26,7 @@ export default function Tenants() {
         <button onClick={() => { setWizardStep(1); navigate('/platform/tenants'); }} className="text-sm font-bold text-gray-500 hover:text-gray-900 mb-6 flex items-center gap-2 transition-colors border px-3 py-1.5 rounded-lg border-gray-200">← Back</button>
         <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8">
           <div className="flex gap-1 mb-8">
-            {[1,2,3,4].map(s => <div key={s} className={`flex-1 h-1.5 rounded-full ${s <= wizardStep ? 'bg-[#FFCC00]' : 'bg-gray-100'}`} />)}
+            {[1,2,3,4].map(s => <div key={s} className={`flex-1 h-1.5 rounded-full ${s <= wizardStep ? 'bg-[#FACC15]' : 'bg-gray-100'}`} />)}
           </div>
           <p className="text-xs text-yellow-600 font-bold uppercase tracking-widest mb-1 shadow-sm w-fit border border-yellow-100  py-0.5 rounded bg-yellow-50">Step {wizardStep} of 4</p>
 
@@ -50,7 +50,7 @@ export default function Tenants() {
                 { plan: 'Pro',     price: '$149/mo',desc: '5 branches · 15 users · 500 Loads/mo', recommended: true },
                 { plan: 'Enterprise', price: 'Custom', desc: 'Unlimited branches, users & Loads' },
               ].map(p => (
-                <div key={p.plan} className={`border-2 rounded-xl p-4 cursor-pointer transition-all ${p.recommended ? 'border-[#FFCC00] bg-yellow-50/30' : 'border-gray-100 hover:border-gray-300'}`}>
+                <div key={p.plan} className={`border-2 rounded-xl p-4 cursor-pointer transition-all ${p.recommended ? 'border-[#FACC15] bg-yellow-50/30' : 'border-gray-100 hover:border-gray-300'}`}>
                   <div className="flex justify-between items-start">
                     <div>
                       <p className="font-bold text-gray-900">{p.plan}</p>
@@ -58,7 +58,7 @@ export default function Tenants() {
                     </div>
                     <div className="text-right">
                       <p className="font-semibold text-gray-900">{p.price}</p>
-                      {p.recommended && <span className="text-xs bg-[#FFCC00] text-black  py-0.5 rounded font-bold uppercase tracking-widest mt-1 inline-block">Recommended</span>}
+                      {p.recommended && <span className="text-xs bg-[#FACC15] text-black  py-0.5 rounded font-bold uppercase tracking-widest mt-1 inline-block">Recommended</span>}
                     </div>
                   </div>
                 </div>
@@ -101,7 +101,7 @@ export default function Tenants() {
           <div className="flex gap-3 mt-8">
             {wizardStep > 1 && <button onClick={() => setWizardStep(s => s-1)} className="px-6 py-3 font-bold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg flex-1 transition-colors">By-pass ←</button>}
             <button onClick={() => { if(wizardStep < 4) setWizardStep(s=>s+1); else navigate('/platform/tenants'); }}
-              className={`px-6 py-3 font-bold rounded-lg flex-1 transition-all ${wizardStep < 4 ? 'bg-[#111] hover:bg-black text-white' : 'bg-[#FFCC00] hover:bg-[#E6B800] text-black shadow-sm'}`}>
+              className={`px-6 py-3 font-bold rounded-lg flex-1 transition-all ${wizardStep < 4 ? 'bg-[#111] hover:bg-black text-white' : 'bg-[#FACC15] hover:bg-[#E6B800] text-black shadow-sm'}`}>
               {wizardStep < 4 ? 'Next Step →' : '✓ Create Account'}
             </button>
           </div>
@@ -121,7 +121,7 @@ export default function Tenants() {
         </div>
         <button 
           onClick={() => navigate('/platform/tenants/new')} 
-          className="bg-[#FFCC00] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
+          className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
         >
           <Plus size={18} strokeWidth={3} /> Add Company
         </button>

@@ -129,7 +129,7 @@ export default function AdminHelpline() {
                     </div>
                     
                     <div className="flex gap-4 flex-row-reverse">
-                      <div className="w-8 h-8 rounded-full bg-[#FFCC00] flex items-center justify-center text-black shrink-0 font-semibold text-xs uppercase">
+                      <div className="w-8 h-8 rounded-full bg-[#FACC15] flex items-center justify-center text-black shrink-0 font-semibold text-xs uppercase">
                         ME
                       </div>
                       <div className="bg-gray-900 text-white rounded-2xl rounded-tr-sm p-4 text-sm font-medium max-w-[85%] shadow-md">

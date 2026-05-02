@@ -81,13 +81,13 @@ export default function PlatformDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  mb-2">
         
         {/* Active Companies */}
-        <div onClick={() => navigate('/platform/tenants')} className="card p-5 flex flex-col justify-between group cursor-pointer hover:border-[#FFCC00] hover:shadow-md transition-all">
+        <div onClick={() => navigate('/platform/tenants')} className="card p-5 flex flex-col justify-between group cursor-pointer hover:border-[#FACC15] hover:shadow-md transition-all">
           <div className="flex justify-between items-start">
             <div>
               <p className="hero-metadata">Active Companies</p>
-              <p className="text-2xl font-semibold text-hero-dark mt-1 group-hover:text-[#FFCC00] transition-colors">78</p>
+              <p className="text-2xl font-semibold text-hero-dark mt-1 group-hover:text-[#FACC15] transition-colors">78</p>
             </div>
-            <div className="w-10 h-10 rounded-md flex items-center justify-center bg-gray-50 text-gray-500 group-hover:bg-[#FFCC00]/10 group-hover:text-[#FFCC00] transition-colors">
+            <div className="w-10 h-10 rounded-md flex items-center justify-center bg-gray-50 text-gray-500 group-hover:bg-[#FACC15]/10 group-hover:text-[#FACC15] transition-colors">
               <Building2 size={20}/>
             </div>
           </div>
@@ -294,7 +294,7 @@ export default function PlatformDashboard() {
             </div>
             <div className="p-6 flex-1 flex flex-col justify-center space-y-6">
                {[
-                 { plan: 'Enterprise', price: '$599', pct: 67, color: 'bg-[#FFCC00]', icon: Crown, bg: 'bg-yellow-50', text: 'text-yellow-600' },
+                 { plan: 'Enterprise', price: '$599', pct: 67, color: 'bg-[#FACC15]', icon: Crown, bg: 'bg-yellow-50', text: 'text-yellow-600' },
                  { plan: 'Pro',        price: '$298', pct: 33, color: 'bg-emerald-500', icon: Zap, bg: 'bg-emerald-50', text: 'text-emerald-600' },
                  { plan: 'Starter',    price: '$0',   pct: 0,  color: 'bg-gray-300', icon: Rocket, bg: 'bg-gray-100', text: 'text-gray-500' },
                ].map((item) => (
