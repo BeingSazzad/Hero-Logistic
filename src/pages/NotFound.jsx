@@ -8,8 +8,8 @@ const NotFound = () => {
   return (
     <div className="min-h-screen bg-[#0f172a] flex items-center justify-center p-6 relative overflow-hidden">
       {/* Dynamic Background Elements */}
-      <div className="absolute top-1/4 -left-20 w-80 h-80 bg-yellow-400/10 rounded-full blur-[120px] animate-pulse"></div>
-      <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-orange-600/10 rounded-full blur-[120px] animate-pulse delay-700"></div>
+      <div className="absolute top-1/4 -left-20 w-80 h-80 bg-brand-yellow/10 rounded-full w-fit blur-[120px] animate-pulse"></div>
+      <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-orange-600/10 rounded-full w-fit blur-[120px] animate-pulse delay-700"></div>
       
       {/* Floating Icons */}
       <div className="absolute top-[15%] left-[10%] animate-bounce opacity-20 hidden md:block" style={{ animationDuration: '3s' }}>
@@ -26,10 +26,10 @@ const NotFound = () => {
           
           {/* Icon Container */}
           <div className="mb-10 relative inline-block">
-            <div className="bg-gradient-to-br from-yellow-400 to-orange-500 p-6 rounded-3xl shadow-2xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+            <div className="bg-gradient-to-br from-brand-yellow to-orange-500 p-6 rounded-3xl shadow-2xl transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
               <PackageSearch className="w-16 h-16 text-black" />
             </div>
-            <div className="absolute -top-2 -right-2 bg-yellow-400 w-6 h-6 rounded-full border-4 border-slate-900 animate-ping"></div>
+            <div className="absolute -top-2 -right-2 bg-brand-yellow w-6 h-6 rounded-full w-fit border-4 border-slate-900 animate-ping"></div>
           </div>
 
           {/* Heading */}
@@ -41,7 +41,7 @@ const NotFound = () => {
           </div>
 
           <p className="text-slate-400 text-lg mb-10 max-w-md mx-auto leading-relaxed">
-            This Load didn't reach its destination. The page you're looking for is currently experiencing a <span className="text-yellow-400 font-semibold underline decoration-yellow-400/30 underline-offset-4">navigation error</span>.
+            This Load didn't reach its destination. The page you're looking for is currently experiencing a <span className="text-brand-yellow font-semibold underline decoration-brand-yellow/30 underline-offset-4">navigation error</span>.
           </p>
 
           {/* Buttons */}
@@ -55,7 +55,7 @@ const NotFound = () => {
             </button>
             <Link
               to="/login"
-              className="flex items-center justify-center gap-3 px-8 py-4 bg-yellow-400 text-black font-bold rounded-2xl hover:bg-yellow-500 transition-all active:scale-95 shadow-lg shadow-yellow-900/20"
+              className="flex items-center justify-center gap-3 px-8 py-4 bg-brand-yellow text-black font-bold rounded-2xl hover:bg-brand-orange transition-all active:scale-95 shadow-lg shadow-yellow-900/20"
             >
               <Home className="w-5 h-5" />
               Base Station

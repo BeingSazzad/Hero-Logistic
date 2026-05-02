@@ -7,19 +7,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        'brand-yellow': '#FACC15',
+        'brand-yellow': '#FFD60A',
         'brand-orange': '#FB923C',
         brand: {
-          DEFAULT: '#FACC15',
+          DEFAULT: '#FFD60A',
           hover: '#EAB308',
-          dark: '#111111',
+          dark: 'var(--hero-dark)',
         },
         hero: {
           success: '#10B981',
-          warning: '#FACC15',
+          warning: 'var(--brand-yellow)',
           danger: '#EF4444',
           neutral: '#6B7280',
-          dark: '#111111',
+          dark: 'var(--hero-dark)',
         }
       },
       fontFamily: {

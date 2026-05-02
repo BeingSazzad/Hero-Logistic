@@ -43,7 +43,7 @@ export default function PlatformSettings() {
                   : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
             >
-              <tab.icon size={18} className={activeTab === tab.id ? 'text-[#FACC15]' : 'text-gray-400'} />
+              <tab.icon size={18} className={activeTab === tab.id ? 'text-brand-yellow' : 'text-gray-400'} />
               {tab.title}
             </button>
           ))}
@@ -57,13 +57,13 @@ export default function PlatformSettings() {
              <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden animate-in fade-in duration-300">
                 <div className="p-6 border-b border-gray-50 bg-[#FAFAFA] flex items-center justify-between">
                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">My Profile</h3>
-                   <button className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-5 py-2.5 rounded-lg font-semibold text-sm flex items-center gap-2 transition-all shadow-sm">
+                   <button className="bg-brand-yellow hover:bg-brand-orange text-black px-5 py-2.5 rounded-lg font-semibold text-sm flex items-center gap-2 transition-all shadow-sm">
                       <Save size={16}/> Save Changes
                    </button>
                 </div>
                 <div className="p-8 flex flex-col md:flex-row gap-10">
                    <div className="flex flex-col items-center gap-4">
-                      <div className="w-32 h-32 rounded-2xl bg-[#111] flex flex-col items-center justify-center text-[#FACC15] relative group cursor-pointer overflow-hidden border-4 border-white shadow-xl">
+                      <div className="w-32 h-32 rounded-2xl bg-[#111] flex flex-col items-center justify-center text-brand-yellow relative group cursor-pointer overflow-hidden border-4 border-white shadow-xl">
                          <span className="text-4xl font-semibold">PO</span>
                          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center">
                             <Camera size={24} className="text-white mb-1" />
@@ -77,11 +77,11 @@ export default function PlatformSettings() {
                    <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                          <label className="text-xs font-semibold text-gray-700 block mb-2 px-1">Full Name</label>
-                         <input type="text" defaultValue="Matthew Anderson" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm focus:border-[#FACC15] focus:ring-2 focus:ring-[#FACC15]/20 outline-none transition-all" />
+                         <input type="text" defaultValue="Matthew Anderson" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20 outline-none transition-all" />
                       </div>
                       <div>
                          <label className="text-xs font-semibold text-gray-700 block mb-2 px-1">Username</label>
-                         <input type="text" defaultValue="@matthew_admin" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm focus:border-[#FACC15] focus:ring-2 focus:ring-[#FACC15]/20 outline-none transition-all" />
+                         <input type="text" defaultValue="@matthew_admin" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20 outline-none transition-all" />
                       </div>
                       <div className="md:col-span-2">
                          <label className="text-xs font-semibold text-gray-700 block mb-2 px-1">Email Address</label>
@@ -102,8 +102,8 @@ export default function PlatformSettings() {
                    <div className="flex flex-col md:flex-row gap-10 items-start">
                       <div className="w-full md:w-1/3 flex flex-col gap-4">
                          <label className="text-xs font-bold text-gray-400 uppercase tracking-widest px-1 leading-none">Platform Logo</label>
-                         <div className="aspect-video w-full rounded-2xl bg-[#111] border-2 border-dashed border-gray-800 flex flex-col items-center justify-center text-gray-500 group hover:border-[#FACC15] transition-colors cursor-pointer relative">
-                            <Zap size={32} className="text-[#FACC15] mb-2" />
+                         <div className="aspect-video w-full rounded-2xl bg-[#111] border-2 border-dashed border-gray-800 flex flex-col items-center justify-center text-gray-500 group hover:border-brand-yellow transition-colors cursor-pointer relative">
+                            <Zap size={32} className="text-brand-yellow mb-2" />
                             <span className="text-xs font-semibold uppercase tracking-widest">HERO LOGISTICS</span>
                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-opacity rounded-2xl">
                                <Camera size={20} className="text-white mb-1" />
@@ -113,19 +113,19 @@ export default function PlatformSettings() {
                       <div className="flex-1 space-y-6">
                           <div>
                              <label className="text-xs font-semibold text-gray-700 block mb-2 px-1">Platform Name</label>
-                             <input type="text" defaultValue="HERO TMS · Logistics Cloud" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm focus:border-[#FACC15] focus:ring-2 focus:ring-[#FACC15]/20 outline-none transition-all" />
+                             <input type="text" defaultValue="HERO TMS · Logistics Cloud" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20 outline-none transition-all" />
                           </div>
                           <div className="grid grid-cols-2 gap-4">
                              <div>
                                 <label className="text-xs font-semibold text-gray-700 block mb-2 px-1">Brand Color</label>
                                 <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-4 py-2.5 shadow-sm">
-                                   <div className="w-5 h-5 rounded border border-gray-200 bg-[#FACC15]"></div>
+                                   <div className="w-5 h-5 rounded border border-gray-200 bg-brand-yellow"></div>
                                    <span className="text-sm font-normal text-gray-900">#FACC15</span>
                                 </div>
                              </div>
                              <div>
                                 <label className="text-xs font-semibold text-gray-700 block mb-2 px-1">Support Phone</label>
-                                <input type="text" defaultValue="+61 1300 HERO" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm focus:border-[#FACC15] focus:ring-2 focus:ring-[#FACC15]/20 outline-none transition-all" />
+                                <input type="text" defaultValue="+61 1300 HERO" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20 outline-none transition-all" />
                              </div>
                           </div>
                       </div>
@@ -140,9 +140,9 @@ export default function PlatformSettings() {
                 <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
                    <div className="p-6 border-b border-gray-50 bg-[#FAFAFA] flex items-center justify-between">
                       <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
-                        <Lock size={14} className="text-[#FACC15]"/> Password & Security
+                        <Lock size={14} className="text-brand-yellow"/> Password & Security
                       </h3>
-                      <button className="text-xs font-bold text-[#FACC15] hover:underline uppercase tracking-widest">Setup 2FA</button>
+                      <button className="text-xs font-bold text-brand-yellow hover:underline uppercase tracking-widest">Setup 2FA</button>
                    </div>
                    <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-10">
                       <div className="space-y-6">
@@ -151,19 +151,19 @@ export default function PlatformSettings() {
                              <div className="space-y-4">
                                 <input type="password" placeholder="Current password" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm outline-none" />
                                 <input type="password" placeholder="New password" className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-normal text-gray-900 shadow-sm outline-none" />
-                                <button className="w-full py-2.5 bg-[#FACC15] hover:bg-[#E6B800] text-black rounded-lg text-sm font-semibold shadow-sm transition-all border border-[#E6B800]">Update Password</button>
+                                <button className="w-full py-2.5 bg-gradient-to-r from-brand-yellow to-brand-orange text-hero-dark rounded-lg text-sm font-bold shadow-sm transition-all border-none">Update Password</button>
                              </div>
                          </div>
                       </div>
                       <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100 flex flex-col items-center justify-center text-center gap-4">
-                         <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-emerald-500 shadow-sm">
+                         <div className="w-12 h-12 rounded-full w-fit bg-white flex items-center justify-center text-emerald-500 shadow-sm">
                             <Smartphone size={24}/>
                          </div>
                          <div>
                             <h4 className="text-sm font-bold text-gray-900">Two-Factor Authentication</h4>
                             <p className="text-xs text-gray-400 mt-1">Paired with iPhone 15 Pro Max</p>
                          </div>
-                         <button className="flex items-center gap-2 text-xs font-bold text-[#FACC15] hover:underline">
+                         <button className="flex items-center gap-2 text-xs font-bold text-brand-yellow hover:underline">
                             <RefreshCw size={12}/> Reset Device
                          </button>
                       </div>
@@ -177,14 +177,14 @@ export default function PlatformSettings() {
              <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden animate-in fade-in duration-300">
                 <div className="p-6 border-b border-gray-50 bg-[#FAFAFA] flex justify-between items-center">
                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Payment Gateway</h3>
-                   <div className="flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-100 rounded-full">
+                   <div className="flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-100 rounded-full w-fit">
                       <CheckCircle2 size={12} className="text-emerald-500"/>
                       <span className="text-xs font-bold text-emerald-600">Connected</span>
                    </div>
                 </div>
                 <div className="p-8 flex flex-col gap-10">
                    <div className="flex items-center gap-6 p-6 bg-[#635BFF]/5 border border-[#635BFF]/10 rounded-2xl relative overflow-hidden group">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-[#635BFF] opacity-[0.03] rounded-full -mr-16 -mt-16 blur-3xl"></div>
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-[#635BFF] opacity-[0.03] rounded-full w-fit -mr-16 -mt-16 blur-3xl"></div>
                       <div className="w-14 h-14 rounded-xl bg-[#635BFF] flex items-center justify-center shadow-lg shadow-[#635BFF]/20 text-white">
                          <CreditCard size={28} />
                       </div>
@@ -222,7 +222,7 @@ export default function PlatformSettings() {
              <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden animate-in fade-in duration-300">
                 <div className="p-6 border-b border-gray-50 bg-[#FAFAFA] flex justify-between items-center">
                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Team Members</h3>
-                   <button onClick={() => setInviteModal(true)} className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-5 py-2.5 rounded-lg font-bold text-xs shadow-sm">Invite Member</button>
+                   <button onClick={() => setInviteModal(true)} className="btn btn-primary h-10 px-5 text-xs shadow-sm">Invite Member</button>
                 </div>
                 <div className="divide-y divide-gray-50">
                    {[
@@ -231,7 +231,7 @@ export default function PlatformSettings() {
                    ].map((t, i) => (
                      <div key={i} className="p-6 flex items-center justify-between hover:bg-gray-50/50 transition-colors">
                         <div className="flex items-center gap-4">
-                           <div className="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center font-semibold text-[#FACC15]">{t.name.split(' ').map(n=>n[0]).join('')}</div>
+                           <div className="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center font-semibold text-brand-yellow">{t.name.split(' ').map(n=>n[0]).join('')}</div>
                            <div>
                               <p className="font-semibold text-gray-900 text-sm leading-none mb-1">{t.name}</p>
                               <p className="text-xs font-semibold text-gray-400 uppercase">{t.role} · {t.email}</p>
@@ -263,7 +263,7 @@ export default function PlatformSettings() {
                </div>
                <div className="flex gap-4">
                   <button onClick={() => setInviteModal(false)} className="flex-1 py-3 text-sm font-bold text-gray-400">Cancel</button>
-                  <button onClick={() => setInviteModal(false)} className="flex-1 py-3 bg-[#FACC15] hover:bg-[#E6B800] text-black rounded-xl text-sm font-bold shadow-sm">Send Invite</button>
+                  <button onClick={() => setInviteModal(false)} className="flex-1 py-3 bg-gradient-to-r from-brand-yellow to-brand-orange text-hero-dark rounded-xl text-sm font-bold shadow-sm">Send Invite</button>
                </div>
             </div>
          </div>

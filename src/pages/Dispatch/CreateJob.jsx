@@ -202,7 +202,7 @@ export default function DispatchCreateJob() {
               <button
                 key={type}
                 onClick={() => setTransferType(type)}
-                className={`flex-1 py-1.5 text-xs font-semibold rounded-md flex flex-col items-center transition-all ${transferType === type ? 'bg-[#FACC15] text-black shadow-lg' : 'text-gray-400 hover:text-white'}`}
+                className={`flex-1 py-1.5 text-xs font-semibold rounded-md flex flex-col items-center transition-all ${transferType === type ? 'bg-brand-yellow text-black shadow-lg' : 'text-gray-400 hover:text-white'}`}
               >
                 <span className="uppercase tracking-widest">{label}</span>
                 <span className="text-xs font-bold opacity-70 leading-none mt-0.5">{desc}</span>
@@ -290,7 +290,7 @@ export default function DispatchCreateJob() {
                       <div className="mt-2 bg-white border border-gray-200 rounded-2xl shadow-2xl overflow-hidden z-20 relative animate-in slide-in-from-top-2">
                         {senderResults.map(u => (
                           <button key={u.id} onClick={() => selectSender(u)} className="w-full flex items-center gap-4 p-4 hover:bg-blue-50 text-left border-b border-gray-50 last:border-0 transition-all">
-                            <div className="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center text-[#FACC15] font-semibold text-xs shrink-0 shadow-lg">
+                            <div className="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0 shadow-lg">
                               {u.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                             </div>
                             <div className="min-w-0">
@@ -306,7 +306,7 @@ export default function DispatchCreateJob() {
 
                   {selectedSender && (
                     <div className="bg-blue-600 rounded-2xl p-6 relative overflow-hidden shadow-xl shadow-blue-200 animate-in zoom-in-95">
-                      <div className="absolute top-0 right-0 p-12 -mr-6 -mt-6 bg-white/10 rounded-full blur-3xl"></div>
+                      <div className="absolute top-0 right-0 p-12 -mr-6 -mt-6 bg-white/10 rounded-full w-fit blur-3xl"></div>
                       <div className="flex items-center gap-6 relative z-10">
                         <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white font-semibold text-xl border border-white/30 shadow-lg shrink-0">
                           {selectedSender.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
@@ -323,7 +323,7 @@ export default function DispatchCreateJob() {
                           </div>
                         </div>
                         <div className="flex flex-col items-end gap-3 shrink-0">
-                          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-blue-600 shadow-lg">
+                          <div className="w-8 h-8 rounded-full w-fit bg-white flex items-center justify-center text-blue-600 shadow-lg">
                             <CheckCircle2 size={18} strokeWidth={3} />
                           </div>
                           <button onClick={clearSender} className="text-xs text-white/70 hover:text-white font-semibold uppercase tracking-widest transition-colors border-b border-white/30 pb-0.5">Switch Client</button>
@@ -414,7 +414,7 @@ export default function DispatchCreateJob() {
                       <div className="mt-2 bg-white border border-gray-200 rounded-2xl shadow-2xl overflow-hidden z-20 relative animate-in slide-in-from-top-2">
                         {receiverResults.map(u => (
                           <button key={u.id} onClick={() => selectReceiver(u)} className="w-full flex items-center gap-4 p-4 hover:bg-emerald-50 text-left border-b border-gray-50 last:border-0 transition-all">
-                            <div className="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center text-[#FACC15] font-semibold text-xs shrink-0 shadow-lg">
+                            <div className="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0 shadow-lg">
                               {u.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                             </div>
                             <div className="min-w-0">
@@ -430,7 +430,7 @@ export default function DispatchCreateJob() {
 
                   {selectedReceiver && (
                     <div className="bg-emerald-600 rounded-2xl p-6 relative overflow-hidden shadow-xl shadow-emerald-200 animate-in zoom-in-95">
-                      <div className="absolute top-0 right-0 p-12 -mr-6 -mt-6 bg-white/10 rounded-full blur-3xl"></div>
+                      <div className="absolute top-0 right-0 p-12 -mr-6 -mt-6 bg-white/10 rounded-full w-fit blur-3xl"></div>
                       <div className="flex items-center gap-6 relative z-10">
                         <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white font-semibold text-xl border border-white/30 shadow-lg shrink-0">
                           {selectedReceiver.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
@@ -447,7 +447,7 @@ export default function DispatchCreateJob() {
                           </div>
                         </div>
                         <div className="flex flex-col items-end gap-3 shrink-0">
-                          <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-emerald-600 shadow-lg">
+                          <div className="w-8 h-8 rounded-full w-fit bg-white flex items-center justify-center text-emerald-600 shadow-lg">
                             <CheckCircle2 size={18} strokeWidth={3} />
                           </div>
                           <button onClick={clearReceiver} className="text-xs text-white/70 hover:text-white font-semibold uppercase tracking-widest transition-colors border-b border-white/30 pb-0.5">Switch Client</button>
@@ -470,7 +470,7 @@ export default function DispatchCreateJob() {
               </div>
               <button
                 onClick={addItem}
-                className="btn-sm bg-gray-900 hover:bg-black text-[#FACC15] uppercase tracking-widest shadow-lg"
+                className="btn-sm bg-gray-900 hover:bg-black text-brand-yellow uppercase tracking-widest shadow-lg"
               >
                 <Plus size={14} strokeWidth={4} /> Add Item
               </button>
@@ -650,7 +650,7 @@ export default function DispatchCreateJob() {
                           e.stopPropagation();
                           alert(`Shipping Label Generated for Item #${idx + 1}`);
                         }}
-                        className="btn-sm bg-gray-50 hover:bg-[#FACC15] hover:text-black hover:border-[#FACC15] text-gray-700 uppercase tracking-widest border border-gray-200 shadow-sm"
+                        className="btn-sm bg-gray-50 hover:bg-brand-yellow hover:text-black hover:border-brand-yellow text-gray-700 uppercase tracking-widest border border-gray-200 shadow-sm"
                       >
                         <Barcode size={16} /> Generate Shipping Label
                       </button>
@@ -673,7 +673,7 @@ export default function DispatchCreateJob() {
         {/* ── Sidebar ── */}
         <div className="lg:col-span-4 flex flex-col gap-6">
           <div className="bg-[#111] rounded-xl p-6 text-white shadow-xl border border-gray-800">
-            <h3 className="text-sm font-semibold uppercase tracking-widest mb-4 text-[#FACC15] flex items-center gap-2 border-b border-white/10 pb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-widest mb-4 text-brand-yellow flex items-center gap-2 border-b border-white/10 pb-4">
               <Box size={16} /> Load Summary
             </h3>
             <div className="space-y-4">
@@ -692,7 +692,7 @@ export default function DispatchCreateJob() {
                 <label className="block text-xs font-semibold text-gray-400 mb-2">Service Level</label>
                 <div className="flex bg-white/5 p-1 rounded-xl gap-1">
                   {['Normal', 'Express', 'Direct'].map(l => (
-                    <button key={l} onClick={() => setPriority(l)} className={`flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition-all ${priority === l ? 'bg-[#FACC15] text-black shadow-lg' : 'text-gray-400 hover:text-white'}`}>
+                    <button key={l} onClick={() => setPriority(l)} className={`flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition-all ${priority === l ? 'bg-brand-yellow text-black shadow-lg' : 'text-gray-400 hover:text-white'}`}>
                       {l}
                     </button>
                   ))}
@@ -703,7 +703,7 @@ export default function DispatchCreateJob() {
                 <span className="text-xs font-semibold text-gray-400">Billing</span>
                 <div className="flex gap-1.5">
                   {['Sender', 'Receiver'].map(t => (
-                    <button key={t} onClick={() => setPaymentBy(t)} className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${paymentBy === t ? 'bg-[#FACC15] text-black' : 'text-gray-400 hover:text-white'}`}>{t}</button>
+                    <button key={t} onClick={() => setPaymentBy(t)} className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${paymentBy === t ? 'bg-brand-yellow text-black' : 'text-gray-400 hover:text-white'}`}>{t}</button>
                   ))}
                 </div>
               </div>
@@ -732,7 +732,7 @@ export default function DispatchCreateJob() {
                   <span className="text-sm font-bold">${((items.length * 420 + totalWeight * 2.5 + 45 + (priority === 'Direct' ? 450 : (priority === 'Express' ? 120 : 0))) * 0.1).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
                 <div className="flex justify-between items-center pt-3 border-t border-white/10">
-                  <span className="text-sm font-bold text-[#FACC15]">
+                  <span className="text-sm font-bold text-brand-yellow">
                     {paymentBy === 'Sender' ? 'Total Charged' : 'Total Due'}
                   </span>
                   <span className="text-2xl font-semibold">

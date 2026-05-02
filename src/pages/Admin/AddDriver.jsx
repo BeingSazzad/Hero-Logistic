@@ -54,7 +54,7 @@ export default function AdminAddDriver() {
           >
             Cancel
           </button>
-          <button className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm group">
+          <button className="bg-brand-yellow hover:bg-brand-orange text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm group">
             <Save size={18} strokeWidth={2.5}/> Save Driver
           </button>
         </div>
@@ -70,7 +70,7 @@ export default function AdminAddDriver() {
            {/* Section 1: Personal Details */}
            <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
               <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center gap-3">
-                 <User className="text-[#FACC15]" size={18} />
+                 <User className="text-brand-yellow" size={18} />
                  <div>
                    <h2 className="text-sm font-bold text-[#111] uppercase tracking-wide">Personal Information</h2>
                    <p className="text-xs text-gray-400 font-medium uppercase mt-0.5">Basic identity and contact details</p>
@@ -80,43 +80,43 @@ export default function AdminAddDriver() {
                  <div className="md:col-span-2">
                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Full Legal Name *</label>
                     <div className="relative group">
-                       <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={18}/>
-                       <input type="text" placeholder="e.g. Jack Taylor" className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
+                       <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-yellow transition-colors" size={18}/>
+                       <input type="text" placeholder="e.g. Jack Taylor" className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" />
                     </div>
                  </div>
                  <div>
                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Email Address *</label>
                     <div className="relative group">
-                       <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16}/>
-                       <input type="email" placeholder="driver@company.com" className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
+                       <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-yellow transition-colors" size={16}/>
+                       <input type="email" placeholder="driver@company.com" className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" />
                     </div>
                  </div>
                  <div>
                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Mobile Phone *</label>
                     <div className="relative group">
-                       <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16}/>
-                       <input type="text" placeholder="+61 412 000 000" className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
+                       <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-yellow transition-colors" size={16}/>
+                       <input type="text" placeholder="+61 412 000 000" className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" />
                     </div>
                  </div>
                  <div>
                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Date of Birth *</label>
                     <div className="relative group">
-                       <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16}/>
-                       <input type="date" className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
+                       <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-yellow transition-colors" size={16}/>
+                       <input type="date" className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" />
                     </div>
                  </div>
                  <div>
                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">National ID / Passport</label>
                     <div className="relative group">
-                       <Hash className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16}/>
-                       <input type="text" placeholder="ID or passport number" className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
+                       <Hash className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-yellow transition-colors" size={16}/>
+                       <input type="text" placeholder="ID or passport number" className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" />
                     </div>
                  </div>
                  <div className="md:col-span-2">
                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Home Address</label>
                     <div className="relative group">
-                       <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16}/>
-                       <input type="text" placeholder="Full residential address" className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
+                       <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-yellow transition-colors" size={16}/>
+                       <input type="text" placeholder="Full residential address" className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" />
                     </div>
                  </div>
               </div>
@@ -267,7 +267,7 @@ export default function AdminAddDriver() {
                     </>
                   ) : (
                     <div className="flex flex-col items-center gap-3 text-gray-400 p-8">
-                      <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm border border-gray-200 text-gray-300">
+                      <div className="w-16 h-16 rounded-full w-fit bg-white flex items-center justify-center shadow-sm border border-gray-200 text-gray-300">
                         <ImageIcon size={28} />
                       </div>
                       <div className="text-center">
@@ -283,15 +283,15 @@ export default function AdminAddDriver() {
 
            {/* Operational Config (dark card) */}
            <div className="bg-[#111] rounded-xl p-6 text-white shadow-sm border border-gray-800 relative overflow-hidden group">
-              <div className="absolute -right-6 -top-6 w-32 h-32 bg-[#FACC15]/10 rounded-full blur-3xl group-hover:bg-[#FACC15]/20 transition-all"></div>
-              <h3 className="text-xs font-bold uppercase tracking-widest mb-6 text-[#FACC15] flex items-center gap-2 relative z-10">
+              <div className="absolute -right-6 -top-6 w-32 h-32 bg-brand-yellow/10 rounded-full w-fit blur-3xl group-hover:bg-brand-yellow/20 transition-all"></div>
+              <h3 className="text-xs font-bold uppercase tracking-widest mb-6 text-brand-yellow flex items-center gap-2 relative z-10">
                  <Briefcase size={16}/> Work Setup
               </h3>
               
               <div className="space-y-5 relative z-10">
                  <div>
                     <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Assigned Depot *</label>
-                    <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none cursor-pointer focus:outline-none focus:border-[#FACC15]/50 leading-tight">
+                    <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none cursor-pointer focus:outline-none focus:border-brand-yellow/50 leading-tight">
                       <option className="text-black">Sydney Central Depot</option>
                       <option className="text-black">Melbourne Depot</option>
                       <option className="text-black">Brisbane Port</option>
@@ -300,7 +300,7 @@ export default function AdminAddDriver() {
                  </div>
                  <div>
                     <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Employment Type</label>
-                    <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none cursor-pointer focus:outline-none focus:border-[#FACC15]/50 leading-tight">
+                    <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none cursor-pointer focus:outline-none focus:border-brand-yellow/50 leading-tight">
                       <option className="text-black">Full-time Permanent</option>
                       <option className="text-black">Casual</option>
                       <option className="text-black">Contractor</option>
@@ -308,7 +308,7 @@ export default function AdminAddDriver() {
                  </div>
                  <div>
                     <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Default Shift</label>
-                    <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none cursor-pointer focus:outline-none focus:border-[#FACC15]/50 leading-tight">
+                    <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none cursor-pointer focus:outline-none focus:border-brand-yellow/50 leading-tight">
                       <option className="text-black">Morning (06:00 – 14:00)</option>
                       <option className="text-black">Afternoon (14:00 – 22:00)</option>
                       <option className="text-black">Night (22:00 – 06:00)</option>
@@ -317,7 +317,7 @@ export default function AdminAddDriver() {
                  </div>
                  <div>
                     <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Start Date</label>
-                    <input type="date" className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white focus:outline-none focus:border-[#FACC15]/50" />
+                    <input type="date" className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white focus:outline-none focus:border-brand-yellow/50" />
                  </div>
               </div>
            </div>
@@ -325,7 +325,7 @@ export default function AdminAddDriver() {
            {/* PWA App Access & Registration */}
            <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
               <div className="p-4 border-b border-gray-100 bg-[#FAFAFA] flex items-center justify-between">
-                 <h2 className="text-xs font-bold text-[#111] uppercase tracking-wide flex items-center gap-2"><Zap size={14} className="text-[#FACC15]"/> Driver App Access</h2>
+                 <h2 className="text-xs font-bold text-[#111] uppercase tracking-wide flex items-center gap-2"><Zap size={14} className="text-brand-yellow"/> Driver App Access</h2>
                  <span className="text-xs font-semibold bg-blue-50 text-blue-600  py-0.5 rounded border border-blue-100 uppercase tracking-tighter">PWA Secured</span>
               </div>
               <div className="p-5">
@@ -337,14 +337,14 @@ export default function AdminAddDriver() {
                    <div className="p-3 bg-gray-50 rounded-lg border border-gray-100">
                       <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Invitation Method</p>
                       <div className="flex gap-2">
-                         <button className="flex-1 py-1.5 bg-[#FACC15] text-black font-bold text-xs rounded border border-[#FACC15] transition-all">SMS Invite</button>
+                         <button className="flex-1 py-1.5 bg-brand-yellow text-black font-bold text-xs rounded border border-brand-yellow transition-all">SMS Invite</button>
                          <button className="flex-1 py-1.5 bg-white text-gray-600 font-bold text-xs rounded border border-gray-200 hover:bg-gray-50">Email Invite</button>
                       </div>
                    </div>
                    
                    <div className="p-3 bg-gray-900 rounded-lg border border-gray-800">
                       <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Simulation: Activation Link</p>
-                      <div className="font-mono text-xs text-[#FACC15] break-all opacity-80">
+                      <div className="font-mono text-xs text-brand-yellow break-all opacity-80">
                          hero.app/join/t62x-9Lp2-v8k1
                       </div>
                    </div>
@@ -361,17 +361,17 @@ export default function AdminAddDriver() {
                  <div>
                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Bank Name</label>
                     <div className="relative group">
-                       <Building className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16}/>
-                       <input type="text" placeholder="e.g. Commonwealth Bank" className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
+                       <Building className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-yellow transition-colors" size={16}/>
+                       <input type="text" placeholder="e.g. Commonwealth Bank" className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" />
                     </div>
                  </div>
                  <div>
                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">BSB Number</label>
-                    <input type="text" placeholder="062-000" className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
+                    <input type="text" placeholder="062-000" className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" />
                  </div>
                  <div>
                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Account Number</label>
-                    <input type="text" placeholder="1234 5678" className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
+                    <input type="text" placeholder="1234 5678" className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" />
                  </div>
               </div>
            </div>
@@ -391,7 +391,7 @@ export default function AdminAddDriver() {
               </div>
               <div className="pt-4 mt-4 border-t border-gray-100">
                  <label className="flex items-center gap-3 cursor-pointer group">
-                    <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-[#FACC15] focus:ring-[#FACC15] transition-all cursor-pointer"/>
+                    <input type="checkbox" className="w-4 h-4 rounded border-gray-300 text-brand-yellow focus:ring-brand-yellow transition-all cursor-pointer"/>
                     <span className="text-xs font-bold text-gray-500 uppercase tracking-widest group-hover:text-gray-900 transition-colors">I confirm all details are correct and verified</span>
                  </label>
               </div>

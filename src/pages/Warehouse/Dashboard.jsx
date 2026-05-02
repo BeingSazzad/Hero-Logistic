@@ -34,7 +34,7 @@ export default function WarehouseDashboard() {
           <div className="flex flex-col">
             <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Scanner</span>
             <span className="text-xs font-bold text-emerald-500 uppercase flex items-center gap-1">
-              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span> Connected
+              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full w-fit animate-pulse"></span> Connected
             </span>
           </div>
         </div>
@@ -46,19 +46,19 @@ export default function WarehouseDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 ">
         
         {/* Receive */}
-        <button onClick={() => navigate('/warehouse/inbound')} className="lg:col-span-2 bg-[#FACC15] hover:bg-[#E6B800] p-6 rounded-xl shadow-sm flex flex-col items-center justify-center text-center gap-3 group active:scale-95 transition-all">
-          <div className="w-12 h-12 rounded-lg bg-black/10 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <ArrowDownToLine size={26} strokeWidth={2.5} className="text-black" />
+        <button onClick={() => navigate('/warehouse/inbound')} className="lg:col-span-2 bg-gradient-to-r from-brand-yellow to-brand-orange hover:opacity-90 p-6 rounded-xl shadow-sm flex flex-col items-center justify-center text-center gap-3 group active:scale-95 transition-all">
+          <div className="w-12 h-12 rounded-lg bg-hero-dark/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <ArrowDownToLine size={26} strokeWidth={2.5} className="text-hero-dark" />
           </div>
           <div>
-            <h3 className="font-semibold text-black uppercase text-sm tracking-widest">Receive Load</h3>
-            <p className="text-xs font-bold text-black/60 uppercase mt-0.5">Incoming Handover Scan</p>
+            <h3 className="font-bold text-hero-dark uppercase text-sm tracking-widest">Receive Load</h3>
+            <p className="text-xs font-bold text-hero-dark/60 uppercase mt-0.5">Incoming Handover Scan</p>
           </div>
         </button>
 
         {/* Inventory Lookup */}
-        <button onClick={() => navigate('/warehouse/inventory')} className="lg:col-span-2 bg-white border border-gray-200 hover:border-[#FACC15] hover:shadow-md p-6 rounded-xl shadow-sm flex flex-col items-center justify-center text-center gap-3 group transition-all">
-          <div className="w-12 h-12 rounded-lg bg-gray-50 text-gray-400 flex items-center justify-center group-hover:bg-[#FFFBEB] group-hover:text-[#F59E0B] transition-colors">
+        <button onClick={() => navigate('/warehouse/inventory')} className="lg:col-span-2 bg-white border border-gray-200 hover:border-brand-yellow hover:shadow-md p-6 rounded-xl shadow-sm flex flex-col items-center justify-center text-center gap-3 group transition-all">
+          <div className="w-12 h-12 rounded-lg bg-gray-50 text-gray-400 flex items-center justify-center group-hover:bg-brand-yellow/10 group-hover:text-brand-yellow transition-colors">
             <Barcode size={26} strokeWidth={2} />
           </div>
           <div>
@@ -68,8 +68,8 @@ export default function WarehouseDashboard() {
         </button>
 
         {/* Dispatch */}
-        <button onClick={() => navigate('/warehouse/outbound')} className="lg:col-span-2 bg-[#111] hover:bg-black p-6 rounded-xl shadow-sm flex flex-col items-center justify-center text-center gap-3 group active:scale-95 transition-all">
-          <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform text-[#FACC15]">
+        <button onClick={() => navigate('/warehouse/outbound')} className="lg:col-span-2 bg-hero-dark hover:bg-black p-6 rounded-xl shadow-sm flex flex-col items-center justify-center text-center gap-3 group active:scale-95 transition-all">
+          <div className="w-12 h-12 rounded-lg bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform text-brand-yellow">
             <ArrowUpFromLine size={26} strokeWidth={2.5} />
           </div>
           <div>
@@ -126,8 +126,8 @@ export default function WarehouseDashboard() {
                       </td>
                       <td className="px-6 py-5">
                         <div className="flex items-center gap-2 mb-2">
-                          <span className={`w-2 h-2 rounded-full ${task.type === 'Inbound' ? 'bg-[#FACC15]' : 'bg-blue-500'}`}></span>
-                          <span className="text-sm font-bold text-[#111]">{task.type}</span>
+                          <span className={`w-2 h-2 rounded-full w-fit ${task.type === 'Inbound' ? 'bg-brand-yellow' : 'bg-blue-500'}`}></span>
+                          <span className="text-sm font-bold text-hero-dark">{task.type}</span>
                         </div>
                         <span className={`text-xs font-bold uppercase tracking-widest  py-0.5 rounded border ${
                           task.priority === 'Critical' ? 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2] animate-pulse' :
@@ -171,10 +171,10 @@ export default function WarehouseDashboard() {
                 <span className="text-4xl font-semibold text-white">78%</span>
                 <span className="text-xs font-bold text-gray-400 uppercase mt-1 tracking-widest block">Utilized Area</span>
               </div>
-              <span className="text-xs font-semibold text-[#FACC15]">22% FREE</span>
+              <span className="text-xs font-semibold text-brand-yellow">22% FREE</span>
             </div>
-            <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-              <div className="h-full bg-[#FACC15] transition-all duration-1000" style={{ width: '78%' }}></div>
+            <div className="w-full h-1.5 bg-white/10 rounded-full w-fit overflow-hidden">
+              <div className="h-full bg-brand-yellow transition-all duration-1000" style={{ width: '78%' }}></div>
             </div>
             <div className="mt-6 pt-6 border-t border-white/10 grid grid-cols-2 gap-4">
               <div>

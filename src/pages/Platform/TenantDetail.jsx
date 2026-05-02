@@ -35,7 +35,7 @@ export default function TenantDetail() {
           <div>
             <div className="flex items-center gap-3">
               <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{company.name}</h1>
-              <span className={`px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full ${status === 'Active' ? 'bg-green-100 text-green-800 border border-green-300' : 'bg-yellow-100 text-yellow-800 border border-yellow-300'}`}>{status}</span>
+              <span className={`px-3 py-1 text-xs font-semibold uppercase tracking-wider rounded-full w-fit ${status === 'Active' ? 'bg-green-100 text-green-800 border border-green-300' : 'bg-yellow-100 text-yellow-800 border border-yellow-300'}`}>{status}</span>
             </div>
             <p className="text-sm text-gray-500 mt-1">Account ID: {id || 'T-001'} · Joined {company.joined}</p>
           </div>
@@ -172,7 +172,7 @@ export default function TenantDetail() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in p-4">
           <div className="bg-white max-w-md w-full rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95">
             <div className="p-6">
-               <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4">
+               <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-full w-fit flex items-center justify-center mb-4">
                   <LogIn size={24} />
                </div>
                <h3 className="text-xl font-bold text-gray-900 mb-2">Impersonate {company.name}?</h3>
@@ -193,7 +193,7 @@ export default function TenantDetail() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in p-4">
           <div className="bg-white max-w-md w-full rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95">
             <div className="p-6">
-               <div className="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center mb-4">
+               <div className="w-12 h-12 bg-red-50 text-red-600 rounded-full w-fit flex items-center justify-center mb-4">
                   <Lock size={24} />
                </div>
                <h3 className="text-xl font-bold text-gray-900 mb-2">Suspend {company.name}?</h3>
@@ -215,7 +215,7 @@ export default function TenantDetail() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in p-4">
           <div className="bg-white max-w-md w-full rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95">
             <div className="p-6">
-               <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-4">
+               <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full w-fit flex items-center justify-center mb-4">
                   <Unlock size={24} />
                </div>
                <h3 className="text-xl font-bold text-gray-900 mb-2">Reactivate {company.name}?</h3>

@@ -48,7 +48,7 @@ export default function PlatformSupportDetail() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6 shrink-0 pt-2">
         <div className="flex items-center gap-4">
-          <button onClick={() => navigate('/platform/support')} className="w-10 h-10 rounded-full border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-500 transition-colors">
+          <button onClick={() => navigate('/platform/support')} className="w-10 h-10 rounded-full w-fit border border-gray-200 bg-white hover:bg-gray-50 flex items-center justify-center text-gray-500 transition-colors">
             <ArrowLeft size={18} />
           </button>
           <div>
@@ -73,7 +73,7 @@ export default function PlatformSupportDetail() {
         <div className="p-6 border-b border-gray-100 bg-gray-50/50 shrink-0">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Original Request</p>
           <div className="flex gap-4">
-            <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-600 text-sm shrink-0">
+            <div className="w-10 h-10 rounded-full w-fit bg-gray-200 flex items-center justify-center font-bold text-gray-600 text-sm shrink-0">
               {ticket.user.split(' ').map(n => n[0]).join('')}
             </div>
             <div>
@@ -95,7 +95,7 @@ export default function PlatformSupportDetail() {
               const isOwner = r.sender === 'PO';
               return (
                 <div key={i} className={`flex gap-4 w-full max-w-3xl ${isOwner ? 'self-end flex-row-reverse' : 'self-start'}`}>
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 ${isOwner ? 'bg-yellow-500 text-gray-900' : 'bg-gray-200 text-gray-600'}`}>
+                  <div className={`w-10 h-10 rounded-full w-fit flex items-center justify-center font-bold text-xs shrink-0 ${isOwner ? 'bg-brand-orange text-gray-900' : 'bg-gray-200 text-gray-600'}`}>
                     {r.sender}
                   </div>
                   <div className={`flex flex-col ${isOwner ? 'items-end' : 'items-start'}`}>
@@ -121,7 +121,7 @@ export default function PlatformSupportDetail() {
                 className="input w-full min-h-[100px] resize-y pb-12 text-sm focus:bg-white"
               />
               <div className="absolute bottom-3 right-3 flex gap-2">
-                <button onClick={() => handleSend(false)} className={`btn font-semibold shadow-sm ${replyText.trim() ? 'btn-primary' : 'bg-yellow-500/50 text-gray-900/50 cursor-not-allowed'}`}>
+                <button onClick={() => handleSend(false)} className={`btn font-semibold shadow-sm ${replyText.trim() ? 'btn-primary' : 'bg-brand-orange/50 text-gray-900/50 cursor-not-allowed'}`}>
                   <Send size={14} className="mr-2" /> Send Reply
                 </button>
               </div>

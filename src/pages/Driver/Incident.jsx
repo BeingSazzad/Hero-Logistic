@@ -88,7 +88,7 @@ export default function DriverIncident() {
         </div>
       ) : (
         <div className="p-6 flex flex-col items-center justify-center min-h-[70vh] text-center animate-in zoom-in-95 duration-300">
-           <div className="w-24 h-24 bg-emerald-500 rounded-full flex items-center justify-center text-white mb-8 shadow-xl shadow-emerald-500/20">
+           <div className="w-24 h-24 bg-emerald-500 rounded-full w-fit flex items-center justify-center text-white mb-8 shadow-xl shadow-emerald-500/20">
               <CheckCircle2 size={48} strokeWidth={2.5}/>
            </div>
            <h2 className="text-2xl font-semibold text-gray-900 uppercase tracking-tight">Report Received</h2>

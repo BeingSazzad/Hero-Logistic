@@ -110,18 +110,18 @@ export default function AdminSafetyChecklists() {
 
       {/* Enforcement Banner */}
       <div className="bg-[#111] rounded-xl p-4 flex items-center gap-4 border border-gray-800">
-        <div className="w-9 h-9 bg-[#FACC15] rounded-xl flex items-center justify-center text-black shrink-0">
+        <div className="w-9 h-9 bg-brand-yellow rounded-xl flex items-center justify-center text-black shrink-0">
           <ShieldCheck size={18} />
         </div>
         <div>
-          <p className="text-xs font-semibold text-[#FACC15] uppercase tracking-widest">Trip Block Enforcement Active</p>
+          <p className="text-xs font-semibold text-brand-yellow uppercase tracking-widest">Trip Block Enforcement Active</p>
           <p className="text-xs font-medium text-gray-500 mt-0.5">
             Drivers cannot start a trip until all required checklist items are completed. {activeCount} checklist{activeCount !== 1 ? 's' : ''} currently enforced.
           </p>
         </div>
         <div className="ml-auto shrink-0">
           <span className="flex items-center gap-2 text-emerald-400 text-xs font-semibold uppercase tracking-widest">
-            <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span> Live
+            <span className="w-2 h-2 bg-emerald-400 rounded-full w-fit animate-pulse"></span> Live
           </span>
         </div>
       </div>
@@ -194,7 +194,7 @@ export default function AdminSafetyChecklists() {
                 <p className="hero-metadata mb-3">Driver View Preview</p>
                 <div className="bg-[#111] rounded-2xl p-5 max-w-sm mx-auto">
                   <div className="flex items-center gap-3 mb-5 pb-4 border-b border-white/10">
-                    <div className="w-8 h-8 bg-[#FACC15] rounded-lg flex items-center justify-center text-black">
+                    <div className="w-8 h-8 bg-brand-yellow rounded-lg flex items-center justify-center text-black">
                       <ShieldCheck size={16} />
                     </div>
                     <div>
@@ -296,8 +296,8 @@ function NewChecklistModal({ onClose, onCreate }) {
             </div>
             <div className="md:col-span-2 pt-2 border-t border-gray-100 mt-2">
               <label className="flex items-center gap-3 cursor-pointer group w-max">
-                <div className={`relative w-10 h-5 rounded-full transition-colors ${allowFlexible ? 'bg-amber-400' : 'bg-gray-300'}`}>
-                  <div className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform ${allowFlexible ? 'translate-x-5' : ''}`}></div>
+                <div className={`relative w-10 h-5 rounded-full w-fit transition-colors ${allowFlexible ? 'bg-amber-400' : 'bg-gray-300'}`}>
+                  <div className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full w-fit transition-transform ${allowFlexible ? 'translate-x-5' : ''}`}></div>
                 </div>
                 <div>
                   <span className="text-sm font-bold text-gray-900 block leading-none">Allow trip without full checklist</span>
@@ -312,7 +312,7 @@ function NewChecklistModal({ onClose, onCreate }) {
           <div>
             <div className="flex justify-between items-center mb-3">
               <label className="text-xs font-semibold text-gray-500 uppercase tracking-widest flex items-center gap-2"><ClipboardList size={12} /> Checklist Items</label>
-              <button onClick={addItem} className="text-xs font-semibold uppercase tracking-widest px-3 py-1.5 bg-gray-900 text-[#FACC15] rounded-lg flex items-center gap-1.5 hover:bg-black transition-colors">
+              <button onClick={addItem} className="text-xs font-semibold uppercase tracking-widest px-3 py-1.5 bg-gray-900 text-brand-yellow rounded-lg flex items-center gap-1.5 hover:bg-black transition-colors">
                 <Plus size={11} strokeWidth={3} /> Add Item
               </button>
             </div>
@@ -385,8 +385,8 @@ function EditChecklistModal({ checklist, onClose, onSave }) {
           </div>
           <div className="pt-2 border-t border-gray-100">
             <label className="flex items-center gap-3 cursor-pointer group w-max">
-              <div className={`relative w-10 h-5 rounded-full transition-colors ${data.allowFlexible ? 'bg-amber-400' : 'bg-gray-300'}`}>
-                <div className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform ${data.allowFlexible ? 'translate-x-5' : ''}`}></div>
+              <div className={`relative w-10 h-5 rounded-full w-fit transition-colors ${data.allowFlexible ? 'bg-amber-400' : 'bg-gray-300'}`}>
+                <div className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full w-fit transition-transform ${data.allowFlexible ? 'translate-x-5' : ''}`}></div>
               </div>
               <div>
                 <span className="text-sm font-bold text-gray-900 block leading-none">Allow trip without full checklist</span>
@@ -398,7 +398,7 @@ function EditChecklistModal({ checklist, onClose, onSave }) {
           <div>
             <div className="flex justify-between items-center mb-3">
               <label className="text-xs font-semibold text-gray-500 uppercase tracking-widest flex items-center gap-2"><ClipboardList size={12} /> Items</label>
-              <button onClick={addItem} className="text-xs font-semibold uppercase tracking-widest px-3 py-1.5 bg-gray-900 text-[#FACC15] rounded-lg flex items-center gap-1.5">
+              <button onClick={addItem} className="text-xs font-semibold uppercase tracking-widest px-3 py-1.5 bg-gray-900 text-brand-yellow rounded-lg flex items-center gap-1.5">
                 <Plus size={11} strokeWidth={3} /> Add
               </button>
             </div>

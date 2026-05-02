@@ -20,7 +20,7 @@ export default function CustomerDashboard() {
       
       {/* ── 1. Brand & Account Header ── */}
       <div className="bg-hero-dark rounded-hero-lg p-10 text-white relative overflow-hidden shadow-2xl">
-         <div className="absolute right-0 top-0 w-80 h-80 bg-brand opacity-5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+         <div className="absolute right-0 top-0 w-80 h-80 bg-brand opacity-5 rounded-full w-fit blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
          
          <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
             <div>
@@ -28,7 +28,7 @@ export default function CustomerDashboard() {
                <h1 className="text-4xl font-bold tracking-tighter">Acme Distribution Group</h1>
                <div className="flex items-center gap-4 mt-6">
                   <div className="flex -space-x-2">
-                     {[1,2,3].map(i => <div key={i} className="w-8 h-8 rounded-full border-2 border-hero-dark bg-gray-800"></div>)}
+                     {[1,2,3].map(i => <div key={i} className="w-8 h-8 rounded-full w-fit border-2 border-hero-dark bg-gray-800"></div>)}
                   </div>
                   <p className="hero-body text-gray-400">Manage 14 team members • Level 4 Tier</p>
                </div>
@@ -77,19 +77,19 @@ export default function CustomerDashboard() {
                               <span className="hero-metadata">{s.type}</span>
                            </div>
                         </div>
-                        <span className={`text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full border ${s.status === 'Delivered' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : s.alert ? 'bg-red-50 text-red-500 border-red-200 animate-pulse' : 'bg-blue-50 text-blue-600 border-blue-100'}`}>
+                        <span className={`text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full w-fit border ${s.status === 'Delivered' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : s.alert ? 'bg-red-50 text-red-500 border-red-200 animate-pulse' : 'bg-blue-50 text-blue-600 border-blue-100'}`}>
                            {s.status}
                         </span>
                      </div>
 
                      <div className="flex flex-col gap-3">
                         <div className="flex items-center gap-3">
-                           <div className="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
+                           <div className="w-1.5 h-1.5 rounded-full w-fit bg-gray-300"></div>
                            <p className="text-xs font-bold text-gray-700 truncate">{s.origin}</p>
                         </div>
                         <div className="w-px h-3 bg-gray-100 ml-[0.25rem]"></div>
                         <div className="flex items-center gap-3">
-                           <div className="w-1.5 h-1.5 rounded-full bg-yellow-400 shadow-sm"></div>
+                           <div className="w-1.5 h-1.5 rounded-full w-fit bg-brand-yellow shadow-sm"></div>
                            <p className="text-xs font-bold text-gray-900 truncate">{s.dest}</p>
                         </div>
                      </div>
@@ -99,8 +99,8 @@ export default function CustomerDashboard() {
                            <span className="text-xs font-semibold uppercase text-gray-400 tracking-widest flex items-center gap-1.5"><Clock size={12}/> Progress</span>
                            <span className="text-xs font-semibold text-gray-900 tracking-widest">ETA: {s.eta}</span>
                         </div>
-                        <div className="w-full h-1.5 bg-gray-50 rounded-full overflow-hidden border border-gray-100/50">
-                           <div className={`h-full transition-all duration-1000 ${s.alert ? 'bg-red-500' : 'bg-[#FACC15]'}`} style={{ width: `${s.progress}%` }}></div>
+                        <div className="w-full h-1.5 bg-gray-50 rounded-full w-fit overflow-hidden border border-gray-100/50">
+                           <div className={`h-full transition-all duration-1000 ${s.alert ? 'bg-red-500' : 'bg-brand-yellow'}`} style={{ width: `${s.progress}%` }}></div>
                         </div>
                      </div>
                   </div>
@@ -108,7 +108,7 @@ export default function CustomerDashboard() {
                
                {/* Add New Quick Card */}
                <div className="bg-gray-50 border border-dashed border-gray-200 rounded-[2rem] p-6 flex flex-col items-center justify-center text-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer group">
-                  <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-300 group-hover:text-yellow-500 group-hover:scale-110 transition-all shadow-sm">
+                  <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-gray-300 group-hover:text-brand-orange group-hover:scale-110 transition-all shadow-sm">
                      <Zap size={24}/>
                   </div>
                   <div>

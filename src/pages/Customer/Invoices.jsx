@@ -93,7 +93,7 @@ export default function CustomerInvoices() {
                 <div>
                   <div className="flex items-center gap-2">
                     <p className="font-bold text-gray-900 text-sm">{inv.id}</p>
-                    <span className={`text-xs font-semibold uppercase  py-0.5 rounded-full ${cfg.bg} ${cfg.text} flex items-center gap-1`}>
+                    <span className={`text-xs font-semibold uppercase  py-0.5 rounded-full w-fit ${cfg.bg} ${cfg.text} flex items-center gap-1`}>
                       <cfg.icon size={10} /> {cfg.label}
                     </span>
                   </div>

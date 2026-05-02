@@ -111,10 +111,10 @@ export default function AdminUsers() {
             <tbody className="divide-y divide-gray-50">
               {filtered.map(u => (
                 <tr key={u.id} onClick={() => navigate(`/admin/users/${u.id}`)}
-                  className="hover:bg-gray-50/80 transition-all cursor-pointer group border-l-4 border-l-transparent hover:border-l-[#FACC15]">
+                  className="hover:bg-gray-50/80 transition-all cursor-pointer group border-l-4 border-l-transparent hover:border-l-brand-yellow">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-lg bg-[#111] flex items-center justify-center text-[#FACC15] font-semibold text-xs shrink-0 border-2 border-transparent group-hover:border-[#FACC15] transition-colors">
+                      <div className="w-9 h-9 rounded-lg bg-[#111] flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0 border-2 border-transparent group-hover:border-brand-yellow transition-colors">
                         {u.name.split(' ').map(n=>n[0]).join('')}
                       </div>
                       <div>

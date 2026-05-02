@@ -42,7 +42,7 @@ export default function DispatchTracking() {
              <Crosshair className="text-brand" size={24}/> Fleet Monitor
           </h1>
           <p className="hero-body text-gray-600 flex items-center gap-2">
-             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span> 
+             <span className="w-1.5 h-1.5 rounded-full w-fit bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span> 
              Live Network • {user.branchName || 'Global'}
           </p>
         </div>
@@ -99,7 +99,7 @@ export default function DispatchTracking() {
                      </div>
                   </div>
                   <div className="text-right">
-                     <span className={`text-xs font-semibold uppercase tracking-widest  py-0.5 rounded-full ${v.status === 'Moving' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-gray-500'}`}>{v.status}</span>
+                     <span className={`text-xs font-semibold uppercase tracking-widest  py-0.5 rounded-full w-fit ${v.status === 'Moving' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-gray-500'}`}>{v.status}</span>
                      <p className="text-xs font-medium text-gray-400 mt-1 truncate max-w-[120px]">{v.loc}</p>
                   </div>
                 </div>
@@ -159,7 +159,7 @@ export default function DispatchTracking() {
                    <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="text-sm font-semibold text-gray-900 truncate">{selectedVehicle.driver}</h4>
-                        <span className="text-xs font-semibold text-gray-500  py-0.5 bg-gray-100 rounded-full">{selectedVehicle.id}</span>
+                        <span className="text-xs font-semibold text-gray-500  py-0.5 bg-gray-100 rounded-full w-fit">{selectedVehicle.id}</span>
                       </div>
                       <p className="text-gray-400 text-xs font-medium mb-3 flex items-center gap-1.5 truncate">
                         <MapPin size={12} className="text-gray-300"/> {selectedVehicle.loc}

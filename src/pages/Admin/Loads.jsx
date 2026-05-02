@@ -133,7 +133,7 @@ export default function AdminLoads() {
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 placeholder="Search Reference..."
-                className="w-full md:w-64 bg-white border border-gray-200 hover:border-gray-300 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all shadow-sm"
+                className="w-full md:w-64 bg-white border border-gray-200 hover:border-gray-300 rounded-lg py-2.5 pl-10 pr-4 text-sm font-normal text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-yellow/20 focus:border-brand-yellow transition-all shadow-sm"
               />
             </div>
             <button
@@ -153,7 +153,7 @@ export default function AdminLoads() {
               <button
                 key={type}
                 onClick={() => setUnassignedFilter(type)}
-                className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 ${unassignedFilter === type ? 'bg-[#111] text-[#FACC15] shadow-md' : 'bg-white border border-gray-200 text-gray-500 hover:bg-gray-100'
+                className={`px-3 py-1.5 rounded-full w-fit text-xs font-bold transition-all flex items-center gap-1.5 ${unassignedFilter === type ? 'bg-[#111] text-brand-yellow shadow-md' : 'bg-white border border-gray-200 text-gray-500 hover:bg-gray-100'
                   }`}
               >
                 {type}
@@ -178,7 +178,7 @@ export default function AdminLoads() {
                   Update Multi-Route
                 </button>
               </div>
-              <button onClick={() => setSelectedIds([])} className="p-1 hover:bg-white/10 rounded-full transition-colors"><X size={16} /></button>
+              <button onClick={() => setSelectedIds([])} className="p-1 hover:bg-white/10 rounded-full w-fit transition-colors"><X size={16} /></button>
             </div>
           )}
 
@@ -211,7 +211,7 @@ export default function AdminLoads() {
               ) : filtered.map(job => (
                 <tr
                   key={job.id}
-                  className={`hover:bg-gray-50/80 transition-all cursor-pointer group border-l-4 ${selectedIds.includes(job.id) ? 'border-l-[#FACC15] bg-yellow-50/20' : 'border-l-transparent'}`}
+                  className={`hover:bg-gray-50/80 transition-all cursor-pointer group border-l-4 ${selectedIds.includes(job.id) ? 'border-l-brand-yellow bg-yellow-50/20' : 'border-l-transparent'}`}
                   onClick={() => navigate(`/admin/loads/${job.id}`)}
                 >
                   <td className="px-6 py-4" onClick={e => e.stopPropagation()}>
@@ -219,7 +219,7 @@ export default function AdminLoads() {
                       type="checkbox"
                       checked={selectedIds.includes(job.id)}
                       onChange={() => toggleSelect(job.id)}
-                      className="w-4 h-4 rounded border-gray-300 accent-yellow-400 cursor-pointer"
+                      className="w-4 h-4 rounded border-gray-300 accent-brand-yellow cursor-pointer"
                     />
                   </td>
                   <td className="px-6 py-4 font-semibold text-[#111] text-sm tracking-tight">{job.id}</td>
@@ -232,8 +232,8 @@ export default function AdminLoads() {
                   </td>
                   <td className="px-6 py-4">
                     <span className={`text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-md border shadow-sm transition-all ${
-                      job.priority === 'High'  ? 'bg-[#111] text-[#FACC15] border-[#FACC15]/30 shadow-[#FACC15]/10 shadow-lg' :
-                      job.priority === 'Medium' ? 'bg-[#FACC15] text-black border-transparent shadow-sm' :
+                      job.priority === 'High'  ? 'bg-[#111] text-brand-yellow border-brand-yellow/30 shadow-brand-yellow/10 shadow-lg' :
+                      job.priority === 'Medium' ? 'bg-brand-yellow text-black border-transparent shadow-sm' :
                       'bg-gray-100 text-gray-500 border-gray-200'
                     }`}>
                       {job.priority}
@@ -243,7 +243,7 @@ export default function AdminLoads() {
                   <td className="px-6 py-4">
                     {job.driver ? (
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded bg-[#111] flex items-center justify-center font-semibold text-xs text-[#FACC15] shrink-0">
+                        <div className="w-8 h-8 rounded bg-[#111] flex items-center justify-center font-semibold text-xs text-brand-yellow shrink-0">
                           {job.driver.split(' ').map(n => n[0]).join('')}
                         </div>
                         <div>

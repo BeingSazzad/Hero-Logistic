@@ -5,6 +5,12 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --brand-yellow: #FFD60A;
+    --brand-orange: #FB923C;
+    --hero-dark: #111111;
+  }
+
   * {
     box-sizing: border-box;
     margin: 0;
@@ -15,7 +21,7 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #111;
+    color: var(--hero-dark);
     font-size: 14px;
     line-height: 1.5;
   }
@@ -85,21 +91,19 @@
     @apply text-xs font-medium text-gray-500;
   }
 
-  /* ── Badges ── */
+  /* ── Badges (Standardized Padding & Height) ── */
   .badge {
-    @apply inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium border transition-all;
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider border transition-all w-fit;
+    height: 24px;
+    line-height: 1;
   }
 
   .badge-yellow {
-    @apply bg-brand/10 text-brand-hover border-brand/20;
+    @apply bg-brand-yellow/10 text-brand-yellow border-brand-yellow/20;
   }
 
   .badge-blue {
     @apply bg-blue-50 text-blue-600 border-blue-200;
-  }
-
-  .badge-orange {
-    @apply bg-orange-50 text-orange-600 border-orange-200;
   }
 
   .badge-green {
@@ -114,17 +118,29 @@
     @apply bg-gray-100 text-hero-neutral border-gray-200;
   }
 
-  /* ── Buttons ── */
+  /* ── Buttons (Strict Height Categories) ── */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 px-5 rounded-xl text-base font-bold transition-all cursor-pointer select-none active:scale-95;
+    @apply inline-flex items-center justify-center gap-2 px-6 rounded-xl text-[15px] font-bold transition-all cursor-pointer select-none active:scale-[0.98];
     height: 48px;
-    /* Standard 48px touch target */
+    /* Standard Large */
+  }
+
+  .btn-md {
+    @apply inline-flex items-center justify-center gap-2 px-5 rounded-lg text-sm font-bold transition-all cursor-pointer select-none active:scale-[0.98];
+    height: 44px;
+    /* Medium Action */
   }
 
   .btn-sm {
-    @apply inline-flex items-center justify-center gap-2 px-4 rounded-lg text-sm font-bold transition-all cursor-pointer select-none active:scale-95;
-    height: 44px;
-    /* Small 44px touch target */
+    @apply inline-flex items-center justify-center gap-2 px-4 rounded-lg text-[13px] font-bold transition-all cursor-pointer select-none active:scale-[0.98];
+    height: 40px;
+    /* Small / Utility */
+  }
+
+  .btn-xs {
+    @apply inline-flex items-center justify-center gap-1.5 px-3 rounded-md text-[11px] font-bold transition-all cursor-pointer select-none active:scale-[0.98];
+    height: 32px;
+    /* Micro / Table Action */
   }
 
   /* Large CTA buttons used in Driver module (full-width action cards) */
@@ -134,7 +150,7 @@
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-brand-yellow to-brand-orange text-hero-dark hover:opacity-90 shadow-lg shadow-brand-yellow/10 border-none;
+    @apply bg-gradient-to-r from-brand-yellow to-brand-orange text-hero-dark shadow-md shadow-brand-yellow/10 hover:opacity-90;
   }
 
   .btn-dark {
@@ -142,7 +158,7 @@
   }
 
   .btn-outline {
-    @apply bg-white border border-gray-200 text-hero-neutral hover:bg-gray-50 hover:text-hero-dark shadow-sm;
+    @apply bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300;
   }
 
   /* ── Card ── */
@@ -153,10 +169,18 @@
 
   /* ── Input ── */
   .input {
-    @apply w-full px-4 border border-gray-200 rounded-xl text-[15px] font-normal text-gray-900 outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition bg-white placeholder:text-gray-400 placeholder:font-normal;
-    height: 48px;
-    /* consistent with button height */
+    @apply w-full px-4 border border-gray-200 rounded-xl text-[14px] font-medium text-gray-900 outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition bg-white placeholder:text-gray-400 placeholder:font-normal;
+    height: 44px;
     font-weight: 400 !important;
+  }
+
+  select {
+    @apply px-4 border border-brand-yellow/50 rounded-xl text-[13px] font-bold text-hero-dark outline-none focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20 transition bg-white cursor-pointer appearance-none pr-10 min-w-[80px];
+    height: 38px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23111111' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 1rem center;
+    background-repeat: no-repeat;
+    background-size: 1.1em 1.1em;
   }
 
   /* ── Table Layout ── */

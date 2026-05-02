@@ -60,7 +60,7 @@ export default function PlatformDashboard() {
       <div className="flex justify-between items-center mb-2 ">
         <div>
           <h1 className="hero-h1">Platform Overview</h1>
-          <p className="hero-body text-gray-600 mt-1 flex items-center gap-2">System Center • <span className="text-hero-success font-medium flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-hero-success animate-pulse"></span> All Systems Online</span></p>
+          <p className="hero-body text-gray-600 mt-1 flex items-center gap-2">System Center • <span className="text-hero-success font-medium flex items-center gap-1"><span className="w-2 h-2 rounded-full w-fit bg-hero-success animate-pulse"></span> All Systems Online</span></p>
         </div>
         <div className="flex items-center gap-4 bg-white px-5 py-2.5 rounded-lg border border-gray-100 shadow-sm">
            <div className="flex flex-col items-center">
@@ -81,13 +81,13 @@ export default function PlatformDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4  mb-2">
         
         {/* Active Companies */}
-        <div onClick={() => navigate('/platform/tenants')} className="card p-5 flex flex-col justify-between group cursor-pointer hover:border-[#FACC15] hover:shadow-md transition-all">
+        <div onClick={() => navigate('/platform/tenants')} className="card p-5 flex flex-col justify-between group cursor-pointer hover:border-brand-yellow hover:shadow-md transition-all">
           <div className="flex justify-between items-start">
             <div>
               <p className="hero-metadata">Active Companies</p>
-              <p className="text-2xl font-semibold text-hero-dark mt-1 group-hover:text-[#FACC15] transition-colors">78</p>
+              <p className="text-2xl font-semibold text-hero-dark mt-1 group-hover:text-brand-yellow transition-colors">78</p>
             </div>
-            <div className="w-10 h-10 rounded-md flex items-center justify-center bg-gray-50 text-gray-500 group-hover:bg-[#FACC15]/10 group-hover:text-[#FACC15] transition-colors">
+            <div className="w-10 h-10 rounded-md flex items-center justify-center bg-gray-50 text-gray-500 group-hover:bg-brand-yellow/10 group-hover:text-brand-yellow transition-colors">
               <Building2 size={20}/>
             </div>
           </div>
@@ -180,8 +180,8 @@ export default function PlatformDashboard() {
             </div>
             <div className="p-6 flex-1 flex flex-col">
                <div className="flex gap-4 mb-4">
-                  <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-sm bg-emerald-500"></span><span className="text-xs text-gray-600">New Companies</span></div>
-                  <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-sm bg-red-400"></span><span className="text-xs text-gray-600">Lost Companies</span></div>
+                  <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-sm w-fit bg-emerald-500"></span><span className="text-xs text-gray-600">New Companies</span></div>
+                  <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-sm w-fit bg-red-400"></span><span className="text-xs text-gray-600">Lost Companies</span></div>
                </div>
                <div className="flex items-end gap-2 h-[240px] mt-auto">
                   {data.months.map((m, i) => {
@@ -224,7 +224,7 @@ export default function PlatformDashboard() {
             </div>
             <div className="p-6 flex-1 flex flex-col">
                <div className="flex gap-4 mb-4">
-                  <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-sm bg-blue-500"></span><span className="text-xs text-gray-600">Monthly Revenue</span></div>
+                  <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-sm w-fit bg-blue-500"></span><span className="text-xs text-gray-600">Monthly Revenue</span></div>
                </div>
                <div className="flex items-end gap-3 h-[240px] mt-auto">
                   {data.months.map((m, i) => {
@@ -294,7 +294,7 @@ export default function PlatformDashboard() {
             </div>
             <div className="p-6 flex-1 flex flex-col justify-center space-y-6">
                {[
-                 { plan: 'Enterprise', price: '$599', pct: 67, color: 'bg-[#FACC15]', icon: Crown, bg: 'bg-yellow-50', text: 'text-yellow-600' },
+                 { plan: 'Enterprise', price: '$599', pct: 67, color: 'bg-brand-yellow', icon: Crown, bg: 'bg-yellow-50', text: 'text-yellow-600' },
                  { plan: 'Pro',        price: '$298', pct: 33, color: 'bg-emerald-500', icon: Zap, bg: 'bg-emerald-50', text: 'text-emerald-600' },
                  { plan: 'Starter',    price: '$0',   pct: 0,  color: 'bg-gray-300', icon: Rocket, bg: 'bg-gray-100', text: 'text-gray-500' },
                ].map((item) => (
@@ -311,8 +311,8 @@ export default function PlatformDashboard() {
                          </div>
                          <p className="text-lg font-semibold text-gray-900 tracking-tight">{item.price}<span className="text-xs font-semibold text-gray-600">/mo</span></p>
                      </div>
-                     <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden shadow-inner">
-                         <div className={`h-full rounded-full transition-all duration-1000 ${item.color}`} style={{ width: `${item.pct}%` }}></div>
+                     <div className="w-full h-2 bg-gray-100 rounded-full w-fit overflow-hidden shadow-inner">
+                         <div className={`h-full rounded-full w-fit transition-all duration-1000 ${item.color}`} style={{ width: `${item.pct}%` }}></div>
                      </div>
                  </div>
                ))}

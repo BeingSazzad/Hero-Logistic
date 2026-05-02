@@ -49,56 +49,50 @@ export default function Login() {
   return (
     <div className="min-h-screen flex font-sans">
       {/* Left Brand Panel */}
-      <div className="hidden lg:flex w-1/2 bg-[#111111] flex-col justify-between p-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5"
-          style={{ backgroundImage: 'radial-gradient(#FB923C 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
-
+      <div className="hidden lg:flex w-1/2 flex-col justify-between p-12 relative overflow-hidden bg-black">
+        {/* Background Image with Overlay */}
+        <div 
+          className="absolute inset-0 z-0 opacity-60 bg-cover bg-center"
+          style={{ backgroundImage: "url('/hero_bg.png')" }}
+        />
+        <div className="absolute inset-0 z-0 bg-gradient-to-tr from-black via-black/80 to-transparent" />
+        
         <div className="relative z-10 flex items-center mb-8">
           <img
             src="/logo.png"
             alt="HERO Logistics"
-            className="h-32 w-auto object-contain cursor-pointer"
+            className="h-28 w-auto object-contain cursor-pointer"
             onClick={() => navigate('/')}
-            onError={(e) => {
-              e.target.style.display = 'none';
-              if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-            }}
           />
-          <div className="hidden items-center gap-3">
-            <div className="w-9 h-9 bg-yellow-400 rounded-lg flex items-center justify-center">
-              <Zap size={20} className="text-black" strokeWidth={3} />
-            </div>
-            <span className="text-white text-2xl font-bold tracking-tight">HERO</span>
-          </div>
         </div>
 
         <div className="relative z-10">
-          <div className="inline-block bg-yellow-400 text-black text-xs font-bold px-3 py-1.5 rounded-full mb-6 tracking-wider uppercase">
+          <div className="inline-block bg-brand-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full w-fit mb-6 tracking-wider uppercase">
             Logistics &amp; Trucking SaaS
           </div>
-          <h2 className="text-white text-4xl font-bold leading-tight mb-4">
+          <h2 className="text-white text-5xl font-bold leading-tight mb-4 tracking-tight">
             Operations at<br />the speed of trust.
           </h2>
-          <p className="text-gray-400 text-base leading-relaxed max-w-sm">
+          <p className="text-gray-300 text-lg leading-relaxed max-w-sm font-medium">
             Manage dispatch, fleet, drivers, and deliveries from a single powerful workspace built for enterprise logistics.
           </p>
-          <div className="mt-10 flex flex-col gap-3">
+          <div className="mt-10 flex flex-col gap-4">
             {['Real-time fleet tracking', 'Multi-role access control', 'Offline-capable driver app'].map(f => (
               <div key={f} className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded-full bg-yellow-400/20 flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-yellow-400" />
+                <div className="w-6 h-6 rounded-full w-fit bg-brand-yellow/20 flex items-center justify-center border border-brand-yellow/30">
+                  <div className="w-2.5 h-2.5 rounded-full w-fit bg-brand-yellow shadow-[0_0_10px_rgba(250,204,21,0.5)]" />
                 </div>
-                <span className="text-gray-300 text-sm font-medium">{f}</span>
+                <span className="text-gray-100 text-base font-semibold">{f}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <p className="relative z-10 text-gray-600 text-xs">© 2026 HERO Logistics. All rights reserved.</p>
+        <p className="relative z-10 text-gray-400 text-xs font-medium">© 2026 HERO Logistics. All rights reserved.</p>
       </div>
 
       {/* Right Login Panel */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 p-8">
+      <div className="w-full lg:w-1/2 flex items-center justify-center bg-white p-8">
         <div className="w-full max-w-md">
           <div className="flex lg:hidden items-center justify-center mb-10">
             <img
@@ -106,27 +100,17 @@ export default function Login() {
               alt="HERO Logistics"
               className="h-24 w-auto object-contain cursor-pointer"
               onClick={() => navigate('/')}
-              onError={(e) => {
-                e.target.style.display = 'none';
-                if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
-              }}
             />
-            <div className="hidden items-center gap-3">
-              <div className="w-9 h-9 bg-yellow-400 rounded-lg flex items-center justify-center">
-                <Zap size={20} className="text-black" strokeWidth={3} />
-              </div>
-              <span className="text-gray-900 text-2xl font-bold">HERO</span>
-            </div>
           </div>
 
-          <div className="mb-8">
-            <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
-            <p className="text-gray-500 text-sm mt-1">Sign in to your workspace</p>
+          <div className="mb-10">
+            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Welcome back</h1>
+            <p className="text-gray-500 text-base mt-2">Sign in to your workspace</p>
           </div>
 
           <form onSubmit={handleLogin} className="flex flex-col gap-6">
             <div>
-              <label className="block hero-metadata mb-2 ml-1">Email Address</label>
+              <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2.5 ml-1">Email Address</label>
               <input
                 type="email"
                 defaultValue="sarah@hero.com"
@@ -137,9 +121,9 @@ export default function Login() {
             </div>
 
             <div>
-              <div className="flex justify-between items-center mb-2 ml-1">
-                <label className="hero-metadata">Password</label>
-                <a href="#" className="text-xs text-yellow-600 font-bold hover:underline">Forgot password?</a>
+              <div className="flex justify-between items-center mb-2.5 ml-1">
+                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Password</label>
+                <a href="#" className="text-xs text-brand-orange font-bold hover:underline">Forgot password?</a>
               </div>
               <div className="relative">
                 <input
@@ -160,23 +144,18 @@ export default function Login() {
             </div>
 
             <div>
-              <label className="block hero-metadata mb-2 ml-1">Select Your Role</label>
-              <div className="relative">
-                <select
-                  value={role}
-                  onChange={e => setRole(e.target.value)}
-                  className="input appearance-none cursor-pointer pr-10"
-                >
-                  {roles.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
-                </select>
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-                  <Eye size={16} className="rotate-90" /> {/* Placeholder for a chevron if needed, or use a custom arrow */}
-                </div>
-              </div>
+              <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2.5 ml-1">Select Your Role</label>
+              <select
+                value={role}
+                onChange={e => setRole(e.target.value)}
+                className="w-full"
+              >
+                {roles.map(r => <option key={r.value} value={r.value}>{r.label}</option>)}
+              </select>
             </div>
 
             <div className="flex items-center gap-3 ml-1">
-              <input type="checkbox" id="remember" className="w-4 h-4 rounded border-gray-300 accent-yellow-400 cursor-pointer" />
+              <input type="checkbox" id="remember" className="w-4 h-4 rounded border-gray-300 accent-brand-yellow cursor-pointer" />
               <label htmlFor="remember" className="text-sm text-gray-600 font-medium cursor-pointer">Keep me signed in</label>
             </div>
 

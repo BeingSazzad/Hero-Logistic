@@ -40,15 +40,15 @@ export default function PlatformAnalytics() {
         <div className="flex items-center justify-between mb-6">
           <h3 className="font-bold text-gray-900">MRR Growth</h3>
           <div className="flex gap-3 text-xs font-semibold">
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-yellow-500 inline-block" /> MRR</span>
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-blue-300 inline-block" /> Companies</span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm w-fit bg-brand-orange inline-block" /> MRR</span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm w-fit bg-blue-300 inline-block" /> Companies</span>
           </div>
         </div>
         <div className="flex items-end gap-4 h-40">
           {months.map((m, i) => (
             <div key={m} className="flex-1 flex flex-col items-center gap-1">
               <div className="w-full flex gap-1 items-end" style={{ height: '120px' }}>
-                <div className="flex-1 bg-yellow-500 rounded-t-sm hover:opacity-80 transition-opacity" style={{ height: `${(mrr[i]/maxMrr)*120}px` }} />
+                <div className="flex-1 bg-brand-orange rounded-t-sm hover:opacity-80 transition-opacity" style={{ height: `${(mrr[i]/maxMrr)*120}px` }} />
                 <div className="flex-1 bg-blue-300 rounded-t-sm hover:opacity-80 transition-opacity" style={{ height: `${(tenants[i]/6)*120}px` }} />
               </div>
               <span className="text-xs text-gray-500 font-semibold">{m}</span>
@@ -80,7 +80,7 @@ export default function PlatformAnalytics() {
           <div className="space-y-3">
             {[
               { plan: 'Enterprise', pct: 51.4, color: 'bg-yellow-600', value: '$599' },
-              { plan: 'Pro',        pct: 25.6, color: 'bg-yellow-400', value: '$298' },
+              { plan: 'Pro',        pct: 25.6, color: 'bg-brand-yellow', value: '$298' },
               { plan: 'Starter',    pct: 0,    color: 'bg-yellow-200', value: '$0' },
             ].map(p => (
               <div key={p.plan}>
@@ -88,8 +88,8 @@ export default function PlatformAnalytics() {
                   <span className="text-gray-700">{p.plan}</span>
                   <span className="text-gray-900">{p.value}/mo</span>
                 </div>
-                <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                  <div className={`h-full ${p.color} rounded-full`} style={{ width: `${p.pct}%` }} />
+                <div className="h-2 bg-gray-100 rounded-full w-fit overflow-hidden">
+                  <div className={`h-full ${p.color} rounded-full w-fit`} style={{ width: `${p.pct}%` }} />
                 </div>
               </div>
             ))}

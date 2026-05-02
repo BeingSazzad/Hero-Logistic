@@ -68,17 +68,17 @@ export default function Reimbursements() {
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="font-bold text-gray-900 text-lg">${claim.amount.toFixed(2)}</span>
-                  <span className={`inline-flex items-center gap-1.5 .5 py-1 rounded-full text-xs font-bold ${cfg.bg} ${cfg.text}`}>
-                    <cfg.icon size={11} /> {cfg.label}
+                  <span className={`badge ${cfg.bg} ${cfg.text}`}>
+                    <cfg.icon size={11} strokeWidth={3} /> {cfg.label}
                   </span>
                   {status === 'pending' && (
                     <div className="flex gap-2">
                       <button onClick={() => decide(claim.id, 'approved')}
-                        className="btn text-xs py-1.5 px-3 bg-emerald-500 text-white hover:bg-emerald-600">
+                        className="btn-md bg-emerald-500 text-white hover:bg-emerald-600 border-none px-6">
                         Approve
                       </button>
                       <button onClick={() => decide(claim.id, 'rejected')}
-                        className="btn text-xs py-1.5 px-3 bg-red-100 text-red-700 hover:bg-red-200">
+                        className="btn-md bg-red-50 text-red-600 hover:bg-red-100 border-none px-6">
                         Reject
                       </button>
                     </div>

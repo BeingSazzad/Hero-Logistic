@@ -73,7 +73,7 @@ export default function AdminFinance() {
 
       {/* ── Toast ── */}
       {showSuccess && (
-        <div className="fixed top-6 right-6 bg-black text-[#FACC15] px-6 py-4 rounded-2xl shadow-2xl z-[100] flex items-center gap-3 animate-in slide-in-from-right-10 border border-[#FACC15]">
+        <div className="fixed top-6 right-6 bg-black text-brand-yellow px-6 py-4 rounded-2xl shadow-2xl z-[100] flex items-center gap-3 animate-in slide-in-from-right-10 border border-brand-yellow">
           <CheckCircle2 size={20} />
           <div>
             <p className="text-sm font-semibold">Downloaded</p>
@@ -90,7 +90,7 @@ export default function AdminFinance() {
         </div>
         <div className="flex items-center gap-3">
           <div className="relative">
-            <select className="appearance-none bg-white border border-gray-200 text-xs font-medium rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:border-[#FACC15] shadow-sm cursor-pointer">
+            <select className="appearance-none bg-white border border-gray-200 text-xs font-medium rounded-xl pl-4 pr-10 py-3 focus:outline-none focus:border-brand-yellow shadow-sm cursor-pointer">
               <option>This Quarter</option>
               <option>FY 2026–27</option>
               <option>Last 30 Days</option>
@@ -200,8 +200,8 @@ export default function AdminFinance() {
                         <span className="text-xs font-semibold text-gray-900">{fmt(e.amount)}</span>
                       </div>
                     </div>
-                    <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full bg-red-400 rounded-full transition-all" style={{ width: `${pct}%` }} />
+                    <div className="h-1.5 bg-gray-200 rounded-full w-fit overflow-hidden">
+                      <div className="h-full bg-red-400 rounded-full w-fit transition-all" style={{ width: `${pct}%` }} />
                     </div>
                     <p className="text-xs font-medium text-gray-400 mt-1">{pct}% of total spend</p>
                   </div>
@@ -218,7 +218,7 @@ export default function AdminFinance() {
           <div className="lg:col-span-2 bg-[#111] rounded-3xl border border-gray-800 shadow-2xl p-8 flex items-center justify-between">
             <div>
               <p className="hero-metadata mb-1">Net Profit (This Quarter)</p>
-              <p className="text-4xl font-bold text-[#FACC15] leading-none">{fmt(Math.max(netProfit, 0))}</p>
+              <p className="text-4xl font-bold text-brand-yellow leading-none">{fmt(Math.max(netProfit, 0))}</p>
               <p className="text-xs font-medium text-gray-500 mt-3">{margin}% profit margin · Revenue − Expenses</p>
             </div>
             <div className="text-right">
@@ -244,13 +244,13 @@ export default function AdminFinance() {
         <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden mx-2">
           <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
             <div className="relative w-72 group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16} />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-yellow transition-colors" size={16} />
               <input
                 type="text"
                 placeholder="Search by ID or customer..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                className="w-full bg-white border border-gray-200 rounded-xl py-2.5 pl-10 pr-4 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all shadow-sm"
+                className="w-full bg-white border border-gray-200 rounded-xl py-2.5 pl-10 pr-4 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-brand-yellow/20 focus:border-brand-yellow transition-all shadow-sm"
               />
             </div>
           </div>
@@ -290,7 +290,7 @@ export default function AdminFinance() {
                       <button
                         onClick={e => { e.stopPropagation(); handleDownload(acc.id); }}
                         disabled={!!loadingInvoice}
-                        className="flex items-center gap-2 text-xs font-semibold text-gray-500 border border-gray-200 hover:bg-gray-900 hover:text-[#FACC15] hover:border-gray-900 px-4 py-2 rounded-xl transition-all uppercase tracking-widest ml-auto shadow-sm disabled:opacity-40"
+                        className="flex items-center gap-2 text-xs font-semibold text-gray-500 border border-gray-200 hover:bg-gray-900 hover:text-brand-yellow hover:border-gray-900 px-4 py-2 rounded-xl transition-all uppercase tracking-widest ml-auto shadow-sm disabled:opacity-40"
                       >
                         {loadingInvoice === acc.id ? <Loader2 size={12} className="animate-spin" /> : <Download size={12} />}
                         PDF

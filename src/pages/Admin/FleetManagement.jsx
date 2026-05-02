@@ -110,10 +110,10 @@ export default function AdminFleetManagement() {
                         <button 
                           key={status} 
                           onClick={() => { setStatusFilter(status); setShowFilterDropdown(false); }} 
-                          className={`w-full text-left px-4 py-2.5 text-xs font-bold hover:bg-gray-50 transition-colors flex items-center justify-between ${statusFilter === status ? 'text-[#FACC15] bg-gray-900' : 'text-gray-700'}`}
+                          className={`w-full text-left px-4 py-2.5 text-xs font-bold hover:bg-gray-50 transition-colors flex items-center justify-between ${statusFilter === status ? 'text-brand-yellow bg-gray-900' : 'text-gray-700'}`}
                         >
                           {status}
-                          {statusFilter === status && <div className="w-1.5 h-1.5 rounded-full bg-[#FACC15]" />}
+                          {statusFilter === status && <div className="w-1.5 h-1.5 rounded-full w-fit bg-brand-yellow" />}
                         </button>
                       ))}
                     </div>
@@ -158,7 +158,7 @@ export default function AdminFleetManagement() {
                   <tr className="hover:bg-gray-50 transition-all cursor-pointer group" key={v.id} onClick={() => navigate(`/admin/fleet/${v.id}`)}>
                     <td className="px-6 py-5">
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform text-[#FACC15]">
+                        <div className="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform text-brand-yellow">
                            <Truck size={18} />
                         </div>
                         <div>
@@ -169,7 +169,7 @@ export default function AdminFleetManagement() {
                     </td>
                     <td className="px-6 py-5">
                        <div className="flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-[#FACC15]"></span>
+                          <span className="w-2 h-2 rounded-full w-fit bg-brand-yellow"></span>
                           <span className="text-xs font-semibold uppercase tracking-widest text-[#111]">{v.branch}</span>
                        </div>
                     </td>

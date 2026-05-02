@@ -83,7 +83,7 @@ export default function AdminHelpline() {
                 <>
                   <div className="border-b border-gray-100 pb-4 mb-4 flex items-center justify-between shrink-0">
                     <div className="flex items-center gap-3">
-                      <button onClick={() => setSelectedTicket(null)} className="w-8 h-8 rounded-full bg-gray-50 hover:bg-gray-100 flex items-center justify-center text-gray-600 transition-colors">
+                      <button onClick={() => setSelectedTicket(null)} className="w-8 h-8 rounded-full w-fit bg-gray-50 hover:bg-gray-100 flex items-center justify-center text-gray-600 transition-colors">
                         <ArrowLeft size={16} />
                       </button>
                       <div>
@@ -119,7 +119,7 @@ export default function AdminHelpline() {
                   <div className="flex-1 overflow-y-auto space-y-6 pr-2">
                     {/* Mock Chat Conversation */}
                     <div className="flex gap-4">
-                      <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 shrink-0 font-bold text-xs uppercase">
+                      <div className="w-8 h-8 rounded-full w-fit bg-gray-100 flex items-center justify-center text-gray-500 shrink-0 font-bold text-xs uppercase">
                         {selectedTicket.user ? selectedTicket.user[0] : 'H'}
                       </div>
                       <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-sm p-4 text-sm font-medium text-gray-700 max-w-[85%]">
@@ -129,7 +129,7 @@ export default function AdminHelpline() {
                     </div>
                     
                     <div className="flex gap-4 flex-row-reverse">
-                      <div className="w-8 h-8 rounded-full bg-[#FACC15] flex items-center justify-center text-black shrink-0 font-semibold text-xs uppercase">
+                      <div className="w-8 h-8 rounded-full w-fit bg-brand-yellow flex items-center justify-center text-black shrink-0 font-semibold text-xs uppercase">
                         ME
                       </div>
                       <div className="bg-gray-900 text-white rounded-2xl rounded-tr-sm p-4 text-sm font-medium max-w-[85%] shadow-md">

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { 
   Search, MessageCircle, AlertCircle, CheckCircle2, 
-  Send, User, Terminal, Plus, ShieldAlert, Phone, MoreVertical
+  Send, User, Plus, ShieldAlert, Phone, MoreVertical,
+  Paperclip, Mic, Bell, Trash2
 } from 'lucide-react';
 
 const internalTickets = [
@@ -11,6 +12,7 @@ const internalTickets = [
 ];
 
 export default function AdminMessaging() {
+  const [showOptions, setShowOptions] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState(internalTickets[0]);
   const [replyText, setReplyText] = useState('');
   const [tickets, setTickets] = useState(internalTickets);
@@ -33,129 +35,150 @@ export default function AdminMessaging() {
 
   return (
     <div className="flex flex-col h-[calc(100vh-8rem)] w-full max-w-[1440px] mx-auto space-y-4">
-      
-      {/* ── Header ── */}
+      {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 shrink-0">
         <div>
-           <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Company Help Desk</h1>
-           <p className="text-sm text-gray-500 font-medium">Internal support management for drivers and dispatchers.</p>
+          <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Company Help Desk</h1>
+          <p className="text-sm text-gray-500 font-medium">Internal support management for drivers and dispatchers.</p>
         </div>
         <button className="btn btn-primary px-6 py-2.5 text-xs font-semibold uppercase tracking-widest shadow-lg flex items-center gap-2">
-           <Plus size={14} /> New Manual Ticket
+          <Plus size={14} /> New Manual Ticket
         </button>
       </div>
 
       {solvedToast && (
         <div className="fixed top-24 right-8 bg-emerald-600 text-white px-6 py-4 rounded-2xl shadow-2xl z-50 flex items-center gap-3 border border-emerald-700">
-           <CheckCircle2 size={18} /> <p className="text-sm font-semibold uppercase tracking-widest">Ticket Marked Resolved</p>
+          <CheckCircle2 size={18} /> <p className="text-sm font-semibold uppercase tracking-widest">Ticket Marked Resolved</p>
         </div>
       )}
       {sentToast && (
-        <div className="fixed top-24 right-8 bg-[#111] text-[#FACC15] px-6 py-4 rounded-2xl shadow-2xl z-50 flex items-center gap-3 border border-white/10">
-           <Send size={18} /> <p className="text-sm font-semibold uppercase tracking-widest">Reply Sent</p>
+        <div className="fixed top-24 right-8 bg-[#111] text-brand-yellow px-6 py-4 rounded-2xl shadow-2xl z-50 flex items-center gap-3 border border-white/10">
+          <Send size={18} /> <p className="text-sm font-semibold uppercase tracking-widest">Reply Sent</p>
         </div>
       )}
 
-      {/* ── Main Layout ── */}
+      {/* Main Layout */}
       <div className="flex-1 bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden flex min-h-0">
-        
-        {/* Left: Ticket Sidebar */}
+        {/* Left: Sidebar */}
         <div className="w-[360px] border-r border-gray-50 flex flex-col shrink-0 bg-gray-50/20">
-           <div className="p-6 border-b border-gray-100 bg-white">
-              <div className="relative">
-                 <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                 <input type="text" placeholder="Search team member or status..." className="input pl-9 text-xs py-3" />
-              </div>
-           </div>
-           
-           <div className="flex-1 overflow-y-auto divide-y divide-gray-50">
-              {tickets.map(t => (
-                <div 
-                  key={t.id} 
-                  onClick={() => setSelectedTicket(t)}
-                  className={`p-6 cursor-pointer transition-all hover:bg-white relative ${selectedTicket?.id === t.id ? 'bg-white shadow-[inset_4px_0_0_0_#FACC15]' : ''}`}
-                >
-                   <div className="flex justify-between items-start mb-2">
-                      <span className="text-xs text-gray-400 font-semibold uppercase tracking-widest">{t.id}</span>
-                      <span className="text-xs text-gray-400 font-bold">{t.time}</span>
-                   </div>
-                   <h4 className="text-sm font-bold text-gray-900 mb-1 leading-tight">{t.issue}</h4>
-                   <div className="flex items-center gap-2">
-                      <div className="flex items-center gap-1.5">
-                         <div className="w-4 h-4 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-600">{t.user[0]}</div>
-                         <span className="text-xs font-bold text-gray-500">{t.user}</span>
-                      </div>
-                      <span className="w-1 h-1 bg-gray-200 rounded-full"></span>
-                      <span className={`text-xs font-semibold uppercase  py-0.5 rounded-full ${t.priority === 'High' ? 'bg-red-50 text-red-600' : 'bg-gray-50 text-gray-600'}`}>{t.priority}</span>
-                   </div>
+          <div className="p-6 border-b border-gray-100 bg-white">
+            <div className="relative">
+              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input type="text" placeholder="Search team member..." className="input pl-9 text-xs py-3" />
+            </div>
+          </div>
+          <div className="flex-1 overflow-y-auto divide-y divide-gray-50">
+            {tickets.map(t => (
+              <div 
+                key={t.id} 
+                onClick={() => setSelectedTicket(t)}
+                className={`p-6 cursor-pointer transition-all hover:bg-white relative ${selectedTicket?.id === t.id ? 'bg-white shadow-[inset_4px_0_0_0_#FFD60A]' : ''}`}
+              >
+                <div className="flex justify-between items-start mb-2">
+                  <span className="text-xs text-gray-400 font-semibold uppercase tracking-widest">{t.id}</span>
+                  <span className="text-xs text-gray-400 font-bold">{t.time}</span>
                 </div>
-              ))}
-           </div>
+                <h4 className="text-sm font-bold text-gray-900 mb-1 leading-tight">{t.issue}</h4>
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-4 h-4 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-600">{t.user[0]}</div>
+                    <span className="text-xs font-bold text-gray-500">{t.user}</span>
+                  </div>
+                  <span className="w-1 h-1 bg-gray-200 rounded-full"></span>
+                  <span className={`text-xs font-semibold uppercase px-2 py-0.5 rounded-full w-fit ${t.priority === 'High' ? 'bg-red-50 text-red-600' : 'bg-gray-50 text-gray-600'}`}>{t.priority}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Right: Conversation */}
         <div className="flex-1 flex flex-col bg-white overflow-hidden">
-           {/* Detail Header */}
-           <div className="p-6 border-b border-gray-50 flex justify-between items-center bg-white shrink-0 shadow-sm z-10">
-              <div className="flex items-center gap-4">
-                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border border-gray-100 ${selectedTicket.status === 'Resolved' ? 'bg-emerald-50 text-emerald-600' : 'bg-yellow-50 text-yellow-600'}`}>
-                    {selectedTicket.status === 'Resolved' ? <CheckCircle2 size={24} /> : <AlertCircle size={24} />}
-                 </div>
-                 <div>
-                    <h3 className="text-lg font-semibold text-gray-900 tracking-tight">{selectedTicket.issue}</h3>
-                    <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">{selectedTicket.user} • {selectedTicket.role}</p>
-                 </div>
+          {/* Detail Header */}
+          <div className="p-6 border-b border-gray-50 flex justify-between items-center bg-white shrink-0 shadow-sm z-10">
+            <div className="flex items-center gap-4">
+              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 border border-gray-100 ${selectedTicket.status === 'Resolved' ? 'bg-emerald-50 text-emerald-600' : 'bg-yellow-50 text-yellow-600'}`}>
+                {selectedTicket.status === 'Resolved' ? <CheckCircle2 size={24} /> : <AlertCircle size={24} />}
               </div>
-              <div className="flex gap-2">
-                 <button className="p-2.5 border border-gray-100 hover:bg-gray-50 rounded-xl text-gray-400 transition-colors"><Phone size={18} /></button>
-                 <button onClick={handleMarkSolved} disabled={selectedTicket.status === 'Resolved'} className="btn btn-dark text-xs font-semibold uppercase tracking-widest px-6 shadow-sm disabled:opacity-40 disabled:cursor-not-allowed">Mark Solved</button>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 tracking-tight">{selectedTicket.issue}</h3>
+                <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">{selectedTicket.user} • {selectedTicket.role}</p>
               </div>
-           </div>
-
-           {/* Messages History */}
-           <div className="flex-1 overflow-y-auto p-8 flex flex-col gap-6 bg-gray-50/10">
-              
-              <div className="flex flex-col gap-2 max-w-[80%] items-start">
-                 <div className="bg-gray-100 text-gray-800 p-5 rounded-3xl rounded-tl-none border border-gray-200 text-sm leading-relaxed font-medium">
-                    {selectedTicket.issue}. This is preventing me from finishing the delivery sync for JOB-2048. Is there a known issue with the Sydney Metro server?
-                 </div>
-                 <span className="text-xs text-gray-400 font-bold ">{selectedTicket.user} • 10:45 AM</span>
-              </div>
-
-              <div className="flex flex-col gap-2 self-end max-w-[80%] items-end">
-                 <div className="bg-[#111] text-white p-5 rounded-3xl rounded-tr-none shadow-xl text-sm leading-relaxed">
-                    Hey {selectedTicket.user.split(' ')[0]}, I've just checked the status page. There was a minor blip in the API gateway. I've force-synced your session from here. Please try again now.
-                 </div>
-                 <span className="text-xs text-gray-400 font-bold flex items-center gap-1 ">Sent By Michael (Admin) <CheckCircle2 size={10} className="text-emerald-500" /></span>
-              </div>
-
-              <div className="text-center my-4">
-                 <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-300">New message below</span>
-              </div>
-           </div>
-
-           {/* Input Section */}
-           <div className="p-6 border-t border-gray-50 bg-white shrink-0">
+            </div>
+            <div className="flex gap-2 items-center relative">
+              <button className="p-2.5 border border-gray-100 hover:bg-blue-50 hover:text-blue-600 rounded-xl text-gray-400 transition-colors">
+                <Phone size={18} />
+              </button>
               <div className="relative">
-                 <textarea 
-                   value={replyText}
-                   onChange={(e) => setReplyText(e.target.value)}
-                   placeholder={`Message ${selectedTicket.user}...`} 
-                   className="input w-full min-h-[100px] resize-none pb-14 text-sm font-medium focus:bg-white focus:border-yellow-400 shadow-inner rounded-3xl"
-                 />
-                 <div className="absolute bottom-4 right-4 flex gap-3">
-                    <button onClick={handleSendReply} className="bg-[#111] hover:bg-black text-[#FACC15] px-6 py-2.5 rounded-2xl shadow-xl flex items-center gap-2 text-xs font-semibold uppercase tracking-widest transition-all active:scale-95">
-                       <Send size={14} /> Send Reply
+                <button 
+                  onClick={() => setShowOptions(!showOptions)}
+                  className={`p-2.5 border rounded-xl transition-all ${showOptions ? 'bg-[#111] text-brand-yellow border-black shadow-md' : 'text-gray-400 border-gray-100 hover:border-gray-200 hover:bg-gray-50'}`}
+                >
+                  <MoreVertical size={18} />
+                </button>
+                {showOptions && (
+                  <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50 animate-in fade-in zoom-in-95 origin-top-right">
+                    <button className="w-full px-4 py-2.5 text-left text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors uppercase tracking-widest">
+                      <User size={14} className="text-gray-400" /> View Help Profile
                     </button>
-                 </div>
+                    <button className="w-full px-4 py-2.5 text-left text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors uppercase tracking-widest">
+                      <Bell size={14} className="text-gray-400" /> Mute Alerts
+                    </button>
+                    <div className="h-px bg-gray-50 my-1 mx-2"></div>
+                    <button className="w-full px-4 py-2.5 text-left text-xs font-bold text-red-600 hover:bg-red-50 flex items-center gap-3 transition-colors uppercase tracking-widest">
+                      <Trash2 size={14} /> Close & Clear Ticket
+                    </button>
+                  </div>
+                )}
               </div>
-           </div>
-        </div>
+              <button onClick={handleMarkSolved} disabled={selectedTicket.status === 'Resolved'} className="btn btn-dark text-xs font-semibold uppercase tracking-widest px-6 shadow-sm disabled:opacity-40 disabled:cursor-not-allowed">
+                Mark Solved
+              </button>
+            </div>
+          </div>
 
+          {/* Messages History */}
+          <div className="flex-1 overflow-y-auto p-8 flex flex-col gap-6 bg-gray-50/10">
+            <div className="flex flex-col gap-2 max-w-[80%] items-start">
+              <div className="bg-gray-100 text-gray-800 p-5 rounded-3xl rounded-tl-none border border-gray-200 text-sm leading-relaxed font-medium">
+                {selectedTicket.issue}. This is preventing me from finishing the delivery sync for JOB-2048.
+              </div>
+              <span className="text-xs text-gray-400 font-bold ">{selectedTicket.user} • 10:45 AM</span>
+            </div>
+            <div className="flex flex-col gap-2 self-end max-w-[80%] items-end">
+              <div className="bg-[#111] text-white p-5 rounded-3xl rounded-tr-none shadow-xl text-sm leading-relaxed">
+                Hey {selectedTicket.user.split(' ')[0]}, I've just checked the status page. I've force-synced your session. Try again.
+              </div>
+              <span className="text-xs text-gray-400 font-bold flex items-center gap-1 ">Sent By Michael (Admin) <CheckCircle2 size={10} className="text-emerald-500" /></span>
+            </div>
+          </div>
+
+          {/* Input Section */}
+          <div className="p-6 border-t border-gray-50 bg-white shrink-0">
+            <div className="relative group">
+              <textarea 
+                value={replyText}
+                onChange={(e) => setReplyText(e.target.value)}
+                placeholder={`Message ${selectedTicket.user}...`} 
+                className="input w-full min-h-[110px] resize-none pt-4 pb-14 text-sm font-medium focus:bg-white focus:border-brand-yellow shadow-inner rounded-3xl"
+              />
+              <div className="absolute bottom-3 left-3 flex gap-1">
+                <button className="p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 rounded-xl transition-all">
+                  <Paperclip size={18} />
+                </button>
+                <button className="p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 rounded-xl transition-all">
+                  <Mic size={18} />
+                </button>
+              </div>
+              <div className="absolute bottom-3 right-3 flex gap-2">
+                <button onClick={handleSendReply} className="bg-[#111] hover:bg-black text-brand-yellow px-6 py-2 rounded-xl shadow-xl flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-all active:scale-95">
+                  <Send size={14} /> Send Reply
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
-
-
-

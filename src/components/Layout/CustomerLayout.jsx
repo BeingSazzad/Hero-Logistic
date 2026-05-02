@@ -32,7 +32,7 @@ export default function CustomerLayout() {
               }}
             />
             <div className="hidden items-center gap-2.5 cursor-pointer" onClick={() => navigate('/')}>
-              <div className="w-7 h-7 bg-[#FACC15] rounded-lg flex items-center justify-center shadow-[0_0_10px_rgba(255,204,0,0.2)]">
+              <div className="w-7 h-7 bg-brand-yellow rounded-lg flex items-center justify-center shadow-[0_0_10px_rgba(255,204,0,0.2)]">
                 <Zap size={14} color="#111" strokeWidth={3} />
               </div>
               <span className="font-semibold text-[#111] text-lg tracking-tighter uppercase">HERO</span>
@@ -47,7 +47,7 @@ export default function CustomerLayout() {
               <NavLink key={to} to={to} end={end}>
                 {({ isActive }) => (
                   <div className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-widest transition-all ${isActive
-                      ? 'bg-[#FACC15] text-[#111]'
+                      ? 'bg-brand-yellow text-[#111]'
                       : 'text-gray-500 hover:text-[#111] hover:bg-gray-100'
                     }`}>
                     <Icon size={13} />
@@ -60,11 +60,11 @@ export default function CustomerLayout() {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            <button className="relative p-2 text-gray-400 hover:bg-gray-100 rounded-full transition-colors">
+            <button className="relative p-2 text-gray-400 hover:bg-gray-100 rounded-full w-fit transition-colors">
               <Bell size={18} />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full w-fit border-2 border-white" />
             </button>
-            <div className="w-8 h-8 rounded-full bg-[#FACC15] flex items-center justify-center font-semibold text-[#111] text-xs shadow-md">
+            <div className="w-8 h-8 rounded-full w-fit bg-brand-yellow flex items-center justify-center font-semibold text-[#111] text-xs shadow-md">
               WL
             </div>
             <button

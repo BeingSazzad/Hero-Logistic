@@ -36,7 +36,7 @@ export default function AdminBilling() {
                 </div>
                 <div className="relative z-10 flex justify-between items-start">
                   <div>
-                    <span className="bg-[#FACC15] text-black text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4 inline-block">Active Plan</span>
+                    <span className="bg-brand-yellow text-black text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full w-fit mb-4 inline-block">Active Plan</span>
                     <h2 className="text-3xl font-semibold mb-1">Enterprise Fleet</h2>
                     <p className="text-gray-400 text-sm font-medium">Billed annually at $12,000/yr</p>
                   </div>
@@ -98,7 +98,7 @@ export default function AdminBilling() {
                    <div className="w-12 h-8 bg-gradient-to-br from-gray-200 to-white rounded flex items-center justify-center font-bold text-[#111] italic text-xs tracking-tighter">
                      VISA
                    </div>
-                   <ShieldCheck size={20} className="text-[#FACC15]" />
+                   <ShieldCheck size={20} className="text-brand-yellow" />
                 </div>
                 <div className="flex justify-between items-end">
                    <div className="font-mono text-lg tracking-[0.2em] font-medium text-gray-200">

@@ -67,15 +67,15 @@ export default function CustomerTracking() {
         <div className="lg:col-span-1 flex flex-col gap-3">
           {trips.map(t => (
             <button key={t.id} onClick={() => setSelected(t)}
-              className={`bg-white rounded-2xl border p-4 text-left transition-all ${selected.id === t.id ? 'border-yellow-400 shadow-md' : 'border-gray-100 hover:border-gray-200'}`}>
+              className={`bg-white rounded-2xl border p-4 text-left transition-all ${selected.id === t.id ? 'border-brand-yellow shadow-md' : 'border-gray-100 hover:border-gray-200'}`}>
               <p className="font-bold text-gray-900 text-sm">{t.id}</p>
               <div className="flex items-center gap-1 text-xs text-gray-500 mt-1"><MapPin size={10} />{t.from} → {t.to}</div>
               <div className="flex justify-between items-center mt-2">
-                <span className="text-xs font-semibold uppercase text-yellow-700 bg-yellow-100  py-0.5 rounded-full">{t.status}</span>
+                <span className="text-xs font-semibold uppercase text-yellow-700 bg-yellow-100  py-0.5 rounded-full w-fit">{t.status}</span>
                 <span className="text-xs text-gray-500 flex items-center gap-1"><Clock size={10} /> ETA {t.eta}</span>
               </div>
-              <div className="w-full h-1.5 bg-gray-100 rounded-full mt-2 overflow-hidden">
-                <div className="h-full bg-yellow-400 rounded-full" style={{ width: `${t.progress}%` }} />
+              <div className="w-full h-1.5 bg-gray-100 rounded-full w-fit mt-2 overflow-hidden">
+                <div className="h-full bg-brand-yellow rounded-full w-fit" style={{ width: `${t.progress}%` }} />
               </div>
             </button>
           ))}
@@ -87,16 +87,16 @@ export default function CustomerTracking() {
           <div className="bg-gradient-to-br from-slate-700 via-slate-600 to-slate-800 rounded-2xl h-72 flex items-center justify-center relative overflow-hidden">
             <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
             <div className="absolute" style={{ top: '45%', left: '35%' }}>
-              <div className="w-6 h-6 bg-green-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center"><MapPin size={13} color="white" /></div>
-              <div className="bg-white text-xs font-bold  py-0.5 rounded-full shadow mt-1 whitespace-nowrap">{selected.from}</div>
+              <div className="w-6 h-6 bg-green-500 rounded-full w-fit border-2 border-white shadow-lg flex items-center justify-center"><MapPin size={13} color="white" /></div>
+              <div className="bg-white text-xs font-bold  py-0.5 rounded-full w-fit shadow mt-1 whitespace-nowrap">{selected.from}</div>
             </div>
             <div className="absolute" style={{ top: '55%', right: '30%' }}>
-              <div className="w-6 h-6 bg-red-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center"><MapPin size={13} color="white" /></div>
-              <div className="bg-white text-xs font-bold  py-0.5 rounded-full shadow mt-1 whitespace-nowrap">{selected.to}</div>
+              <div className="w-6 h-6 bg-red-500 rounded-full w-fit border-2 border-white shadow-lg flex items-center justify-center"><MapPin size={13} color="white" /></div>
+              <div className="bg-white text-xs font-bold  py-0.5 rounded-full w-fit shadow mt-1 whitespace-nowrap">{selected.to}</div>
             </div>
             {/* Truck dot */}
             <div className="absolute" style={{ top: '48%', left: '52%' }}>
-              <div className="w-10 h-10 bg-yellow-400 rounded-full border-4 border-white shadow-xl flex items-center justify-center animate-pulse">
+              <div className="w-10 h-10 bg-brand-yellow rounded-full w-fit border-4 border-white shadow-xl flex items-center justify-center animate-pulse">
                 <Truck size={18} color="#000" />
               </div>
             </div>
@@ -115,7 +115,7 @@ export default function CustomerTracking() {
                   </p>
                 </div>
                 <div className="text-right">
-                  <span className="text-black bg-yellow-400 text-xs font-semibold uppercase px-4 py-2 rounded-xl shadow-lg shadow-yellow-400/20">{selected.status}</span>
+                  <span className="text-black bg-brand-yellow text-xs font-semibold uppercase px-4 py-2 rounded-xl shadow-lg shadow-brand-yellow/20">{selected.status}</span>
                   <div className="mt-3 flex flex-col items-end">
                      <p className="text-xs font-semibold text-brand uppercase tracking-widest">Active Node</p>
                      <p className="text-xs font-bold text-gray-900 mt-1">{selected.currentCity}</p>
@@ -132,9 +132,9 @@ export default function CustomerTracking() {
                     {selected.steps.map((step, idx) => (
                       <div key={idx} className="flex gap-8 relative group">
                          {/* Icon/Dot */}
-                         <div className={`w-4 h-4 rounded-full border-2 z-10 shrink-0 mt-1.5 transition-all duration-500 ${
+                         <div className={`w-4 h-4 rounded-full w-fit border-2 z-10 shrink-0 mt-1.5 transition-all duration-500 ${
                             step.done ? 'bg-emerald-500 border-emerald-100 scale-110 shadow-lg' : 
-                            step.current ? 'bg-yellow-400 border-yellow-200 animate-pulse scale-150 shadow-xl shadow-yellow-400/40' : 
+                            step.current ? 'bg-brand-yellow border-yellow-200 animate-pulse scale-150 shadow-xl shadow-brand-yellow/40' : 
                             'bg-white border-gray-200 opacity-30 shadow-inner'
                          }`}></div>
 
@@ -180,8 +180,8 @@ export default function CustomerTracking() {
                  </div>
               </div>
 
-              <div className="p-5 bg-black text-[#FACC15] text-xs font-semibold uppercase tracking-[0.3em] text-center flex items-center justify-center gap-4 group">
-                 <div className="w-2 h-2 rounded-full bg-[#FACC15] animate-pulse"></div>
+              <div className="p-5 bg-black text-brand-yellow text-xs font-semibold uppercase tracking-[0.3em] text-center flex items-center justify-center gap-4 group">
+                 <div className="w-2 h-2 rounded-full w-fit bg-brand-yellow animate-pulse"></div>
                  AUSTRALIAN LOGISTICS NETWORK LIVE FEED
               </div>
             </div>

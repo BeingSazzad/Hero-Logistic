@@ -44,7 +44,7 @@ export default function Invoices() {
           <button className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-5 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
             <Download size={16} /> Export CSV
           </button>
-          <button className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+          <button className="bg-brand-yellow hover:bg-brand-orange text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
             <Send size={16} /> Send All Ready ({invoices.filter(i => i.status === 'ready').length})
           </button>
         </div>

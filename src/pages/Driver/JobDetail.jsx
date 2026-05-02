@@ -112,7 +112,7 @@ export default function DriverJobDetail() {
       <div className="p-4 space-y-4">
         {/* Status Chip */}
         <div className="flex">
-          <span className={`text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full border ${STATUS_VARIANTS[job.status]}`}>
+          <span className={`text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full w-fit border ${STATUS_VARIANTS[job.status]}`}>
             {job.status}
           </span>
         </div>
@@ -124,7 +124,7 @@ export default function DriverJobDetail() {
             
             {/* Pickup */}
             <div className="flex gap-6 relative">
-              <div className="w-4 h-4 rounded-full bg-white border-2 border-yellow-400 z-10 shrink-0 mt-1"></div>
+              <div className="w-4 h-4 rounded-full w-fit bg-white border-2 border-brand-yellow z-10 shrink-0 mt-1"></div>
               <div className="flex-1">
                 <p className="hero-metadata leading-none mb-1.5">Pickup Point</p>
                 <h3 className="font-bold text-gray-900 text-sm">{job.consignor.name}</h3>
@@ -142,7 +142,7 @@ export default function DriverJobDetail() {
 
             {/* Delivery */}
             <div className="flex gap-6 relative">
-              <div className="w-4 h-4 rounded-full bg-yellow-400 border-2 border-white shadow-sm z-10 shrink-0 mt-1"></div>
+              <div className="w-4 h-4 rounded-full w-fit bg-brand-yellow border-2 border-white shadow-sm z-10 shrink-0 mt-1"></div>
               <div className="flex-1">
                 <p className="hero-metadata leading-none mb-1.5">Delivery Point</p>
                 <h3 className="font-bold text-gray-900 text-sm">{job.consignee.name}</h3>
@@ -163,7 +163,7 @@ export default function DriverJobDetail() {
         {/* Cargo Detail Card */}
         <div className="bg-gray-900 rounded-3xl p-6 text-white shadow-xl shadow-gray-200">
            <div className="flex items-center gap-2 mb-4">
-              <Box size={16} className="text-yellow-400" />
+              <Box size={16} className="text-brand-yellow" />
               <h3 className="text-xs font-semibold uppercase tracking-widest">Cargo Specification</h3>
            </div>
            <p className="text-sm font-bold text-gray-100 leading-relaxed mb-6">{job.cargo.description}</p>
@@ -179,9 +179,9 @@ export default function DriverJobDetail() {
               </div>
            </div>
 
-           <div className="mt-4 flex items-center gap-2 p-3 bg-yellow-400/10 border border-yellow-400/20 rounded-xl">
-              <AlertTriangle size={14} className="text-yellow-400 shrink-0" />
-              <p className="text-xs font-bold text-yellow-400 uppercase tracking-widest">{job.cargo.handling}</p>
+           <div className="mt-4 flex items-center gap-2 p-3 bg-brand-yellow/10 border border-brand-yellow/20 rounded-xl">
+              <AlertTriangle size={14} className="text-brand-yellow shrink-0" />
+              <p className="text-xs font-bold text-brand-yellow uppercase tracking-widest">{job.cargo.handling}</p>
            </div>
         </div>
 
@@ -200,7 +200,7 @@ export default function DriverJobDetail() {
                 }`}>
                    <div className="flex items-center gap-4">
                       <div className={`w-8 h-8 rounded-xl flex items-center justify-center font-semibold text-xs ${
-                         stage.status === 'Active' ? 'bg-yellow-400 text-black shadow-lg animate-pulse' :
+                         stage.status === 'Active' ? 'bg-brand-yellow text-black shadow-lg animate-pulse' :
                          stage.status === 'Completed' ? 'bg-emerald-500 text-white' :
                          'bg-gray-200 text-gray-400'
                       }`}>
@@ -226,7 +226,7 @@ export default function DriverJobDetail() {
         {job.status === 'In Progress' ? (
            <button 
              onClick={() => navigate('/driver/active')}
-             className="btn-cta bg-yellow-400 hover:bg-yellow-500 text-black shadow-lg shadow-yellow-100"
+             className="btn-cta bg-brand-yellow hover:bg-brand-orange text-black shadow-lg shadow-yellow-100"
            >
               <Navigation size={18} /> Continue Trip
            </button>
@@ -240,7 +240,7 @@ export default function DriverJobDetail() {
         ) : (
           <button 
             onClick={() => navigate('/driver/active')}
-            className="btn-cta bg-gray-900 hover:bg-black text-yellow-400 shadow-lg shadow-gray-200"
+            className="btn-cta bg-gray-900 hover:bg-black text-brand-yellow shadow-lg shadow-gray-200"
           >
              <CheckCircle2 size={18} /> Start Trip
           </button>

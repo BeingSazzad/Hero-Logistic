@@ -111,8 +111,8 @@ export default function PODReview() {
                   <p className="text-xs text-yellow-600 mt-0.5">Receipt photo attached</p>
                 </div>
                 <div className="flex gap-2">
-                  <button className="btn text-xs py-2 bg-emerald-500 text-white hover:bg-emerald-600">Approve ${pod.toll}</button>
-                  <button className="btn text-xs py-2 bg-red-100 text-red-700 hover:bg-red-200">Reject</button>
+                  <button className="btn-md bg-emerald-500 text-white hover:bg-emerald-600 border-none px-6">Approve ${pod.toll}</button>
+                  <button className="btn-md bg-red-100 text-red-700 hover:bg-red-200 border-none px-6">Reject</button>
                 </div>
               </div>
             </div>
@@ -181,7 +181,7 @@ export default function PODReview() {
                 <div className="flex items-center gap-6">
                   <span className="text-sm font-semibold text-hero-dark">{pod.value}</span>
                   {!isDone ? (
-                    <button onClick={() => setSelected(pod.id)} className="btn btn-outline py-2 border-hero-neutral/20 text-xs">
+                    <button onClick={() => setSelected(pod.id)} className="btn-sm btn-outline px-5">
                       Review <ChevronRight size={14} />
                     </button>
                   ) : (

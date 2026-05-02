@@ -64,11 +64,11 @@ export default function ActiveTrip() {
          {/* Instruction HUD */}
          <div className="absolute inset-x-4 top-4 bg-white/10 backdrop-blur-xl border border-white/10 rounded-[2rem] p-4 shadow-2xl z-20">
             <div className="flex items-center gap-4">
-               <div className="w-12 h-12 bg-[#FACC15] rounded-2xl flex items-center justify-center shadow-lg shadow-[#FACC15]/20 shrink-0">
+               <div className="w-12 h-12 bg-brand-yellow rounded-2xl flex items-center justify-center shadow-lg shadow-brand-yellow/20 shrink-0">
                   <Navigation size={28} className="text-[#111] -rotate-45" />
                </div>
                <div className="flex flex-col justify-center">
-                  <p className="text-[#FACC15] text-xs font-bold uppercase tracking-[0.2em] leading-none mb-1">In 800 Meters</p>
+                  <p className="text-brand-yellow text-xs font-bold uppercase tracking-[0.2em] leading-none mb-1">In 800 Meters</p>
                   <h2 className="text-white text-base font-bold leading-none">Turn Right onto York Street</h2>
                </div>
             </div>
@@ -77,10 +77,10 @@ export default function ActiveTrip() {
          {/* Vehicle Marker */}
          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <div className="relative">
-               <div className="w-10 h-10 bg-[#FACC15] rounded-full flex items-center justify-center shadow-[0_0_30px_#FACC15] animate-pulse">
-                  <div className="w-4 h-4 bg-[#111] rounded-sm transform rotate-45"></div>
+               <div className="w-10 h-10 bg-brand-yellow rounded-full w-fit flex items-center justify-center shadow-[0_0_30px_#FACC15] animate-pulse">
+                  <div className="w-4 h-4 bg-[#111] rounded-sm w-fit transform rotate-45"></div>
                </div>
-               <div className="absolute -inset-10 border border-[#FACC15]/10 rounded-full animate-ping"></div>
+               <div className="absolute -inset-10 border border-brand-yellow/10 rounded-full w-fit animate-ping"></div>
             </div>
          </div>
 
@@ -101,7 +101,7 @@ export default function ActiveTrip() {
                  <div className="flex flex-col items-center leading-none">
                     <p className="hero-metadata">Next Milestone</p>
                     <div className="flex items-center gap-1 mt-1">
-                       <div className="w-1.5 h-1.5 bg-orange-600 rounded-full animate-pulse"></div>
+                       <div className="w-1.5 h-1.5 bg-orange-600 rounded-full w-fit animate-pulse"></div>
                        <span className="text-xs font-semibold text-orange-600 uppercase tracking-widest">Priority Asset</span>
                     </div>
                  </div>
@@ -148,7 +148,7 @@ export default function ActiveTrip() {
               <div className="flex flex-col gap-4">
                 <button
                   onClick={() => setStep('Arrived')}
-                  className="w-full bg-[#161B22] hover:bg-black text-[#FACC15] font-semibold uppercase text-sm py-5 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-xl"
+                  className="w-full bg-[#161B22] hover:bg-black text-brand-yellow font-semibold uppercase text-sm py-5 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-xl"
                 >
                   <CheckCircle2 size={20} /> Confirm Arrival
                 </button>
@@ -171,7 +171,7 @@ export default function ActiveTrip() {
                 </div>
                 <button
                   onClick={() => setStep('Unloading')}
-                  className="w-full bg-[#111] hover:bg-black text-[#FACC15] font-semibold uppercase text-sm py-6 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-xl"
+                  className="w-full bg-[#111] hover:bg-black text-brand-yellow font-semibold uppercase text-sm py-6 rounded-2xl flex items-center justify-center gap-3 active:scale-[0.98] transition-all shadow-xl"
                 >
                   <Navigation size={18} /> Start Unloading
                 </button>
@@ -182,13 +182,13 @@ export default function ActiveTrip() {
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
                   <button className="flex flex-col items-center justify-center gap-2 p-5 bg-gray-50 border border-gray-100 rounded-2xl hover:bg-gray-100 transition-colors">
-                    <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 shadow-sm">
+                    <div className="w-10 h-10 bg-white rounded-full w-fit flex items-center justify-center text-gray-400 shadow-sm">
                       <Camera size={20} />
                     </div>
                     <span className="text-xs font-semibold text-gray-600">Photo Proof</span>
                   </button>
                   <button className="flex flex-col items-center justify-center gap-2 p-5 bg-gray-50 border border-gray-100 rounded-2xl hover:bg-gray-100 transition-colors">
-                    <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 shadow-sm">
+                    <div className="w-10 h-10 bg-white rounded-full w-fit flex items-center justify-center text-gray-400 shadow-sm">
                       <CheckSquare size={20} />
                     </div>
                     <span className="text-xs font-semibold text-gray-600">Signature</span>
@@ -205,7 +205,7 @@ export default function ActiveTrip() {
 
             {step === 'Finalizing' && (
               <div className="text-center py-4">
-                <div className="w-16 h-16 bg-emerald-100 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-emerald-100 text-emerald-500 rounded-full w-fit flex items-center justify-center mx-auto mb-4">
                   <CheckCircle2 size={32} />
                 </div>
                  <h2 className="text-xl font-bold text-gray-900">Delivery Complete</h2>
@@ -233,7 +233,7 @@ export default function ActiveTrip() {
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-sm font-bold text-gray-800">Shift Summary</h3>
-            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 .5 py-1 rounded-full border border-emerald-100">Online</span>
+            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 .5 py-1 rounded-full w-fit border border-emerald-100">Online</span>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100">
@@ -242,7 +242,7 @@ export default function ActiveTrip() {
             </div>
             <div className="bg-gray-50 p-4 rounded-2xl border border-gray-100">
               <p className="text-xs font-medium text-gray-500 uppercase tracking-wider block mb-1">Duty Left</p>
-              <p className="text-lg font-bold text-[#FACC15]">11h 48m</p>
+              <p className="text-lg font-bold text-brand-yellow">11h 48m</p>
             </div>
           </div>
         </div>
@@ -254,7 +254,7 @@ export default function ActiveTrip() {
             <div className="absolute left-1 top-2 bottom-2 w-0.5 bg-gray-100"></div>
 
             <div className="flex items-center gap-4 relative">
-              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 outline outline-4 outline-white shadow-sm shrink-0 z-10"></div>
+              <div className="w-2.5 h-2.5 rounded-full w-fit bg-emerald-500 outline outline-4 outline-white shadow-sm shrink-0 z-10"></div>
               <div>
                 <p className="text-sm font-semibold text-gray-400 line-through">Pre-Trip Safety Check</p>
                 <p className="text-xs font-medium text-emerald-600 mt-0.5 flex items-center gap-1"><ShieldCheck size={10} /> Passed · {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
@@ -262,7 +262,7 @@ export default function ActiveTrip() {
             </div>
 
             <div className="flex items-center gap-4 relative">
-              <div className={`w-2.5 h-2.5 rounded-full outline outline-4 outline-white shadow-sm shrink-0 z-10 ${step === 'Finalizing' ? 'bg-emerald-500' : 'bg-[#FACC15] animate-pulse'}`}></div>
+              <div className={`w-2.5 h-2.5 rounded-full w-fit outline outline-4 outline-white shadow-sm shrink-0 z-10 ${step === 'Finalizing' ? 'bg-emerald-500' : 'bg-brand-yellow animate-pulse'}`}></div>
               <div>
                 <p className={`text-sm font-semibold ${step === 'Finalizing' ? 'text-gray-400 line-through' : 'text-gray-900'}`}>Pickup #1 · York St</p>
                 {step !== 'Finalizing' && <p className="text-xs font-medium text-amber-600 mt-0.5 flex items-center gap-1"><Clock size={10} /> In Progress</p>}
@@ -270,7 +270,7 @@ export default function ActiveTrip() {
             </div>
 
             <div className="flex items-center gap-4 relative">
-              <div className="w-2.5 h-2.5 rounded-full bg-gray-200 outline outline-4 outline-white shadow-sm shrink-0 z-10"></div>
+              <div className="w-2.5 h-2.5 rounded-full w-fit bg-gray-200 outline outline-4 outline-white shadow-sm shrink-0 z-10"></div>
               <div>
                 <p className="text-sm font-semibold text-gray-300">Final Stop · Warehouse SYD</p>
               </div>

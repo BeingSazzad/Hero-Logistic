@@ -66,7 +66,7 @@ export default function AdminDriverDetail() {
                </p>
                <div className="flex items-center gap-1 mt-2">
                  {[1,2,3,4,5].map(i => (
-                   <Star key={i} size={12} className={i <= 4 ? "text-[#FACC15] fill-[#FACC15]" : "text-gray-200 fill-gray-200"} />
+                   <Star key={i} size={12} className={i <= 4 ? "text-brand-yellow fill-brand-yellow" : "text-gray-200 fill-gray-200"} />
                  ))}
                  <span className="text-xs font-bold text-gray-400 ml-1">4.8 Rating</span>
                </div>
@@ -84,7 +84,7 @@ export default function AdminDriverDetail() {
               </button>
               <button 
                 onClick={() => setEditing(false)} 
-                className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
+                className="bg-brand-yellow hover:bg-brand-orange text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
               >
                 <Save size={16} strokeWidth={2.5}/> Save Changes
               </button>
@@ -117,7 +117,7 @@ export default function AdminDriverDetail() {
               <div>
                 <label className="text-xs text-gray-500 font-bold uppercase tracking-widest mb-1.5 block ml-1">Full Name</label>
                 {editing ? (
-                  <input className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" value={editedName} onChange={e => setEditedName(e.target.value)}/> 
+                  <input className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" value={editedName} onChange={e => setEditedName(e.target.value)}/> 
                 ) : (
                   <p className="text-sm font-bold text-[#111] px-1">{editedName}</p>
                 )}
@@ -125,7 +125,7 @@ export default function AdminDriverDetail() {
               <div>
                 <label className="text-xs text-gray-500 font-bold uppercase tracking-widest mb-1.5 block flex items-center gap-1.5 ml-1"><Phone size={12}/> Phone</label>
                 {editing ? (
-                  <input className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" value={editedPhone} onChange={e => setEditedPhone(e.target.value)}/> 
+                  <input className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" value={editedPhone} onChange={e => setEditedPhone(e.target.value)}/> 
                 ) : (
                   <p className="text-sm font-medium text-gray-700 px-1">{editedPhone}</p>
                 )}
@@ -143,8 +143,8 @@ export default function AdminDriverDetail() {
 
           {/* Operational Settings (Dark mode equivalent design) */}
           <div className="bg-[#111] rounded-xl p-6 text-white shadow-sm border border-gray-800 relative overflow-hidden group">
-            <div className="absolute -right-6 -top-6 w-32 h-32 bg-[#FACC15]/10 rounded-full blur-3xl group-hover:bg-[#FACC15]/20 transition-all"></div>
-            <h3 className="text-xs font-bold uppercase tracking-widest mb-6 text-[#FACC15] flex items-center gap-2 relative z-10">
+            <div className="absolute -right-6 -top-6 w-32 h-32 bg-brand-yellow/10 rounded-full w-fit blur-3xl group-hover:bg-brand-yellow/20 transition-all"></div>
+            <h3 className="text-xs font-bold uppercase tracking-widest mb-6 text-brand-yellow flex items-center gap-2 relative z-10">
                Operational Assignment
             </h3>
             
@@ -152,7 +152,7 @@ export default function AdminDriverDetail() {
               <div>
                 <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Assigned Depot</label>
                 {editing ? (
-                  <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none focus:outline-none focus:border-[#FACC15]/50" value={editedDepot} onChange={e => setEditedDepot(e.target.value)}>
+                  <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none focus:outline-none focus:border-brand-yellow/50" value={editedDepot} onChange={e => setEditedDepot(e.target.value)}>
                      <option className="text-black">Sydney Central Depot</option>
                      <option className="text-black">Melbourne Depot</option>
                      <option className="text-black">Brisbane Port Branch</option>
@@ -164,7 +164,7 @@ export default function AdminDriverDetail() {
               <div>
                 <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Shift Type</label>
                 {editing ? (
-                  <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none focus:outline-none focus:border-[#FACC15]/50" value={editedShift} onChange={e => setEditedShift(e.target.value)}>
+                  <select className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 px-4 text-sm font-medium text-white appearance-none focus:outline-none focus:border-brand-yellow/50" value={editedShift} onChange={e => setEditedShift(e.target.value)}>
                      <option className="text-black">Full-time Permanent</option>
                      <option className="text-black">Casual</option>
                      <option className="text-black">Contractor (Subby)</option>
@@ -185,7 +185,7 @@ export default function AdminDriverDetail() {
                       const base = location.pathname.includes('/dispatch') ? '/dispatch/vehicles' : '/admin/fleet';
                       navigate(`${base}/${driver.vehicle.id}`);
                     }}
-                    className="text-xs text-[#FACC15] font-bold uppercase tracking-widest hover:underline"
+                    className="text-xs text-brand-yellow font-bold uppercase tracking-widest hover:underline"
                   >
                     View
                   </button>
@@ -267,7 +267,7 @@ export default function AdminDriverDetail() {
             </div>
             <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] text-center flex flex-col justify-center">
               <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1.5">Rating</p>
-              <p className="text-3xl font-semibold text-[#FACC15] flex items-center justify-center gap-1">{driver.stats.avgRating} <Star size={18} className="fill-[#FACC15]"/></p>
+              <p className="text-3xl font-semibold text-brand-yellow flex items-center justify-center gap-1">{driver.stats.avgRating} <Star size={18} className="fill-brand-yellow"/></p>
             </div>
             <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] text-center flex flex-col justify-center">
               <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1.5">Delays</p>
@@ -282,7 +282,7 @@ export default function AdminDriverDetail() {
             <div className="p-6 border-b border-gray-100 bg-[#FAFAFA] flex justify-between items-center pl-7">
               <h3 className="text-sm font-bold text-gray-900 flex items-center gap-2 uppercase tracking-wide"><Route size={16} className="text-emerald-500"/> Live Assignment</h3>
               <span className="text-xs font-bold  py-0.5 rounded bg-emerald-100 text-emerald-700 border border-emerald-200 uppercase tracking-widest flex items-center gap-1.5 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Active
+                <span className="w-1.5 h-1.5 rounded-full w-fit bg-emerald-500 animate-pulse"></span> Active
               </span>
             </div>
             
@@ -294,12 +294,12 @@ export default function AdminDriverDetail() {
                 </div>
                 <div className="text-right">
                   <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Current ETA</p>
-                  <p className="text-xl font-semibold text-gray-900 flex items-center gap-1.5"><Clock size={16} className="text-[#FACC15]"/> {driver.currentLoad.eta}</p>
+                  <p className="text-xl font-semibold text-gray-900 flex items-center gap-1.5"><Clock size={16} className="text-brand-yellow"/> {driver.currentLoad.eta}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 shadow-sm">
-                <MapPin size={20} className="text-[#111] shrink-0 outline outline-4 outline-white rounded-full bg-white"/>
+                <MapPin size={20} className="text-[#111] shrink-0 outline outline-4 outline-white rounded-full w-fit bg-white"/>
                 <div>
                   <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-0.5">Route Path</p>
                   <p className="font-bold text-gray-900 text-[15px]">{driver.currentLoad.route}</p>
@@ -307,7 +307,7 @@ export default function AdminDriverDetail() {
               </div>
 
               <div className="flex items-center gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 shadow-sm">
-                <Package size={20} className="text-[#FACC15] shrink-0"/>
+                <Package size={20} className="text-brand-yellow shrink-0"/>
                 <div>
                   <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-0.5">Payload Measurement</p>
                   <p className="font-bold text-gray-900 text-[15px]">{driver.currentLoad.load}</p>
@@ -320,8 +320,8 @@ export default function AdminDriverDetail() {
                   <span className="text-xs font-bold uppercase tracking-widest text-gray-500">Route Progress</span>
                   <span className="text-xs font-semibold uppercase tracking-widest text-emerald-600">{driver.currentLoad.progress}% Complete</span>
                 </div>
-                <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden shadow-inner">
-                  <div className="h-full bg-emerald-500 rounded-full transition-all" style={{ width: `${driver.currentLoad.progress}%` }}></div>
+                <div className="w-full h-2.5 bg-gray-100 rounded-full w-fit overflow-hidden shadow-inner">
+                  <div className="h-full bg-emerald-500 rounded-full w-fit transition-all" style={{ width: `${driver.currentLoad.progress}%` }}></div>
                 </div>
               </div>
             </div>
@@ -342,7 +342,7 @@ export default function AdminDriverDetail() {
               {driver.recentLoads.map(job => (
                 <div key={job.id} className="flex items-center justify-between p-5 hover:bg-gray-50 transition-colors group cursor-pointer" onClick={() => navigate(`/admin/loads/${job.id}`)}>
                   <div className="flex items-center gap-4">
-                    <div className={`w-2.5 h-2.5 rounded-full shadow-sm ${job.status === 'In Transit' ? 'bg-[#FACC15] animate-pulse' : 'bg-emerald-500'}`}></div>
+                    <div className={`w-2.5 h-2.5 rounded-full w-fit shadow-sm ${job.status === 'In Transit' ? 'bg-brand-yellow animate-pulse' : 'bg-emerald-500'}`}></div>
                     <div>
                       <p className="font-bold text-[#111] text-sm group-hover:text-blue-600 transition-colors">{job.id}</p>
                       <p className="text-xs text-gray-500 font-medium tracking-tight mt-0.5">{job.route}</p>

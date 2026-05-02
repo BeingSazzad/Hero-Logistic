@@ -64,7 +64,7 @@ function GlobalSearch() {
       {open && (
         <div className="absolute top-0 right-0 lg:right-auto lg:left-0 w-[420px] bg-white rounded-3xl shadow-2xl border border-gray-100 z-[100] animate-in fade-in zoom-in-95 duration-200 overflow-hidden">
           <div className="p-4 border-b border-gray-100 flex items-center gap-3 bg-gray-50/50">
-            <Search size={20} className="text-[#FACC15]" />
+            <Search size={20} className="text-brand-yellow" />
             <input
               autoFocus
               type="text"
@@ -89,7 +89,7 @@ function GlobalSearch() {
                 {results.map((r, i) => (
                   <div key={i} className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-2xl cursor-pointer group transition-all">
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 group-hover:bg-[#FACC15] group-hover:text-black group-hover:border-[#FACC15] transition-all">
+                      <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 group-hover:bg-brand-yellow group-hover:text-hero-dark group-hover:border-brand-yellow transition-all">
                         {r.type === 'Vehicle' ? <Car size={18} /> : r.type === 'Load' ? <Shield size={18} /> : <Zap size={18} />}
                       </div>
                       <div>
@@ -140,7 +140,7 @@ export function SideNavItem({ to, label, Icon, end, badge }) {
           {Icon && <Icon size={15} className={isActive ? 'text-[#111]' : 'text-gray-500 group-hover:text-white transition-colors'} />}
           <span className="flex-1 leading-none">{label}</span>
           {badge != null && (
-            <span className={`text-xs font-semibold rounded-full px-1.5 py-0.5 min-w-[18px] text-center ${isActive ? 'bg-[#111] text-[#FACC15]' : 'bg-red-500 text-white'}`}>
+            <span className={`text-xs font-semibold rounded-full w-fit px-1.5 py-0.5 min-w-[18px] text-center ${isActive ? 'bg-hero-dark text-brand-yellow' : 'bg-red-500 text-white'}`}>
               {badge}
             </span>
           )}
@@ -170,7 +170,7 @@ export function SideNavGroup({ group }) {
         className={`w-full flex items-center justify-between px-3 py-2 text-gray-500 hover:text-white group transition-colors rounded-lg mb-0.5 ${isChildActive && !open ? 'bg-white/5' : ''}`}
       >
         <div className="flex items-center gap-2">
-          {group.icon && <group.icon size={13} className={`transition-colors ${isChildActive ? 'text-[#FACC15]' : 'text-gray-600 group-hover:text-white'}`} />}
+          {group.icon && <group.icon size={13} className={`transition-colors ${isChildActive ? 'text-brand-yellow' : 'text-gray-600 group-hover:text-white'}`} />}
           <span className={`text-sm font-medium ${isChildActive ? 'text-white' : ''}`}>{group.label}</span>
         </div>
         {open
@@ -184,7 +184,7 @@ export function SideNavGroup({ group }) {
             <NavLink key={item.to} to={item.to}>
               {({ isActive }) => (
                 <div className={`flex items-center gap-3 ml-4 px-3 py-2 rounded-lg text-sm font-medium transition-all border-l-2 cursor-pointer ${isActive
-                  ? 'bg-[#FACC15]/10 border-[#FACC15] text-[#FACC15]'
+                  ? 'bg-brand-yellow/10 border-brand-yellow text-brand-yellow'
                   : 'text-gray-500 border-transparent hover:text-white hover:bg-white/5 hover:border-white/10'
                   }`}>
                   <span>{item.label}</span>
@@ -221,24 +221,24 @@ function NotificationBell({ notifications = [] }) {
     <div ref={ref} className="relative">
       <button
         onClick={() => setShow(!show)}
-        className={`relative p-2 rounded-full transition-colors ${show ? 'bg-gray-100 text-gray-900' : 'text-gray-400 hover:bg-gray-100'}`}
+        className={`relative p-2 rounded-full w-fit transition-colors ${show ? 'bg-gray-100 text-gray-900' : 'text-gray-400 hover:bg-gray-100'}`}
       >
         <Bell size={18} />
-        <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white" />
+        <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full w-fit border-2 border-white" />
       </button>
 
       {show && (
         <div className="absolute top-full right-0 mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 z-50 animate-in fade-in slide-in-from-top-2">
           <div className="px-4 py-3 border-b border-gray-50 flex justify-between items-center">
             <h3 className="font-bold text-gray-900 text-sm">Notifications</h3>
-            <span className="text-xs text-[#FACC15] font-semibold uppercase tracking-widest cursor-pointer hover:opacity-70">Clear all</span>
+            <span className="text-xs text-brand-yellow font-semibold uppercase tracking-widest cursor-pointer hover:opacity-70">Clear all</span>
           </div>
           <div className="divide-y divide-gray-50 max-h-80 overflow-auto">
             {items.map((n, i) => (
               <div key={i} className={`p-4 hover:bg-gray-50 cursor-pointer transition-colors ${n.unread ? 'bg-amber-50/30' : ''}`}>
                 <div className="flex justify-between items-start mb-1">
                   <p className={`text-sm ${n.unread ? 'font-bold text-gray-900' : 'font-medium text-gray-700'}`}>{n.title}</p>
-                  {n.unread && <span className="w-2 h-2 rounded-full bg-[#FACC15] mt-1 shrink-0" />}
+                  {n.unread && <span className="w-2 h-2 rounded-full w-fit bg-brand-yellow mt-1 shrink-0" />}
                 </div>
                 <p className="text-xs text-gray-500 mb-1">{n.desc}</p>
                 <p className="text-xs text-gray-400 font-bold">{n.time}</p>
@@ -290,7 +290,7 @@ export default function SidebarLayout({
             />
             {/* Fallback Text Logo */}
             <div className="hidden items-center gap-2.5 cursor-pointer" onClick={() => navigate('/')}>
-              <div className="w-8 h-8 bg-[#FACC15] rounded-hero-sm flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(255,204,0,0.25)]">
+              <div className="w-8 h-8 bg-brand-yellow rounded-hero-sm flex items-center justify-center shrink-0 shadow-[0_0_12px_rgba(250,204,21,0.25)]">
                 <Zap size={16} className="text-[#111]" strokeWidth={3} />
               </div>
               <span className="text-white font-semibold text-xl tracking-tighter uppercase">HERO</span>
@@ -357,7 +357,7 @@ export default function SidebarLayout({
                 <p className="text-xs font-semibold text-[#111] leading-none mb-1 uppercase tracking-tight">{user.name || 'Operator'}</p>
                 <p className="text-xs font-semibold text-gray-400 uppercase tracking-[0.15em]">{user.role || 'Admin'}</p>
               </div>
-              <div className="w-9 h-9 rounded-hero-sm bg-[#FACC15] border border-black/5 flex items-center justify-center font-semibold text-[#111] text-xs shadow-sm">
+              <div className="w-9 h-9 rounded-hero-sm bg-brand-yellow border border-black/5 flex items-center justify-center font-semibold text-hero-dark text-xs shadow-sm">
                 {initials}
               </div>
             </div>

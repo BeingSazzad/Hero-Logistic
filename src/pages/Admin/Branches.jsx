@@ -26,7 +26,7 @@ export default function AdminBranches() {
         </div>
         <button
           onClick={() => navigate('/admin/branches/add')}
-          className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm active:scale-95"
+          className="bg-brand-yellow hover:bg-brand-orange text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm active:scale-95"
         >
           <Plus size={18} strokeWidth={3} /> Add New Branch
         </button>
@@ -56,17 +56,17 @@ export default function AdminBranches() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {branches.map(branch => (
-          <div key={branch.id} onClick={() => navigate(`/admin/branches/${branch.id}`)} className="bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-[#FACC15] cursor-pointer transition-all relative overflow-hidden group flex flex-col hover:shadow-xl">
-            <div className={`h-1.5 w-full absolute top-0 left-0 ${branch.type === 'Primary Depot' ? 'bg-[#FACC15]' : 'bg-gray-200'}`}></div>
+          <div key={branch.id} onClick={() => navigate(`/admin/branches/${branch.id}`)} className="bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-brand-yellow cursor-pointer transition-all relative overflow-hidden group flex flex-col hover:shadow-xl">
+            <div className={`h-1.5 w-full absolute top-0 left-0 ${branch.type === 'Primary Depot' ? 'bg-brand-yellow' : 'bg-gray-200'}`}></div>
 
             <div className="p-7 flex-1">
               <div className="flex justify-between items-start mb-5">
                 <div className="flex items-center gap-3">
-                  <span className={`text-xs font-semibold uppercase tracking-widest .5 py-1 rounded-md border ${branch.type === 'Primary Depot' ? 'bg-[#FFFBEB] text-[#9A7B00] border-[#FACC15]/40' : 'bg-gray-50 text-gray-600 border-gray-200'}`}>
+                  <span className={`text-xs font-semibold uppercase tracking-widest .5 py-1 rounded-md border ${branch.type === 'Primary Depot' ? 'bg-[#FFFBEB] text-[#9A7B00] border-brand-yellow/40' : 'bg-gray-50 text-gray-600 border-gray-200'}`}>
                     {branch.type}
                   </span>
                   <div className="flex items-center gap-1.5 bg-gray-50  py-1 rounded-md border border-gray-100">
-                    <span className={`w-1.5 h-1.5 rounded-full ${branch.status === 'Online' ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}`}></span>
+                    <span className={`w-1.5 h-1.5 rounded-full w-fit ${branch.status === 'Online' ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}`}></span>
                     <span className="hero-metadata">{branch.status}</span>
                   </div>
                 </div>
@@ -75,11 +75,11 @@ export default function AdminBranches() {
                 </div>
               </div>
 
-              <h2 className="text-2xl font-semibold text-gray-900 tracking-tight mb-1 group-hover:text-[#FACC15] transition-colors">{branch.name}</h2>
+              <h2 className="text-2xl font-semibold text-gray-900 tracking-tight mb-1 group-hover:text-brand-yellow transition-colors">{branch.name}</h2>
               <div className="flex flex-col gap-1.5 mb-8">
                 <p className="text-xs font-bold text-gray-400 flex items-center gap-1.5 uppercase tracking-widest"><MapPin size={13} className="text-gray-300" /> {branch.location}</p>
                 <div className="flex items-center gap-2 mt-1">
-                  <div className="w-6 h-6 rounded bg-[#111] text-[#FACC15] flex items-center justify-center font-semibold text-xs">{branch.manager.split(' ').map(n => n[0]).join('')}</div>
+                  <div className="w-6 h-6 rounded bg-[#111] text-brand-yellow flex items-center justify-center font-semibold text-xs">{branch.manager.split(' ').map(n => n[0]).join('')}</div>
                   <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest">Lead: {branch.manager}</p>
                 </div>
               </div>
@@ -105,14 +105,14 @@ export default function AdminBranches() {
                   </div>
                   <span className={`text-xs font-semibold ${parseInt(branch.capacity) > 90 ? 'text-red-500' : 'text-gray-900'}`}>{branch.capacity}</span>
                 </div>
-                <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden border border-gray-100">
-                  <div className={`h-full transition-all duration-1000 ${parseInt(branch.capacity) > 90 ? 'bg-red-500' : 'bg-[#FACC15]'}`} style={{ width: branch.capacity }}></div>
+                <div className="w-full h-2 bg-gray-100 rounded-full w-fit overflow-hidden border border-gray-100">
+                  <div className={`h-full transition-all duration-1000 ${parseInt(branch.capacity) > 90 ? 'bg-red-500' : 'bg-brand-yellow'}`} style={{ width: branch.capacity }}></div>
                 </div>
               </div>
             </div>
 
             <div className="border-t border-gray-50 p-5 bg-gray-50/50 flex justify-between items-center group-hover:bg-[#111] group-hover:text-white transition-all">
-              <span className="text-xs font-semibold tracking-[0.2em] text-gray-400 group-hover:text-[#FACC15] transition-colors uppercase">{branch.id}</span>
+              <span className="text-xs font-semibold tracking-[0.2em] text-gray-400 group-hover:text-brand-yellow transition-colors uppercase">{branch.id}</span>
               <button
                 onClick={(e) => { e.stopPropagation(); navigate(`/admin/branches/${branch.id}`); }}
                 className="text-xs font-semibold uppercase tracking-widest flex items-center gap-2"

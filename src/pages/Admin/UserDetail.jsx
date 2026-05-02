@@ -77,12 +77,12 @@ export default function AdminUserDetail() {
           {editing ? (
             <>
               <button onClick={() => setEditing(false)} className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-5 py-2.5 rounded-lg font-bold transition-all shadow-sm">Cancel</button>
-              <button onClick={handleSave} className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+              <button onClick={handleSave} className="bg-brand-yellow hover:bg-brand-orange text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
                 <Save size={16}/> Save Changes
               </button>
             </>
           ) : (
-            <button onClick={() => setEditing(true)} className="bg-[#111] hover:bg-black text-[#FACC15] px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+            <button onClick={() => setEditing(true)} className="bg-[#111] hover:bg-black text-brand-yellow px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
               <Shield size={16}/> Edit Profile &amp; Access
             </button>
           )}
@@ -113,13 +113,13 @@ export default function AdminUserDetail() {
           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
             <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center justify-between">
               <h3 className="hero-metadata flex items-center gap-2"><Shield size={12}/> Role & Access Configuration</h3>
-              {editing && <span className="text-xs font-semibold text-[#FACC15] bg-[#111] .5 py-1 rounded uppercase tracking-widest">Edit Mode</span>}
+              {editing && <span className="text-xs font-semibold text-brand-yellow bg-[#111] .5 py-1 rounded uppercase tracking-widest">Edit Mode</span>}
             </div>
             <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="space-y-2">
                 <label className="hero-metadata block">System Role</label>
                 {editing ? (
-                  <select value={role} onChange={e => setRole(e.target.value)} className="w-full border border-[#FACC15] rounded-xl px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 bg-[#FFFBEB]">
+                  <select value={role} onChange={e => setRole(e.target.value)} className="w-full border border-brand-yellow rounded-xl px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-brand-yellow/20 bg-[#FFFBEB]">
                     {ROLES.map(r => <option key={r}>{r}</option>)}
                   </select>
                 ) : (
@@ -129,7 +129,7 @@ export default function AdminUserDetail() {
               <div className="space-y-2">
                 <label className="hero-metadata block">Assigned Branch</label>
                 {editing ? (
-                  <select value={branch} onChange={e => setBranch(e.target.value)} className="w-full border border-[#FACC15] rounded-xl px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 bg-[#FFFBEB]">
+                  <select value={branch} onChange={e => setBranch(e.target.value)} className="w-full border border-brand-yellow rounded-xl px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-brand-yellow/20 bg-[#FFFBEB]">
                     {BRANCHES.map(b => <option key={b}>{b}</option>)}
                   </select>
                 ) : (
@@ -139,7 +139,7 @@ export default function AdminUserDetail() {
               <div className="space-y-2">
                 <label className="hero-metadata block">Access Level</label>
                 {editing ? (
-                  <select value={access} onChange={e => setAccess(e.target.value)} className="w-full border border-[#FACC15] rounded-xl px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 bg-[#FFFBEB]">
+                  <select value={access} onChange={e => setAccess(e.target.value)} className="w-full border border-brand-yellow rounded-xl px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-brand-yellow/20 bg-[#FFFBEB]">
                     {ACCESS_LEVELS.map(a => <option key={a}>{a}</option>)}
                   </select>
                 ) : (
@@ -157,11 +157,11 @@ export default function AdminUserDetail() {
             <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="hero-metadata flex items-center gap-1"><Mail size={11}/> Email Address</label>
-                <input type="email" defaultValue={u.email} readOnly={!editing} className={`w-full border rounded-xl px-4 py-2.5 text-sm font-bold outline-none transition-all ${editing ? 'border-[#FACC15] focus:ring-2 focus:ring-[#FACC15]/20 bg-[#FFFBEB]' : 'border-gray-100 bg-gray-50 text-gray-400 cursor-not-allowed'}`} />
+                <input type="email" defaultValue={u.email} readOnly={!editing} className={`w-full border rounded-xl px-4 py-2.5 text-sm font-bold outline-none transition-all ${editing ? 'border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20 bg-[#FFFBEB]' : 'border-gray-100 bg-gray-50 text-gray-400 cursor-not-allowed'}`} />
               </div>
               <div className="space-y-2">
                 <label className="hero-metadata flex items-center gap-1"><Phone size={11}/> Phone</label>
-                <input type="tel" defaultValue={u.phone} readOnly={!editing} className={`w-full border rounded-xl px-4 py-2.5 text-sm font-bold outline-none transition-all ${editing ? 'border-[#FACC15] focus:ring-2 focus:ring-[#FACC15]/20 bg-[#FFFBEB]' : 'border-gray-100 bg-gray-50 text-gray-400 cursor-not-allowed'}`} />
+                <input type="tel" defaultValue={u.phone} readOnly={!editing} className={`w-full border rounded-xl px-4 py-2.5 text-sm font-bold outline-none transition-all ${editing ? 'border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20 bg-[#FFFBEB]' : 'border-gray-100 bg-gray-50 text-gray-400 cursor-not-allowed'}`} />
               </div>
             </div>
           </div>
@@ -172,7 +172,7 @@ export default function AdminUserDetail() {
           {/* Identity Card */}
           <div className="bg-[#111] rounded-xl p-6 text-white shadow-xl border border-gray-800">
             <div className="flex flex-col items-center text-center gap-4">
-              <div className="w-20 h-20 rounded-2xl bg-[#FACC15] flex items-center justify-center text-black font-semibold text-3xl shadow-2xl">
+              <div className="w-20 h-20 rounded-2xl bg-brand-yellow flex items-center justify-center text-black font-semibold text-3xl shadow-2xl">
                 {u.name.split(' ').map(n=>n[0]).join('')}
               </div>
               <div>

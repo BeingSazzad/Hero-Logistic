@@ -75,7 +75,7 @@ export default function AdminJobsMonitor() {
       <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
         <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
           <div className="relative w-[320px] group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16} />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-yellow transition-colors" size={16} />
             <input 
               type="text" 
               value={search} onChange={(e) => setSearch(e.target.value)}
@@ -87,7 +87,7 @@ export default function AdminJobsMonitor() {
             <select 
               value={sortKey} 
               onChange={(e) => setSortKey(e.target.value)}
-              className="appearance-none bg-white border border-gray-200 text-gray-700 text-xs font-bold rounded-lg pl-9 pr-10 py-2.5 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 transition-all cursor-pointer shadow-sm uppercase tracking-widest"
+              className="appearance-none bg-white border border-gray-200 text-gray-700 text-xs font-bold rounded-lg pl-9 pr-10 py-2.5 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-yellow/20 transition-all cursor-pointer shadow-sm uppercase tracking-widest"
             >
               <option value="id">Sort: Job ID</option>
               <option value="tenant">Sort: Processing Depot / Tenant</option>

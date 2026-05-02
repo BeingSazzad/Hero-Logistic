@@ -21,14 +21,14 @@ export default function DriverHome() {
          {/* ── 1. Operator Status HUD ── */}
          <div className="flex justify-between items-center bg-[#111] p-4 rounded-3xl shadow-xl border border-white/5">
             <div className="flex items-center gap-4">
-               <div className="w-12 h-12 rounded-2xl bg-[#FACC15] border-2 border-white/10 flex items-center justify-center font-semibold text-black text-xl shadow-inner">
+               <div className="w-12 h-12 rounded-2xl bg-brand-yellow border-2 border-white/10 flex items-center justify-center font-semibold text-black text-xl shadow-inner">
                   JT
                </div>
                <div>
                   <p className="text-xs font-medium text-gray-500 leading-none">Primary Operator</p>
                   <p className="text-sm font-semibold text-white mt-1">Jack Taylor</p>
                   <div className="flex items-center gap-1.5 mt-1">
-                     <div className={`w-1.5 h-1.5 rounded-full ${isOnline ? 'bg-emerald-500 animate-pulse' : 'bg-gray-500'}`}></div>
+                     <div className={`w-1.5 h-1.5 rounded-full w-fit ${isOnline ? 'bg-emerald-500 animate-pulse' : 'bg-gray-500'}`}></div>
                      <span className={`text-xs font-medium ${isOnline ? 'text-emerald-500' : 'text-gray-500'}`}>{isOnline ? 'Online' : 'Offline'}</span>
                   </div>
                </div>
@@ -53,7 +53,7 @@ export default function DriverHome() {
             </button>
             <button 
                onClick={() => navigate('/driver/active')} 
-               className="bg-[#FACC15] hover:bg-yellow-500 text-black px-5 py-6 rounded-[2rem] shadow-xl active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-3 border border-yellow-400"
+               className="bg-brand-yellow hover:bg-brand-orange text-black px-5 py-6 rounded-[2rem] shadow-xl active:scale-[0.98] transition-all flex flex-col items-center justify-center gap-3 border border-brand-yellow"
             >
                <div className="w-12 h-12 bg-black/10 rounded-2xl flex items-center justify-center shrink-0">
                   <Navigation size={28} className="text-black" />
@@ -94,14 +94,14 @@ export default function DriverHome() {
          <div className="space-y-4">
             <div className="flex items-center justify-between px-1">
                <h3 className="text-xs font-semibold text-gray-800">Operational Schedule</h3>
-               <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 .5 py-1 rounded-full uppercase tracking-widest">2 jobs today</span>
+               <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 .5 py-1 rounded-full w-fit uppercase tracking-widest">2 jobs today</span>
             </div>
             
             <div className="flex flex-col gap-3">
                {upcoming.map((job) => (
                   <div key={job.id} onClick={() => navigate('/driver/loads')} className="bg-white rounded-3xl border border-gray-100 shadow-sm p-5 flex items-center justify-between group active:scale-[0.98] transition-all cursor-pointer">
                      <div className="flex items-center gap-4 min-w-0">
-                        <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-gray-400 shrink-0 border border-gray-100 group-hover:bg-[#FACC15] group-hover:text-black group-hover:border-transparent transition-all">
+                        <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-gray-400 shrink-0 border border-gray-100 group-hover:bg-brand-yellow group-hover:text-black group-hover:border-transparent transition-all">
                            <Package size={22} />
                         </div>
                         <div className="min-w-0">
@@ -115,7 +115,7 @@ export default function DriverHome() {
                            </div>
                         </div>
                      </div>
-                     <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-300 group-hover:bg-black group-hover:text-white transition-all">
+                     <div className="w-8 h-8 rounded-full w-fit bg-gray-50 flex items-center justify-center text-gray-300 group-hover:bg-black group-hover:text-white transition-all">
                         <ChevronRight size={16} />
                      </div>
                   </div>

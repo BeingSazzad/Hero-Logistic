@@ -57,7 +57,7 @@ export default function AdminJobsConfig() {
                      </div>
                      <div className="relative inline-flex items-center cursor-pointer">
                         <input type="checkbox" defaultChecked={type.enabled} className="sr-only peer" />
-                        <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brand"></div>
+                        <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full w-fit peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full w-fit after:h-4 after:w-4 after:transition-all peer-checked:bg-brand"></div>
                      </div>
                   </div>
                 ))}
@@ -99,7 +99,7 @@ export default function AdminJobsConfig() {
         <div className="lg:col-span-4 space-y-8">
            
            <div className="bg-hero-dark rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 rounded-full blur-[60px] -mr-16 -mt-16"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 rounded-full w-fit blur-[60px] -mr-16 -mt-16"></div>
               <h3 className="text-xs font-semibold uppercase tracking-[0.2em] mb-8 text-brand flex items-center gap-3">
                  Billings Logic
               </h3>
@@ -139,7 +139,7 @@ export default function AdminJobsConfig() {
                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">{t.label}</span>
                        <div className="relative inline-flex items-center cursor-pointer">
                           <input type="checkbox" defaultChecked={t.enabled} className="sr-only peer" />
-                          <div className="w-8 h-4 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-blue-600"></div>
+                          <div className="w-8 h-4 bg-gray-200 rounded-full w-fit peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full w-fit after:h-3 after:w-3 after:transition-all peer-checked:bg-blue-600"></div>
                        </div>
                     </div>
                  ))}

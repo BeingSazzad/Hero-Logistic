@@ -54,11 +54,11 @@ export default function AdminCustomerDetail() {
           </div>
         </div>
         <div className="flex gap-3">
-          <button onClick={() => setEditing(!editing)} className={`px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm border ${editing ? 'bg-[#111] text-[#FACC15] border-gray-800' : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'}`}>
+          <button onClick={() => setEditing(!editing)} className={`px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm border ${editing ? 'bg-[#111] text-brand-yellow border-gray-800' : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'}`}>
             <Edit3 size={16}/> {editing ? 'Cancel Edit' : 'Edit Account'}
           </button>
           {editing && (
-            <button onClick={() => setEditing(false)} className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+            <button onClick={() => setEditing(false)} className="bg-brand-yellow hover:bg-brand-orange text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
               <CheckCircle2 size={16}/> Save Changes
             </button>
           )}
@@ -101,7 +101,7 @@ export default function AdminCustomerDetail() {
                 <div key={i} className="space-y-1">
                   <p className="hero-metadata">{f.label}</p>
                   {editing ? (
-                    <input defaultValue={f.val} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all" />
+                    <input defaultValue={f.val} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-brand-yellow/20 focus:border-brand-yellow transition-all" />
                   ) : (
                     <p className="text-sm font-bold text-gray-900">{f.val}</p>
                   )}
@@ -110,7 +110,7 @@ export default function AdminCustomerDetail() {
               <div className="md:col-span-2 space-y-1">
                 <p className="hero-metadata flex items-center gap-1"><MapPin size={11}/> Business Address</p>
                 {editing ? (
-                  <input defaultValue={c.address} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all" />
+                  <input defaultValue={c.address} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-brand-yellow/20 focus:border-brand-yellow transition-all" />
                 ) : (
                   <p className="text-sm font-bold text-gray-900">{c.address}</p>
                 )}
@@ -140,8 +140,8 @@ export default function AdminCustomerDetail() {
                   <p className="text-2xl font-semibold text-gray-500">${c.creditLimit.toLocaleString()}</p>
                 </div>
               </div>
-              <div className="w-full h-4 bg-gray-100 rounded-full overflow-hidden">
-                <div className={`h-full ${creditColor} rounded-full transition-all`} style={{ width: `${creditUsedPercent}%` }}></div>
+              <div className="w-full h-4 bg-gray-100 rounded-full w-fit overflow-hidden">
+                <div className={`h-full ${creditColor} rounded-full w-fit transition-all`} style={{ width: `${creditUsedPercent}%` }}></div>
               </div>
               <p className="text-xs text-gray-400 font-bold mt-2 uppercase tracking-widests">{creditUsedPercent}% of credit limit used · Terms: {c.terms}</p>
             </div>
@@ -151,7 +151,7 @@ export default function AdminCustomerDetail() {
           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
             <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center justify-between">
               <h3 className="hero-metadatas flex items-center gap-2"><Package size={12}/> Recent Loads</h3>
-              <button onClick={() => navigate('/admin/loads')} className="text-xs font-semibold text-[#FACC15] uppercase tracking-widests hover:underline">View All →</button>
+              <button onClick={() => navigate('/admin/loads')} className="text-xs font-semibold text-brand-yellow uppercase tracking-widests hover:underline">View All →</button>
             </div>
             <div className="divide-y divide-gray-50">
               {RECENT_LoadS.map(s => (
@@ -179,7 +179,7 @@ export default function AdminCustomerDetail() {
             <h3 className="text-xs font-semibold uppercase tracking-widests mb-5 text-gray-300">Primary Contact</h3>
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-[#FACC15] flex items-center justify-center text-black font-semibold text-xl shadow-lg shrink-0">
+                <div className="w-14 h-14 rounded-2xl bg-brand-yellow flex items-center justify-center text-black font-semibold text-xl shadow-lg shrink-0">
                   {c.contact.split(' ').map(n=>n[0]).join('')}
                 </div>
                 <div>
@@ -197,7 +197,7 @@ export default function AdminCustomerDetail() {
                   <span className="text-gray-300 font-bold text-xs">{c.email}</span>
                 </div>
               </div>
-              <button className="w-full bg-[#FACC15] hover:bg-yellow-400 text-black py-2.5 rounded-xl font-semibold text-xs uppercase tracking-widests transition-all flex items-center justify-center gap-2 mt-4">
+              <button className="w-full bg-brand-yellow hover:bg-brand-yellow text-black py-2.5 rounded-xl font-semibold text-xs uppercase tracking-widests transition-all flex items-center justify-center gap-2 mt-4">
                 <MessageSquare size={14}/> Send Message
               </button>
             </div>

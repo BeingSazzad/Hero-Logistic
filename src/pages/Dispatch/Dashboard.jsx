@@ -82,7 +82,7 @@ export default function DispatchDashboard() {
               <div className={`w-9 h-9 rounded-hero-sm flex items-center justify-center bg-${kpi.color}-50 text-${kpi.color}-500 border border-${kpi.color}-100`}>
                 <kpi.icon size={18} />
               </div>
-              <span className={`text-xs font-semibold uppercase tracking-widest  py-0.5 rounded-full bg-${kpi.color}-50 text-${kpi.color}-600`}>{kpi.trend}</span>
+              <span className={`text-xs font-semibold uppercase tracking-widest  py-0.5 rounded-full w-fit bg-${kpi.color}-50 text-${kpi.color}-600`}>{kpi.trend}</span>
             </div>
             <div>
               <p className="hero-metadata mb-1">{kpi.label}</p>
@@ -182,7 +182,7 @@ export default function DispatchDashboard() {
                <h4 className="text-sm font-semibold text-red-600 flex items-center gap-2">
                  <ShieldAlert size={14} strokeWidth={3} /> Critical Logs
                </h4>
-               <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+               <span className="w-2 h-2 rounded-full w-fit bg-red-500 animate-pulse"></span>
             </div>
             <div className="p-4 space-y-3">
               {[

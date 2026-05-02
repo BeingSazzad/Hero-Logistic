@@ -34,7 +34,7 @@ export default function AdminNotifications() {
         <div className="flex flex-col">
            {alerts.map(alt => (
              <div key={alt.id} className="p-5 border-b border-gray-50 last:border-b-0 flex items-start gap-4 hover:bg-gray-50/50 transition truncate group relative cursor-pointer">
-               <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-inner ${
+               <div className={`w-10 h-10 rounded-full w-fit flex items-center justify-center shrink-0 shadow-inner ${
                  alt.resolved ? 'bg-emerald-50 text-emerald-500' :
                  alt.priority === 'Critical' ? 'bg-red-50 text-red-500' : 
                  alt.priority === 'High' ? 'bg-orange-50 text-orange-500' : 'bg-blue-50 text-blue-500'
@@ -57,7 +57,7 @@ export default function AdminNotifications() {
                <div className="absolute top-1/2 -translate-y-1/2 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
                  {alt.resolved 
                    ? <span className="text-xs font-semibold text-emerald-600 uppercase tracking-widest flex items-center gap-1"><CheckCircle2 size={12}/> Resolved</span>
-                   : <button onClick={() => resolve(alt.id)} className="btn btn-dark text-xs py-1.5 px-4 font-bold rounded-full">Resolve</button>
+                   : <button onClick={() => resolve(alt.id)} className="btn btn-dark text-xs py-1.5 px-4 font-bold rounded-full w-fit">Resolve</button>
                  }
                </div>
              </div>

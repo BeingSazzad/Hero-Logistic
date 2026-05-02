@@ -51,7 +51,7 @@ export default function AdminAddVehicle() {
           >
             Cancel
           </button>
-          <button onClick={handleSave} className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm group">
+          <button onClick={handleSave} className="bg-brand-yellow hover:bg-brand-orange text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm group">
             <Save size={18} strokeWidth={2.5}/> Save Vehicle
           </button>
         </div>
@@ -83,7 +83,7 @@ export default function AdminAddVehicle() {
           
           <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
              <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center gap-3">
-               <Truck className="text-[#FACC15]" size={18} />
+               <Truck className="text-brand-yellow" size={18} />
                <div>
                   <h2 className="text-sm font-bold text-[#111] uppercase tracking-wide">Vehicle Identification</h2>
                </div>
@@ -91,11 +91,11 @@ export default function AdminAddVehicle() {
              <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                <div>
                   <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Reg / Number Plate</label>
-                  <input type="text" placeholder="e.g. XQG-984" className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
+                  <input type="text" placeholder="e.g. XQG-984" className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" />
                </div>
                <div>
                   <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Vehicle Category</label>
-                  <select className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm appearance-none cursor-pointer focus:outline-none focus:border-[#FACC15] focus:ring-2 focus:ring-[#FACC15]/20">
+                  <select className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm appearance-none cursor-pointer focus:outline-none focus:border-brand-yellow focus:ring-2 focus:ring-brand-yellow/20">
                     <option>Heavy Truck (Semi)</option>
                     <option>B-Double</option>
                     <option>Rigid Truck</option>
@@ -107,17 +107,17 @@ export default function AdminAddVehicle() {
                <div className="md:col-span-2">
                   <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">VIN / Chassis Number</label>
                   <div className="relative group">
-                     <Key className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16}/>
-                     <input type="text" placeholder="17-digit identification" className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 font-mono" />
+                     <Key className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-yellow transition-colors" size={16}/>
+                     <input type="text" placeholder="17-digit identification" className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20 font-mono" />
                   </div>
                </div>
                <div>
                   <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Make & Model</label>
-                  <input type="text" placeholder="e.g. Kenworth T610" className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
+                  <input type="text" placeholder="e.g. Kenworth T610" className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" />
                </div>
                <div>
                   <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Year of Manufacture</label>
-                  <input type="number" placeholder="2024" className="w-full bg-white border border-gray-200 focus:border-[#FACC15] rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
+                  <input type="number" placeholder="2024" className="w-full bg-white border border-gray-200 focus:border-brand-yellow rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" />
                </div>
              </div>
           </div>
@@ -174,7 +174,7 @@ export default function AdminAddVehicle() {
                     </>
                   ) : (
                     <div className="flex flex-col items-center gap-3 text-gray-400 p-8">
-                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm text-gray-400">
+                      <div className="w-12 h-12 rounded-full w-fit bg-white flex items-center justify-center shadow-sm text-gray-400">
                         <ImageIcon size={24} />
                       </div>
                       <div className="text-center">
@@ -188,13 +188,13 @@ export default function AdminAddVehicle() {
              </div>
              <div className="p-5 border-t border-gray-100">
                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Additional Notes</label>
-                <textarea className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm min-h-[100px] resize-y focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" placeholder="Special requirements or history..."></textarea>
+                <textarea className="w-full bg-white border border-gray-200 rounded-lg py-2.5 px-4 text-sm font-medium text-gray-900 shadow-sm min-h-[100px] resize-y focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" placeholder="Special requirements or history..."></textarea>
              </div>
            </div>
 
            {/* Operational Config */}
            <div className="bg-[#111] rounded-xl p-6 text-white shadow-sm border border-gray-800 relative overflow-hidden group">
-              <div className="absolute -right-6 -top-6 w-32 h-32 bg-gray-800/50 rounded-full blur-3xl group-hover:bg-gray-700/50 transition-all"></div>
+              <div className="absolute -right-6 -top-6 w-32 h-32 bg-gray-800/50 rounded-full w-fit blur-3xl group-hover:bg-gray-700/50 transition-all"></div>
               <h3 className="text-xs font-bold uppercase tracking-widest mb-6 text-gray-300 flex items-center gap-2">
                  <Truck size={16}/> Initial Status Setup
               </h3>

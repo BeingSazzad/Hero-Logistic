@@ -50,7 +50,7 @@ export default function SafetyCheck() {
         {/* ── Vehicle Info ── */}
         <div className="bg-white rounded-3xl p-5 border border-gray-100 shadow-sm flex items-center justify-between">
            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center text-yellow-400 shrink-0 shadow-inner">
+              <div className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center text-brand-yellow shrink-0 shadow-inner">
                  <Truck size={24} />
               </div>
               <div>
@@ -58,7 +58,7 @@ export default function SafetyCheck() {
                  <h2 className="text-lg font-bold text-gray-900 leading-tight">SYD-TRK-102</h2>
               </div>
            </div>
-           <button className="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center text-gray-400 border border-gray-100">
+           <button className="w-10 h-10 bg-gray-50 rounded-full w-fit flex items-center justify-center text-gray-400 border border-gray-100">
               <Camera size={18} />
            </button>
         </div>
@@ -81,7 +81,7 @@ export default function SafetyCheck() {
                       <p className="text-xs font-medium text-gray-500 mt-0.5">{item.desc}</p>
                    </div>
                 </div>
-                <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${checks[item.id] ? 'bg-emerald-500 border-emerald-500' : 'border-gray-200'}`}>
+                <div className={`w-6 h-6 rounded-full w-fit border-2 flex items-center justify-center transition-all ${checks[item.id] ? 'bg-emerald-500 border-emerald-500' : 'border-gray-200'}`}>
                    {checks[item.id] && <CheckCircle2 size={14} className="text-white" />}
                 </div>
              </button>
@@ -99,7 +99,7 @@ export default function SafetyCheck() {
            <button 
              disabled={!allDone}
              onClick={() => navigate('/driver')}
-             className={`w-full py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-lg ${allDone ? 'bg-gray-900 text-yellow-400 active:scale-95' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+             className={`w-full py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-lg ${allDone ? 'bg-gray-900 text-brand-yellow active:scale-95' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
            >
               <ShieldCheck size={20} />
               Confirm Vehicle Status

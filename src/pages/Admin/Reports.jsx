@@ -1,33 +1,64 @@
 import React, { useState } from 'react';
-import { 
-  Download, ArrowUpRight, ArrowDownRight, DollarSign, 
+import {
+  Download, ArrowUpRight, ArrowDownRight, DollarSign,
   BarChart3, Calendar, Layers, TrendingUp, Globe, ChevronDown
 } from 'lucide-react';
 
 export default function AdminReports() {
   const [selectedYear, setSelectedYear] = useState('2026');
 
-  const stats = [
-    { label: 'Total Booking Income', val: '$14.2M', diff: '+12.4%', up: true, icon: DollarSign, color: 'text-[#111]', bg: 'bg-[#FACC15]' },
-    { label: 'Avg Monthly Revenue',  val: '$1.18M', diff: '+8.1%',  up: true, icon: BarChart3,  color: 'text-sky-600',     bg: 'bg-sky-50' },
-    { label: 'Successful Loads', val: '142.5K', diff: '+15.5%', up: true, icon: Layers,     color: 'text-emerald-600', bg: 'bg-emerald-50' },
-    { label: 'Annual Growth',        val: '1.8x',   diff: '+5.5%',  up: true, icon: TrendingUp, color: 'text-violet-600',  bg: 'bg-violet-50' }
-  ];
+  const STATS_BY_YEAR = {
+    '2026': [
+      { label: 'Total Booking Income', val: '$14.2M', diff: '+12.4%', up: true, icon: DollarSign, color: 'text-[#111]', bg: 'bg-brand-yellow' },
+      { label: 'Avg Monthly Revenue',  val: '$1.18M', diff: '+8.1%',  up: true, icon: BarChart3,  color: 'text-sky-600',     bg: 'bg-sky-50' },
+      { label: 'Successful Loads', val: '142.5K', diff: '+15.5%', up: true, icon: Layers,     color: 'text-emerald-600', bg: 'bg-emerald-50' },
+      { label: 'Annual Growth',        val: '1.8x',   diff: '+5.5%',  up: true, icon: TrendingUp, color: 'text-violet-600',  bg: 'bg-violet-50' }
+    ],
+    '2025': [
+      { label: 'Total Booking Income', val: '$12.8M', diff: '+10.2%', up: true, icon: DollarSign, color: 'text-[#111]', bg: 'bg-brand-yellow' },
+      { label: 'Avg Monthly Revenue',  val: '$1.06M', diff: '+5.4%',  up: true, icon: BarChart3,  color: 'text-sky-600',     bg: 'bg-sky-50' },
+      { label: 'Successful Loads', val: '128.2K', diff: '+12.1%', up: true, icon: Layers,     color: 'text-emerald-600', bg: 'bg-emerald-50' },
+      { label: 'Annual Growth',        val: '1.6x',   diff: '+4.2%',  up: true, icon: TrendingUp, color: 'text-violet-600',  bg: 'bg-violet-50' }
+    ],
+    '2024': [
+      { label: 'Total Booking Income', val: '$10.4M', diff: '+8.7%',  up: true, icon: DollarSign, color: 'text-[#111]', bg: 'bg-brand-yellow' },
+      { label: 'Avg Monthly Revenue',  val: '$866K',  diff: '+3.2%',  up: true, icon: BarChart3,  color: 'text-sky-600',     bg: 'bg-sky-50' },
+      { label: 'Successful Loads', val: '102.1K', diff: '+9.4%',  up: true, icon: Layers,     color: 'text-emerald-600', bg: 'bg-emerald-50' },
+      { label: 'Annual Growth',        val: '1.4x',   diff: '+2.1%',  up: true, icon: TrendingUp, color: 'text-violet-600',  bg: 'bg-violet-50' }
+    ]
+  };
 
-  const monthlyRevenue = [
-    { m: 'Jan', v: 45 }, { m: 'Feb', v: 52 }, { m: 'Mar', v: 62 }, 
-    { m: 'Apr', v: 58 }, { m: 'May', v: 69 }, { m: 'Jun', v: 75 },
-    { m: 'Jul', v: 82 }, { m: 'Aug', v: 78 }, { m: 'Sep', v: 88 },
-    { m: 'Oct', v: 94 }, { m: 'Nov', v: 98 }, { m: 'Dec', v: 91 }
-  ];
+  const stats = STATS_BY_YEAR[selectedYear] || STATS_BY_YEAR['2026'];
 
+  const YEAR_DATA = {
+    '2026': [
+      { m: 'Jan', v: 45 }, { m: 'Feb', v: 52 }, { m: 'Mar', v: 62 },
+      { m: 'Apr', v: 58 }, { m: 'May', v: 69 }, { m: 'Jun', v: 75 },
+      { m: 'Jul', v: 82 }, { m: 'Aug', v: 78 }, { m: 'Sep', v: 88 },
+      { m: 'Oct', v: 94 }, { m: 'Nov', v: 98 }, { m: 'Dec', v: 91 }
+    ],
+    '2025': [
+      { m: 'Jan', v: 38 }, { m: 'Feb', v: 42 }, { m: 'Mar', v: 55 },
+      { m: 'Apr', v: 48 }, { m: 'May', v: 59 }, { m: 'Jun', v: 65 },
+      { m: 'Jul', v: 72 }, { m: 'Aug', v: 68 }, { m: 'Sep', v: 78 },
+      { m: 'Oct', v: 84 }, { m: 'Nov', v: 88 }, { m: 'Dec', v: 81 }
+    ],
+    '2024': [
+      { m: 'Jan', v: 25 }, { m: 'Feb', v: 32 }, { m: 'Mar', v: 42 },
+      { m: 'Apr', v: 38 }, { m: 'May', v: 49 }, { m: 'Jun', v: 55 },
+      { m: 'Jul', v: 62 }, { m: 'Aug', v: 58 }, { m: 'Sep', v: 68 },
+      { m: 'Oct', v: 74 }, { m: 'Nov', v: 78 }, { m: 'Dec', v: 71 }
+    ]
+  };
+
+  const monthlyRevenue = YEAR_DATA[selectedYear] || YEAR_DATA['2026'];
   const maxVal = Math.max(...monthlyRevenue.map(d => d.v));
 
   const branchPerformance = [
-    { name: 'Sydney Central Depot',  revenue: '$2.4M', efficiency: 98 },
-    { name: 'Melbourne Depot',     revenue: '$1.8M', efficiency: 92 },
-    { name: 'Brisbane Port',       revenue: '$1.2M', efficiency: 86 },
-    { name: 'Perth Terminal',      revenue: '$1.1M', efficiency: 89 }
+    { name: 'Sydney Central Depot', revenue: '$2.4M', efficiency: 98 },
+    { name: 'Melbourne Depot', revenue: '$1.8M', efficiency: 92 },
+    { name: 'Brisbane Port', revenue: '$1.2M', efficiency: 86 },
+    { name: 'Perth Terminal', revenue: '$1.1M', efficiency: 89 }
   ];
 
   return (
@@ -46,20 +77,18 @@ export default function AdminReports() {
         </div>
         <div className="flex gap-3">
           <div className="relative">
-            <select 
+            <select
               value={selectedYear}
               onChange={(e) => setSelectedYear(e.target.value)}
-              className="appearance-none bg-white border border-gray-200 text-gray-700 pl-9 pr-10 py-2.5 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all cursor-pointer shadow-sm uppercase tracking-widest"
+              className="pl-4 font-bold uppercase tracking-widest shadow-sm"
             >
               <option value="2026">Year 2026</option>
               <option value="2025">Year 2025</option>
               <option value="2024">Year 2024</option>
             </select>
-            <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={14}/>
-            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={14}/>
           </div>
-          <button className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-5 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm text-sm">
-            <Download size={16}/> Export
+          <button className="bg-brand-yellow hover:bg-brand-orange text-black px-5 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm text-sm">
+            <Download size={16} /> Export
           </button>
         </div>
       </div>
@@ -75,12 +104,12 @@ export default function AdminReports() {
               <div className="flex items-end gap-2 mt-1.5">
                 <p className="text-2xl font-semibold text-gray-900 leading-none">{k.val}</p>
                 <span className={`text-xs font-bold pb-0.5 flex items-center gap-0.5 ${k.up ? 'text-emerald-500' : 'text-red-500'}`}>
-                  {k.up ? <ArrowUpRight size={10} strokeWidth={3}/> : <ArrowDownRight size={10} strokeWidth={3}/>}{k.diff}
+                  {k.up ? <ArrowUpRight size={10} strokeWidth={3} /> : <ArrowDownRight size={10} strokeWidth={3} />}{k.diff}
                 </span>
               </div>
             </div>
             <div className={`w-10 h-10 rounded-lg flex items-center justify-center border border-gray-50 ${k.bg} ${k.color} shrink-0`}>
-              <k.icon size={20}/>
+              <k.icon size={20} />
             </div>
           </div>
         ))}
@@ -91,27 +120,26 @@ export default function AdminReports() {
 
         {/* White Chart Card */}
         <div className="lg:col-span-2 bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 flex flex-col overflow-hidden">
-          
+
           {/* Chart Header */}
           <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex justify-between items-center">
             <div className="flex items-center gap-3">
-              <TrendingUp size={18} className="text-[#FACC15]" />
+              <TrendingUp size={18} className="text-brand-yellow" />
               <div>
                 <h3 className="text-sm font-bold text-[#111] uppercase tracking-wide">Monthly Revenue</h3>
                 <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">Fiscal Year {selectedYear}</p>
               </div>
             </div>
             <div className="relative">
-              <select 
+              <select
                 value={selectedYear}
                 onChange={(e) => setSelectedYear(e.target.value)}
-                className="appearance-none bg-white border border-gray-200 text-gray-700 pl-3 pr-8 py-1.5 rounded-md text-xs font-bold focus:outline-none transition-all cursor-pointer shadow-sm uppercase tracking-widest"
+                className="pl-4 font-bold uppercase tracking-widest rounded-lg shadow-sm"
               >
                 <option value="2026">2026</option>
                 <option value="2025">2025</option>
                 <option value="2024">2024</option>
               </select>
-              <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={12}/>
             </div>
           </div>
 
@@ -120,9 +148,9 @@ export default function AdminReports() {
             <div className="flex items-end justify-between gap-3 h-[280px] relative">
               {/* Grid lines */}
               <div className="absolute inset-0 flex flex-col justify-between pointer-events-none pb-6">
-                {[1,2,3,4].map(i => (
+                {[1, 2, 3, 4].map(i => (
                   <div key={i} className="w-full h-px bg-gray-100 relative">
-                    <span className="absolute -left-8 -top-2 text-xs font-bold text-gray-400">{(5-i)}M</span>
+                    <span className="absolute -left-8 -top-2 text-xs font-bold text-gray-400">{(5 - i)}M</span>
                   </div>
                 ))}
               </div>
@@ -134,8 +162,8 @@ export default function AdminReports() {
                     ${(d.v * 0.032).toFixed(1)}M
                   </div>
                   {/* Bar */}
-                  <div 
-                    className="w-full bg-[#FACC15] hover:bg-[#111] rounded-t transition-all duration-300 cursor-pointer" 
+                  <div
+                    className="w-full bg-brand-yellow hover:bg-[#111] rounded-t transition-all duration-300 cursor-pointer"
                     style={{ height: `${(d.v / maxVal) * 230}px`, minHeight: 8 }}
                   />
                   <span className="text-xs font-bold text-gray-500 uppercase group-hover:text-[#111] transition-colors">{d.m}</span>
@@ -166,8 +194,8 @@ export default function AdminReports() {
         {/* Depot Ranking */}
         <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 flex flex-col">
           <div className="p-5 border-b border-gray-100 flex items-center gap-3 bg-[#FAFAFA]">
-            <div className="w-8 h-8 bg-[#111] rounded-lg flex items-center justify-center text-[#FACC15]">
-              <Globe size={16}/>
+            <div className="w-8 h-8 bg-[#111] rounded-lg flex items-center justify-center text-brand-yellow">
+              <Globe size={16} />
             </div>
             <div>
               <h3 className="text-sm font-bold text-gray-900">Depot Ranking</h3>
@@ -183,9 +211,9 @@ export default function AdminReports() {
                   <p className="text-sm font-semibold text-gray-900">{Depot.revenue}</p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                    <div 
-                      className="h-full bg-[#FACC15] rounded-full group-hover:bg-[#111] transition-all duration-700" 
+                  <div className="flex-1 h-1.5 bg-gray-100 rounded-full w-fit overflow-hidden">
+                    <div
+                      className="h-full bg-brand-yellow rounded-full w-fit group-hover:bg-[#111] transition-all duration-700"
                       style={{ width: `${Depot.efficiency}%` }}
                     />
                   </div>
@@ -196,7 +224,7 @@ export default function AdminReports() {
           </div>
 
           <div className="p-5 mt-auto border-t border-gray-100">
-            <button className="w-full py-2.5 bg-[#FACC15] hover:bg-[#E6B800] text-black rounded-lg font-bold text-sm transition-all shadow-sm">
+            <button className="w-full py-2.5 bg-brand-yellow hover:bg-brand-orange text-black rounded-lg font-bold text-sm transition-all shadow-sm">
               View Full Network
             </button>
           </div>

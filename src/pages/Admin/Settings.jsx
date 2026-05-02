@@ -36,8 +36,8 @@ export default function AdminSettings() {
           <div className="p-8 flex flex-col md:flex-row gap-8">
             
             <div className="shrink-0 flex flex-col justify-center items-center gap-4">
-               <div className="w-32 h-32 rounded-full bg-gray-100 border-4 border-white shadow-lg overflow-hidden relative group cursor-pointer">
-                  <div className="absolute inset-0 bg-[#FACC15] flex items-center justify-center text-4xl font-semibold text-black">
+               <div className="w-32 h-32 rounded-full w-fit bg-gray-100 border-4 border-white shadow-lg overflow-hidden relative group cursor-pointer">
+                  <div className="absolute inset-0 bg-brand-yellow flex items-center justify-center text-4xl font-semibold text-black">
                      MA
                   </div>
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">

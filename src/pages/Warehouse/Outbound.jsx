@@ -135,17 +135,17 @@ export default function WarehouseOutbound() {
                 {/* Action Row */}
                 {!isDispatched && (
                   <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                    <button className="btn-sm btn-outline flex items-center gap-2">
+                    <button className="btn btn-sm btn-outline px-6">
                       <Barcode size={16} /> Print Labels
                     </button>
                     <div className="flex-1" />
                     <button
                       onClick={() => handleRelease(load.id)}
                       disabled={isReleasing}
-                      className={`flex items-center gap-2 px-8 py-4 rounded-2xl text-xs font-semibold uppercase tracking-[0.1em] transition-all shadow-lg active:scale-[0.97] ${
+                      className={`btn btn-dark min-w-[220px] shadow-lg transition-all active:scale-[0.97] ${
                         isReleasing
                           ? 'bg-gray-100 text-gray-300 cursor-wait'
-                          : 'bg-[#111] text-[#FACC15] hover:bg-black hover:shadow-xl'
+                          : 'text-brand-yellow'
                       }`}
                     >
                       {isReleasing ? (

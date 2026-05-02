@@ -57,10 +57,10 @@ export default function DispatchDrivers() {
           </div>
         </div>
         <div className="flex gap-3">
-          <button className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 px-6 py-2.5 rounded-lg font-bold transition-all shadow-sm">
+          <button className="btn-md btn-outline px-6">
             Export CSV
           </button>
-          <button onClick={() => navigate('/dispatch/drivers/add')} className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm">
+          <button onClick={() => navigate('/dispatch/drivers/add')} className="btn-md btn-primary px-6">
             <Plus size={18} strokeWidth={3} /> Add Driver
           </button>
         </div>
@@ -87,13 +87,13 @@ export default function DispatchDrivers() {
 
           <div className="flex flex-col md:flex-row items-center gap-4 w-full xl:w-auto">
             <div className="relative w-full md:w-[320px]">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16} />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-yellow transition-colors" size={16} />
               <input
                 type="text"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 placeholder="Search by ID or Name..."
-                className="input pl-10"
+                className="input pl-10 focus:border-brand-yellow focus:ring-brand-yellow/20"
               />
             </div>
 
@@ -101,7 +101,7 @@ export default function DispatchDrivers() {
               <select
                 value={sortKey}
                 onChange={(e) => setSortKey(e.target.value)}
-                className="input pl-10 pr-12 appearance-none cursor-pointer"
+                className="pl-10 font-bold"
               >
                 <option value="name">Sort by Name</option>
                 <option value="id">Sort by ID</option>
@@ -109,7 +109,6 @@ export default function DispatchDrivers() {
                 <option value="rank">Sort by Rank</option>
               </select>
               <ArrowDownUp size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-              <ChevronDown size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
             </div>
           </div>
         </div>
@@ -130,13 +129,13 @@ export default function DispatchDrivers() {
                 <tr className="hover:bg-gray-50 transition-all cursor-pointer group" key={drv.id} onClick={() => navigate(`/dispatch/drivers/${drv.id}`)}>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded border-2 border-transparent bg-[#111] flex items-center justify-center text-[#FACC15] font-semibold text-xs shrink-0 group-hover:border-[#FACC15] transition-colors">
+                      <div className="w-10 h-10 rounded border-2 border-transparent bg-hero-dark flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0 group-hover:border-brand-yellow transition-colors">
                         {drv.name.split(' ').map(n => n[0]).join('')}
                       </div>
                       <div>
                         <div className="font-bold text-[#111] text-sm flex items-center gap-2">
                           {drv.name}
-                          <span className={`text-xs uppercase font-bold tracking-widest px-1.5 py-0.5 rounded shadow-sm border ${drv.branchId === user.branchId ? 'text-[#111] border-gray-200 bg-white' : 'text-blue-600 border-blue-100 bg-blue-50'}`}>
+                          <span className={`badge ${drv.branchId === user.branchId ? 'badge-gray' : 'badge-blue'}`}>
                             {drv.branchId === user.branchId ? drv.rank : `Other: ${drv.branchId}`}
                           </span>
                         </div>
@@ -150,15 +149,15 @@ export default function DispatchDrivers() {
                       {drv.shift}
                     </div>
                     <div className="flex items-center gap-1.5 mt-1 text-xs font-bold text-yellow-600">
-                      <Star size={10} className="fill-yellow-500" /> {drv.rating} / 5.0
+                      <Star size={10} className="fill-brand-orange" /> {drv.rating} / 5.0
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="flex flex-col gap-1.5">
-                      <span className={`text-xs font-bold .5 py-1 rounded-md border w-fit uppercase tracking-widest ${drv.status === 'On Duty' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' :
-                          drv.status === 'Delay Alert' ? 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2] animate-pulse' :
-                            drv.status === 'In Break' ? 'bg-amber-50 text-amber-600 border-amber-100' :
-                              'bg-gray-100 text-gray-600 border-gray-200'
+                    <div className="flex flex-col items-start gap-1.5">
+                      <span className={`badge ${drv.status === 'On Duty' ? 'badge-green' :
+                        drv.status === 'Delay Alert' ? 'badge-red animate-pulse' :
+                          drv.status === 'In Break' ? 'badge-yellow' :
+                            'badge-gray'
                         }`}>
                         {drv.status}
                       </span>
@@ -171,12 +170,12 @@ export default function DispatchDrivers() {
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-2">
                         {drv.compliance === 'Valid' ? (
-                          <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-[#F0FDF4] border border-[#DCFCE7] uppercase tracking-widest .5 py-1 rounded-md w-fit">
-                            <ShieldCheck size={12} /> Valid
+                          <span className="badge badge-green">
+                            <ShieldCheck size={12} strokeWidth={3} /> Valid
                           </span>
                         ) : (
-                          <span className="flex items-center gap-1.5 text-xs font-bold text-red-600 bg-[#FEF2F2] border border-[#FEE2E2] uppercase tracking-widest .5 py-1 rounded-md w-fit">
-                            <AlertCircle size={12} /> Renew
+                          <span className="badge badge-red">
+                            <AlertCircle size={12} strokeWidth={3} /> Renew
                           </span>
                         )}
                       </div>
@@ -195,15 +194,15 @@ export default function DispatchDrivers() {
                     <div className="flex items-center justify-end gap-2">
                       {drv.branchId === user.branchId ? (
                         <>
-                          <button className="text-xs font-bold text-gray-500 border border-gray-200 hover:bg-gray-50 hover:text-gray-900 px-3 py-2 rounded-lg transition-colors uppercase tracking-widest flex items-center gap-2 shadow-sm">
+                          <button className="btn-xs btn-outline px-4">
                             <Phone size={14} /> Call
                           </button>
-                          <button onClick={(e) => { e.stopPropagation(); navigate('/dispatch/messages'); }} className="text-xs font-bold text-black border border-[#E6B800] bg-[#FACC15] hover:bg-[#E6B800] hover:border-[#CC9900] px-3 py-2 rounded-lg transition-colors uppercase tracking-widest flex items-center gap-2 shadow-sm">
+                          <button onClick={(e) => { e.stopPropagation(); navigate('/dispatch/messages'); }} className="btn-xs btn-primary px-4">
                             <MessageSquare size={14} /> Chat
                           </button>
                         </>
                       ) : (
-                        <button onClick={(e) => { e.stopPropagation(); alert(`Requesting permission to pull ${drv.name} from ${drv.branchId}...`); }} className="text-xs font-bold text-blue-600 border border-blue-200 bg-blue-50 hover:bg-blue-100 px-3 py-2 rounded-lg transition-all uppercase tracking-widest shadow-sm">
+                        <button onClick={(e) => { e.stopPropagation(); alert(`Requesting permission to pull ${drv.name} from ${drv.branchId}...`); }} className="btn-xs bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 px-4">
                           Request Pull-in
                         </button>
                       )}

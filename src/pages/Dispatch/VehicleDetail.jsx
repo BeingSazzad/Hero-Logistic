@@ -76,7 +76,7 @@ export default function DispatchVehicleDetail() {
                   />
                   <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
                      <div className="bg-black/50 backdrop-blur-md px-4 py-2 rounded-lg border border-white/20">
-                        <p className="text-xs font-semibold text-[#FACC15] uppercase tracking-widest">VIN / Chassis</p>
+                        <p className="text-xs font-semibold text-brand-yellow uppercase tracking-widest">VIN / Chassis</p>
                         <p className="text-sm font-bold text-white uppercase font-mono">{v.id}-2026-XQG</p>
                      </div>
                   </div>
@@ -90,7 +90,7 @@ export default function DispatchVehicleDetail() {
                      <button
                         key={i}
                         onClick={() => setPhoto(img.src)}
-                        className={`w-24 h-16 rounded-xl border-2 overflow-hidden transition-all shadow-sm ${photo === img.src ? 'border-[#FACC15] scale-105 shadow-md' : 'border-white hover:border-gray-200'}`}
+                        className={`w-24 h-16 rounded-xl border-2 overflow-hidden transition-all shadow-sm ${photo === img.src ? 'border-brand-yellow scale-105 shadow-md' : 'border-white hover:border-gray-200'}`}
                      >
                         <img src={img.src} alt={img.label} className="w-full h-full object-cover" />
                      </button>
@@ -101,7 +101,7 @@ export default function DispatchVehicleDetail() {
             <div className="lg:w-1/3 flex flex-col justify-center">
                <div className="flex items-center gap-3 mb-2">
                   <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest ${statusStyle(v.status)}`}>
-                     <div className={`w-1.5 h-1.5 rounded-full bg-current ${v.status === 'Active' ? 'animate-pulse' : ''}`}></div> {v.status}
+                     <div className={`w-1.5 h-1.5 rounded-full w-fit bg-current ${v.status === 'Active' ? 'animate-pulse' : ''}`}></div> {v.status}
                   </span>
                   <span className="text-xs font-bold .5 py-1 rounded-md border border-gray-200 text-gray-500 uppercase tracking-widest">{v.type}</span>
                </div>
@@ -151,8 +151,8 @@ export default function DispatchVehicleDetail() {
                            <p className="hero-metadata">Fuel Level</p>
                            <p className="text-sm font-semibold text-gray-900">{v.fuel}</p>
                         </div>
-                        <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
-                           <div className={`h-full ${fuelColor} rounded-full transition-all`} style={{ width: v.fuel }}></div>
+                        <div className="w-full h-3 bg-gray-100 rounded-full w-fit overflow-hidden">
+                           <div className={`h-full ${fuelColor} rounded-full w-fit transition-all`} style={{ width: v.fuel }}></div>
                         </div>
                      </div>
 
@@ -186,7 +186,7 @@ export default function DispatchVehicleDetail() {
                      <div>
                         <p className="text-lg font-semibold text-gray-900 leading-tight">{v.location}</p>
                         <div className="flex items-center gap-2 mt-2">
-                           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                           <span className="w-2 h-2 rounded-full w-fit bg-emerald-500 animate-pulse"></span>
                            <p className="hero-metadata">GPS Signal Active · Updated 32 seconds ago</p>
                         </div>
                      </div>
@@ -196,7 +196,7 @@ export default function DispatchVehicleDetail() {
 
             <div className="lg:col-span-1 space-y-6">
                <div className="bg-[#111] rounded-xl p-6 text-white shadow-xl border border-gray-800 relative overflow-hidden group">
-                  <div className="absolute -right-6 -top-6 w-32 h-32 bg-gray-800/50 rounded-full blur-3xl"></div>
+                  <div className="absolute -right-6 -top-6 w-32 h-32 bg-gray-800/50 rounded-full w-fit blur-3xl"></div>
                   <h3 className="text-xs font-semibold uppercase tracking-widest mb-6 text-gray-300 flex items-center gap-2 relative z-10">
                      <Truck size={16} /> Asset Record
                   </h3>
@@ -228,7 +228,7 @@ export default function DispatchVehicleDetail() {
                         </div>
                      ) : v.shifts.map((shift, idx) => (
                         <div key={idx} className="flex items-center gap-4 bg-gray-50/50 p-3 rounded-xl border border-gray-100">
-                           <div className="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-[#FACC15] font-semibold text-xs shadow-lg shrink-0">
+                           <div className="w-10 h-10 rounded-xl bg-[#111] flex items-center justify-center text-brand-yellow font-semibold text-xs shadow-lg shrink-0">
                               {shift.initials}
                            </div>
                            <div className="flex-1 min-w-0">

@@ -88,7 +88,7 @@ export default function AdminVehicleDetail() {
             ${editedStatus === 'Active'
               ? 'bg-emerald-50 text-emerald-700 border-emerald-100'
               : 'bg-red-50 text-red-600 border-red-100'}`}>
-            <div className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></div>
+            <div className="w-1.5 h-1.5 rounded-full w-fit bg-current animate-pulse"></div>
             {editedStatus}
           </div>
           {/* Edit / Save */}
@@ -102,7 +102,7 @@ export default function AdminVehicleDetail() {
               </button>
               <button
                 onClick={() => setEditing(false)}
-                className="h-9 px-4 bg-[#FACC15] hover:bg-[#E6B800] text-black rounded-lg font-semibold flex items-center gap-2 transition-all text-sm"
+                className="h-9 px-4 bg-brand-yellow hover:bg-brand-orange text-black rounded-lg font-semibold flex items-center gap-2 transition-all text-sm"
               >
                 <Save size={15} /> Save
               </button>
@@ -134,7 +134,7 @@ export default function AdminVehicleDetail() {
             {/* Edit mode: photo upload overlay */}
             {editing && (
               <label className="absolute inset-0 bg-black/50 backdrop-blur-[2px] flex flex-col items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition-all">
-                <div className="w-12 h-12 rounded-full bg-[#FACC15] text-black flex items-center justify-center mb-2 shadow-xl">
+                <div className="w-12 h-12 rounded-full w-fit bg-brand-yellow text-black flex items-center justify-center mb-2 shadow-xl">
                   <Camera size={20} />
                 </div>
                 <span className="text-xs font-semibold text-white">Update Photo</span>
@@ -143,7 +143,7 @@ export default function AdminVehicleDetail() {
             )}
             {/* VIN chip — always visible */}
             <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md px-3 py-2 rounded-xl border border-white/10">
-              <p className="text-xs font-semibold text-[#FACC15] uppercase tracking-widest mb-0.5">VIN</p>
+              <p className="text-xs font-semibold text-brand-yellow uppercase tracking-widest mb-0.5">VIN</p>
               <p className="text-xs font-bold text-white font-mono tracking-tight">{vehicle.vin}</p>
             </div>
           </div>
@@ -154,7 +154,7 @@ export default function AdminVehicleDetail() {
                 key={i}
                 onClick={() => setPhoto(img)}
                 className={`w-16 h-12 rounded-lg overflow-hidden border-2 transition-all
-                  ${photo === img ? 'border-[#FACC15]' : 'border-transparent opacity-50 hover:opacity-80'}`}
+                  ${photo === img ? 'border-brand-yellow' : 'border-transparent opacity-50 hover:opacity-80'}`}
               >
                 <img src={img} className="w-full h-full object-cover" alt="" />
               </button>
@@ -175,7 +175,7 @@ export default function AdminVehicleDetail() {
               <span className="text-xs font-medium text-gray-500">Current Driver</span>
               <button
                 onClick={() => setShowDriverPicker(true)}
-                className="text-xs font-bold text-black bg-[#FACC15] hover:bg-[#E6B800] transition-colors .5 py-1.5 rounded-lg"
+                className="text-xs font-bold text-black bg-brand-yellow hover:bg-brand-orange transition-colors .5 py-1.5 rounded-lg"
               >
                 Change Driver
               </button>
@@ -187,7 +187,7 @@ export default function AdminVehicleDetail() {
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-white leading-tight truncate">{selectedDriver.name}</p>
                 <div className="flex items-center gap-1.5 mt-0.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  <span className="w-1.5 h-1.5 rounded-full w-fit bg-emerald-400"></span>
                   <p className="text-xs text-gray-400">{selectedDriver.id} · On Shift</p>
                 </div>
               </div>
@@ -208,8 +208,8 @@ export default function AdminVehicleDetail() {
               { icon: <Droplet size={14} />,      label: 'Fuel Level',    value: '68',      unit: '%' },
               { icon: <Clock size={14} />,        label: 'Engine Hours',  value: '4,120',   unit: 'hrs' },
             ].map(kpi => (
-              <div key={kpi.label} className="group bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:border-[#FACC15] hover:shadow-md transition-all cursor-default">
-                <div className="flex items-center gap-2 mb-2 text-gray-400 group-hover:text-[#FACC15] transition-colors">
+              <div key={kpi.label} className="group bg-white p-4 rounded-2xl border border-gray-100 shadow-sm hover:border-brand-yellow hover:shadow-md transition-all cursor-default">
+                <div className="flex items-center gap-2 mb-2 text-gray-400 group-hover:text-brand-yellow transition-colors">
                   {kpi.icon}
                   <p className="text-xs font-semibold uppercase tracking-wider">{kpi.label}</p>
                 </div>
@@ -263,7 +263,7 @@ export default function AdminVehicleDetail() {
             >
               {tab}
               {activeTab === tab && (
-                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#FACC15] rounded-full"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-yellow rounded-full w-fit"></div>
               )}
             </button>
           ))}
@@ -317,8 +317,8 @@ export default function AdminVehicleDetail() {
                       <span className="text-xs text-gray-400">Route progress</span>
                       <span className="text-xs font-semibold text-emerald-600">{vehicle.currentLoad.progress}%</span>
                     </div>
-                    <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                      <div className="h-full bg-emerald-500 rounded-full transition-all" style={{ width: `${vehicle.currentLoad.progress}%` }}></div>
+                    <div className="w-full h-1.5 bg-gray-100 rounded-full w-fit overflow-hidden">
+                      <div className="h-full bg-emerald-500 rounded-full w-fit transition-all" style={{ width: `${vehicle.currentLoad.progress}%` }}></div>
                     </div>
                   </div>
                 </div>
@@ -332,7 +332,7 @@ export default function AdminVehicleDetail() {
                   <div className="p-4">
                     {editing
                       ? <textarea
-                          className="w-full border border-gray-200 rounded-lg py-2.5 px-3 text-sm text-gray-900 min-h-[90px] resize-y focus:outline-none focus:ring-2 focus:ring-[#FACC15]/30"
+                          className="w-full border border-gray-200 rounded-lg py-2.5 px-3 text-sm text-gray-900 min-h-[90px] resize-y focus:outline-none focus:ring-2 focus:ring-brand-yellow/30"
                           value={notes}
                           onChange={e => setNotes(e.target.value)}
                           placeholder="Add notes about this vehicle…"
@@ -349,11 +349,11 @@ export default function AdminVehicleDetail() {
                 <div className="relative pl-5 space-y-6 before:absolute before:left-0 before:top-1 before:bottom-1 before:w-px before:bg-gray-100">
                   {[
                     { label: 'Telematics Pulse', meta: 'Today 14:20 · Optimal',  dot: 'bg-emerald-500' },
-                    { label: 'Refueled',          meta: 'Yesterday · 240L Added', dot: 'bg-[#FACC15]' },
+                    { label: 'Refueled',          meta: 'Yesterday · 240L Added', dot: 'bg-brand-yellow' },
                     { label: 'Driver Swap',        meta: 'Oct 24 · Mitchell AM',  dot: 'bg-gray-400' },
                   ].map((act, i) => (
                     <div key={i} className="relative">
-                      <div className={`absolute -left-[22px] top-1 w-2.5 h-2.5 rounded-full border-2 border-white shadow ${act.dot}`}></div>
+                      <div className={`absolute -left-[22px] top-1 w-2.5 h-2.5 rounded-full w-fit border-2 border-white shadow ${act.dot}`}></div>
                       <p className="text-sm font-semibold text-gray-900">{act.label}</p>
                       <p className="text-xs text-gray-400 mt-0.5">{act.meta}</p>
                     </div>
@@ -512,7 +512,7 @@ export default function AdminVehicleDetail() {
                                                         'bg-gray-100 text-gray-500'}`}>
                       {driver.status}
                     </span>
-                    {isSelected && <div className="w-2 h-2 rounded-full bg-[#FACC15] shrink-0"></div>}
+                    {isSelected && <div className="w-2 h-2 rounded-full w-fit bg-brand-yellow shrink-0"></div>}
                   </button>
                 );
               })}

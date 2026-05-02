@@ -58,14 +58,14 @@ export default function DriverMessages() {
             </button>
             <div className="flex items-center gap-3">
                <div className="relative">
-                  <div className="w-10 h-10 rounded-full border-2 border-white/10 bg-[#FACC15] flex items-center justify-center font-semibold text-[#111] text-sm shadow-inner">
+                  <div className="w-10 h-10 rounded-full w-fit border-2 border-white/10 bg-brand-yellow flex items-center justify-center font-semibold text-[#111] text-sm shadow-inner">
                      OP
                   </div>
-                  <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-[#111] rounded-full"></span>
+                  <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-[#111] rounded-full w-fit"></span>
                </div>
                <div>
                   <h1 className="font-semibold text-sm tracking-tight">Fleet Support</h1>
-                  <p className="text-xs font-medium text-[#FACC15] mt-0.5">SYD_DISPATCH_01</p>
+                  <p className="text-xs font-medium text-brand-yellow mt-0.5">SYD_DISPATCH_01</p>
                </div>
             </div>
          </div>
@@ -83,14 +83,14 @@ export default function DriverMessages() {
         className="flex-1 overflow-y-auto px-4 py-6 flex flex-col gap-6 scroll-smooth pb-10"
       >
          <div className="text-center">
-            <span className="text-xs font-semibold text-gray-400 bg-gray-100 border border-gray-200 px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">Shift Started: 08:00 AM</span>
+            <span className="text-xs font-semibold text-gray-400 bg-gray-100 border border-gray-200 px-4 py-1.5 rounded-full w-fit uppercase tracking-widest shadow-sm">Shift Started: 08:00 AM</span>
          </div>
          
          {messages.map((m) => (
             <div key={m.id} className={`flex flex-col group ${m.sender === 'driver' ? 'items-end' : 'items-start'}`}>
                <div className={`max-w-[85%] px-4 py-3 shadow-md text-sm font-medium leading-relaxed transition-all ${
                  m.sender === 'driver' 
-                 ? 'bg-[#FACC15] text-[#111] rounded-2xl rounded-tr-none' 
+                 ? 'bg-brand-yellow text-[#111] rounded-2xl rounded-tr-none' 
                  : 'bg-white border border-gray-100 text-gray-900 rounded-2xl rounded-tl-none'
                }`}>
                  {m.text}
@@ -131,11 +131,11 @@ export default function DriverMessages() {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Type message to Dispatch..." 
-                  className="w-full border border-gray-200 bg-gray-50 rounded-2xl pl-5 pr-12 py-3.5 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#FACC15]/50 focus:border-[#FACC15] focus:bg-white transition-all h-[52px] min-h-[52px] font-bold shadow-inner placeholder:text-gray-300"
+                  className="w-full border border-gray-200 bg-gray-50 rounded-2xl pl-5 pr-12 py-3.5 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-yellow/50 focus:border-brand-yellow focus:bg-white transition-all h-[52px] min-h-[52px] font-bold shadow-inner placeholder:text-gray-300"
                />
                <button 
                   onClick={() => handleSendMessage()} 
-                  className="absolute right-2 top-1.5 w-10 h-[40px] bg-[#111] hover:bg-black text-[#FACC15] rounded-xl transition-all flex items-center justify-center active:scale-95"
+                  className="absolute right-2 top-1.5 w-10 h-[40px] bg-[#111] hover:bg-black text-brand-yellow rounded-xl transition-all flex items-center justify-center active:scale-95"
                >
                   <Send size={16} />
                </button>

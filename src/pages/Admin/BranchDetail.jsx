@@ -77,7 +77,7 @@ const BRANCH_DB = {
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 const roleColor = (r) => {
-  if (r === 'Branch Manager') return 'bg-[#111] text-[#FACC15] border-gray-800';
+  if (r === 'Branch Manager') return 'bg-[#111] text-brand-yellow border-gray-800';
   if (r === 'Dispatcher')     return 'bg-blue-50 text-blue-600 border-blue-100';
   if (r === 'Accounts')       return 'bg-amber-50 text-amber-700 border-amber-100';
   if (r === 'Warehouse')      return 'bg-violet-50 text-violet-600 border-violet-100';
@@ -130,7 +130,7 @@ export default function AdminBranchDetail() {
               <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{b.name}</h1>
               <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest ${b.type === 'Primary Depot' ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-gray-100 text-gray-600 border-gray-200'}`}>{b.type}</span>
               <span className={`text-xs font-semibold .5 py-1 rounded border uppercase tracking-widest flex items-center gap-1 ${b.status === 'Online' ? 'bg-[#F0FDF4] text-[#16A34A] border-[#DCFCE7]' : 'bg-[#FEF2F2] text-[#DC2626] border-[#FEE2E2]'}`}>
-                <span className={`w-1.5 h-1.5 rounded-full ${b.status === 'Online' ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`}></span>
+                <span className={`w-1.5 h-1.5 rounded-full w-fit ${b.status === 'Online' ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`}></span>
                 {b.status}
               </span>
             </div>
@@ -149,7 +149,7 @@ export default function AdminBranchDetail() {
             <UserPlus size={15}/> Add Staff
           </button>
           <button onClick={() => setEditing(!editing)}
-            className={`px-5 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm border text-sm ${editing ? 'bg-[#111] text-[#FACC15] border-gray-800' : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'}`}>
+            className={`px-5 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm border text-sm ${editing ? 'bg-[#111] text-brand-yellow border-gray-800' : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'}`}>
             <Settings size={15}/> {editing ? 'Cancel' : 'Configure'}
           </button>
           {editing && (
@@ -192,9 +192,9 @@ export default function AdminBranchDetail() {
           <p className="text-lg font-semibold text-gray-900 mt-0.5">{b.capacity}%</p>
         </div>
         <div className="flex-1">
-          <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
+          <div className="w-full h-2.5 bg-gray-100 rounded-full w-fit overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all ${b.capacity > 80 ? 'bg-red-400' : b.capacity > 60 ? 'bg-amber-400' : 'bg-emerald-400'}`}
+              className={`h-full rounded-full w-fit transition-all ${b.capacity > 80 ? 'bg-red-400' : b.capacity > 60 ? 'bg-amber-400' : 'bg-emerald-400'}`}
               style={{ width: `${b.capacity}%` }}
             />
           </div>
@@ -242,7 +242,7 @@ export default function AdminBranchDetail() {
                   <div key={i}>
                     <p className="hero-metadata mb-1.5">{f.label}</p>
                     {editing ? (
-                      <input defaultValue={f.val} className="w-full border border-[#FACC15] bg-[#FFFBEB] rounded-lg px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20" />
+                      <input defaultValue={f.val} className="w-full border border-brand-yellow bg-[#FFFBEB] rounded-lg px-4 py-2.5 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-brand-yellow/20" />
                     ) : (
                       <p className="text-sm font-bold text-gray-900">{f.val}</p>
                     )}
@@ -295,8 +295,8 @@ export default function AdminBranchDetail() {
           <div className="space-y-6">
             {/* Operations Control */}
             <div className="bg-[#111] rounded-xl p-6 text-white shadow-xl border border-gray-800 relative overflow-hidden">
-              <div className="absolute -right-6 -top-6 w-32 h-32 bg-[#FACC15]/10 rounded-full blur-3xl pointer-events-none"/>
-              <h3 className="text-xs font-semibold uppercase tracking-widest mb-5 text-[#FACC15] flex items-center gap-2 relative z-10">
+              <div className="absolute -right-6 -top-6 w-32 h-32 bg-brand-yellow/10 rounded-full w-fit blur-3xl pointer-events-none"/>
+              <h3 className="text-xs font-semibold uppercase tracking-widest mb-5 text-brand-yellow flex items-center gap-2 relative z-10">
                 <Settings size={14}/> Operations Control
               </h3>
               <div className="space-y-3 relative z-10">
@@ -312,7 +312,7 @@ export default function AdminBranchDetail() {
                 <button onClick={() => setActiveTab('authority')} className="w-full py-3 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl font-semibold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all">
                   <Shield size={14}/> View Authority Roster
                 </button>
-                <button onClick={() => navigate('/admin/users/add')} className="w-full py-3 bg-[#FACC15]/10 hover:bg-[#FACC15]/20 text-[#FACC15] border border-[#FACC15]/20 rounded-xl font-semibold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all">
+                <button onClick={() => navigate('/admin/users/add')} className="w-full py-3 bg-brand-yellow/10 hover:bg-brand-yellow/20 text-brand-yellow border border-brand-yellow/20 rounded-xl font-semibold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all">
                   <UserPlus size={14}/> Add Staff to Branch
                 </button>
               </div>
@@ -327,7 +327,7 @@ export default function AdminBranchDetail() {
               <div className="divide-y divide-gray-50">
                 {b.authority.slice(0, 4).map(u => (
                   <div key={u.id} className="flex items-center gap-3 px-5 py-3.5 hover:bg-gray-50/60 cursor-pointer" onClick={() => navigate(`/admin/users/${u.id}`)}>
-                    <div className="w-8 h-8 rounded-lg bg-[#111] flex items-center justify-center text-[#FACC15] font-semibold text-xs shrink-0">{u.initials}</div>
+                    <div className="w-8 h-8 rounded-lg bg-[#111] flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0">{u.initials}</div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-bold text-gray-900 truncate">{u.name}</p>
                       <p className="text-xs text-gray-400 font-bold">{u.role}</p>
@@ -380,10 +380,10 @@ export default function AdminBranchDetail() {
                   </td></tr>
                 ) : b.authority.map(u => (
                   <tr key={u.id} onClick={() => navigate(`/admin/users/${u.id}`)}
-                    className="hover:bg-gray-50/80 cursor-pointer transition-all group border-l-4 border-l-transparent hover:border-l-[#FACC15]">
+                    className="hover:bg-gray-50/80 cursor-pointer transition-all group border-l-4 border-l-transparent hover:border-l-brand-yellow">
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-lg bg-[#111] flex items-center justify-center text-[#FACC15] font-semibold text-xs shrink-0 border-2 border-transparent group-hover:border-[#FACC15] transition-colors">{u.initials}</div>
+                        <div className="w-9 h-9 rounded-lg bg-[#111] flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0 border-2 border-transparent group-hover:border-brand-yellow transition-colors">{u.initials}</div>
                         <div>
                           <div className="font-bold text-gray-900 text-sm">{u.name}</div>
                           <div className="text-xs text-gray-400 font-bold mt-0.5">{u.email}</div>
@@ -449,10 +449,10 @@ export default function AdminBranchDetail() {
                     <p className="text-sm font-bold">No drivers assigned to this branch</p>
                   </td></tr>
                 ) : b.drivers.map(d => (
-                  <tr key={d.id} className="hover:bg-gray-50/80 cursor-pointer transition-all group border-l-4 border-l-transparent hover:border-l-[#FACC15]">
+                  <tr key={d.id} className="hover:bg-gray-50/80 cursor-pointer transition-all group border-l-4 border-l-transparent hover:border-l-brand-yellow">
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-lg bg-[#111] flex items-center justify-center text-[#FACC15] font-semibold text-xs shrink-0 border-2 border-transparent group-hover:border-[#FACC15] transition-colors">
+                        <div className="w-9 h-9 rounded-lg bg-[#111] flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0 border-2 border-transparent group-hover:border-brand-yellow transition-colors">
                           {d.name.split(' ').map(n=>n[0]).join('')}
                         </div>
                         <div className="font-bold text-gray-900 text-sm">{d.name}</div>
@@ -504,7 +504,7 @@ export default function AdminBranchDetail() {
                   </td></tr>
                 ) : b.fleet.map(v => (
                   <tr key={v.id} onClick={() => navigate(`/dispatch/vehicles/${v.id}`)}
-                    className="hover:bg-gray-50/80 cursor-pointer transition-all border-l-4 border-l-transparent hover:border-l-[#FACC15]">
+                    className="hover:bg-gray-50/80 cursor-pointer transition-all border-l-4 border-l-transparent hover:border-l-brand-yellow">
                     <td className="px-6 py-4 font-semibold text-gray-900 text-sm">{v.id}</td>
                     <td className="px-6 py-4 text-xs font-bold text-gray-500">{v.type}</td>
                     <td className="px-6 py-4">
@@ -556,7 +556,7 @@ export default function AdminBranchDetail() {
                   </td></tr>
                 ) : b.recentJobs.map(j => (
                   <tr key={j.id} onClick={() => navigate(`/admin/loads/${j.id}`)}
-                    className="hover:bg-gray-50/80 cursor-pointer transition-all border-l-4 border-l-transparent hover:border-l-[#FACC15]">
+                    className="hover:bg-gray-50/80 cursor-pointer transition-all border-l-4 border-l-transparent hover:border-l-brand-yellow">
                     <td className="px-6 py-4 font-semibold text-gray-900 text-sm">{j.id}</td>
                     <td className="px-6 py-4 text-xs font-bold text-gray-600">{j.customer}</td>
                     <td className="px-6 py-4">

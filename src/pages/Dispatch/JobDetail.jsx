@@ -72,10 +72,10 @@ export default function DispatchJobDetail() {
         <div>
           <div className="flex items-center gap-3 mb-1">
             <h1 className="hero-h1">{id || 'SHP-9055'}</h1>
-            <span className={` py-0.5 rounded-sm font-semibold uppercase tracking-widest text-xs shadow-sm border ${exceptionActive ? 'bg-red-50 text-red-600 border-red-100' : 'bg-blue-50 text-blue-600 border-blue-100'}`}>
+            <span className={` py-0.5 rounded-sm w-fit font-semibold uppercase tracking-widest text-xs shadow-sm border ${exceptionActive ? 'bg-red-50 text-red-600 border-red-100' : 'bg-blue-50 text-blue-600 border-blue-100'}`}>
               ● {assigned ? 'Assigned' : 'In Progress'}
             </span>
-            <span className={` py-0.5 rounded-sm font-semibold uppercase tracking-widest text-xs shadow-sm border ${deliveryMode === 'Depot' ? 'bg-indigo-50 text-indigo-700 border-indigo-100' : 'bg-emerald-50 text-emerald-700 border-emerald-100'}`}>
+            <span className={` py-0.5 rounded-sm w-fit font-semibold uppercase tracking-widest text-xs shadow-sm border ${deliveryMode === 'Depot' ? 'bg-indigo-50 text-indigo-700 border-indigo-100' : 'bg-emerald-50 text-emerald-700 border-emerald-100'}`}>
               {deliveryMode === 'Depot' ? '🏢 Depot-to-Depot' : '🚪 Door-to-Door'}
             </span>
           </div>
@@ -120,16 +120,16 @@ export default function DispatchJobDetail() {
                   <div key={stage.id} className={`flex gap-4 relative z-10 p-3 rounded-hero-sm transition-all ${isCurrent ? 'bg-brand/10 border border-brand/20 shadow-sm' : ''}`}>
                     <div className="pt-0.5 shrink-0">
                       {isCompleted ? (
-                        <div className="w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center border-4 border-white shadow-sm">
+                        <div className="w-6 h-6 rounded-full w-fit bg-emerald-500 flex items-center justify-center border-4 border-white shadow-sm">
                           <CheckCircle2 size={12} className="text-white" />
                         </div>
                       ) : isCurrent ? (
-                        <div className="w-6 h-6 rounded-full bg-brand flex items-center justify-center border-4 border-white shadow-md animate-pulse">
-                          <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
+                        <div className="w-6 h-6 rounded-full w-fit bg-brand flex items-center justify-center border-4 border-white shadow-md animate-pulse">
+                          <div className="w-1.5 h-1.5 rounded-full w-fit bg-black"></div>
                         </div>
                       ) : (
-                        <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center border-4 border-white">
-                          <div className="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
+                        <div className="w-6 h-6 rounded-full w-fit bg-gray-100 flex items-center justify-center border-4 border-white">
+                          <div className="w-1.5 h-1.5 rounded-full w-fit bg-gray-300"></div>
                         </div>
                       )}
                     </div>
@@ -141,7 +141,7 @@ export default function DispatchJobDetail() {
                           {stage.location} <span className="text-gray-300 mx-1">/</span> {stage.actor}
                         </p>
                         {!isCompleted && isCurrent && (
-                          <button onClick={() => setShowAssignModal(true)} className="btn-sm h-8 px-3 text-xs bg-gray-900 text-brand hover:bg-black rounded-sm shadow-sm uppercase tracking-widest">Assign Resource</button>
+                          <button onClick={() => setShowAssignModal(true)} className="btn-sm h-8 px-3 text-xs bg-gray-900 text-brand hover:bg-black rounded-sm w-fit shadow-sm uppercase tracking-widest">Assign Resource</button>
                         )}
                       </div>
                     </div>
@@ -221,7 +221,7 @@ export default function DispatchJobDetail() {
               <div className="absolute bottom-4 right-4 bg-white/10 backdrop-blur-md border border-white/10 p-4 rounded-hero-sm z-10 text-white shadow-xl">
                 <p className="hero-metadata text-brand mb-2">Driver Location</p>
                 <p className="text-sm font-semibold truncate max-w-[200px]">M1 Motorway, Sydney North</p>
-                <p className="text-xs font-medium text-slate-300 mt-1.5 flex items-center gap-1.5"><span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Signal strength high</p>
+                <p className="text-xs font-medium text-slate-300 mt-1.5 flex items-center gap-1.5"><span className="w-1.5 h-1.5 bg-emerald-400 rounded-full w-fit animate-pulse"></span> Signal strength high</p>
               </div>
             )}
           </div>
@@ -244,7 +244,7 @@ export default function DispatchJobDetail() {
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="hero-metadata">Service</span>
-                  <span className="text-xs font-semibold text-black bg-brand  py-0.5 rounded-sm uppercase tracking-widest shadow-sm">Normal</span>
+                  <span className="text-xs font-semibold text-black bg-brand  py-0.5 rounded-sm w-fit uppercase tracking-widest shadow-sm">Normal</span>
                 </div>
               </div>
             </div>
@@ -266,7 +266,7 @@ export default function DispatchJobDetail() {
           <div className="bg-white w-full max-w-lg rounded-hero-md shadow-2xl flex flex-col max-h-[85vh] overflow-hidden animate-in zoom-in-95" onClick={e => e.stopPropagation()}>
             <div className="p-6 border-b border-gray-800 flex justify-between items-center bg-gray-900 text-white">
               <h3 className="text-lg font-bold text-white tracking-tight">Assign Resource</h3>
-              <button onClick={() => setShowAssignModal(false)} className="p-2 hover:bg-white/10 rounded-full transition-colors"><X size={20} /></button>
+              <button onClick={() => setShowAssignModal(false)} className="p-2 hover:bg-white/10 rounded-full w-fit transition-colors"><X size={20} /></button>
             </div>
             <div className="p-6 overflow-y-auto flex-1 space-y-4 bg-gray-50/50">
               {AVAILABLE_DRIVERS.map(driver => (
@@ -316,7 +316,7 @@ export default function DispatchJobDetail() {
                  </button>
               </div>
               <div className="p-12 text-center bg-gray-50/50">
-                 <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-blue-100 animate-pulse shadow-sm">
+                 <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-full w-fit flex items-center justify-center mx-auto mb-6 border-4 border-blue-100 animate-pulse shadow-sm">
                     <FileSignature size={40} />
                  </div>
                  <h4 className="text-lg font-bold text-gray-900 tracking-tight">Verification Pending</h4>

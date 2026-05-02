@@ -48,7 +48,7 @@ export default function AdminDriverManagement() {
         </div>
         <button 
           onClick={() => navigate('/admin/drivers/add')} 
-          className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
+          className="bg-brand-yellow hover:bg-brand-orange text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm"
         >
           <Plus size={18} strokeWidth={3} /> New Driver
         </button>
@@ -82,7 +82,7 @@ export default function AdminDriverManagement() {
         {/* Filter Bar */}
         <div className="p-5 border-b border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 bg-[#FAFAFA]">
            <div className="relative w-full md:w-[320px]">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16} />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-yellow transition-colors" size={16} />
               <input 
                 type="text" 
                 value={search}
@@ -96,7 +96,7 @@ export default function AdminDriverManagement() {
               <select 
                 value={sortKey} 
                 onChange={(e) => setSortKey(e.target.value)}
-                className="w-full md:w-auto appearance-none bg-white border border-gray-200 text-gray-700 text-sm font-bold rounded-lg pl-10 pr-12 py-2.5 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 transition-all cursor-pointer shadow-sm"
+                className="w-full md:w-auto appearance-none bg-white border border-gray-200 text-gray-700 text-sm font-bold rounded-lg pl-10 pr-12 py-2.5 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-yellow/20 transition-all cursor-pointer shadow-sm"
               >
                 <option value="name">Sort: Driver Name</option>
                 <option value="id">Sort: Driver ID</option>
@@ -124,7 +124,7 @@ export default function AdminDriverManagement() {
                  <tr className="hover:bg-gray-50 transition-all cursor-pointer group" key={d.id} onClick={() => navigate(`/admin/drivers/${d.id}`)}>
                    <td className="px-6 py-4">
                      <div className="flex items-center gap-3">
-                       <div className="w-10 h-10 rounded border-2 border-transparent bg-[#111] flex items-center justify-center text-[#FACC15] font-semibold text-xs shrink-0 group-hover:border-[#FACC15] transition-colors">
+                       <div className="w-10 h-10 rounded border-2 border-transparent bg-[#111] flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0 group-hover:border-brand-yellow transition-colors">
                           {d.name.split(' ').map(n=>n[0]).join('')}
                        </div>
                        <div>

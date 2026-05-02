@@ -53,7 +53,7 @@ export default function Payments() {
                 </div>
                 <div className="flex items-center gap-3">
                   {isMatched ? (
-                    <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">✓ Reconciled</span>
+                    <span className="text-xs font-bold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full w-fit">✓ Reconciled</span>
                   ) : (
                     <button onClick={() => setMatched(m => [...m, p.id])} className="btn btn-primary text-xs py-1.5">
                       Match Payment

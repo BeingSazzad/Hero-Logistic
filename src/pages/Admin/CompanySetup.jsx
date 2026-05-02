@@ -37,19 +37,19 @@ export default function AdminCompanySetup() {
               <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Business Specializations</label>
               <div className="flex flex-col gap-2">
                 <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" className="w-4 h-4 rounded text-[#FACC15] focus:ring-[#FACC15]" defaultChecked />
+                  <input type="checkbox" className="w-4 h-4 rounded text-brand-yellow focus:ring-brand-yellow" defaultChecked />
                   <span className="text-sm font-bold text-gray-800">General Freight</span>
                 </label>
                 <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" className="w-4 h-4 rounded text-[#FACC15] focus:ring-[#FACC15]" defaultChecked />
+                  <input type="checkbox" className="w-4 h-4 rounded text-brand-yellow focus:ring-brand-yellow" defaultChecked />
                   <span className="text-sm font-bold text-gray-800">Car / Vehicle Transport</span>
                 </label>
                 <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" className="w-4 h-4 rounded text-[#FACC15] focus:ring-[#FACC15]" />
+                  <input type="checkbox" className="w-4 h-4 rounded text-brand-yellow focus:ring-brand-yellow" />
                   <span className="text-sm font-bold text-gray-800">Dangerous Goods (DG)</span>
                 </label>
                 <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" className="w-4 h-4 rounded text-[#FACC15] focus:ring-[#FACC15]" />
+                  <input type="checkbox" className="w-4 h-4 rounded text-brand-yellow focus:ring-brand-yellow" />
                   <span className="text-sm font-bold text-gray-800">Refrigerated / Cold Chain</span>
                 </label>
               </div>

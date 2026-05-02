@@ -82,7 +82,7 @@ export default function DispatchLoadInbox() {
           <div className="flex items-center gap-4">
             <h1 className="hero-h1">Load Inbox</h1>
             {pendingCount > 0 && (
-              <span className="text-xs font-semibold bg-brand text-black .5 py-1 rounded-full uppercase tracking-widest animate-pulse shadow-sm shadow-brand/30">
+              <span className="text-xs font-semibold bg-brand text-black .5 py-1 rounded-full w-fit uppercase tracking-widest animate-pulse shadow-sm shadow-brand/30">
                 {pendingCount} Pending
               </span>
             )}
@@ -173,7 +173,7 @@ export default function DispatchLoadInbox() {
                         <div className="flex items-center gap-3">
                           <h3 className="font-bold text-gray-900 text-lg tracking-tight leading-none">{draft.id}</h3>
                           {draft.urgency === 'High' && (
-                            <span className={`text-xs font-semibold uppercase tracking-[0.1em]  py-0.5 rounded-sm border ${urgCfg.badge} flex items-center gap-1`}>
+                            <span className={`text-xs font-semibold uppercase tracking-[0.1em]  py-0.5 rounded-sm w-fit border ${urgCfg.badge} flex items-center gap-1`}>
                               <AlertCircle size={10} /> Urgent
                             </span>
                           )}
@@ -200,12 +200,12 @@ export default function DispatchLoadInbox() {
                         </>
                       )}
                       {state === 'approved' && (
-                        <span className="text-xs font-semibold text-emerald-600 uppercase tracking-widest flex items-center gap-2 bg-emerald-50 px-3 py-1.5 rounded-full">
+                        <span className="text-xs font-semibold text-emerald-600 uppercase tracking-widest flex items-center gap-2 bg-emerald-50 px-3 py-1.5 rounded-full w-fit">
                           <CheckCircle2 size={14} /> Converted
                         </span>
                       )}
                       {state === 'rejected' && (
-                        <span className="text-xs font-semibold text-red-500 uppercase tracking-widest flex items-center gap-2 bg-red-50 px-3 py-1.5 rounded-full">
+                        <span className="text-xs font-semibold text-red-500 uppercase tracking-widest flex items-center gap-2 bg-red-50 px-3 py-1.5 rounded-full w-fit">
                           <X size={14} /> Rejected
                         </span>
                       )}

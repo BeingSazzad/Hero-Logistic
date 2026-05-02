@@ -43,7 +43,7 @@ export default function TerminalWorkspace() {
           <div>
             <h1 className="hero-h1">Terminal Sortation</h1>
             <p className="hero-body mt-1 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-hero-success animate-pulse"></span> Sydney Depot Node 01 • Active Inbound
+              <span className="w-1.5 h-1.5 rounded-full w-fit bg-hero-success animate-pulse"></span> Sydney Depot Node 01 • Active Inbound
             </p>
           </div>
         </div>
@@ -127,7 +127,7 @@ export default function TerminalWorkspace() {
                <div className="shrink-0 bg-white p-4 rounded-hero-sm border border-gray-200 text-center min-w-[140px]">
                   <p className="hero-metadata mb-1">Staging Area</p>
                   <p className="text-sm font-bold text-hero-dark uppercase">Section {lastScanned.type === 'Local' ? 'A-1' : 'B-9'}</p>
-                  <div className="mt-2 w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                  <div className="mt-2 w-full h-1.5 bg-gray-100 rounded-full w-fit overflow-hidden">
                      <div className="h-full bg-hero-success w-full animate-in slide-in-from-left duration-1000"></div>
                   </div>
                </div>

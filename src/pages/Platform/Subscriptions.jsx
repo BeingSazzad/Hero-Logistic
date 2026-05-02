@@ -11,7 +11,7 @@ export default function Subscriptions() {
   const stats = [
     { label: 'Monthly Revenue (MRR)', val: '$42,850', trend: '+12%', icon: TrendingUp, color: 'text-emerald-500' },
     { label: 'Yearly Revenue (ARR)', val: '$514.2k', trend: '+8%', icon: BarChart3, color: 'text-blue-500' },
-    { label: 'Active Companies', val: '154', trend: '+4', icon: Users, color: 'text-[#FACC15]' },
+    { label: 'Active Companies', val: '154', trend: '+4', icon: Users, color: 'text-brand-yellow' },
     { label: 'Churn Rate', val: '1.2%', trend: '-0.2%', icon: Activity, color: 'text-rose-500' },
   ];
 
@@ -23,7 +23,7 @@ export default function Subscriptions() {
     },
     { 
       id: 'pro', name: 'Professional', price: '$149', billing: 'per month', users: '15 Users', fleet: '50 Vehicles', support: 'Priority Email',
-      features: [true, true, true, false, false], color: 'bg-[#FACC15]', tenants: 89, recommended: true,
+      features: [true, true, true, false, false], color: 'bg-brand-yellow', tenants: 89, recommended: true,
       desc: 'Best for growing logistics businesses.'
     },
     { 
@@ -79,7 +79,7 @@ export default function Subscriptions() {
       <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden mb-6">
          <div className="p-6 border-b border-gray-50 flex justify-between items-center bg-[#FAFAFA]">
             <div className="flex items-center gap-3">
-               <div className="w-10 h-10 rounded-lg bg-black flex items-center justify-center text-[#FACC15]">
+               <div className="w-10 h-10 rounded-lg bg-black flex items-center justify-center text-brand-yellow">
                   <Settings2 size={20} />
                </div>
                <div>
@@ -97,9 +97,9 @@ export default function Subscriptions() {
          
          <div className="p-8 grid grid-cols-1 md:grid-cols-4 gap-6">
             {plans.map((p, i) => (
-              <div key={i} className="flex flex-col border border-gray-100 rounded-xl overflow-hidden hover:border-[#FACC15] hover:shadow-xl transition-all group relative">
+              <div key={i} className="flex flex-col border border-gray-100 rounded-xl overflow-hidden hover:border-brand-yellow hover:shadow-xl transition-all group relative">
                  {p.recommended && (
-                    <div className="absolute top-4 right-4 bg-[#FACC15] text-orange-900 text-xs font-bold .5 py-0.5 rounded shadow-sm">Popular</div>
+                    <div className="absolute top-4 right-4 bg-brand-yellow text-orange-900 text-xs font-bold .5 py-0.5 rounded shadow-sm">Popular</div>
                  )}
                  <div className={`h-1.5 w-full ${p.color}`}></div>
                  <div className="p-5 flex-1 flex flex-col">
@@ -143,7 +143,7 @@ export default function Subscriptions() {
                      <th className="text-left p-4 text-xs font-semibold text-gray-500 w-1/3">Feature</th>
                      {plans.map(p => (
                         <th key={p.id} className="p-4 text-center">
-                           <span className={`text-xs font-bold px-3 py-1 rounded-full ${p.recommended ? 'bg-[#FACC15] text-black' : 'bg-gray-100 text-gray-700'}`}>{p.name}</span>
+                           <span className={`text-xs font-bold px-3 py-1 rounded-full w-fit ${p.recommended ? 'bg-brand-yellow text-black' : 'bg-gray-100 text-gray-700'}`}>{p.name}</span>
                         </th>
                      ))}
                   </tr>
@@ -168,12 +168,12 @@ export default function Subscriptions() {
       
       {/* ── Enterprise Upgrade Feature Box ── */}
       <div className="bg-[#111] rounded-xl p-8 border border-gray-800 shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
-         <div className="absolute -left-12 -top-12 w-48 h-48 bg-[#FACC15] opacity-[0.03] rounded-full blur-3xl"></div>
+         <div className="absolute -left-12 -top-12 w-48 h-48 bg-brand-yellow opacity-[0.03] rounded-full w-fit blur-3xl"></div>
          <div>
-            <h4 className="text-[#FACC15] font-semibold text-lg tracking-tight mb-1">Enterprise Upgrade Triggers</h4>
+            <h4 className="text-brand-yellow font-semibold text-lg tracking-tight mb-1">Enterprise Upgrade Triggers</h4>
             <p className="text-sm text-gray-400 font-medium max-w-lg leading-relaxed">Automatically flag companies when they exceed plan limits and prompt them to upgrade to an enterprise agreement.</p>
          </div>
-         <button className="bg-[#FACC15] hover:bg-[#E6B800] text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm shrink-0">
+         <button className="bg-brand-yellow hover:bg-brand-orange text-black px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 transition-all shadow-sm shrink-0">
            Configure Triggers
          </button>
       </div>
@@ -219,21 +219,21 @@ function PlanEditorModal({ onClose, editingPlan }) {
                              <span className="text-xs font-medium text-gray-500">Max Users</span>
                              <span className="text-xs font-bold text-gray-900">{editingPlan?.users || '10 Users'}</span>
                           </div>
-                          <input type="range" className="w-full h-1 bg-gray-300 rounded-full appearance-none accent-[#FACC15]" />
+                          <input type="range" className="w-full h-1 bg-gray-300 rounded-full w-fit appearance-none accent-brand-yellow" />
                        </div>
                        <div className="space-y-2">
                           <div className="flex justify-between px-1">
                              <span className="text-xs font-medium text-gray-500">Max Fleet / Assets</span>
                              <span className="text-xs font-bold text-gray-900">{editingPlan?.fleet || '50 Assets'}</span>
                           </div>
-                          <input type="range" className="w-full h-1 bg-gray-300 rounded-full appearance-none accent-[#FACC15]" />
+                          <input type="range" className="w-full h-1 bg-gray-300 rounded-full w-fit appearance-none accent-brand-yellow" />
                        </div>
                     </div>
                  </div>
               </div>
 
               <div className="space-y-6">
-                 <label className="text-xs font-semibold text-gray-700 block px-1 flex items-center gap-2"><Zap size={14} className="text-[#FACC15]"/> Add-on Features</label>
+                 <label className="text-xs font-semibold text-gray-700 block px-1 flex items-center gap-2"><Zap size={14} className="text-brand-yellow"/> Add-on Features</label>
                  <div className="space-y-3">
                     {[
                       { l: 'Priority Support', d: '24/7 dedicated account manager' },
@@ -241,8 +241,8 @@ function PlanEditorModal({ onClose, editingPlan }) {
                       { l: 'Cold Chain Monitoring', d: 'Temperature sensor tracking' },
                       { l: 'Custom Branding', d: 'Your logo and colors on driver app' }
                     ].map((mod, i) => (
-                      <label key={i} className="flex items-start gap-4 p-4 rounded-xl border border-gray-100 bg-gray-50 hover:bg-[#FACC15]/10 hover:border-[#FACC15]/30 transition-all cursor-pointer group">
-                         <input type="checkbox" className="mt-1 w-4 h-4 rounded border-gray-300 text-[#FACC15] focus:ring-[#FACC15]" defaultChecked={i < 2} />
+                      <label key={i} className="flex items-start gap-4 p-4 rounded-xl border border-gray-100 bg-gray-50 hover:bg-brand-yellow/10 hover:border-brand-yellow/30 transition-all cursor-pointer group">
+                         <input type="checkbox" className="mt-1 w-4 h-4 rounded border-gray-300 text-brand-yellow focus:ring-brand-yellow" defaultChecked={i < 2} />
                          <div>
                             <p className="text-sm font-semibold text-gray-900 leading-none mb-1">{mod.l}</p>
                             <p className="text-xs font-medium text-gray-500 leading-tight">{mod.d}</p>

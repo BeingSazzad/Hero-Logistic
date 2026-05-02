@@ -97,7 +97,7 @@ export default function AdminSubscriptionPlans() {
             className={`px-8 py-2.5 rounded-lg text-sm font-bold transition-all relative z-10 flex items-center gap-2 ${billingCycle === 'yearly' ? 'text-gray-900 shadow-sm bg-white' : 'text-gray-500 hover:text-gray-700'}`}
           >
             Yearly Billing
-            <span className="text-xs font-semibold uppercase tracking-widest text-emerald-600 bg-emerald-100  py-0.5 rounded-full">Save 20%</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-emerald-600 bg-emerald-100  py-0.5 rounded-full w-fit">Save 20%</span>
           </button>
         </div>
       </div>
@@ -105,16 +105,16 @@ export default function AdminSubscriptionPlans() {
       {/* Pricing Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8  items-end">
         {plans.map((plan, index) => (
-          <div key={index} className={`relative rounded-3xl border transition-all ${plan.popular ? 'border-[#FACC15] shadow-xl md:-translate-y-4 bg-white z-10' : 'border-gray-200 bg-white shadow-sm hover:shadow-md'}`}>
+          <div key={index} className={`relative rounded-3xl border transition-all ${plan.popular ? 'border-brand-yellow shadow-xl md:-translate-y-4 bg-white z-10' : 'border-gray-200 bg-white shadow-sm hover:shadow-md'}`}>
              
              {plan.popular && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#FACC15] text-black text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-yellow text-black text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full w-fit flex items-center gap-1.5 shadow-sm">
                   <Zap size={14} fill="currentColor" /> Most Popular
                 </div>
              )}
 
              <div className="p-8">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 shadow-sm ${plan.popular ? 'bg-[#FACC15]/20 text-yellow-600' : 'bg-gray-50 border border-gray-100 text-gray-500'}`}>
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 shadow-sm ${plan.popular ? 'bg-brand-yellow/20 text-yellow-600' : 'bg-gray-50 border border-gray-100 text-gray-500'}`}>
                    {plan.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{plan.name}</h3>
@@ -133,7 +133,7 @@ export default function AdminSubscriptionPlans() {
                     ${plan.current 
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200' 
                       : plan.popular 
-                        ? 'bg-[#FACC15] hover:bg-[#E6B800] text-black border border-transparent' 
+                        ? 'bg-brand-yellow hover:bg-brand-orange text-black border border-transparent' 
                         : 'bg-white border text-gray-900 border-gray-200 hover:bg-gray-50'
                     }`}
                 >

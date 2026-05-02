@@ -57,7 +57,7 @@ export default function AdminIntegrations() {
                   <div key={int.id} className={`bg-white p-8 rounded-3xl border transition-all relative overflow-hidden group shadow-sm ${int.status ? 'border-gray-100 hover:border-brand/40' : 'border-dashed border-gray-200 opacity-60 hover:opacity-100'}`}>
                     {/* Status Pip */}
                     <div className={`absolute top-0 right-0 w-12 h-12 ${int.status ? 'bg-emerald-50' : 'bg-gray-50'} rounded-bl-3xl flex justify-end items-start p-3`}>
-                      <span className={`w-3 h-3 rounded-full ${int.status ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]' : 'bg-gray-300'}`}></span>
+                      <span className={`w-3 h-3 rounded-full w-fit ${int.status ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]' : 'bg-gray-300'}`}></span>
                     </div>
 
                     <div className="flex items-start gap-5">

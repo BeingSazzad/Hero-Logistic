@@ -38,7 +38,7 @@ export default function DriverNotifications() {
       {/* Header */}
       <div className="bg-white px-4 py-4 flex items-center justify-between shadow-sm shrink-0 border-b border-gray-100">
          <div className="flex items-center gap-3">
-            <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-gray-500 hover:text-black transition-colors rounded-full active:bg-gray-100">
+            <button onClick={() => navigate(-1)} className="p-2 -ml-2 text-gray-500 hover:text-black transition-colors rounded-full w-fit active:bg-gray-100">
                <ArrowLeft size={20} />
             </button>
             <h1 className="font-bold text-lg text-gray-900 tracking-tight">Notifications</h1>
@@ -53,9 +53,9 @@ export default function DriverNotifications() {
         {notifications.length > 0 ? (
           <div className="flex flex-col gap-3">
             {notifications.map((notif) => (
-              <div key={notif.id} className={`bg-white rounded-2xl p-4 shadow-sm border transition-all ${notif.read ? 'border-gray-100 opacity-75' : 'border-[#FACC15]/30'}`}>
+              <div key={notif.id} className={`bg-white rounded-2xl p-4 shadow-sm border transition-all ${notif.read ? 'border-gray-100 opacity-75' : 'border-brand-yellow/30'}`}>
                 <div className="flex items-start gap-4">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 mt-1 ${
+                  <div className={`w-10 h-10 rounded-full w-fit flex items-center justify-center shrink-0 mt-1 ${
                     notif.type === 'alert' ? 'bg-red-50 text-red-600' :
                     notif.type === 'success' ? 'bg-emerald-50 text-emerald-600' :
                     'bg-blue-50 text-blue-600'
@@ -67,7 +67,7 @@ export default function DriverNotifications() {
                   <div className="flex-1">
                     <div className="flex justify-between items-start mb-1">
                       <h3 className="font-bold text-gray-900 text-sm">{notif.title}</h3>
-                      {!notif.read && <span className="w-2 h-2 rounded-full bg-[#FACC15]"></span>}
+                      {!notif.read && <span className="w-2 h-2 rounded-full w-fit bg-brand-yellow"></span>}
                     </div>
                     <p className="text-xs text-gray-500 font-medium leading-relaxed">{notif.message}</p>
                     <span className="text-xs font-bold text-gray-400 mt-2 block uppercase tracking-wider">{notif.time}</span>

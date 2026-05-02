@@ -50,12 +50,12 @@ export default function DashboardUI({
               <div className={`w-9 h-9 rounded-hero-sm flex items-center justify-center bg-${m.color}-50 text-${m.color}-500 border border-${m.color}-100`}>
                 <m.icon size={18} />
               </div>
-              <span className={`text-xs font-semibold uppercase text-${m.color}-600 bg-${m.color}-50/50  py-1 rounded-full`}>{m.trend}</span>
+              <span className={`text-xs font-semibold uppercase text-${m.color}-600 bg-${m.color}-50/50  py-1 rounded-full w-fit`}>{m.trend}</span>
             </div>
             <div>
               <div className="flex items-center gap-1.5 mb-1">
                 <p className="hero-metadata">{m.label}</p>
-                <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
+                <span className="w-1 h-1 bg-gray-300 rounded-full w-fit"></span>
                 <p className="text-xs font-bold text-gray-400/80 uppercase tracking-tighter">{m.period}</p>
               </div>
               <p className="text-2xl font-semibold text-gray-900 leading-none">{m.val}</p>
@@ -139,7 +139,7 @@ export default function DashboardUI({
                   <Zap size={16} className="text-brand fill-brand/20" strokeWidth={3} /> Quick Control
                 </h3>
               </div>
-              <div className="w-2 h-2 rounded-full bg-brand animate-pulse"></div>
+              <div className="w-2 h-2 rounded-full w-fit bg-brand animate-pulse"></div>
             </div>
             <div className="p-4 grid grid-cols-2 gap-3 flex-1">
               {[
@@ -176,7 +176,7 @@ export default function DashboardUI({
               <h3 className="text-xs font-semibold text-gray-900 uppercase tracking-widest">Network Distribution</h3>
               <span className="text-xs font-semibold text-gray-400 uppercase tracking-tighter bg-gray-50 px-3 py-1 rounded">Daily Mix</span>
             </div>
-            <div className="h-4 w-full flex rounded-full overflow-hidden mb-10 shadow-inner bg-gray-100">
+            <div className="h-4 w-full flex rounded-full w-fit overflow-hidden mb-10 shadow-inner bg-gray-100">
               {distData.map((d, i) => (
                 <div key={i} style={{ width: `${d.val}%` }} className={`h-full ${d.color} hover:brightness-110 transition-all`} title={`${d.label} (${d.val}%)`}></div>
               ))}
@@ -185,7 +185,7 @@ export default function DashboardUI({
               {distData.map((d, i) => (
                 <div key={i} className="flex flex-col">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <div className={`w-2.5 h-2.5 rounded-full ${d.color} shadow-sm shadow-${d.color}/30`}></div>
+                    <div className={`w-2.5 h-2.5 rounded-full w-fit ${d.color} shadow-sm shadow-${d.color}/30`}></div>
                     <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{d.label}</span>
                   </div>
                   <p className="text-2xl font-semibold text-gray-900">{d.val}%</p>
@@ -202,7 +202,7 @@ export default function DashboardUI({
               <Activity size={12} className="text-blue-500 animate-pulse" /> Activity Monitor
             </h3>
             <div className="flex gap-1">
-              <span className="w-1 h-1 rounded-full bg-blue-300"></span><span className="w-1 h-1 rounded-full bg-blue-200"></span>
+              <span className="w-1 h-1 rounded-full w-fit bg-blue-300"></span><span className="w-1 h-1 rounded-full w-fit bg-blue-200"></span>
             </div>
           </div>
           <div className="p-6 flex-1 overflow-y-auto hidden-scrollbar">
@@ -210,7 +210,7 @@ export default function DashboardUI({
               {recentActivities.slice(0, 4).map((act, i) => (
                 <div key={i} className="flex gap-4">
                   <div className="flex flex-col items-center">
-                    <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 shadow-glow ${act.status === 'Success' ? 'bg-emerald-500' : 'bg-blue-500'}`}></div>
+                    <div className={`w-2 h-2 rounded-full w-fit mt-1.5 shrink-0 shadow-glow ${act.status === 'Success' ? 'bg-emerald-500' : 'bg-blue-500'}`}></div>
                     {i < 3 && <div className="w-px h-full bg-gray-100 my-1"></div>}
                   </div>
                   <div className="flex-1 min-w-0">

@@ -37,8 +37,8 @@ export default function AccountsReports() {
         <div className="flex items-center justify-between mb-6">
           <h3 className="font-bold text-gray-900 flex items-center gap-2"><TrendingUp size={18} className="text-gray-400" /> Revenue vs Costs (7 months)</h3>
           <div className="flex gap-4 text-xs font-semibold">
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-emerald-500 inline-block" /> Revenue</span>
-            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-red-400 inline-block" /> Costs</span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm w-fit bg-emerald-500 inline-block" /> Revenue</span>
+            <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm w-fit bg-red-400 inline-block" /> Costs</span>
           </div>
         </div>
         <div className="flex items-end gap-3 h-48">

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Search, Send, MoreVertical, Phone, MessageSquare } from 'lucide-react';
+import { Search, Send, MoreVertical, Phone, MessageSquare, Paperclip, Mic, User, Bell, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function DispatchMessages() {
   const navigate = useNavigate();
+  const [showOptions, setShowOptions] = useState(false);
   const [threads, setThreads] = useState([
     { id: 1, name: 'Noah Williams',  role: 'Driver (TRK-05)', msg: 'Traffic is fully stopped now...', time: '10:42 AM', unread: 2 },
     { id: 2, name: 'Jack Taylor',    role: 'Driver (TRK-12)', msg: 'ETA is looking good. Reaching in 45m.', time: '09:15 AM', unread: 0 },
@@ -86,8 +87,8 @@ export default function DispatchMessages() {
               <h3 className="font-bold text-gray-900 tracking-tight">Messages</h3>
             </div>
             <div className="relative group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#FACC15] transition-colors" size={16} />
-              <input type="text" placeholder="Search chats..." className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-yellow transition-colors" size={16} />
+              <input type="text" placeholder="Search chats..." className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-100 rounded-xl text-sm font-bold focus:outline-none focus:ring-2 focus:ring-brand-yellow/20 focus:border-brand-yellow transition-all" />
             </div>
           </div>
           
@@ -98,8 +99,8 @@ export default function DispatchMessages() {
                 onClick={() => handleSelectThread(t.id)}
                 className={`p-5 border-b border-gray-100 cursor-pointer transition-all ${
                   activeThreadId === t.id 
-                    ? 'bg-blue-50 border-l-4 border-l-[#FACC15] shadow-sm' 
-                    : t.unread ? 'bg-white shadow-sm border-l-4 border-l-[#FACC15]' : 'hover:bg-gray-50 border-l-4 border-l-transparent'
+                    ? 'bg-blue-50 border-l-4 border-l-brand-yellow shadow-sm' 
+                    : t.unread ? 'bg-white shadow-sm border-l-4 border-l-brand-yellow' : 'hover:bg-gray-50 border-l-4 border-l-transparent'
                 }`}
               >
                 <div className="flex justify-between items-start mb-1.5">
@@ -110,7 +111,7 @@ export default function DispatchMessages() {
                 <div className="flex justify-between items-center">
                   <p className={`text-xs truncate pr-4 ${t.unread ? 'text-gray-800 font-bold' : 'text-gray-500 font-medium'}`}>{t.msg}</p>
                   {t.unread > 0 && (
-                    <span className="w-5 h-5 rounded-md bg-[#111] text-[#FACC15] flex items-center justify-center text-xs font-semibold shrink-0 shadow-sm">{t.unread}</span>
+                    <span className="w-5 h-5 rounded-md bg-[#111] text-brand-yellow flex items-center justify-center text-xs font-semibold shrink-0 shadow-sm">{t.unread}</span>
                   )}
                 </div>
               </div>
@@ -125,19 +126,45 @@ export default function DispatchMessages() {
               onClick={() => navigate('/dispatch/drivers/DRV-102')}
               className="flex items-center gap-3 cursor-pointer group hover:bg-gray-50 p-2 -ml-2 rounded-xl transition-all"
             >
-               <div className="w-11 h-11 rounded border-2 border-transparent bg-[#111] flex items-center justify-center font-semibold text-[#FACC15] text-sm group-hover:scale-105 transition-transform">
+               <div className="w-11 h-11 rounded border-2 border-transparent bg-[#111] flex items-center justify-center font-semibold text-brand-yellow text-sm group-hover:scale-105 transition-transform">
                  {activeThread.name.split(' ').map(n=>n[0]).join('')}
                </div>
                <div>
                  <h3 className="font-bold text-gray-900 text-sm tracking-tight group-hover:underline">{activeThread.name}</h3>
                  <div className="flex items-center gap-1.5 mt-0.5">
-                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                   <span className="w-1.5 h-1.5 rounded-full w-fit bg-emerald-500"></span>
                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Active Status</p>
                  </div>
                </div>
             </div>
-            <div className="flex gap-2">
-              <button className="p-2.5 text-gray-400 border border-transparent hover:border-gray-200 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"><MoreVertical size={18}/></button>
+            <div className="flex gap-2 relative">
+              <button className="p-2.5 text-gray-400 border border-gray-100 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"><Phone size={18}/></button>
+              <div className="relative">
+                <button 
+                  onClick={() => setShowOptions(!showOptions)}
+                  className={`p-2.5 border rounded-lg transition-all ${showOptions ? 'bg-[#111] text-brand-yellow border-black shadow-md' : 'text-gray-400 border-gray-100 hover:border-gray-200 hover:bg-gray-50'}`}
+                >
+                  <MoreVertical size={18}/>
+                </button>
+                
+                {showOptions && (
+                  <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50 animate-in fade-in zoom-in-95 origin-top-right">
+                    <button className="w-full px-4 py-2.5 text-left text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors uppercase tracking-widest">
+                      <User size={14} className="text-gray-400" /> View Driver Profile
+                    </button>
+                    <button className="w-full px-4 py-2.5 text-left text-xs font-bold text-gray-700 hover:bg-gray-50 flex items-center gap-3 transition-colors uppercase tracking-widest">
+                      <Bell size={14} className="text-gray-400" /> Mute Conversation
+                    </button>
+                    <div className="h-px bg-gray-50 my-1 mx-2"></div>
+                    <button 
+                      onClick={() => { setMessageStore(prev => ({ ...prev, [activeThreadId]: [] })); setShowOptions(false); }}
+                      className="w-full px-4 py-2.5 text-left text-xs font-bold text-red-600 hover:bg-red-50 flex items-center gap-3 transition-colors uppercase tracking-widest"
+                    >
+                      <Trash2 size={14} /> Clear Conversation
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
@@ -148,7 +175,7 @@ export default function DispatchMessages() {
             
             {activeMessages.map((m) => (
                <div key={m.id} className={`flex flex-col gap-1.5 max-w-[70%] ${m.sender === 'dispatch' ? 'self-end' : ''}`}>
-                  <div className={`p-4 rounded-xl shadow-sm text-[13px] font-medium leading-relaxed ${m.sender === 'dispatch' ? 'bg-[#FACC15] text-black rounded-tr-sm' : 'bg-white border border-gray-200 text-gray-800 rounded-tl-sm'}`}>
+                  <div className={`p-4 rounded-xl shadow-sm text-[13px] font-medium leading-relaxed ${m.sender === 'dispatch' ? 'bg-brand-yellow text-black rounded-tr-sm' : 'bg-white border border-gray-200 text-gray-800 rounded-tl-sm'}`}>
                     {m.text}
                   </div>
                   <span className={`text-xs font-bold text-gray-400 uppercase tracking-widest ${m.sender === 'dispatch' ? 'text-right mr-1' : 'ml-1'}`}>{m.time} {m.sender === 'dispatch' ? '✓✓' : ''}</span>
@@ -157,17 +184,27 @@ export default function DispatchMessages() {
           </div>
 
           <div className="p-5 bg-white border-t border-gray-100 shrink-0">
-            <div className="flex items-end gap-3">
+            <div className="relative group">
                <textarea 
                  value={inputValue}
                  onChange={(e) => setInputValue(e.target.value)}
                  onKeyDown={handleKeyDown}
                  placeholder={`Message ${activeThread.name.split(' ')[0]}...`} 
-                 className="w-full border border-gray-200 bg-white rounded-xl px-4 py-3.5 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#FACC15]/20 focus:border-[#FACC15] transition-all h-[52px] min-h-[52px] font-medium shadow-sm"
+                 className="w-full border border-gray-200 bg-white rounded-2xl px-4 pt-3.5 pb-14 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-yellow/20 focus:border-brand-yellow transition-all min-h-[110px] font-medium shadow-sm"
                />
-               <button onClick={handleSendMessage} className="bg-[#111] hover:bg-black text-[#FACC15] w-14 rounded-xl transition-all shadow-sm h-[52px] flex items-center justify-center shrink-0">
-                 <Send size={18} />
-               </button>
+               <div className="absolute bottom-3 left-3 flex gap-1">
+                  <button className="p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 rounded-xl transition-all">
+                     <Paperclip size={18} />
+                  </button>
+                  <button className="p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 rounded-xl transition-all">
+                     <Mic size={18} />
+                  </button>
+               </div>
+               <div className="absolute bottom-3 right-3">
+                  <button onClick={handleSendMessage} className="bg-[#111] hover:bg-black text-brand-yellow px-5 py-2 rounded-xl transition-all shadow-md h-[40px] flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest active:scale-95">
+                    <Send size={16} /> Send
+                  </button>
+               </div>
             </div>
           </div>
         </div>

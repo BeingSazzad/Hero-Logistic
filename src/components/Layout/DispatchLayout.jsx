@@ -14,7 +14,7 @@ const navConfig = [
   { type: 'link', to: '/dispatch/terminal', label: 'Terminal Workspace', icon: Zap },
   { type: 'link', to: '/dispatch/tracking', label: 'Fleet Monitor', icon: MapPin },
   { type: 'link', to: '/dispatch/fleet', label: 'Fleet Assets', icon: Truck },
-  { type: 'link', to: '/dispatch/vehicle-registry', label: 'Vehicle Registry', icon: ClipboardList },
+  { type: 'link', to: '/dispatch/vehicle-registry', label: 'Asset Inventory', icon: ClipboardList },
   { type: 'link', to: '/dispatch/drivers', label: 'Roster Control', icon: Users },
   { type: 'link', to: '/dispatch/messages', label: 'Communication Depot', icon: MessageSquare },
   { type: 'link', to: '/dispatch/settings', label: 'System Settings', icon: Settings },

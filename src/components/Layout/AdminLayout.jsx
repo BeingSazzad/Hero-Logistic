@@ -17,7 +17,7 @@ const navConfig = [
       { to: '/admin/branches', label: 'Branches' },
       { to: '/admin/drivers', label: 'Drivers' },
       { to: '/admin/customers', label: 'Customers' },
-      { to: '/admin/vehicle-registry', label: 'Vehicle Registry' },
+      { to: '/admin/vehicle-registry', label: 'Asset Inventory' },
       { to: '/admin/safety-checklists', label: 'Safety Checklists' },
       { to: '/admin/exceptions', label: 'Delivery Issues' },
     ]
