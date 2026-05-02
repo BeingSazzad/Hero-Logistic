@@ -8,11 +8,11 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
 
 const RAW_DRIVERS = [
-  { id: 'DRV-102', branchId: 'SYD-CENTRAL', name: 'Jack Taylor', phone: '+61 411 000 001', rank: 'Senior', status: 'On Duty', assigned: 'SHP-20481', rating: 4.8, shift: 'Day Shift (06:00 - 18:00)', compliance: 'Valid', certs: ['DG', 'MSIC', 'White Card'] },
-  { id: 'DRV-105', branchId: 'SYD-CENTRAL', name: 'Liam Smith', phone: '+61 412 000 002', rank: 'Regular', status: 'On Duty', assigned: 'SHP-20482', rating: 4.5, shift: 'Night Shift (18:00 - 06:00)', compliance: 'Valid', certs: ['White Card'] },
-  { id: 'DRV-118', branchId: 'MEL-Depot', name: 'Noah Williams', phone: '+61 413 000 003', rank: 'Regular', status: 'Delay Alert', assigned: 'SHP-20483', rating: 4.2, shift: 'Day Shift (08:00 - 20:00)', compliance: 'Warning', certs: ['MSIC'] },
-  { id: 'DRV-134', branchId: 'SYD-CENTRAL', name: 'Oliver Brown', phone: '+61 414 000 004', rank: 'Junior', status: 'In Break', assigned: '-', rating: 4.0, shift: 'Night Shift (22:00 - 10:00)', compliance: 'Valid', certs: [] },
-  { id: 'DRV-145', branchId: 'SYD-CENTRAL', name: 'Lucas Jones', phone: '+61 415 000 005', rank: 'Senior', status: 'Off Duty', assigned: '-', rating: 4.9, shift: 'Day Shift', compliance: 'Valid', certs: ['DG'] },
+  { id: 'DRV-102', branchId: 'SYD-CENTRAL', name: 'Jack Taylor', phone: '+61 411 000 001', rank: 'Senior', status: 'On Duty', assigned: 'SHP-20481', rating: 4.8, shift: 'Day Shift (06:00 - 18:00)', compliance: 'Valid', certs: ['DG', 'MSIC', 'White Card'], avatar: '/driver_avatar_2_1777708515488.png' },
+  { id: 'DRV-105', branchId: 'SYD-CENTRAL', name: 'Liam Smith', phone: '+61 412 000 002', rank: 'Regular', status: 'On Duty', assigned: 'SHP-20482', rating: 4.5, shift: 'Night Shift (18:00 - 06:00)', compliance: 'Valid', certs: ['White Card'], avatar: '/driver_avatar_4_1777708585605.png' },
+  { id: 'DRV-118', branchId: 'MEL-Depot', name: 'Noah Williams', phone: '+61 413 000 003', rank: 'Regular', status: 'Delay Alert', assigned: 'SHP-20483', rating: 4.2, shift: 'Day Shift (08:00 - 20:00)', compliance: 'Warning', certs: ['MSIC'], avatar: '/driver_avatar_1_1777708494778.png' },
+  { id: 'DRV-134', branchId: 'SYD-CENTRAL', name: 'Oliver Brown', phone: '+61 414 000 004', rank: 'Junior', status: 'In Break', assigned: '-', rating: 4.0, shift: 'Night Shift (22:00 - 10:00)', compliance: 'Valid', certs: [], avatar: '/driver_avatar_3_1777708569850.png' },
+  { id: 'DRV-145', branchId: 'SYD-CENTRAL', name: 'Lucas Jones', phone: '+61 415 000 005', rank: 'Senior', status: 'Off Duty', assigned: '-', rating: 4.9, shift: 'Day Shift', compliance: 'Valid', certs: ['DG'], avatar: '/driver_avatar_2_1777708515488.png' },
 ];
 
 export default function DispatchDrivers() {
@@ -129,8 +129,12 @@ export default function DispatchDrivers() {
                 <tr className="hover:bg-gray-50 transition-all cursor-pointer group" key={drv.id} onClick={() => navigate(`/dispatch/drivers/${drv.id}`)}>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded border-2 border-transparent bg-hero-dark flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0 group-hover:border-brand-yellow transition-colors">
-                        {drv.name.split(' ').map(n => n[0]).join('')}
+                      <div className="w-10 h-10 rounded border-2 border-transparent overflow-hidden bg-hero-dark flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0 group-hover:border-brand-yellow transition-colors">
+                        {drv.avatar ? (
+                          <img src={drv.avatar} alt={drv.name} className="w-full h-full object-cover" />
+                        ) : (
+                          drv.name.split(' ').map(n => n[0]).join('')
+                        )}
                       </div>
                       <div>
                         <div className="font-bold text-[#111] text-sm flex items-center gap-2">

@@ -37,10 +37,10 @@ export default function AdminLoads() {
     { id: 'SHP-9054', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', customerRef: 'PO-8822', stockNumber: 'STK-4402', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'Medium', eta: '—', pickup: '12:30 PM', window: '13:00–15:00', load: '2.1t', notes: '' },
     { id: 'SHP-9060', branchId: 'SYD-CENTRAL', customer: 'Velocity Logistics', customerRef: 'VL-X77', stockNumber: 'STK-4403', origin: 'Melbourne Depot', dest: 'Brisbane Depot', queue: 'unassigned', unassignedType: 'Branch Transfers', driver: null, vehicle: null, priority: 'High', eta: '—', pickup: 'Awaiting Transit', window: '—', load: '14.5t', notes: 'Depot cross-dock completed' },
     { id: 'SHP-9061', branchId: 'SYD-CENTRAL', customer: 'Local Retailer', customerRef: 'LR-102', stockNumber: 'STK-4404', origin: 'Perth Depot', dest: 'Sydney Local', queue: 'unassigned', unassignedType: 'Local Deliveries', driver: null, vehicle: null, priority: 'Medium', eta: '—', pickup: 'Arrived at Staging', window: 'Before 17:00', load: '2.4t', notes: '' },
-    { id: 'SHP-9042', branchId: 'SYD-CENTRAL', customer: 'Acme Corp Logistics', customerRef: 'ACME-221', stockNumber: 'STK-4405', origin: 'Sydney Depot', dest: 'Melbourne Branch', queue: 'assigned', driver: 'Jack Taylor', vehicle: 'XQG-984', priority: 'High', eta: '14:30', pickup: '06:00 AM', window: 'Deliver by 16:00', load: '18.4t', notes: '' },
-    { id: 'SHP-9035', branchId: 'SYD-CENTRAL', customer: 'Southport Logistics', customerRef: 'SPL-55', stockNumber: 'STK-4406', origin: 'Adelaide Depot', dest: 'Sydney Depot', queue: 'assigned', driver: 'Oliver Brown', vehicle: 'V-102', priority: 'High', eta: 'Arrived at Branch', pickup: '05:00 AM', window: 'Delivered by 11:00', load: '12.0t', notes: '' },
-    { id: 'SHP-9041', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', customerRef: 'PO-8811', stockNumber: 'STK-4407', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'exception', driver: 'Liam Smith', vehicle: 'BGT-221', priority: 'Medium', eta: 'Delayed', pickup: '07:00 AM', window: 'Deliver by 14:00', load: '9.5t', notes: 'Driver reports heavy traffic', exception: 'Delay' },
-    { id: 'SHP-9039', branchId: 'SYD-CENTRAL', customer: 'Global Traders AU', customerRef: 'GT-449', stockNumber: 'STK-4408', origin: 'Brisbane Depot', dest: 'Gold Coast Branch', queue: 'completed', driver: 'Liam Smith', vehicle: 'KLY-004', priority: 'Low', eta: 'Received', pickup: '03:00 AM', window: 'Deliver by 08:00', load: '5.5t', notes: '' },
+    { id: 'SHP-9042', branchId: 'SYD-CENTRAL', customer: 'Acme Corp Logistics', customerRef: 'ACME-221', stockNumber: 'STK-4405', origin: 'Sydney Depot', dest: 'Melbourne Branch', queue: 'assigned', driver: 'Jack Taylor', vehicle: 'XQG-984', priority: 'High', eta: '14:30', pickup: '06:00 AM', window: 'Deliver by 16:00', load: '18.4t', notes: '', avatar: '/driver_avatar_2_1777708515488.png' },
+    { id: 'SHP-9035', branchId: 'SYD-CENTRAL', customer: 'Southport Logistics', customerRef: 'SPL-55', stockNumber: 'STK-4406', origin: 'Adelaide Depot', dest: 'Sydney Depot', queue: 'assigned', driver: 'Oliver Brown', vehicle: 'V-102', priority: 'High', eta: 'Arrived at Branch', pickup: '05:00 AM', window: 'Delivered by 11:00', load: '12.0t', notes: '', avatar: '/driver_avatar_3_1777708569850.png' },
+    { id: 'SHP-9041', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', customerRef: 'PO-8811', stockNumber: 'STK-4407', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'exception', driver: 'Liam Smith', vehicle: 'BGT-221', priority: 'Medium', eta: 'Delayed', pickup: '07:00 AM', window: 'Deliver by 14:00', load: '9.5t', notes: 'Driver reports heavy traffic', exception: 'Delay', avatar: '/driver_avatar_4_1777708585605.png' },
+    { id: 'SHP-9039', branchId: 'SYD-CENTRAL', customer: 'Global Traders AU', customerRef: 'GT-449', stockNumber: 'STK-4408', origin: 'Brisbane Depot', dest: 'Gold Coast Branch', queue: 'completed', driver: 'Liam Smith', vehicle: 'KLY-004', priority: 'Low', eta: 'Received', pickup: '03:00 AM', window: 'Deliver by 08:00', load: '5.5t', notes: '', avatar: '/driver_avatar_4_1777708585605.png' },
   ];
 
   const branchJobs = useMemo(() => {
@@ -248,8 +248,12 @@ export default function AdminLoads() {
                   <td className="px-6 py-4">
                     {job.driver ? (
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded bg-[#111] flex items-center justify-center font-semibold text-xs text-brand-yellow shrink-0">
-                          {job.driver.split(' ').map(n => n[0]).join('')}
+                        <div className="w-8 h-8 rounded overflow-hidden bg-[#111] flex items-center justify-center font-semibold text-xs text-brand-yellow shrink-0">
+                          {job.avatar ? (
+                            <img src={job.avatar} alt={job.driver} className="w-full h-full object-cover" />
+                          ) : (
+                            job.driver.split(' ').map(n => n[0]).join('')
+                          )}
                         </div>
                         <div>
                           <div className="font-bold text-[#111] text-xs">{job.driver}</div>

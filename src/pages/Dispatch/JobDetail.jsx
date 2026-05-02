@@ -17,9 +17,9 @@ const NETWORK_STAGES = [
 ];
 
 const AVAILABLE_DRIVERS = [
-  { id: 'DRV-134', name: 'Oliver Brown', initials: 'OB', rank: 'Junior', status: 'In Break', rating: 4.0, vehicle: 'VAN-14', availability: 'Available 13:00' },
-  { id: 'DRV-145', name: 'Lucas Jones', initials: 'LJ', rank: 'Senior', status: 'Off Duty', rating: 4.9, vehicle: 'TRK-05', availability: 'Available Now' },
-  { id: 'DRV-105', name: 'Liam Smith', initials: 'LS', rank: 'Regular', status: 'On Duty', rating: 4.5, vehicle: 'BGT-221', availability: 'Finishing at 11:30' },
+  { id: 'DRV-134', name: 'Oliver Brown', initials: 'OB', rank: 'Junior', status: 'In Break', rating: 4.0, vehicle: 'VAN-14', availability: 'Available 13:00', avatar: '/driver_avatar_3_1777708569850.png' },
+  { id: 'DRV-145', name: 'Lucas Jones', initials: 'LJ', rank: 'Senior', status: 'Off Duty', rating: 4.9, vehicle: 'TRK-05', availability: 'Available Now', avatar: '/driver_avatar_2_1777708515488.png' },
+  { id: 'DRV-105', name: 'Liam Smith', initials: 'LS', rank: 'Regular', status: 'On Duty', rating: 4.5, vehicle: 'BGT-221', availability: 'Finishing at 11:30', avatar: '/driver_avatar_4_1777708585605.png' },
 ];
 
 export default function DispatchJobDetail() {
@@ -174,7 +174,13 @@ export default function DispatchJobDetail() {
                 <p className="hero-metadata mb-3">Current Asset Allocation</p>
                 {assigned ? (
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-hero-sm bg-brand text-black flex items-center justify-center font-semibold text-lg shadow-sm border border-brand">{selectedDriver.initials}</div>
+                    <div className="w-12 h-12 rounded-hero-sm bg-brand text-black flex items-center justify-center font-semibold text-lg shadow-sm border border-brand overflow-hidden">
+                      {selectedDriver.avatar ? (
+                        <img src={selectedDriver.avatar} alt={selectedDriver.name} className="w-full h-full object-cover" />
+                      ) : (
+                        selectedDriver.initials
+                      )}
+                    </div>
                     <div>
                       <p className="text-sm font-semibold">{selectedDriver.name}</p>
                       <p className="text-xs font-medium text-gray-400 mt-1">{selectedDriver.vehicle} · {selectedDriver.rank}</p>
@@ -285,7 +291,13 @@ export default function DispatchJobDetail() {
               {AVAILABLE_DRIVERS.map(driver => (
                 <div key={driver.id} className={`bg-white border p-4 rounded-hero-sm flex items-center justify-between transition-all cursor-pointer ${selectedDriver?.id === driver.id ? 'border-brand shadow-md ring-2 ring-brand' : 'border-gray-200 hover:border-gray-300'}`} onClick={() => setSelectedDriver(driver)}>
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-hero-sm bg-gray-900 text-brand flex items-center justify-center font-semibold text-lg">{driver.initials}</div>
+                    <div className="w-12 h-12 rounded-hero-sm bg-gray-900 text-brand flex items-center justify-center font-semibold text-lg overflow-hidden border border-gray-800">
+                      {driver.avatar ? (
+                        <img src={driver.avatar} alt={driver.name} className="w-full h-full object-cover" />
+                      ) : (
+                        driver.initials
+                      )}
+                    </div>
                     <div>
                       <p className="text-sm font-semibold text-gray-900">{driver.name}</p>
                       <p className="text-xs font-medium text-gray-500 mt-1">{driver.vehicle} · {driver.rank}</p>

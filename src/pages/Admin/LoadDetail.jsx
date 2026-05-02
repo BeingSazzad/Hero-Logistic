@@ -237,7 +237,9 @@ export default function AdminLoadDetail() {
               </div>
 
               <div className="p-3 bg-gray-50 rounded-xl border border-gray-100 flex items-center gap-3 cursor-pointer hover:border-yellow-300 transition-all" onClick={() => navigate('/admin/drivers/DRV-102')}>
-                <div className="w-10 h-10 rounded-lg bg-brand-yellow flex items-center justify-center text-black font-semibold text-lg shrink-0">JT</div>
+                <div className="w-10 h-10 rounded-lg bg-brand-yellow flex items-center justify-center text-black font-semibold text-lg shrink-0 overflow-hidden">
+                  <img src="/driver_avatar_2_1777708515488.png" alt="Jack Taylor" className="w-full h-full object-cover" />
+                </div>
                 <div>
                   <p className="text-xs font-semibold uppercase text-gray-400 tracking-widest">Operator</p>
                   <p className="text-sm font-bold text-gray-900 mt-0.5">Jack Taylor (DRV-102)</p>

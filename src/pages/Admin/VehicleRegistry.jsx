@@ -7,11 +7,11 @@ import {
 
 // ── Mock Data ──────────────────────────────────────────────────────────────
 const MOCK_VEHICLES = [
-  { id: 1, vin: '1HGCM82633A004352', plate: 'ABC 123', make: 'Toyota', model: 'Camry', year: '2022', color: 'White', type: 'Sedan', weight: '1,450 kg', status: 'In Depot', currentLoad: 'LD-2041', destination: 'Brisbane QLD', customer: 'AutoDeal Pty Ltd', tags: ['Priority', 'Express'] },
-  { id: 2, vin: '2T1BURHE0JC034820', plate: 'XYZ 987', make: 'Honda', model: 'CR-V', year: '2023', color: 'Black', type: 'SUV', weight: '1,720 kg', status: 'In Transit', currentLoad: 'LD-2039', destination: 'Melbourne VIC', customer: 'Smith Motors', tags: ['Fragile'] },
-  { id: 3, vin: '5YJSA1DG9PFJ12345', plate: 'EV 0001', make: 'Tesla', model: 'Model S', year: '2024', color: 'Red', type: 'Sedan', weight: '2,162 kg', status: 'Delivered', currentLoad: 'LD-2031', destination: 'Sydney NSW', customer: 'EV Fleet Co', tags: [] },
-  { id: 4, vin: '3FADP4BJ7FM123456', plate: 'TRK 444', make: 'Ford', model: 'Ranger', year: '2021', color: 'Silver', type: 'Ute', weight: '2,030 kg', status: 'Awaiting Load', currentLoad: null, destination: 'Perth WA', customer: 'WA Motors', tags: ['Oversize'] },
-  { id: 5, vin: '1N4AL3AP7JC234567', plate: 'NIS 202', make: 'Nissan', model: 'X-Trail', year: '2022', color: 'Blue', type: 'SUV', weight: '1,680 kg', status: 'In Depot', currentLoad: 'LD-2042', destination: 'Adelaide SA', customer: 'SA Auto Group', tags: [] },
+  { id: 1, vin: '1HGCM82633A004352', plate: 'ABC 123', make: 'Toyota', model: 'Camry', year: '2022', color: 'White', type: 'Sedan', weight: '1,450 kg', status: 'In Depot', currentLoad: 'LD-2041', destination: 'Brisbane QLD', customer: 'AutoDeal Pty Ltd', tags: ['Priority', 'Express'], image: '/toyota_camry_white_1777708531313.png' },
+  { id: 2, vin: '2T1BURHE0JC034820', plate: 'XYZ 987', make: 'Honda', model: 'CR-V', year: '2023', color: 'Black', type: 'SUV', weight: '1,720 kg', status: 'In Transit', currentLoad: 'LD-2039', destination: 'Melbourne VIC', customer: 'Smith Motors', tags: ['Fragile'], image: '/honda_crv_black_1777708547079.png' },
+  { id: 3, vin: '5YJSA1DG9PFJ12345', plate: 'EV 0001', make: 'Tesla', model: 'Model S', year: '2024', color: 'Red', type: 'Sedan', weight: '2,162 kg', status: 'Delivered', currentLoad: 'LD-2031', destination: 'Sydney NSW', customer: 'EV Fleet Co', tags: [], image: '/tesla_model_s_red_1777708622081.png' },
+  { id: 4, vin: '3FADP4BJ7FM123456', plate: 'TRK 444', make: 'Ford', model: 'Ranger', year: '2021', color: 'Silver', type: 'Ute', weight: '2,030 kg', status: 'Awaiting Load', currentLoad: null, destination: 'Perth WA', customer: 'WA Motors', tags: ['Oversize'], image: '/ford_ranger_silver_1777708602634.png' },
+  { id: 5, vin: '1N4AL3AP7JC234567', plate: 'NIS 202', make: 'Nissan', model: 'X-Trail', year: '2022', color: 'Blue', type: 'SUV', weight: '1,680 kg', status: 'In Depot', currentLoad: 'LD-2042', destination: 'Adelaide SA', customer: 'SA Auto Group', tags: [], image: '/nissan_xtrail_blue_1777708637322.png' },
 ];
 
 const STATUS_META = {
@@ -227,8 +227,12 @@ export default function VehicleRegistry() {
                   <tr key={v.id} className="hover:bg-gray-50/50 transition-all group">
                     <td className="py-5 px-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center shrink-0 border border-gray-100 group-hover:bg-brand-yellow group-hover:border-transparent transition-all">
-                          <Car size={24} className="text-gray-400 group-hover:text-hero-dark" />
+                        <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center shrink-0 border border-gray-100 overflow-hidden group-hover:border-transparent transition-all">
+                           {v.image ? (
+                             <img src={v.image} alt={v.make} className="w-full h-full object-cover" />
+                           ) : (
+                             <Car size={24} className="text-gray-400 group-hover:text-hero-dark" />
+                           )}
                         </div>
                         <div>
                           <p className="font-semibold text-gray-900 text-sm leading-none">{v.year} {v.make} {v.model}</p>

@@ -8,10 +8,10 @@ import {
 } from 'lucide-react';
 
 const RAW_DRIVERS = [
-  { id: 'DRV-101', name: 'Noah Williams', phone: '+61 412 888 123', status: 'Active', rating: 4.8, license: 'MC Class', vehicle: 'XQG-984', region: 'Sydney Metro', canEditLoads: true },
-  { id: 'DRV-102', name: 'Jack Taylor',   phone: '+61 412 888 456', status: 'On Trip', rating: 4.9, license: 'HC Class', vehicle: 'BGT-221', region: 'Melbourne SE', canEditLoads: false },
-  { id: 'DRV-103', name: 'Oliver Brown',  phone: '+61 412 888 789', status: 'Offline', rating: 4.5, license: 'HR Class', vehicle: 'None', region: 'Brisbane NW', canEditLoads: true },
-  { id: 'DRV-104', name: 'Liam Smith',    phone: '+61 412 888 000', status: 'Active', rating: 4.7, license: 'HC Class', vehicle: 'KLY-004', region: 'Adelaide Depot', canEditLoads: false },
+  { id: 'DRV-101', name: 'Noah Williams', phone: '+61 412 888 123', status: 'Active', rating: 4.8, license: 'MC Class', vehicle: 'XQG-984', region: 'Sydney Metro', canEditLoads: true, avatar: '/driver_avatar_1_1777708494778.png' },
+  { id: 'DRV-102', name: 'Jack Taylor',   phone: '+61 412 888 456', status: 'On Trip', rating: 4.9, license: 'HC Class', vehicle: 'BGT-221', region: 'Melbourne SE', canEditLoads: false, avatar: '/driver_avatar_2_1777708515488.png' },
+  { id: 'DRV-103', name: 'Oliver Brown',  phone: '+61 412 888 789', status: 'Offline', rating: 4.5, license: 'HR Class', vehicle: 'None', region: 'Brisbane NW', canEditLoads: true, avatar: '/driver_avatar_3_1777708569850.png' },
+  { id: 'DRV-104', name: 'Liam Smith',    phone: '+61 412 888 000', status: 'Active', rating: 4.7, license: 'HC Class', vehicle: 'KLY-004', region: 'Adelaide Depot', canEditLoads: false, avatar: '/driver_avatar_4_1777708585605.png' },
 ];
 
 export default function AdminDriverManagement() {
@@ -124,9 +124,13 @@ export default function AdminDriverManagement() {
                  <tr className="hover:bg-gray-50 transition-all cursor-pointer group" key={d.id} onClick={() => navigate(`/admin/drivers/${d.id}`)}>
                    <td className="px-6 py-4">
                      <div className="flex items-center gap-3">
-                       <div className="w-10 h-10 rounded border-2 border-transparent bg-[#111] flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0 group-hover:border-brand-yellow transition-colors">
-                          {d.name.split(' ').map(n=>n[0]).join('')}
-                       </div>
+                        <div className="w-10 h-10 rounded border-2 border-transparent overflow-hidden bg-[#111] flex items-center justify-center text-brand-yellow font-semibold text-xs shrink-0 group-hover:border-brand-yellow transition-colors">
+                           {d.avatar ? (
+                             <img src={d.avatar} alt={d.name} className="w-full h-full object-cover" />
+                           ) : (
+                             d.name.split(' ').map(n=>n[0]).join('')
+                           )}
+                        </div>
                        <div>
                          <div className="flex items-center gap-2">
                            <div className="font-bold text-[#111] text-sm">{d.name}</div>
