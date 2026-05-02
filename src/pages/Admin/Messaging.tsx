@@ -5,7 +5,18 @@ import {
   Paperclip, Mic, Bell, Trash2
 } from 'lucide-react';
 
-const internalTickets = [
+interface Ticket {
+  id: string;
+  user: string;
+  role: string;
+  issue: string;
+  priority: 'High' | 'Medium' | 'Low';
+  status: 'Open' | 'Resolved';
+  time: string;
+  avatar?: string;
+}
+
+const internalTickets: Ticket[] = [
   { id: 'TKT-701', user: 'Jack Taylor', role: 'Driver', issue: 'App crashing on route sync', priority: 'High', status: 'Open', time: '12 mins ago', avatar: '/driver_avatar_2_1777708515488.png' },
   { id: 'TKT-702', user: 'Sarah Mitchell', role: 'Dispatch', issue: 'Need vehicle re-assignment permission', priority: 'Medium', status: 'Open', time: '2 hrs ago', avatar: '/driver_avatar_3_1777708569850.png' },
   { id: 'TKT-699', user: 'Noah Williams', role: 'Driver', issue: 'License verification stalled', priority: 'High', status: 'Resolved', time: '1 day ago', avatar: '/driver_avatar_1_1777708494778.png' },
@@ -13,9 +24,9 @@ const internalTickets = [
 
 export default function AdminMessaging() {
   const [showOptions, setShowOptions] = useState(false);
-  const [selectedTicket, setSelectedTicket] = useState(internalTickets[0]);
+  const [selectedTicket, setSelectedTicket] = useState<Ticket>(internalTickets[0]);
   const [replyText, setReplyText] = useState('');
-  const [tickets, setTickets] = useState(internalTickets);
+  const [tickets, setTickets] = useState<Ticket[]>(internalTickets);
   const [solvedToast, setSolvedToast] = useState(false);
   const [sentToast, setSentToast] = useState(false);
 
