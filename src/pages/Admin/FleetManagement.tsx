@@ -13,10 +13,10 @@ export default function AdminFleetManagement() {
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
 
   const fleet = [
-    { id: 'TRK-102', branch: 'SYDNEY', reg: 'XQG-984', type: 'Heavy Truck', cap: '20t', status: 'Active', service: '4,500 km', fuel: '18L/100km', lastUpdate: 'Live', driver: 'Jack Taylor', avatar: '/driver_avatar_2.png' },
-    { id: 'VAN-08',  branch: 'MELBOURNE', reg: 'BZX-441', type: 'Delivery Van', cap: '2.5t', status: 'Maintenance', service: 'Overdue', fuel: '12L/100km', lastUpdate: '2h ago', driver: 'Oliver Brown', avatar: '/driver_avatar_3.png' },
-    { id: 'TRL-44',  branch: 'BRISBANE', reg: 'T-9921',  type: 'Trailer Flatbed', cap: '40t', status: 'Active', service: '12,000 km', fuel: '-', lastUpdate: 'Live', driver: 'Noah Williams', avatar: '/driver_avatar_1.png' },
-    { id: 'TRK-09',  branch: 'SYDNEY', reg: 'XYY-112', type: 'Heavy Truck', cap: '20t', status: 'Inbound', service: '1,200 km', fuel: '19L/100km', lastUpdate: 'Live', driver: 'Liam Smith', avatar: '/driver_avatar_4.png' },
+    { id: 'TRK-102', branch: 'SYDNEY', reg: 'XQG-984', type: 'Heavy Truck', cap: '20t', status: 'Active', service: '4,500 km', fuel: '18L/100km', lastUpdate: 'Live', driver: 'Jack Taylor', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop', thumbnail: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop' },
+    { id: 'VAN-08',  branch: 'MELBOURNE', reg: 'BZX-441', type: 'Delivery Van', cap: '2.5t', status: 'Maintenance', service: 'Overdue', fuel: '12L/100km', lastUpdate: '2h ago', driver: 'Oliver Brown', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop', thumbnail: 'https://images.unsplash.com/photo-1519003300449-424ad040507b?q=80&w=800&auto=format&fit=crop' },
+    { id: 'TRL-44',  branch: 'BRISBANE', reg: 'T-9921',  type: 'Trailer Flatbed', cap: '40t', status: 'Active', service: '12,000 km', fuel: '-', lastUpdate: 'Live', driver: 'Noah Williams', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop', thumbnail: 'https://images.unsplash.com/photo-1586191582151-f73972d10942?q=80&w=800&auto=format&fit=crop' },
+    { id: 'TRK-09',  branch: 'SYDNEY', reg: 'XYY-112', type: 'Heavy Truck', cap: '20t', status: 'Inbound', service: '1,200 km', fuel: '19L/100km', lastUpdate: 'Live', driver: 'Liam Smith', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop', thumbnail: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop' },
   ];
 
   // Fix: Unified filtering logic
@@ -158,8 +158,12 @@ export default function AdminFleetManagement() {
                   <tr className="hover:bg-gray-50 transition-all cursor-pointer group" key={v.id} onClick={() => navigate(`/admin/fleet/${v.id}`)}>
                     <td className="px-6 py-5">
                       <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform text-brand-yellow">
-                           <Truck size={18} />
+                        <div className="w-10 h-10 rounded-xl bg-gray-900 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform text-brand-yellow overflow-hidden">
+                           {v.thumbnail ? (
+                             <img src={v.thumbnail} className="w-full h-full object-cover" alt={v.id} />
+                           ) : (
+                             <Truck size={18} />
+                           )}
                         </div>
                         <div>
                           <div className="font-semibold text-[#111] text-[15px] tracking-tight">{v.id}</div>

@@ -26,11 +26,11 @@ const STATUS_STYLE = {
 };
 
 const INITIAL_ASSETS = [
-  { id: 'AST-001', vin: '1FUJGBDV8CLBP8834', rego: 'XQG-984',    make: 'Freightliner Cascadia', type: 'Semi Truck',   year: '2021', niche: 'General Freight',     payload: '28t',  length: '20.0', width: '2.5', height: '4.3', status: 'Active',      registered: '2024-03-12', thumbnail: '/vehicle_truck_1.png' },
-  { id: 'AST-002', vin: 'WDB9066351L123456', rego: 'BZX-441',    make: 'Mercedes Sprinter 519', type: 'Cargo Van',     year: '2022', niche: 'General Freight',     payload: '3.5t', length: '6.0',  width: '2.1', height: '2.8', status: 'Maintenance', registered: '2024-07-01', thumbnail: '/vehicle_car_1.png' },
-  { id: 'AST-003', vin: '4V4NC9EH5HN123789', rego: 'T-9921',     make: 'Vawdrey Drop Deck',    type: 'Trailer / Flatbed', year: '2020', niche: 'Car / Vehicle Transport', payload: '40t', length: '14.6', width: '2.5', height: '1.8', status: 'Active', registered: '2023-11-20', thumbnail: '/vehicle_truck_1.png' },
-  { id: 'AST-004', vin: '1XKDDP9X9LJ123001', rego: 'BGT-221',    make: 'Isuzu FTR 900',        type: 'Rigid Truck',   year: '2020', niche: 'Dangerous Goods',     payload: '9t',   length: '9.0',  width: '2.5', height: '3.6', status: 'Active',      registered: '2024-01-15', thumbnail: '/vehicle_car_1.png' },
-  { id: 'AST-005', vin: '3AKJGLDRXJSJT4321', rego: 'TRK-05-MEL', make: 'Kenworth T610',        type: 'Semi Truck',    year: '2019', niche: 'Refrigerated',        payload: '42t',  length: '19.0', width: '2.5', height: '4.3', status: 'Active',      registered: '2023-06-08', thumbnail: '/vehicle_truck_1.png' },
+  { id: 'AST-001', vin: '1FUJGBDV8CLBP8834', rego: 'XQG-984',    make: 'Freightliner Cascadia', type: 'Semi Truck',   year: '2021', niche: 'General Freight',     payload: '28t',  length: '20.0', width: '2.5', height: '4.3', status: 'Active',      registered: '2024-03-12', thumbnail: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop' },
+  { id: 'AST-002', vin: 'WDB9066351L123456', rego: 'BZX-441',    make: 'Mercedes Sprinter 519', type: 'Cargo Van',     year: '2022', niche: 'General Freight',     payload: '3.5t', length: '6.0',  width: '2.1', height: '2.8', status: 'Maintenance', registered: '2024-07-01', thumbnail: 'https://images.unsplash.com/photo-1549194382-246df982469e?q=80&w=800&auto=format&fit=crop' },
+  { id: 'AST-003', vin: '4V4NC9EH5HN123789', rego: 'T-9921',     make: 'Vawdrey Drop Deck',    type: 'Trailer / Flatbed', year: '2020', niche: 'Car / Vehicle Transport', payload: '40t', length: '14.6', width: '2.5', height: '1.8', status: 'Active', registered: '2023-11-20', thumbnail: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop' },
+  { id: 'AST-004', vin: '1XKDDP9X9LJ123001', rego: 'BGT-221',    make: 'Isuzu FTR 900',        type: 'Rigid Truck',   year: '2020', niche: 'Dangerous Goods',     payload: '9t',   length: '9.0',  width: '2.5', height: '3.6', status: 'Active',      registered: '2024-01-15', thumbnail: 'https://images.unsplash.com/photo-1549194382-246df982469e?q=80&w=800&auto=format&fit=crop' },
+  { id: 'AST-005', vin: '3AKJGLDRXJSJT4321', rego: 'TRK-05-MEL', make: 'Kenworth T610',        type: 'Semi Truck',    year: '2019', niche: 'Refrigerated',        payload: '42t',  length: '19.0', width: '2.5', height: '4.3', status: 'Active',      registered: '2023-06-08', thumbnail: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop' },
 ];
 
 const emptyForm = {
@@ -78,7 +78,7 @@ export default function AssetRegistry() {
       id: newId,
       status: 'Pending',
       registered: new Date().toISOString().slice(0, 10),
-      thumbnail: '/vehicle_truck_1.png' // Default thumbnail for new assets
+      thumbnail: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop' // Default thumbnail for new assets
     }]);
     setForm(emptyForm);
     setFormError('');

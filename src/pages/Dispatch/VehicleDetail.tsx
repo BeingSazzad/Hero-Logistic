@@ -7,10 +7,10 @@ import {
 } from 'lucide-react';
 
 const VEHICLE_DB = {
-   'TRK-102': { id: 'TRK-102', make: 'Freightliner Cascadia', type: 'Semi Truck', plate: 'XQG-984', year: '2021', status: 'Active', fuel: '72%', mileage: '128,440 km', nextService: 'April 22, 2026', lastService: 'Jan 15, 2026', compliance: 'Valid', capacity: '28t', location: 'Hume Highway, Goulburn NSW', trips: 412, rating: 4.8, thumbnail: '/vehicle_truck_1.png', shifts: [{ id: 'DRV-102', name: 'Jack Taylor', shift: 'Day Shift (06:00 - 18:00)', initials: 'JT', avatar: '/driver_avatar_2.png' }, { id: 'DRV-134', name: 'Oliver Brown', shift: 'Night Shift (18:00 - 06:00)', initials: 'OB', avatar: '/driver_avatar_3.png' }] },
-   'VAN-14': { id: 'VAN-14', make: 'Mercedes Sprinter 519', type: 'Cargo Van', plate: 'VAN-14-SYD', year: '2022', status: 'Loading', fuel: '55%', mileage: '44,200 km', nextService: 'May 10, 2026', lastService: 'Feb 02, 2026', compliance: 'Valid', capacity: '3.5t', location: 'Warehouse A, Sydney NSW', trips: 198, rating: 4.5, thumbnail: '/vehicle_car_1.png', shifts: [{ id: 'DRV-134', name: 'Oliver Brown', shift: 'Day Shift (06:00 - 18:00)', initials: 'OB', avatar: '/driver_avatar_3.png' }] },
-   'BGT-221': { id: 'BGT-221', make: 'Isuzu FTR 900', type: 'Medium Truck', plate: 'BGT-221', year: '2020', status: 'Delay Alert', fuel: '31%', mileage: '89,100 km', nextService: 'April 15, 2026', lastService: 'Dec 12, 2025', compliance: 'Warning', capacity: '9t', location: 'Pacific Highway, NSW', trips: 301, rating: 4.2, thumbnail: '/hero_logistic_asset_inventory_final_1777697265907.webp', shifts: [{ id: 'DRV-105', name: 'Liam Smith', shift: 'Day Shift (08:00 - 20:00)', initials: 'LS', avatar: '/driver_avatar_4.png' }] },
-   'TRK-05': { id: 'TRK-05', make: 'Kenworth T610', type: 'Road Train', plate: 'TRK-05-MEL', year: '2019', status: 'Active', fuel: '88%', mileage: '204,000 km', nextService: 'June 01, 2026', lastService: 'Mar 01, 2026', compliance: 'Valid', capacity: '42t', location: 'Pacific Highway, NSW', trips: 680, rating: 4.6, thumbnail: '/vehicle_truck_1.png', shifts: [] },
+   'TRK-102': { id: 'TRK-102', make: 'Freightliner Cascadia', type: 'Semi Truck', plate: 'XQG-984', year: '2021', status: 'Active', fuel: '72%', mileage: '128,440 km', nextService: 'April 22, 2026', lastService: 'Jan 15, 2026', compliance: 'Valid', capacity: '28t', location: 'Hume Highway, Goulburn NSW', trips: 412, rating: 4.8, thumbnail: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop', shifts: [{ id: 'DRV-102', name: 'Jack Taylor', shift: 'Day Shift (06:00 - 18:00)', initials: 'JT', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop' }, { id: 'DRV-134', name: 'Oliver Brown', shift: 'Night Shift (18:00 - 06:00)', initials: 'OB', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop' }] },
+   'VAN-14': { id: 'VAN-14', make: 'Mercedes Sprinter 519', type: 'Cargo Van', plate: 'VAN-14-SYD', year: '2022', status: 'Loading', fuel: '55%', mileage: '44,200 km', nextService: 'May 10, 2026', lastService: 'Feb 02, 2026', compliance: 'Valid', capacity: '3.5t', location: 'Warehouse A, Sydney NSW', trips: 198, rating: 4.5, thumbnail: 'https://images.unsplash.com/photo-1549194382-246df982469e?q=80&w=800&auto=format&fit=crop', shifts: [{ id: 'DRV-134', name: 'Oliver Brown', shift: 'Day Shift (06:00 - 18:00)', initials: 'OB', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop' }] },
+   'BGT-221': { id: 'BGT-221', make: 'Isuzu FTR 900', type: 'Medium Truck', plate: 'BGT-221', year: '2020', status: 'Delay Alert', fuel: '31%', mileage: '89,100 km', nextService: 'April 15, 2026', lastService: 'Dec 12, 2025', compliance: 'Warning', capacity: '9t', location: 'Pacific Highway, NSW', trips: 301, rating: 4.2, thumbnail: '/hero_logistic_asset_inventory_final_1777697265907.webp', shifts: [{ id: 'DRV-105', name: 'Liam Smith', shift: 'Day Shift (08:00 - 20:00)', initials: 'LS', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop' }] },
+   'TRK-05': { id: 'TRK-05', make: 'Kenworth T610', type: 'Road Train', plate: 'TRK-05-MEL', year: '2019', status: 'Active', fuel: '88%', mileage: '204,000 km', nextService: 'June 01, 2026', lastService: 'Mar 01, 2026', compliance: 'Valid', capacity: '42t', location: 'Pacific Highway, NSW', trips: 680, rating: 4.6, thumbnail: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop', shifts: [] },
 };
 
 const statusStyle = (s) => {
@@ -70,7 +70,7 @@ export default function DispatchVehicleDetail() {
             <div className="flex-1 flex flex-col gap-3">
                <div className="relative aspect-[16/9] w-full rounded-2xl bg-[#111] overflow-hidden shadow-xl border-4 border-white group">
                   <img
-                     src={photo || v.thumbnail || "/vehicle_truck_1.png"}
+                     src={photo || v.thumbnail || "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop"}
                      alt="Fleet Asset"
                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -83,8 +83,8 @@ export default function DispatchVehicleDetail() {
                </div>
                 <div className="flex gap-3">
                   {[
-                     { src: v.thumbnail || "/vehicle_truck_1.png", label: 'Primary' },
-                     { src: "/vehicle_car_1.png", label: 'Alternate' },
+                     { src: v.thumbnail || "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop", label: 'Primary' },
+                     { src: "https://images.unsplash.com/photo-1549194382-246df982469e?q=80&w=800&auto=format&fit=crop", label: 'Alternate' },
                      { src: "/hero_logistic_asset_inventory_final_1777697265907.webp", label: 'Fleet' }
                   ].map((img, i) => (
                      <button

@@ -16,7 +16,7 @@ const vehicle = {
   fuelType: 'Diesel',
   status: 'Active',
   depot: 'Sydney Central Depot',
-  assignedDriver: { id: 'DRV-102', name: 'Jack Taylor', avatar: '/driver_avatar_2.png' },
+  assignedDriver: { id: 'DRV-102', name: 'Jack Taylor', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop' },
   currentLoad: { id: 'SHP-20481', route: 'Sydney Port → Blacktown DC', progress: 65 },
   odometer: '184,220 km',
   fuelLog: [
@@ -38,11 +38,11 @@ const vehicle = {
 };
 
 const availableDrivers = [
-  { id: 'DRV-102', name: 'Jack Taylor',  status: 'Available', depot: 'Sydney Central Depot', avatar: '/driver_avatar_2.png' },
-  { id: 'DRV-087', name: 'Maria Santos', status: 'Available', depot: 'Sydney Central Depot', avatar: '/driver_avatar_1.png' },
-  { id: 'DRV-091', name: 'Chris Nguyen', status: 'On Leave',  depot: 'Melbourne Depot',      avatar: '/driver_avatar_3.png' },
-  { id: 'DRV-044', name: 'Devon Clarke', status: 'Available', depot: 'Sydney Central Depot', avatar: '/driver_avatar_4.png' },
-  { id: 'DRV-058', name: 'Priya Mehta',  status: 'On Shift',  depot: 'Brisbane Port',       avatar: '/driver_avatar_1.png' },
+  { id: 'DRV-102', name: 'Jack Taylor',  status: 'Available', depot: 'Sydney Central Depot', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop' },
+  { id: 'DRV-087', name: 'Maria Santos', status: 'Available', depot: 'Sydney Central Depot', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop' },
+  { id: 'DRV-091', name: 'Chris Nguyen', status: 'On Leave',  depot: 'Melbourne Depot',      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop' },
+  { id: 'DRV-044', name: 'Devon Clarke', status: 'Available', depot: 'Sydney Central Depot', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop' },
+  { id: 'DRV-058', name: 'Priya Mehta',  status: 'On Shift',  depot: 'Brisbane Port',       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop' },
 ];
 
 // Utility: generate initials from full name
@@ -127,7 +127,7 @@ export default function AdminVehicleDetail() {
         <div className="lg:col-span-7 flex flex-col gap-3">
           <div className="relative aspect-[16/10] w-full rounded-2xl bg-[#0a0a0a] overflow-hidden shadow-lg group">
             <img
-              src={photo || '/vehicle_truck_1.png'}
+              src={photo || 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop'}
               alt={vehicle.make}
               className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all"
             />
@@ -149,7 +149,7 @@ export default function AdminVehicleDetail() {
           </div>
           {/* Thumbnail strip */}
           <div className="flex gap-2">
-            {['/vehicle_truck_1.png', '/vehicle_car_1.png', '/vehicle_truck_2.png'].map((img, i) => (
+            {['https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop', 'https://images.unsplash.com/photo-1549194382-246df982469e?q=80&w=800&auto=format&fit=crop', 'https://images.unsplash.com/photo-1586191582151-f73972d10942?q=80&w=800&auto=format&fit=crop'].map((img, i) => (
               <button
                 key={i}
                 onClick={() => setPhoto(img)}

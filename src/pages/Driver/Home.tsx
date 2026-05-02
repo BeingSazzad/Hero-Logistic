@@ -22,7 +22,7 @@ export default function DriverHome() {
          <div className="flex justify-between items-center bg-[#111] p-4 rounded-hero-lg shadow-xl border border-white/5">
             <div className="flex items-center gap-4">
                <div className="w-12 h-12 rounded-hero-md bg-brand-yellow border-2 border-white/10 flex items-center justify-center font-semibold text-black text-xl shadow-inner overflow-hidden">
-                  <img src="/driver_avatar_1.png" alt="Operator" className="w-full h-full object-cover" />
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop" alt="Operator" className="w-full h-full object-cover" />
                </div>
                <div>
                   <p className="text-xs font-medium text-gray-500 leading-none">Primary Operator</p>

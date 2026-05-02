@@ -67,7 +67,7 @@ export default function CustomerLayout() {
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full w-fit border-2 border-white" />
             </button>
             <div className="w-8 h-8 rounded-full w-fit bg-brand-yellow flex items-center justify-center font-semibold text-[#111] text-xs shadow-md overflow-hidden">
-               <img src="/driver_avatar_4.png" alt="Profile" className="w-full h-full object-cover" />
+               <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop" alt="Profile" className="w-full h-full object-cover" />
             </div>
             <button
               onClick={() => navigate('/login')}

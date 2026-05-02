@@ -32,7 +32,7 @@ const MOCK_INBOX: DraftLoad[] = [
     status: 'Pending Review',
     urgency: 'High',
     notes: 'Customer confirmed urgent. Two sedans, both undamaged.',
-    avatar: '/driver_avatar_2.png'
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop'
   },
   {
     id: 'DRAFT-1091',
@@ -45,7 +45,7 @@ const MOCK_INBOX: DraftLoad[] = [
     status: 'Pending Review',
     urgency: 'Normal',
     notes: 'Oversize Ute. Requires flatbed trailer.',
-    avatar: '/driver_avatar_3.png'
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop'
   },
   {
     id: 'DRAFT-1088',
@@ -58,7 +58,7 @@ const MOCK_INBOX: DraftLoad[] = [
     status: 'Pending Review',
     urgency: 'Normal',
     notes: 'Port pickup. Vehicles in compound storage.',
-    avatar: '/driver_avatar_4.png'
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300&auto=format&fit=crop'
   },
 ];
 
