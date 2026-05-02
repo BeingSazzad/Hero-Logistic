@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import {
   Search, Plus, Truck, X, CheckCircle2, AlertCircle,
   Printer, Barcode, Filter, ChevronDown, Tag, Calendar,
-  Hash, Car, MapPin, Loader2, Fingerprint
+  Hash, Car, MapPin, Loader2, Fingerprint, Edit3, Trash2
 } from 'lucide-react';
 
 // ── Mock Data ──────────────────────────────────────────────────────────────
@@ -38,9 +38,9 @@ export default function VehicleRegistry() {
   const [labelVehicle, setLabelVehicle] = useState(null);
   const [statusFilter, setStatusFilter] = useState('All');
   
-  // Assign load states
   const [assignLoadModal, setAssignLoadModal] = useState(null);
   const [loadInput, setLoadInput] = useState('');
+  const [editingVehicle, setEditingVehicle] = useState(null);
 
   const vinTimer = useRef(null);
 
@@ -81,11 +81,30 @@ export default function VehicleRegistry() {
     }
   };
 
+  const handleEdit = (v) => {
+    setEditingVehicle(v);
+    setForm({
+      vin: v.vin, plate: v.plate, make: v.make, model: v.model,
+      year: v.year, color: v.color, type: v.type, weight: v.weight,
+      customer: v.customer, destination: v.destination,
+      tags: v.tags.join(', ')
+    });
+    setErrors({});
+    setVinOk('ok');
+    setShowModal(true);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm('Are you sure you want to remove this asset?')) {
+      setVehicles(prev => prev.filter(v => v.id !== id));
+    }
+  };
+
   // ── Form Validation ──────────────────────────────────────────────
   const validate = () => {
     const e = {};
     if (!form.vin || form.vin.length < 10) e.vin = 'Valid VIN required (min 10 chars)';
-    if (vinOk === 'duplicate') e.vin = 'This VIN already exists in registry';
+    if (vinOk === 'duplicate' && (!editingVehicle || form.vin.toUpperCase() !== editingVehicle.vin)) e.vin = 'This VIN already exists in registry';
     if (!form.plate.trim()) e.plate = 'Number plate required';
     if (!form.make.trim())  e.make  = 'Make required';
     if (!form.model.trim()) e.model = 'Model required';
@@ -95,20 +114,31 @@ export default function VehicleRegistry() {
   const handleSubmit = () => {
     const e = validate();
     setErrors(e);
-    if (Object.keys(e).length) return;
-
-    const newVehicle = {
-      id: vehicles.length + 1,
-      vin: form.vin.toUpperCase(),
-      plate: form.plate.toUpperCase(),
-      make: form.make, model: form.model, year: form.year,
-      color: form.color, type: form.type, weight: form.weight,
-      status: 'Awaiting Load', currentLoad: null,
-      destination: form.destination, customer: form.customer,
-      tags: form.tags ? form.tags.split(',').map(t => t.trim()).filter(Boolean) : [],
-    };
-    setVehicles(prev => [newVehicle, ...prev]);
+    if (editingVehicle) {
+      setVehicles(prev => prev.map(v => v.id === editingVehicle.id ? {
+        ...v,
+        vin: form.vin.toUpperCase(),
+        plate: form.plate.toUpperCase(),
+        make: form.make, model: form.model, year: form.year,
+        color: form.color, type: form.type, weight: form.weight,
+        destination: form.destination, customer: form.customer,
+        tags: form.tags ? form.tags.split(',').map(t => t.trim()).filter(Boolean) : [],
+      } : v));
+    } else {
+      const newVehicle = {
+        id: vehicles.length + 1,
+        vin: form.vin.toUpperCase(),
+        plate: form.plate.toUpperCase(),
+        make: form.make, model: form.model, year: form.year,
+        color: form.color, type: form.type, weight: form.weight,
+        status: 'Awaiting Load', currentLoad: null,
+        destination: form.destination, customer: form.customer,
+        tags: form.tags ? form.tags.split(',').map(t => t.trim()).filter(Boolean) : [],
+      };
+      setVehicles(prev => [newVehicle, ...prev]);
+    }
     setShowModal(false);
+    setEditingVehicle(null);
     setForm(EMPTY_FORM);
     setErrors({});
     setVinOk(null);
@@ -126,7 +156,7 @@ export default function VehicleRegistry() {
           <p className="hero-body text-gray-600 mt-1">{vehicles.length} assets registered · Global VIN Search</p>
         </div>
         <button
-          onClick={() => { setShowModal(true); setForm(EMPTY_FORM); setErrors({}); setVinOk(null); }}
+          onClick={() => { setEditingVehicle(null); setShowModal(true); setForm(EMPTY_FORM); setErrors({}); setVinOk(null); }}
           className="btn btn-dark"
         >
           <Plus size={18} strokeWidth={3} /> Register Asset
@@ -243,6 +273,13 @@ export default function VehicleRegistry() {
                           <option value="Delivered">Delivered</option>
                         </select>
                         <button
+                          onClick={() => handleEdit(v)}
+                          className="p-2.5 rounded-xl bg-violet-50 text-violet-600 hover:bg-violet-600 hover:text-white transition-all border border-violet-100 shadow-sm active:scale-95"
+                          title="Edit Asset"
+                        >
+                          <Edit3 size={16} />
+                        </button>
+                        <button
                           onClick={() => setAssignLoadModal(v)}
                           className="p-2.5 rounded-xl bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white transition-all border border-blue-100 shadow-sm active:scale-95 flex items-center gap-2"
                           title="Assign Load"
@@ -255,6 +292,13 @@ export default function VehicleRegistry() {
                           title="Print Shipping Label"
                         >
                           <Barcode size={16} />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(v.id)}
+                          className="p-2.5 rounded-xl bg-red-50 text-red-400 hover:bg-red-500 hover:text-white transition-all border border-red-100 shadow-sm active:scale-95"
+                          title="Delete Asset"
+                        >
+                          <Trash2 size={16} />
                         </button>
                       </div>
                     </td>
@@ -272,10 +316,10 @@ export default function VehicleRegistry() {
           <div className="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-[680px] max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-300">
             <div className="sticky top-0 bg-white/80 backdrop-blur-xl flex items-center justify-between p-8 border-b border-gray-100 z-10">
               <div>
-                <h2 className="text-xl font-bold text-gray-900 tracking-tight">Register Asset</h2>
-                <p className="hero-body text-gray-600 mt-1">Permanent entry for multi-load assignment</p>
+                <h2 className="text-xl font-bold text-gray-900 tracking-tight">{editingVehicle ? 'Edit Asset' : 'Register Asset'}</h2>
+                <p className="hero-body text-gray-600 mt-1">{editingVehicle ? `Updating vehicle ${editingVehicle.vin}` : 'Permanent entry for multi-load assignment'}</p>
               </div>
-              <button onClick={() => setShowModal(false)} className="w-12 h-12 flex items-center justify-center rounded-2xl hover:bg-gray-100 transition-colors">
+              <button onClick={() => { setShowModal(false); setEditingVehicle(null); }} className="w-12 h-12 flex items-center justify-center rounded-2xl hover:bg-gray-100 transition-colors">
                 <X size={24} className="text-gray-400" />
               </button>
             </div>
@@ -384,8 +428,8 @@ export default function VehicleRegistry() {
                 <button onClick={() => setShowModal(false)} className="px-8 py-4 rounded-2xl hero-metadata hover:text-gray-900 transition-colors">
                   Cancel
                 </button>
-                <button onClick={handleSubmit} className="px-10 py-5 rounded-[1.5rem] bg-gradient-to-r from-brand-yellow to-brand-orange text-hero-dark text-sm font-bold uppercase tracking-[0.1em] shadow-xl shadow-brand-yellow/20 hover:opacity-90 active:scale-[0.98] transition-all">
-                  Confirm Registration
+                <button onClick={() => handleSubmit()} className="px-10 py-5 rounded-[1.5rem] bg-gradient-to-r from-brand-yellow to-brand-orange text-hero-dark text-sm font-bold uppercase tracking-[0.1em] shadow-xl shadow-brand-yellow/20 hover:opacity-90 active:scale-[0.98] transition-all">
+                  {editingVehicle ? 'Update Vehicle Data' : 'Confirm Registration'}
                 </button>
               </div>
             </div>
