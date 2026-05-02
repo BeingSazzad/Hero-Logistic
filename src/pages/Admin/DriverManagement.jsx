@@ -8,10 +8,10 @@ import {
 } from 'lucide-react';
 
 const RAW_DRIVERS = [
-  { id: 'DRV-101', name: 'Noah Williams', phone: '+61 412 888 123', status: 'Active', rating: 4.8, license: 'MC Class', vehicle: 'XQG-984', region: 'Sydney Metro' },
-  { id: 'DRV-102', name: 'Jack Taylor',   phone: '+61 412 888 456', status: 'On Trip', rating: 4.9, license: 'HC Class', vehicle: 'BGT-221', region: 'Melbourne SE' },
-  { id: 'DRV-103', name: 'Oliver Brown',  phone: '+61 412 888 789', status: 'Offline', rating: 4.5, license: 'HR Class', vehicle: 'None', region: 'Brisbane NW' },
-  { id: 'DRV-104', name: 'Liam Smith',    phone: '+61 412 888 000', status: 'Active', rating: 4.7, license: 'HC Class', vehicle: 'KLY-004', region: 'Adelaide Depot' },
+  { id: 'DRV-101', name: 'Noah Williams', phone: '+61 412 888 123', status: 'Active', rating: 4.8, license: 'MC Class', vehicle: 'XQG-984', region: 'Sydney Metro', canEditLoads: true },
+  { id: 'DRV-102', name: 'Jack Taylor',   phone: '+61 412 888 456', status: 'On Trip', rating: 4.9, license: 'HC Class', vehicle: 'BGT-221', region: 'Melbourne SE', canEditLoads: false },
+  { id: 'DRV-103', name: 'Oliver Brown',  phone: '+61 412 888 789', status: 'Offline', rating: 4.5, license: 'HR Class', vehicle: 'None', region: 'Brisbane NW', canEditLoads: true },
+  { id: 'DRV-104', name: 'Liam Smith',    phone: '+61 412 888 000', status: 'Active', rating: 4.7, license: 'HC Class', vehicle: 'KLY-004', region: 'Adelaide Depot', canEditLoads: false },
 ];
 
 export default function AdminDriverManagement() {
@@ -128,7 +128,12 @@ export default function AdminDriverManagement() {
                           {d.name.split(' ').map(n=>n[0]).join('')}
                        </div>
                        <div>
-                         <div className="font-bold text-[#111] text-sm">{d.name}</div>
+                         <div className="flex items-center gap-2">
+                           <div className="font-bold text-[#111] text-sm">{d.name}</div>
+                           {d.canEditLoads && (
+                             <span className="text-[9px] font-black bg-violet-100 text-violet-700 px-1.5 py-0.5 rounded border border-violet-200 uppercase tracking-widest shadow-sm">Editor</span>
+                           )}
+                         </div>
                          <div className="text-xs font-bold text-gray-400 tracking-widest uppercase mt-0.5">{d.id} • {d.phone}</div>
                        </div>
                      </div>
@@ -167,7 +172,3 @@ export default function AdminDriverManagement() {
     </div>
   );
 }
-
-
-
-

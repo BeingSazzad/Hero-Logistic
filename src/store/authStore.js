@@ -6,7 +6,8 @@ export const useAuthStore = create((set) => ({
     role: 'dispatcher',
     branchId: 'SYD-CENTRAL',
     branchName: 'Sydney Central Depot',
-    email: 'sarah.m@herologistics.com'
+    email: 'sarah.m@herologistics.com',
+    canEditLoads: true
   },
   setUser: (user) => set({ user }),
   logout: () => set({ user: null })

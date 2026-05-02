@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, MapPin, CheckCircle2, Circle, AlertTriangle, ShieldAlert, FileText, UploadCloud, Truck, PackageCheck, FileSignature, X, Printer } from 'lucide-react';
+import { ArrowLeft, MapPin, CheckCircle2, Circle, AlertTriangle, ShieldAlert, FileText, UploadCloud, Truck, PackageCheck, FileSignature, X, Printer, Edit3 } from 'lucide-react';
 
 // Dynamic Network Stages for sequential custody transfer
 const NETWORK_STAGES = [
@@ -33,10 +33,13 @@ export default function AdminLoadDetail() {
       <div className="flex justify-between items-start mb-6">
         <div>
           <div className="flex items-center gap-3 flex-wrap">
-            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{id || 'SHP-9000'}</h1>
-            <span className={`badge font-bold uppercase tracking-widest text-xs ${exceptionActive ? 'bg-red-100 text-red-600' : 'bg-blue-100 text-blue-600'}`}>
-              ● {exceptionActive ? 'Delivery Issue Detected' : 'In Progress'}
-            </span>
+            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">{id || 'SHP-9042'}</h1>
+            <div className="flex flex-col">
+              <span className={`badge font-bold uppercase tracking-widest text-[10px] py-0.5 px-2 ${exceptionActive ? 'bg-red-100 text-red-600' : 'bg-blue-100 text-blue-600'}`}>
+                ● {exceptionActive ? 'Delivery Issue Detected' : 'In Progress'}
+              </span>
+              <div className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.1em] mt-1">Client Ref: <span className="text-gray-900">ACME-221</span></div>
+            </div>
             <span className={`badge font-bold uppercase tracking-widest text-xs ${deliveryMode === 'Depot' ? 'bg-indigo-100 text-indigo-700' : 'bg-emerald-100 text-emerald-700'}`}>
               {deliveryMode === 'Depot' ? '🏢 Depot-to-Depot' : '🚪 Door-to-Door'}
             </span>
@@ -77,6 +80,12 @@ export default function AdminLoadDetail() {
             className="btn bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 flex items-center gap-2 font-bold shadow-sm"
           >
             <FileText size={16}/> Invoice
+          </button>
+          <button 
+            onClick={() => navigate(`/admin/loads/edit/${id}`)}
+            className="btn bg-gray-900 text-brand-yellow hover:bg-black flex items-center gap-2 font-bold shadow-sm"
+          >
+            <Edit3 size={16}/> Edit Load
           </button>
         </div>
       </div>
@@ -240,6 +249,10 @@ export default function AdminLoadDetail() {
             <div className="card bg-white p-5 shadow-sm border border-gray-100 flex flex-col gap-4">
                <h3 className="text-xs font-semibold uppercase tracking-widest text-gray-400">Cargo Declaration</h3>
                <div className="space-y-4">
+                 <div className="flex justify-between border-b border-gray-50 pb-2">
+                   <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Customer Load #</span>
+                   <span className="text-sm font-bold text-[#111] tracking-tight">ACME-221</span>
+                 </div>
                  <div className="flex justify-between border-b border-gray-50 pb-2">
                    <span className="text-xs font-bold text-gray-500">Commodity</span>
                    <span className="text-sm font-semibold text-gray-900">Electronics</span>

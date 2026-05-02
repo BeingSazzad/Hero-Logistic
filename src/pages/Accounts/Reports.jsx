@@ -81,6 +81,41 @@ export default function AccountsReports() {
           </tbody>
         </table>
       </div>
+
+      {/* High Value Loads with Customer Refs */}
+      <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden mb-8">
+        <div className="p-5 border-b border-gray-100 flex justify-between items-center bg-[#FAFAFA]">
+          <h3 className="font-bold text-gray-900">High-Value Job Performance</h3>
+          <span className="text-[10px] font-bold text-brand-orange uppercase tracking-widest bg-orange-50 border border-orange-100 px-2 py-1 rounded">Reference Enabled</span>
+        </div>
+        <table className="w-full text-left">
+          <thead className="bg-gray-50 text-gray-400 text-xs uppercase tracking-wider border-b border-gray-100">
+            <tr>
+              <th className="px-6 py-3">Load ID</th>
+              <th className="px-6 py-3">Customer Ref</th>
+              <th className="px-6 py-3">Branch</th>
+              <th className="px-6 py-3 text-right">Profit Margin</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-50">
+            {[
+              { id: 'SHP-9055', ref: 'COKE-9901', branch: 'SYDNEY', margin: '42%' },
+              { id: 'SHP-9042', ref: 'ACME-221', branch: 'MELBOURNE', margin: '38%' },
+              { id: 'SHP-9060', ref: 'VL-X77', branch: 'SYDNEY', margin: '45%' },
+              { id: 'SHP-9041', ref: 'PO-8811', branch: 'SYDNEY', margin: '31%' },
+            ].map(job => (
+              <tr key={job.id} className="hover:bg-gray-50">
+                <td className="px-6 py-4 font-bold text-[#111]">{job.id}</td>
+                <td className="px-6 py-4">
+                  <span className="text-xs font-bold text-gray-600 bg-gray-100 px-2 py-1 rounded border border-gray-200">{job.ref}</span>
+                </td>
+                <td className="px-6 py-4 text-xs font-bold text-gray-400 uppercase">{job.branch}</td>
+                <td className="px-6 py-4 text-right font-bold text-emerald-600">{job.margin}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

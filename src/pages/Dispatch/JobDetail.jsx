@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
   ArrowLeft, MapPin, CheckCircle2, Circle, AlertTriangle, ShieldAlert,
   FileText, UploadCloud, Truck, PackageCheck, FileSignature, X,
-  ArrowRight, Share2, ClipboardList, Clock, Send
+  ArrowRight, Share2, ClipboardList, Clock, Send, Edit3
 } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 
@@ -71,10 +71,13 @@ export default function DispatchJobDetail() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-6">
         <div>
           <div className="flex items-center gap-3 mb-1">
-            <h1 className="hero-h1">{id || 'SHP-9055'}</h1>
-            <span className={` py-0.5 rounded-sm w-fit font-semibold uppercase tracking-widest text-xs shadow-sm border ${exceptionActive ? 'bg-red-50 text-red-600 border-red-100' : 'bg-blue-50 text-blue-600 border-blue-100'}`}>
-              ● {assigned ? 'Assigned' : 'In Progress'}
-            </span>
+            <h1 className="hero-h1">{id || 'SHP-9042'}</h1>
+            <div className="flex flex-col">
+              <span className={` py-0.5 px-2 rounded-sm w-fit font-semibold uppercase tracking-widest text-[10px] shadow-sm border ${exceptionActive ? 'bg-red-50 text-red-600 border-red-100' : 'bg-blue-50 text-blue-600 border-blue-100'}`}>
+                ● {assigned ? 'Assigned' : 'In Progress'}
+              </span>
+              <div className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.1em] mt-1">Client Ref: <span className="text-gray-900">ACME-221</span></div>
+            </div>
             <span className={` py-0.5 rounded-sm w-fit font-semibold uppercase tracking-widest text-xs shadow-sm border ${deliveryMode === 'Depot' ? 'bg-indigo-50 text-indigo-700 border-indigo-100' : 'bg-emerald-50 text-emerald-700 border-emerald-100'}`}>
               {deliveryMode === 'Depot' ? '🏢 Depot-to-Depot' : '🚪 Door-to-Door'}
             </span>
@@ -98,6 +101,12 @@ export default function DispatchJobDetail() {
             className="btn-sm flex-1 lg:flex-none bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 uppercase tracking-widest shadow-sm transition-all"
           >
             <FileText size={16} /> Manifest
+          </button>
+          <button
+            onClick={() => navigate(`/dispatch/loads/edit/${id}`)}
+            className="btn-sm flex-1 lg:flex-none bg-gray-900 text-brand hover:bg-black uppercase tracking-widest shadow-sm transition-all"
+          >
+            <Edit3 size={16} /> Edit Job
           </button>
         </div>
       </div>
@@ -230,6 +239,10 @@ export default function DispatchJobDetail() {
             <div className="card bg-white p-6 shadow-sm border border-gray-100 rounded-hero-md flex flex-col gap-5">
               <h3 className="hero-metadata">Load Metadata</h3>
               <div className="space-y-4">
+                <div className="flex justify-between border-b border-gray-50 pb-3">
+                  <span className="hero-metadata text-[10px]">Customer Load #</span>
+                  <span className="text-sm font-bold text-gray-900 tracking-tight">ACME-221</span>
+                </div>
                 <div className="flex justify-between border-b border-gray-50 pb-3">
                   <span className="hero-metadata">Commodity</span>
                   <span className="text-sm font-semibold text-gray-900">Electronics</span>

@@ -11,6 +11,7 @@ export default function AdminAddDriver() {
   const [photo, setPhoto] = useState(null);
   const [idFront, setIdFront] = useState(null);
   const [idBack, setIdBack] = useState(null);
+  const [canEditLoads, setCanEditLoads] = useState(false);
 
   const handlePhotoUpload = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -234,14 +235,14 @@ export default function AdminAddDriver() {
                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Contact Phone *</label>
                     <div className="relative group">
                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-red-400 transition-colors" size={16}/>
-                       <input type="text" placeholder="+61 400 000 000" className="w-full bg-white border border-gray-200 focus:border-red-300 rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-red-400/20" />
+                       <input type="text" placeholder="+61 400 000 000" className="w-full bg-white border border-red-300 rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-red-400/20" />
                     </div>
                  </div>
                  <div>
                     <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Contact Email</label>
                     <div className="relative group">
                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-red-400 transition-colors" size={16}/>
-                       <input type="email" placeholder="email@example.com" className="w-full bg-white border border-gray-200 focus:border-red-300 rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-red-400/20" />
+                       <input type="email" placeholder="email@example.com" className="w-full bg-white border border-red-300 rounded-lg py-2.5 pl-12 pr-4 text-sm font-medium text-gray-900 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-red-400/20" />
                     </div>
                  </div>
               </div>
@@ -322,32 +323,37 @@ export default function AdminAddDriver() {
               </div>
            </div>
 
-           {/* PWA App Access & Registration */}
+           {/* Driver App Access & Permissions */}
            <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
               <div className="p-4 border-b border-gray-100 bg-[#FAFAFA] flex items-center justify-between">
-                 <h2 className="text-xs font-bold text-[#111] uppercase tracking-wide flex items-center gap-2"><Zap size={14} className="text-brand-yellow"/> Driver App Access</h2>
-                 <span className="text-xs font-semibold bg-blue-50 text-blue-600  py-0.5 rounded border border-blue-100 uppercase tracking-tighter">PWA Secured</span>
+                 <h2 className="text-xs font-bold text-[#111] uppercase tracking-wide flex items-center gap-2"><Zap size={14} className="text-brand-yellow"/> App & Permissions</h2>
               </div>
               <div className="p-5">
-                 <p className="text-xs text-gray-500 leading-relaxed mb-4">
-                    The driver will receive a secure **Self-Activation Link**. Upon clicking, they can install the HERO PWA and set their secure Access PIN.
-                 </p>
-                 
-                 <div className="space-y-3">
-                   <div className="p-3 bg-gray-50 rounded-lg border border-gray-100">
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Invitation Method</p>
-                      <div className="flex gap-2">
-                         <button className="flex-1 py-1.5 bg-brand-yellow text-black font-bold text-xs rounded border border-brand-yellow transition-all">SMS Invite</button>
-                         <button className="flex-1 py-1.5 bg-white text-gray-600 font-bold text-xs rounded border border-gray-200 hover:bg-gray-50">Email Invite</button>
-                      </div>
-                   </div>
-                   
-                   <div className="p-3 bg-gray-900 rounded-lg border border-gray-800">
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5">Simulation: Activation Link</p>
-                      <div className="font-mono text-xs text-brand-yellow break-all opacity-80">
-                         hero.app/join/t62x-9Lp2-v8k1
-                      </div>
-                   </div>
+                 <div className="mb-6 p-4 rounded-xl border border-violet-100 bg-violet-50/30">
+                    <div className="flex items-center justify-between">
+                       <div>
+                         <p className="text-sm font-bold text-gray-900">Can Edit Loads</p>
+                         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Operational Authority</p>
+                       </div>
+                       <button 
+                         type="button"
+                         onClick={() => setCanEditLoads(!canEditLoads)}
+                         className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${canEditLoads ? 'bg-violet-600' : 'bg-gray-200'}`}
+                       >
+                         <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${canEditLoads ? 'translate-x-6' : 'translate-x-1'}`} />
+                       </button>
+                    </div>
+                    <p className="text-[10px] text-gray-500 font-medium leading-relaxed mt-3">
+                       Granting this allows the driver to modify vehicle details, stock numbers, and cargo items in active loads.
+                    </p>
+                 </div>
+
+                 <div className="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Invitation Channel</p>
+                    <div className="flex gap-2">
+                       <button className="flex-1 py-2 bg-brand-yellow text-black font-bold text-xs rounded shadow-sm border border-brand-yellow transition-all">SMS Invite</button>
+                       <button className="flex-1 py-2 bg-white text-gray-600 font-bold text-xs rounded shadow-sm border border-gray-200 hover:bg-gray-50">Email Invite</button>
+                    </div>
                  </div>
               </div>
            </div>
@@ -403,7 +409,3 @@ export default function AdminAddDriver() {
     </div>
   );
 }
-
-
-
-

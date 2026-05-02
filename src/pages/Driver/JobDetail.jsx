@@ -3,8 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, MapPin, Clock, Box, ShieldCheck, 
   Phone, User, ChevronRight, Navigation,
-  AlertTriangle, CheckCircle2, MoreVertical
+  AlertTriangle, CheckCircle2, MoreVertical, Edit3
 } from 'lucide-react';
+import { useAuthStore } from '../../store/authStore';
 
 const JOB_DATA = {
   'J-2026-1260': {
@@ -85,6 +86,7 @@ const STATUS_VARIANTS = {
 export default function DriverJobDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const user = useAuthStore(state => state.user);
   // Fallback to first job if ID not found in mock data
   const job = JOB_DATA[id] || JOB_DATA['J-2026-1260'];
 
@@ -104,9 +106,19 @@ export default function DriverJobDetail() {
             <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1.5">{job.customer}</p>
           </div>
         </div>
-        <button className="w-10 h-10 flex items-center justify-center bg-gray-50 rounded-xl hover:bg-gray-100 text-gray-400">
-          <MoreVertical size={18} />
-        </button>
+        <div className="flex items-center gap-2">
+          {user?.canEditLoads && (
+            <button 
+              onClick={() => navigate(`/driver/loads/edit/${id}`)}
+              className="w-10 h-10 flex items-center justify-center bg-violet-50 text-violet-600 rounded-xl hover:bg-violet-100 transition-colors"
+            >
+              <Edit3 size={18} />
+            </button>
+          )}
+          <button className="w-10 h-10 flex items-center justify-center bg-gray-50 rounded-xl hover:bg-gray-100 text-gray-400">
+            <MoreVertical size={18} />
+          </button>
+        </div>
       </div>
 
       <div className="p-4 space-y-4">

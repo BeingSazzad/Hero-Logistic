@@ -49,6 +49,7 @@ import AdminSafetyChecklists from './pages/Admin/SafetyChecklists';
 import AdminBilling from './pages/Admin/Billing';
 import AdminSubscriptionPlans from './pages/Admin/SubscriptionPlans';
 import AdminVehicleRegistry from './pages/Admin/VehicleRegistry';
+import AdminEditLoad from './pages/Admin/EditLoad';
 
 // ── Dispatch ─────────────────────────────────────────────────────
 import DispatchDashboard from './pages/Dispatch/Dashboard';
@@ -65,6 +66,7 @@ import DispatchFleet from './pages/Dispatch/Fleet';
 import DispatchTerminal from './pages/Dispatch/TerminalWorkspace';
 import DispatchAssetRegistry from './pages/Dispatch/AssetRegistry';
 import DispatchVehicleRegistry from './pages/Dispatch/VehicleRegistry';
+import DispatchEditJob from './pages/Dispatch/EditJob';
 
 // ── Driver ───────────────────────────────────────────────────────
 import DriverHome from './pages/Driver/Home';
@@ -78,6 +80,7 @@ import DriverMessages from './pages/Driver/Messages';
 import DriverNotifications from './pages/Driver/Notifications';
 import DriverCreateDraft from './pages/Driver/CreateDraft';
 import DriverJobDetail from './pages/Driver/JobDetail';
+import DriverEditJob from './pages/Driver/EditJob';
 
 // ── Warehouse ────────────────────────────────────────────────────
 import WarehouseDashboard from './pages/Warehouse/Dashboard';
@@ -140,6 +143,7 @@ function App() {
           <Route path="users/:id" element={<AdminUserDetail />} />
           <Route path="loads" element={<AdminLoads />} />
           <Route path="loads/create" element={<AdminCreateLoad />} />
+          <Route path="loads/edit/:id" element={<AdminEditLoad />} />
           <Route path="loads/:id" element={<AdminLoadDetail />} />
           <Route path="vehicle-registry" element={<AdminVehicleRegistry />} />
           <Route path="exceptions" element={<AdminExceptions />} />
@@ -169,6 +173,7 @@ function App() {
           <Route path="loads" element={<DispatchJobs />} />
           <Route path="inbox" element={<DispatchLoadInbox />} />
           <Route path="loads/create" element={<DispatchCreateJob />} />
+          <Route path="loads/edit/:id" element={<DispatchEditJob />} />
           <Route path="loads/:id" element={<DispatchJobDetail />} />
           <Route path="tracking" element={<DispatchTracking />} />
           <Route path="drivers" element={<DispatchDrivers />} />
@@ -190,6 +195,7 @@ function App() {
           <Route path="active" element={<DriverActiveTrip />} />
           <Route path="draft" element={<DriverCreateDraft />} />
           <Route path="loads" element={<DriverJobs />} />
+          <Route path="loads/edit/:id" element={<DriverEditJob />} />
           <Route path="loads/:id" element={<DriverJobDetail />} />
           <Route path="expenses" element={<DriverExpenses />} />
           <Route path="pay" element={<DriverExpenses />} />

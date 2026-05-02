@@ -23,12 +23,12 @@ export default function DispatchJobs() {
   const [unassignedFilter, setUnassignedFilter] = useState('All');
 
   const rawJobs = [
-    { id: 'SHP-9055', branchId: 'SYD-CENTRAL', customer: 'Acme Freight Co', origin: 'Sydney Depot', dest: 'Canberra Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'High', load: '6.2t' },
-    { id: 'SHP-9054', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'Medium', load: '2.1t' },
-    { id: 'SHP-9060', branchId: 'SYD-CENTRAL', customer: 'Velocity Logistics', origin: 'Melbourne Depot', dest: 'Brisbane Depot', queue: 'unassigned', unassignedType: 'Branch Transfers', driver: null, vehicle: null, priority: 'High', load: '14.5t' },
-    { id: 'SHP-9042', branchId: 'SYD-CENTRAL', customer: 'Acme Corp Logistics', origin: 'Sydney Depot', dest: 'Melbourne Branch', queue: 'assigned', driver: 'Jack Taylor', vehicle: 'XQG-984', priority: 'High', load: '18.4t' },
-    { id: 'SHP-9041', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'exception', driver: 'Liam Smith', vehicle: 'BGT-221', priority: 'Medium', load: '9.5t', exception: 'Delay' },
-    { id: 'SHP-9039', branchId: 'SYD-CENTRAL', customer: 'Global Traders AU', origin: 'Brisbane Depot', dest: 'Gold Coast Branch', queue: 'completed', driver: 'Liam Smith', vehicle: 'KLY-004', priority: 'Low', load: '5.5t' },
+    { id: 'SHP-9055', branchId: 'SYD-CENTRAL', customer: 'Acme Freight Co', customerRef: 'COKE-9901', stockNumber: 'STK-4401', origin: 'Sydney Depot', dest: 'Canberra Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'High', load: '6.2t' },
+    { id: 'SHP-9054', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', customerRef: 'PO-8822', stockNumber: 'STK-4402', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'Medium', load: '2.1t' },
+    { id: 'SHP-9060', branchId: 'SYD-CENTRAL', customer: 'Velocity Logistics', customerRef: 'VL-X77', stockNumber: 'STK-4403', origin: 'Melbourne Depot', dest: 'Brisbane Depot', queue: 'unassigned', unassignedType: 'Branch Transfers', driver: null, vehicle: null, priority: 'High', load: '14.5t' },
+    { id: 'SHP-9042', branchId: 'SYD-CENTRAL', customer: 'Acme Corp Logistics', customerRef: 'ACME-221', stockNumber: 'STK-4405', origin: 'Sydney Depot', dest: 'Melbourne Branch', queue: 'assigned', driver: 'Jack Taylor', vehicle: 'XQG-984', priority: 'High', load: '18.4t' },
+    { id: 'SHP-9041', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', customerRef: 'PO-8811', stockNumber: 'STK-4407', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'exception', driver: 'Liam Smith', vehicle: 'BGT-221', priority: 'Medium', load: '9.5t', exception: 'Delay' },
+    { id: 'SHP-9039', branchId: 'SYD-CENTRAL', customer: 'Global Traders AU', customerRef: 'GT-449', stockNumber: 'STK-4408', origin: 'Brisbane Depot', dest: 'Gold Coast Branch', queue: 'completed', driver: 'Liam Smith', vehicle: 'KLY-004', priority: 'Low', load: '5.5t' },
   ];
 
   const counts = useMemo(() => ({
@@ -41,7 +41,7 @@ export default function DispatchJobs() {
   const filtered = useMemo(() => {
     return rawJobs.filter(j => {
       const matchesQueue = j.queue === queue;
-      const matchesSearch = !search || `${j.id} ${j.customer} ${j.driver || ''}`.toLowerCase().includes(search.toLowerCase());
+      const matchesSearch = !search || `${j.id} ${j.customer} ${j.customerRef || ''} ${j.stockNumber || ''} ${j.driver || ''}`.toLowerCase().includes(search.toLowerCase());
       let matchesSub = true;
       if (queue === 'unassigned' && unassignedFilter !== 'All') {
         matchesSub = j.unassignedType === unassignedFilter;
@@ -144,7 +144,12 @@ export default function DispatchJobs() {
                   className="hover:bg-gray-50/50 transition-all cursor-pointer group"
                   onClick={() => navigate(`/dispatch/loads/${job.id}`)}
                 >
-                  <td className="px-6 py-4 text-sm font-semibold text-gray-900">{job.id}</td>
+                  <td className="px-6 py-4">
+                    <div className="text-sm font-semibold text-gray-900">{job.id}</div>
+                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">
+                      Ref: {job.customerRef || '—'} {job.stockNumber ? `• SN: ${job.stockNumber}` : ''}
+                    </div>
+                  </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-1.5 text-xs font-medium text-gray-600">
                       <span>{job.origin.split(' ')[0]}</span>

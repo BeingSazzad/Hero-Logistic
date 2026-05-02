@@ -34,6 +34,7 @@ const createItem = (id) => ({
   vin: '',
   rego: '',
   makeModel: '',
+  stockNumber: '',
   // Dangerous Goods specific
   unNumber: '',
   hazardClass: '',
@@ -67,6 +68,7 @@ export default function DispatchCreateJob() {
   // Multi-item state
   const [items, setItems] = useState([createItem(1)]);
   const [nextId, setNextId] = useState(2);
+  const [customerLoadNum, setCustomerLoadNum] = useState('');
 
   // Helper to change niche for all items
   const handleNicheChange = (nicheId) => {
@@ -460,6 +462,46 @@ export default function DispatchCreateJob() {
             </div>
           </div>
 
+          {/* ADMINISTRATIVE REFERENCES */}
+          <div className="bg-white rounded-2xl shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] border border-gray-100 overflow-hidden transition-all">
+            <div className="p-5 border-b border-gray-100 bg-[#FAFAFA] flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-violet-50 flex items-center justify-center text-violet-600">
+                  <Shield size={20} />
+                </div>
+                <div>
+                  <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">Administrative References</h2>
+                  <p className="text-xs text-gray-400 font-bold uppercase mt-0.5 tracking-widest">Billing & Compliance Identifiers</p>
+                </div>
+              </div>
+            </div>
+            <div className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-2 ml-1">Customer Load Number (Ref #) *</label>
+                  <div className="relative group">
+                    <Layers className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-violet-500 transition-colors" size={16} />
+                    <input 
+                      type="text" 
+                      value={customerLoadNum}
+                      onChange={e => setCustomerLoadNum(e.target.value)}
+                      placeholder="e.g. COKE-12345 or PO-9988" 
+                      className="input pl-11 !rounded-xl border-gray-200 focus:border-violet-500" 
+                    />
+                  </div>
+                  <p className="text-[10px] text-gray-400 font-bold uppercase mt-2 ml-1 tracking-tight">This number will appear on all Invoices & Reports</p>
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 mb-2 ml-1">Internal Dept. Code</label>
+                  <div className="relative group">
+                    <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-violet-500 transition-colors" size={16} />
+                    <input type="text" placeholder="Optional cost center" className="input pl-11 !rounded-xl border-gray-200 focus:border-violet-500" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* ── MULTI-ITEM SECTION ── */}
           <div className="flex flex-col gap-4">
             <div className="flex justify-between items-center px-1">
@@ -531,6 +573,10 @@ export default function DispatchCreateJob() {
                         <div>
                           <label className="block text-xs font-semibold text-blue-700 mb-2 ml-1">Make / Model</label>
                           <input type="text" value={item.makeModel} onChange={e => updateItem(item.id, 'makeModel', e.target.value)} placeholder="e.g. Toyota Hilux" className="input !bg-white !border-blue-200 !rounded-xl" />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-semibold text-blue-700 mb-2 ml-1">Stock / Item # *</label>
+                          <input type="text" value={item.stockNumber} onChange={e => updateItem(item.id, 'stockNumber', e.target.value)} placeholder="e.g. STK-9901" className="input !bg-white !border-blue-200 !rounded-xl" />
                         </div>
                       </div>
                     ) : item.niche === 'dangerous' ? (

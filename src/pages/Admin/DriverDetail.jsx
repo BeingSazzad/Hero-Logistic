@@ -26,7 +26,8 @@ const driver = {
     { id: 'SHP-20477', route: 'Chullora DC → Richmond Depot', status: 'Delivered', date: 'Yesterday' },
     { id: 'SHP-20469', route: 'Port Botany → Penrith Depot', status: 'Delivered', date: '05 Apr' },
     { id: 'SHP-20461', route: 'Blacktown DC → Newcastle Depot', status: 'Delivered', date: '04 Apr' },
-  ]
+  ],
+  canEditLoads: true
 };
 
 export default function AdminDriverDetail() {
@@ -37,6 +38,7 @@ export default function AdminDriverDetail() {
   const [editedPhone, setEditedPhone] = useState(driver.phone);
   const [editedShift, setEditedShift] = useState(driver.shiftType);
   const [editedDepot, setEditedDepot] = useState(driver.depot);
+  const [canEditLoads, setCanEditLoads] = useState(driver.canEditLoads);
 
   return (
     <div className="flex flex-col gap-6 w-full max-w-[1440px] mx-auto pb-12">
@@ -248,6 +250,33 @@ export default function AdminDriverDetail() {
                     </div>
                  </div>
               </div>
+            </div>
+          </div>
+
+          {/* Permission Settings */}
+          <div className="bg-white rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+            <div className="p-4 border-b border-gray-100 bg-[#FAFAFA]">
+               <h3 className="text-xs font-bold text-[#111] uppercase tracking-wide flex items-center gap-2"><ShieldCheck size={14} className="text-violet-500"/> Permission Settings</h3>
+            </div>
+            <div className="p-5">
+               <div className="flex items-center justify-between p-4 rounded-xl border border-violet-100 bg-violet-50/30">
+                  <div>
+                    <p className="text-sm font-bold text-gray-900">Can Edit Loads</p>
+                    <p className="text-xs font-medium text-gray-500 mt-0.5">Allows driver to modify load items and details</p>
+                  </div>
+                  {editing ? (
+                    <button 
+                      onClick={() => setCanEditLoads(!canEditLoads)}
+                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${canEditLoads ? 'bg-violet-600' : 'bg-gray-200'}`}
+                    >
+                      <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${canEditLoads ? 'translate-x-6' : 'translate-x-1'}`} />
+                    </button>
+                  ) : (
+                    <span className={`text-[10px] font-bold px-2 py-1 rounded uppercase tracking-widest ${canEditLoads ? 'bg-violet-100 text-violet-700' : 'bg-gray-100 text-gray-400'}`}>
+                      {canEditLoads ? 'Authorized' : 'Restricted'}
+                    </span>
+                  )}
+               </div>
             </div>
           </div>
         </div>

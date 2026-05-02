@@ -33,14 +33,14 @@ export default function AdminLoads() {
   };
 
   const rawJobs = [
-    { id: 'SHP-9055', branchId: 'SYD-CENTRAL', customer: 'Acme Freight Co', origin: 'Sydney Depot', dest: 'Canberra Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'High', eta: '—', pickup: '11:00 AM', window: '12:00–14:00', load: '6.2t', notes: 'Temperature-controlled cargo' },
-    { id: 'SHP-9054', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'Medium', eta: '—', pickup: '12:30 PM', window: '13:00–15:00', load: '2.1t', notes: '' },
-    { id: 'SHP-9060', branchId: 'SYD-CENTRAL', customer: 'Velocity Logistics', origin: 'Melbourne Depot', dest: 'Brisbane Depot', queue: 'unassigned', unassignedType: 'Branch Transfers', driver: null, vehicle: null, priority: 'High', eta: '—', pickup: 'Awaiting Transit', window: '—', load: '14.5t', notes: 'Depot cross-dock completed' },
-    { id: 'SHP-9061', branchId: 'SYD-CENTRAL', customer: 'Local Retailer', origin: 'Perth Depot', dest: 'Sydney Local', queue: 'unassigned', unassignedType: 'Local Deliveries', driver: null, vehicle: null, priority: 'Medium', eta: '—', pickup: 'Arrived at Staging', window: 'Before 17:00', load: '2.4t', notes: '' },
-    { id: 'SHP-9042', branchId: 'SYD-CENTRAL', customer: 'Acme Corp Logistics', origin: 'Sydney Depot', dest: 'Melbourne Branch', queue: 'assigned', driver: 'Jack Taylor', vehicle: 'XQG-984', priority: 'High', eta: '14:30', pickup: '06:00 AM', window: 'Deliver by 16:00', load: '18.4t', notes: '' },
-    { id: 'SHP-9035', branchId: 'SYD-CENTRAL', customer: 'Southport Logistics', origin: 'Adelaide Depot', dest: 'Sydney Depot', queue: 'assigned', driver: 'Oliver Brown', vehicle: 'V-102', priority: 'High', eta: 'Arrived at Branch', pickup: '05:00 AM', window: 'Delivered by 11:00', load: '12.0t', notes: '' },
-    { id: 'SHP-9041', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'exception', driver: 'Liam Smith', vehicle: 'BGT-221', priority: 'Medium', eta: 'Delayed', pickup: '07:00 AM', window: 'Deliver by 14:00', load: '9.5t', notes: 'Driver reports heavy traffic', exception: 'Delay' },
-    { id: 'SHP-9039', branchId: 'SYD-CENTRAL', customer: 'Global Traders AU', origin: 'Brisbane Depot', dest: 'Gold Coast Branch', queue: 'completed', driver: 'Liam Smith', vehicle: 'KLY-004', priority: 'Low', eta: 'Received', pickup: '03:00 AM', window: 'Deliver by 08:00', load: '5.5t', notes: '' },
+    { id: 'SHP-9055', branchId: 'SYD-CENTRAL', customer: 'Acme Freight Co', customerRef: 'COKE-9901', stockNumber: 'STK-4401', origin: 'Sydney Depot', dest: 'Canberra Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'High', eta: '—', pickup: '11:00 AM', window: '12:00–14:00', load: '6.2t', notes: 'Temperature-controlled cargo' },
+    { id: 'SHP-9054', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', customerRef: 'PO-8822', stockNumber: 'STK-4402', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'unassigned', unassignedType: 'Local Pickups', driver: null, vehicle: null, priority: 'Medium', eta: '—', pickup: '12:30 PM', window: '13:00–15:00', load: '2.1t', notes: '' },
+    { id: 'SHP-9060', branchId: 'SYD-CENTRAL', customer: 'Velocity Logistics', customerRef: 'VL-X77', stockNumber: 'STK-4403', origin: 'Melbourne Depot', dest: 'Brisbane Depot', queue: 'unassigned', unassignedType: 'Branch Transfers', driver: null, vehicle: null, priority: 'High', eta: '—', pickup: 'Awaiting Transit', window: '—', load: '14.5t', notes: 'Depot cross-dock completed' },
+    { id: 'SHP-9061', branchId: 'SYD-CENTRAL', customer: 'Local Retailer', customerRef: 'LR-102', stockNumber: 'STK-4404', origin: 'Perth Depot', dest: 'Sydney Local', queue: 'unassigned', unassignedType: 'Local Deliveries', driver: null, vehicle: null, priority: 'Medium', eta: '—', pickup: 'Arrived at Staging', window: 'Before 17:00', load: '2.4t', notes: '' },
+    { id: 'SHP-9042', branchId: 'SYD-CENTRAL', customer: 'Acme Corp Logistics', customerRef: 'ACME-221', stockNumber: 'STK-4405', origin: 'Sydney Depot', dest: 'Melbourne Branch', queue: 'assigned', driver: 'Jack Taylor', vehicle: 'XQG-984', priority: 'High', eta: '14:30', pickup: '06:00 AM', window: 'Deliver by 16:00', load: '18.4t', notes: '' },
+    { id: 'SHP-9035', branchId: 'SYD-CENTRAL', customer: 'Southport Logistics', customerRef: 'SPL-55', stockNumber: 'STK-4406', origin: 'Adelaide Depot', dest: 'Sydney Depot', queue: 'assigned', driver: 'Oliver Brown', vehicle: 'V-102', priority: 'High', eta: 'Arrived at Branch', pickup: '05:00 AM', window: 'Delivered by 11:00', load: '12.0t', notes: '' },
+    { id: 'SHP-9041', branchId: 'SYD-CENTRAL', customer: 'Tech Solutions Ltd', customerRef: 'PO-8811', stockNumber: 'STK-4407', origin: 'Sydney Depot', dest: 'Penrith Branch', queue: 'exception', driver: 'Liam Smith', vehicle: 'BGT-221', priority: 'Medium', eta: 'Delayed', pickup: '07:00 AM', window: 'Deliver by 14:00', load: '9.5t', notes: 'Driver reports heavy traffic', exception: 'Delay' },
+    { id: 'SHP-9039', branchId: 'SYD-CENTRAL', customer: 'Global Traders AU', customerRef: 'GT-449', stockNumber: 'STK-4408', origin: 'Brisbane Depot', dest: 'Gold Coast Branch', queue: 'completed', driver: 'Liam Smith', vehicle: 'KLY-004', priority: 'Low', eta: 'Received', pickup: '03:00 AM', window: 'Deliver by 08:00', load: '5.5t', notes: '' },
   ];
 
   const branchJobs = useMemo(() => {
@@ -59,7 +59,7 @@ export default function AdminLoads() {
   const filtered = useMemo(() => {
     return branchJobs.filter(j => {
       const matchesQueue = j.queue === queue;
-      const matchesSearch = !search || `${j.id} ${j.customer} ${j.driver || ''}`.toLowerCase().includes(search.toLowerCase());
+      const matchesSearch = !search || `${j.id} ${j.customer} ${j.customerRef || '' } ${j.stockNumber || ''} ${j.driver || ''}`.toLowerCase().includes(search.toLowerCase());
       let matchesSub = true;
       if (queue === 'unassigned' && unassignedFilter !== 'All') {
         matchesSub = j.unassignedType === unassignedFilter;
@@ -214,15 +214,20 @@ export default function AdminLoads() {
                   className={`hover:bg-gray-50/80 transition-all cursor-pointer group border-l-4 ${selectedIds.includes(job.id) ? 'border-l-brand-yellow bg-yellow-50/20' : 'border-l-transparent'}`}
                   onClick={() => navigate(`/admin/loads/${job.id}`)}
                 >
-                  <td className="px-6 py-4" onClick={e => e.stopPropagation()}>
+                  <td className="px-6 py-4 w-4">
                     <input
                       type="checkbox"
                       checked={selectedIds.includes(job.id)}
-                      onChange={() => toggleSelect(job.id)}
+                      onChange={(e) => { e.stopPropagation(); toggleSelect(job.id); }}
                       className="w-4 h-4 rounded border-gray-300 accent-brand-yellow cursor-pointer"
                     />
                   </td>
-                  <td className="px-6 py-4 font-semibold text-[#111] text-sm tracking-tight">{job.id}</td>
+                  <td className="px-6 py-4">
+                    <div className="font-semibold text-[#111] text-sm tracking-tight">{job.id}</div>
+                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">
+                      Ref: {job.customerRef || '—'} {job.stockNumber ? `• SN: ${job.stockNumber}` : ''}
+                    </div>
+                  </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2 text-xs font-bold text-gray-700">
                       <span>{job.origin}</span>

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Send, Eye, Download, CheckCircle2, Clock, AlertCircle, ChevronDown } from 'lucide-react';
 
 const invoices = [
-  { id: 'INV-2026-1247', customer: 'Woolworths',  job: 'J-2026-1260', amount: '$2,037.20', due: '9 May 2026',  status: 'ready',   days: null },
-  { id: 'INV-2026-1243', customer: 'Coles',        job: 'J-2026-1253', amount: '$1,450.00', due: '28 Apr 2026', status: 'sent',    days: null },
-  { id: 'INV-2026-1238', customer: 'Amazon AU',    job: 'J-2026-1248', amount: '$980.50',   due: '15 Apr 2026', status: 'overdue', days: 22 },
-  { id: 'INV-2026-1201', customer: 'IGA',          job: 'J-2026-1201', amount: '$620.00',   due: '10 Mar 2026', status: 'overdue', days: 58 },
-  { id: 'INV-2026-1195', customer: 'Woolworths',   job: 'J-2026-1195', amount: '$3,120.00', due: '5 Mar 2026',  status: 'paid',    days: null },
+  { id: 'INV-2026-1247', customer: 'Woolworths',  job: 'J-2026-1260', customerRef: 'PO-9901', amount: '$2,037.20', due: '9 May 2026',  status: 'ready',   days: null },
+  { id: 'INV-2026-1243', customer: 'Coles',        job: 'J-2026-1253', customerRef: 'CO-8821', amount: '$1,450.00', due: '28 Apr 2026', status: 'sent',    days: null },
+  { id: 'INV-2026-1238', customer: 'Amazon AU',    job: 'J-2026-1248', customerRef: 'AMZ-102', amount: '$980.50',   due: '15 Apr 2026', status: 'overdue', days: 22 },
+  { id: 'INV-2026-1201', customer: 'IGA',          job: 'J-2026-1201', customerRef: 'IGA-551', amount: '$620.00',   due: '10 Mar 2026', status: 'overdue', days: 58 },
+  { id: 'INV-2026-1195', customer: 'Woolworths',   job: 'J-2026-1195', customerRef: 'PO-9850', amount: '$3,120.00', due: '5 Mar 2026',  status: 'paid',    days: null },
 ];
 
 const statusConfig = {
@@ -105,7 +105,10 @@ export default function Invoices() {
                   <tr key={inv.id} className="hover:bg-gray-50/50 transition-all group">
                     <td className="px-6 py-5">
                       <div className="font-bold text-[#111] text-[15px]">{inv.id}</div>
-                      <div className="text-xs text-gray-400 font-medium mt-0.5">{inv.job}</div>
+                      <div className="flex flex-col gap-0.5 mt-1">
+                        <div className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Job: {inv.job}</div>
+                        <div className="text-[10px] text-brand-orange font-bold uppercase tracking-widest">Client Ref: {inv.customerRef}</div>
+                      </div>
                     </td>
                     <td className="px-6 py-5">
                       <div className="font-bold text-[#111] text-sm">{inv.customer}</div>
