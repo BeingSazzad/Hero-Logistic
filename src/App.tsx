@@ -111,11 +111,11 @@ import PlatformAuditLogs from './pages/Platform/AuditLogs';
 
 // ── Customer (Public Tracking) ───────────────────────────────────
 import TrackLoad from './pages/Customer/TrackLoad';
-// OLD customer portal (hidden — preserved for future use)
-// import CustomerDashboard from './pages/Customer/Dashboard';
-// import CustomerTracking  from './pages/Customer/Tracking';
-// import CustomerInvoices  from './pages/Customer/Invoices';
-// import CustomerAccount   from './pages/Customer/Account';
+// ── Customer Portal ─────────────────────────────────────────────
+import CustomerDashboard from './pages/Customer/Dashboard';
+import CustomerTracking  from './pages/Customer/Tracking';
+import CustomerInvoices  from './pages/Customer/Invoices';
+import CustomerAccount   from './pages/Customer/Account';
 
 // ── 404 ──────────────────────────────────────────────────────────
 import NotFound from './pages/NotFound';
@@ -242,14 +242,13 @@ function App() {
         {/* ── CUSTOMER TRACKING (public, no login) ── */}
         <Route path="/track" element={<TrackLoad />} />
 
-        {/* OLD CUSTOMER PORTAL — hidden, preserved for future use
+        {/* ── CUSTOMER PORTAL ── */}
         <Route path="/customer" element={<CustomerLayout />}>
           <Route index element={<CustomerDashboard />} />
           <Route path="tracking" element={<CustomerTracking />} />
           <Route path="invoices" element={<CustomerInvoices />} />
           <Route path="account"  element={<CustomerAccount />} />
         </Route>
-        */}
 
         {/* ── 404 ── */}
         <Route path="*" element={<NotFound />} />
