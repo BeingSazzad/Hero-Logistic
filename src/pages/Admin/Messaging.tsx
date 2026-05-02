@@ -17,9 +17,9 @@ interface Ticket {
 }
 
 const internalTickets: Ticket[] = [
-  { id: 'TKT-701', user: 'Jack Taylor', role: 'Driver', issue: 'App crashing on route sync', priority: 'High', status: 'Open', time: '12 mins ago', avatar: '/driver_avatar_2_1777708515488.png' },
-  { id: 'TKT-702', user: 'Sarah Mitchell', role: 'Dispatch', issue: 'Need vehicle re-assignment permission', priority: 'Medium', status: 'Open', time: '2 hrs ago', avatar: '/driver_avatar_3_1777708569850.png' },
-  { id: 'TKT-699', user: 'Noah Williams', role: 'Driver', issue: 'License verification stalled', priority: 'High', status: 'Resolved', time: '1 day ago', avatar: '/driver_avatar_1_1777708494778.png' },
+  { id: 'TKT-701', user: 'Jack Taylor', role: 'Driver', issue: 'App crashing on route sync', priority: 'High', status: 'Open', time: '12 mins ago', avatar: '/driver_avatar_2.png' },
+  { id: 'TKT-702', user: 'Sarah Mitchell', role: 'Dispatch', issue: 'Need vehicle re-assignment permission', priority: 'Medium', status: 'Open', time: '2 hrs ago', avatar: '/driver_avatar_3.png' },
+  { id: 'TKT-699', user: 'Noah Williams', role: 'Driver', issue: 'License verification stalled', priority: 'High', status: 'Resolved', time: '1 day ago', avatar: '/driver_avatar_1.png' },
 ];
 
 export default function AdminMessaging() {

@@ -6,13 +6,13 @@ import {
 } from 'lucide-react';
 
 const RAW_USERS = [
-  { id: 'USR-01', name: 'Sarah Mitchell', email: 'sarah.m@hero.com', role: 'Dispatcher', branch: 'Sydney Central Depot', status: 'Active',  lastLogin: '10 mins ago', access: 'Full', avatar: '/driver_avatar_1_1777708494778.png' },
-  { id: 'USR-02', name: 'Jack Taylor',    email: 'jack.t@hero.com',  role: 'Driver',     branch: 'Sydney Central Depot', status: 'Active',  lastLogin: '2 days ago',  access: 'Mobile Only', avatar: '/driver_avatar_2_1777708515488.png' },
-  { id: 'USR-03', name: 'Oliver Brown',   email: 'oliver.b@hero.com',role: 'Dispatcher', branch: 'Melbourne Depot',      status: 'Offline', lastLogin: '1 week ago',  access: 'Full', avatar: '/driver_avatar_3_1777708569850.png' },
-  { id: 'USR-04', name: 'Liam Smith',     email: 'liam.s@hero.com',  role: 'Driver',     branch: 'Sydney Central Depot', status: 'Active',  lastLogin: '1 hr ago',    access: 'Mobile Only', avatar: '/driver_avatar_4_1777708585605.png' },
-  { id: 'USR-05', name: 'Michael Adams',  email: 'mike.a@hero.com',  role: 'Accounts',   branch: 'All Branches',       status: 'Active',  lastLogin: 'Now',         access: 'Full', avatar: '/driver_avatar_2_1777708515488.png' },
-  { id: 'USR-06', name: 'Noah Williams',  email: 'noah.w@hero.com',  role: 'Driver',     branch: 'Melbourne Depot',      status: 'Active',  lastLogin: '30 mins ago', access: 'Mobile Only', avatar: '/driver_avatar_1_1777708494778.png' },
-  { id: 'USR-07', name: 'Emma Stevens',   email: 'emma.s@hero.com',  role: 'Warehouse',  branch: 'Brisbane Port',      status: 'Offline', lastLogin: '3 days ago',  access: 'Floor Devices', avatar: '/driver_avatar_3_1777708569850.png' },
+  { id: 'USR-01', name: 'Sarah Mitchell', email: 'sarah.m@hero.com', role: 'Dispatcher', branch: 'Sydney Central Depot', status: 'Active',  lastLogin: '10 mins ago', access: 'Full', avatar: '/driver_avatar_1.png' },
+  { id: 'USR-02', name: 'Jack Taylor',    email: 'jack.t@hero.com',  role: 'Driver',     branch: 'Sydney Central Depot', status: 'Active',  lastLogin: '2 days ago',  access: 'Mobile Only', avatar: '/driver_avatar_2.png' },
+  { id: 'USR-03', name: 'Oliver Brown',   email: 'oliver.b@hero.com',role: 'Dispatcher', branch: 'Melbourne Depot',      status: 'Offline', lastLogin: '1 week ago',  access: 'Full', avatar: '/driver_avatar_3.png' },
+  { id: 'USR-04', name: 'Liam Smith',     email: 'liam.s@hero.com',  role: 'Driver',     branch: 'Sydney Central Depot', status: 'Active',  lastLogin: '1 hr ago',    access: 'Mobile Only', avatar: '/driver_avatar_4.png' },
+  { id: 'USR-05', name: 'Michael Adams',  email: 'mike.a@hero.com',  role: 'Accounts',   branch: 'All Branches',       status: 'Active',  lastLogin: 'Now',         access: 'Full', avatar: '/driver_avatar_2.png' },
+  { id: 'USR-06', name: 'Noah Williams',  email: 'noah.w@hero.com',  role: 'Driver',     branch: 'Melbourne Depot',      status: 'Active',  lastLogin: '30 mins ago', access: 'Mobile Only', avatar: '/driver_avatar_1.png' },
+  { id: 'USR-07', name: 'Emma Stevens',   email: 'emma.s@hero.com',  role: 'Warehouse',  branch: 'Brisbane Port',      status: 'Offline', lastLogin: '3 days ago',  access: 'Floor Devices', avatar: '/driver_avatar_3.png' },
 ];
 
 const ROLE_TABS = ['All', 'Dispatcher', 'Driver', 'Warehouse', 'Accounts'];

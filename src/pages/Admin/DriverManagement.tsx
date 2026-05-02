@@ -8,10 +8,10 @@ import {
 } from 'lucide-react';
 
 const RAW_DRIVERS = [
-  { id: 'DRV-101', name: 'Noah Williams', phone: '+61 412 888 123', status: 'Active', rating: 4.8, license: 'MC Class', vehicle: 'XQG-984', region: 'Sydney Metro', canEditLoads: true, avatar: '/driver_avatar_1_1777708494778.png' },
-  { id: 'DRV-102', name: 'Jack Taylor',   phone: '+61 412 888 456', status: 'On Trip', rating: 4.9, license: 'HC Class', vehicle: 'BGT-221', region: 'Melbourne SE', canEditLoads: false, avatar: '/driver_avatar_2_1777708515488.png' },
-  { id: 'DRV-103', name: 'Oliver Brown',  phone: '+61 412 888 789', status: 'Offline', rating: 4.5, license: 'HR Class', vehicle: 'None', region: 'Brisbane NW', canEditLoads: true, avatar: '/driver_avatar_3_1777708569850.png' },
-  { id: 'DRV-104', name: 'Liam Smith',    phone: '+61 412 888 000', status: 'Active', rating: 4.7, license: 'HC Class', vehicle: 'KLY-004', region: 'Adelaide Depot', canEditLoads: false, avatar: '/driver_avatar_4_1777708585605.png' },
+  { id: 'DRV-101', name: 'Noah Williams', phone: '+61 412 888 123', status: 'Active', rating: 4.8, license: 'MC Class', vehicle: 'XQG-984', region: 'Sydney Metro', canEditLoads: true, avatar: '/driver_avatar_1.png' },
+  { id: 'DRV-102', name: 'Jack Taylor',   phone: '+61 412 888 456', status: 'On Trip', rating: 4.9, license: 'HC Class', vehicle: 'BGT-221', region: 'Melbourne SE', canEditLoads: false, avatar: '/driver_avatar_2.png' },
+  { id: 'DRV-103', name: 'Oliver Brown',  phone: '+61 412 888 789', status: 'Offline', rating: 4.5, license: 'HR Class', vehicle: 'None', region: 'Brisbane NW', canEditLoads: true, avatar: '/driver_avatar_3.png' },
+  { id: 'DRV-104', name: 'Liam Smith',    phone: '+61 412 888 000', status: 'Active', rating: 4.7, license: 'HC Class', vehicle: 'KLY-004', region: 'Adelaide Depot', canEditLoads: false, avatar: '/driver_avatar_4.png' },
 ];
 
 export default function AdminDriverManagement() {

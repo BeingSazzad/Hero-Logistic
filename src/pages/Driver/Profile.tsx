@@ -17,7 +17,7 @@ export default function DriverProfile() {
 
   const user = useAuthStore(state => state.user);
   const [activeView, setActiveView] = useState('main'); // 'main', 'edit', 'password'
-  const [profilePhoto, setProfilePhoto] = useState('/driver_avatar_1_1777708494778.png');
+  const [profilePhoto, setProfilePhoto] = useState('/driver_avatar_1.png');
 
   if (activeView === 'edit') {
      return (

@@ -7,10 +7,10 @@ import {
 } from 'lucide-react';
 
 const VEHICLE_DB = {
-   'TRK-102': { id: 'TRK-102', make: 'Freightliner Cascadia', type: 'Semi Truck', plate: 'XQG-984', year: '2021', status: 'Active', fuel: '72%', mileage: '128,440 km', nextService: 'April 22, 2026', lastService: 'Jan 15, 2026', compliance: 'Valid', capacity: '28t', location: 'Hume Highway, Goulburn NSW', trips: 412, rating: 4.8, thumbnail: '/ford_ranger_silver_1777708602634.png', shifts: [{ id: 'DRV-102', name: 'Jack Taylor', shift: 'Day Shift (06:00 - 18:00)', initials: 'JT', avatar: '/driver_avatar_2_1777708515488.png' }, { id: 'DRV-134', name: 'Oliver Brown', shift: 'Night Shift (18:00 - 06:00)', initials: 'OB', avatar: '/driver_avatar_3_1777708569850.png' }] },
-   'VAN-14': { id: 'VAN-14', make: 'Mercedes Sprinter 519', type: 'Cargo Van', plate: 'VAN-14-SYD', year: '2022', status: 'Loading', fuel: '55%', mileage: '44,200 km', nextService: 'May 10, 2026', lastService: 'Feb 02, 2026', compliance: 'Valid', capacity: '3.5t', location: 'Warehouse A, Sydney NSW', trips: 198, rating: 4.5, thumbnail: '/honda_crv_black_1777708547079.png', shifts: [{ id: 'DRV-134', name: 'Oliver Brown', shift: 'Day Shift (06:00 - 18:00)', initials: 'OB', avatar: '/driver_avatar_3_1777708569850.png' }] },
-   'BGT-221': { id: 'BGT-221', make: 'Isuzu FTR 900', type: 'Medium Truck', plate: 'BGT-221', year: '2020', status: 'Delay Alert', fuel: '31%', mileage: '89,100 km', nextService: 'April 15, 2026', lastService: 'Dec 12, 2025', compliance: 'Warning', capacity: '9t', location: 'Pacific Highway, NSW', trips: 301, rating: 4.2, thumbnail: '/hero_logistic_asset_inventory_final_1777697265907.webp', shifts: [{ id: 'DRV-105', name: 'Liam Smith', shift: 'Day Shift (08:00 - 20:00)', initials: 'LS', avatar: '/driver_avatar_4_1777708585605.png' }] },
-   'TRK-05': { id: 'TRK-05', make: 'Kenworth T610', type: 'Road Train', plate: 'TRK-05-MEL', year: '2019', status: 'Active', fuel: '88%', mileage: '204,000 km', nextService: 'June 01, 2026', lastService: 'Mar 01, 2026', compliance: 'Valid', capacity: '42t', location: 'Pacific Highway, NSW', trips: 680, rating: 4.6, thumbnail: '/ford_ranger_silver_1777708602634.png', shifts: [] },
+   'TRK-102': { id: 'TRK-102', make: 'Freightliner Cascadia', type: 'Semi Truck', plate: 'XQG-984', year: '2021', status: 'Active', fuel: '72%', mileage: '128,440 km', nextService: 'April 22, 2026', lastService: 'Jan 15, 2026', compliance: 'Valid', capacity: '28t', location: 'Hume Highway, Goulburn NSW', trips: 412, rating: 4.8, thumbnail: '/vehicle_truck_1.png', shifts: [{ id: 'DRV-102', name: 'Jack Taylor', shift: 'Day Shift (06:00 - 18:00)', initials: 'JT', avatar: '/driver_avatar_2.png' }, { id: 'DRV-134', name: 'Oliver Brown', shift: 'Night Shift (18:00 - 06:00)', initials: 'OB', avatar: '/driver_avatar_3.png' }] },
+   'VAN-14': { id: 'VAN-14', make: 'Mercedes Sprinter 519', type: 'Cargo Van', plate: 'VAN-14-SYD', year: '2022', status: 'Loading', fuel: '55%', mileage: '44,200 km', nextService: 'May 10, 2026', lastService: 'Feb 02, 2026', compliance: 'Valid', capacity: '3.5t', location: 'Warehouse A, Sydney NSW', trips: 198, rating: 4.5, thumbnail: '/vehicle_car_1.png', shifts: [{ id: 'DRV-134', name: 'Oliver Brown', shift: 'Day Shift (06:00 - 18:00)', initials: 'OB', avatar: '/driver_avatar_3.png' }] },
+   'BGT-221': { id: 'BGT-221', make: 'Isuzu FTR 900', type: 'Medium Truck', plate: 'BGT-221', year: '2020', status: 'Delay Alert', fuel: '31%', mileage: '89,100 km', nextService: 'April 15, 2026', lastService: 'Dec 12, 2025', compliance: 'Warning', capacity: '9t', location: 'Pacific Highway, NSW', trips: 301, rating: 4.2, thumbnail: '/hero_logistic_asset_inventory_final_1777697265907.webp', shifts: [{ id: 'DRV-105', name: 'Liam Smith', shift: 'Day Shift (08:00 - 20:00)', initials: 'LS', avatar: '/driver_avatar_4.png' }] },
+   'TRK-05': { id: 'TRK-05', make: 'Kenworth T610', type: 'Road Train', plate: 'TRK-05-MEL', year: '2019', status: 'Active', fuel: '88%', mileage: '204,000 km', nextService: 'June 01, 2026', lastService: 'Mar 01, 2026', compliance: 'Valid', capacity: '42t', location: 'Pacific Highway, NSW', trips: 680, rating: 4.6, thumbnail: '/vehicle_truck_1.png', shifts: [] },
 };
 
 const statusStyle = (s) => {
@@ -70,7 +70,7 @@ export default function DispatchVehicleDetail() {
             <div className="flex-1 flex flex-col gap-3">
                <div className="relative aspect-[16/9] w-full rounded-2xl bg-[#111] overflow-hidden shadow-xl border-4 border-white group">
                   <img
-                     src={photo || v.thumbnail || "/ford_ranger_silver_1777708602634.png"}
+                     src={photo || v.thumbnail || "/vehicle_truck_1.png"}
                      alt="Fleet Asset"
                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -83,8 +83,8 @@ export default function DispatchVehicleDetail() {
                </div>
                 <div className="flex gap-3">
                   {[
-                     { src: v.thumbnail || "/ford_ranger_silver_1777708602634.png", label: 'Primary' },
-                     { src: "/honda_crv_black_1777708547079.png", label: 'Alternate' },
+                     { src: v.thumbnail || "/vehicle_truck_1.png", label: 'Primary' },
+                     { src: "/vehicle_car_1.png", label: 'Alternate' },
                      { src: "/hero_logistic_asset_inventory_final_1777697265907.webp", label: 'Fleet' }
                   ].map((img, i) => (
                      <button

@@ -16,7 +16,7 @@ const vehicle = {
   fuelType: 'Diesel',
   status: 'Active',
   depot: 'Sydney Central Depot',
-  assignedDriver: { id: 'DRV-102', name: 'Jack Taylor', avatar: '/driver_avatar_2_1777708515488.png' },
+  assignedDriver: { id: 'DRV-102', name: 'Jack Taylor', avatar: '/driver_avatar_2.png' },
   currentLoad: { id: 'SHP-20481', route: 'Sydney Port → Blacktown DC', progress: 65 },
   odometer: '184,220 km',
   fuelLog: [
@@ -38,11 +38,11 @@ const vehicle = {
 };
 
 const availableDrivers = [
-  { id: 'DRV-102', name: 'Jack Taylor',  status: 'Available', depot: 'Sydney Central Depot', avatar: '/driver_avatar_2_1777708515488.png' },
-  { id: 'DRV-087', name: 'Maria Santos', status: 'Available', depot: 'Sydney Central Depot', avatar: '/driver_avatar_1_1777708494778.png' },
-  { id: 'DRV-091', name: 'Chris Nguyen', status: 'On Leave',  depot: 'Melbourne Depot',      avatar: '/driver_avatar_3_1777708569850.png' },
-  { id: 'DRV-044', name: 'Devon Clarke', status: 'Available', depot: 'Sydney Central Depot', avatar: '/driver_avatar_4_1777708585605.png' },
-  { id: 'DRV-058', name: 'Priya Mehta',  status: 'On Shift',  depot: 'Brisbane Port',       avatar: '/driver_avatar_1_1777708494778.png' },
+  { id: 'DRV-102', name: 'Jack Taylor',  status: 'Available', depot: 'Sydney Central Depot', avatar: '/driver_avatar_2.png' },
+  { id: 'DRV-087', name: 'Maria Santos', status: 'Available', depot: 'Sydney Central Depot', avatar: '/driver_avatar_1.png' },
+  { id: 'DRV-091', name: 'Chris Nguyen', status: 'On Leave',  depot: 'Melbourne Depot',      avatar: '/driver_avatar_3.png' },
+  { id: 'DRV-044', name: 'Devon Clarke', status: 'Available', depot: 'Sydney Central Depot', avatar: '/driver_avatar_4.png' },
+  { id: 'DRV-058', name: 'Priya Mehta',  status: 'On Shift',  depot: 'Brisbane Port',       avatar: '/driver_avatar_1.png' },
 ];
 
 // Utility: generate initials from full name
@@ -127,7 +127,7 @@ export default function AdminVehicleDetail() {
         <div className="lg:col-span-7 flex flex-col gap-3">
           <div className="relative aspect-[16/10] w-full rounded-2xl bg-[#0a0a0a] overflow-hidden shadow-lg group">
             <img
-              src={photo || '/ford_ranger_silver_1777708602634.png'}
+              src={photo || '/vehicle_truck_1.png'}
               alt={vehicle.make}
               className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all"
             />
@@ -149,7 +149,7 @@ export default function AdminVehicleDetail() {
           </div>
           {/* Thumbnail strip */}
           <div className="flex gap-2">
-            {['/ford_ranger_silver_1777708602634.png', '/honda_crv_black_1777708547079.png', '/nissan_xtrail_blue_1777708637322.png'].map((img, i) => (
+            {['/vehicle_truck_1.png', '/vehicle_car_1.png', '/vehicle_truck_2.png'].map((img, i) => (
               <button
                 key={i}
                 onClick={() => setPhoto(img)}

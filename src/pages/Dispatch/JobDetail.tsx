@@ -17,9 +17,9 @@ const NETWORK_STAGES = [
 ];
 
 const AVAILABLE_DRIVERS = [
-  { id: 'DRV-134', name: 'Oliver Brown', initials: 'OB', rank: 'Junior', status: 'In Break', rating: 4.0, vehicle: 'VAN-14', availability: 'Available 13:00', avatar: '/driver_avatar_3_1777708569850.png' },
-  { id: 'DRV-145', name: 'Lucas Jones', initials: 'LJ', rank: 'Senior', status: 'Off Duty', rating: 4.9, vehicle: 'TRK-05', availability: 'Available Now', avatar: '/driver_avatar_2_1777708515488.png' },
-  { id: 'DRV-105', name: 'Liam Smith', initials: 'LS', rank: 'Regular', status: 'On Duty', rating: 4.5, vehicle: 'BGT-221', availability: 'Finishing at 11:30', avatar: '/driver_avatar_4_1777708585605.png' },
+  { id: 'DRV-134', name: 'Oliver Brown', initials: 'OB', rank: 'Junior', status: 'In Break', rating: 4.0, vehicle: 'VAN-14', availability: 'Available 13:00', avatar: '/driver_avatar_3.png' },
+  { id: 'DRV-145', name: 'Lucas Jones', initials: 'LJ', rank: 'Senior', status: 'Off Duty', rating: 4.9, vehicle: 'TRK-05', availability: 'Available Now', avatar: '/driver_avatar_2.png' },
+  { id: 'DRV-105', name: 'Liam Smith', initials: 'LS', rank: 'Regular', status: 'On Duty', rating: 4.5, vehicle: 'BGT-221', availability: 'Finishing at 11:30', avatar: '/driver_avatar_4.png' },
 ];
 
 export default function DispatchJobDetail() {

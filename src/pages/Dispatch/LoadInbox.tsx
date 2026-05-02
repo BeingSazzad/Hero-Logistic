@@ -32,7 +32,7 @@ const MOCK_INBOX: DraftLoad[] = [
     status: 'Pending Review',
     urgency: 'High',
     notes: 'Customer confirmed urgent. Two sedans, both undamaged.',
-    avatar: '/driver_avatar_2_1777708515488.png'
+    avatar: '/driver_avatar_2.png'
   },
   {
     id: 'DRAFT-1091',
@@ -45,7 +45,7 @@ const MOCK_INBOX: DraftLoad[] = [
     status: 'Pending Review',
     urgency: 'Normal',
     notes: 'Oversize Ute. Requires flatbed trailer.',
-    avatar: '/driver_avatar_3_1777708569850.png'
+    avatar: '/driver_avatar_3.png'
   },
   {
     id: 'DRAFT-1088',
@@ -58,7 +58,7 @@ const MOCK_INBOX: DraftLoad[] = [
     status: 'Pending Review',
     urgency: 'Normal',
     notes: 'Port pickup. Vehicles in compound storage.',
-    avatar: '/driver_avatar_4_1777708585605.png'
+    avatar: '/driver_avatar_4.png'
   },
 ];
 

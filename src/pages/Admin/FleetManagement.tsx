@@ -13,10 +13,10 @@ export default function AdminFleetManagement() {
   const [showFilterDropdown, setShowFilterDropdown] = useState(false);
 
   const fleet = [
-    { id: 'TRK-102', branch: 'SYDNEY', reg: 'XQG-984', type: 'Heavy Truck', cap: '20t', status: 'Active', service: '4,500 km', fuel: '18L/100km', lastUpdate: 'Live', driver: 'Jack Taylor', avatar: '/driver_avatar_2_1777708515488.png' },
-    { id: 'VAN-08',  branch: 'MELBOURNE', reg: 'BZX-441', type: 'Delivery Van', cap: '2.5t', status: 'Maintenance', service: 'Overdue', fuel: '12L/100km', lastUpdate: '2h ago', driver: 'Oliver Brown', avatar: '/driver_avatar_3_1777708569850.png' },
-    { id: 'TRL-44',  branch: 'BRISBANE', reg: 'T-9921',  type: 'Trailer Flatbed', cap: '40t', status: 'Active', service: '12,000 km', fuel: '-', lastUpdate: 'Live', driver: 'Noah Williams', avatar: '/driver_avatar_1_1777708494778.png' },
-    { id: 'TRK-09',  branch: 'SYDNEY', reg: 'XYY-112', type: 'Heavy Truck', cap: '20t', status: 'Inbound', service: '1,200 km', fuel: '19L/100km', lastUpdate: 'Live', driver: 'Liam Smith', avatar: '/driver_avatar_4_1777708585605.png' },
+    { id: 'TRK-102', branch: 'SYDNEY', reg: 'XQG-984', type: 'Heavy Truck', cap: '20t', status: 'Active', service: '4,500 km', fuel: '18L/100km', lastUpdate: 'Live', driver: 'Jack Taylor', avatar: '/driver_avatar_2.png' },
+    { id: 'VAN-08',  branch: 'MELBOURNE', reg: 'BZX-441', type: 'Delivery Van', cap: '2.5t', status: 'Maintenance', service: 'Overdue', fuel: '12L/100km', lastUpdate: '2h ago', driver: 'Oliver Brown', avatar: '/driver_avatar_3.png' },
+    { id: 'TRL-44',  branch: 'BRISBANE', reg: 'T-9921',  type: 'Trailer Flatbed', cap: '40t', status: 'Active', service: '12,000 km', fuel: '-', lastUpdate: 'Live', driver: 'Noah Williams', avatar: '/driver_avatar_1.png' },
+    { id: 'TRK-09',  branch: 'SYDNEY', reg: 'XYY-112', type: 'Heavy Truck', cap: '20t', status: 'Inbound', service: '1,200 km', fuel: '19L/100km', lastUpdate: 'Live', driver: 'Liam Smith', avatar: '/driver_avatar_4.png' },
   ];
 
   // Fix: Unified filtering logic

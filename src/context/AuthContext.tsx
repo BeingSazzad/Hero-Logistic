@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     branchId: 'SYD-CENTRAL',
     branchName: 'Sydney Central Depot',
     email: 'sarah.m@herologistics.com',
-    avatar: '/driver_avatar_1_1777708494778.png'
+    avatar: '/driver_avatar_1.png'
   });
 
   return (

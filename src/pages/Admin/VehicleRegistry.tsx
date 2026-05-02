@@ -25,11 +25,11 @@ interface Vehicle {
 
 // ── Mock Data ──────────────────────────────────────────────────────────────
 const MOCK_VEHICLES: Vehicle[] = [
-  { id: 1, vin: '1HGCM82633A004352', plate: 'ABC 123', make: 'Toyota', model: 'Camry', year: '2022', color: 'White', type: 'Sedan', weight: '1,450 kg', status: 'In Depot', currentLoad: 'LD-2041', destination: 'Brisbane QLD', customer: 'AutoDeal Pty Ltd', tags: ['Priority', 'Express'], image: '/toyota_camry_white_1777708531313.png' },
-  { id: 2, vin: '2T1BURHE0JC034820', plate: 'XYZ 987', make: 'Honda', model: 'CR-V', year: '2023', color: 'Black', type: 'SUV', weight: '1,720 kg', status: 'In Transit', currentLoad: 'LD-2039', destination: 'Melbourne VIC', customer: 'Smith Motors', tags: ['Fragile'], image: '/honda_crv_black_1777708547079.png' },
-  { id: 3, vin: '5YJSA1DG9PFJ12345', plate: 'EV 0001', make: 'Tesla', model: 'Model S', year: '2024', color: 'Red', type: 'Sedan', weight: '2,162 kg', status: 'Delivered', currentLoad: 'LD-2031', destination: 'Sydney NSW', customer: 'EV Fleet Co', tags: [], image: '/tesla_model_s_red_1777708622081.png' },
-  { id: 4, vin: '3FADP4BJ7FM123456', plate: 'TRK 444', make: 'Ford', model: 'Ranger', year: '2021', color: 'Silver', type: 'Ute', weight: '2,030 kg', status: 'Awaiting Load', currentLoad: null, destination: 'Perth WA', customer: 'WA Motors', tags: ['Oversize'], image: '/ford_ranger_silver_1777708602634.png' },
-  { id: 5, vin: '1N4AL3AP7JC234567', plate: 'NIS 202', make: 'Nissan', model: 'X-Trail', year: '2022', color: 'Blue', type: 'SUV', weight: '1,680 kg', status: 'In Depot', currentLoad: 'LD-2042', destination: 'Adelaide SA', customer: 'SA Auto Group', tags: [], image: '/nissan_xtrail_blue_1777708637322.png' },
+  { id: 1, vin: '1HGCM82633A004352', plate: 'ABC 123', make: 'Toyota', model: 'Camry', year: '2022', color: 'White', type: 'Sedan', weight: '1,450 kg', status: 'In Depot', currentLoad: 'LD-2041', destination: 'Brisbane QLD', customer: 'AutoDeal Pty Ltd', tags: ['Priority', 'Express'], image: '/vehicle_car_3.png' },
+  { id: 2, vin: '2T1BURHE0JC034820', plate: 'XYZ 987', make: 'Honda', model: 'CR-V', year: '2023', color: 'Black', type: 'SUV', weight: '1,720 kg', status: 'In Transit', currentLoad: 'LD-2039', destination: 'Melbourne VIC', customer: 'Smith Motors', tags: ['Fragile'], image: '/vehicle_car_1.png' },
+  { id: 3, vin: '5YJSA1DG9PFJ12345', plate: 'EV 0001', make: 'Tesla', model: 'Model S', year: '2024', color: 'Red', type: 'Sedan', weight: '2,162 kg', status: 'Delivered', currentLoad: 'LD-2031', destination: 'Sydney NSW', customer: 'EV Fleet Co', tags: [], image: '/vehicle_car_2.png' },
+  { id: 4, vin: '3FADP4BJ7FM123456', plate: 'TRK 444', make: 'Ford', model: 'Ranger', year: '2021', color: 'Silver', type: 'Ute', weight: '2,030 kg', status: 'Awaiting Load', currentLoad: null, destination: 'Perth WA', customer: 'WA Motors', tags: ['Oversize'], image: '/vehicle_truck_1.png' },
+  { id: 5, vin: '1N4AL3AP7JC234567', plate: 'NIS 202', make: 'Nissan', model: 'X-Trail', year: '2022', color: 'Blue', type: 'SUV', weight: '1,680 kg', status: 'In Depot', currentLoad: 'LD-2042', destination: 'Adelaide SA', customer: 'SA Auto Group', tags: [], image: '/vehicle_truck_2.png' },
 ];
 
 const STATUS_META = {
